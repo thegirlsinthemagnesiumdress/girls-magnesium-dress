@@ -1,0 +1,176 @@
+#!/usr/bin/env python
+
+import subprocess
+import shutil
+import stat
+import os
+import sys
+import json
+
+from os import path
+from StringIO import StringIO
+from zipfile import ZipFile
+from urllib import urlopen
+
+REQUIREMENTS = [ "pip", "git", "npm" ]
+PROJECT_ROOT = path.dirname(path.dirname(path.abspath(__file__)))
+THIRD_PARTY_DIR = path.join(PROJECT_ROOT, 'third_party')
+REQUIREMENTS_DIR = path.join(PROJECT_ROOT, 'requirements')
+
+PACKAGE_JSON = path.join(PROJECT_ROOT, 'package.json')
+
+APPENGINE_TARGET_DIR = os.path.join(THIRD_PARTY_DIR, "google_appengine")
+
+APPENGINE_SDK_VERSION = "1.9.52"
+APPENGINE_SDK_FILENAME = "google_appengine_%s.zip" % APPENGINE_SDK_VERSION
+
+# List of (linkname, target) tuples
+SYMLINKS = [
+
+]
+
+# Google move versions from 'featured' to 'deprecated' when they bring
+# out new releases
+FEATURED_SDK_REPO = "https://storage.googleapis.com/appengine-sdks/featured/"
+DEPRECATED_SDK_REPO = "https://storage.googleapis.com/appengine-sdks/deprecated/%s/" % APPENGINE_SDK_VERSION.replace('.', '')
+
+def check_requirements():
+    #Make sure the user has everything they need
+    for command in REQUIREMENTS:
+        if not subprocess.check_output(["which", command]).strip():
+            raise RuntimeError("You must install the '%s' command" % command)
+
+
+def create_third_party_dir():
+    if not path.exists(THIRD_PARTY_DIR):
+        os.makedirs(THIRD_PARTY_DIR)
+
+
+def install_python_deps():
+    def get_pip_version():
+        version = subprocess.check_output(["pip", "-V"])
+        version = version.split()[1].split(".")
+        return [int(x) for x in version ]
+
+    pip_version = get_pip_version()
+
+    targets = [ x[:-4] for x in os.listdir(REQUIREMENTS_DIR) ] # e.g. prod, local etc.
+
+    # Reorder so that prod is first
+    targets.remove("prod")
+    targets.insert(0, "prod")
+
+    for i, target in enumerate(targets):
+        print("Installing Python requirements for target: '{}'".format(target))
+        requirements_file = path.join(REQUIREMENTS_DIR, target + ".txt")
+        target_dir = path.join(THIRD_PARTY_DIR, target, "sitepackages")
+
+        if path.exists(target_dir):
+            shutil.rmtree(target_dir)
+
+        os.makedirs(target_dir)
+
+        command = ["pip", "install", "-r", requirements_file, "-t", target_dir, "-I", "--force-reinstall", "-q"]
+
+        if i > 0:
+            # Only prod should install dependencies, otherwise we get duplicates of Django etc.
+            command.append("--no-deps")
+        else:
+            if tuple(pip_version) < (1, 6, 0):
+                command.extend(["--no-use-wheel"])
+            else:
+                # Don't allow binaries in 'prod'
+                # If we don't pass this then the Django install doesn't work
+                command.extend(["--no-binary", ":all:"])
+
+        subprocess.check_call(command)
+
+
+def download_appengine():
+    print('Downloading the AppEngine SDK...')
+
+    #First try and get it from the 'featured' folder
+    sdk_file = urlopen(FEATURED_SDK_REPO + APPENGINE_SDK_FILENAME)
+    if sdk_file.getcode() == 404:
+        #Failing that, 'deprecated'
+        sdk_file = urlopen(DEPRECATED_SDK_REPO + APPENGINE_SDK_FILENAME)
+
+    #Handle other errors
+    if sdk_file.getcode() >= 299:
+        raise Exception('App Engine SDK could not be found. {} returned code {}.'.format(sdk_file.geturl(), sdk_file.getcode()))
+
+    zipfile = ZipFile(StringIO(sdk_file.read()))
+    zipfile.extractall(THIRD_PARTY_DIR)
+
+    #Make sure the dev_appserver and appcfg are executable
+    for module in ("dev_appserver.py", "appcfg.py"):
+        app = os.path.join(APPENGINE_TARGET_DIR, module)
+        st = os.stat(app)
+        os.chmod(app, st.st_mode | stat.S_IEXEC)
+
+
+def install_node_modules():
+    NODE_PREFIX = path.join(THIRD_PARTY_DIR, "local", "npm")
+    if not path.exists(NODE_PREFIX):
+        os.makedirs(NODE_PREFIX)
+
+    shutil.copyfile("%s/package.json" % PROJECT_ROOT, "%s/package.json" % NODE_PREFIX)
+
+    command = ["npm", "install", "--prefix", NODE_PREFIX]
+    subprocess.check_call(command)
+
+
+def make_symlinks():
+    for link_name, source in SYMLINKS:
+        if not path.exists(link_name):
+            os.symlink(source, link_name)
+
+
+def update_submodules():
+    if not os.path.exists(".git"):
+        return
+
+    subprocess.check_call(["git", "submodule", "update", "--init"])
+
+
+def symlink_pil():
+    """
+        App Engine doesn't ship PIL, and we shouldn't deploy it. However,
+        the SDK PIL path is still added to the sys.path and we can abuse this
+        so it picks up the version of Pillow in our local packages rather than the
+        system wide version.
+    """
+
+    target_folder = os.path.join(APPENGINE_TARGET_DIR, "lib", "PIL-1.1.7")
+
+    if os.path.exists(target_folder):
+        shutil.rmtree(target_folder)
+    os.makedirs(target_folder)
+
+    link_name = os.path.join(target_folder, "PIL")
+
+    target = os.path.join(THIRD_PARTY_DIR, "local", "sitepackages", "PIL")
+
+    if not os.path.exists(link_name) and os.path.exists(target):
+        os.symlink(target, link_name)
+
+
+if __name__ == "__main__":
+    check_requirements()
+    create_third_party_dir()
+
+    if "--js-only" not in sys.argv:
+        install_python_deps()
+
+    if "--python-only" not in sys.argv:
+        install_node_modules()
+
+    update_submodules()
+    make_symlinks()
+
+    if "--with-appengine" in sys.argv:
+        download_appengine()
+    elif not path.exists(APPENGINE_TARGET_DIR):
+        print("App Engine folder not found, run with --with-appengine to create it")
+
+    symlink_pil()
