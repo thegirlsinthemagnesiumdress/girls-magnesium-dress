@@ -18,3 +18,6 @@ INTERNAL_IPS = [
 # This is just to allow the inline styles on Django error pages when DEBUG = True
 # this settings file won't be used on production only during local development
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+
+CHROMEDRIVER_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "chromedriver")
+JASMINE_NODE_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "jasmine-node")

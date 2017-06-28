@@ -3,6 +3,7 @@
 third_party/*
 src/static/*
 src/.storage/*
+coverage_html/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -28,10 +28,25 @@ var ADMIN_STATIC = [
   './src/sitepackages/django/contrib/admin/static/admin/**/*.woff'
 ];
 
+var JASMINE_STATIC = [
+  './third_party/local/npm/node_modules/jasmine-core/**/*.js',
+  './third_party/local/npm/node_modules/jasmine-core/**/*.css'
+];
+
 var DEBUG_TOOLBAR = [
   './src/sitepackages/debug_toolbar/static/debug_toolbar/**/*.css',
   './src/sitepackages/debug_toolbar/static/debug_toolbar/**/*.js'
 ];
+
+gulp.task('jasmine', function() {
+  var outputDir = DIST_DIR;
+  if(argv.assets_debug) {
+    outputDir = DEV_STATIC_DIR;
+  }
+
+  gulp.src(JASMINE_STATIC)
+  .pipe(gulp.dest(outputDir + "/jasmine/"));
+});
 
 gulp.task('adminstatic', function() {
   var outputDir = DIST_DIR;
@@ -193,4 +208,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['build', 'watch']);
-gulp.task('build', ['adminstatic', 'toolbarstatic', 'js', 'css', 'fonts', 'images']);
+gulp.task('build', ['adminstatic', 'toolbarstatic', 'js', 'css', 'fonts', 'images', 'jasmine']);
