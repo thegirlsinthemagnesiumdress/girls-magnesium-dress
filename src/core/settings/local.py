@@ -20,4 +20,5 @@ INTERNAL_IPS = [
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 
 CHROMEDRIVER_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "chromedriver")
-JASMINE_NODE_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "jasmine-node")
+JASMINE_NODE_PATH = os.path.join(NODE_PREFIX, "node_modules", "jasmine-node", "lib", "jasmine-node", "cli.js")
+BABEL_NODE_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "babel-node")

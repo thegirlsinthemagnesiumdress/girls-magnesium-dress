@@ -1,0 +1,1 @@
+../../../third_party/local/npm/node_modules/babel-register/lib/node.js

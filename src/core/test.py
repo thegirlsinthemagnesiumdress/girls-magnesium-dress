@@ -121,10 +121,14 @@ class FrontendTestCase(LiveServerTestCase):
             for x in cls.spec_files
         ]
 
-        command = [settings.JASMINE_NODE_PATH, "--matchall"] + files
-
+        command = [settings.BABEL_NODE_PATH, settings.JASMINE_NODE_PATH, "--matchall"] + files
+        output = None
         try:
-            subprocess.check_output(command)
+            output = subprocess.check_output(command)
+            if output.startswith("Exception"):
+                raise RuntimeError(output)
+        except RuntimeError as e:
+            self.fail(e.message)
         except subprocess.CalledProcessError as e:
             self.fail(e.output)
 
