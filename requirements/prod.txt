@@ -1,4 +1,4 @@
-git+https://github.com/potatolondon/djangae.git@9e162382601b76e41b4e6a297909aed1f4cb64c3
+git+https://github.com/potatolondon/djangae.git@v0.9.10
 git+https://github.com/potatolondon/gae-pytz.git#egg=pytz
 git+https://github.com/potatolondon/search.git@78b63fda9756a598e9607aab9d61c084b108b75c#egg=search
 git+https://github.com/adamalton/django-choices.git@852bc34a5b09e660ef06aa4c55787534399f3312#egg=django-choices
