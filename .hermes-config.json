@@ -1,0 +1,11 @@
+{
+  "name": "TalentRevolution",
+  "ticket_system": "gitlab",
+  "status_labels": [
+          "Ready to work on",
+          "In Progress",
+          "Code Complete",
+          "In Review",
+          "Awaiting Deployment"
+  ]
+}
