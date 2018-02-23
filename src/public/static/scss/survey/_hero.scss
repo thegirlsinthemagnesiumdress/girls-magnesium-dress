@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.JFEContent {
+
+  &:before {
+    background-image: url('https://wallpaperscraft.com/image/mug_steam_hand_119508_1920x1080.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: '';
+    display: block;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.Skin {
+  #SkinContent,
+  #HeaderContainer {
+    background: transparent
+  }
+
+
+  #Header {
+    background: transparent;
+    color: white;
+    height: 100vh;
+    margin: 0;
+  }
+
+
+  .hero {
+
+    &__title-intro {
+      font-size: 22px;
+      line-height: 28px;
+      padding-bottom: 38px;
+      font-weight: 700;
+
+      @include mq($from: desktop) {
+        padding-bottom: 8px;
+      }
+    }
+
+    &__title {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 40px;
+      padding-bottom: 38px;
+
+      @include mq($from: tablet) {
+        font-size: 70px;
+        line-height: 70px;
+      }
+    }
+
+    &__description {
+      padding-bottom: 38px;
+      font-size: 18px;
+
+      @include mq($from: tablet) {
+        max-width: 470px;
+      }
+
+      @include mq($from: desktop) {
+        font-size: 20px;
+      }
+    }
+
+  }
+
+}
+

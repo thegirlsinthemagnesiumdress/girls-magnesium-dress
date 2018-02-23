@@ -1,3 +1,7 @@
-body {
-    background: blue;
-}
+@import 'colors';
+@import 'variables';
+@import 'mixins/mq';
+
+@import 'components/btn';
+
+@import 'survey/hero';

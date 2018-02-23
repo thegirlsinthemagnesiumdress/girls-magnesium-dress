@@ -1,0 +1,58 @@
+// fileoverview:
+// Mixins and styles for ctas (calls to action) and buttons.
+
+
+// Note that the font size must be at least 19px if paired with google blue 500
+// to meet accessibility requirements. If you want a smaller button, please use
+// a darker blue.
+$btn-tr-primary-color: $tr-white !default;
+$btn-tr-primary-bg-color: $google-blue-700 !default;
+$btn-tr-primary-bg-color-hover: $google-blue-500 !default;
+$btn-tr-primary-bg-color-disabled: grey !default;
+
+
+
+// Base button used for buttons/ctas.
+.tr-btn {
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 46px;
+  letter-spacing: 0.75px;
+  line-height: 1;
+  margin: 8px 0;
+  padding: 15px 23px;
+  text-transform: uppercase;
+  transition: color .15s linear, background-color .15s linear;
+  vertical-align: middle;
+
+  @include mq($from: desktop) {
+    font-size: 16px;
+    height: 48px;
+    letter-spacing: 0.5px;
+    padding: 17px 23px;
+  }
+
+  &.tr-btn--primary {
+    background-color: $btn-tr-primary-bg-color;
+    color: $btn-tr-primary-color;
+
+    &:visited {
+      background-color: $btn-tr-primary-bg-color;
+      color: $btn-tr-primary-color;
+    }
+
+    &[disabled],
+    &[disabled]:hover {
+      background-color: $btn-tr-primary-bg-color-disabled;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $btn-tr-primary-bg-color-hover;
+      color: $btn-tr-primary-color;
+    }
+  }
+}
+
