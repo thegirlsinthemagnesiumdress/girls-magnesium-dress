@@ -135,7 +135,9 @@ gulp.task('css', function() {
 
   var bundles = [
     ['./src/core/static/scss/main.scss', 'common.css'],
-    ['./src/public/static/scss/main.scss', 'public.css']
+    ['./src/public/static/scss/main.scss', 'public.css'],
+    ['./src/public/static/scss/survey.scss', 'survey.css'],
+
   ];
 
   for(var i = 0; i < bundles.length; ++i) {
