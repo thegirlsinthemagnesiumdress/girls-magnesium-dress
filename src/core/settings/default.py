@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     # Application
     'core',
     'public',
+    'api',
 )
 
 CACHES = {

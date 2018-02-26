@@ -10,6 +10,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 import public.urls
+import api.urls
 
 urlpatterns = [
     url(r'^_ah/', include('djangae.urls')),
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', include('djangae.contrib.gauth.urls')),
     url(r'', include(public.urls)),
+    url(r'^api/', include(api.urls)),
 ]
 
 # Only enable static serving locally, on prod we use app.yaml
