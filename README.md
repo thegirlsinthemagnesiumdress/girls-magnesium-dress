@@ -27,7 +27,7 @@ You can trigger them by running (for example):
 
 If you want to build production assets:
 
-    ./manage.py assets build --settings=core.settings.live
+    ./manage.py gulp build --settings=core.settings.live
 
 You can generate some test data for developing
 
