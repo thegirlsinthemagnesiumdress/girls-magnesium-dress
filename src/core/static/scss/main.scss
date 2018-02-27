@@ -1,17 +1,25 @@
+@import 'settings/variables';
+
+//Functions
+@import 'functions/unit';
+
 // Settings
 @import 'settings/all';
 
+//Generic
+@import 'generic/normalize';
+
 
 //Mixins
+@import 'mq';
 @import 'mixins/all';
 
-@import 'mq';
+//Fonts and types
+@import 'fonts';
+@import 'type';
 
+//Components
 @import 'components/btn';
 
-@import 'survey/hero';
-
-body {
-    background-color: yellow;
-    font-family: $tr-font-family;
-}
+//Trumps
+@import 'trumps/spacing';

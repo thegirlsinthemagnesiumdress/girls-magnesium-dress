@@ -25,3 +25,17 @@
   font-weight: $tr-font-weight-bold;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
+
+  // TODO: add other font extensions
+  // src: local('?'),
+  //     url("GoogleSans-Bold.woff") format("woff"),
+  //     url("GoogleSans-Bold.otf") format("opentype"),
+  //     url("GoogleSans-Bold.svg") format("svg");
+
+  font-weight: $tr-font-weight-medium;
+  font-style: normal;
+}
