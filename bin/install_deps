@@ -110,13 +110,7 @@ def download_appengine():
 
 
 def install_node_modules():
-    NODE_PREFIX = path.join(THIRD_PARTY_DIR, "local", "npm")
-    if not path.exists(NODE_PREFIX):
-        os.makedirs(NODE_PREFIX)
-
-    shutil.copyfile("%s/package.json" % PROJECT_ROOT, "%s/package.json" % NODE_PREFIX)
-
-    command = ["npm", "install", "--prefix", NODE_PREFIX]
+    command = ["npm", "install"]
     subprocess.check_call(command)
 
 
