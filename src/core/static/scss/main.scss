@@ -1,0 +1,17 @@
+// Settings
+@import 'settings/all';
+
+
+//Mixins
+@import 'mixins/all';
+
+@import 'mq';
+
+@import 'components/btn';
+
+@import 'survey/hero';
+
+body {
+    background-color: yellow;
+    font-family: $tr-font-family;
+}

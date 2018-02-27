@@ -1,14 +1,11 @@
 // fileoverview:
-// Mixins and styles for ctas (calls to action) and buttons.
+// Styles for ctas (calls to action) and buttons.
 
 
-// Note that the font size must be at least 19px if paired with google blue 500
-// to meet accessibility requirements. If you want a smaller button, please use
-// a darker blue.
-$btn-tr-primary-color: $tr-white !default;
-$btn-tr-primary-bg-color: $google-blue-700 !default;
-$btn-tr-primary-bg-color-hover: $google-blue-500 !default;
-$btn-tr-primary-bg-color-disabled: grey !default;
+$btn-tr-primary-color: $tr-white;
+$btn-tr-primary-bg-color: $tr-cornflower-blue;
+$btn-tr-primary-bg-color-hover: $tr-mariner;
+$btn-tr-primary-bg-color-disabled: grey;
 
 
 

@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Google Sans';
+  src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
+
+  // TODO: add other font extensions
+  // src: local('?'),
+  //     url("GraublauWeb.woff") format("woff"),
+  //     url("GraublauWeb.otf") format("opentype"),
+  //     url("GraublauWeb.svg#grablau") format("svg");
+
+  font-weight: $tr-font-style-normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('../fonts/google-sans/GoogleSans-Bold.ttf');
+
+  // TODO: add other font extensions
+  // src: local('?'),
+  //     url("GraublauWeb.woff") format("woff"),
+  //     url("GraublauWeb.otf") format("opentype"),
+  //     url("GraublauWeb.svg#grablau") format("svg");
+
+  font-weight: $tr-font-weight-bold;
+  font-style: normal;
+}

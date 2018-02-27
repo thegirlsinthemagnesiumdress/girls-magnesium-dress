@@ -137,9 +137,9 @@ gulp.task('css', function() {
   console.log('Generating CSS files at: ' + outputDir);
 
   var bundles = [
-    ['./src/core/static/scss/main.scss', 'common.css'],
+    ['./src/core/static/scss/main.scss', 'main.css'],
+    ['./src/core/static/scss/survey.scss', 'survey.css'],
     ['./src/public/static/scss/main.scss', 'public.css'],
-    ['./src/public/static/scss/survey.scss', 'survey.css'],
 
   ];
 
@@ -163,7 +163,7 @@ gulp.task('fonts', function() {
   }
 
   gulp.src([
-    './src/core/static/fonts/**/*.otf'
+    './src/core/static/fonts/**/*.{otf,ttf,svg,woff,eot}'
   ]).pipe(gulp.dest(outputDir));
 });
 
