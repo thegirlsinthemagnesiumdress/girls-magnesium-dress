@@ -19,7 +19,10 @@ var TEMPLATES_DIR =  './src/public/templates/';
 
 var SASS_INCLUDES = [
   './src/core/static/scss',
-  './src/public/static/scss'
+  './src/public/static/scss',
+
+  // Libraries installed with npm
+  'node_modules/sass-mq/'
 ];
 
 var ADMIN_STATIC = [
