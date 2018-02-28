@@ -1,11 +1,14 @@
 // Fileoverview:
 // Font-faces definitions.
+// Using remote src to make sure we can load fonts in the survey when
+// developing.
 
 @font-face {
   font-family: 'Google Sans';
   font-style: normal;
   font-weight: $tr-font-style-normal;
-  src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
+  src: url('https://test-dot-potato-trev-test.appspot.com/static/fonts/google-sans/GoogleSans-Regular.ttf');
+  // src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
 
   // TODO: add other font extensions
   // src: local('?'),
@@ -18,7 +21,8 @@
   font-family: 'Google Sans';
   font-style: normal;
   font-weight: $tr-font-weight-bold;
-  src: url('../fonts/google-sans/GoogleSans-Bold.ttf');
+  src: url('https://test-dot-potato-trev-test.appspot.com/static/fonts/google-sans/GoogleSans-Bold.ttf');
+  // src: url('../fonts/google-sans/GoogleSans-Bold.ttf');
 
   // TODO: add other font extensions
   // src: local('?'),
@@ -31,7 +35,8 @@
   font-family: 'Google Sans';
   font-style: normal;
   font-weight: $tr-font-weight-medium;
-  src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
+  src: url('https://test-dot-potato-trev-test.appspot.com/static/fonts/google-sans/GoogleSans-Medium.ttf');
+  // src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
 
   // TODO: add other font extensions
   // src: local('?'),
