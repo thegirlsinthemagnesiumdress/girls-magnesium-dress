@@ -1,8 +1,11 @@
 // fileoverview:
 // Site variables and configuration
 
-// $h-site-width-desktop: 1344px !default; //max width for desktop
-// $h-site-padding: 32px !default; //padding for multi-column grid
 
-// $h-site-width-mobile: 600px !default; //max width for mobile (NEW)
-// $h-site-padding-mobile: 16px !default; //padding for multi-column mobile grid
+$tr-container-max-width: 1200px;
+$tr-container-outer-margin: base-unit(3);
+
+
+//Set up flexbox container
+$flexboxgrid-max-width: $tr-container-max-width;
+$outer-margin: $tr-container-outer-margin;
