@@ -7,6 +7,22 @@ body {
   color: $tr-font-color-dark;
   font-family: $tr-font-family;
   font-size: $tr-font-size-default;
+  line-height: $tr-font-line-height-default;
+
+  //For debug purposes only
+  &.vertical-rythm-debug {
+    position: relative;
+
+    &:after {
+      background: repeating-linear-gradient(transparent, transparent $tr-baseline - 1, $tr-zircorn $tr-baseline - 1, $tr-zircorn $tr-baseline);
+      bottom: 0;
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
 }
 
 
