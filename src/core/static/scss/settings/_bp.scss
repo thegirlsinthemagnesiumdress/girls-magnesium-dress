@@ -18,8 +18,10 @@ $mq-breakpoints: $tr-breakpoints;
 // This value is actually NOT used.
 $container-width: 100%;
 
+
+// Defining the bp in EM for consistency with mq.
 $breakpoints:
-  mobile map-get($tr-breakpoints, mobile) $container-width,
-  tablet map-get($tr-breakpoints, tablet) $container-width,
-  desktop map-get($tr-breakpoints, desktop) $container-width,
-  wide map-get($tr-breakpoints, wide) $container-width;
+  mobile map-get($tr-breakpoints, mobile ) / $tr-font-size-default * 1em $container-width,
+  tablet map-get($tr-breakpoints, tablet ) / $tr-font-size-default * 1em $container-width,
+  desktop map-get($tr-breakpoints, desktop ) / $tr-font-size-default * 1em $container-width,
+  wide map-get($tr-breakpoints, wide ) / $tr-font-size-default * 1em $container-width;
