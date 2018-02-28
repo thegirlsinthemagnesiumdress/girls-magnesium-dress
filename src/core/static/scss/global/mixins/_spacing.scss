@@ -37,34 +37,35 @@
 // s = width; height
 
 $properties-map: (
-  m  : margin,
-  mt : margin-top,
-  mr : margin-right,
-  mb : margin-bottom,
-  ml : margin-left,
-  my : (margin-top, margin-bottom),
-  mx : (margin-right, margin-left),
+  m: margin,
+  mt: margin-top,
+  mr: margin-right,
+  mb: margin-bottom,
+  ml: margin-left,
+  my: (margin-top, margin-bottom),
+  mx: (margin-right, margin-left),
 
-  p  : padding,
-  pt : padding-top,
-  pr : padding-right,
-  pb : padding-bottom,
-  pl : padding-left,
-  py : (padding-top, padding-bottom),
-  px : (padding-right, margin-left),
+  p : padding,
+  pt: padding-top,
+  pr: padding-right,
+  pb: padding-bottom,
+  pl: padding-left,
+  py: (padding-top, padding-bottom),
+  px: (padding-right, margin-left),
 
-  t : top,
-  r : right,
-  b : bottom,
-  l : left,
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
 
-  lh : line-height,
+  lh: line-height,
 
-  w : width,
-  h : height,
+  w: width,
+  h: height,
 
-  s : (width, height),
+  s: (width, height),
 );
+
 @mixin spacing($property-shortname, $unit: 1) {
   $property: map-get($properties-map, $property-shortname);
 

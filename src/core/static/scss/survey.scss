@@ -1,12 +1,30 @@
-// Settings
-@import 'settings/all';
+// Fileoverview:
+// Main survey file. This stiles are dynamically injected in the Qualtrics survey.
 
+@import 'global/settings/variables';
+
+//Functions
+@import 'global/functions/base-unit';
+
+// Settings
+@import 'global/settings/all';
+
+//Generic
+@import 'global/generic/normalize';
+@import 'flexboxgrid';
 
 //Mixins
-@import 'mixins/all';
-
 @import 'mq';
+@import 'global/mixins/all';
 
-@import 'components/btn';
+//Fonts and types
+@import 'global/elements/fonts';
+@import 'global/elements/types';
+@import 'global/elements/btns';
 
-@import 'survey/hero';
+
+//Utilities
+@import 'global/utilities/spacing';
+
+//Components
+@import 'survey/components/hero';

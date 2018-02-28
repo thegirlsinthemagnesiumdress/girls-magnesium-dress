@@ -1,5 +1,10 @@
+// Fileoverview:
+// Font-faces definitions.
+
 @font-face {
   font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: $tr-font-style-normal;
   src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
 
   // TODO: add other font extensions
@@ -7,13 +12,12 @@
   //     url("GoogleSans-Medium.woff") format("woff"),
   //     url("GoogleSans-Medium.otf") format("opentype"),
   //     url("GoogleSans-Medium.svg") format("svg");
-
-  font-weight: $tr-font-style-normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: $tr-font-weight-bold;
   src: url('../fonts/google-sans/GoogleSans-Bold.ttf');
 
   // TODO: add other font extensions
@@ -21,13 +25,12 @@
   //     url("GoogleSans-Bold.woff") format("woff"),
   //     url("GoogleSans-Bold.otf") format("opentype"),
   //     url("GoogleSans-Bold.svg") format("svg");
-
-  font-weight: $tr-font-weight-bold;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: $tr-font-weight-medium;
   src: url('../fonts/google-sans/GoogleSans-Medium.ttf');
 
   // TODO: add other font extensions
@@ -35,7 +38,4 @@
   //     url("GoogleSans-Bold.woff") format("woff"),
   //     url("GoogleSans-Bold.otf") format("opentype"),
   //     url("GoogleSans-Bold.svg") format("svg");
-
-  font-weight: $tr-font-weight-medium;
-  font-style: normal;
 }

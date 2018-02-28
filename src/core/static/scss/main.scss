@@ -1,28 +1,30 @@
-@import 'settings/variables';
+// Fileoverview:
+// Main website scss file.
+
+@import 'global/settings/variables';
 
 //Functions
-@import 'functions/base-unit';
+@import 'global/functions/base-unit';
 
 // Settings
-@import 'settings/all';
+@import 'global/settings/all';
 
 //Generic
-@import 'generic/normalize';
+@import 'global/generic/normalize';
 @import 'flexboxgrid';
 
 //Mixins
 @import 'mq';
-@import 'mixins/all';
+@import 'global/mixins/all';
 
 //Fonts and types
-@import 'fonts';
-@import 'type';
+@import 'global/elements/fonts';
+@import 'global/elements/types';
+@import 'global/elements/btns';
 
-//Components
-@import 'components/btn';
 
 //Utilities
-@import 'utilities/spacing';
+@import 'global/utilities/spacing';
 
 
 .responsive {

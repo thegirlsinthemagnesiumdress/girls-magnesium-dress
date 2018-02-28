@@ -1,7 +1,10 @@
+//Fileoverview:
+// Type definitions.
+
 body {
+  color: $tr-font-color-dark;
   font-family: $tr-font-family;
   font-size: $tr-font-size-default;
-  color: $tr-font-color-dark;
 }
 
 
@@ -20,29 +23,29 @@ h3,
 
 .tr-display {
   font-size: $tr-display-font-size;
-  line-height: $tr-display-line-height;
   font-weight: $tr-display-font-weight;
+  line-height: $tr-display-line-height;
 }
 
 h1,
 .tr-alpha {
   font-size: $tr-h1-font-size;
-  line-height: $tr-h1-line-height;
   font-weight: $tr-h1-font-weight;
+  line-height: $tr-h1-line-height;
 }
 
 h2,
 .tr-beta {
   font-size: $tr-h2-font-size;
-  line-height: $tr-h2-line-height;
   font-weight: $tr-h2-font-weight;
+  line-height: $tr-h2-line-height;
 }
 
 h3,
 .tr-gamma {
   font-size: $tr-h3-font-size;
-  line-height: $tr-h3-line-height;
   font-weight: $tr-h3-font-weight;
+  line-height: $tr-h3-line-height;
 }
 
 .tr-p-leading {

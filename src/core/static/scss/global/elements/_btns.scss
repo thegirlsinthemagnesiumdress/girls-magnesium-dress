@@ -7,12 +7,10 @@ $btn-tr-primary-bg-color: $tr-cornflower-blue;
 $btn-tr-primary-bg-color-hover: $tr-mariner;
 $btn-tr-primary-bg-color-disabled: grey;
 
-
-
 // Base button used for buttons/ctas.
 .tr-btn {
-  border-radius: 2px;
   border: none;
+  border-radius: 2px;
   display: inline-block;
   font-size: 14px;
   height: 46px;
