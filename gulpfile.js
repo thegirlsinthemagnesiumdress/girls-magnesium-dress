@@ -22,7 +22,8 @@ var SASS_INCLUDES = [
   './src/public/static/scss',
 
   // Libraries installed with npm
-  'node_modules/sass-mq/'
+  'node_modules/sass-mq/',
+  'node_modules/flexboxgrid-sass/',
 ];
 
 var ADMIN_STATIC = [

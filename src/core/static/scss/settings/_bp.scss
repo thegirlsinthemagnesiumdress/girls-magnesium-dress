@@ -8,3 +8,18 @@ $tr-breakpoints: (
 
 // Set mq breakpoints to be the tr ones.
 $mq-breakpoints: $tr-breakpoints;
+
+// Flexboxgrid breakpoint settings.
+// The breakpoints definition has as 3rd value
+// the size of the grid container. We're likely
+// have the container size defined in our scss.
+//
+// Let's set a random value for now.
+// This value is actually NOT used.
+$container-width: 100%;
+
+$breakpoints:
+  mobile map-get($tr-breakpoints, mobile) $container-width,
+  tablet map-get($tr-breakpoints, tablet) $container-width,
+  desktop map-get($tr-breakpoints, desktop) $container-width,
+  wide map-get($tr-breakpoints, wide) $container-width;

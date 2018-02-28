@@ -12,6 +12,7 @@
     "babelify": "7.3.0",
     "browserify": "14.0.0",
     "chromedriver": "2.30.1",
+    "flexboxgrid-sass": "^8.0.5",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.1",
     "gulp-babel": "6.1.2",
@@ -23,8 +24,8 @@
     "gulp-sass": "3.1.0",
     "gulp-strip-comments": "2.4.4",
     "jasmine": "2.6.0",
-    "jasmine-node": "1.14.5",
     "jasmine-es6": "0.4.0",
+    "jasmine-node": "1.14.5",
     "node-sass": "4.5.0",
     "vinyl-source-stream": "1.1.0",
     "yargs": "6.6.0"

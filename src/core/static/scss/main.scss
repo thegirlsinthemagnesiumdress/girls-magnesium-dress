@@ -8,7 +8,7 @@
 
 //Generic
 @import 'generic/normalize';
-
+@import 'flexboxgrid';
 
 //Mixins
 @import 'mq';
@@ -23,3 +23,10 @@
 
 //Utilities
 @import 'utilities/spacing';
+
+
+.responsive {
+  @include mq($from: tablet) {
+    background-color: red;
+  }
+}
