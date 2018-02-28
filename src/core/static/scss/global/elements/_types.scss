@@ -2,9 +2,22 @@
 // Type definitions.
 
 body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   color: $tr-font-color-dark;
   font-family: $tr-font-family;
   font-size: $tr-font-size-default;
+}
+
+
+// Specic overrides for Qualtrics
+#RestoredResponseBar, .Skin, .Skin .yui-skin-sam .yui-calcontainer, .Skin button, .Skin input, .Skin select, .Skin textarea { // sass-lint:disable-line single-line-per-selector no-ids
+  font-family: $tr-font-family;
+}
+
+// Specic overrides for Qualtrics
+#QMenu ul li a.MenuItemLink { // sass-lint:disable-line single-line-per-selector no-ids
+  font-family: $tr-font-family;
 }
 
 
