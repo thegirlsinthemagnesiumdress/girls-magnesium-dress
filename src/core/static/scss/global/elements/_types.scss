@@ -17,6 +17,7 @@ body {
       background: repeating-linear-gradient(transparent, transparent $tr-baseline - 1, $tr-zircorn $tr-baseline - 1, $tr-zircorn $tr-baseline);
       bottom: 0;
       content: '';
+      opacity: .7;
       pointer-events: none;
       position: absolute;
       top: 0;
