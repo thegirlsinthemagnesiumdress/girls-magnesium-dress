@@ -4,6 +4,20 @@ body {
   color: $tr-font-color-dark;
 }
 
+
+.tr-display,
+h1,
+.tr-alpha,
+h2,
+.tr-beta,
+h3,
+.tr-gamma {
+  @include spacing(mt, 1);
+  @include spacing(mb, 2);
+}
+
+
+
 .tr-display {
   font-size: $tr-display-font-size;
   line-height: $tr-display-line-height;
@@ -34,6 +48,12 @@ h3,
 .tr-p-leading {
   font-size: $tr-paragraph-lead-font-size;
   line-height: $tr-paragraph-lead-line-height;
+}
+
+p,
+.tr-p-leading{
+  @include spacing(mb, 1);
+  margin-top: 0;
 }
 
 .tr-color-light {
