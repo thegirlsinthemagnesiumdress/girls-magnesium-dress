@@ -34,6 +34,11 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: https://google.qualtrics.com
 
+- url: /api/.*
+  script: core.wsgi.application
+  secure: always
+  login: optional
+
 # Set Django admin to be login:admin
 - url: /admin.*
   script: core.wsgi.application
@@ -47,6 +52,7 @@ handlers:
 - url: /.*
   script: core.wsgi.application
   secure: always
+  login: admin
 
 skip_files:
     - manage.py

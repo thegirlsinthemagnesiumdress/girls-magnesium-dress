@@ -167,7 +167,7 @@ INTERNAL_IPS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'https://fonts.googleapis.com'")
+CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
 CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com/")
 CSP_CHILD_SRC = ("'self'",)
 CSP_SCRIPT_SRC = ("'self'",)
