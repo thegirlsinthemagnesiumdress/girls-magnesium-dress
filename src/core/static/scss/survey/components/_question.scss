@@ -1,0 +1,56 @@
+
+.Skin .QuestionOuter {
+  overflow-y: visible;
+  padding-bottom: base-unit(12);
+
+  .QuestionText {
+    padding: 0 0 base-unit(3);
+}
+
+  .QuestionBody {
+    overflow-y: visible;
+    padding: 0;
+  }
+
+
+  // Multisel
+  .Selection {
+    padding-bottom: base-unit(3);
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    .SingleAnswer {
+      padding: base-unit(3) base-unit(2);
+
+      @include mq($from: tablet) {
+        padding: 0 !important;
+      }
+    }
+
+    label.SingleAnswer:after {
+      border-color: $tr-cornflower-blue;
+    }
+
+    label.SingleAnswer.q-checked:before {
+      background-color: $tr-cornflower-blue;
+    }
+
+    .Skin .MC .TextEntryBox, .Skin .TE .ESTB .InputText, .Skin .TE .FORM .InputText, .Skin .TE .ML .InputText, .Skin .TE .PW .InputText, .Skin .TE .SL .InputText {
+      margin: 0;
+      padding: 2px 0 1px;
+    }
+  }
+
+  .QuestionText {
+    line-height: $tr-paragraph-line-height;
+  }
+
+  // Entry box in multiple choise answer ( ie. Other ______ ).
+  .TextEntryBox {
+    padding-top: base-unit(3) !important;
+  }
+
+
+}

@@ -1,3 +1,7 @@
+//sass-lint:disable no-ids
+
+$top-header-h: base-unit(10);
+
 .JFEContent {
 
   &:before {
@@ -15,21 +19,38 @@
 }
 
 .Skin {
+  #Questions {
+    @include spacing(py, 12);
+  }
+
   #SkinContent,
   #HeaderContainer {
-    background: transparent
+    background: transparent;
+    margin-bottom: 0;
+  }
+
+  #LogoContainer {
+    @include spacing(py, 4, true);
+    height: $top-header-h;
   }
 
 
   #Header {
+    align-items: center;
     background: transparent;
     color: $tr-white;
-    height: 100vh;
+    display: flex;
+    height: calc(100vh - #{$top-header-h});
     margin: 0;
   }
 
 
   .hero {
+
+    &__content {
+      position: relative;
+      top: -$top-header-h;
+    }
 
     &__title-intro {
       // font-size: 22px;

@@ -1,0 +1,47 @@
+
+//Wrapping in .Skin class to override Qualtrics styles.
+.Skin,
+form {
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  label:not(.q-radio) {
+    padding: 0 0 base-unit(3);
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='url'],
+  input[type='number'],
+  input[type='tel'],
+  .input--text,
+  textarea,
+  select {
+    border: 0;
+    border-bottom: 1px solid $tr-bastille;
+    margin: 0;
+  }
+
+
+  // Survey only overrides.
+  label.SingleAnswer:after {
+    border-color: $tr-cornflower-blue;
+  }
+
+  label.SingleAnswer.q-checked:before {
+    background-color: $tr-cornflower-blue;
+  }
+
+  .Skin .MC .TextEntryBox, .Skin .TE .ESTB .InputText, .Skin .TE .FORM .InputText, .Skin .TE .ML .InputText, .Skin .TE .PW .InputText, .Skin .TE .SL .InputText {
+    margin: 0;
+    padding: 2px 0 1px;
+  }
+}
+
+
+
+
+

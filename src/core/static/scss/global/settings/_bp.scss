@@ -22,7 +22,7 @@ $mq-breakpoints: $tr-breakpoints;
 $container-width: 100%;
 
 
-// Defining the bp in EM for consistency with mq.
+// Flexboxgrid - Grid Bp - Defining the bp in EM for consistency with mq.
 $breakpoints:
 mobile map-get($tr-breakpoints, mobile ) / $tr-font-size-default * 1em $container-width,
 tablet map-get($tr-breakpoints, tablet ) / $tr-font-size-default * 1em $container-width,

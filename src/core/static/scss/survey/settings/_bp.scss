@@ -1,0 +1,12 @@
+// Breakpoints
+$qualtrics-breakpoints: (
+  mobile:  480px,
+  tablet:  769px,
+  desktop: 1000px,
+  wide:    1300px
+);
+
+
+
+// Set mq breakpoints to be the qualtrics ones.
+$mq-breakpoints: $qualtrics-breakpoints;

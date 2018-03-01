@@ -8,6 +8,7 @@
 
 // Settings
 @import 'global/settings/all';
+@import 'survey/settings/bp';
 
 //Generic
 @import 'global/generic/normalize';
@@ -17,14 +18,13 @@
 @import 'mq';
 @import 'global/mixins/all';
 
-//Fonts and types
-@import 'global/elements/fonts';
-@import 'global/elements/types';
-@import 'global/elements/btns';
-
+//Global elements
+@import 'global/elements/all';
+@import 'survey/generic/global';
 
 //Utilities
 @import 'global/utilities/spacing';
 
 //Components
 @import 'survey/components/hero';
+@import 'survey/components/question';
