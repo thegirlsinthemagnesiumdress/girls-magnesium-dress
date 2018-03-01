@@ -12,9 +12,14 @@
     padding: 0;
   }
 
+  fieldset {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+  }
 
-  // Multisel
-  .Selection {
+
+  // Multiselect
+  .ChoiceStructure > .Selection {
     padding-bottom: base-unit(3);
 
     &:last-child {
@@ -37,9 +42,18 @@
       background-color: $tr-cornflower-blue;
     }
 
-    .Skin .MC .TextEntryBox, .Skin .TE .ESTB .InputText, .Skin .TE .FORM .InputText, .Skin .TE .ML .InputText, .Skin .TE .PW .InputText, .Skin .TE .SL .InputText {
+     .MC .TextEntryBox,  .TE .ESTB .InputText,  .TE .FORM .InputText,  .TE .ML .InputText,  .TE .PW .InputText,  .TE .SL .InputText {
       margin: 0;
       padding: 2px 0 1px;
+    }
+  }
+
+   label.MultipleAnswer.q-checked,
+   label.SingleAnswer.q-checked {
+    color: $tr-white;
+
+    @include mq($from: tablet) {
+      color: $tr-bastille;
     }
   }
 
