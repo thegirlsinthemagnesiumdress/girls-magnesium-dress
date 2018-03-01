@@ -1,6 +1,7 @@
 //sass-lint:disable no-ids
 
 $top-header-h: base-unit(10);
+$headeer-min-heigh: base-unit(90);
 
 .JFEContent {
 
@@ -11,7 +12,7 @@ $top-header-h: base-unit(10);
     content: '';
     display: block;
     height: 100vh;
-    min-height: 600px;
+    min-height: $headeer-min-heigh;
     position: absolute;
     top: 0;
     width: 100%;
@@ -36,12 +37,16 @@ $top-header-h: base-unit(10);
 
 
   #Header {
-    align-items: center;
     background: transparent;
     color: $tr-white;
     display: flex;
     height: calc(100vh - #{$top-header-h});
+    min-height: $headeer-min-heigh - $top-header-h;
     margin: 0;
+
+    @include mq(tablet) {
+      align-items: center;
+    }
   }
 
 
@@ -49,7 +54,11 @@ $top-header-h: base-unit(10);
 
     &__content {
       position: relative;
-      top: -$top-header-h;
+
+      @include mq(tablet) {
+        top: -$top-header-h;
+
+      }
     }
 
     &__title-intro {
