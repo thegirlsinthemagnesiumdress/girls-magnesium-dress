@@ -5,7 +5,8 @@
 
   .QuestionText {
     padding: 0 0 base-unit(3);
-}
+  }
+
 
   .QuestionBody {
     overflow-y: visible;
@@ -17,6 +18,9 @@
     overflow-x: visible !important;
   }
 
+  .LabelWrapper {
+    margin-bottom: 0 !important;
+  }
 
   // Multiselect
   .ChoiceStructure > .Selection {
@@ -43,7 +47,7 @@
     }
 
      .MC .TextEntryBox,  .TE .ESTB .InputText,  .TE .FORM .InputText,  .TE .ML .InputText,  .TE .PW .InputText,  .TE .SL .InputText {
-      margin: 0;
+      margin: 0 !important;
       padding: 2px 0 1px;
     }
   }

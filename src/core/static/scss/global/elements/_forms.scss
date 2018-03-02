@@ -25,20 +25,6 @@ form {
     margin: 0;
   }
 
-
-  // Survey only overrides.
-  label.SingleAnswer:after {
-    border-color: $tr-cornflower-blue;
-  }
-
-  label.SingleAnswer.q-checked:before {
-    background-color: $tr-cornflower-blue;
-  }
-
-  .Skin .MC .TextEntryBox, .Skin .TE .ESTB .InputText, .Skin .TE .FORM .InputText, .Skin .TE .ML .InputText, .Skin .TE .PW .InputText, .Skin .TE .SL .InputText {
-    margin: 0;
-    padding: 2px 0 1px;
-  }
 }
 
 
