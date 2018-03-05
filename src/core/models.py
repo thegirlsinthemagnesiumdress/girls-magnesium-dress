@@ -8,7 +8,7 @@ import datetime
 class User(GaeAbstractDatastoreUser):
     pass
 
-class Company(models.Model):
+class Survey(models.Model):
     uid = models.CharField(unique=True, editable=False, max_length=32)
     company_name= models.CharField(max_length=50)
 
@@ -21,4 +21,4 @@ class Company(models.Model):
             m = hashlib.md5()
             md5 = m.update(self.company_name + self.created_at.isoformat())
             self.uid = m.hexdigest()
-        super(Company, self).save(*args, **kwargs)
+        super(Survey, self).save(*args, **kwargs)

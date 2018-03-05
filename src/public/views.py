@@ -10,7 +10,7 @@ SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 def create_survey(request):
     if request.method == "POST":
         company_name = request.POST.get('name')
-        # TODO: I should probably should use the model validation here instead of
+        # TODO I should probably should use the model validation here instead of
         # directly checking requests.
         if not company_name:
             return JsonResponse(status=422, data={'error': 'Company name is required'})

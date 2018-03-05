@@ -31,6 +31,7 @@ handlers:
 - url: /static
   static_dir: static/dist
   secure: always
+  login: optional
   http_headers:
     Access-Control-Allow-Origin: https://google.qualtrics.com
 
@@ -49,9 +50,19 @@ handlers:
   static_files: static/dist/img/favicon.ico
   upload: static/dist/img/favicon\.ico
 
+  # We currently have to set this handler to be able to
+  # have static files locally being public.
+  # TODO: We need to remove this in prod
+- url: /devstatic.*
+  script: core.wsgi.application
+  secure: always
+  login: optional
+
+
 - url: /.*
   script: core.wsgi.application
   secure: always
+
   login: admin
 
 skip_files:

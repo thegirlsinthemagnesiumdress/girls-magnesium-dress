@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'djangae.contrib.gauth_datastore',
     'djangae.contrib.security',
     'svg',
+    'rest_framework',
 
     # Application
     'core',
@@ -238,5 +239,16 @@ TEMPLATES = [{
 SVG_DIRS = [
     os.path.join(STATIC_ROOT, 'img')
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 from .constants import *
