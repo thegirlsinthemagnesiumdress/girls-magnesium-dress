@@ -9,7 +9,7 @@ class User(GaeAbstractDatastoreUser):
     pass
 
 class Company(models.Model):
-    uuid = models.CharField(unique=True, editable=False)
+    uid = models.CharField(unique=True, editable=False, max_length=32)
     company_name= models.CharField(max_length=50)
 
     # Timestamps
@@ -20,5 +20,5 @@ class Company(models.Model):
             self.created_at = timezone.now()
             m = hashlib.md5()
             md5 = m.update(self.company_name + self.created_at.isoformat())
-            self.uuid = m.hexdigest()
+            self.uid = m.hexdigest()
         super(Company, self).save(*args, **kwargs)

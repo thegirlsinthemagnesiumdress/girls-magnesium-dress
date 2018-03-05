@@ -19,6 +19,11 @@
             <div class="responsive tr-color-light">Responsive</div>
         </div>
     </div>
+    <form action="/survey/" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" >
+        <button> submit </button>
+    </form>
 </section>
 
 {% endblock body %}

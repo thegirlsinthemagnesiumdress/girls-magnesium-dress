@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 import logging
+from core.models import Company
 
 
 # This is a view used to investigate and prove we can use qualtrics
@@ -22,9 +23,9 @@ def company(request):
     if not company_id:
         return JsonResponse(status=404, data={'error': 'You need to provide company id'})
 
-    company_id_map = {
-        '1': 'capybara',
-        '2': 'Potato'
-    }
+    res = Company.objects.filter(uid=company_id)
 
-    return JsonResponse({'name': company_id_map.get(company_id, 'A company')})
+    if len(res) > 0:
+        return JsonResponse({ 'results': [{'name': res[0].company_name}]})
+    else:
+        return JsonResponse(data={'results': []})
