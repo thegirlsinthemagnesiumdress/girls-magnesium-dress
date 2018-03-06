@@ -1,13 +1,18 @@
+//sass-lint:disable no-ids
+
+$top-header-h: base-unit(10);
+$header-min-height: base-unit(90);
+
 .JFEContent {
 
   &:before {
-    background-image: url('https://wallpaperscraft.com/image/mug_steam_hand_119508_1920x1080.jpg');
+    background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     content: '';
     display: block;
     height: 100vh;
-    min-height: 600px;
+    min-height: $header-min-height;
     position: absolute;
     top: 0;
     width: 100%;
@@ -15,21 +20,46 @@
 }
 
 .Skin {
+  #Questions {
+    @include spacing(py, 12);
+  }
+
   #SkinContent,
   #HeaderContainer {
-    background: transparent
+    background: transparent;
+    margin-bottom: 0;
+  }
+
+  #LogoContainer {
+    @include spacing(py, 4, true);
+    height: $top-header-h;
   }
 
 
   #Header {
     background: transparent;
     color: $tr-white;
-    height: 100vh;
+    display: flex;
+    height: calc(100vh - #{$top-header-h});
+    min-height: $header-min-heigh t- $top-header-h;
     margin: 0;
+
+    @include mq(tablet) {
+      align-items: center;
+    }
   }
 
 
   .hero {
+
+    &__content {
+      position: relative;
+
+      @include mq(tablet) {
+        top: -$top-header-h;
+
+      }
+    }
 
     &__title-intro {
       // font-size: 22px;

@@ -1,0 +1,21 @@
+#SkinContent {
+  padding: 0 $tr-container-outer-margin;
+}
+
+.Skin {
+  color: $tr-bastille;
+
+
+
+  label.MultipleAnswer,
+  label.MultipleAnswer.q-checked,
+  label.SingleAnswer,
+  label.SingleAnswer.q-checked,
+  .QuestionText,
+  #Plug,
+  .QuestionBody,
+  textarea {
+    color: $tr-bastille;
+  }
+
+}

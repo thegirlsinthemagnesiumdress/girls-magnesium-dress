@@ -1,11 +1,12 @@
 // Fileoverview:
 // Breakpoints definitions and library using them configuration.
 
-// Breakpoints
+// Breakpoints.
+// This breakpoints match the ones used by qualtrics on the survey.
 $tr-breakpoints: (
-  mobile:  320px,
-  tablet:  740px,
-  desktop: 980px,
+  mobile:  480px,
+  tablet:  769px,
+  desktop: 1000px,
   wide:    1300px
 );
 
@@ -22,9 +23,9 @@ $mq-breakpoints: $tr-breakpoints;
 $container-width: 100%;
 
 
-// Defining the bp in EM for consistency with mq.
+// Flexboxgrid - Grid Bp - Defining the bp in EM for consistency with mq.
 $breakpoints:
-mobile map-get($tr-breakpoints, mobile ) / $tr-font-size-default * 1em $container-width,
-tablet map-get($tr-breakpoints, tablet ) / $tr-font-size-default * 1em $container-width,
-desktop map-get($tr-breakpoints, desktop ) / $tr-font-size-default * 1em $container-width,
-wide map-get($tr-breakpoints, wide ) / $tr-font-size-default * 1em $container-width;
+mobile map-get($tr-breakpoints, mobile) / $tr-font-size-default * 1em $container-width,
+tablet map-get($tr-breakpoints, tablet) / $tr-font-size-default * 1em $container-width,
+desktop map-get($tr-breakpoints, desktop) / $tr-font-size-default * 1em $container-width,
+wide map-get($tr-breakpoints, wide) / $tr-font-size-default * 1em $container-width;
