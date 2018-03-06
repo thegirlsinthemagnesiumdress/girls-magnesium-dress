@@ -86,8 +86,9 @@ gulp.task('js', function() {
 
 
   var bundles = [
-    ['./src/core/static/js/index.js', 'common.js'],
-    ['./src/public/static/js/index.js', 'public.js']
+    // ['./src/core/static/js/index.js', 'common.js'],
+    // ['./src/public/static/js/index.js', 'public.js']
+    ['./src/static/src/js/index.js', 'public.js']
   ];
 
   for(var i = 0; i < bundles.length; ++i) {
@@ -138,9 +139,9 @@ gulp.task('css', function() {
   console.log('Generating CSS files at: ' + outputDir);
 
   var bundles = [
-    ['./src/core/static/scss/main.scss', 'main.css'],
-    ['./src/core/static/scss/survey.scss', 'survey.css'],
-    ['./src/public/static/scss/main.scss', 'public.css'],
+    ['./src/static/src/scss/main.scss', 'main.css'],
+    // ['./src/core/static/scss/survey.scss', 'survey.css'],
+    // ['./src/public/static/scss/main.scss', 'public.css'],
 
   ];
 
