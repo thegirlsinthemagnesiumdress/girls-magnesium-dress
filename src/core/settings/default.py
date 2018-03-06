@@ -80,7 +80,7 @@ STATIC_URL = '/devstatic/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dev')
 
 THIRD_PARTY = os.path.join(os.path.dirname(BASE_DIR), "third_party")
-NODE_PREFIX = os.path.join(THIRD_PARTY, "local", "npm")
+NODE_PREFIX = os.path.join(BASE_DIR, "..")
 
 
 def check_session_csrf_enabled():
