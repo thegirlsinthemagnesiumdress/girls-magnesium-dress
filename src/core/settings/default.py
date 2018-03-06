@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'djangae.contrib.security',
     'svg',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # Application
     'core',
@@ -247,6 +248,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }

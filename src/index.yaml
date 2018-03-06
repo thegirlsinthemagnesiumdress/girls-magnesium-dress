@@ -10,6 +10,18 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: authtoken_token
+  properties:
+  - name: created
+    direction: desc
+  - name: __key__
+    direction: desc
+
+- kind: core_user
+  properties:
+  - name: __key__
+    direction: desc
+
 - kind: django_admin_log
   properties:
   - name: user_id
