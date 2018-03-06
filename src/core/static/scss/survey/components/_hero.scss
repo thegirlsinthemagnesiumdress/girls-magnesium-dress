@@ -1,7 +1,7 @@
 //sass-lint:disable no-ids
 
 $top-header-h: base-unit(10);
-$headeer-min-heigh: base-unit(90);
+$header-min-height: base-unit(90);
 
 .JFEContent {
 
@@ -12,7 +12,7 @@ $headeer-min-heigh: base-unit(90);
     content: '';
     display: block;
     height: 100vh;
-    min-height: $headeer-min-heigh;
+    min-height: $header-min-height;
     position: absolute;
     top: 0;
     width: 100%;
@@ -41,7 +41,7 @@ $headeer-min-heigh: base-unit(90);
     color: $tr-white;
     display: flex;
     height: calc(100vh - #{$top-header-h});
-    min-height: $headeer-min-heigh - $top-header-h;
+    min-height: $header-min-heigh t- $top-header-h;
     margin: 0;
 
     @include mq(tablet) {
