@@ -88,7 +88,7 @@ gulp.task('js', function() {
   var bundles = [
     // ['./src/core/static/js/index.js', 'common.js'],
     // ['./src/public/static/js/index.js', 'public.js']
-    ['./src/static/src/js/index.js', 'public.js']
+    ['./src/static/src/js/index.js', 'main.js']
   ];
 
   for(var i = 0; i < bundles.length; ++i) {
