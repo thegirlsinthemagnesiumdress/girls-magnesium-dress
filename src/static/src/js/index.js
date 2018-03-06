@@ -12,3 +12,5 @@ window.$ = jQuery;
 $(document).ready(function() {
 	$('#fullpage').fullpage();
 });
+
+console.log('hello')
