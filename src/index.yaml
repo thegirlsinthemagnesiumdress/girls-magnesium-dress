@@ -17,6 +17,11 @@ indexes:
   - name: __key__
     direction: desc
 
+- kind: core_survey
+  properties:
+  - name: __key__
+    direction: desc
+
 - kind: core_user
   properties:
   - name: __key__
