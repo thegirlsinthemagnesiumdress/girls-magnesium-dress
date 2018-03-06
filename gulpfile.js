@@ -33,8 +33,8 @@ var ADMIN_STATIC = [
 ];
 
 var JASMINE_STATIC = [
-  './third_party/local/npm/node_modules/jasmine-core/**/*.js',
-  './third_party/local/npm/node_modules/jasmine-core/**/*.css'
+  './node_modules/jasmine-core/**/*.js',
+  './node_modules/jasmine-core/**/*.css'
 ];
 
 var DEBUG_TOOLBAR = [
@@ -98,15 +98,15 @@ gulp.task('js', function() {
     browserify({
       shim: {
         'promise': {
-          path: '/third_party/local/npm/node_modules/promise-polyfill/promise.js',
+          path: '/node_modules/promise-polyfill/promise.js',
           exports: 'Promise'
         },
         'url-search-params': {
-          path: '/third_party/local/npm/node_modules/url-search-params/build/url-search-params.js',
+          path: '/node_modules/url-search-params/build/url-search-params.js',
           exports: 'URLSearchParams'
         },
         'whatwg-fetch': {
-          path: '/third_party/local/npm/node_modules/whatwg-fetch/fetch.js',
+          path: '/node_modules/whatwg-fetch/fetch.js',
           exports: 'fetch',
           depends: {
             promise: 'promise'
