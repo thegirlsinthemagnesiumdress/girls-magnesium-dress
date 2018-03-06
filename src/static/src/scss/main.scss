@@ -23,6 +23,8 @@
 //Utilities
 @import 'global/utilities/spacing';
 
+//Fullpage css
+@import 'jquery.fullpage';
 
 .responsive {
   @include mq($from: tablet) {

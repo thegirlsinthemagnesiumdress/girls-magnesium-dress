@@ -23,6 +23,7 @@ var SASS_INCLUDES = [
   // Libraries installed with npm
   'node_modules/sass-mq/',
   'node_modules/flexboxgrid-sass/',
+  'node_modules/fullpage.js/dist',
 ];
 
 var ADMIN_STATIC = [
