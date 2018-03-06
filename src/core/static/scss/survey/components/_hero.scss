@@ -41,7 +41,7 @@ $header-min-height: base-unit(90);
     color: $tr-white;
     display: flex;
     height: calc(100vh - #{$top-header-h});
-    min-height: $header-min-heigh t- $top-header-h;
+    min-height: $header-min-height - $top-header-h;
     margin: 0;
 
     @include mq(tablet) {
