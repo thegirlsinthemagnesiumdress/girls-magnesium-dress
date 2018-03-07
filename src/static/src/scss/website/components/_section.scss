@@ -33,4 +33,23 @@
     }
   }
 
+  &__eyebrow {
+    border-left: 1px solid white;
+    max-width: 200px;
+    padding-left: base-unit(2);
+    transition: opacity .2s;
+
+    &--sticky {
+      position: fixed;
+    }
+
+    &--hidden {
+      display: none;
+    }
+
+    &--faded-out {
+      opacity: 0;
+    }
+  }
+
 }

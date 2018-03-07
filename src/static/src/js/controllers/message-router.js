@@ -70,4 +70,5 @@ class MessageRouter {
     }
 }
 
-export {MessageRouter};
+const eventBus = new MessageRouter()
+export { eventBus };
