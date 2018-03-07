@@ -177,7 +177,7 @@ CSP_CONNECT_SRC = ("'self'",)
 
 if DEBUG:
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
-    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js", "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js", "http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
 
 
 # Djangae-specific settings
