@@ -1,14 +1,13 @@
-
-
-// import {init} from './controllers/controller-manager.js';
-// import {Controller} from './controllers/controller.js';
-
 import fullpage from 'fullpage.js/dist/jquery.fullpage';
 import jQuery from "jquery";
+import ParallaxSection from './components/parallax-section'
 
 window.$ = jQuery;
 
+// Custom elements.
+window.customElements.define('tr-parallax-section', ParallaxSection);
 
+// FullPage initialization
 const DOM_SELECTORS = {
   parallaxedImg: '.tr-section-double__parallaxed-img',
 };
@@ -19,8 +18,6 @@ const CLASSES = {
 }
 
 
-
-// init();
 $(document).ready(function() {
   const parallaxedImg = document.querySelector(DOM_SELECTORS.parallaxedImg);
 
