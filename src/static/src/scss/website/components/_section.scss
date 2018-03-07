@@ -37,8 +37,9 @@
     border-left: 1px solid white;
     margin-bottom: base-unit(8);
     max-width: 200px;
+    opacity: 1;
     padding-left: base-unit(2);
-    transition: opacity .2s;
+    transition: opacity .2s .1s;
 
     &--sticky {
       position: fixed;
@@ -51,6 +52,7 @@
 
     &--faded-out {
       opacity: 0;
+      transition: opacity .2s;
     }
   }
 

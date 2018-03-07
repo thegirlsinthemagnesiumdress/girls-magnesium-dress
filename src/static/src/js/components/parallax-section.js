@@ -26,6 +26,7 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   connectedCallback () {
+    // Fullpage.js updates the dom and inserts a wrapper to our sections.
     const sectionWrp = this.parentNode.parentNode;
     this.index = [...sectionWrp.parentNode.children].indexOf(sectionWrp) + 1;
     this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
@@ -54,9 +55,17 @@ export default class ParallaxSection extends HTMLElement {
     }
   }
 
+  /**
+   *
+   * Clones the eyebrows and sets it to have a sticky behavior.
+   * @param {bool} animateOpacity Whether or not we animate the eyebrow opacity when pinning.
+   */
   pinEyebrow (animateOpacity) {
     if (!this.eyebrowSticky) {
       this.rect = this.rect ? this.rect : this.$eyebrow.getBoundingClientRect();
+      // We need to clone the eyebrow and append it to the body in order to keep the
+      // position fixe to working. Fullpage.js transforms the page and that affects
+      // fixed positioning. https://www.w3.org/TR/css-transforms-1/#module-interactions
       this.$clonedEyebrow = this.$eyebrow.cloneNode(true);
       this.$clonedEyebrow.classList.add(CLASSES.eyebrowSticky);
       this.$clonedEyebrow.style.top = `${this.rect.y}px`;
@@ -65,20 +74,27 @@ export default class ParallaxSection extends HTMLElement {
       this.$clonedEyebrow.style.height = `${this.rect.height}px`;
       this.$eyebrow.classList.add(CLASSES.eyebrowhidden);
 
-      if (animateOpacity) {
-        this.$clonedEyebrow.classList.add(CLASSES.eyebrowFadedout);
-      }
-
       document.body.appendChild(this.$clonedEyebrow);
 
-      setTimeout(() => {
-        this.$clonedEyebrow.classList.remove(CLASSES.eyebrowFadedout);
-      });
+      if (animateOpacity) {
+        this.$clonedEyebrow.classList.add(CLASSES.eyebrowFadedout);
+
+        // Removing a class straight after appending to the DOM
+        // prevents the animation to happen. This is a workarounf.
+        // TODO: there might be a nicer approach
+        setTimeout(() => {
+          this.$clonedEyebrow.classList.remove(CLASSES.eyebrowFadedout);
+        }, 100);
+      }
 
       this.eyebrowSticky = true;
     }
   }
 
+  /**
+   * Removes the cloned sticky eyebrow from the dom.
+   * @param {bool} animateOpacity Whether or not we animate the opacity when unpinning the element.
+   */
   unpinEyebrow (animateOpacity) {
     if (this.$clonedEyebrow) {
       if (animateOpacity) {
