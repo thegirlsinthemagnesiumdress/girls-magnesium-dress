@@ -117,7 +117,12 @@ gulp.task('js', function() {
       debug: argv.assets_debug
     })
       .transform(browserifyHandlebars)
-      .transform(babelify, {presets:['es2015']})
+      .transform(babelify, {
+        presets:['es2015'],
+        plugins: [
+          'transform-custom-element-classes',
+        ],
+      })
       .bundle()
       .pipe(source(dest))
       .pipe(replace("{{STATIC_URL}}", argv.static_url))
