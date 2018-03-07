@@ -2,16 +2,16 @@ import pubsub from '../pubsub';
 
 // FullPage initialization
 const DOM_SELECTORS = {
-  parallaxedImg: '.tr-section-double__parallaxed-img',
-  eyebrow: '.tr-section-double__eyebrow',
+  parallaxedImg: '.tr-parallax-section__parallaxed-img',
+  eyebrow: '.tr-parallax-section__eyebrow',
 };
 
 const CLASSES = {
-  parallaxBefore: 'tr-section-double__parallaxed-img--before',
-  parallaxAfter: 'tr-section-double__parallaxed-img--after',
-  eyebrowSticky: 'tr-section-double__eyebrow--sticky',
-  eyebrowhidden: 'tr-section-double__eyebrow--hidden',
-  eyebrowFadedout: 'tr-section-double__eyebrow--faded-out'
+  parallaxBefore: 'tr-parallax-section__parallaxed-img--before',
+  parallaxAfter: 'tr-parallax-section__parallaxed-img--after',
+  eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
+  eyebrowhidden: 'tr-parallax-section__eyebrow--hidden',
+  eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out'
 }
 
 export default class ParallaxSection extends HTMLElement {

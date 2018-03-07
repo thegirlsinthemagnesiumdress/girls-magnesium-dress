@@ -1,4 +1,4 @@
-.tr-section-double {
+.tr-parallax-section {
 
   &__title-wrp {
     position: relative;
@@ -11,18 +11,18 @@
   }
 
   &__parallaxed-img {
+    left: -60%;
     position: absolute;
     top: base-unit(15);
     transition: transform .7s;
     z-index: 0;
-    left: -60%;
 
     &--before {
       transform: translateY(base-unit(-20));
     }
 
     &--after {
-      transform: translateY(base-unit(80));
+      transform: translateY(base-unit(74));
     }
   }
 
@@ -35,6 +35,7 @@
 
   &__eyebrow {
     border-left: 1px solid white;
+    margin-bottom: base-unit(8);
     max-width: 200px;
     padding-left: base-unit(2);
     transition: opacity .2s;
