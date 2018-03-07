@@ -1,24 +1,70 @@
 {% extends "./base.html" %}
+{% load staticfiles %}
 
 {% block body %}
-<section class="wrapper container-fluid">
-    <h1 class="tr-display tr-u-mb-4">
-        A red flare silhouetted the jagged edge of a wing.
-    </h1>
-    <h1 class="tr-u-mb-4">A red flare silhouetted the jagged edge of a wing.</h1>
-    <h2 class="tr-u-mb-4">A red flare silhouetted the jagged edge of a wing.</h2>
-    <h3 class="tr-u-mb-4">A red flare silhouetted the jagged edge of a wing.</h3>
-    <p class="tr-p-leading tr-u-mb-3">A red flare silhouetted the jagged edge of a wing.</p>
-    <p class="tr-u-mb-3">A red flare silhouetted the jagged edge of a wing.</p>
-
-    <div class="row">
-        <div class="col-mobile-12 col-tablet-6">
-            <div class="responsive tr-color-light">Responsive</div>
-        </div>
-        <div class="col-mobile-12 col-tablet-6">
-            <div class="responsive tr-color-light">Responsive</div>
-        </div>
+<div id="fullpage">
+    <div class="fp-section">
+        <section class="wrapper container-fluid">
+            <section class="wrapper container-fluid">
+                <h1 class="display">Hero section</h1>
+            </section>
+        </section>
     </div>
-</section>
+
+    {% comment %} Double section component {% endcomment %}
+    <div class="fp-section tr-section-double__top tr-u-bg-color--blue tr-color-light">
+        <section class="wrapper container-fluid">
+            <section class="wrapper container-fluid">
+                <div class="row">
+                    <div class="col-mobile-12 col-tablet-6 col-tablet-offset-6 tr-section-double__title-wrp">
+                        <h1 class="tr-section-double__title display">Powerful online diagnostics to track your digital marketing expertise</h1>
+                        <img class="tr-section-double__parallaxed-img tr-section-double__parallaxed-img--before" src="{% static 'img/section-placeholder.jpg' %}" alt="">
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <div class="fp-section tr-section-double__bottom tr-u-bg-color--blue tr-color-light">
+        <section class="wrapper container-fluid">
+            <section class="wrapper container-fluid">
+                <div class="row tr-u-mb-10">
+                    <p class="col-mobile-12 col-tablet-3 col-tablet-offset-3">
+                        Digital Maturity Benchmark is a web-based tool from Google that lets you self-diagnose how well your organisation is adapting to the new world of data-driven digital marketing, and helps you transform your business to serve and retain super-empowered customers.
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="col-mobile-12 col-tablet-3 col-tablet-offset-3">
+                            When you or members of your team take the assessment, we’ll follow up with tailored, step-by-step advice on how you can pinpoint the investment and resources needed for digital marketing excellence.
+                    </p>
+                    <p class="col-mobile-12 col-tablet-3 col-tablet-offset-1">
+                            Developed by Google in partnership with Boston Consulting Group, Digital Maturity Benchmark is free to use and draws on the latest top industry insight.
+                    </p>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <div class="fp-section">
+        <section class="section wrapper container-fluid">
+            <h1 class="tr-display tr-u-mb-4">
+                A red flare silhouetted the jagged edge of a wing.
+            </h1>
+            <h1 class="tr-u-mb-4">A red flare silhouetted the jagged edge of a wing.</h1>
+            <h2 class="tr-u-mb-4">A red flare silhouetted the jagged edge of a wing.</h2>
+            <h3 class="tr-u-mb-4">A red flare silhouetted the jagged edge of a wing.</h3>
+            <p class="tr-p-leading tr-u-mb-3">A red flare silhouetted the jagged edge of a wing.</p>
+            <p class="tr-u-mb-3">A red flare silhouetted the jagged edge of a wing.</p>
+
+            <div class="row">
+                <div class="col-mobile-12 col-tablet-6">
+                    <div class="responsive tr-color-light">Responsive</div>
+                </div>
+                <div class="col-mobile-12 col-tablet-6">
+                    <div class="responsive tr-color-light">Responsive</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 
 {% endblock body %}

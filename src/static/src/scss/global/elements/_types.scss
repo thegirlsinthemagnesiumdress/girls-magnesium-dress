@@ -79,11 +79,6 @@ h3,
   line-height: $tr-h3-line-height;
 }
 
-.tr-p-leading {
-  font-size: $tr-paragraph-lead-font-size;
-  line-height: $tr-paragraph-lead-line-height;
-}
-
 p,
 .tr-p-leading{
   @include spacing(mb, 1);

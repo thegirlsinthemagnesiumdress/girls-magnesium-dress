@@ -1,0 +1,36 @@
+.tr-section-double {
+
+  &__title-wrp {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__parallaxed-img {
+    position: absolute;
+    top: base-unit(15);
+    transition: transform .7s;
+    z-index: 0;
+    left: -60%;
+
+    &--before {
+      transform: translateY(base-unit(-20));
+    }
+
+    &--after {
+      transform: translateY(base-unit(80));
+    }
+  }
+
+  &__bottom {
+    p {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+}

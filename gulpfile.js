@@ -18,12 +18,12 @@ var DIST_DIR = STATIC_DIR + '/dist/';
 var TEMPLATES_DIR =  './src/public/templates/';
 
 var SASS_INCLUDES = [
-  './src/core/static/scss',
-  './src/public/static/scss',
+  './src/static/src/scss',
 
   // Libraries installed with npm
   'node_modules/sass-mq/',
   'node_modules/flexboxgrid-sass/',
+  'node_modules/fullpage.js/dist',
 ];
 
 var ADMIN_STATIC = [
@@ -86,8 +86,9 @@ gulp.task('js', function() {
 
 
   var bundles = [
-    ['./src/core/static/js/index.js', 'common.js'],
-    ['./src/public/static/js/index.js', 'public.js']
+    // ['./src/core/static/js/index.js', 'common.js'],
+    // ['./src/public/static/js/index.js', 'public.js']
+    ['./src/static/src/js/index.js', 'main.js']
   ];
 
   for(var i = 0; i < bundles.length; ++i) {
@@ -138,9 +139,9 @@ gulp.task('css', function() {
   console.log('Generating CSS files at: ' + outputDir);
 
   var bundles = [
-    ['./src/core/static/scss/main.scss', 'main.css'],
-    ['./src/core/static/scss/survey.scss', 'survey.css'],
-    ['./src/public/static/scss/main.scss', 'public.css'],
+    ['./src/static/src/scss/main.scss', 'main.css'],
+    // ['./src/core/static/scss/survey.scss', 'survey.css'],
+    // ['./src/public/static/scss/main.scss', 'public.css'],
 
   ];
 
@@ -164,7 +165,7 @@ gulp.task('fonts', function() {
   }
 
   gulp.src([
-    './src/core/static/fonts/**/*.{otf,ttf,svg,woff,eot}'
+    './src/static/src/fonts/**/*.{otf,ttf,svg,woff,eot}'
   ]).pipe(gulp.dest(outputDir));
 });
 
@@ -175,12 +176,7 @@ gulp.task('images', function() {
   }
 
   gulp.src([
-    './src/core/static/img/**/*.png',
-    './src/core/static/img/**/*.svg',
-    './src/core/static/img/**/*.ico',
-    './src/public/static/img/**/*.png',
-    './src/public/static/img/**/*.svg',
-    './src/public/static/img/**/*.ico'
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
   ]).pipe(gulp.dest(outputDir));
 });
 
@@ -189,13 +185,11 @@ gulp.task('watch', function() {
   livereload.listen(); // Start the livereload server
 
   gulp.watch([
-    './src/core/static/js/**/*.js',
-    './src/public/static/js/**/*.js'
+    './src/static/src/js/**/*.js',
   ], ['js']);
 
   gulp.watch([
-    './src/core/static/scss/**/*.scss',
-    './src/public/static/scss/**/*.scss'
+    './src/static/src/scss/**/*.scss',
   ], ['css']);
 
   // Watch for changes to the dev folder and trigger livereload if necessary
