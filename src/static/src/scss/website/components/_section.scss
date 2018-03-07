@@ -45,7 +45,8 @@
     }
 
     &--hidden {
-      display: none;
+      opacity: 0;
+      transition: none;
     }
 
     &--faded-out {
