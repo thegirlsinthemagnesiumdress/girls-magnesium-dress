@@ -124,6 +124,9 @@ gulp.task('js', function() {
         ],
       })
       .bundle()
+      .on('error', function(err){
+        console.log(err.stack);
+      })
       .pipe(source(dest))
       .pipe(replace("{{STATIC_URL}}", argv.static_url))
       .pipe(gulp.dest(outputDir));
