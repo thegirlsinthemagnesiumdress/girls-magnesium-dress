@@ -176,9 +176,7 @@ gulp.task('images', function() {
   }
 
   gulp.src([
-    './src/static/src/img/**/*.png',
-    './src/static/src/img/**/*.svg',
-    './src/static/src/img/**/*.ico'
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
   ]).pipe(gulp.dest(outputDir));
 });
 

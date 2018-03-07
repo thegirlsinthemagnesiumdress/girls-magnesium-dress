@@ -22,9 +22,14 @@
 
 //Utilities
 @import 'global/utilities/spacing';
+@import 'global/utilities/bg-color';
 
 //Fullpage css
 @import 'jquery.fullpage';
+
+// Components
+@import 'website//components/section';
+
 
 .responsive {
   @include mq($from: tablet) {
