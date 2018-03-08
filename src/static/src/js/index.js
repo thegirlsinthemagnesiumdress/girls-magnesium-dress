@@ -11,6 +11,7 @@ window.customElements.define('tr-parallax-section', ParallaxSection);
 window.$(document).ready(() => {
   window.$('#fullpage').fullpage({
     sectionSelector: '.fp-section',
+    fixedElements: '.tr-header',
     onLeave: (...args) => {
       pubsub.publish('section-leave', ...args);
     }
