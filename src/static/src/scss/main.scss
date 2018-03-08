@@ -30,12 +30,11 @@
 
 // Components
 @import 'website/components/section';
-@import 'website//components/hero';
-@import 'website//components/header';
+@import 'website/components/hero';
+@import 'website/components/header';
 
 // Pages
-@import 'website//components/hero';
-@import 'website//components/header';
+@import 'website/pages/register';
 
 
 .responsive {

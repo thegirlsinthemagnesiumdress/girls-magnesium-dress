@@ -18,6 +18,15 @@ $tr-header-height: base-unit(8);
     }
   }
 
+  &--static {
+    display: block;
+    position: relative;
+
+    .tr-header__site-title {
+      color: $tr-logo-font;
+    }
+  }
+
   &__container {
     align-items: center;
     background-color: $tr-white;
