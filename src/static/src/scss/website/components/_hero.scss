@@ -1,0 +1,24 @@
+.tr-hero {
+  background-image: url('../img/hero.jpg');
+  background-position: center;
+  background-size: cover;
+  color: $tr-white;
+
+  &__dmb {
+    margin-bottom: base-unit(7);
+  }
+
+  &__title {
+    margin-bottom: base-unit(13);
+  }
+
+  &__bcg-logo {
+    bottom: base-unit(8);
+    position: absolute;
+    text-align: right;
+
+    img {
+      width: 110px;
+    }
+  }
+}

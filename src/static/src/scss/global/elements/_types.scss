@@ -79,6 +79,13 @@ h3,
   line-height: $tr-h3-line-height;
 }
 
+h4,
+.tr-tetha {
+  font-size: $tr-h4-font-size;
+  font-weight: $tr-h4-font-weight;
+  line-height: $tr-h4-line-height;
+}
+
 p,
 .tr-p-leading{
   @include spacing(mb, 1);

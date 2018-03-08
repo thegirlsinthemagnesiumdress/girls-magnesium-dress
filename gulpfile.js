@@ -200,6 +200,10 @@ gulp.task('watch', function() {
     './src/static/src/scss/**/*.scss',
   ], ['css']);
 
+  gulp.watch([
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
+  ], ['images']);
+
   // Watch for changes to the dev folder and trigger livereload if necessary
   gulp.watch([
     DEV_STATIC_DIR + '/**/*.js',
@@ -208,11 +212,11 @@ gulp.task('watch', function() {
     livereload.changed(event.path);
   });
 
-  gulp.watch([
-    TEMPLATES_DIR + '/**/*.html'
-  ], function(event) {
-    livereload.changed(event.path);
-  });
+  // gulp.watch([
+  //   TEMPLATES_DIR + '/**/*.html'
+  // ], function(event) {
+  //   livereload.changed(event.path);
+  // });
 });
 
 gulp.task('default', ['build', 'watch']);

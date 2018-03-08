@@ -3,8 +3,8 @@
 
 
 $btn-tr-primary-color: $tr-white;
-$btn-tr-primary-bg-color: $tr-cornflower-blue;
-$btn-tr-primary-bg-color-hover: $tr-mariner;
+$btn-tr-primary-bg-color: $tr-green;
+$btn-tr-primary-bg-color-hover: $tr-green-darker;
 $btn-tr-primary-bg-color-disabled: grey;
 
 // Base button used for buttons/ctas.
@@ -13,11 +13,10 @@ $btn-tr-primary-bg-color-disabled: grey;
   border-radius: 2px;
   display: inline-block;
   font-size: 14px;
-  height: 46px;
   letter-spacing: 0.75px;
   line-height: 1;
   margin: 8px 0;
-  padding: 15px 23px;
+  padding: base-unit(3) 23px;
   text-transform: uppercase;
   text-decoration: none;
   transition: color .15s linear, background-color .15s linear;
@@ -25,9 +24,7 @@ $btn-tr-primary-bg-color-disabled: grey;
 
   @include mq($from: desktop) {
     font-size: 16px;
-    height: 48px;
     letter-spacing: 0.5px;
-    padding: 17px 23px;
   }
 
   &.tr-btn--primary {
