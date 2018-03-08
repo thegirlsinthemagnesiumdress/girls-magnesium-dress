@@ -17,8 +17,7 @@ export default class ParallaxSection extends HTMLElement {
       }));
   }
 
-  connectedCallback () {
-  }
+  connectedCallback () {}
 
   sectionLeaveCb (index, nextIndex, direction) {
     if (nextIndex === 1) {
