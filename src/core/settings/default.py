@@ -239,4 +239,6 @@ SVG_DIRS = [
     os.path.join(STATIC_ROOT, 'img')
 ]
 
+DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['third_party', 'node_modules']
+
 from .constants import *

@@ -1,0 +1,6 @@
+.page-register {
+  &__title {
+    @include spacing(mt, 7);
+    @include spacing(mb, 5);
+  }
+}

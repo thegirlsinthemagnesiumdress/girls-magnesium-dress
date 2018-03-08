@@ -19,6 +19,7 @@
 
 //Global elements
 @import 'global/elements/all';
+@import 'website/elements/forms';
 
 //Utilities
 @import 'global/utilities/spacing';
@@ -28,7 +29,11 @@
 @import 'jquery.fullpage';
 
 // Components
-@import 'website//components/section';
+@import 'website/components/section';
+@import 'website//components/hero';
+@import 'website//components/header';
+
+// Pages
 @import 'website//components/hero';
 @import 'website//components/header';
 

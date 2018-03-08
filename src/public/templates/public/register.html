@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<section class="tr-register-page">
+    <section class="wrapper container-fluid">
+        <div class="row">
+            <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
+                <h1 class="tr-beta page-register__title">Register your organisation to take the survey</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-mobile-12 col-tablet-offset-2 col-tablet-6">
+                <p class="tr-u-spacing-mb-6">
+                    Enter your details below to generate a link to a survey you can share with your colleagues
+                </p>
+                <p class="tr-u-spacing-mb-10 tr-tetha">
+                    You should only register your organisation if you are the sponsor of this survey. If you have been sent to Product Name by someone in your organisation, go back and follow the link they have shared with you.
+                </p>
+                <form action="#">
+                    <label for="">Organization name</label>
+                    <input id="company-name" name="companu-name" type="text">
+                    <div class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6">
+                        Generate link
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock %}
