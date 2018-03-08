@@ -30,3 +30,16 @@
 // Components
 @import 'website//components/section';
 @import 'website//components/hero';
+@import 'website//components/header';
+
+
+.responsive {
+  @include mq($from: tablet) {
+    background-color: red;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+}
