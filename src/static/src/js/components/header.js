@@ -6,7 +6,7 @@ const CLASSES = {
   sticky: 'tr-header--sticky'
 }
 
-export default class ParallaxSection extends HTMLElement {
+export default class Header extends HTMLElement {
   constructor () {
     super();
 
