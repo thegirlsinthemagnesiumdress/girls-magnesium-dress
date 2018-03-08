@@ -79,13 +79,29 @@ h3,
   line-height: $tr-h3-line-height;
 }
 
+h4,
+.tr-theta {
+  font-size: $tr-h4-font-size;
+  font-weight: $tr-h4-font-weight;
+  line-height: $tr-h4-line-height;
+}
+
 p,
-.tr-p-leading{
+.tr-p {
   @include spacing(mb, 1);
   margin-top: 0;
 }
 
+
+.tr-p-smaller {
+  font-size: $tr-p-smaller-font-size;
+  font-weight: $tr-p-smaller-font-weight;
+  line-height: $tr-p-smaller-line-height;
+}
+
+
+
+
 .tr-color-light {
   color: $tr-font-color-light;
 }
-

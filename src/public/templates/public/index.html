@@ -4,9 +4,21 @@
 {% block body %}
 {% include 'inc/header.html' %}
 <div id="fullpage">
-    <div class="fp-section">
+    <div class="fp-section tr-hero">
         <section class="wrapper container-fluid">
-            <h1 class="display">Hero section</h1>
+            <div class="row">
+                <div class="col-mobile-12 col-tablet-7 col-tablet-offset-1">
+                    <h1 class="tr-theta tr-hero__dmb">Digital Maturity Benchmark</h1>
+                    <h2 class="tr-alpha tr-hero__title">Check your progress on the path to data-driven marketing </h2>
+                    <a href="" class="tr-btn tr-btn--primary">Get started</a>
+                </div>
+                <div class="col-mobile-12 col-tablet-2 col-tablet-offset-1">
+                    <div class="tr-hero__bcg-logo">
+                        <p class="tr-p-smaller">In partnership with</p>
+                        <img src="{% static 'img/bcg-logo.svg' %}" alt="bcg">
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 

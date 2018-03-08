@@ -10,7 +10,7 @@
 @import 'global/settings/all';
 
 //Generic
-@import 'global/generic/normalize';
+@import 'global/generic/all';
 @import 'flexboxgrid';
 
 //Mixins
@@ -29,6 +29,7 @@
 
 // Components
 @import 'website//components/section';
+@import 'website//components/hero';
 @import 'website//components/header';
 
 

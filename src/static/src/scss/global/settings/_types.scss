@@ -37,9 +37,14 @@ $tr-h3-font-size: 24px;
 $tr-h3-line-height: base-unit(4);
 $tr-h3-font-weight: $tr-font-weight-medium;
 
-$tr-h3-font-size: 16px;
-$tr-h3-line-height: base-unit(3);
-$tr-h3-font-weight: $tr-font-weight-medium;
+$tr-h4-font-size: 16px;
+$tr-h4-line-height: base-unit(3);
+$tr-h4-font-weight: $tr-font-weight-medium;
 
 $tr-paragraph-font-size: $tr-font-size-default;
 $tr-paragraph-line-height: base-unit(3);
+
+
+$tr-p-smaller-font-size: 14px;
+$tr-p-smaller-line-height: base-unit(2);
+$tr-p-smaller-font-weight: $tr-font-weight-regular;
