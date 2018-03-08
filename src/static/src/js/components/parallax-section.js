@@ -10,7 +10,7 @@ const CLASSES = {
   parallaxBefore: 'tr-parallax-section__parallaxed-img--before',
   parallaxAfter: 'tr-parallax-section__parallaxed-img--after',
   eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
-  eyebrowhidden: 'tr-parallax-section__eyebrow--hidden',
+  eyebrowHidden: 'tr-parallax-section__eyebrow--hidden',
   eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out'
 }
 
@@ -18,8 +18,8 @@ export default class ParallaxSection extends HTMLElement {
   constructor () {
     super();
 
-    this.subscribtions = [];
-    this.subscribtions
+    this.subscriptions = [];
+    this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
       }));
@@ -72,7 +72,7 @@ export default class ParallaxSection extends HTMLElement {
       this.$clonedEyebrow.style.left = `${this.rect.x}px`;
       this.$clonedEyebrow.style.width = `${this.rect.width}px`;
       this.$clonedEyebrow.style.height = `${this.rect.height}px`;
-      this.$eyebrow.classList.add(CLASSES.eyebrowhidden);
+      this.$eyebrow.classList.add(CLASSES.eyebrowHidden);
 
       document.body.appendChild(this.$clonedEyebrow);
 
@@ -108,6 +108,6 @@ export default class ParallaxSection extends HTMLElement {
       }
     }
     this.eyebrowSticky = false;
-    this.$eyebrow.classList.remove(CLASSES.eyebrowhidden);
+    this.$eyebrow.classList.remove(CLASSES.eyebrowHidden);
   }
 }
