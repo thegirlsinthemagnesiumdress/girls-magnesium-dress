@@ -96,7 +96,7 @@ export default class ParallaxSection extends HTMLElement {
    * @param {bool} animateOpacity Whether or not we animate the opacity when unpinning the element.
    */
   unpinEyebrow (animateOpacity) {
-    if (this.$clonedEyebrow) {
+    if (this.$clonedEyebrow && this.eyebrowSticky === true) {
       if (animateOpacity) {
         this.$clonedEyebrow.addEventListener('transitionend', () => {
           this.$clonedEyebrow.parentNode.removeChild(this.$clonedEyebrow);
