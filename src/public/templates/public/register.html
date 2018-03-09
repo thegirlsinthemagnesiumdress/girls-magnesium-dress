@@ -2,60 +2,62 @@
 
 {% block body %}
 {% include 'inc/header.html' with type="static" %}
-<section class="tr-registration">
-    <section class="wrapper container-fluid">
-        <form action="#" class="tr-registration__form">
-            <div class="row">
-                <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
-                    <h1 class="tr-beta tr-registration__title">Register your organisation to take the survey</h1>
+<tr-registration>
+    <section class="tr-registration">
+        <section class="wrapper container-fluid">
+            <form action="#" class="tr-registration__form" id="registration-form">
+                <div class="row">
+                    <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
+                        <h1 class="tr-beta tr-registration__title">Register your organisation to take the survey</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-mobile-12 col-tablet-offset-2 col-tablet-6">
-                    <p class="tr-u-spacing-mb-6">
-                        Enter your details below to generate a link to a survey you can share with your colleagues
-                    </p>
-                    <p class="tr-u-spacing-mb-10 tr-theta">
-                        You should only register your organisation if you are the sponsor of this survey. If you have been sent to Product Name by someone in your organisation, go back and follow the link they have shared with you.
-                    </p>
-                        <label for="">Organization name</label>
-                        <input id="company-name" name="companu-name" type="text">
-                        <div class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6">
-                        Generate link
+                <div class="row">
+                    <div class="col-mobile-12 col-tablet-offset-2 col-tablet-6">
+                        <p class="tr-u-spacing-mb-6">
+                            Enter your details below to generate a link to a survey you can share with your colleagues
+                        </p>
+                        <p class="tr-u-spacing-mb-10 tr-theta">
+                            You should only register your organisation if you are the sponsor of this survey. If you have been sent to Product Name by someone in your organisation, go back and follow the link they have shared with you.
+                        </p>
+                            <label for="">Organization name</label>
+                            <input id="company-name" name="companu-name" type="text">
+                            <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6">
+                            Generate link
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="tr-registration__confirmation tr-u-display-none">
+                <div class="row">
+                    <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
+                        <h1 class="tr-beta tr-registration__title">
+                            Your unique survey has now been created
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-mobile-12 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
+                        <p class="tr-registration__confirmation-paragraph">
+                            Share the link below with your organisation to start collecting insights
+                        </p>
+                        <p class="tr-registration__confirmation-paragraph">
+                            <a href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
+                        </p>
+                        <button class="tr-btn tr-btn--primary">
+                            Copy to clipboard
+                        </button>
+                    </div>
+                    <div class="col-mobile-12 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
+                        <p class="tr-registration__confirmation-paragraph">
+                                Start with the lorem ipsum dolor sit amet lorem
+                        </p>
+                        <a class="tr-btn tr-btn--primary" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true">
+                            Get started
+                        </a>
                     </div>
                 </div>
             </div>
-        </form>
-        <div class="tr-registration__confirmation">
-            <div class="row">
-                <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
-                    <h1 class="tr-beta tr-registration__title">
-                        Your unique survey has now been created
-                    </h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-mobile-12 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
-                    <p class="tr-registration__confirmation-paragraph">
-                        Share the link below with your organisation to start collecting insights
-                    </p>
-                    <p class="tr-registration__confirmation-paragraph">
-                        <a href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
-                    </p>
-                    <button class="tr-btn tr-btn--primary">
-                        Copy to clipboard
-                    </button>
-                </div>
-                <div class="col-mobile-12 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
-                    <p class="tr-registration__confirmation-paragraph">
-                            Start with the lorem ipsum dolor sit amet lorem
-                    </p>
-                    <a class="tr-btn tr-btn--primary" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true">
-                        Get started
-                    </a>
-                </div>
-            </div>
-        </div>
+        </section>
     </section>
-</section>
+</tr-registration>
 {% endblock %}

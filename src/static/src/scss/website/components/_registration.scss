@@ -5,11 +5,13 @@
   }
 
   &__confirmation-paragraph {
-    @include spacing(mb, 7);
+    @include spacing(mb, 6);
   }
 
-  &__form {
-    display: none;
+  &__form {}
+
+  &__confirmation {
+    @include spacing(mt, 5);
   }
 
   &__confirmation-step {
