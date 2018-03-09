@@ -188,7 +188,6 @@ gulp.task('images', function() {
   ]).pipe(gulp.dest(outputDir));
 });
 
-
 gulp.task('watch', function() {
   livereload.listen(); // Start the livereload server
 
