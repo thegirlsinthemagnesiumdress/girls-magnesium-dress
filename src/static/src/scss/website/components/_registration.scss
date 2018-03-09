@@ -34,5 +34,11 @@
       position: absolute;
       top: 0;
     }
+
+    & + & {
+      &::before {
+        content: '2';
+      }
+    }
   }
 }

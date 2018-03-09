@@ -1,5 +1,6 @@
 import fullpage from 'fullpage.js/dist/jquery.fullpage'; // eslint-disable-line no-unused-vars
 import jQuery from 'jquery';
+
 import ParallaxSection from './components/parallax-section'
 import Header from './components/header'
 import Registration from './components/registration'

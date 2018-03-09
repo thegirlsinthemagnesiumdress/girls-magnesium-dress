@@ -19,9 +19,9 @@
                         <p class="tr-u-spacing-mb-10 tr-theta">
                             You should only register your organisation if you are the sponsor of this survey. If you have been sent to Product Name by someone in your organisation, go back and follow the link they have shared with you.
                         </p>
-                            <label for="">Organization name</label>
-                            <input id="company-name" name="companu-name" type="text">
-                            <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6">
+                        <label for="">Organization name</label>
+                        <input id="company-name" name="companu-name" type="text" required>
+                        <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6" disabled>
                             Generate link
                         </button>
                     </div>
@@ -41,9 +41,9 @@
                             Share the link below with your organisation to start collecting insights
                         </p>
                         <p class="tr-registration__confirmation-paragraph">
-                            <a href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
+                            <a href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1" id="survey-link">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
                         </p>
-                        <button class="tr-btn tr-btn--primary">
+                        <button class="tr-btn tr-btn--primary" data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
                             Copy to clipboard
                         </button>
                     </div>
@@ -51,7 +51,10 @@
                         <p class="tr-registration__confirmation-paragraph">
                                 Start with the lorem ipsum dolor sit amet lorem
                         </p>
-                        <a class="tr-btn tr-btn--primary" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true">
+                        <p class="tr-gamma">
+                          Capybara
+                        </p>
+                        <a class="tr-btn tr-btn--primary" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
                             Get started
                         </a>
                     </div>
