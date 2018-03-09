@@ -14,13 +14,11 @@ export default class Registration extends HTMLElement {
   }
 
   connectedCallback () {
-    setTimeout(() => {
-      this.$form = this.querySelector(DOM_SELECTORS.form);
-      this.$submitBtn = this.$form.querySelector(DOM_SELECTORS.submitBtn);
-      this.$confirmationScreen = this.querySelector(DOM_SELECTORS.confirmationScreen);
-      this.$form.addEventListener('submit', this.generateLink.bind(this));
-      this.$form.addEventListener('input', this.formChange.bind(this));
-    }, 0);
+    this.$form = this.querySelector(DOM_SELECTORS.form);
+    this.$submitBtn = this.$form.querySelector(DOM_SELECTORS.submitBtn);
+    this.$confirmationScreen = this.querySelector(DOM_SELECTORS.confirmationScreen);
+    this.$form.addEventListener('submit', this.generateLink.bind(this));
+    this.$form.addEventListener('input', this.formChange.bind(this));
   }
 
   formChange (e) {
