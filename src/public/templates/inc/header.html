@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <div id="tr-header">
     <tr-header class="tr-header {% if type == 'static' %}tr-header--static{% endif %}">
-        <div class="tr-header__site-title">
+        <a href="{% url 'index' %}" class="tr-header__site-title">
             {% comment %} TODO: move this to an include {% endcomment %}
             <svg width="281px" height="26px" viewBox="0 0 281 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Digital Maturity Benchmark</title>
@@ -49,7 +49,7 @@
                     </g>
                 </g>
             </svg>
-        </div>
+        </a>
 
         <div class="tr-header__container">
             <a class="tr-header__action-wrp">
