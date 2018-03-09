@@ -1,0 +1,14 @@
+.tr-registration {
+  &__title {
+    @include spacing(mt, 7);
+    @include spacing(mb, 5);
+  }
+
+  &__confirmation-paragraph {
+    @include spacing(mb, 7);
+  }
+
+  &__form {
+    display: none;
+  }
+}

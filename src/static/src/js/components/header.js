@@ -1,31 +1,27 @@
-import pubsub from '../pubsub';
+const DOM_SELECTORS = {
+  form: '#registration-form'
+  confirmationScreen: '.register__confirmation'
+};
 
-const DOM_SELECTORS = {};
+const CLASSES = {}
 
-const CLASSES = {
-  sticky: 'tr-header--sticky'
-}
-
-export default class Header extends HTMLElement {
+export default class Register extends HTMLElement {
   constructor () {
     super();
-
-    this.subscriptions = [];
-    this.subscriptions
-      .push(pubsub.subscribe('section-leave', (topic, ...args) => {
-        this.sectionLeaveCb(...args);
-      }));
   }
 
-  connectedCallback () {}
+  connectedCallback () {
+    this.$form = this.querySelector(DOM_SELECTORS.form);
+    this.$confirmationScreen = this.querySelector(DOM_SELECTORS.confirmationScreen);
+    this.$form.addEventListener('submit', this.generateLink.bind(this));
+  }
 
-  sectionLeaveCb (index, nextIndex, direction) {
-    if (nextIndex === 1) {
-      this.classList.remove(CLASSES.sticky);
-    }
+  generateLink () {
+    // Show step two.
 
-    if (nextIndex === 2) {
-      this.classList.add(CLASSES.sticky);
-    }
+  }
+
+  showConfirmation () {
+    thi
   }
 }
