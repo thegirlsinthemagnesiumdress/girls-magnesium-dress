@@ -215,10 +215,8 @@ TEMPLATES = [{
     'OPTIONS': {
         'debug': DEBUG,
         'loaders': [
-            ('django.template.loaders.cached.Loader', [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ]),
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
         ],
         'context_processors': (
             "django.contrib.auth.context_processors.auth",
@@ -237,6 +235,13 @@ TEMPLATES = [{
 
 SVG_DIRS = [
     os.path.join(STATIC_ROOT, 'img')
+]
+
+DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['^third_party$', 'sitepackages$', '^node_modules$', '^tests$']
+
+DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
+    r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
+    r".+\.py.$",  # Anything with an extension of .pyX, e.g. pyc or pyo
 ]
 
 from .constants import *

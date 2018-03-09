@@ -33,13 +33,32 @@
     }
   }
 
+
   &__eyebrow {
-    border-left: 1px solid white;
     margin-bottom: base-unit(8);
-    max-width: 200px;
     opacity: 1;
-    padding-left: base-unit(2);
     transition: opacity .2s .1s;
+
+    span {
+      border-left: 1px solid $tr-bastille;
+      max-width: 220px;
+      display: inline-block;
+      padding: 0 base-unit(2);
+    }
+
+    &--align-right {
+      text-align: right;
+
+      span {
+        border-left: 0;
+        border-right: 1px solid $tr-bastille;
+      }
+    }
+
+    &--light {
+      border-left: 1px solid $tr-white;
+      color: $tr-white;
+    }
 
     &--sticky {
       position: fixed;
@@ -55,5 +74,16 @@
       transition: opacity .2s;
     }
   }
+
+  &--data-transform {
+    .tr-parallax-section__parallaxed-img {
+      left: 25%;
+
+      &--after {
+        transform: translateY(base-unit(54));
+      }
+    }
+  }
+
 
 }
