@@ -27,6 +27,8 @@
   }
 
   &__bottom {
+    position: relative;
+
     p {
       position: relative;
       z-index: 1;
@@ -48,16 +50,13 @@
 
     &--align-right {
       text-align: right;
-
-      span {
-        border-left: 0;
-        border-right: 1px solid $tr-bastille;
-      }
     }
 
     &--light {
-      border-left: 1px solid $tr-white;
-      color: $tr-white;
+      span {
+        border-left: 1px solid $tr-white;
+        color: $tr-white;
+      }
     }
 
     &--sticky {
@@ -75,9 +74,24 @@
     }
   }
 
-  &--data-transform {
+
+  &--bg-image {
     .tr-parallax-section__parallaxed-img {
-      left: 25%;
+      background-image: url('../img/hero.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 200%;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  &--data-transform {
+
+    .tr-parallax-section__parallaxed-img {
+      left: 8%;
 
       &--after {
         transform: translateY(base-unit(54));
