@@ -23,7 +23,7 @@ def company(request):
         return JsonResponse(status=404, data={'error': 'You need to provide company id'})
 
     company_id_map = {
-        '1': 'capybara',
+        '1': 'Capybara',
         '2': 'Potato'
     }
 

@@ -77,6 +77,7 @@ $header-min-height: base-unit(90);
       font-weight: $tr-font-weight-bold;
       // line-height: 40px;
       margin-bottom: base-unit(5);
+      text-transform: capitalize;
 
       @include mq($from: tablet) {
         // font-size: 70px;
