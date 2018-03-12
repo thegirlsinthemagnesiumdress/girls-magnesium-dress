@@ -20,9 +20,11 @@ export default class SliderSection extends HTMLElement {
   connectedCallback () {
     window.$('.section-slider__container').slick({
       autoplay: true,
+      arrows: false,
       dots: true,
       fade: true,
-      arrows: false
+      pauseOnHover: false,
+      pauseOnDotsHover: true
     }).on('beforeChange', (e, slick, currentSlide, nextSlide) => {
       CAROUSEL_COLORS.forEach((c) => this.classList.remove(c));
       this.classList.add(CAROUSEL_COLORS[nextSlide]);
