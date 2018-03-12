@@ -26,9 +26,12 @@
 
 //Fullpage css
 @import 'jquery.fullpage';
+@import 'slick.scss';
+@import 'slick-theme.scss';
 
 // Components
 @import 'website/components/section';
+@import 'website/components/section-slider';
 @import 'website/components/hero';
 @import 'website/components/header';
 @import 'website/components/registration';
