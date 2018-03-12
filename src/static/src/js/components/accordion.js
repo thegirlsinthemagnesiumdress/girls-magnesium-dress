@@ -5,7 +5,8 @@ const DOM_SELECTORS = {
 };
 
 const CLASSES = {
-  hidden: '.tr-accordion-section-closed',
+  accordionSection: 'tr-accordion-section',
+  hidden: 'tr-accordion-section-closed',
 }
 
 export default class Accordion extends HTMLElement {
@@ -32,7 +33,6 @@ export default class Accordion extends HTMLElement {
     });
   }
 
-
   hideAll () {
     this.$accordionSections.forEach(function (el) {
       el.classList.add(CLASSES.hidden);
@@ -40,8 +40,11 @@ export default class Accordion extends HTMLElement {
   }
 
   toggle (e) {
-    console.log(e);
     this.hideAll();
-    console.log('click');
+    var parentEl;
+    var el = e.target;
+    console.log(el);
+    while ((el = el.parentElement) && !el.classList.contains(CLASSES.accordionSection));
+    el.classList.toggle(CLASSES.hidden);
   }
 }

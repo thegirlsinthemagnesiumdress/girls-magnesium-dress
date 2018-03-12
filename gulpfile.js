@@ -24,6 +24,7 @@ var SASS_INCLUDES = [
   'node_modules/sass-mq/',
   'node_modules/flexboxgrid-sass/',
   'node_modules/fullpage.js/dist',
+  'node_modules/slick-carousel/slick',
 ];
 
 var ADMIN_STATIC = [

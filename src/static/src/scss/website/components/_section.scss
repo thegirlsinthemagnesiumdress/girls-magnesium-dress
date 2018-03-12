@@ -1,4 +1,5 @@
 .tr-parallax-section {
+  $block: &;
 
   &__title-wrp {
     position: relative;
@@ -22,24 +23,46 @@
     }
 
     &--after {
-      transform: translateY(base-unit(74));
+      transform: translateY(base-unit(35));
     }
   }
 
   &__bottom {
+    position: relative;
+
     p {
       position: relative;
       z-index: 1;
     }
   }
 
+
   &__eyebrow {
-    border-left: 1px solid white;
     margin-bottom: base-unit(8);
-    max-width: 200px;
     opacity: 1;
-    padding-left: base-unit(2);
-    transition: opacity .2s .1s;
+
+    span {
+      border-left: 1px solid $tr-bastille;
+      display: inline-block;
+      max-width: 220px;
+      padding: 0 base-unit(2);
+    }
+
+    &--transition-opacity {
+      transition: opacity .2s .1s;
+    }
+
+    &--align-right {
+      text-align: right;
+    }
+
+    &--light {
+
+      span {
+        border-left: 1px solid $tr-white;
+        color: $tr-white;
+      }
+    }
 
     &--sticky {
       position: fixed;
@@ -52,8 +75,42 @@
 
     &--faded-out {
       opacity: 0;
-      transition: opacity .2s;
     }
   }
 
+  &__phone-img {
+    max-width: 100%;
+  }
+
+
+  &--bg-image {
+    .tr-parallax-section__parallaxed-img {
+      background-image: url('../img/hero.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 200%;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  &--data-transform {
+
+    .tr-parallax-section__parallaxed-img {
+      left: 8%;
+
+      &--after {
+        transform: translateY(base-unit(10));
+      }
+    }
+  }
+
+  &--get-started {
+    #{$block}__eyebrow {
+      position: absolute;
+      top: base-unit(10);
+    }
+  }
 }
