@@ -6,11 +6,11 @@ const DOM_SELECTORS = {
 
 const CLASSES = {
   accordionSection: 'tr-accordion-section',
-  hidden: 'tr-accordion-section-closed',
+  hidden: 'tr-accordion-section-closed'
 }
 
 export default class Accordion extends HTMLElement {
-  constructor() {
+  constructor () {
     super();
     this.toggle = this.toggle.bind(this);
   }
@@ -40,11 +40,11 @@ export default class Accordion extends HTMLElement {
   }
 
   toggle (e) {
-    this.hideAll();
-    var parentEl;
     var el = e.target;
-    console.log(el);
     while ((el = el.parentElement) && !el.classList.contains(CLASSES.accordionSection));
+    if (el.classList.contains(CLASSES.hidden)) {
+      this.hideAll();
+    }
     el.classList.toggle(CLASSES.hidden);
   }
 }
