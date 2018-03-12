@@ -1,5 +1,5 @@
 .tr-parallax-section {
- $block: &;
+  $block: &;
 
   &__title-wrp {
     position: relative;
@@ -75,7 +75,6 @@
 
     &--faded-out {
       opacity: 0;
-      // transition: opacity .2s;
     }
   }
 
@@ -114,6 +113,4 @@
       top: base-unit(10);
     }
   }
-
-
 }
