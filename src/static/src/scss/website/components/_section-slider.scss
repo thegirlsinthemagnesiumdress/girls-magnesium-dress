@@ -8,9 +8,9 @@
       width: auto;
     }
 
-    button:before {
+    button::before {
       background-color: $tr-white;
-      border-radius: 50%;
+      border-radius: 4px;
       content: '';
       display: block;
       height: base-unit(1);
@@ -18,10 +18,12 @@
       position: static;
       top: auto;
       width: base-unit(1);
+      transition: background-color .5, width .5s;
+
     }
 
     .slick-active {
-      button:before {
+      button::before {
         width: 40px;
         border-radius: 4px;
       }
