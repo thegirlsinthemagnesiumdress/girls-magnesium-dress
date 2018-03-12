@@ -39,13 +39,16 @@
   &__eyebrow {
     margin-bottom: base-unit(8);
     opacity: 1;
-    transition: opacity .2s .1s;
 
     span {
       border-left: 1px solid $tr-bastille;
-      max-width: 220px;
       display: inline-block;
+      max-width: 220px;
       padding: 0 base-unit(2);
+    }
+
+    &--transition-opacity {
+      transition: opacity .2s .1s;
     }
 
     &--align-right {
@@ -53,6 +56,7 @@
     }
 
     &--light {
+
       span {
         border-left: 1px solid $tr-white;
         color: $tr-white;
@@ -70,7 +74,7 @@
 
     &--faded-out {
       opacity: 0;
-      transition: opacity .2s;
+      // transition: opacity .2s;
     }
   }
 
