@@ -19,18 +19,21 @@
 
 //Global elements
 @import 'global/elements/all';
+@import 'website/elements/forms';
 
 //Utilities
-@import 'global/utilities/spacing';
-@import 'global/utilities/bg-color';
+@import 'global/utilities/all';
 
 //Fullpage css
 @import 'jquery.fullpage';
 
 // Components
-@import 'website//components/section';
-@import 'website//components/hero';
-@import 'website//components/header';
+@import 'website/components/section';
+@import 'website/components/hero';
+@import 'website/components/header';
+@import 'website/components/registration';
+
+// Pages
 
 
 .responsive {
