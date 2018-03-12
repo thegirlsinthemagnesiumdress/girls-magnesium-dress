@@ -11,7 +11,8 @@ const CLASSES = {
   parallaxAfter: 'tr-parallax-section__parallaxed-img--after',
   eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
   eyebrowHidden: 'tr-parallax-section__eyebrow--hidden',
-  eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out'
+  eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out',
+  eyebrowTransition: 'tr-parallax-section__eyebrow--transition-opacity'
 }
 
 export default class ParallaxSection extends HTMLElement {
@@ -78,12 +79,19 @@ export default class ParallaxSection extends HTMLElement {
 
       if (animateOpacity) {
         this.$clonedEyebrow.classList.add(CLASSES.eyebrowFadedout);
+        this.$clonedEyebrow.classList.add(CLASSES.eyebrowTransition);
 
         // Removing a class straight after appending to the DOM
         // prevents the animation to happen. This is a workarounf.
         // TODO: there might be a nicer approach
         setTimeout(() => {
           this.$clonedEyebrow.classList.remove(CLASSES.eyebrowFadedout);
+          const transitionEndCb = (e) => {
+            this.$clonedEyebrow.classList.remove(CLASSES.eyebrowTransition)
+            this.$clonedEyebrow.removeEventListener('transitionend', transitionEndCb);
+          }
+
+          this.$clonedEyebrow.addEventListener('transitionend', transitionEndCb);
         }, 100);
       }
 
@@ -98,11 +106,16 @@ export default class ParallaxSection extends HTMLElement {
   unpinEyebrow (animateOpacity) {
     if (this.$clonedEyebrow && this.eyebrowSticky === true) {
       if (animateOpacity) {
-        this.$clonedEyebrow.addEventListener('transitionend', () => {
+        const transitionEndCb = (e) => {
           this.$clonedEyebrow.parentNode.removeChild(this.$clonedEyebrow);
-        });
+          this.$clonedEyebrow.classList.remove(CLASSES.eyebrowTransition)
+          this.$clonedEyebrow.removeEventListener('transitionend', transitionEndCb);
+        }
+
+        this.$clonedEyebrow.addEventListener('transitionend', transitionEndCb);
 
         this.$clonedEyebrow.classList.add(CLASSES.eyebrowFadedout)
+        this.$clonedEyebrow.classList.add(CLASSES.eyebrowTransition)
       } else {
         this.$clonedEyebrow.parentNode.removeChild(this.$clonedEyebrow);
       }
