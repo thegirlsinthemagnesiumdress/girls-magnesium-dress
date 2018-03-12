@@ -21,6 +21,7 @@ $tr-cornflower-blue: #4285F4;
 $tr-mariner: #3367D6;
 $tr-green: map-get($tr-google-greens, 700);
 $tr-green-darker: map-get($tr-google-greens, 500);
+$tr-gray: #9AA0A6;
 
 $tr-zircorn: #DFE1E5;
 $tr-white: #fff;
@@ -32,5 +33,3 @@ $tr-bg-colors: (
   blue: $tr-cornflower-blue,
   white: $tr-white,
 );
-
-

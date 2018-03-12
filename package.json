@@ -1,14 +1,15 @@
 {
   "dependencies": {
+    "@webcomponents/custom-elements": "1.0.8",
     "browserify-handlebars": "1.0.0",
+    "clipboard": "^2.0.0",
     "fullpage.js": "2.9.6",
     "handlebars": "1.2.0",
     "jquery": "3.3.1",
     "promise-polyfill": "6.0.2",
     "sass-mq": "4.0.2",
     "url-search-params": "0.6.1",
-    "whatwg-fetch": "2.0.2",
-    "@webcomponents/custom-elements": "1.0.8"
+    "whatwg-fetch": "2.0.2"
   },
   "devDependencies": {
     "babel-eslint": "8.2.2",

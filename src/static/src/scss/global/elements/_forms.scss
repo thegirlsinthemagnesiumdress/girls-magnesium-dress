@@ -9,6 +9,7 @@ form {
   }
 
   label:not(.q-radio) {
+    display: block;
     padding: 0 0 base-unit(3);
   }
 

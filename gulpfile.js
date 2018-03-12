@@ -116,7 +116,7 @@ gulp.task('js', function() {
       entries: glob,
       debug: argv.assets_debug
     })
-      .transform(browserifyHandlebars)
+      // .transform(browserifyHandlebars) // We don't need for now.
       .transform(babelify, {
         presets:['es2015'],
         plugins: [
@@ -131,6 +131,25 @@ gulp.task('js', function() {
       .pipe(replace("{{STATIC_URL}}", argv.static_url))
       .pipe(gulp.dest(outputDir));
   }
+});
+
+const jsLibs = [
+  'node_modules/clipboard/dist/clipboard.js',
+]
+
+gulp.task('js-libs', function() {
+
+  var outputDir = DIST_DIR + 'js/';
+  if(argv.assets_debug) {
+    outputDir = DEV_STATIC_DIR + 'js/';
+  } else {
+
+  }
+
+  return gulp.src(jsLibs)
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest(outputDir));
+
 });
 
 gulp.task('css', function() {
@@ -188,7 +207,6 @@ gulp.task('images', function() {
   ]).pipe(gulp.dest(outputDir));
 });
 
-
 gulp.task('watch', function() {
   livereload.listen(); // Start the livereload server
 
@@ -220,4 +238,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['build', 'watch']);
-gulp.task('build', ['adminstatic', 'toolbarstatic', 'js', 'css', 'fonts', 'images', 'jasmine']);
+gulp.task('build', ['adminstatic', 'toolbarstatic', 'js', 'js-libs', 'css', 'fonts', 'images', 'jasmine']);
