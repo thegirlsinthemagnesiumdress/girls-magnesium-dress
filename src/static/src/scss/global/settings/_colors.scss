@@ -22,6 +22,7 @@ $tr-mariner: #3367D6;
 $tr-green: map-get($tr-google-greens, 700);
 $tr-green-darker: map-get($tr-google-greens, 500);
 $tr-gray: #9AA0A6;
+$tr-light-gray: #F1F3F4;
 
 $tr-zircorn: #DFE1E5;
 $tr-white: #fff;
@@ -30,5 +31,5 @@ $tr-bastille: #292D33;
 $tr-logo-font: #5F6368;
 
 $tr-bg-colors: (
-  blue: $tr-cornflower-blue
-);
+  blue: $tr-cornflower-blue,
+  gray: $tr-light-gray);

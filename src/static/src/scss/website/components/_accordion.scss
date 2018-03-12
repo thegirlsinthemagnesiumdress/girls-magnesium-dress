@@ -1,0 +1,28 @@
+.tr-accordion {
+  dt {
+    border-top: 1px solid $tr-zircorn;
+    cursor: pointer;
+    margin-left: 0;
+
+    h3 {
+      @extend .col-xs-8;
+    }
+  }
+
+  dd {
+    @extend .tr-p-smaller;
+    margin-bottom: base-unit(2);
+    margin-left: 0;
+
+    p {
+      @extend .col-xs-8;
+    }
+
+  }
+}
+
+.tr-accordion-section-closed {
+  dd {
+    display: none !important;
+  }
+}
