@@ -1,0 +1,30 @@
+.section-slider {
+  transition: background-color .3s;
+
+  .slick-dots {
+    li,
+    button {
+      height: auto;
+      width: auto;
+    }
+
+    button:before {
+      background-color: $tr-white;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: base-unit(1);
+      left: auto;
+      position: static;
+      top: auto;
+      width: base-unit(1);
+    }
+
+    .slick-active {
+      button:before {
+        width: 40px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
