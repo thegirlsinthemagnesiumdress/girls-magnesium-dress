@@ -13,7 +13,6 @@ class SurveyViewSet(viewsets.ModelViewSet):
         Instantiates and returns the list of permissions that this view requires.
         We allow qualtrics users to list the companies
         """
-        return super(self.__class__, self).get_permissions()
         if self.action in ('list',):
             return [IsAuthenticated()]
         else:
