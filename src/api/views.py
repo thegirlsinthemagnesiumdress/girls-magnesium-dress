@@ -1,10 +1,23 @@
 from rest_framework import permissions, viewsets
 from api.serializers import SurveySerializer
 from core.models import Survey
+from rest_framework.permissions import IsAuthenticated
+
 
 class SurveyViewSet(viewsets.ModelViewSet):
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
+
+    def get_permissions(self):
+        """
+        Instantiates and returns the list of permissions that this view requires.
+        We allow qualtrics users to list the companies
+        """
+        return super(self.__class__, self).get_permissions()
+        if self.action in ('list',):
+            return [IsAuthenticated()]
+        else:
+            return super(self.__class__, self).get_permissions()
 
     def get_queryset(self):
         """

@@ -242,6 +242,7 @@ SVG_DIRS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
+        'api.permissions.ApiPermissions',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
@@ -257,5 +258,10 @@ DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
     r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
     r".+\.py.$",  # Anything with an extension of .pyX, e.g. pyc or pyo
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'djangae.contrib.gauth_datastore.backends.AppEngineUserAPIBackend',
+)
 
 from .constants import *

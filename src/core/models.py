@@ -6,7 +6,7 @@ import datetime
 
 
 class User(GaeAbstractDatastoreUser):
-    pass
+    is_qualtrics=models.BooleanField(default=False)
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 
