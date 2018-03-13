@@ -17,22 +17,24 @@ $tr-google-greens: (
 // Fileoverview:
 // Color definitions.
 
-$tr-cornflower-blue: #4285F4;
-$tr-mariner: #3367D6;
-$tr-blue-darker: #3367D6;
+$tr-cornflower-blue: #4285f4;
+$tr-mariner: #3367d6;
+$tr-blue-darker: #3367d6;
 $tr-green: map-get($tr-google-greens, 700);
 $tr-green-darker: map-get($tr-google-greens, 500);
-$tr-gray: #9AA0A6;
+$tr-gray: #9aa0a6;
+$tr-light-gray: #f1f3f4;
 
-$tr-zircorn: #DFE1E5;
+$tr-zircorn: #dfe1e5;
 $tr-white: #fff;
 
-$tr-bastille: #292D33;
-$tr-logo-font: #5F6368;
+$tr-bastille: #292d33;
+$tr-logo-font: #5f6368;
 
 $tr-bg-colors: (
   'blue': $tr-cornflower-blue,
-  'mariner': $tr-mariner,
   'blue-darker': $tr-blue-darker,
+  'gray': $tr-light-gray,
+  'mariner': $tr-mariner,
   'white': $tr-white,
 );

@@ -1,0 +1,8 @@
+.tr-section,
+.fp-section {
+  .wrapper {
+    padding-bottom: base-unit(10);
+    padding-top: base-unit(10);
+    margin-top: $tr-header-height
+  }
+}

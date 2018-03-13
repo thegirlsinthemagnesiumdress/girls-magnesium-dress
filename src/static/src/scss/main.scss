@@ -8,9 +8,11 @@
 
 // Settings
 @import 'global/settings/all';
+@import 'website/settings/variables';
 
 //Generic
 @import 'global/generic/all';
+@import 'website/generic/generic';
 @import 'flexboxgrid';
 
 //Mixins
@@ -35,6 +37,8 @@
 @import 'website/components/hero';
 @import 'website/components/header';
 @import 'website/components/registration';
+@import 'website/components/accordion';
+
 
 // Pages
 
