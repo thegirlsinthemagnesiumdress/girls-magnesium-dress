@@ -36,7 +36,7 @@ You can generate some test data for developing
 # Folder structure
 
 Source static files live in the Django apps, so currently there is:
-
+This is going to change.
  - 'src/core/static' - Shared assets needed for multiple apps
  - 'src/public/static' - Assets only required for the public app
 
@@ -44,3 +44,8 @@ When building these files are build (as per gulpfile.js) and then output to:
 
  - 'src/static/dev' - When in development mode
  - 'src/static/dist' - When in production mode (this is what's deployed)
+
+ # Deploy
+ - `./manage.py gulp build --settings=core.settings.live`
+ - `python manage.py collectstatic --settings=core.settings.live`
+ - `./third_party/google_appengine/appcfg.py update --no_cookies -A potato-trev-test -V [version] ./src`

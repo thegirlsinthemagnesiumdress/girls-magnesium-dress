@@ -1,0 +1,105 @@
+//Fileoverview:
+// Type definitions.
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: $tr-font-color-dark;
+  font-family: $tr-font-family;
+  font-size: $tr-font-size-default;
+  line-height: $tr-font-line-height-default;
+
+  //For debug purposes only
+  &.vertical-rythm-debug {
+    position: relative;
+
+    &:after {
+      background: repeating-linear-gradient(transparent, transparent $tr-baseline - 1, $tr-zircorn $tr-baseline - 1, $tr-zircorn $tr-baseline);
+      bottom: 0;
+      content: '';
+      opacity: .7;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+}
+
+
+// Specic overrides for Qualtrics
+#RestoredResponseBar, .Skin, .Skin .yui-skin-sam .yui-calcontainer, .Skin button, .Skin input, .Skin select, .Skin textarea { // sass-lint:disable-line single-line-per-selector no-ids
+  font-family: $tr-font-family;
+}
+
+// Specic overrides for Qualtrics
+#QMenu ul li a.MenuItemLink { // sass-lint:disable-line single-line-per-selector no-ids
+  font-family: $tr-font-family;
+}
+
+
+.tr-display,
+h1,
+.tr-alpha,
+h2,
+.tr-beta,
+h3,
+.tr-gamma {
+  @include spacing(mt, 1);
+  @include spacing(mb, 2);
+}
+
+
+
+.tr-display {
+  font-size: $tr-display-font-size;
+  font-weight: $tr-display-font-weight;
+  line-height: $tr-display-line-height;
+}
+
+h1,
+.tr-alpha {
+  font-size: $tr-h1-font-size;
+  font-weight: $tr-h1-font-weight;
+  line-height: $tr-h1-line-height;
+}
+
+h2,
+.tr-beta {
+  font-size: $tr-h2-font-size;
+  font-weight: $tr-h2-font-weight;
+  line-height: $tr-h2-line-height;
+}
+
+h3,
+.tr-gamma {
+  font-size: $tr-h3-font-size;
+  font-weight: $tr-h3-font-weight;
+  line-height: $tr-h3-line-height;
+}
+
+h4,
+.tr-theta {
+  font-size: $tr-h4-font-size;
+  font-weight: $tr-h4-font-weight;
+  line-height: $tr-h4-line-height;
+}
+
+p,
+.tr-p {
+  @include spacing(mb, 1);
+  margin-top: 0;
+}
+
+
+.tr-p-smaller {
+  font-size: $tr-p-smaller-font-size;
+  font-weight: $tr-p-smaller-font-weight;
+  line-height: $tr-p-smaller-line-height;
+}
+
+
+.tr-color-light {
+  color: $tr-font-color-light;
+}

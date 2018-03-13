@@ -18,12 +18,13 @@ var DIST_DIR = STATIC_DIR + '/dist/';
 var TEMPLATES_DIR =  './src/public/templates/';
 
 var SASS_INCLUDES = [
-  './src/core/static/scss',
-  './src/public/static/scss',
+  './src/static/src/scss',
 
   // Libraries installed with npm
   'node_modules/sass-mq/',
   'node_modules/flexboxgrid-sass/',
+  'node_modules/fullpage.js/dist',
+  'node_modules/slick-carousel/slick',
 ];
 
 var ADMIN_STATIC = [
@@ -33,8 +34,8 @@ var ADMIN_STATIC = [
 ];
 
 var JASMINE_STATIC = [
-  './third_party/local/npm/node_modules/jasmine-core/**/*.js',
-  './third_party/local/npm/node_modules/jasmine-core/**/*.css'
+  './node_modules/jasmine-core/**/*.js',
+  './node_modules/jasmine-core/**/*.css'
 ];
 
 var DEBUG_TOOLBAR = [
@@ -86,8 +87,9 @@ gulp.task('js', function() {
 
 
   var bundles = [
-    ['./src/core/static/js/index.js', 'common.js'],
-    ['./src/public/static/js/index.js', 'public.js']
+    // ['./src/core/static/js/index.js', 'common.js'],
+    // ['./src/public/static/js/index.js', 'public.js']
+    ['./src/static/src/js/index.js', 'main.js']
   ];
 
   for(var i = 0; i < bundles.length; ++i) {
@@ -97,15 +99,15 @@ gulp.task('js', function() {
     browserify({
       shim: {
         'promise': {
-          path: '/third_party/local/npm/node_modules/promise-polyfill/promise.js',
+          path: '/node_modules/promise-polyfill/promise.js',
           exports: 'Promise'
         },
         'url-search-params': {
-          path: '/third_party/local/npm/node_modules/url-search-params/build/url-search-params.js',
+          path: '/node_modules/url-search-params/build/url-search-params.js',
           exports: 'URLSearchParams'
         },
         'whatwg-fetch': {
-          path: '/third_party/local/npm/node_modules/whatwg-fetch/fetch.js',
+          path: '/node_modules/whatwg-fetch/fetch.js',
           exports: 'fetch',
           depends: {
             promise: 'promise'
@@ -115,13 +117,40 @@ gulp.task('js', function() {
       entries: glob,
       debug: argv.assets_debug
     })
-      .transform(browserifyHandlebars)
-      .transform(babelify, {presets:['es2015']})
+      // .transform(browserifyHandlebars) // We don't need for now.
+      .transform(babelify, {
+        presets:['es2015'],
+        plugins: [
+          'transform-custom-element-classes',
+        ],
+      })
       .bundle()
+      .on('error', function(err){
+        console.log(err.stack);
+      })
       .pipe(source(dest))
       .pipe(replace("{{STATIC_URL}}", argv.static_url))
       .pipe(gulp.dest(outputDir));
   }
+});
+
+const jsLibs = [
+  'node_modules/clipboard/dist/clipboard.js',
+]
+
+gulp.task('js-libs', function() {
+
+  var outputDir = DIST_DIR + 'js/';
+  if(argv.assets_debug) {
+    outputDir = DEV_STATIC_DIR + 'js/';
+  } else {
+
+  }
+
+  return gulp.src(jsLibs)
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest(outputDir));
+
 });
 
 gulp.task('css', function() {
@@ -138,9 +167,9 @@ gulp.task('css', function() {
   console.log('Generating CSS files at: ' + outputDir);
 
   var bundles = [
-    ['./src/core/static/scss/main.scss', 'main.css'],
-    ['./src/core/static/scss/survey.scss', 'survey.css'],
-    ['./src/public/static/scss/main.scss', 'public.css'],
+    ['./src/static/src/scss/main.scss', 'main.css'],
+    // ['./src/core/static/scss/survey.scss', 'survey.css'],
+    // ['./src/public/static/scss/main.scss', 'public.css'],
 
   ];
 
@@ -164,7 +193,7 @@ gulp.task('fonts', function() {
   }
 
   gulp.src([
-    './src/core/static/fonts/**/*.{otf,ttf,svg,woff,eot}'
+    './src/static/src/fonts/**/*.{otf,ttf,svg,woff,eot}'
   ]).pipe(gulp.dest(outputDir));
 });
 
@@ -175,28 +204,24 @@ gulp.task('images', function() {
   }
 
   gulp.src([
-    './src/core/static/img/**/*.png',
-    './src/core/static/img/**/*.svg',
-    './src/core/static/img/**/*.ico',
-    './src/public/static/img/**/*.png',
-    './src/public/static/img/**/*.svg',
-    './src/public/static/img/**/*.ico'
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
   ]).pipe(gulp.dest(outputDir));
 });
-
 
 gulp.task('watch', function() {
   livereload.listen(); // Start the livereload server
 
   gulp.watch([
-    './src/core/static/js/**/*.js',
-    './src/public/static/js/**/*.js'
+    './src/static/src/js/**/*.js',
   ], ['js']);
 
   gulp.watch([
-    './src/core/static/scss/**/*.scss',
-    './src/public/static/scss/**/*.scss'
+    './src/static/src/scss/**/*.scss',
   ], ['css']);
+
+  gulp.watch([
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
+  ], ['images']);
 
   // Watch for changes to the dev folder and trigger livereload if necessary
   gulp.watch([
@@ -206,12 +231,12 @@ gulp.task('watch', function() {
     livereload.changed(event.path);
   });
 
-  gulp.watch([
-    TEMPLATES_DIR + '/**/*.html'
-  ], function(event) {
-    livereload.changed(event.path);
-  });
+  // gulp.watch([
+  //   TEMPLATES_DIR + '/**/*.html'
+  // ], function(event) {
+  //   livereload.changed(event.path);
+  // });
 });
 
 gulp.task('default', ['build', 'watch']);
-gulp.task('build', ['adminstatic', 'toolbarstatic', 'js', 'css', 'fonts', 'images', 'jasmine']);
+gulp.task('build', ['adminstatic', 'toolbarstatic', 'js', 'js-libs', 'css', 'fonts', 'images', 'jasmine']);

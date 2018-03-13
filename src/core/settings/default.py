@@ -82,7 +82,7 @@ STATIC_URL = '/devstatic/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dev')
 
 THIRD_PARTY = os.path.join(os.path.dirname(BASE_DIR), "third_party")
-NODE_PREFIX = os.path.join(THIRD_PARTY, "local", "npm")
+NODE_PREFIX = os.path.join(BASE_DIR, "..")
 
 
 def check_session_csrf_enabled():
@@ -179,7 +179,7 @@ CSP_CONNECT_SRC = ("'self'",)
 
 if DEBUG:
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
-    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js", "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js", "http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
 
 
 # Djangae-specific settings
@@ -217,10 +217,8 @@ TEMPLATES = [{
     'OPTIONS': {
         'debug': DEBUG,
         'loaders': [
-            ('django.template.loaders.cached.Loader', [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ]),
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
         ],
         'context_processors': (
             "django.contrib.auth.context_processors.auth",
@@ -252,5 +250,12 @@ REST_FRAMEWORK = {
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
+
+DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['^third_party$', 'sitepackages$', '^node_modules$', '^tests$']
+
+DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
+    r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
+    r".+\.py.$",  # Anything with an extension of .pyX, e.g. pyc or pyo
+]
 
 from .constants import *

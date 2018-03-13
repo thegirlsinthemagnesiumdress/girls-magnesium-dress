@@ -1,0 +1,51 @@
+// Fileoverview:
+// Main website scss file.
+
+@import 'global/settings/variables';
+
+//Functions
+@import 'global/functions/base-unit';
+
+// Settings
+@import 'global/settings/all';
+
+//Generic
+@import 'global/generic/all';
+@import 'flexboxgrid';
+
+//Mixins
+@import 'mq';
+@import 'global/mixins/all';
+
+//Global elements
+@import 'global/elements/all';
+@import 'website/elements/forms';
+
+//Utilities
+@import 'global/utilities/all';
+
+//Fullpage css
+@import 'jquery.fullpage';
+@import 'slick.scss';
+@import 'slick-theme.scss';
+
+// Components
+@import 'website/components/section';
+@import 'website/components/section-slider';
+@import 'website/components/hero';
+@import 'website/components/header';
+@import 'website/components/registration';
+
+// Pages
+
+
+.responsive {
+  @include mq($from: tablet) {
+    background-color: red;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+}

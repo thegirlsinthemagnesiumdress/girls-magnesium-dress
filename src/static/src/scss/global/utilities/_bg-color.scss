@@ -1,0 +1,5 @@
+@each $name, $color in $tr-bg-colors {
+  .tr-u-bg-color--#{$name} {
+    background-color: $color;
+  }
+}
