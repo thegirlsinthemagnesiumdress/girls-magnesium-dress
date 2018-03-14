@@ -13,6 +13,7 @@ var source = require('vinyl-source-stream');
 // var browserifyHandlebars = require('browserify-handlebars');
 var uglify = require('gulp-uglify');
 var saveLicense = require('uglify-save-license');
+var streamify = require('gulp-streamify');
 
 var STATIC_DIR = './src/static';
 var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
@@ -124,20 +125,24 @@ gulp.task('js', function () {
       entries: glob,
       debug: argv.assets_debug
     })
-      // .transform(browserifyHandlebars) // We don't need for now.
-      .transform(babelify, {
-        presets:['es2015'],
-        plugins: [
-          'transform-custom-element-classes'
-        ]
-      })
-      .bundle()
-      .on('error', function (err) {
-        console.log(err.stack);
-      })
-      .pipe(source(dest))
-      .pipe(replace('{{STATIC_URL}}', argv.static_url))
-      .pipe(gulp.dest(outputDir));
+    // .transform(browserifyHandlebars) // We don't need for now.
+    .transform(babelify, {
+      presets:['es2015'],
+      plugins: [
+        'transform-custom-element-classes'
+      ]
+    })
+    .bundle()
+    .on('error', function (err) {
+      console.log(err.stack);
+    })
+    .pipe(source(dest))
+    .pipe(replace('{{STATIC_URL}}', argv.static_url))
+    .pipe(streamify(uglify(uglifyOptions)))
+    .on('error', function (err) {
+      console.log('[Error]', err.toString());
+    })
+    .pipe(gulp.dest(outputDir));
   }
 });
 
