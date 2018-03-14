@@ -2,10 +2,47 @@
 
 {% block body %}
 {% include 'inc/header.html' with type="static" %}
+
 <tr-registration>
+    <script type="text/template" id="form-confirmation">
+        <div class="tr-registration__confirmation">
+            <div class="row">
+                <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
+                    <h1 class="tr-beta tr-registration__title">
+                        Your unique survey has now been created
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-mobile-12 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
+                    <p class="tr-registration__confirmation-paragraph">
+                        Share the link below with your organisation to start collecting insights
+                    </p>
+                    <p class="tr-registration__confirmation-paragraph">
+                        <a href="[[survey_link]]" class="tr-registration__to-share-link" id="survey-link">[[survey_link]]</a>
+                    </p>
+                    <button class="tr-btn tr-btn--primary tr-registration__copy-clipboard" data-clipboard-text="[[survey_link]]">
+                        Copy to clipboard
+                    </button>
+                </div>
+                <div class="col-mobile-12 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
+                    <p class="tr-registration__confirmation-paragraph">
+                            Start with the lorem ipsum dolor sit amet lorem
+                    </p>
+                    <p class="tr-gamma">
+                        [[company_name]]
+                    </p>
+                    <a class="tr-btn tr-btn--primary" href="[[survey_sponsor_link]]" target="_blank">
+                        Get started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
     <section class="tr-registration">
         <section class="wrapper container-fluid">
             <form action="#" class="tr-registration__form" id="registration-form">
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
                         <h1 class="tr-beta tr-registration__title">Register your organisation to take the survey</h1>
@@ -20,13 +57,14 @@
                             You should only register your organisation if you are the sponsor of this survey. If you have been sent to Product Name by someone in your organisation, go back and follow the link they have shared with you.
                         </p>
                         <label for="">Organization name</label>
-                        <input id="company-name" name="companu-name" type="text" required>
+                        <input id="company-name" name="company_name" type="text" required>
                         <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6" type="submit" disabled>
                             Generate link
                         </button>
                     </div>
                 </div>
             </form>
+            {% comment %}
             <div class="tr-registration__confirmation tr-u-display-none">
                 <div class="row">
                     <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
@@ -41,9 +79,9 @@
                             Share the link below with your organisation to start collecting insights
                         </p>
                         <p class="tr-registration__confirmation-paragraph">
-                            <a href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1" id="survey-link">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
+                            <a href="[survey_link]" id="survey-link">[survey_link]</a>
                         </p>
-                        <button class="tr-btn tr-btn--primary" data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
+                        <button class="tr-btn tr-btn--primary tr-registration__copy-clipboard" data-clipboard-text="[survey_link]">
                             Copy to clipboard
                         </button>
                     </div>
@@ -52,14 +90,14 @@
                                 Start with the lorem ipsum dolor sit amet lorem
                         </p>
                         <p class="tr-gamma">
-                          Capybara
+                          [[company_name]]
                         </p>
-                        <a class="tr-btn tr-btn--primary" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
+                        <a class="tr-btn tr-btn--primary" href="[survey_sponsor_link]" target="_blank">
                             Get started
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </section>
     </section>
 </tr-registration>

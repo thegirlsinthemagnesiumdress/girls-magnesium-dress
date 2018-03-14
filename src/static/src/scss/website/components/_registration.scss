@@ -13,6 +13,9 @@
   &__confirmation {
     @include spacing(mt, 5);
   }
+  &__to-share-link {
+    pointer-events: none;
+  }
 
   &__confirmation-step {
     align-items: flex-start;

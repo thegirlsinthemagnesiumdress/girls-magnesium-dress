@@ -1,7 +1,13 @@
+import axios from 'axios'
+
+const API_ENDPOINT = '/api/survey/';
+
 const DOM_SELECTORS = {
   form: '#registration-form',
   confirmationScreen: '.tr-registration__confirmation',
   submitBtn: 'button',
+  confirmationPage: '#form-confirmation',
+  csrf:'input[name=csrfmiddlewaretoken]'
 };
 
 const CLASSES = {
@@ -9,16 +15,16 @@ const CLASSES = {
 }
 
 export default class Registration extends HTMLElement {
-  constructor () {
-    super();
-  }
 
   connectedCallback () {
     this.$form = this.querySelector(DOM_SELECTORS.form);
+    this.$template = this.querySelector(DOM_SELECTORS.confirmationPage);
     this.$submitBtn = this.$form.querySelector(DOM_SELECTORS.submitBtn);
     this.$confirmationScreen = this.querySelector(DOM_SELECTORS.confirmationScreen);
-    this.$form.addEventListener('submit', this.generateLink.bind(this));
+    this.$form.addEventListener('submit', this.generateConfirmation.bind(this));
     this.$form.addEventListener('input', this.formChange.bind(this));
+
+    this.csrf = this.$form.querySelector(DOM_SELECTORS.csrf).value;
   }
 
   formChange (e) {
@@ -26,9 +32,33 @@ export default class Registration extends HTMLElement {
     this.$submitBtn.disabled = !isValid;
   }
 
-  generateLink (e) {
+  getConfirmationTemplate (context) {
+    let template = this.$template.textContent;
+
+    template = template.replace(/\[\[survey_link\]\]/g, context.link);
+    template = template.replace(/\[\[survey_sponsor_link\]\]/g, context.link_sponsor);
+    template = template.replace(/\[\[company_name\]\]/g, context.company_name);
+
+    return template
+  }
+
+  generateConfirmation (e) {
     // Show step two.
-    this.showConfirmation();
+    const formData = new FormData(this.$form);
+
+    const postData = {
+      'company_name': formData.get('company_name')
+    };
+
+    axios.post(API_ENDPOINT, postData, {
+      headers: {
+        'X-CSRFToken': this.csrf
+      }
+    })
+      .then((res) => {
+        this.$form.parentNode.insertAdjacentHTML('beforeend', this.getConfirmationTemplate(res.data));
+        this.$form.classList.add(CLASSES.hidden);
+      });
     e.preventDefault();
   }
 
