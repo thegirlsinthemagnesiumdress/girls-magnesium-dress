@@ -63,6 +63,7 @@ export default class Registration extends HTMLElement {
         new ClipboardJS(DOM_SELECTORS.clipboard); // eslint-disable-line
         this.$form.classList.add(CLASSES.hidden);
       });
+
     e.preventDefault();
   }
 
