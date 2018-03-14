@@ -1,8 +1,17 @@
 from djangae.test import TestCase
-from core.models import Survey
+from core.models import Survey, User
 from core.tests.mocks import generate_surveys
 
 import re
+
+class UserTest(TestCase):
+    def test_is_qualtrics_false_by_default(self):
+        user = User.objects.create(
+            username='test1',
+            email='test@test.com',
+            password='pass',
+        )
+        self.assertFalse(user.is_qualtrics)
 
 class SurveyTest(TestCase):
     def setUp(self):
