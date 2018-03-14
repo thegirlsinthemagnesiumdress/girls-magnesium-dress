@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { escapeHtml } from '../utils'
 
 const API_ENDPOINT = '/api/survey/';
 
@@ -9,7 +8,11 @@ const DOM_SELECTORS = {
   submitBtn: 'button',
   confirmationPage: '#form-confirmation',
   csrf:'input[name=csrfmiddlewaretoken]',
-  clipboard: '[data-clipboard-text]'
+  clipboard: '[data-clipboard-text]',
+
+  surveyLink: '#survey-link',
+  company: '.tr-registration__company-name',
+  getStartedSponsor: '.tr-registration__start-sponsor'
 };
 
 const CLASSES = {
@@ -34,14 +37,25 @@ export default class Registration extends HTMLElement {
     this.$submitBtn.disabled = !isValid;
   }
 
-  getConfirmationTemplate (context) {
+  getConfirmationNode (context) {
     let template = this.$template.textContent;
+    const confirmationNode = document.createRange().createContextualFragment(template);
 
-    template = template.replace(/\[\[survey_link\]\]/g, escapeHtml(context.link));
-    template = template.replace(/\[\[survey_sponsor_link\]\]/g, escapeHtml(context.link_sponsor));
-    template = template.replace(/\[\[company_name\]\]/g, escapeHtml(context.company_name));
+    // Set survey link.
+    const surveyLinkNode = confirmationNode.querySelector(DOM_SELECTORS.surveyLink);
+    surveyLinkNode.textContent = context.link;
+    surveyLinkNode.setAttribute('href', context.link);
 
-    return template
+    // Set clipboard text attribute with link.
+    confirmationNode.querySelector(DOM_SELECTORS.clipboard).setAttribute('data-clipboard-text', context.link);
+
+    // Set company name.
+    confirmationNode.querySelector(DOM_SELECTORS.company).textContent = context.company_name;
+
+    // Set sponsor link href.
+    confirmationNode.querySelector(DOM_SELECTORS.getStartedSponsor).setAttribute('href', context.link_sponsor);
+
+    return confirmationNode;
   }
 
   generateConfirmation (e) {
@@ -58,7 +72,7 @@ export default class Registration extends HTMLElement {
       }
     })
       .then((res) => {
-        this.$form.parentNode.insertAdjacentHTML('beforeend', this.getConfirmationTemplate(res.data));
+        this.$form.parentNode.insertBefore(this.getConfirmationNode(res.data), this.$form.nextElementSibling);
         // Initialize clipboard.
         new ClipboardJS(DOM_SELECTORS.clipboard); // eslint-disable-line
         this.$form.classList.add(CLASSES.hidden);
