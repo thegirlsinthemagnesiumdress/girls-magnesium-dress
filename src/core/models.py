@@ -22,8 +22,8 @@ class Survey(models.Model):
         """
         Lint to qualtrics survey. Every company will have a different URL, created
         out of the uid.
-        The uid will be stored for every response and we will be able to used that
-        id to match the data against companies.
+        The uid will be stored for every survey response and we will be able to use
+        it to match the data against companies.
         """
         return '{}?sid={}'.format(SURVEY_URL, self.uid)
 

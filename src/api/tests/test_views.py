@@ -45,14 +45,14 @@ class SurveyTest(APITestCase):
     def test_list_surveys_should_be_empty(self):
         """
         List surveys should return an empty list.
-        Not exposing it for now.
+        Not exposing all companies it for now.
         """
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_list_filtered(self):
         """
-        Should return filtered list.
+        Should return the filtered list.
         """
         response = self.client.get(self.url, {
             "uid": self.uids[0]
@@ -63,7 +63,7 @@ class SurveyTest(APITestCase):
 
     def test_list_filtered_qualtrics_user(self):
         """
-        Should return filtered list for a qualtrics user.
+        Should return the filtered list for a qualtrics user.
         """
         self.client.force_authenticate(user=self.qualtrics_user)
         response = self.client.get(self.url, {
@@ -75,10 +75,25 @@ class SurveyTest(APITestCase):
 
     def test_qualtrics_not_authorized(self):
         """
-        Should not allow qualtrics user to create a new company
+        Should not allow qualtrics user to list companies only.
         """
         self.client.force_authenticate(user=self.qualtrics_user)
         response = self.client.post(self.url, {
             "uid": self.uids[0]
         })
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # from nose.tools import set_trace; set_trace()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        response = self.client.put(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        response = self.client.patch(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        response = self.client.delete(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
