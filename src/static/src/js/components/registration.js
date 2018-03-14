@@ -7,7 +7,8 @@ const DOM_SELECTORS = {
   confirmationScreen: '.tr-registration__confirmation',
   submitBtn: 'button',
   confirmationPage: '#form-confirmation',
-  csrf:'input[name=csrfmiddlewaretoken]'
+  csrf:'input[name=csrfmiddlewaretoken]',
+  clipboard: '[data-clipboard-text]'
 };
 
 const CLASSES = {
@@ -57,6 +58,8 @@ export default class Registration extends HTMLElement {
     })
       .then((res) => {
         this.$form.parentNode.insertAdjacentHTML('beforeend', this.getConfirmationTemplate(res.data));
+        // Initialize clipboard.
+        new ClipboardJS(DOM_SELECTORS.clipboard); // eslint-disable-line
         this.$form.classList.add(CLASSES.hidden);
       });
     e.preventDefault();
