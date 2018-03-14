@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var argv = require('yargs').argv;
-var babel = require('gulp-babel');
+// var babel = require('gulp-babel');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
@@ -10,12 +10,14 @@ var concat = require('gulp-concat');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
-var browserifyHandlebars = require('browserify-handlebars');
+// var browserifyHandlebars = require('browserify-handlebars');
+var uglify = require('gulp-uglify');
+var saveLicense = require('uglify-save-license');
 
 var STATIC_DIR = './src/static';
 var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
 var DIST_DIR = STATIC_DIR + '/dist/';
-var TEMPLATES_DIR =  './src/public/templates/';
+// var TEMPLATES_DIR = './src/public/templates/';
 
 var SASS_INCLUDES = [
   './src/static/src/scss',
@@ -24,7 +26,7 @@ var SASS_INCLUDES = [
   'node_modules/sass-mq/',
   'node_modules/flexboxgrid-sass/',
   'node_modules/fullpage.js/dist',
-  'node_modules/slick-carousel/slick',
+  'node_modules/slick-carousel/slick'
 ];
 
 var ADMIN_STATIC = [
@@ -43,39 +45,45 @@ var DEBUG_TOOLBAR = [
   './src/sitepackages/debug_toolbar/static/debug_toolbar/**/*.js'
 ];
 
-gulp.task('jasmine', function() {
+var uglifyOptions = {
+  output: {
+    comments: saveLicense
+  }
+}
+
+gulp.task('jasmine', function () {
   var outputDir = DIST_DIR;
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR;
   }
 
   gulp.src(JASMINE_STATIC)
-  .pipe(gulp.dest(outputDir + "/jasmine/"));
+  .pipe(gulp.dest(outputDir + '/jasmine/'));
 });
 
-gulp.task('adminstatic', function() {
+gulp.task('adminstatic', function () {
   var outputDir = DIST_DIR;
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR;
   }
 
   gulp.src(ADMIN_STATIC)
-  .pipe(gulp.dest(outputDir + "/admin/"));
+  .pipe(gulp.dest(outputDir + '/admin/'));
 });
 
-gulp.task('toolbarstatic', function() {
-  if(argv.assets_debug) {
+gulp.task('toolbarstatic', function () {
+  if (argv.assets_debug) {
     var outputDir = DEV_STATIC_DIR;
     gulp.src(DEBUG_TOOLBAR)
-    .pipe(gulp.dest(outputDir + "/debug_toolbar/"));
+    .pipe(gulp.dest(outputDir + '/debug_toolbar/'));
   }
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
   var babelOptions = { presets: ['es2015'] };
 
   var outputDir = DIST_DIR + 'js/';
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR + 'js/';
     babelOptions.compact = false;
   } else {
@@ -85,14 +93,13 @@ gulp.task('js', function() {
 
   console.log('Generating JS files at: ' + outputDir);
 
-
   var bundles = [
     // ['./src/core/static/js/index.js', 'common.js'],
     // ['./src/public/static/js/index.js', 'public.js']
     ['./src/static/src/js/index.js', 'main.js']
   ];
 
-  for(var i = 0; i < bundles.length; ++i) {
+  for (var i = 0; i < bundles.length; ++i) {
     var glob = bundles[i][0];
     var dest = bundles[i][1];
 
@@ -121,27 +128,26 @@ gulp.task('js', function() {
       .transform(babelify, {
         presets:['es2015'],
         plugins: [
-          'transform-custom-element-classes',
-        ],
+          'transform-custom-element-classes'
+        ]
       })
       .bundle()
-      .on('error', function(err){
+      .on('error', function (err) {
         console.log(err.stack);
       })
       .pipe(source(dest))
-      .pipe(replace("{{STATIC_URL}}", argv.static_url))
+      .pipe(replace('{{STATIC_URL}}', argv.static_url))
       .pipe(gulp.dest(outputDir));
   }
 });
 
 const jsLibs = [
-  'node_modules/clipboard/dist/clipboard.js',
+  'node_modules/clipboard/dist/clipboard.js'
 ]
 
-gulp.task('js-libs', function() {
-
+gulp.task('js-libs', function () {
   var outputDir = DIST_DIR + 'js/';
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR + 'js/';
   } else {
 
@@ -149,14 +155,14 @@ gulp.task('js-libs', function() {
 
   return gulp.src(jsLibs)
     .pipe(concat('lib.js'))
+    .pipe(uglify(uglifyOptions))
     .pipe(gulp.dest(outputDir));
-
 });
 
-gulp.task('css', function() {
+gulp.task('css', function () {
   var sassOptions = { includePaths: SASS_INCLUDES };
   var outputDir = DIST_DIR + 'css/';
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR + 'css/';
     sassOptions.sourceMapEmbed = true;
     sassOptions.outputStyle = 'expanded';
@@ -167,13 +173,13 @@ gulp.task('css', function() {
   console.log('Generating CSS files at: ' + outputDir);
 
   var bundles = [
-    ['./src/static/src/scss/main.scss', 'main.css'],
+    ['./src/static/src/scss/main.scss', 'main.css']
     // ['./src/core/static/scss/survey.scss', 'survey.css'],
     // ['./src/public/static/scss/main.scss', 'public.css'],
 
   ];
 
-  for(var i = 0; i < bundles.length; ++i) {
+  for (var i = 0; i < bundles.length; ++i) {
     var input = bundles[i][0];
     var dest = bundles[i][1];
 
@@ -181,14 +187,14 @@ gulp.task('css', function() {
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(rename(dest))
     .pipe(autoprefixer())
-    .pipe(replace("{{STATIC_URL}}", argv.static_url))
+    .pipe(replace('{{STATIC_URL}}', argv.static_url))
     .pipe(gulp.dest(outputDir));
   }
 });
 
-gulp.task('fonts', function() {
+gulp.task('fonts', function () {
   var outputDir = DIST_DIR + 'fonts/';
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR + 'fonts/';
   }
 
@@ -197,37 +203,37 @@ gulp.task('fonts', function() {
   ]).pipe(gulp.dest(outputDir));
 });
 
-gulp.task('images', function() {
+gulp.task('images', function () {
   var outputDir = DIST_DIR + 'img/';
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR + 'img/';
   }
 
   gulp.src([
-    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}'
   ]).pipe(gulp.dest(outputDir));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   livereload.listen(); // Start the livereload server
 
   gulp.watch([
-    './src/static/src/js/**/*.js',
+    './src/static/src/js/**/*.js'
   ], ['js']);
 
   gulp.watch([
-    './src/static/src/scss/**/*.scss',
+    './src/static/src/scss/**/*.scss'
   ], ['css']);
 
   gulp.watch([
-    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}',
+    './src/static/src/img/**/*.{jpg,jpeg,png,svg,ico}'
   ], ['images']);
 
   // Watch for changes to the dev folder and trigger livereload if necessary
   gulp.watch([
     DEV_STATIC_DIR + '/**/*.js',
     DEV_STATIC_DIR + '/**/*.css'
-  ], function(event) {
+  ], function (event) {
     livereload.changed(event.path);
   });
 
