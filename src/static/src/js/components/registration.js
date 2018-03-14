@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { escapeHtml } from '../utils'
 
 const API_ENDPOINT = '/api/survey/';
 
@@ -36,9 +37,9 @@ export default class Registration extends HTMLElement {
   getConfirmationTemplate (context) {
     let template = this.$template.textContent;
 
-    template = template.replace(/\[\[survey_link\]\]/g, context.link);
-    template = template.replace(/\[\[survey_sponsor_link\]\]/g, context.link_sponsor);
-    template = template.replace(/\[\[company_name\]\]/g, context.company_name);
+    template = template.replace(/\[\[survey_link\]\]/g, escapeHtml(context.link));
+    template = template.replace(/\[\[survey_sponsor_link\]\]/g, escapeHtml(context.link_sponsor));
+    template = template.replace(/\[\[company_name\]\]/g, escapeHtml(context.company_name));
 
     return template
   }
