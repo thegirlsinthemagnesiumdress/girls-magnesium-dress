@@ -1,4 +1,6 @@
 .tr-registration {
+  $block: &;
+
   &__title {
     @include spacing(mt, 7);
     @include spacing(mb, 5);
@@ -10,11 +12,23 @@
 
   &__form {}
 
+  &__form--error {
+    #{$block}__error {
+      display: block;
+    }
+  }
+
   &__confirmation {
     @include spacing(mt, 5);
   }
+
   &__to-share-link {
     pointer-events: none;
+  }
+
+  &__error {
+    color: red;
+    display: none;
   }
 
   &__confirmation-step {
@@ -44,4 +58,5 @@
       }
     }
   }
+
 }

@@ -9,7 +9,6 @@ const DOM_SELECTORS = {
   confirmationPage: '#form-confirmation',
   csrf:'input[name=csrfmiddlewaretoken]',
   clipboard: '[data-clipboard-text]',
-
   surveyLink: '#survey-link',
   company: '.tr-registration__company-name',
   getStartedSponsor: '.tr-registration__start-sponsor'
@@ -17,6 +16,7 @@ const DOM_SELECTORS = {
 
 const CLASSES = {
   hidden: 'tr-u-display-none',
+  formError: 'tr-registration__form--error'
 }
 
 export default class Registration extends HTMLElement {
@@ -24,6 +24,7 @@ export default class Registration extends HTMLElement {
   connectedCallback () {
     this.$form = this.querySelector(DOM_SELECTORS.form);
     this.$template = this.querySelector(DOM_SELECTORS.confirmationPage);
+    this.$formError = this.querySelector(DOM_SELECTORS.confirmationPage);
     this.$submitBtn = this.$form.querySelector(DOM_SELECTORS.submitBtn);
     this.$confirmationScreen = this.querySelector(DOM_SELECTORS.confirmationScreen);
     this.$form.addEventListener('submit', this.generateConfirmation.bind(this));
@@ -61,7 +62,7 @@ export default class Registration extends HTMLElement {
   generateConfirmation (e) {
     // Show step two.
     const formData = new FormData(this.$form);
-
+    this.$form.classList.remove(CLASSES.formError);
     const postData = {
       'company_name': formData.get('company_name')
     };
@@ -76,10 +77,16 @@ export default class Registration extends HTMLElement {
         // Initialize clipboard.
         new ClipboardJS(DOM_SELECTORS.clipboard); // eslint-disable-line
         this.$form.classList.add(CLASSES.hidden);
+        this.$form.reset();
+      }, () => {
+        // Show error
+        this.$form.classList.add(CLASSES.formError);
+        this.$form.reset();
       });
 
     e.preventDefault();
   }
+
 
   showConfirmation () {
     this.$form.classList.add(CLASSES.hidden);
