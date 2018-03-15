@@ -1,7 +1,6 @@
 /**
- * This component is in charge to handle scroll animations/parallax for both
- * the 200vh sections and 100vh sections with animated
- * content.
+ * This component handles scroll animations/parallax for both the 200vh
+ * sections and 100vh sections with animated content.
  *
  * 200vh sections:
  * - Pin/unpin eyebrow.
@@ -9,7 +8,7 @@
  * - Parallax-y background.
  *
  * 100vh sections:
- * -Parallax animation of the image asset.
+ * - Parallax animation of the image asset.
  */
 
 import pubsub from '../pubsub';
