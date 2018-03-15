@@ -1,6 +1,7 @@
 import fullpage from 'fullpage.js/dist/jquery.fullpage'; // eslint-disable-line no-unused-vars
 import jQuery from 'jquery';
 import 'slick-carousel';
+import {BreakpointService, BREAKPOINTS} from './breakpoint'
 
 import ParallaxSection from './components/parallax-section';
 import Header from './components/header';
@@ -23,6 +24,8 @@ window.$(document).ready(() => {
   window.$('#fullpage').fullpage({
     sectionSelector: '.fp-section',
     fixedElements: '#tr-header',
+    // Desktop breakpoint.
+    responsiveWidth: '1000',
     onLeave: (...args) => {
       pubsub.publish('section-leave', ...args);
     }
