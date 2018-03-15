@@ -12,7 +12,8 @@ const CLASSES = {
   eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
   eyebrowHidden: 'tr-parallax-section__eyebrow--hidden',
   eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out',
-  eyebrowTransition: 'tr-parallax-section__eyebrow--transition-opacity'
+  eyebrowTransition: 'tr-parallax-section__eyebrow--transition-opacity',
+  fpEnabled: 'fp-enabled'
 }
 
 export default class ParallaxSection extends HTMLElement {
@@ -24,6 +25,13 @@ export default class ParallaxSection extends HTMLElement {
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
       }));
+
+    this.subscriptions
+      .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
+        this.afterResponsiveCb(...args);
+      }));
+
+    this.isFullpageEnabled = document.documentElement.classList.contains(CLASSES.fpEnabled);
   }
 
   connectedCallback () {
@@ -35,26 +43,36 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   sectionLeaveCb (index, nextIndex, direction) {
+    if (this.isFullpageEnabled) {
+      if (nextIndex === this.index - 1) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
+        this.unpinEyebrow();
+      }
 
-    if (nextIndex === this.index - 1) {
-      this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
-      this.unpinEyebrow();
-    }
+      if (nextIndex === this.index) {
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore)
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter)
+      }
 
-    if (nextIndex === this.index) {
-      this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore)
-      this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter)
-    }
+      if (nextIndex === this.index + 1) {
+        this.pinEyebrow(direction === 'up');
+        this.$parallaxedImg.classList.add(CLASSES.parallaxAfter)
+      }
 
-    if (nextIndex === this.index + 1) {
-      this.pinEyebrow(direction === 'up');
-      this.$parallaxedImg.classList.add(CLASSES.parallaxAfter)
-    }
-
-    if (nextIndex === this.index + 2) {
-      this.unpinEyebrow(true);
+      if (nextIndex === this.index + 2) {
+        this.unpinEyebrow(true);
+      }
     }
   }
+
+  afterResponsiveCb(isResponsive) {
+    this.isFullpageEnabled = !isResponsive;
+
+    if (!this.isFullpageEnabled && this.$eyebrow) {
+      this.unpinEyebrow();
+    }
+  }
+
 
   /**
    *

@@ -13,7 +13,6 @@ import pubsub from './pubsub';
 window.$ = jQuery;
 
 // Custom elements.
-window.customElements.define('tr-parallax-section', ParallaxSection);
 window.customElements.define('tr-header', Header);
 window.customElements.define('tr-registration', Registration);
 window.customElements.define('tr-slider-section', SliderSection);
@@ -26,8 +25,14 @@ window.$(document).ready(() => {
     fixedElements: '#tr-header',
     // Desktop breakpoint.
     responsiveWidth: '1000',
+    responsiveHeight: '768',
     onLeave: (...args) => {
       pubsub.publish('section-leave', ...args);
+    },
+    afterResponsive: (...args) => {
+      pubsub.publish('after-responsive', ...args);
     }
   });
+
+  window.customElements.define('tr-parallax-section', ParallaxSection);
 });
