@@ -10,14 +10,15 @@
 @import 'global/settings/all';
 @import 'website/settings/variables';
 
+//Mixins
+@import 'mq';
+@import 'global/mixins/all';
+
 //Generic
 @import 'global/generic/all';
 @import 'website/generic/generic';
 @import 'flexboxgrid';
 
-//Mixins
-@import 'mq';
-@import 'global/mixins/all';
 
 //Global elements
 @import 'global/elements/all';
