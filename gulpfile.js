@@ -14,7 +14,7 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var saveLicense = require('uglify-save-license');
 var streamify = require('gulp-streamify');
-var beautify = require('gulp-beautify');
+var gulpif = require('gulp-if');
 
 var STATIC_DIR = './src/static';
 var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
@@ -51,17 +51,6 @@ var uglifyOptions = {
   output: {
     comments: saveLicense
   }
-}
-
-if (argv.assets_debug) {
-  uglifyOptions = {
-    compress: false,
-    output: {
-      beautify: true,
-      comments: saveLicense
-    },
-    mangle: false
-  };
 }
 
 gulp.task('jasmine', function () {
@@ -150,7 +139,7 @@ gulp.task('js', function () {
     })
     .pipe(source(dest))
     .pipe(replace('{{STATIC_URL}}', argv.static_url))
-    .pipe(streamify(uglify(uglifyOptions)))
+    .pipe(gulpif(!argv.assets_debug, streamify(uglify(uglifyOptions))))
     .on('error', function (err) {
       console.log('[Error]', err.toString());
     })
@@ -172,7 +161,7 @@ gulp.task('js-libs', function () {
 
   return gulp.src(jsLibs)
     .pipe(concat('lib.js'))
-    .pipe(uglify(uglifyOptions))
+    .pipe(gulpif(!argv.assets_debug, uglify(uglifyOptions)))
     .pipe(gulp.dest(outputDir));
 });
 
