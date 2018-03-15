@@ -14,6 +14,7 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var saveLicense = require('uglify-save-license');
 var streamify = require('gulp-streamify');
+var beautify = require('gulp-beautify');
 
 var STATIC_DIR = './src/static';
 var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
@@ -50,6 +51,17 @@ var uglifyOptions = {
   output: {
     comments: saveLicense
   }
+}
+
+if (argv.assets_debug) {
+  uglifyOptions = {
+    compress: false,
+    output: {
+      beautify: true,
+      comments: saveLicense
+    },
+    mangle: false
+  };
 }
 
 gulp.task('jasmine', function () {
