@@ -16,6 +16,7 @@
     position: absolute;
     top: base-unit(15);
     transition: transform .7s;
+    will-change: transform;
     z-index: 0;
 
     &--before {
@@ -112,5 +113,20 @@
       position: absolute;
       top: base-unit(10);
     }
+
+    #{$block}__parallaxed-img {
+      left: auto;
+      position: relative;
+      top: auto;
+
+      &--before {
+        transform: translateY(-70%);
+      }
+
+      &--after {
+        transform: translateY(0);
+      }
+    }
   }
+
 }

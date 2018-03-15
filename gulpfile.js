@@ -136,6 +136,7 @@ gulp.task('js', function() {
 
 const jsLibs = [
   'node_modules/clipboard/dist/clipboard.js',
+  'node_modules/@webcomponents/custom-elements/custom-elements.min.js'
 ]
 
 gulp.task('js-libs', function() {
