@@ -1,3 +1,5 @@
+import jQuery from 'jquery';
+
 const DOM_SELECTORS = {
   slideContainer: '.section-slider__container'
 };
@@ -18,7 +20,7 @@ export default class SliderSection extends HTMLElement {
   }
 
   connectedCallback () {
-    window.$('.section-slider__container').slick({
+    jQuery('.section-slider__container').slick({
       autoplay: true,
       arrows: false,
       dots: true,

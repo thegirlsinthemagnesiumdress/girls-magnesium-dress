@@ -1,4 +1,5 @@
 import pubsub from '../pubsub';
+import { isResponsive } from '../initFullpage';
 
 // FullPage initialization
 const DOM_SELECTORS = {
@@ -30,20 +31,21 @@ export default class ParallaxSection extends HTMLElement {
       .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
         this.afterResponsiveCb(...args);
       }));
-
-    this.isFullpageEnabled = document.documentElement.classList.contains(CLASSES.fpEnabled);
   }
 
   connectedCallback () {
-    // Fullpage.js updates the dom and inserts a wrapper to our sections.
-    const sectionWrp = this.parentNode.parentNode;
-    this.index = [...sectionWrp.parentNode.children].indexOf(sectionWrp) + 1;
-    this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
-    this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
+    pubsub.subscribe('fullpage-init', () => {
+      // Fullpage.js updates the dom and inserts a wrapper to our sections.
+      const sectionWrp = this.parentNode.parentNode;
+      this.index = [...sectionWrp.parentNode.children].indexOf(sectionWrp) + 1;
+      this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
+      this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
+      this.isResponsive = isResponsive();
+    });
   }
 
   sectionLeaveCb (index, nextIndex, direction) {
-    if (this.isFullpageEnabled) {
+    if (!this.isResponsive) {
       if (nextIndex === this.index - 1) {
         this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
         this.unpinEyebrow();
@@ -65,10 +67,10 @@ export default class ParallaxSection extends HTMLElement {
     }
   }
 
-  afterResponsiveCb(isResponsive) {
-    this.isFullpageEnabled = !isResponsive;
+  afterResponsiveCb (isResponsive) {
+    this.isResponsive = isResponsive;
 
-    if (!this.isFullpageEnabled && this.$eyebrow) {
+    if (this.isResponsive && this.$eyebrow) {
       this.unpinEyebrow();
     }
   }
