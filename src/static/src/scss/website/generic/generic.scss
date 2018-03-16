@@ -1,7 +1,8 @@
 .tr-section,
 .fp-section {
+
   &,
-  .fp-tableCell {
+  &:not(.tr-hero) .fp-tableCell {
     @include mq($until: tablet) {
       height: auto !important;
     }
