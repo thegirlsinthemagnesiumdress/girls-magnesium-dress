@@ -41,7 +41,7 @@
     margin-bottom: base-unit(8);
     opacity: 1;
 
-    span {
+    h4 {
       border-left: 1px solid $tr-bastille;
       display: inline-block;
       max-width: 220px;
@@ -58,7 +58,7 @@
 
     &--light {
 
-      span {
+      h4 {
         border-left: 1px solid $tr-white;
         color: $tr-white;
       }

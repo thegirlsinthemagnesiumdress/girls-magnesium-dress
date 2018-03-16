@@ -6,8 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   color: $tr-font-color-dark;
   font-family: $tr-font-family;
-  font-size: $tr-font-size-default;
-  line-height: $tr-font-line-height-default;
+  font-size: $tr-mobile-font-size-default;
+  line-height: $tr-font-mobile-line-height-default;
+
+  @include mq($from: tablet) {
+    font-size: $tr-font-size-default;
+    line-height: $tr-font-line-height-default;
+  }
 
   //For debug purposes only
   &.vertical-rythm-debug {
@@ -53,37 +58,67 @@ h3,
 
 
 .tr-display {
-  font-size: $tr-display-font-size;
-  font-weight: $tr-display-font-weight;
-  line-height: $tr-display-line-height;
+  font-size: $tr-display-mobile-font-size;
+  font-weight: $tr-display-mobile-font-weight;
+  line-height: $tr-display-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $tr-display-font-size;
+    font-weight: $tr-display-font-weight;
+    line-height: $tr-display-line-height;
+  }
 }
 
 h1,
 .tr-alpha {
-  font-size: $tr-h1-font-size;
-  font-weight: $tr-h1-font-weight;
-  line-height: $tr-h1-line-height;
+  font-size: $tr-h1-mobile-font-size;
+  font-weight: $tr-h1-mobile-font-weight;
+  line-height: $tr-h1-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $tr-h1-font-size;
+    font-weight: $tr-h1-font-weight;
+    line-height: $tr-h1-line-height;
+  }
 }
 
 h2,
 .tr-beta {
-  font-size: $tr-h2-font-size;
-  font-weight: $tr-h2-font-weight;
-  line-height: $tr-h2-line-height;
+  font-size: $tr-h2-mobile-font-size;
+  font-weight: $tr-h2-mobile-font-weight;
+  line-height: $tr-h2-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $tr-h2-font-size;
+    font-weight: $tr-h2-font-weight;
+    line-height: $tr-h2-line-height;
+  }
 }
 
 h3,
 .tr-gamma {
-  font-size: $tr-h3-font-size;
-  font-weight: $tr-h3-font-weight;
-  line-height: $tr-h3-line-height;
+  font-size: $tr-h3-mobile-font-size;
+  font-weight: $tr-h3-mobile-font-weight;
+  line-height: $tr-h3-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $tr-h3-font-size;
+    font-weight: $tr-h3-font-weight;
+    line-height: $tr-h3-line-height;
+  }
 }
 
 h4,
 .tr-theta {
-  font-size: $tr-h4-font-size;
-  font-weight: $tr-h4-font-weight;
-  line-height: $tr-h4-line-height;
+  font-size: $tr-h4-mobile-font-size;
+  font-weight: $tr-h4-mobile-font-weight;
+  line-height: $tr-h4-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $tr-h4-font-size;
+    font-weight: $tr-h4-font-weight;
+    line-height: $tr-h4-line-height;
+  }
 }
 
 p,
@@ -94,9 +129,15 @@ p,
 
 
 .tr-p-smaller {
-  font-size: $tr-p-smaller-font-size;
-  font-weight: $tr-p-smaller-font-weight;
-  line-height: $tr-p-smaller-line-height;
+  font-size: $tr-p-smaller-mobile-font-size;
+  font-weight: $tr-p-smaller-mobile-font-weight;
+  line-height: $tr-p-smaller-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $tr-p-smaller-font-size;
+    font-weight: $tr-p-smaller-font-weight;
+    line-height: $tr-p-smaller-line-height;
+  }
 }
 
 
