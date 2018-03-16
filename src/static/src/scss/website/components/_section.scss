@@ -12,11 +12,15 @@
   }
 
   &__parallaxed-img {
-    left: -60%;
     position: absolute;
     top: base-unit(15);
     transition: transform .7s;
     z-index: 0;
+
+
+    @include mq($from: tablet) {
+      left: -60%;
+    }
 
     &--before {
       transform: translateY(base-unit(-20));
