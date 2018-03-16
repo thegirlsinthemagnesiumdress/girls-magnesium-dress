@@ -1,8 +1,21 @@
 .tr-section,
 .fp-section {
+  &,
+  .fp-tableCell {
+    @include mq($until: tablet) {
+      height: auto !important;
+    }
+  }
+
+
   .wrapper {
-    margin-top: $tr-header-height;
-    padding-bottom: base-unit(10);
-    padding-top: base-unit(10);
+    padding-bottom: base-unit(8);
+    padding-top: base-unit(4);
+
+    @include mq($from: tablet) {
+      margin-top: $tr-header-height;
+      padding-bottom: base-unit(10);
+      padding-top: base-unit(10);
+    }
   }
 }

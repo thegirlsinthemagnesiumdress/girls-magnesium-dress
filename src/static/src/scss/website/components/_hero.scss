@@ -4,22 +4,63 @@
   background-size: cover;
   color: $tr-white;
 
+  .wrapper {
+    @include mq($until: tablet) {
+      padding-bottom: base-unit(2);
+    }
+  }
+
+
   &__dmb {
+    display: none;
     margin-bottom: base-unit(7);
+
+    @include mq($from: tablet) {
+      display: block;
+    }
   }
 
   &__title {
-    margin-bottom: base-unit(13);
+    margin-bottom: base-unit(4);
+    margin-top: base-unit(6);
+
+    @include mq($from: tablet) {
+      margin-top: 0;
+      margin-bottom: base-unit(13);
+    }
+  }
+
+  &__get-started {
+    @include mq($until: tablet) {
+      display: block;
+      text-align: center;
+    }
   }
 
   &__bcg-logo {
-    bottom: base-unit(8);
-    position: absolute;
     text-align: right;
+    margin-top: base-unit(3);
+
+    @include mq($from: tablet) {
+      position: absolute;
+      bottom: base-unit(2);
+      bottom: base-unit(8);
+    }
+
+    p {
+      @include mq($until: tablet) {
+        font-size: 8px;
+        margin-bottom: 0;
+      }
+    }
 
     img {
-      width: 110px;
+      height: base-unit(3);
       margin-right: -5px;
+
+      @include mq($from: tablet) {
+        width: 110px;
+      }
     }
   }
 }
