@@ -2,7 +2,7 @@
 .fp-section {
 
   &,
-  &:not(.tr-hero) .fp-tableCell {
+  &:not(.tr-hero):not(.section-slider) .fp-tableCell {
     @include mq($until: tablet) {
       height: auto !important;
     }

@@ -13,13 +13,17 @@
 
   &__parallaxed-img {
     position: absolute;
-    top: base-unit(15);
     transition: transform .7s;
     z-index: 0;
+    left: 23%;
+    width: 75%;
+    margin-top: base-unit(4);
 
 
     @include mq($from: tablet) {
+      top: base-unit(15);
       left: -60%;
+      margin-top: 0;
     }
 
     &--before {
@@ -35,29 +39,51 @@
     position: relative;
 
     p {
+      margin-bottom: base-unit(4);
       position: relative;
       z-index: 1;
+    }
+
+    p + p {
+      margin-bottom: 0;
     }
   }
 
 
+  &__bottom-intro-paragraph-wrp {
+    margin-top: base-unit(5);
+
+    @include mq($from: tablet) {
+      margin: 0 0 base-unit(6);
+    }
+  }
+
   &__eyebrow {
-    margin-bottom: base-unit(8);
+    margin-bottom: base-unit(4);
     opacity: 1;
+    max-width: 120px;
+
+
+    @include mq($from: tablet) {
+      max-width: tablet;
+    }
 
     h4 {
       border-left: 1px solid $tr-bastille;
       display: inline-block;
       max-width: 220px;
-      padding: 0 base-unit(2);
+      margin: 0;
+      padding: 0 base-unit(2) base-unit(2);
     }
 
     &--transition-opacity {
       transition: opacity .2s .1s;
     }
 
-    &--align-right {
-      text-align: right;
+    &--desk-align-right {
+      @include mq(tablet) {
+        text-align: right;
+      }
     }
 
     &--light {
@@ -88,7 +114,7 @@
 
 
   &--bg-image {
-    .tr-parallax-section__parallaxed-img {
+    #{$block}__parallaxed-img {
       background-image: url('../img/hero.jpg');
       background-repeat: no-repeat;
       background-size: cover;
@@ -102,8 +128,8 @@
 
   &--data-transform {
 
-    .tr-parallax-section__parallaxed-img {
-      left: 8%;
+    #{$block}__parallaxed-img {
+      left: -8.33%;
 
       &--after {
         transform: translateY(base-unit(10));

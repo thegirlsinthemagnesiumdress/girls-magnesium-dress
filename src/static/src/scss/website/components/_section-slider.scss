@@ -1,6 +1,14 @@
 .section-slider {
   transition: background-color .3s;
 
+  // &__title {
+  //   text-align: center;
+
+  //   @include mq($from: tablet) {
+  //     text-align:
+  //   }
+  // }
+
   .slick-dots {
     li,
     button {
