@@ -58,7 +58,7 @@
       height: base-unit(3);
       margin-right: -5px;
 
-      @include mq($from: tablet) {
+      @include mq($until: tablet) {
         width: 110px;
       }
     }

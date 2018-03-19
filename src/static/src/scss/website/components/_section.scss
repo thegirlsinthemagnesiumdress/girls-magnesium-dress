@@ -112,17 +112,52 @@
     max-width: 100%;
   }
 
+  &__infographic-wrp {
+    margin-top: base-unit(7);
+
+    h3 {
+      @include mq($until: tablet) {
+        line-height: $tr-h2-mobile-line-height;
+        font-size: $tr-h2-mobile-font-size;
+      }
+
+    }
+
+    @include mq($from: tablet) {
+      margin-top: 0;
+    }
+  }
+
+  &__infographic {
+    max-width: 100%;
+  }
 
   &--bg-image {
     #{$block}__parallaxed-img {
       background-image: url('../img/hero.jpg');
       background-repeat: no-repeat;
       background-size: cover;
-      height: 200%;
       left: 0;
       top: 0;
       width: 100%;
       z-index: -1;
+      height: 500px;
+
+      @include mq($from: tablet) {
+        height: 200%;
+      }
+    }
+
+    & + #{$block}__bottom {
+      background: black;
+    }
+
+
+    // If the parallaxy section is a background one
+    // the gap between the title and the first paragraph
+    // it' shorter.
+    & + #{$block}__bottom #{$block}__bottom-intro-paragraph-wrp {
+      margin-top: - base-unit(6);
     }
   }
 
@@ -139,8 +174,10 @@
 
   &--get-started {
     #{$block}__eyebrow {
-      position: absolute;
-      top: base-unit(10);
+      @include mq($from: tablet) {
+        position: absolute;
+        top: base-unit(10);
+      }
     }
   }
 }
