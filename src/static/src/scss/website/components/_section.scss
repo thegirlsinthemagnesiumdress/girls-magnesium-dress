@@ -109,10 +109,6 @@
     }
   }
 
-  &__phone-img {
-    max-width: 100%;
-  }
-
   &__infographic-wrp {
     margin-top: base-unit(7);
 
@@ -150,7 +146,7 @@
     }
 
     & + #{$block}__bottom {
-      background-color: black;
+      background-color: $tr-black;
 
       @include mq($from: tablet) {
         background-color: transparent;
@@ -178,6 +174,18 @@
   }
 
   &--get-started {
+    &:before {
+      content: '';
+      height: base-unit(18);
+      position: absolute;
+      width: 100%;
+      background: $tr-black;
+
+      @include mq($from: tablet) {
+        display: none;
+      }
+    }
+
     #{$block}__eyebrow {
       @include mq($from: tablet) {
         position: absolute;
@@ -185,13 +193,25 @@
       }
     }
 
+    h1 {
+      @include mq($until: tablet) {
+        text-align: center;
+      }
+    }
+
     #{$block}__parallaxed-img {
       left: auto;
+      width: 100%;
       position: relative;
       top: auto;
+      margin: - base-unit(4) 0 base-unit(4);
 
       &--before {
-        transform: translateY(-70%);
+        transform: translateY(0);
+
+        @include mq($from: tablet) {
+          transform: translateY(-70%);
+        }
       }
 
       &--after {
