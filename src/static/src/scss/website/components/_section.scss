@@ -14,6 +14,7 @@
   &__parallaxed-img {
     position: absolute;
     transition: transform .7s;
+    will-change: transform;
     z-index: 0;
     left: 23%;
     width: 75%;
@@ -65,7 +66,7 @@
 
 
     @include mq($from: tablet) {
-      max-width: tablet;
+      max-width: none;
     }
 
     h4 {
@@ -149,7 +150,11 @@
     }
 
     & + #{$block}__bottom {
-      background: black;
+      background-color: black;
+
+      @include mq($from: tablet) {
+        background-color: transparent;
+      }
     }
 
 
@@ -179,5 +184,20 @@
         top: base-unit(10);
       }
     }
+
+    #{$block}__parallaxed-img {
+      left: auto;
+      position: relative;
+      top: auto;
+
+      &--before {
+        transform: translateY(-70%);
+      }
+
+      &--after {
+        transform: translateY(0);
+      }
+    }
   }
+
 }
