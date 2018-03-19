@@ -23,7 +23,7 @@
 
     @include mq($from: tablet) {
       top: base-unit(15);
-      left: -60%;
+      left: -32%;
       margin-top: 0;
     }
 
@@ -70,10 +70,13 @@
     }
 
     h4 {
+      @extend .col-tablet-offset-1;
+
       border-left: 1px solid $tr-bastille;
       display: inline-block;
       max-width: 220px;
-      margin: 0;
+      margin-bottom: 0;
+      margin-top: 0;
       padding: 0 base-unit(2) base-unit(2);
     }
 
