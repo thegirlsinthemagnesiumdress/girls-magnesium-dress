@@ -159,7 +159,7 @@
 
     // If the parallaxy section is a background one
     // the gap between the title and the first paragraph
-    // it' shorter.
+    // is shorter.
     & + #{$block}__bottom #{$block}__bottom-intro-paragraph-wrp {
       margin-top: - base-unit(6);
     }
