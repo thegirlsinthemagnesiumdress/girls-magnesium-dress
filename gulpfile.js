@@ -157,7 +157,7 @@ gulp.task('js-libs', function() {
 gulp.task('css', function() {
   var sassOptions = { includePaths: SASS_INCLUDES };
   var outputDir = DIST_DIR + 'css/';
-  if(argv.assets_debug) {
+  if (argv.assets_debug) {
     outputDir = DEV_STATIC_DIR + 'css/';
     sassOptions.sourceMapEmbed = true;
     sassOptions.outputStyle = 'expanded';

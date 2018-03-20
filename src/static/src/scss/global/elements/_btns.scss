@@ -16,13 +16,14 @@ $btn-tr-primary-bg-color-disabled: $tr-gray;
   letter-spacing: 0.75px;
   line-height: 1;
   margin: 8px 0;
-  padding: base-unit(3) 23px;
+  padding: base-unit(2) 23px;
   text-transform: uppercase;
   text-decoration: none;
   transition: color .15s linear, background-color .15s linear;
   vertical-align: middle;
 
-  @include mq($from: desktop) {
+  @include mq($from: tablet) {
+    padding: base-unit(3) 23px;
     font-size: 16px;
     letter-spacing: 0.5px;
   }

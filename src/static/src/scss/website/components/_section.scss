@@ -12,12 +12,20 @@
   }
 
   &__parallaxed-img {
-    left: -60%;
     position: absolute;
-    top: base-unit(15);
     transition: transform .7s;
     will-change: transform;
     z-index: 0;
+    left: 23%;
+    width: 75%;
+    margin-top: base-unit(4);
+
+
+    @include mq($from: tablet) {
+      top: base-unit(15);
+      left: -32%;
+      margin-top: 0;
+    }
 
     &--before {
       transform: translateY(base-unit(-20));
@@ -32,34 +40,59 @@
     position: relative;
 
     p {
+      margin-bottom: base-unit(4);
       position: relative;
       z-index: 1;
+    }
+
+    p + p {
+      margin-bottom: 0;
     }
   }
 
 
-  &__eyebrow {
-    margin-bottom: base-unit(8);
-    opacity: 1;
+  &__bottom-intro-paragraph-wrp {
+    margin-top: base-unit(5);
 
-    span {
+    @include mq($from: tablet) {
+      margin: 0 0 base-unit(6);
+    }
+  }
+
+  &__eyebrow {
+    margin-bottom: base-unit(4);
+    opacity: 1;
+    max-width: 120px;
+
+
+    @include mq($from: tablet) {
+      max-width: none;
+    }
+
+    h4 {
+      @extend .col-tablet-offset-1;
+
       border-left: 1px solid $tr-bastille;
       display: inline-block;
       max-width: 220px;
-      padding: 0 base-unit(2);
+      margin-bottom: 0;
+      margin-top: 0;
+      padding: 0 base-unit(2) base-unit(2);
     }
 
     &--transition-opacity {
       transition: opacity .2s .1s;
     }
 
-    &--align-right {
-      text-align: right;
+    &--desk-align-right {
+      @include mq(tablet) {
+        text-align: right;
+      }
     }
 
     &--light {
 
-      span {
+      h4 {
         border-left: 1px solid $tr-white;
         color: $tr-white;
       }
@@ -79,28 +112,63 @@
     }
   }
 
-  &__phone-img {
+  &__infographic-wrp {
+    margin-top: base-unit(7);
+
+    h3 {
+      @include mq($until: tablet) {
+        line-height: $tr-h2-mobile-line-height;
+        font-size: $tr-h2-mobile-font-size;
+      }
+
+    }
+
+    @include mq($from: tablet) {
+      margin-top: 0;
+    }
+  }
+
+  &__infographic {
     max-width: 100%;
   }
 
-
   &--bg-image {
-    .tr-parallax-section__parallaxed-img {
+    #{$block}__parallaxed-img {
       background-image: url('../img/hero.jpg');
       background-repeat: no-repeat;
       background-size: cover;
-      height: 200%;
       left: 0;
       top: 0;
       width: 100%;
       z-index: -1;
+      height: 500px;
+
+      @include mq($from: tablet) {
+        height: 200%;
+      }
+    }
+
+    & + #{$block}__bottom {
+      background-color: $tr-black;
+
+      @include mq($from: tablet) {
+        background-color: transparent;
+      }
+    }
+
+
+    // If the parallaxy section is a background one
+    // the gap between the title and the first paragraph
+    // is shorter.
+    & + #{$block}__bottom #{$block}__bottom-intro-paragraph-wrp {
+      margin-top: - base-unit(6);
     }
   }
 
   &--data-transform {
 
-    .tr-parallax-section__parallaxed-img {
-      left: 8%;
+    #{$block}__parallaxed-img {
+      left: -8.33%;
 
       &--after {
         transform: translateY(base-unit(10));
@@ -109,18 +177,44 @@
   }
 
   &--get-started {
-    #{$block}__eyebrow {
+    &:before {
+      content: '';
+      height: base-unit(18);
       position: absolute;
-      top: base-unit(10);
+      width: 100%;
+      background: $tr-black;
+
+      @include mq($from: tablet) {
+        display: none;
+      }
+    }
+
+    #{$block}__eyebrow {
+      @include mq($from: tablet) {
+        position: absolute;
+        top: base-unit(10);
+      }
+    }
+
+    h1 {
+      @include mq($until: tablet) {
+        text-align: center;
+      }
     }
 
     #{$block}__parallaxed-img {
       left: auto;
+      width: 100%;
       position: relative;
       top: auto;
+      margin: - base-unit(4) 0 base-unit(4);
 
       &--before {
-        transform: translateY(-70%);
+        transform: translateY(0);
+
+        @include mq($from: tablet) {
+          transform: translateY(-70%);
+        }
       }
 
       &--after {

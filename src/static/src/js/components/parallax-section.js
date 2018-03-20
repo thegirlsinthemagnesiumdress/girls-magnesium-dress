@@ -12,6 +12,7 @@
  */
 
 import pubsub from '../pubsub';
+import { isResponsive } from '../initFullpage';
 
 // FullPage initialization
 const DOM_SELECTORS = {
@@ -25,7 +26,8 @@ const CLASSES = {
   eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
   eyebrowHidden: 'tr-parallax-section__eyebrow--hidden',
   eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out',
-  eyebrowTransition: 'tr-parallax-section__eyebrow--transition-opacity'
+  eyebrowTransition: 'tr-parallax-section__eyebrow--transition-opacity',
+  fpEnabled: 'fp-enabled'
 }
 
 export default class ParallaxSection extends HTMLElement {
@@ -37,44 +39,62 @@ export default class ParallaxSection extends HTMLElement {
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
       }));
+
+    this.subscriptions
+      .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
+        this.afterResponsiveCb(...args);
+      }));
   }
 
   connectedCallback () {
-    // Fullpage.js updates the dom and inserts a wrapper to our sections.
-    const sectionWrp = this.parentNode.parentNode;
-    this.index = [...sectionWrp.parentNode.children].indexOf(sectionWrp) + 1;
-    this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
-    this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
+    pubsub.subscribe('fullpage-init', () => {
+      // Fullpage.js updates the dom and inserts a wrapper to our sections.
+      const sectionWrp = this.parentNode.parentNode;
+      this.index = [...sectionWrp.parentNode.children].indexOf(sectionWrp) + 1;
+      this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
+      this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
+      this.isResponsive = isResponsive();
+    });
   }
 
   sectionLeaveCb (index, nextIndex, direction) {
-    if (nextIndex === this.index - 1) {
-      this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
+    if (!this.isResponsive) {
+      if (nextIndex === this.index - 1) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
 
-      if (this.$eyebrow) {
-        this.unpinEyebrow();
+        if (this.$eyebrow) {
+          this.unpinEyebrow();
+        }
       }
-    }
 
-    if (nextIndex === this.index) {
-      this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore)
-      this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter)
-    }
-
-    if (nextIndex === this.index + 1) {
-      this.$parallaxedImg.classList.add(CLASSES.parallaxAfter)
-
-      if (this.$eyebrow) {
-        this.pinEyebrow(direction === 'up');
+      if (nextIndex === this.index) {
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore)
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter)
       }
-    }
 
-    if (nextIndex === this.index + 2) {
-      if (this.$eyebrow) {
-        this.unpinEyebrow(true);
+      if (nextIndex === this.index + 1) {
+        if (this.$eyebrow) {
+          this.pinEyebrow(direction === 'up');
+        }
+        this.$parallaxedImg.classList.add(CLASSES.parallaxAfter)
+      }
+
+      if (nextIndex === this.index + 2) {
+        if (this.$eyebrow) {
+          this.unpinEyebrow(true);
+        }
       }
     }
   }
+
+  afterResponsiveCb (isResponsive) {
+    this.isResponsive = isResponsive;
+
+    if (this.isResponsive && this.$eyebrow) {
+      this.unpinEyebrow();
+    }
+  }
+
 
   /**
    *

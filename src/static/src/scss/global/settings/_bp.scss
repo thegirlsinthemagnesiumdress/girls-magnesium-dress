@@ -10,6 +10,10 @@ $tr-breakpoints: (
   wide:    1300px
 );
 
+
+$tr-height-breakpoints: (
+  short-desktop: 800px,
+);
 // Set mq breakpoints to be the tr ones.
 $mq-breakpoints: $tr-breakpoints;
 
@@ -20,12 +24,12 @@ $mq-breakpoints: $tr-breakpoints;
 //
 // Let's set a random value for now.
 // This value is actually NOT used.
-$container-width: 100%;
+$container-width: 1300px;
 
 
 // Flexboxgrid - Grid Bp - Defining the bp in EM for consistency with mq.
 $breakpoints:
-mobile map-get($tr-breakpoints, mobile) / $tr-font-size-default * 1em $container-width,
-tablet map-get($tr-breakpoints, tablet) / $tr-font-size-default * 1em $container-width,
-desktop map-get($tr-breakpoints, desktop) / $tr-font-size-default * 1em $container-width,
-wide map-get($tr-breakpoints, wide) / $tr-font-size-default * 1em $container-width;
+  mobile map-get($tr-breakpoints, mobile) $container-width,
+  tablet map-get($tr-breakpoints, tablet) $container-width,
+  desktop map-get($tr-breakpoints, desktop) $container-width,
+  wide map-get($tr-breakpoints, wide) $container-width;
