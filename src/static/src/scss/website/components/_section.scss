@@ -34,6 +34,10 @@
     &--after {
       transform: translateY(base-unit(35));
     }
+
+    &--no-transition {
+      transition: none;
+    }
   }
 
   &__bottom {
