@@ -1,9 +1,22 @@
+/**
+ * This component handles scroll animations/parallax for both the 200vh
+ * sections and 100vh sections with animated content.
+ *
+ * 200vh sections:
+ * - Pin/unpin eyebrow.
+ * - Parallax animation of the image assets.
+ * - Parallax-y background.
+ *
+ * 100vh sections:
+ * - Parallax animation of the image asset.
+ */
+
 import pubsub from '../pubsub';
 
 // FullPage initialization
 const DOM_SELECTORS = {
   parallaxedImg: '.tr-parallax-section__parallaxed-img',
-  eyebrow: '.tr-parallax-section__eyebrow',
+  eyebrow: '.tr-parallax-section__eyebrow--pin',
 };
 
 const CLASSES = {
@@ -35,10 +48,12 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   sectionLeaveCb (index, nextIndex, direction) {
-
     if (nextIndex === this.index - 1) {
       this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
-      this.unpinEyebrow();
+
+      if (this.$eyebrow) {
+        this.unpinEyebrow();
+      }
     }
 
     if (nextIndex === this.index) {
@@ -47,12 +62,17 @@ export default class ParallaxSection extends HTMLElement {
     }
 
     if (nextIndex === this.index + 1) {
-      this.pinEyebrow(direction === 'up');
       this.$parallaxedImg.classList.add(CLASSES.parallaxAfter)
+
+      if (this.$eyebrow) {
+        this.pinEyebrow(direction === 'up');
+      }
     }
 
     if (nextIndex === this.index + 2) {
-      this.unpinEyebrow(true);
+      if (this.$eyebrow) {
+        this.unpinEyebrow(true);
+      }
     }
   }
 
