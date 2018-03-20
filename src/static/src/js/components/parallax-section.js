@@ -76,6 +76,7 @@ export default class ParallaxSection extends HTMLElement {
       // Remove before/after classes (and inline styles) and save if they were set to be
       // able to restore them after the calculation is done.
       this.$parallaxedImg.style.transform = '';
+
       if (this.$parallaxedImg.classList.contains(CLASSES.parallaxBefore)) {
         containedBefore = true;
         this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
@@ -92,6 +93,7 @@ export default class ParallaxSection extends HTMLElement {
       if (containedBefore) {
         this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
       }
+
       if (containedAfter) {
         this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
       }

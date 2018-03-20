@@ -23,7 +23,7 @@
 
     @include mq($from: tablet) {
       top: base-unit(15);
-      left: -32%;
+      left: -37%;
       margin-top: 0;
     }
 
@@ -172,7 +172,7 @@
   &--data-transform {
 
     #{$block}__parallaxed-img {
-      left: -8.33%;
+      left: 8.33%;
 
       &--after {
         transform: translateY(base-unit(10));
