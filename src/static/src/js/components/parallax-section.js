@@ -60,9 +60,12 @@ export default class ParallaxSection extends HTMLElement {
       const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
       this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
 
+      // Seems like even if fullpage is initialized
+      // the browser hasn't finished layouting the page at this point.
+      // I've had to add a long timeout to get the right sizes/positions.
       window.setTimeout(() => {
         this.setImageAfterOffset();
-      }, 200);
+      }, 500);
     });
   }
 
