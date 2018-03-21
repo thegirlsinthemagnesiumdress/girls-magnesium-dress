@@ -3,31 +3,31 @@
 
 @import 'global/settings/variables';
 
-//Functions
+// Functions
 @import 'global/functions/base-unit';
 
 // Settings
 @import 'global/settings/all';
 @import 'website/settings/variables';
 
-//Mixins
+// Mixins
 @import 'mq';
 @import 'global/mixins/all';
 
-//Generic
+// Generic
 @import 'global/generic/all';
 @import 'website/generic/generic';
 @import 'flexboxgrid';
 
 
-//Global elements
+// Global elements
 @import 'global/elements/all';
 @import 'website/elements/forms';
 
-//Utilities
+// Utilities
 @import 'global/utilities/all';
 
-//Fullpage css
+// Fullpage css
 @import 'jquery.fullpage';
 @import 'slick.scss';
 @import 'slick-theme.scss';

@@ -22,8 +22,8 @@ jQuery(document).ready(() => {
     }
   });
 
-  // I couldn't find a better way to check if
-  // snap scroll is initialized or not.
+  // Checks if snap scroll is initialized or not. There may be a better approach
+  // to detect this.
   isRes = document.body.style.overflow !== 'hidden';
 
 });

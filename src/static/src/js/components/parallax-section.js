@@ -18,7 +18,7 @@ import { isResponsive } from '../initFullpage';
 // FullPage initialization
 const DOM_SELECTORS = {
   parallaxedImg: '.tr-parallax-section__parallaxed-img',
-  eyebrow: '.tr-parallax-section__eyebrow--pin',
+  eyebrow: '.tr-parallax-section__eyebrow--pin'
 };
 
 const CLASSES = {
@@ -40,6 +40,14 @@ export default class ParallaxSection extends HTMLElement {
     this.debouncedResize = debounce(this.onResize.bind(this), 200);
 
     this.subscriptions = [];
+  }
+
+  connectedCallback () {
+    this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
+    this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
+    const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
+    this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
+
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
@@ -49,33 +57,64 @@ export default class ParallaxSection extends HTMLElement {
       .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
         this.afterResponsiveCb(...args);
       }));
-  }
 
-  connectedCallback () {
-    this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
-    this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
-    const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
-    this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
+      this.subscriptions
+        .push(pubsub.subscribe('fullpage-init', () => {
+          // Fullpage.js updates the dom and inserts a wrapper to our sections.
+          this.$sectionWrp = this.parentNode.parentNode;
+          this.index = [...this.$sectionWrp.parentNode.children].indexOf(this.$sectionWrp) + 1;
+          this.isResponsive = isResponsive();
 
-    pubsub.subscribe('fullpage-init', () => {
-      // Fullpage.js updates the dom and inserts a wrapper to our sections.
-      this.$sectionWrp = this.parentNode.parentNode;
-      this.index = [...this.$sectionWrp.parentNode.children].indexOf(this.$sectionWrp) + 1;
-      this.isResponsive = isResponsive();
+          if (!this.$parallaxedImg.complete || this.$parallaxedImg.naturalWidth === 0) {
+            this.$parallaxedImg.onload = this.setImageAfterOffset.bind(this);
+          } else {
+            this.setImageAfterOffset();
+          }
 
-      if (!this.$parallaxedImg.complete || this.$parallaxedImg.naturalWidth === 0) {
-        this.$parallaxedImg.onload = this.setImageAfterOffset.bind(this);
-      } else {
-        this.setImageAfterOffset();
-      }
-
-      this.setEyebrowRect();
-      window.addEventListener('resize', this.debouncedResize);
-    });
+          this.setEyebrowRect();
+          window.addEventListener('resize', this.debouncedResize);
+        }));
   }
 
   disconnectedCallback () {
     window.removeEventListener('resize', this.debouncedResize);
+    this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
+  }
+
+  setImageAfterOffset () {
+    if (this.$targetImgPositionEl) {
+      let containedBefore;
+      let containedAfter;
+
+      this.$parallaxedImg.classList.add(CLASSES.parallaxNoTransition);
+
+      // Remove before/after classes (and inline styles) and save if they were set to be
+      // able to restore them after the calculation is done.
+      this.$parallaxedImg.style.transform = '';
+
+      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxBefore)) {
+        containedBefore = true;
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
+      }
+
+      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxAfter)) {
+        containedAfter = true;
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
+      }
+
+      this.imageOffsetAfter = this.getDistance(this.$parallaxedImg, this.$targetImgPositionEl) + imgAfterOffset;
+
+      // Restore after/before after the calculation is done.
+      if (containedBefore) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      }
+
+      if (containedAfter) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      }
+
+      this.$parallaxedImg.classList.remove(CLASSES.parallaxNoTransition);
+    }
   }
 
   sectionLeaveCb (index, nextIndex, direction) {

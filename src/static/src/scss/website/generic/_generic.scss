@@ -3,9 +3,9 @@
 
   &,
   &:not(.tr-hero):not(.section-slider):not(.mobile-full-height) .fp-tableCell {
-    @include mq($until: tablet) {
-      height: auto !important;
-    }
+    // @include mq($until: tablet) {
+    //   height: auto !important;
+    // }
   }
 
 
