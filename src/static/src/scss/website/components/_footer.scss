@@ -1,0 +1,14 @@
+.tr-footer {
+  align-items: center;
+  background-color: $tr-logo-font;
+  display: flex;
+  height: base-unit(19);
+  justify-content: space-between;
+  padding-left: $tr-container-outer-margin;
+  padding-right: $tr-container-outer-margin;
+
+  &__link {
+    @extend .tr-theta;
+    color: $tr-font-color-light;
+  }
+}
