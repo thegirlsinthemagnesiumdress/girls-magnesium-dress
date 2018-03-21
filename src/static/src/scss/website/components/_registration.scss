@@ -1,4 +1,6 @@
 .tr-registration {
+  padding-bottom: base-unit(20);
+
   &__title {
     @include spacing(mt, 7);
     @include spacing(mb, 5);
