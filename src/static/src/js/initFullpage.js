@@ -16,6 +16,9 @@ jQuery(document).ready(() => {
     afterResponsive: (...args) => {
       isRes = args[0];
       pubsub.publish('after-responsive', ...args);
+    },
+    afterRender: () => {
+      pubsub.publish('fullpage-init', true);
     }
   });
 
@@ -23,7 +26,6 @@ jQuery(document).ready(() => {
   // to detect this.
   isRes = document.body.style.overflow !== 'hidden';
 
-  pubsub.publish('fullpage-init', true);
 });
 
 function isResponsive () {
