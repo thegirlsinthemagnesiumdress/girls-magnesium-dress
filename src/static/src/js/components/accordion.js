@@ -1,12 +1,12 @@
 const DOM_SELECTORS = {
   accordion: '.tr-accordion',
   accordionSection: '.tr-accordion-section',
-  accordionSectionHeadings: '.tr-accordion-section dt'
+  accordionSectionHeadings: '.tr-accordion-section dt',
 };
 
 const CLASSES = {
   accordionSection: 'tr-accordion-section',
-  hidden: 'tr-accordion-section-closed'
+  hidden: 'tr-accordion-section-closed',
 }
 
 export default class Accordion extends HTMLElement {

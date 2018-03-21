@@ -4,7 +4,7 @@ import { isResponsive } from '../initFullpage';
 const DOM_SELECTORS = {};
 
 const CLASSES = {
-  sticky: 'tr-header--sticky'
+  sticky: 'tr-header--sticky',
 }
 
 const MOBILE_THREESHOLD = 2;
@@ -32,6 +32,11 @@ export default class Header extends HTMLElement {
       .push(pubsub.subscribe('fullpage-init', () => {
         this.afterResponsiveCb();
       }));
+  }
+
+  disconnectedCallback () {
+    this.subscriptions.forEach((sub) => pubsub.unsuscribe(sub));
+    this.destroyScrollMonitor();
   }
 
   sectionLeaveCb (index, nextIndex, direction) {

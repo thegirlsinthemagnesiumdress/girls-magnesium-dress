@@ -17,7 +17,7 @@ import { isResponsive } from '../initFullpage';
 // FullPage initialization
 const DOM_SELECTORS = {
   parallaxedImg: '.tr-parallax-section__parallaxed-img',
-  eyebrow: '.tr-parallax-section__eyebrow--pin',
+  eyebrow: '.tr-parallax-section__eyebrow--pin'
 };
 
 const CLASSES = {
@@ -57,6 +57,10 @@ export default class ParallaxSection extends HTMLElement {
     });
   }
 
+  disconnectedCallback () {
+    this.subscriptions.forEach((sub) => pubsub.unsuscribe(sub));
+  }
+
   sectionLeaveCb (index, nextIndex, direction) {
     if (!this.isResponsive) {
       if (nextIndex === this.index - 1) {
@@ -94,7 +98,6 @@ export default class ParallaxSection extends HTMLElement {
       this.unpinEyebrow();
     }
   }
-
 
   /**
    *
