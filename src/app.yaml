@@ -75,3 +75,4 @@ skip_files:
     - \.storage.*
     - (.*)\.pyc
     - (.*)\.scss
+    - (.*)\.DS_Store
