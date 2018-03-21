@@ -12,6 +12,7 @@
  */
 
 import pubsub from '../pubsub';
+import { debounce } from '../utils';
 import { isResponsive } from '../initFullpage';
 
 // FullPage initialization
@@ -36,11 +37,17 @@ const imgAfterOffset = 20;
 export default class ParallaxSection extends HTMLElement {
   constructor () {
     super();
+    this.debouncedResize = debounce(this.onResize.bind(this), 200);
 
     this.subscriptions = [];
   }
 
   connectedCallback () {
+    this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
+    this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
+    const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
+    this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
+
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
@@ -50,25 +57,27 @@ export default class ParallaxSection extends HTMLElement {
       .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
         this.afterResponsiveCb(...args);
       }));
-    pubsub.subscribe('fullpage-init', () => {
-      // Fullpage.js updates the dom and inserts a wrapper to our sections.
-      const sectionWrp = this.parentNode.parentNode;
-      this.index = [...sectionWrp.parentNode.children].indexOf(sectionWrp) + 1;
-      this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
-      this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
-      this.isResponsive = isResponsive();
-      const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
-      this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
 
-      if (!this.$parallaxedImg.complete || this.$parallaxedImg.naturalWidth === 0) {
-        this.$parallaxedImg.onload = this.setImageAfterOffset.bind(this);
-      } else {
-        this.setImageAfterOffset();
-      }
-    });
+      this.subscriptions
+        .push(pubsub.subscribe('fullpage-init', () => {
+          // Fullpage.js updates the dom and inserts a wrapper to our sections.
+          this.$sectionWrp = this.parentNode.parentNode;
+          this.index = [...this.$sectionWrp.parentNode.children].indexOf(this.$sectionWrp) + 1;
+          this.isResponsive = isResponsive();
+
+          if (!this.$parallaxedImg.complete || this.$parallaxedImg.naturalWidth === 0) {
+            this.$parallaxedImg.onload = this.setImageAfterOffset.bind(this);
+          } else {
+            this.setImageAfterOffset();
+          }
+
+          this.setEyebrowRect();
+          window.addEventListener('resize', this.debouncedResize);
+        }));
   }
 
   disconnectedCallback () {
+    window.removeEventListener('resize', this.debouncedResize);
     this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
   }
 
@@ -152,6 +161,52 @@ export default class ParallaxSection extends HTMLElement {
     }
   }
 
+  setImageAfterOffset () {
+    if (this.$targetImgPositionEl) {
+      let containedBefore;
+      let containedAfter;
+      let transformed;
+
+      this.$parallaxedImg.classList.add(CLASSES.parallaxNoTransition);
+
+      // Remove before/after classes (and inline styles) and save if they were set to be
+      // able to restore them after the calculation is done.
+      if (this.$parallaxedImg.style.transform) {
+        this.$parallaxedImg.style.transform = '';
+        transformed = true;
+      }
+
+      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxBefore)) {
+        containedBefore = true;
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
+      }
+
+      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxAfter)) {
+        containedAfter = true;
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
+      }
+
+      this.imageOffsetAfter = this.getDistance(this.$parallaxedImg, this.$targetImgPositionEl) + imgAfterOffset;
+
+      // Restore after/before after the calculation is done.
+      if (containedBefore) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      }
+
+      if (containedAfter) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      }
+
+      if (transformed) {
+        this.$parallaxedImg.style.transform = `translateY(${this.imageOffsetAfter}px)`;
+      }
+
+      window.setTimeout(() => {
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxNoTransition);
+      });
+    }
+  }
+
   /**
    *  Calculate the distance between
    * @param {HTMLElement} $el1
@@ -165,6 +220,19 @@ export default class ParallaxSection extends HTMLElement {
     return (rect2.y + rect2.height) - (rect1.y + rect1.height);
   }
 
+  setEyebrowRect() {
+    if (this.$eyebrow) {
+      const sectionWrapper = this.$sectionWrp.getBoundingClientRect();
+      const eyebrowRect = this.$eyebrow.getBoundingClientRect();
+      this.eyebrowRect = {
+        x: eyebrowRect.x,
+        y: eyebrowRect.y - sectionWrapper.y,
+        width: eyebrowRect.width,
+        height: eyebrowRect.height
+      };
+    }
+  }
+
   /**
    *
    * Clones the eyebrows and sets it to have a sticky behavior.
@@ -172,16 +240,15 @@ export default class ParallaxSection extends HTMLElement {
    */
   pinEyebrow (animateOpacity) {
     if (!this.eyebrowSticky) {
-      this.rect = this.rect ? this.rect : this.$eyebrow.getBoundingClientRect();
       // We need to clone the eyebrow and append it to the body in order to keep the
       // position fixe to working. Fullpage.js transforms the page and that affects
       // fixed positioning. https://www.w3.org/TR/css-transforms-1/#module-interactions
       this.$clonedEyebrow = this.$eyebrow.cloneNode(true);
       this.$clonedEyebrow.classList.add(CLASSES.eyebrowSticky);
-      this.$clonedEyebrow.style.top = `${this.rect.y}px`;
-      this.$clonedEyebrow.style.left = `${this.rect.x}px`;
-      this.$clonedEyebrow.style.width = `${this.rect.width}px`;
-      this.$clonedEyebrow.style.height = `${this.rect.height}px`;
+      this.$clonedEyebrow.style.top = `${this.eyebrowRect.y}px`;
+      this.$clonedEyebrow.style.left = `${this.eyebrowRect.x}px`;
+      this.$clonedEyebrow.style.width = `${this.eyebrowRect.width}px`;
+      this.$clonedEyebrow.style.height = `${this.eyebrowRect.height}px`;
       this.$eyebrow.classList.add(CLASSES.eyebrowHidden);
 
       document.body.appendChild(this.$clonedEyebrow);
@@ -198,7 +265,7 @@ export default class ParallaxSection extends HTMLElement {
           const transitionEndCb = (e) => {
             this.$clonedEyebrow.classList.remove(CLASSES.eyebrowTransition);
             this.$clonedEyebrow.removeEventListener('transitionend', transitionEndCb);
-          }
+          };
 
           this.$clonedEyebrow.addEventListener('transitionend', transitionEndCb);
         }, 100);
@@ -232,4 +299,23 @@ export default class ParallaxSection extends HTMLElement {
     this.eyebrowSticky = false;
     this.$eyebrow.classList.remove(CLASSES.eyebrowHidden);
   }
+
+  updatePinnedEyeBrow() {
+    if (this.$clonedEyebrow) {
+      this.$clonedEyebrow.style.top = `${this.eyebrowRect.y}px`;
+      this.$clonedEyebrow.style.left = `${this.eyebrowRect.x}px`;
+      this.$clonedEyebrow.style.width = `${this.eyebrowRect.width}px`;
+      this.$clonedEyebrow.style.height = `${this.eyebrowRect.height}px`;
+    }
+  }
+
+  onResize () {
+    const self = this;
+    this.setEyebrowRect();
+    if (this.eyebrowSticky && this.$eyebrow) {
+      this.updatePinnedEyeBrow();
+    }
+    this.setImageAfterOffset();
+  }
+
 }
