@@ -1,14 +1,29 @@
 .tr-footer {
-  align-items: center;
   background-color: $tr-logo-font;
   display: flex;
-  height: base-unit(19);
+  flex-direction: column;
   justify-content: space-between;
-  padding-left: $tr-container-outer-margin;
-  padding-right: $tr-container-outer-margin;
+  padding: base-unit(5) $tr-container-outer-margin base-unit(6);
+
+  @include mq($from: tablet) {
+    align-items: center;
+    flex-direction: row;
+    height: base-unit(19);
+  }
+
+  &__logo {
+    @include mq($until: tablet) {
+      height: base-unit(3);
+    }
+  }
 
   &__link {
     @extend .tr-theta;
     color: $tr-font-color-light;
+    margin-top: base-unit(4);
+
+    @include mq($from: tablet) {
+      margin-top: 0;
+    }
   }
 }
