@@ -183,13 +183,13 @@ export default class ParallaxSection extends HTMLElement {
 
   setEyebrowRect() {
     if (this.$eyebrow) {
-      const sectioWrapper = this.$sectionWrp.getBoundingClientRect();
-      const eyeBrowRect = this.$eyebrow.getBoundingClientRect();
-      this.eyeBrowRect = {
-        x: eyeBrowRect.x,
-        y: eyeBrowRect.y - sectioWrapper.y,
-        width: eyeBrowRect.width,
-        height: eyeBrowRect.height
+      const sectionWrapper = this.$sectionWrp.getBoundingClientRect();
+      const eyebrowRect = this.$eyebrow.getBoundingClientRect();
+      this.eyebrowRect = {
+        x: eyebrowRect.x,
+        y: eyebrowRect.y - sectionWrapper.y,
+        width: eyebrowRect.width,
+        height: eyebrowRect.height
       };
     }
   }
@@ -206,10 +206,10 @@ export default class ParallaxSection extends HTMLElement {
       // fixed positioning. https://www.w3.org/TR/css-transforms-1/#module-interactions
       this.$clonedEyebrow = this.$eyebrow.cloneNode(true);
       this.$clonedEyebrow.classList.add(CLASSES.eyebrowSticky);
-      this.$clonedEyebrow.style.top = `${this.eyeBrowRect.y}px`;
-      this.$clonedEyebrow.style.left = `${this.eyeBrowRect.x}px`;
-      this.$clonedEyebrow.style.width = `${this.eyeBrowRect.width}px`;
-      this.$clonedEyebrow.style.height = `${this.eyeBrowRect.height}px`;
+      this.$clonedEyebrow.style.top = `${this.eyebrowRect.y}px`;
+      this.$clonedEyebrow.style.left = `${this.eyebrowRect.x}px`;
+      this.$clonedEyebrow.style.width = `${this.eyebrowRect.width}px`;
+      this.$clonedEyebrow.style.height = `${this.eyebrowRect.height}px`;
       this.$eyebrow.classList.add(CLASSES.eyebrowHidden);
 
       document.body.appendChild(this.$clonedEyebrow);
@@ -263,10 +263,10 @@ export default class ParallaxSection extends HTMLElement {
 
   updatePinnedEyeBrow() {
     if (this.$clonedEyebrow) {
-      this.$clonedEyebrow.style.top = `${this.eyeBrowRect.y}px`;
-      this.$clonedEyebrow.style.left = `${this.eyeBrowRect.x}px`;
-      this.$clonedEyebrow.style.width = `${this.eyeBrowRect.width}px`;
-      this.$clonedEyebrow.style.height = `${this.eyeBrowRect.height}px`;
+      this.$clonedEyebrow.style.top = `${this.eyebrowRect.y}px`;
+      this.$clonedEyebrow.style.left = `${this.eyebrowRect.x}px`;
+      this.$clonedEyebrow.style.width = `${this.eyebrowRect.width}px`;
+      this.$clonedEyebrow.style.height = `${this.eyebrowRect.height}px`;
     }
   }
 
