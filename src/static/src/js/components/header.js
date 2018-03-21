@@ -4,7 +4,7 @@ import { isResponsive } from '../initFullpage';
 const DOM_SELECTORS = {};
 
 const CLASSES = {
-  sticky: 'tr-header--sticky'
+  sticky: 'tr-header--sticky',
 }
 
 const MOBILE_THREESHOLD = 2;
@@ -13,9 +13,11 @@ export default class Header extends HTMLElement {
   constructor () {
     super();
 
-    this.onScroll = this.onScroll.bind(this);
-
     this.subscriptions = [];
+    this.onScroll = this.onScroll.bind(this);
+  }
+
+  connectedCallback () {
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
@@ -25,13 +27,15 @@ export default class Header extends HTMLElement {
       .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
         this.afterResponsiveCb(...args);
       }));
-  }
-
-  connectedCallback () {
     this.subscriptions
       .push(pubsub.subscribe('fullpage-init', () => {
         this.afterResponsiveCb();
       }));
+  }
+
+  disconnectedCallback () {
+    this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
+    this.destroyScrollMonitor();
   }
 
   sectionLeaveCb (index, nextIndex, direction) {
