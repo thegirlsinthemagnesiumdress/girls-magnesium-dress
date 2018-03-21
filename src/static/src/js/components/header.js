@@ -13,9 +13,11 @@ export default class Header extends HTMLElement {
   constructor () {
     super();
 
-    this.onScroll = this.onScroll.bind(this);
-
     this.subscriptions = [];
+    this.onScroll = this.onScroll.bind(this);
+  }
+
+  connectedCallback () {
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
@@ -25,9 +27,6 @@ export default class Header extends HTMLElement {
       .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
         this.afterResponsiveCb(...args);
       }));
-  }
-
-  connectedCallback () {
     this.subscriptions
       .push(pubsub.subscribe('fullpage-init', () => {
         this.afterResponsiveCb();
@@ -35,7 +34,7 @@ export default class Header extends HTMLElement {
   }
 
   disconnectedCallback () {
-    this.subscriptions.forEach((sub) => pubsub.unsuscribe(sub));
+    this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
     this.destroyScrollMonitor();
   }
 

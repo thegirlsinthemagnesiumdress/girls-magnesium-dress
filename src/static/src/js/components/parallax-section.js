@@ -35,6 +35,9 @@ export default class ParallaxSection extends HTMLElement {
     super();
 
     this.subscriptions = [];
+  }
+
+  connectedCallback () {
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
         this.sectionLeaveCb(...args);
@@ -44,9 +47,6 @@ export default class ParallaxSection extends HTMLElement {
       .push(pubsub.subscribe('after-responsive', (topic, ...args) => {
         this.afterResponsiveCb(...args);
       }));
-  }
-
-  connectedCallback () {
     pubsub.subscribe('fullpage-init', () => {
       // Fullpage.js updates the dom and inserts a wrapper to our sections.
       const sectionWrp = this.parentNode.parentNode;
@@ -58,7 +58,7 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   disconnectedCallback () {
-    this.subscriptions.forEach((sub) => pubsub.unsuscribe(sub));
+    this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
   }
 
   sectionLeaveCb (index, nextIndex, direction) {
