@@ -179,24 +179,12 @@ gulp.task('css', function () {
 
   console.log('Generating CSS files at: ' + outputDir);
 
-  var bundles = [
-    ['./src/static/src/scss/main.scss', 'main.css']
-    // ['./src/core/static/scss/survey.scss', 'survey.css'],
-    // ['./src/public/static/scss/main.scss', 'public.css'],
-
-  ];
-
-  for (var i = 0; i < bundles.length; ++i) {
-    var input = bundles[i][0];
-    var dest = bundles[i][1];
-
-    gulp.src(input)
-    .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(rename(dest))
-    .pipe(autoprefixer())
-    .pipe(replace('{{STATIC_URL}}', argv.static_url))
-    .pipe(gulp.dest(outputDir));
-  }
+    gulp.src('./src/static/src/scss/**/*.scss')
+      .pipe(sass(sassOptions).on('error', sass.logError))
+      // .pipe(rename(dest))
+      .pipe(autoprefixer())
+      .pipe(replace('{{STATIC_URL}}', argv.static_url))
+      .pipe(gulp.dest(outputDir));
 });
 
 gulp.task('fonts', function () {
