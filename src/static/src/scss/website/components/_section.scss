@@ -23,7 +23,7 @@
 
     @include mq($from: tablet) {
       top: base-unit(15);
-      left: -32%;
+      left: -37%;
       margin-top: 0;
     }
 
@@ -33,6 +33,10 @@
 
     &--after {
       transform: translateY(base-unit(35));
+    }
+
+    &--no-transition {
+      transition: none;
     }
   }
 
@@ -115,16 +119,18 @@
   &__infographic-wrp {
     margin-top: base-unit(7);
 
+    .col-xs-offset-2 {
+      @include mq($from: tablet) {
+        margin-left: 0;
+      }
+    }
+
     h3 {
       @include mq($until: tablet) {
         line-height: $tr-h2-mobile-line-height;
         font-size: $tr-h2-mobile-font-size;
       }
 
-    }
-
-    @include mq($from: tablet) {
-      margin-top: 0;
     }
   }
 
@@ -135,6 +141,7 @@
   &--bg-image {
     #{$block}__parallaxed-img {
       background-image: url('../img/hero.jpg');
+      background-color: $tr-black;
       background-repeat: no-repeat;
       background-size: cover;
       left: 0;
@@ -144,6 +151,12 @@
       height: 500px;
 
       @include mq($from: tablet) {
+        // Not really scalable.
+        // TODO: find a better approach.
+        height: calc(100% + 829px);
+      }
+
+      @include mq($from: desktop) {
         height: 200%;
       }
     }
@@ -168,7 +181,7 @@
   &--data-transform {
 
     #{$block}__parallaxed-img {
-      left: -8.33%;
+      left: 8.33%;
 
       &--after {
         transform: translateY(base-unit(10));

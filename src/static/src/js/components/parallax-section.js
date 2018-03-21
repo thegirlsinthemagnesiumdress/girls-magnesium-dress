@@ -23,12 +23,15 @@ const DOM_SELECTORS = {
 const CLASSES = {
   parallaxBefore: 'tr-parallax-section__parallaxed-img--before',
   parallaxAfter: 'tr-parallax-section__parallaxed-img--after',
+  parallaxNoTransition: 'tr-parallax-section__parallaxed-img--no-transition',
   eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
   eyebrowHidden: 'tr-parallax-section__eyebrow--hidden',
   eyebrowFadedout: 'tr-parallax-section__eyebrow--faded-out',
   eyebrowTransition: 'tr-parallax-section__eyebrow--transition-opacity',
   fpEnabled: 'fp-enabled'
-}
+};
+
+const imgAfterOffset = 20;
 
 export default class ParallaxSection extends HTMLElement {
   constructor () {
@@ -54,6 +57,14 @@ export default class ParallaxSection extends HTMLElement {
       this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
       this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
       this.isResponsive = isResponsive();
+      const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
+      this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
+
+      if (!this.$parallaxedImg.complete || this.$parallaxedImg.naturalWidth === 0) {
+        this.$parallaxedImg.onload = this.setImageAfterOffset.bind(this);
+      } else {
+        this.setImageAfterOffset();
+      }
     });
   }
 
@@ -61,10 +72,46 @@ export default class ParallaxSection extends HTMLElement {
     this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
   }
 
+  setImageAfterOffset () {
+    if (this.$targetImgPositionEl) {
+      let containedBefore;
+      let containedAfter;
+
+      this.$parallaxedImg.classList.add(CLASSES.parallaxNoTransition);
+
+      // Remove before/after classes (and inline styles) and save if they were set to be
+      // able to restore them after the calculation is done.
+      this.$parallaxedImg.style.transform = '';
+
+      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxBefore)) {
+        containedBefore = true;
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
+      }
+
+      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxAfter)) {
+        containedAfter = true;
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
+      }
+
+      this.imageOffsetAfter = this.getDistance(this.$parallaxedImg, this.$targetImgPositionEl) + imgAfterOffset;
+
+      // Restore after/before after the calculation is done.
+      if (containedBefore) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      }
+
+      if (containedAfter) {
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      }
+
+      this.$parallaxedImg.classList.remove(CLASSES.parallaxNoTransition);
+    }
+  }
+
   sectionLeaveCb (index, nextIndex, direction) {
     if (!this.isResponsive) {
       if (nextIndex === this.index - 1) {
-        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore)
+        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
 
         if (this.$eyebrow) {
           this.unpinEyebrow();
@@ -72,15 +119,21 @@ export default class ParallaxSection extends HTMLElement {
       }
 
       if (nextIndex === this.index) {
-        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore)
-        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter)
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
+        this.$parallaxedImg.style.transform = '';
       }
 
       if (nextIndex === this.index + 1) {
         if (this.$eyebrow) {
           this.pinEyebrow(direction === 'up');
         }
-        this.$parallaxedImg.classList.add(CLASSES.parallaxAfter)
+
+        if (this.imageOffsetAfter) {
+          this.$parallaxedImg.style.transform = `translateY(${this.imageOffsetAfter}px)`;
+        }
+
+        this.$parallaxedImg.classList.add(CLASSES.parallaxAfter);
       }
 
       if (nextIndex === this.index + 2) {
@@ -97,6 +150,19 @@ export default class ParallaxSection extends HTMLElement {
     if (this.isResponsive && this.$eyebrow) {
       this.unpinEyebrow();
     }
+  }
+
+  /**
+   *  Calculate the distance between
+   * @param {HTMLElement} $el1
+   * @param {HTMLElement} $el2
+   *
+   * @return {number}
+   */
+  getDistance($el1, $el2) {
+    const rect1 = $el1.getBoundingClientRect();
+    const rect2 = $el2.getBoundingClientRect();
+    return (rect2.y + rect2.height) - (rect1.y + rect1.height);
   }
 
   /**
@@ -130,7 +196,7 @@ export default class ParallaxSection extends HTMLElement {
         setTimeout(() => {
           this.$clonedEyebrow.classList.remove(CLASSES.eyebrowFadedout);
           const transitionEndCb = (e) => {
-            this.$clonedEyebrow.classList.remove(CLASSES.eyebrowTransition)
+            this.$clonedEyebrow.classList.remove(CLASSES.eyebrowTransition);
             this.$clonedEyebrow.removeEventListener('transitionend', transitionEndCb);
           }
 
@@ -157,8 +223,8 @@ export default class ParallaxSection extends HTMLElement {
 
         this.$clonedEyebrow.addEventListener('transitionend', transitionEndCb);
 
-        this.$clonedEyebrow.classList.add(CLASSES.eyebrowFadedout)
-        this.$clonedEyebrow.classList.add(CLASSES.eyebrowTransition)
+        this.$clonedEyebrow.classList.add(CLASSES.eyebrowFadedout);
+        this.$clonedEyebrow.classList.add(CLASSES.eyebrowTransition);
       } else {
         this.$clonedEyebrow.parentNode.removeChild(this.$clonedEyebrow);
       }
