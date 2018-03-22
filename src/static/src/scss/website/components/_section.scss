@@ -20,26 +20,26 @@
     width: 75%;
     top: base-unit(9);
 
-    @include mq($from: tablet) {
+    @include mq($from: desktop) {
       top: base-unit(6);
       margin-top: 0;
     }
 
 
-    @include mq($from: tablet) {
+    @include mq($from: desktop) {
       top: base-unit(15);
       left: -37%;
       margin-top: 0;
     }
 
     &--before {
-      @include mq($from: tablet) {
+      @include mq($from: desktop) {
         transform: translateY(base-unit(-20));
       }
     }
 
     &--after {
-      @include mq($from: tablet) {
+      @include mq($from: desktop) {
         transform: translateY(base-unit(35));
       }
     }
@@ -256,7 +256,7 @@
       &--before {
         transform: translateY(0);
 
-        @include mq($from: wide) {
+        @include mq($from: desktop) {
           transform: translateY(-70%);
         }
       }
@@ -264,6 +264,12 @@
       &--after {
         transform: translateY(0);
       }
+    }
+  }
+
+  &--has-bottom {
+    .wrapper {
+      padding-bottom: 0;
     }
   }
 

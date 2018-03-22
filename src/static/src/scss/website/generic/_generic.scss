@@ -13,6 +13,11 @@
     padding-bottom: base-unit(8);
     padding-top: base-unit(4);
 
+    @include mq($from: mobile) {
+      padding-bottom: base-unit(11);
+      padding-top: base-unit(11);
+    }
+
     @include mq($from: desktop) {
       margin-top: $tr-header-height;
       padding-bottom: 0;
