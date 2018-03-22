@@ -28,6 +28,11 @@ jQuery(document).ready(() => {
 
 });
 
+/**
+ * Whether or not Fullpage is responsive.
+ * In Fullpage vocubulary, responsive is a synonymous
+ * of disabled snap scroll.
+ */
 function isResponsive () {
   return isRes;
 }

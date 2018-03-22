@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Main js entry point.
+ */
 import fullpage from 'fullpage.js/dist/jquery.fullpage'; // eslint-disable-line no-unused-vars
 import jQuery from 'jquery';
 import 'slick-carousel';

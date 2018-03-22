@@ -1,9 +1,16 @@
-// Simple PubSub implementation with JavaScript - taken from Addy Osmani's design patterns book -
+// Simple PubSub implementation with JavaScript - taken from Addy Osmani's design patterns book.
 
 const pubsub = {};
 const topics = {};
 let subUid = -1;
 
+/**
+ * Subscribe a callback function to
+ * a specific topic.
+ *
+ * @param {string} topic
+ * @param {function} func
+ */
 pubsub.subscribe = function (topic, func) {
   if (!topics[topic]) {
     topics[topic] = [];
@@ -16,6 +23,11 @@ pubsub.subscribe = function (topic, func) {
   return token;
 };
 
+/**
+ * Publish to  a specific topic.
+ * @param {string} topic
+ * @param {Array<object>} args
+ */
 pubsub.publish = function (topic, ...args) {
   if (!topics[topic]) {
     return false;
@@ -31,6 +43,11 @@ pubsub.publish = function (topic, ...args) {
   return true;
 };
 
+
+/**
+ * Unsubscribe listener from specific topic.
+ * @param {string} token
+ */
 pubsub.unsubscribe = function (token) {
   for (let m in topics) {
     if (topics[m]) {

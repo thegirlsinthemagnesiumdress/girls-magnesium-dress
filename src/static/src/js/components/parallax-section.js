@@ -1,4 +1,6 @@
 /**
+ * @fileoverview Custom Element to handle scroll animation on scroll.
+ *
  * This component handles scroll animations/parallax for both the 200vh
  * sections and 100vh sections with animated content.
  *
@@ -15,12 +17,19 @@ import pubsub from '../pubsub';
 import { debounce } from '../utils';
 import { isResponsive } from '../initFullpage';
 
-// FullPage initialization
+/**
+ * Dom Selectors.
+ * @enum {string}
+ */
 const DOM_SELECTORS = {
   parallaxedImg: '.tr-parallax-section__parallaxed-img',
   eyebrow: '.tr-parallax-section__eyebrow--pin'
 };
 
+/**
+ * CSS Classes.
+ * @enum {string}
+ */
 const CLASSES = {
   parallaxBefore: 'tr-parallax-section__parallaxed-img--before',
   parallaxAfter: 'tr-parallax-section__parallaxed-img--after',
@@ -32,8 +41,17 @@ const CLASSES = {
   fpEnabled: 'fp-enabled'
 };
 
+/**
+ * Vertical positional offset summed to image final position.
+ * @const {number}
+ */
 const imgAfterOffset = 20;
 
+
+/**
+ * Custom Element Section Class.
+ * @extends {HTMLElement}
+ */
 export default class ParallaxSection extends HTMLElement {
   constructor () {
     super();
@@ -42,6 +60,11 @@ export default class ParallaxSection extends HTMLElement {
     this.subscriptions = [];
   }
 
+
+  /**
+   * Invoked when the custom element is first connected
+   * to the document's DOM.
+   */
   connectedCallback () {
     this.$parallaxedImg = this.querySelector(DOM_SELECTORS.parallaxedImg);
     this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
@@ -76,47 +99,23 @@ export default class ParallaxSection extends HTMLElement {
         }));
   }
 
+  /**
+   * Invoked when the custom element is disconnected
+   * from the document's DOM.
+   */
   disconnectedCallback () {
     window.removeEventListener('resize', this.debouncedResize);
     this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
   }
 
-  setImageAfterOffset () {
-    if (this.$targetImgPositionEl) {
-      let containedBefore;
-      let containedAfter;
-
-      this.$parallaxedImg.classList.add(CLASSES.parallaxNoTransition);
-
-      // Remove before/after classes (and inline styles) and save if they were set to be
-      // able to restore them after the calculation is done.
-      this.$parallaxedImg.style.transform = '';
-
-      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxBefore)) {
-        containedBefore = true;
-        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
-      }
-
-      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxAfter)) {
-        containedAfter = true;
-        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
-      }
-
-      this.imageOffsetAfter = this.getDistance(this.$parallaxedImg, this.$targetImgPositionEl) + imgAfterOffset;
-
-      // Restore after/before after the calculation is done.
-      if (containedBefore) {
-        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
-      }
-
-      if (containedAfter) {
-        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
-      }
-
-      this.$parallaxedImg.classList.remove(CLASSES.parallaxNoTransition);
-    }
-  }
-
+  /**
+   * Fullpage.js onLeave event handler.
+   * Handles eyebrow pinning and image animations.
+   *
+   * @param {number} index Leaving section index.
+   * @param {number} nextIndex Next section index.
+   * @param {string} direction Whether the direction is UP or DOWN.
+   */
   sectionLeaveCb (index, nextIndex, direction) {
     if (!this.isResponsive) {
       if (nextIndex === this.index - 1) {
@@ -153,6 +152,12 @@ export default class ParallaxSection extends HTMLElement {
     }
   }
 
+    /**
+   * Fullpage.js afterResponsive event handler.
+   * Initialize or destroy the scroll monitor.
+   *
+   * @param {bool} isResponsive Whethere snap scroll is enable or not.
+   */
   afterResponsiveCb (isResponsive) {
     this.isResponsive = isResponsive;
 
@@ -161,6 +166,9 @@ export default class ParallaxSection extends HTMLElement {
     }
   }
 
+  /**
+   * Calculates the final image position.
+   */
   setImageAfterOffset () {
     if (this.$targetImgPositionEl) {
       let containedBefore;
@@ -208,7 +216,8 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   /**
-   *  Calculate the distance between
+   *  Calculate the distance between two elements.
+   *
    * @param {HTMLElement} $el1
    * @param {HTMLElement} $el2
    *
@@ -220,6 +229,9 @@ export default class ParallaxSection extends HTMLElement {
     return (rect2.y + rect2.height) - (rect1.y + rect1.height);
   }
 
+  /**
+   * Saves the eyebrow position.
+   */
   setEyebrowRect() {
     if (this.$eyebrow) {
       const sectionWrapper = this.$sectionWrp.getBoundingClientRect();
@@ -234,8 +246,8 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   /**
-   *
    * Clones the eyebrows and sets it to have a sticky behavior.
+   *
    * @param {bool} animateOpacity Whether or not we animate the eyebrow opacity when pinning.
    */
   pinEyebrow (animateOpacity) {
@@ -300,6 +312,9 @@ export default class ParallaxSection extends HTMLElement {
     this.$eyebrow.classList.remove(CLASSES.eyebrowHidden);
   }
 
+  /**
+   * Updates the pinned eyebrow position
+   */
   updatePinnedEyeBrow() {
     if (this.$clonedEyebrow) {
       this.$clonedEyebrow.style.top = `${this.eyebrowRect.y}px`;
@@ -309,6 +324,9 @@ export default class ParallaxSection extends HTMLElement {
     }
   }
 
+  /**
+   * Window resize event handler.
+   */
   onResize () {
     const self = this;
     this.setEyebrowRect();
