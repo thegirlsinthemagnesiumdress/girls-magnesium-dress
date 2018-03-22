@@ -37,7 +37,7 @@ class BreakpointsService {
   }
 
   /**
-   * Get breakpoints from css.
+   * Gets breakpoints from css.
    */
   getFromStyle_ () {
     const cssBpName = window.getComputedStyle(document.body, ':before')
@@ -49,7 +49,7 @@ class BreakpointsService {
   /**
    * Resize event handler.
    *
-   * It sets current breakpoint and publish breakpoint changes.
+   * Sets the current breakpoint and publishes breakpoint changes.
    */
   onResize_ () {
     const currentBp = this.getFromStyle_();

@@ -1,5 +1,5 @@
 /**
- * Debounce function
+ * Debounce function.
  * @param {function} func
  * @param {number} wait
  * @param {bool} immediate

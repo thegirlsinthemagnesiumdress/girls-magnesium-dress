@@ -5,7 +5,7 @@ const topics = {};
 let subUid = -1;
 
 /**
- * Subscribe a callback function to
+ * Subscribes a callback function to
  * a specific topic.
  *
  * @param {string} topic
@@ -24,7 +24,7 @@ pubsub.subscribe = function (topic, func) {
 };
 
 /**
- * Publish to  a specific topic.
+ * Publishes to a specific topic.
  * @param {string} topic
  * @param {Array<object>} args
  */
@@ -45,7 +45,7 @@ pubsub.publish = function (topic, ...args) {
 
 
 /**
- * Unsubscribe listener from specific topic.
+ * Unsubscribes listener from specific topic.
  * @param {string} token
  */
 pubsub.unsubscribe = function (token) {

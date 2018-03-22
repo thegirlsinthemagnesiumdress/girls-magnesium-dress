@@ -59,7 +59,7 @@ export default class Registration extends HTMLElement {
   }
 
   /**
-   * Show registration confirmation.
+   * Shows registration confirmation.
    */
   showConfirmation () {
     this.$form.classList.add(CLASSES.hidden);
