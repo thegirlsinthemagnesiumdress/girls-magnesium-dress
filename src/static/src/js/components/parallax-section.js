@@ -154,7 +154,7 @@ export default class ParallaxSection extends HTMLElement {
 
     /**
    * Fullpage.js afterResponsive event handler.
-   * Initialize or destroy the scroll monitor.
+   * Initializes or destroys the scroll monitor.
    *
    * @param {bool} isResponsive Whethere snap scroll is enable or not.
    */
@@ -177,8 +177,8 @@ export default class ParallaxSection extends HTMLElement {
 
       this.$parallaxedImg.classList.add(CLASSES.parallaxNoTransition);
 
-      // Remove before/after classes (and inline styles) and save if they were set to be
-      // able to restore them after the calculation is done.
+      // Removes before/after classes (and inline styles) and saves if they were
+      // set to be able to restore them after the calculation is done.
       if (this.$parallaxedImg.style.transform) {
         this.$parallaxedImg.style.transform = '';
         transformed = true;
@@ -216,7 +216,7 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   /**
-   *  Calculate the distance between two elements.
+   *  Calculates the distance between two elements.
    *
    * @param {HTMLElement} $el1
    * @param {HTMLElement} $el2
@@ -248,12 +248,12 @@ export default class ParallaxSection extends HTMLElement {
   /**
    * Clones the eyebrows and sets it to have a sticky behavior.
    *
-   * @param {bool} animateOpacity Whether or not we animate the eyebrow opacity when pinning.
+   * @param {bool} animateOpacity Whether or not the eyebrow opacity should be animated when pinning.
    */
   pinEyebrow (animateOpacity) {
     if (!this.eyebrowSticky) {
-      // We need to clone the eyebrow and append it to the body in order to keep the
-      // position fixe to working. Fullpage.js transforms the page and that affects
+      // Clones the eyebrow and appends it to the body in order to keep the
+      // position fixed working. Fullpage.js transforms the page and that affects
       // fixed positioning. https://www.w3.org/TR/css-transforms-1/#module-interactions
       this.$clonedEyebrow = this.$eyebrow.cloneNode(true);
       this.$clonedEyebrow.classList.add(CLASSES.eyebrowSticky);
@@ -270,8 +270,8 @@ export default class ParallaxSection extends HTMLElement {
         this.$clonedEyebrow.classList.add(CLASSES.eyebrowTransition);
 
         // Removing a class straight after appending to the DOM
-        // prevents the animation to happen. This is a workarounf.
-        // TODO: there might be a nicer approach
+        // prevents the animation from happening. This is a workaround.
+        // TODO (pchillari): there might be a nicer approach
         setTimeout(() => {
           this.$clonedEyebrow.classList.remove(CLASSES.eyebrowFadedout);
           const transitionEndCb = (e) => {
@@ -289,7 +289,7 @@ export default class ParallaxSection extends HTMLElement {
 
   /**
    * Removes the cloned sticky eyebrow from the dom.
-   * @param {bool} animateOpacity Whether or not we animate the opacity when unpinning the element.
+   * @param {bool} animateOpacity Whether or not the eyebrow opacity should be animated when unpinning.
    */
   unpinEyebrow (animateOpacity) {
     if (this.$clonedEyebrow && this.eyebrowSticky === true) {
@@ -313,7 +313,7 @@ export default class ParallaxSection extends HTMLElement {
   }
 
   /**
-   * Updates the pinned eyebrow position
+   * Updates the pinned eyebrow position.
    */
   updatePinnedEyeBrow() {
     if (this.$clonedEyebrow) {
@@ -335,5 +335,4 @@ export default class ParallaxSection extends HTMLElement {
     }
     this.setImageAfterOffset();
   }
-
 }

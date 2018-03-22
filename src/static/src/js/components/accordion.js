@@ -59,7 +59,7 @@ export default class Accordion extends HTMLElement {
   }
 
   /**
-   * Collaps the accordion's elements.
+   * Collapses the accordion's elements.
    */
   hideAll () {
     this.$accordionSections.forEach(function (el) {
