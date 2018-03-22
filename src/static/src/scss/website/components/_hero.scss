@@ -42,9 +42,9 @@
     margin-top: base-unit(3);
 
     @include mq($from: tablet) {
-      position: absolute;
-      bottom: base-unit(2);
       bottom: base-unit(8);
+      right: $tr-container-outer-margin;
+      position: absolute;
     }
 
     p {

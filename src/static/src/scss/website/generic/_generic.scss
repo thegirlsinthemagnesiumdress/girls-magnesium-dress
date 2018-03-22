@@ -3,9 +3,9 @@
 
   &,
   &:not(.tr-hero):not(.section-slider):not(.mobile-full-height) .fp-tableCell {
-    // @include mq($until: tablet) {
-    //   height: auto !important;
-    // }
+    @include mq($until: desktop) {
+      height: auto !important;
+    }
   }
 
 
@@ -13,11 +13,8 @@
     padding-bottom: base-unit(8);
     padding-top: base-unit(4);
 
-    @include mq($from: tablet) {
+    @include mq($from: desktop) {
       margin-top: $tr-header-height;
-      padding-bottom: base-unit(10);
-      padding-top: base-unit(10);
-
       padding-bottom: 0;
       padding-top: 0;
     }

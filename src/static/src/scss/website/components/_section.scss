@@ -18,7 +18,12 @@
     z-index: 0;
     left: 23%;
     width: 75%;
-    margin-top: base-unit(4);
+    top: base-unit(9);
+
+    @include mq($from: tablet) {
+      top: base-unit(6);
+      margin-top: 0;
+    }
 
 
     @include mq($from: tablet) {
@@ -28,11 +33,15 @@
     }
 
     &--before {
-      transform: translateY(base-unit(-20));
+      @include mq($from: tablet) {
+        transform: translateY(base-unit(-20));
+      }
     }
 
     &--after {
-      transform: translateY(base-unit(35));
+      @include mq($from: tablet) {
+        transform: translateY(base-unit(35));
+      }
     }
 
     &--no-transition {
@@ -47,6 +56,10 @@
       margin-bottom: base-unit(4);
       position: relative;
       z-index: 1;
+
+      @include mq($from: mobile, $until: tablet) {
+        margin-bottom: base-unit(4);
+      }
     }
 
     p + p {
@@ -59,6 +72,10 @@
     margin-top: base-unit(5);
 
     @include mq($from: tablet) {
+      margin-top: base-unit(28);
+    }
+
+    @include mq($from: wide) {
       margin: 0 0 base-unit(6);
     }
   }
@@ -66,19 +83,21 @@
   &__eyebrow {
     margin-bottom: base-unit(4);
     opacity: 1;
-    max-width: 120px;
-
+    position: relative;
+    z-index: 1;
 
     @include mq($from: tablet) {
       max-width: none;
     }
 
     h4 {
-      @extend .col-tablet-offset-1;
+      @extend .col-mobile-offset-1;
+      @extend .col-tablet-offset-0;
+      @extend .col-desktop-offset-1;
 
       border-left: 1px solid $tr-bastille;
       display: inline-block;
-      max-width: 220px;
+      max-width: 120px;
       margin-bottom: 0;
       margin-top: 0;
       padding: 0 base-unit(2) base-unit(2);
@@ -118,6 +137,8 @@
 
   &__infographic-wrp {
     margin-top: base-unit(7);
+    position: relative;
+    z-index: 1;
 
     .col-xs-offset-2 {
       @include mq($from: tablet) {
@@ -149,14 +170,14 @@
       width: 100%;
       z-index: -1;
       height: 500px;
+      z-index: 1;
 
-      @include mq($from: tablet) {
-        // Not really scalable.
-        // TODO: find a better approach.
-        height: calc(100% + 829px);
+      @include mq($from: mobile) {
+        height: calc(200%);
       }
 
       @include mq($from: desktop) {
+        z-index: -1;
         height: 200%;
       }
     }
@@ -164,7 +185,7 @@
     & + #{$block}__bottom {
       background-color: $tr-black;
 
-      @include mq($from: tablet) {
+      @include mq($from: desktop) {
         background-color: transparent;
       }
     }
@@ -197,13 +218,13 @@
       width: 100%;
       background: $tr-black;
 
-      @include mq($from: tablet) {
+      @include mq($from: desktop) {
         display: none;
       }
     }
 
     #{$block}__eyebrow {
-      @include mq($from: tablet) {
+      @include mq($from: desktop) {
         position: absolute;
         top: base-unit(10);
       }
@@ -215,17 +236,27 @@
       }
     }
 
+    .wrapper {
+      @include mq($until: tablet) {
+        padding-top: 0;
+      }
+    }
+
     #{$block}__parallaxed-img {
       left: auto;
       width: 100%;
       position: relative;
       top: auto;
       margin: - base-unit(4) 0 base-unit(4);
+      max-width: 460px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
 
       &--before {
         transform: translateY(0);
 
-        @include mq($from: tablet) {
+        @include mq($from: wide) {
           transform: translateY(-70%);
         }
       }
