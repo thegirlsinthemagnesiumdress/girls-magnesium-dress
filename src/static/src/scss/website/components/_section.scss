@@ -1,6 +1,16 @@
 .tr-parallax-section {
   $block: &;
 
+  .wrapper {
+    // When fullpage is enabled
+    @include mq($from: desktop) {
+      @media(min-height: $tr-bp-short-screen-height) {
+        margin-top: -(base-unit(13));
+      }
+
+    }
+  }
+
   &__title-wrp {
     position: relative;
     z-index: 1;
@@ -264,11 +274,15 @@
         margin-top: -(base-unit(14));
       }
 
+      @include mq($from: desktop) {
+        margin-top: 0;
+      }
+
       &--before {
         transform: translateY(0);
 
         @include mq($from: desktop) {
-          transform: translateY(-70%);
+          transform: translateY(-30%);
         }
       }
 
