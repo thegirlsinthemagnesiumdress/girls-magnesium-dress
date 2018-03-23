@@ -30,8 +30,8 @@
 
 // Fullpage css
 @import 'jquery.fullpage';
-@import 'slick.scss';
-@import 'slick-theme.scss';
+@import 'slick';
+@import 'slick-theme';
 
 // Components
 @import 'website/components/section';
@@ -48,7 +48,7 @@
 
 .responsive {
   @include mq($from: tablet) {
-    background-color: red;
+    background-color: #f00;
   }
 }
 

@@ -12,24 +12,24 @@
   }
 
   &__parallaxed-img {
+    left: 23%;
     position: absolute;
+    top: base-unit(9);
     transition: transform .7s;
+    width: 75%;
     will-change: transform;
     z-index: 0;
-    left: 23%;
-    width: 75%;
-    top: base-unit(9);
 
     @include mq($from: desktop) {
-      top: base-unit(6);
       margin-top: 0;
+      top: base-unit(6);
     }
 
 
     @include mq($from: desktop) {
-      top: base-unit(15);
       left: -37%;
       margin-top: 0;
+      top: base-unit(15);
     }
 
     &--before {
@@ -101,9 +101,9 @@
 
       border-left: 1px solid $tr-bastille;
       display: inline-block;
-      max-width: 120px;
       margin-bottom: 0;
       margin-top: 0;
+      max-width: 120px;
       padding: 0 base-unit(2) base-unit(2);
     }
 
@@ -156,8 +156,8 @@
 
     h3 {
       @include mq($until: tablet) {
-        line-height: $tr-h2-mobile-line-height;
         font-size: $tr-h2-mobile-font-size;
+        line-height: $tr-h2-mobile-line-height;
       }
 
     }
@@ -169,15 +169,14 @@
 
   &--bg-image {
     #{$block}__parallaxed-img {
-      background-image: url('../img/hero.jpg');
       background-color: $tr-black;
+      background-image: url('../img/hero.jpg');
       background-repeat: no-repeat;
       background-size: cover;
+      height: 500px;
       left: 0;
       top: 0;
       width: 100%;
-      z-index: -1;
-      height: 500px;
       z-index: 1;
 
       @include mq($from: mobile) {
@@ -185,8 +184,8 @@
       }
 
       @include mq($from: desktop) {
-        z-index: -1;
         height: 200%;
+        z-index: -1;
       }
     }
 
@@ -219,12 +218,12 @@
   }
 
   &--get-started {
-    &:before {
+    &::before {
+      background: $tr-black;
       content: '';
       height: base-unit(18);
       position: absolute;
       width: 100%;
-      background: $tr-black;
 
       @include mq($from: desktop) {
         display: none;
@@ -251,18 +250,18 @@
     }
 
     #{$block}__parallaxed-img {
-      left: auto;
-      width: 100%;
-      position: relative;
-      top: auto;
-      margin: - base-unit(4) 0 base-unit(4);
-      max-width: 460px;
       display: block;
+      left: auto;
+      margin: -(base-unit(4)) 0 base-unit(4);
       margin-left: auto;
       margin-right: auto;
+      max-width: 460px;
+      position: relative;
+      top: auto;
+      width: 100%;
 
       @include mq($from: tablet) {
-        margin-top: - base-unit(14);
+        margin-top: -(base-unit(14));
       }
 
       &--before {
