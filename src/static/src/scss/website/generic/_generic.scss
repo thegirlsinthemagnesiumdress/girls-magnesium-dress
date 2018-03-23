@@ -24,12 +24,18 @@
 
   }
 
-
+  //TODO : refactor to remove !important rules and work with design team
+  // to find right balance for padding on desktop.
   .wrapper {
     @include mq($from: desktop) {
       margin-top: $tr-header-height;
-      padding-bottom: 0;
-      padding-top: 0;
+      padding-bottom: 0 !important;
+      padding-top: 0 !important;
+
+      @media (max-height: $tr-bp-short-screen-height) {
+        padding-bottom: base-unit(14) !important;
+        padding-top: base-unit(8) !important;
+      }
     }
   }
 }
