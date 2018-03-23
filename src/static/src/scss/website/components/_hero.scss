@@ -55,11 +55,11 @@
     }
 
     img {
-      height: base-unit(3);
       margin-right: -5px;
+      height: base-unit(3);
 
-      @include mq($until: tablet) {
-        width: 110px;
+      @include mq($from: tablet) {
+        height: base-unit(5);
       }
     }
   }
