@@ -202,7 +202,7 @@
     // the gap between the title and the first paragraph
     // is shorter.
     & + #{$block}__bottom #{$block}__bottom-intro-paragraph-wrp {
-      margin-top: - base-unit(6);
+      margin-top: -(base-unit(6));
     }
   }
 
