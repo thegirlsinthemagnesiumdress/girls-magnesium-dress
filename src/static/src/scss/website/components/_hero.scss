@@ -25,8 +25,8 @@
     margin-top: base-unit(6);
 
     @include mq($from: tablet) {
-      margin-top: 0;
       margin-bottom: base-unit(13);
+      margin-top: 0;
     }
   }
 
@@ -38,13 +38,13 @@
   }
 
   &__bcg-logo {
-    text-align: right;
     margin-top: base-unit(3);
+    text-align: right;
 
     @include mq($from: tablet) {
-      position: absolute;
-      bottom: base-unit(2);
       bottom: base-unit(8);
+      position: absolute;
+      right: $tr-container-outer-margin;
     }
 
     p {
@@ -58,8 +58,8 @@
       height: base-unit(3);
       margin-right: -5px;
 
-      @include mq($until: tablet) {
-        width: 110px;
+      @include mq($from: tablet) {
+        height: base-unit(5);
       }
     }
   }

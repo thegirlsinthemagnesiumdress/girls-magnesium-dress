@@ -18,7 +18,7 @@ body {
   &.vertical-rythm-debug {
     position: relative;
 
-    &:after {
+    &::after {
       background: repeating-linear-gradient(transparent, transparent $tr-baseline - 1, $tr-zircorn $tr-baseline - 1, $tr-zircorn $tr-baseline);
       bottom: 0;
       content: '';

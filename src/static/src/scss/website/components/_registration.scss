@@ -41,8 +41,6 @@
     }
   }
 
-  &__form {}
-
   &__confirmation {
     @include spacing(mt, 5);
   }
@@ -70,14 +68,14 @@
       @include spacing(pt, 6);
     }
 
-    &:before {
+    &::before {
       @include spacing(s, 3);
-      border-radius: 50%;
       border: 1px solid $tr-gray;
+      border-radius: 50%;
       color: $tr-gray;
       content: '1';
       display: block;
-      margin-left: - base-unit(5);
+      margin-left: -(base-unit(5));
       position: absolute;
       text-align: center;
       top: 0;
