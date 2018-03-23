@@ -1,17 +1,19 @@
+import hashlib
+
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
 from django.db import models
-from  django.utils import timezone
-import hashlib
-import datetime
+from django.utils import timezone
 
-
-class User(GaeAbstractDatastoreUser):
-    is_qualtrics=models.BooleanField(default=False)
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 
+
+class User(GaeAbstractDatastoreUser):
+    is_qualtrics = models.BooleanField(default=False)
+
+
 class Survey(models.Model):
-    company_name= models.CharField(max_length=50)
+    company_name = models.CharField(max_length=50)
     uid = models.CharField(unique=True, editable=False, max_length=32)
 
     # Timestamps
