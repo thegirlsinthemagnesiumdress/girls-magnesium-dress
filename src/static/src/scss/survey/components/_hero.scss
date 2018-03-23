@@ -1,11 +1,11 @@
-//sass-lint:disable no-ids
+// sass-lint:disable no-ids no-url-domains no-url-protocols
 
 $top-header-h: base-unit(10);
 $header-min-height: base-unit(90);
 
 .JFEContent {
 
-  &:before {
+  &::before {
     background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,8 +41,8 @@ $header-min-height: base-unit(90);
     color: $tr-white;
     display: flex;
     height: calc(100vh - #{$top-header-h});
-    min-height: $header-min-height - $top-header-h;
     margin: 0;
+    min-height: $header-min-height - $top-header-h;
 
     @include mq(tablet) {
       align-items: center;
@@ -79,10 +79,10 @@ $header-min-height: base-unit(90);
       margin-bottom: base-unit(5);
       text-transform: capitalize;
 
-      @include mq($from: tablet) {
-        // font-size: 70px;
-        // line-height: 70px;
-      }
+      // @include mq($from: tablet) {
+      //   font-size: 70px;
+      //   line-height: 70px;
+      // }
     }
 
     &__description {
@@ -93,10 +93,9 @@ $header-min-height: base-unit(90);
         max-width: 470px;
       }
 
-      @include mq($from: desktop) {
-        // font-size: 20px;
-      }
+      // @include mq($from: desktop) {
+      //   font-size: 20px;
+      // }
     }
   }
 }
-

@@ -25,15 +25,15 @@
       left: auto;
       position: static;
       top: auto;
-      width: base-unit(1);
       transition: background-color .5s, width .5s;
+      width: base-unit(1);
 
     }
 
     .slick-active {
       button::before {
-        width: 40px;
         border-radius: 4px;
+        width: 40px;
       }
     }
   }

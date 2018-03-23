@@ -1,3 +1,5 @@
+// sass-lint:disable clean-import-paths
+
 // Fileoverview:
 // Main website scss file.
 
@@ -48,7 +50,7 @@
 
 .responsive {
   @include mq($from: tablet) {
-    background-color: red;
+    background-color: #f00;
   }
 }
 
