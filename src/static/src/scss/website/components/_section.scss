@@ -170,8 +170,8 @@
   &--bg-image {
 
     #{$block}__parallaxed-img {
+      @include bg-image-full-width('../img/customer/customer-bg');
       background-color: $tr-black;
-      background-image: url('../img/customer-bg.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       height: 1000px;
