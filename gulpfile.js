@@ -28,7 +28,8 @@ var SASS_INCLUDES = [
   'node_modules/sass-mq/',
   'node_modules/flexboxgrid-sass/',
   'node_modules/fullpage.js/dist',
-  'node_modules/slick-carousel/slick'
+  'node_modules/slick-carousel/slick',
+
 ];
 
 var ADMIN_STATIC = [
@@ -149,7 +150,8 @@ gulp.task('js', function () {
 
 const jsLibs = [
   'node_modules/clipboard/dist/clipboard.js',
-  'node_modules/@webcomponents/custom-elements/custom-elements.min.js'
+  'node_modules/@webcomponents/custom-elements/custom-elements.min.js',
+  'node_modules/picturefill/dist/picturefill.js',
 ]
 
 gulp.task('js-libs', function () {
