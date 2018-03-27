@@ -59,7 +59,9 @@
       position: absolute;
       right: $tr-container-outer-margin;
     }
+
     @include mq($from: desktop) {
+      bottom: -(base-unit(10));
       right: auto;
     }
 
