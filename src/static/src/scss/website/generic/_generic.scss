@@ -7,6 +7,10 @@
       height: auto !important;
     }
 
+    @media (max-height: $tr-bp-short-screen-height - 1px) {
+      height: auto !important;
+    }
+
     .wrapper {
       padding-bottom: base-unit(8);
       padding-top: base-unit(4);
@@ -16,12 +20,11 @@
         padding-top: base-unit(11);
       }
 
-      @include mq($from: mobile) {
+      @include mq($from: tablet) {
         padding-bottom: base-unit(14);
         padding-top: base-unit(8);
       }
     }
-
   }
 
   //TODO : refactor to remove !important rules and work with design team
@@ -32,7 +35,9 @@
       padding-bottom: 0 !important;
       padding-top: 0 !important;
 
-      @media (max-height: $tr-bp-short-screen-height) {
+      // Is wide but fullpage is disable because of the height.
+      @media (max-height: $tr-bp-short-screen-height - 1px) {
+        margin-top: 0;
         padding-bottom: base-unit(14) !important;
         padding-top: base-unit(8) !important;
       }
