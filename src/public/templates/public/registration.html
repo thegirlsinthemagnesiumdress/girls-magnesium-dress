@@ -26,7 +26,12 @@
                     <div class="col-xs-12 col-tablet-offset-2 col-tablet-6">
                         <label for="">Organization name</label>
                         <input id="company-name" name="companu-name" type="text" required>
-                        <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6" type="submit" disabled>
+                        <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6"
+                            data-tr-event
+                            data-tr-action="click"
+                            data-tr-category="Registration"
+                            data-tr-label="Generate Link"
+                            type="submit" disabled>
                             Generate link
                         </button>
                     </div>
@@ -46,9 +51,19 @@
                             Share the link below with your organisation to start collecting insights
                         </p>
                         <p class="tr-registration__confirmation-paragraph">
-                            <a class="tr-registration__link" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1" id="survey-link">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
+                            <a class="tr-registration__link"
+                                data-tr-event
+                                data-tr-action="click"
+                                data-tr-category="Registration"
+                                data-tr-label="Survey Link"
+                                href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1" id="survey-link">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
                         </p>
-                        <button class="tr-btn tr-btn--primary" data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
+                        <button class="tr-btn tr-btn--primary"
+                            data-tr-event
+                            data-tr-action="click"
+                            data-tr-category="Registration"
+                            data-tr-label="Copy to Clipboard"
+                            data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
                             Copy to clipboard
                         </button>
                     </div>
@@ -59,7 +74,12 @@
                         <p class="tr-gamma">
                           Capybara
                         </p>
-                        <a class="tr-btn tr-btn--primary" href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
+                        <a class="tr-btn tr-btn--primary"
+                            data-tr-event
+                            data-tr-action="click"
+                            data-tr-category="Registration"
+                            data-tr-label="Survey Link (sponsor)"
+                            href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
                             Get started
                         </a>
                     </div>

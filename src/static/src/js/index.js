@@ -1,6 +1,8 @@
 /**
  * @fileoverview Main js entry point.
  */
+import { initPolyfills } from './polyfills';
+import { initAnalytics } from './analytics';
 import fullpage from 'fullpage.js/dist/jquery.fullpage'; // eslint-disable-line no-unused-vars
 import jQuery from 'jquery';
 import 'slick-carousel';
@@ -17,3 +19,6 @@ window.customElements.define('tr-registration', Registration);
 window.customElements.define('tr-slider-section', SliderSection);
 window.customElements.define('tr-accordion', Accordion);
 window.customElements.define('tr-parallax-section', ParallaxSection);
+
+initPolyfills();
+initAnalytics();

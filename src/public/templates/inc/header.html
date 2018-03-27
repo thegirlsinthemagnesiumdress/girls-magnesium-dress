@@ -53,7 +53,12 @@
 
         <div class="tr-header__container">
             <div class="tr-header__action-wrp">
-                <a class="tr-btn tr-btn--primary" href="{% url 'registration' %}">
+                <a class="tr-btn tr-btn--primary"
+                    data-tr-event
+                    data-tr-action="click"
+                    data-tr-category="Header"
+                    data-tr-label="Get Started"
+                    href="{% url 'registration' %}">
                     Get started
                 </a>
             </div>
