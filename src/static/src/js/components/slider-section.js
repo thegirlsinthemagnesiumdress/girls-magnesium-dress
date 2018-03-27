@@ -32,6 +32,7 @@ export default class SliderSection extends HTMLElement {
   connectedCallback () {
     jQuery(DOM_SELECTORS.slideContainer).slick({
       autoplay: true,
+      autoplaySpeed: 10000,
       arrows: false,
       dots: true,
       fade: true,
