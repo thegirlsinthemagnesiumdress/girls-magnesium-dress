@@ -168,10 +168,12 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
-CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com/")
+CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com")
 CSP_CHILD_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'",)
-CSP_IMG_SRC = ("'self'", "data:")
+CSP_SCRIPT_SRC = ("'self'", "data:",
+    "'sha256-6DHuIhj3k6afOsLFU89YxwimNA48CWiNpJAlIfbOR3I='",
+    "https://www.google-analytics.com")
+CSP_IMG_SRC = ("'self'", "data:", "https://www.google-analytics.com")
 CSP_MEDIA_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 
