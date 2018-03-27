@@ -39,7 +39,14 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-2 col-mobile-8 col-mobile-offset-3 col-tablet-8 col-tablet-offset-3 col-desktop-6 col-desktop-offset-5 tr-parallax-section__title-wrp">
                         <h1 class="tr-parallax-section__title">Powerful online diagnostics to track your digital marketing expertise</h1>
-                        <img class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before" src="{% static 'img/data-transform.jpg' %}" data-parallax-target="#parallax-target-1" alt="">
+                        <img class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before"
+                            src="{% static 'img/diagnostic.jpg' %}" data-parallax-target="#parallax-target-1" alt=""
+                            sizes="(min-width: 1000px) 444px, 70vw"
+                            srcset="
+                                {% static 'img/diagnostic/diagnostic.jpg' %} 290w,
+                                {% static 'img/diagnostic/diagnostic-desk.jpg' %} 444w,
+                                {% static 'img/diagnostic/diagnostic-2x.jpg' %} 580w,
+                                {% static 'img/diagnostic/diagnostic-desk-2x.jpg' %} 888w">
                     </div>
                 </div>
             </section>
@@ -75,7 +82,14 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-2 col-mobile-8 col-mobile-offset-3 col-tablet-7 col-tablet-offset-1 col-desktop-5 col-desktop-offset-1 tr-parallax-section__title-wrp">
                         <h1 class="tr-parallax-section__title">Understand your data Transform your marketing</h1>
-                        <img class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before" src="{% static 'img/data-transform.jpg' %}" data-parallax-target="#parallax-target-2" alt="">
+
+                            <picture>
+                                <source srcset="{% static 'img/data-transform/data-transform-desk.jpg' %}, {% static 'img/data-transform/data-transform-desk-2x.jpg' %} 2x" media="(min-width: 768px)">
+                                <img
+                                    class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before"
+                                    data-parallax-target="#parallax-target-2"
+                                    srcset="{% static 'img/data-transform/data-transform.jpg' %}, {% static 'img/data-transform/data-transform-2x.jpg' %} 2x" alt="">
+                            </picture>
                     </div>
                 </div>
             </section>

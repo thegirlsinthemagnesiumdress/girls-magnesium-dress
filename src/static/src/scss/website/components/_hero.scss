@@ -1,10 +1,23 @@
 .tr-hero {
-  background-image: url('../img/hero.jpg');
   background-position: center;
   background-size: cover;
   color: $tr-white;
 
+  @include bg-image-full-width('../img/hero/hero');
+
+  &::before {
+    background: linear-gradient(to left, rgba($tr-white, 0) 0%, rgba(#4F4F4F, .35) 20%, rgba($tr-black, 0.51) 80%);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
   .wrapper {
+    position: relative;
     @include mq($until: tablet) {
       padding-bottom: base-unit(2);
     }

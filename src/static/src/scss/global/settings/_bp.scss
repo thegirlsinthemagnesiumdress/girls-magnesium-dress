@@ -10,6 +10,9 @@ $tr-breakpoints: (
   wide:    1300px
 );
 
+$tr-hidpi: (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+
+
 $tr-bp-short-screen-height: 768px;
 
 
