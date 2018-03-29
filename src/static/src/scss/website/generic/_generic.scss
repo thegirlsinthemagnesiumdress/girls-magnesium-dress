@@ -1,8 +1,8 @@
 .tr-section,
 .fp-section {
 
-  &,
-  &:not(.tr-hero):not(.section-slider):not(.mobile-full-height) .fp-tableCell {
+  &:not(.mobile-full-height),
+  &:not(.mobile-full-height) .fp-tableCell {
     @include mq($until: desktop) {
       height: auto !important;
     }
@@ -27,6 +27,8 @@
     }
   }
 
+
+
   //TODO : refactor to remove !important rules and work with design team
   // to find right balance for padding on desktop.
   .wrapper {
@@ -41,6 +43,25 @@
         padding-bottom: base-unit(14) !important;
         padding-top: base-unit(8) !important;
       }
+    }
+  }
+
+
+    // This styles are applied to the sections on load
+  // before Fullpage.js kicks in.
+  // Having the sections fullheight and vertically centered
+  // improves the loading perception.
+  html:not(.fp-enabled) & {
+    @include mq($from: desktop, $and: (min-height: $tr-bp-short-screen-height)) {
+      align-items: center;
+      display: flex;
+      height: 100vh !important;
+    }
+
+    &.tr-hero {
+      align-items: center;
+      display: flex;
+      height: 100vh !important;
     }
   }
 }
