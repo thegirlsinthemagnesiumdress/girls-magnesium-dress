@@ -89,12 +89,11 @@ export default class ParallaxSection extends HTMLElement {
           this.isResponsive = isResponsive();
 
           if (!this.$parallaxedImg.complete || this.$parallaxedImg.naturalWidth === 0) {
-            this.$parallaxedImg.onload = this.setImageAfterOffset.bind(this);
+            this.$parallaxedImg.onload = this.onSectionRendered.bind(this);
           } else {
-            this.setImageAfterOffset();
+            this.onSectionRendered();
           }
 
-          this.setEyebrowRect();
           window.addEventListener('resize', this.debouncedResize);
         }));
   }
@@ -164,6 +163,16 @@ export default class ParallaxSection extends HTMLElement {
     if (this.isResponsive && this.$eyebrow) {
       this.unpinEyebrow();
     }
+  }
+
+  /**
+   * Callback executed when the section has completed rendering.
+   */
+  onSectionRendered () {
+    window.setTimeout(() => {
+      this.setImageAfterOffset();
+      this.setEyebrowRect();
+    })
   }
 
   /**
@@ -251,7 +260,7 @@ export default class ParallaxSection extends HTMLElement {
    * @param {bool} animateOpacity Whether or not the eyebrow opacity should be animated when pinning.
    */
   pinEyebrow (animateOpacity) {
-    if (!this.eyebrowSticky) {
+    if (!this.eyebrowSticky && this.eyebrowRect) {
       // Clones the eyebrow and appends it to the body in order to keep the
       // position fixed working. Fullpage.js transforms the page and that affects
       // fixed positioning. https://www.w3.org/TR/css-transforms-1/#module-interactions
