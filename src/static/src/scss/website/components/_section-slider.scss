@@ -9,7 +9,13 @@
   //   }
   // }
 
+  .wrapper {
+    padding-bottom: base-unit(8);
+    padding-top: base-unit(8);
+  }
+
   .slick-dots {
+
     li,
     button {
       height: auto;
