@@ -1,13 +1,8 @@
-from django.conf.urls import url, include
-from . import views
-from api.views import SurveyViewSet
-
-from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register(r'survey', SurveyViewSet)
+from django.conf.urls import url
+from api.views import CreateSurveyView, SurveyCompanyNameFromUIDView
 
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^survey$', CreateSurveyView.as_view(), name='create_survey'),
+    url(r'^company-name/(?P<uid>\w{32})$', SurveyCompanyNameFromUIDView.as_view(), name='company_name'),
 ]

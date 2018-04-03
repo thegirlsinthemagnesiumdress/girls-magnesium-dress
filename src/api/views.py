@@ -1,35 +1,27 @@
-from rest_framework import permissions, viewsets
-from api.serializers import SurveySerializer
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
+
+from api.serializers import SurveySerializer, SurveyCompanyNameSerializer
 from core.models import Survey
-from rest_framework.permissions import IsAuthenticated
 
 
-class SurveyViewSet(viewsets.ModelViewSet):
+class CreateSurveyView(CreateAPIView):
     """
-    API endpoit for survey resource.
+    Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
     """
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
 
-    def get_permissions(self):
-        """
-        Instantiates and returns the list of permissions that this view requires.
-        We want to allow qualtrics users to list the companies only.
-        """
-        if self.action in ('list',):
-            return [IsAuthenticated()]
-        else:
-            return super(SurveyViewSet, self).get_permissions()
 
-    def get_queryset(self):
-        """
-        Returns the unique survey given his uid or an empty list.
-        We don't need to expose all the Surveys for now.
-        """
-        queryset = Survey.objects.all()
-        uid = self.request.query_params.get('uid', None)
-        if uid is not None:
-            queryset = queryset.filter(uid=uid)
-        else:
-            queryset = Survey.objects.none()
-        return queryset
+class SurveyCompanyNameFromUIDView(RetrieveAPIView):
+    """
+    External API endpoint to get the company name given a UID.
+    """
+    # Only allow authentication via token
+    # Only using session authentication by default everywhere else
+    # locks out anyone with a token from using any of the other endpoints
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = SurveyCompanyNameSerializer
+    queryset = Survey.objects.all()
+    lookup_field = 'uid'
+    lookup_url_kwarg = 'uid'

@@ -9,7 +9,7 @@ SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 
 
 class User(GaeAbstractDatastoreUser):
-    is_qualtrics = models.BooleanField(default=False)
+    pass
 
 
 class Survey(models.Model):

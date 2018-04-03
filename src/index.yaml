@@ -28,6 +28,11 @@ indexes:
   - name: __key__
     direction: desc
 
+- kind: core_survey
+  properties:
+  - name: company_name
+  - name: uid
+
 - kind: core_user
   properties:
   - name: __key__
