@@ -1,30 +1,36 @@
+// sass-lint:disable clean-import-paths
+
 // Fileoverview:
 // Main website scss file.
 
 @import 'global/settings/variables';
 
-//Functions
+// Functions
 @import 'global/functions/base-unit';
 
 // Settings
 @import 'global/settings/all';
+@import 'website/settings/variables';
 
-//Generic
-@import 'global/generic/all';
-@import 'flexboxgrid';
-
-//Mixins
+// Mixins
 @import 'mq';
 @import 'global/mixins/all';
 
-//Global elements
+// Generic
+@import 'global/generic/all';
+@import 'website/generic/generic';
+@import 'flexboxgrid';
+
+
+// Global elements
 @import 'global/elements/all';
 @import 'website/elements/forms';
+@import 'website/elements/links';
 
-//Utilities
+// Utilities
 @import 'global/utilities/all';
 
-//Fullpage css
+// Fullpage css
 @import 'jquery.fullpage';
 @import 'slick.scss';
 @import 'slick-theme.scss';
@@ -34,14 +40,17 @@
 @import 'website/components/section-slider';
 @import 'website/components/hero';
 @import 'website/components/header';
+@import 'website/components/footer';
 @import 'website/components/registration';
+@import 'website/components/accordion';
+
 
 // Pages
 
 
 .responsive {
   @include mq($from: tablet) {
-    background-color: red;
+    background-color: #f00;
   }
 }
 

@@ -1,25 +1,83 @@
 .tr-hero {
-  background-image: url('../img/hero.jpg');
   background-position: center;
   background-size: cover;
   color: $tr-white;
 
+  @include bg-image-full-width('../img/hero/hero');
+
+  &::before {
+    background: linear-gradient(to left, rgba($tr-white, 0) 0%, rgba(#4F4F4F, .35) 20%, rgba($tr-black, 0.51) 80%);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .wrapper {
+    position: relative;
+    @include mq($until: tablet) {
+      padding-bottom: base-unit(2);
+    }
+  }
+
+
   &__dmb {
+    display: none;
     margin-bottom: base-unit(7);
+
+    @include mq($from: tablet) {
+      display: block;
+    }
   }
 
   &__title {
-    margin-bottom: base-unit(13);
+    margin-bottom: base-unit(4);
+    margin-top: base-unit(6);
+
+    @include mq($from: tablet) {
+      margin-bottom: base-unit(13);
+      margin-top: 0;
+    }
+  }
+
+  &__get-started {
+    @include mq($until: mobile) {
+      display: block;
+      text-align: center;
+    }
   }
 
   &__bcg-logo {
-    bottom: base-unit(8);
-    position: absolute;
+    margin-top: base-unit(3);
     text-align: right;
 
+    @include mq($from: tablet) {
+      bottom: base-unit(8);
+      position: absolute;
+      right: $tr-container-outer-margin;
+    }
+
+    @include mq($from: desktop) {
+      bottom: -(base-unit(10));
+      right: auto;
+    }
+
+    p {
+      @include mq($until: tablet) {
+        font-size: 8px;
+        margin-bottom: 0;
+      }
+    }
+
     img {
-      width: 110px;
-      margin-right: -5px;
+      height: base-unit(3);
+
+      @include mq($from: tablet) {
+        height: base-unit(5);
+      }
     }
   }
 }
