@@ -17,7 +17,7 @@ class CreateSurveyView(CreateAPIView):
 class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     """
     External API endpoint to get the company name given a UID.
-    Must use `uid` GET param to specify company: e.g. ?uid=a95c7b47c8e2e1d057c56d114bb2862c
+    Must use `sid` GET param to specify company: e.g. ?sid=a95c7b47c8e2e1d057c56d114bb2862c
     """
     # Only allow authentication via token
     # Only using session authentication by default everywhere else
@@ -26,7 +26,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     serializer_class = SurveyCompanyNameSerializer
     queryset = Survey.objects.all()
     lookup_field = 'uid'
-    lookup_url_kwarg = 'uid'
+    lookup_url_kwarg = 'sid'
 
     def retrieve(self, request, *args, **kwargs):
         """
