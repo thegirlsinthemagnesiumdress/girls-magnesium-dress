@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_ENDPOINT = '/api/survey/';
+const API_ENDPOINT = '/api/survey';
 
 const DOM_SELECTORS = {
   form: '#registration-form',
