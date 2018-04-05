@@ -1,16 +1,39 @@
 .tr-registration {
   $block: &;
+  padding-bottom: base-unit(20);
 
   &__title {
-    @include spacing(mt, 7);
     @include spacing(mb, 5);
+    font-size: $tr-h1-mobile-font-size;
+    font-weight: $tr-h1-mobile-font-weight;
+    line-height: $tr-h1-mobile-line-height;
+
+    @include mq($from: tablet) {
+      @include spacing(mt, 7);
+      font-size: $tr-h2-font-size;
+      font-weight: $tr-h2-font-weight;
+      line-height: $tr-h2-line-height;
+    }
   }
 
-  &__confirmation-paragraph {
-    @include spacing(mb, 6);
+  &__desc {
+    margin-bottom: base-unit(5);
+
+    @include mq($from: tablet) {
+      margin-bottom: base-unit(6);
+    }
   }
 
-  &__form {}
+  &__disclaimer {
+    font-size: $tr-h4-font-size;
+    font-weight: $tr-h4-font-weight;
+    line-height: $tr-h4-line-height;
+    margin-bottom: base-unit(5);
+
+    @include mq($from: tablet) {
+      margin-bottom: base-unit(6);
+    }
+  }
 
   &__form--error {
     #{$block}__error {
@@ -18,17 +41,25 @@
     }
   }
 
+  &__error {
+    color: red;
+    display: none;
+  }
+
+  &__confirmation-paragraph {
+    @include spacing(mb, 3);
+    @include mq($from: tablet) {
+      @include spacing(mb, 6);
+    }
+  }
+
   &__confirmation {
     @include spacing(mt, 5);
   }
 
-  &__to-share-link {
-    pointer-events: none;
-  }
-
-  &__error {
-    color: red;
-    display: none;
+  &__link {
+    font-size: $tr-font-size-default;
+    word-break: break-all;
   }
 
   &__confirmation-step {
@@ -36,20 +67,34 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    @include spacing(pt, 6);
     position: relative;
-    word-break: break-all;
 
-    &:before {
+    & + & {
+      margin-top: base-unit(9);
+      @include mq($from: tablet) {
+        margin-top: 0;
+      }
+    }
+
+    @include mq($from: tablet) {
+      @include spacing(pt, 6);
+    }
+
+    &::before {
       @include spacing(s, 3);
       border: 1px solid $tr-gray;
       border-radius: 50%;
       color: $tr-gray;
       content: '1';
       display: block;
-      text-align: center;
+      margin-left: -(base-unit(5));
       position: absolute;
+      text-align: center;
       top: 0;
+
+      @include mq($from: tablet) {
+        margin-left: 0;
+      }
     }
 
     & + & {
@@ -58,5 +103,4 @@
       }
     }
   }
-
 }

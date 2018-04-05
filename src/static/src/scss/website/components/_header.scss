@@ -1,29 +1,20 @@
-$tr-header-height: base-unit(8);
-
 .tr-header {
   height: $tr-header-height;
   position: fixed;
   top: 0;
   width: 100%;
 
-  &--sticky {
-    .tr-header__container {
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-      transform: translateY(0%);
-      will-change: transform;
-    }
-
-    .tr-header__site-title {
-      color: $tr-logo-font;
+  .tr-btn {
+    @include mq($until: mobile) {
+      padding: base-unit(3) 12px;
     }
   }
 
-  &--static {
-    display: block;
-    position: relative;
+  &__logo {
+    height: base-unit(2);
 
-    .tr-header__site-title {
-      color: $tr-logo-font;
+    @include mq($from: tablet) {
+      height: base-unit(3);
     }
   }
 
@@ -57,6 +48,26 @@ $tr-header-height: base-unit(8);
       height: $tr-header-height;
       margin: 0;
     }
+  }
 
+  &--sticky {
+    .tr-header__container {
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+      transform: translateY(0%);
+      will-change: transform;
+    }
+
+    .tr-header__site-title {
+      color: $tr-logo-font;
+    }
+  }
+
+  &--static {
+    display: block;
+    position: relative;
+
+    .tr-header__site-title {
+      color: $tr-logo-font;
+    }
   }
 }

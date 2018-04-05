@@ -1,0 +1,46 @@
+.tr-section,
+.fp-section {
+
+  &,
+  &:not(.tr-hero):not(.section-slider):not(.mobile-full-height) .fp-tableCell {
+    @include mq($until: desktop) {
+      height: auto !important;
+    }
+
+    @media (max-height: $tr-bp-short-screen-height - 1px) {
+      height: auto !important;
+    }
+
+    .wrapper {
+      padding-bottom: base-unit(8);
+      padding-top: base-unit(4);
+
+      @include mq($from: mobile) {
+        padding-bottom: base-unit(11);
+        padding-top: base-unit(11);
+      }
+
+      @include mq($from: tablet) {
+        padding-bottom: base-unit(14);
+        padding-top: base-unit(8);
+      }
+    }
+  }
+
+  //TODO : refactor to remove !important rules and work with design team
+  // to find right balance for padding on desktop.
+  .wrapper {
+    @include mq($from: desktop) {
+      margin-top: $tr-header-height;
+      padding-bottom: 0 !important;
+      padding-top: 0 !important;
+
+      // Is wide but fullpage is disable because of the height.
+      @media (max-height: $tr-bp-short-screen-height - 1px) {
+        margin-top: 0;
+        padding-bottom: base-unit(14) !important;
+        padding-top: base-unit(8) !important;
+      }
+    }
+  }
+}

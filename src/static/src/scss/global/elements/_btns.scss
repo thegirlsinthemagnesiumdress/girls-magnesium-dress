@@ -9,22 +9,23 @@ $btn-tr-primary-bg-color-disabled: $tr-gray;
 
 // Base button used for buttons/ctas.
 .tr-btn {
-  border: none;
+  border: 0;
   border-radius: 2px;
   display: inline-block;
   font-size: 14px;
-  letter-spacing: 0.75px;
+  letter-spacing: .75px;
   line-height: 1;
   margin: 8px 0;
-  padding: base-unit(3) 23px;
-  text-transform: uppercase;
+  padding: base-unit(2) 23px;
   text-decoration: none;
+  text-transform: uppercase;
   transition: color .15s linear, background-color .15s linear;
   vertical-align: middle;
 
-  @include mq($from: desktop) {
+  @include mq($from: tablet) {
     font-size: 16px;
-    letter-spacing: 0.5px;
+    letter-spacing: .5px;
+    padding: base-unit(3) 23px;
   }
 
   &.tr-btn--primary {
@@ -48,4 +49,3 @@ $btn-tr-primary-bg-color-disabled: $tr-gray;
     }
   }
 }
-

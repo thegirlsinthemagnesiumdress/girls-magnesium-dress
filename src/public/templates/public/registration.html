@@ -2,37 +2,55 @@
 
 {% block body %}
 {% include 'inc/header.html' with type="static" %}
-
 <tr-registration>
     <script type="text/template" id="form-confirmation">
         <div class="tr-registration__confirmation">
             <div class="row">
-                <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
+                <div class="col-xs-12 col-tablet-offset-1 col-tablet-6">
                     <h1 class="tr-beta tr-registration__title">
                         Your unique survey has now been created
                     </h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col-mobile-12 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
+                <div class="col-xs-10 col-xs-offset-2 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
                     <p class="tr-registration__confirmation-paragraph">
                         Share the link below with your organisation to start collecting insights
                     </p>
                     <p class="tr-registration__confirmation-paragraph">
-                        <a href="[[survey_link]]" class="tr-registration__to-share-link" id="survey-link">[[survey_link]]</a>
+                        <a
+                            class="tr-registration__link"
+                            data-tr-event
+                            data-tr-action="click"
+                            data-tr-category="Registration"
+                            data-tr-label="Survey Link"
+                            href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1"
+                            id="survey-link">
+                            https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1
+                        </a>
                     </p>
-                    <button class="tr-btn tr-btn--primary tr-registration__copy-clipboard" data-clipboard-text="[[survey_link]]">
+                    <button class="tr-btn tr-btn--primary"
+                        data-tr-event
+                        data-tr-action="click"
+                        data-tr-category="Registration"
+                        data-tr-label="Copy to Clipboard"
+                        data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
                         Copy to clipboard
                     </button>
                 </div>
-                <div class="col-mobile-12 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
+                <div class="col-xs-10 col-xs-offset-2 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
                     <p class="tr-registration__confirmation-paragraph">
                             Start with the lorem ipsum dolor sit amet lorem
                     </p>
                     <p class="tr-gamma tr-registration__company-name">
                         [[company_name]]
                     </p>
-                    <a class="tr-btn tr-btn--primary tr-registration__start-sponsor" href="[[survey_sponsor_link]]" target="_blank">
+                    <a class="tr-btn tr-btn--primary tr-registration__start-sponsor"
+                        data-tr-event
+                        data-tr-action="click"
+                        data-tr-category="Registration"
+                        data-tr-label="Survey Link (sponsor)"
+                        href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
                         Get started
                     </a>
                 </div>
@@ -44,21 +62,31 @@
             <form action="#" class="tr-registration__form" id="registration-form">
                 {% csrf_token %}
                 <div class="row">
-                    <div class="col-mobile-12 col-tablet-offset-1 col-tablet-6">
-                        <h1 class="tr-beta tr-registration__title">Register your organisation to take the survey</h1>
+                    <div class="col-xs-12 col-tablet-offset-1 col-tablet-6">
+                        <h1 class="tr-beta tr-registration__title">Ready to start benchmarking your business’s Digital Maturity?</h1>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-mobile-12 col-tablet-offset-2 col-tablet-6">
-                        <p class="tr-u-spacing-mb-6">
-                            Enter your details below to generate a link to a survey you can share with your colleagues
+                    <div class="col-xs-10 col-xs-offset-2 col-tablet-offset-2 col-tablet-6">
+                        <p class="tr-registration__desc">
+                            Enter your organization name below to generate a link you can share with your colleagues.
                         </p>
-                        <p class="tr-u-spacing-mb-10 tr-theta">
-                            You should only register your organisation if you are the sponsor of this survey. If you have been sent to Product Name by someone in your organisation, go back and follow the link they have shared with you.
+                        <p class="tr-registration__disclaimer">
+                            You should only use this form if you are initiating this process for your organization. If you have been directed to this tool by a colleague  - please use the link provided by them.
                         </p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-tablet-offset-2 col-tablet-6">
                         <label for="">Organization name</label>
                         <input id="company-name" name="company_name" type="text" required>
-                        <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6" type="submit" disabled>
+                        <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6"
+                            data-tr-event
+                            data-tr-action="click"
+                            data-tr-category="Registration"
+                            data-tr-label="Generate Link"
+                            type="submit" disabled>
                             Generate link
                         </button>
                         <div class="tr-registration__error tr-u-spacing-mt-3">

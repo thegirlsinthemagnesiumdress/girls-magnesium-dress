@@ -2,6 +2,10 @@ import axios from 'axios'
 
 const API_ENDPOINT = '/api/survey';
 
+/**
+ * Dom Selectors.
+ * @enum {string}
+ */
 const DOM_SELECTORS = {
   form: '#registration-form',
   confirmationScreen: '.tr-registration__confirmation',
@@ -14,13 +18,25 @@ const DOM_SELECTORS = {
   getStartedSponsor: '.tr-registration__start-sponsor'
 };
 
+/**
+ * CSS Classes.
+ * @enum {string}
+ */
 const CLASSES = {
   hidden: 'tr-u-display-none',
   formError: 'tr-registration__form--error'
 }
 
+/**
+ * Custom Element Registration Class.
+ * @extends {HTMLElement}
+ */
 export default class Registration extends HTMLElement {
 
+  /**
+   * Invoked when the custom element is first connected
+   * to the document's DOM.
+   */
   connectedCallback () {
     this.$form = this.querySelector(DOM_SELECTORS.form);
     this.$template = this.querySelector(DOM_SELECTORS.confirmationPage);
@@ -33,11 +49,21 @@ export default class Registration extends HTMLElement {
     this.csrf = this.$form.querySelector(DOM_SELECTORS.csrf).value;
   }
 
+  /**
+   * Form input event handler.
+   * @param {event} e Input event.
+   */
   formChange (e) {
     const isValid = this.$form.checkValidity();
     this.$submitBtn.disabled = !isValid;
   }
 
+  /**
+   * Retrieves the template and populate it with the data passed in.
+   *
+   * @param {object} context Template context.
+   * @return {HtmlElement} Confirmation element.
+   */
   getConfirmationNode (context) {
     let template = this.$template.textContent;
     const confirmationNode = document.createRange().createContextualFragment(template);
@@ -59,6 +85,11 @@ export default class Registration extends HTMLElement {
     return confirmationNode;
   }
 
+  /**
+   * Posts the company name to the server and updates UI with confirmation
+   * page.
+   * @param {*} e
+   */
   generateConfirmation (e) {
     // Show step two.
     const formData = new FormData(this.$form);
@@ -85,11 +116,5 @@ export default class Registration extends HTMLElement {
       });
 
     e.preventDefault();
-  }
-
-
-  showConfirmation () {
-    this.$form.classList.add(CLASSES.hidden);
-    this.$confirmationScreen.classList.remove(CLASSES.hidden);
   }
 }

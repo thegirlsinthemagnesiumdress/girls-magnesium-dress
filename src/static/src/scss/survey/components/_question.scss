@@ -14,8 +14,8 @@
   }
 
   fieldset {
-    overflow-y: visible !important;
     overflow-x: visible !important;
+    overflow-y: visible !important;
   }
 
   .LabelWrapper {
@@ -38,22 +38,27 @@
       }
     }
 
-    label.SingleAnswer:after {
+    label.SingleAnswer::after {
       border-color: $tr-cornflower-blue;
     }
 
-    label.SingleAnswer.q-checked:before {
+    label.SingleAnswer.q-checked::before {
       background-color: $tr-cornflower-blue;
     }
 
-     .MC .TextEntryBox,  .TE .ESTB .InputText,  .TE .FORM .InputText,  .TE .ML .InputText,  .TE .PW .InputText,  .TE .SL .InputText {
+    .MC .TextEntryBox,
+    .TE .ESTB .InputText,
+    .TE .FORM .InputText,
+    .TE .ML .InputText,
+    .TE .PW .InputText,
+    .TE .SL .InputText {
       margin: 0 !important;
       padding: 2px 0 1px;
     }
   }
 
-   label.MultipleAnswer.q-checked,
-   label.SingleAnswer.q-checked {
+  label.MultipleAnswer.q-checked,
+  label.SingleAnswer.q-checked {
     color: $tr-white;
 
     @include mq($from: tablet) {

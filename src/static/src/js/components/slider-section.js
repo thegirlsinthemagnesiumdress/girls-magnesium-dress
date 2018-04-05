@@ -1,25 +1,38 @@
+import jQuery from 'jquery';
+
+/**
+ * Dom Selectors.
+ * @enum {string}
+ */
 const DOM_SELECTORS = {
   slideContainer: '.section-slider__container'
 };
 
-const CLASSES = {
-  sticky: 'tr-header--sticky'
-}
-
+/**
+ * List of background colors.
+ */
 const CAROUSEL_COLORS = [
   'tr-u-bg-color--blue-darker',
   'tr-u-bg-color--blue',
   'tr-u-bg-color--mariner',
 ];
 
-export default class SliderSection extends HTMLElement {
-  constructor () {
-    super();
-  }
 
+/**
+ * Custom Element Slider Section Class.
+ * @extends {HTMLElement}
+ */
+export default class SliderSection extends HTMLElement {
+   /**
+   * Invoked when the custom element is first connected
+   * to the document's DOM.
+   *
+   * Initialize Slick Carousel.
+   */
   connectedCallback () {
-    window.$('.section-slider__container').slick({
+    jQuery(DOM_SELECTORS.slideContainer).slick({
       autoplay: true,
+      autoplaySpeed: 10000,
       arrows: false,
       dots: true,
       fade: true,
@@ -29,6 +42,5 @@ export default class SliderSection extends HTMLElement {
       CAROUSEL_COLORS.forEach((c) => this.classList.remove(c));
       this.classList.add(CAROUSEL_COLORS[nextSlide]);
     });
-
   }
 }
