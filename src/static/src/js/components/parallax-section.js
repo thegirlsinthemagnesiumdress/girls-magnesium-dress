@@ -70,6 +70,8 @@ export default class ParallaxSection extends HTMLElement {
     this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
     const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
     this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
+    this.subSectionsNumber = window.parseInt(this.getAttribute('data-sub-sections-number'), 10) || 2;
+
 
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
@@ -106,6 +108,7 @@ export default class ParallaxSection extends HTMLElement {
   disconnectedCallback () {
     window.removeEventListener('resize', this.debouncedResize);
     this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
+    this.subSectionsNumber = 0;
   }
 
   /**
@@ -144,7 +147,13 @@ export default class ParallaxSection extends HTMLElement {
         this.$parallaxedImg.classList.add(CLASSES.parallaxAfter);
       }
 
-      if (nextIndex === this.index + 2) {
+      if (nextIndex === this.index + this.subSectionsNumber - 1) {
+        if (this.$eyebrow) {
+          this.pinEyebrow(direction === 'up');
+        }
+      }
+
+      if (nextIndex === this.index + this.subSectionsNumber) {
         if (this.$eyebrow) {
           this.unpinEyebrow(true);
         }
