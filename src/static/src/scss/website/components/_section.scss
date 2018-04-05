@@ -41,15 +41,9 @@
       top: base-unit(15);
     }
 
-    &--before {
+    &--step-minus-1 {
       @include mq($from: desktop) {
         transform: translateY(base-unit(-20));
-      }
-    }
-
-    &--after {
-      @include mq($from: desktop) {
-        transform: translateY(base-unit(35));
       }
     }
 
@@ -222,6 +216,24 @@
       }
     }
 
+    #{$block}__parallaxed-img--step-1 {
+      @include mq($from: desktop) {
+        transform: translateY(base-unit(35));
+      }
+    }
+
+    #{$block}__parallaxed-img--step-2 {
+      @include mq($from: desktop) {
+        transform: translateY(base-unit(70));
+      }
+    }
+
+    #{$block}__parallaxed-img--step-3 {
+      @include mq($from: desktop) {
+        transform: translateY(base-unit(105));
+      }
+    }
+
     & + #{$block}__bottom {
       background-color: $tr-black;
 
@@ -244,7 +256,7 @@
     #{$block}__parallaxed-img {
       left: 8.33%;
 
-      &--after {
+      &--step-1 {
         transform: translateY(base-unit(10));
       }
     }
@@ -302,7 +314,7 @@
         margin-top: 0;
       }
 
-      &--before {
+      &--step-minus-1 {
         transform: translateY(0);
 
         @include mq($from: desktop) {
@@ -310,7 +322,7 @@
         }
       }
 
-      &--after {
+      &--step-1 {
         transform: translateY(0);
       }
     }
