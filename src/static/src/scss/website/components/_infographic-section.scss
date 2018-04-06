@@ -6,6 +6,8 @@ $dot-right: -22px;
 .infographic-section {
   $block: &;
   color: $tr-white;
+  position: relative;
+  z-index: 1;
 
   &__title {
     margin-bottom: 30px;
@@ -15,40 +17,55 @@ $dot-right: -22px;
     &::before {
       content: '';
       background-color: $tr-white;
-      bottom: -36px;
+      bottom: -32px;
       display: block;
-      left: -39px;
+      left: -23px;
       position: absolute;
       top: -20px;
       width: base-unit(1);
+
+      @include mq($from: tablet) {
+        bottom: -36px;
+        left: -39px;
+      }
     }
-  }
 
-  &__steps  {
-    margin: 0;
-  }
+}
 
-  &__step-t {
-    font-size: 14px;
-    position: absolute;
-    transform: translateX(-100%);
-    text-transform: uppercase;
+&__steps  {
+  margin: 0;
+}
+
+&__step-t {
+  font-size: 14px;
+  position: relative;
+
+  @include mq($from: tablet) {
     line-height: base-unit(3);
     margin-left: -46px;
-    padding-right: 7px;
     margin-top: 5px;
+    padding-right: 7px;
+    position: absolute;
+    text-transform: uppercase;
+    transform: translateX(-100%);
     z-index: 1;
+  }
 
-    &::after {
-      border: $dot-border solid $tr-gray;
-      border-radius: 50%;
-      content: '';
-      display: inline-block;
-      height: $dot-size;
-      position: absolute;
+  &::after {
+    border-radius: 50%;
+    border: $dot-border solid $tr-gray;
+    content: '';
+    display: inline-block;
+    height: $dot-size;
+    left: -30px;
+    position: absolute;
+    width: $dot-size;
+
+    @include mq($from: tablet) {
+      left: auto;
       right: $dot-right;
-      width: $dot-size;
     }
+  }
 
     &--active {
       &::after {
@@ -62,10 +79,16 @@ $dot-right: -22px;
         display: inline-block;
         height: $dot-size-inner;
         position: absolute;
-        right: $dot-right;
-        margin-right: ($dot-size - $dot-size-inner) / 2 + $dot-border;
+        left: -30px;
         top: ($dot-size - $dot-size-inner) / 2 + $dot-border;
         width: $dot-size-inner;
+        margin-left: ($dot-size - $dot-size-inner) / 2 + $dot-border;
+
+        @include mq($from: tablet) {
+          margin-right: ($dot-size - $dot-size-inner) / 2 + $dot-border;
+          left: auto;
+          right: $dot-right;
+        }
       }
     }
   }
@@ -79,11 +102,17 @@ $dot-right: -22px;
       background-color: $tr-gray;
       content: '';
       display: inline-block;
-      height: calc(100% - #{$dot-size});
-      left: -39px;
+      height: calc(100% + 3px);
+      left: -23px;
       position: absolute;
-      top: $dot-size + 2px + 5px;
+      top: -2px;
       width: base-unit(1);
+
+      @include mq($from: tablet) {
+        height: calc(100% - #{$dot-size});
+        left: -39px;
+        top: $dot-size + 2px + 5px;
+      }
     }
 
     &--active {
