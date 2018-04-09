@@ -1,4 +1,5 @@
 .tr-registration {
+  $block: &;
   padding-bottom: base-unit(20);
 
   &__title {
@@ -32,6 +33,17 @@
     @include mq($from: tablet) {
       margin-bottom: base-unit(6);
     }
+  }
+
+  &__form--error {
+    #{$block}__error {
+      display: block;
+    }
+  }
+
+  &__error {
+    color: $tr-font-error;
+    display: none;
   }
 
   &__confirmation-paragraph {

@@ -112,6 +112,9 @@ ENV/
 # Node
 node_modules/
 
+# JetBrains IDEA/PyCharm/VSCode meta
+.idea/
+.vscode/
 
 *.orig
 .vscode/
