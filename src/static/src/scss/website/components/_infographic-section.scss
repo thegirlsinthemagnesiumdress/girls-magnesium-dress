@@ -11,13 +11,13 @@ $dot-right: -22px;
 
   &__title {
     margin-bottom: 30px;
-    position: relative;
     max-width: 315px;
+    position: relative;
 
     &::before {
-      content: '';
       background-color: $tr-white;
       bottom: -32px;
+      content: '';
       display: block;
       left: -23px;
       position: absolute;
@@ -29,43 +29,42 @@ $dot-right: -22px;
         left: -39px;
       }
     }
-
-}
-
-&__steps  {
-  margin: 0;
-}
-
-&__step-t {
-  font-size: 14px;
-  position: relative;
-  z-index: 1;
-
-  @include mq($from: tablet) {
-    line-height: base-unit(3);
-    margin-left: -46px;
-    margin-top: 5px;
-    padding-right: 7px;
-    position: absolute;
-    text-transform: uppercase;
-    transform: translateX(-100%);
   }
 
-  &::after {
-    border-radius: 50%;
-    border: $dot-border solid $infographic-inactive;
-    content: '';
-    display: inline-block;
-    height: $dot-size;
-    left: -30px;
-    position: absolute;
-    width: $dot-size;
+  &__steps  {
+    margin: 0;
+  }
+
+  &__step-t {
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
 
     @include mq($from: tablet) {
-      left: auto;
-      right: $dot-right;
+      line-height: base-unit(3);
+      margin-left: -46px;
+      margin-top: 5px;
+      padding-right: 7px;
+      position: absolute;
+      text-transform: uppercase;
+      transform: translateX(-100%);
     }
-  }
+
+    &::after {
+      border: $dot-border solid $infographic-inactive;
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+      height: $dot-size;
+      left: -30px;
+      position: absolute;
+      width: $dot-size;
+
+      @include mq($from: tablet) {
+        left: auto;
+        right: $dot-right;
+      }
+    }
 
     &--active {
       &::after {
@@ -78,15 +77,15 @@ $dot-right: -22px;
         content: '';
         display: inline-block;
         height: $dot-size-inner;
-        position: absolute;
         left: -30px;
+        margin-left: ($dot-size - $dot-size-inner) / 2 + $dot-border;
+        position: absolute;
         top: ($dot-size - $dot-size-inner) / 2 + $dot-border;
         width: $dot-size-inner;
-        margin-left: ($dot-size - $dot-size-inner) / 2 + $dot-border;
 
         @include mq($from: tablet) {
-          margin-right: ($dot-size - $dot-size-inner) / 2 + $dot-border;
           left: auto;
+          margin-right: ($dot-size - $dot-size-inner) / 2 + $dot-border;
           right: $dot-right;
         }
       }
@@ -98,7 +97,7 @@ $dot-right: -22px;
     padding-bottom: base-unit(2);
     position: relative;
 
-    &:before {
+    &::before {
       background-color: $infographic-inactive;
       content: '';
       display: inline-block;
@@ -116,16 +115,15 @@ $dot-right: -22px;
     }
 
     &--active {
-      &:before {
+      &::before {
         background-color: $tr-white;
       }
     }
 
     &:last-child {
-      &:before {
+      &::before {
         display: none;
       }
     }
   }
-
 }
