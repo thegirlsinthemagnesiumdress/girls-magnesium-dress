@@ -4,7 +4,7 @@
 {% block body %}
 {% include 'inc/header.html' %}
 <div id="fullpage">
-    <div class="fp-section tr-hero">
+    <div class="fp-section tr-hero mobile-full-height">
         <section class="wrapper container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-mobile-10 col-mobile-offset-1 col-tablet-10 col-tablet-offset-0 col-desktop-7 col-desktop-offset-1">
@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-2 col-mobile-8 col-mobile-offset-3 col-tablet-8 col-tablet-offset-3 col-desktop-6 col-desktop-offset-5 tr-parallax-section__title-wrp">
                         <h1 class="tr-parallax-section__title">Your roadmap to digital marketing maturity</h1>
-                        <img class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before"
+                        <img class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--step-minus-1"
                             src="{% static 'img/diagnostic.jpg' %}" data-parallax-target="#parallax-target-1" alt=""
                             sizes="(min-width: 1000px) 444px, 70vw"
                             srcset="
@@ -86,7 +86,7 @@
                             <picture>
                                 <source srcset="{% static 'img/data-transform/data-transform-desk.jpg' %}, {% static 'img/data-transform/data-transform-desk-2x.jpg' %} 2x" media="(min-width: 768px)">
                                 <img
-                                    class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before"
+                                    class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--step-minus-1"
                                     data-parallax-target="#parallax-target-2"
                                     srcset="{% static 'img/data-transform/data-transform.jpg' %}, {% static 'img/data-transform/data-transform-2x.jpg' %} 2x" alt="">
                             </picture>
@@ -113,7 +113,7 @@
         </section>
     </div>
 
-    <tr-slider-section class="fp-section section-slider tr-color-light tr-u-bg-color--blue-darker">
+    <tr-slider-section class="fp-section section-slider mobile-full-height tr-color-light tr-u-bg-color--blue-darker">
         <div class="wrapper container-fluid">
             <div class="row center-xs">
                 <div class="col-xs-9 section-slider__container">
@@ -158,8 +158,8 @@
 
     <!-- Customers Section -->
     <section class="fp-section tr-parallax-section tr-parallax-section--diagnostics tr-parallax-section--bg-image tr-color-light">
-        <tr-parallax-section>
-            <div class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before"></div>
+        <tr-parallax-section data-sub-sections-number="3">
+            <div class="tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--step-minus-1"></div>
             <section class="wrapper container-fluid">
                 <div class="tr-parallax-section__eyebrow tr-parallax-section__eyebrow--pin tr-parallax-section__eyebrow--light">
                     <h4>
@@ -186,24 +186,42 @@
                     <p class="tr-u-spacing-mb-5">
                         Businesses fall into one of the four stages, with only a handful from the original Google and Boston Consulting Group study at the forefront - where marketing is executed dynamically and optimised towards single-customer business outcomes across the full purchase journey.
                     </p>
-                    <div class="tr-parallax-section__infographic-wrp row">
-                        <h3 class="col-xs-8 col-xs-offset-2 col-mobile-8 col-mobile-offset-0 col-desktop-12 col-desktop-offset-0">
-                            Your path to multi-moment digital marketing
-                        </h3>
-                        <img class="tr-parallax-section__infographic tr-u-spacing-mt-2" src="{% static 'img/infographic.svg' %}" alt="infographic">
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="fp-section tr-parallax-section__bottom tr-color-light">
+        <section class="wrapper container-fluid">
+            <div class="row infographic-section">
+                <div class="col-xs-11 col-xs-offset-1 col-mobile-9 col-mobile-offset-1 col-tablet-8 col-tablet-offset-3 col-desktop-6 col-desktop-offset-6">
+                    <div class="row">
+                        <div class="col-xs-8 col-mobile-8 col-mobile-offset-0 col-desktop-12 col-desktop-offset-0">
+                            <h3 class="infographic-section__title">
+                                Your path to multi-moment digital marketing
+                            </h3>
+                        </div>
                     </div>
+                    <dl class="infographic-section__steps">
+                        <dt class="infographic-section__step-t infographic-section__step-t--active">Nascent</dt>
+                        <dd class="infographic-section__step-d infographic-section__step-d--active">These typically handle marketing on a campaign-by-campaign basis, mainly using external data and direct buys, with only limited links to sales results. </dd>
+                        <dt class="infographic-section__step-t infographic-section__step-t--active">Emerging</dt>
+                        <dd class="infographic-section__step-d">They’re characterised by making some use of their own data in automated buying, but are still optimising and testing on a channel-by-channel basis.</dd>
+                        <dt class="infographic-section__step-t">Connected</dt>
+                        <dd class="infographic-section__step-d">These companies were found to have integrated their data effectively, activating it across channels and linking it to ROI or sales proxies.</dd>
+                        <dt class="infographic-section__step-t">Multi-moment</dt>
+                        <dd class="infographic-section__step-d">They are seeing efficiency and ROI benefits by successfully connecting with consumers at multiple moments across the purchase journey through personalised content.</dd>
+                    </dl>
                 </div>
             </div>
         </section>
     </div>
 
-
     <section class="fp-section tr-parallax-section tr-parallax-section--get-started tr-u-bg-color--white">
-        <tr-parallax-section>
+        <tr-parallax-section data-sub-sections-number="1">
         <div class="wrapper container-fluid tr-u-position-relative">
             <div class="row middle-tablet">
                 <div class="col-xs-12 col-desktop-4">
-                    <img class="tr-parallax-section__phone-img tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--before" src="{% static 'img/phone.png' %}" alt="">
+                    <img class="tr-parallax-section__phone-img tr-parallax-section__parallaxed-img tr-parallax-section__parallaxed-img--step-minus-1" src="{% static 'img/phone.png' %}" alt="">
                 </div>
                 <div class="col-xs-12 col-desktop-2">
                     <div class="tr-parallax-section__eyebrow">

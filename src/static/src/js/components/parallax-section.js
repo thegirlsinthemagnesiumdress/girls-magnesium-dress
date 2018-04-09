@@ -31,8 +31,8 @@ const DOM_SELECTORS = {
  * @enum {string}
  */
 const CLASSES = {
-  parallaxBefore: 'tr-parallax-section__parallaxed-img--before',
-  parallaxAfter: 'tr-parallax-section__parallaxed-img--after',
+  parallaxBefore: 'tr-parallax-section__parallaxed-img--step-minus-1',
+  parallaxStep: 'tr-parallax-section__parallaxed-img--step',
   parallaxNoTransition: 'tr-parallax-section__parallaxed-img--no-transition',
   eyebrowSticky: 'tr-parallax-section__eyebrow--sticky',
   eyebrowHidden: 'tr-parallax-section__eyebrow--hidden',
@@ -70,6 +70,8 @@ export default class ParallaxSection extends HTMLElement {
     this.$eyebrow = this.querySelector(DOM_SELECTORS.eyebrow);
     const imgTargetSelector = this.$parallaxedImg.getAttribute('data-parallax-target');
     this.$targetImgPositionEl = imgTargetSelector ? document.querySelector(imgTargetSelector) : null;
+    this.subSectionsNumber = window.parseInt(this.getAttribute('data-sub-sections-number'), 10) || 2;
+
 
     this.subscriptions
       .push(pubsub.subscribe('section-leave', (topic, ...args) => {
@@ -106,6 +108,7 @@ export default class ParallaxSection extends HTMLElement {
   disconnectedCallback () {
     window.removeEventListener('resize', this.debouncedResize);
     this.subscriptions.forEach((sub) => pubsub.unsubscribe(sub));
+    this.subSectionsNumber = 0;
   }
 
   /**
@@ -118,7 +121,11 @@ export default class ParallaxSection extends HTMLElement {
    */
   sectionLeaveCb (index, nextIndex, direction) {
     if (!this.isResponsive) {
+      const stepClasses = [...this.$parallaxedImg.classList].filter((cssClass) => cssClass.match(CLASSES.parallaxStep));
+
+      // Previous step.
       if (nextIndex === this.index - 1) {
+        stepClasses.forEach((cssClass) => this.$parallaxedImg.classList.remove(cssClass));
         this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
 
         if (this.$eyebrow) {
@@ -126,6 +133,7 @@ export default class ParallaxSection extends HTMLElement {
         }
       }
 
+      // Current step.
       if (nextIndex === this.index) {
         this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
         this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
@@ -140,11 +148,26 @@ export default class ParallaxSection extends HTMLElement {
         if (this.imageOffsetAfter) {
           this.$parallaxedImg.style.transform = `translateY(${this.imageOffsetAfter}px)`;
         }
-
-        this.$parallaxedImg.classList.add(CLASSES.parallaxAfter);
       }
 
-      if (nextIndex === this.index + 2) {
+      if (nextIndex >= this.index && nextIndex <= this.index + this.subSectionsNumber) {
+        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
+
+        // Remove step classes.
+        stepClasses.forEach((cssClass) => this.$parallaxedImg.classList.remove(cssClass));
+
+        // Add current step class.
+        this.$parallaxedImg.classList.add(`${CLASSES.parallaxStep}-${nextIndex - this.index}`);
+      }
+
+      if (nextIndex === this.index + this.subSectionsNumber - 1 &&
+          nextIndex !== this.index + 1) {
+        if (this.$eyebrow) {
+          this.pinEyebrow(direction === 'up');
+        }
+      }
+
+      if (nextIndex === this.index + this.subSectionsNumber) {
         if (this.$eyebrow) {
           this.unpinEyebrow(true);
         }
@@ -175,6 +198,10 @@ export default class ParallaxSection extends HTMLElement {
       let containedAfter;
       let transformed;
 
+      const stepClasses = [...this.$parallaxedImg.classList].filter((cssClass) => cssClass.match(CLASSES.parallaxStep));
+      const currentStepClass = stepClasses.length > 0 ? stepClasses[0] : 0;
+
+
       this.$parallaxedImg.classList.add(CLASSES.parallaxNoTransition);
 
       // Removes before/after classes (and inline styles) and saves if they were
@@ -184,25 +211,14 @@ export default class ParallaxSection extends HTMLElement {
         transformed = true;
       }
 
-      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxBefore)) {
-        containedBefore = true;
-        this.$parallaxedImg.classList.remove(CLASSES.parallaxBefore);
-      }
-
-      if (this.$parallaxedImg.classList.contains(CLASSES.parallaxAfter)) {
-        containedAfter = true;
-        this.$parallaxedImg.classList.remove(CLASSES.parallaxAfter);
+      if (currentStepClass) {
+        this.$parallaxedImg.classList.remove(currentStepClass);
       }
 
       this.imageOffsetAfter = this.getDistance(this.$parallaxedImg, this.$targetImgPositionEl) + imgAfterOffset;
 
-      // Restore after/before after the calculation is done.
-      if (containedBefore) {
-        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
-      }
-
-      if (containedAfter) {
-        this.$parallaxedImg.classList.add(CLASSES.parallaxBefore);
+      if (currentStepClass) {
+        this.$parallaxedImg.classList.add(currentStepClass);
       }
 
       if (transformed) {
