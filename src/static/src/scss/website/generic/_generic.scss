@@ -29,8 +29,8 @@
 
 
 
-  //TODO : refactor to remove !important rules and work with design team
-  // to find right balance for padding on desktop.
+  // TODO (pchillari): refactor to remove !important rules and work with design
+  // team to find right balance for padding on desktop.
   .wrapper {
     @include mq($from: desktop) {
       margin-top: $tr-header-height;
@@ -47,10 +47,10 @@
   }
 
 
-    // This styles are applied to the sections on load
+  // These styles are applied to the sections on load
   // before Fullpage.js kicks in.
   // Having the sections fullheight and vertically centered
-  // improves the loading perception.
+  // improves the percieved loading time.
   html:not(.fp-enabled) & {
     @include mq($from: desktop, $and: (min-height: $tr-bp-short-screen-height)) {
       align-items: center;
