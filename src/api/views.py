@@ -1,30 +1,37 @@
-from django.http import JsonResponse
-import logging
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, get_object_or_404
+from rest_framework.response import Response
+
+from api.serializers import SurveySerializer, SurveyCompanyNameSerializer
+from core.models import Survey
 
 
-# This is a view used to investigate and prove we can use qualtrics
-# web services to populate the company name
-#
-# Everything is hardcoded. This has to be taken as a quick prototype.
-def company(request):
-    # Prototypy token auth
-    token = 'vG9r2NgG6Azr'
-    request_token = request.META.get('HTTP_X_API_TOKEN')
-    logging.info('Request toke %s', request_token)
+class CreateSurveyView(CreateAPIView):
+    """
+    Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
+    """
+    serializer_class = SurveySerializer
+    queryset = Survey.objects.all()
 
-    # Getting this from query string and not from url pattern
-    # because I can't find a way to create the right url from Qualtrics.
-    company_id = request.GET.get('id')
 
-    if token != request_token:
-        return JsonResponse(status=403, data={'error': 'Forbidden'})
+class SurveyCompanyNameFromUIDView(RetrieveAPIView):
+    """
+    External API endpoint to get the company name given a UID.
+    Must use `sid` GET param to specify company: e.g. ?sid=a95c7b47c8e2e1d057c56d114bb2862c
+    """
+    # Only allow authentication via token
+    # Only using session authentication by default everywhere else
+    # locks out anyone with a token from using any of the other endpoints
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = SurveyCompanyNameSerializer
+    queryset = Survey.objects.all()
+    lookup_field = 'uid'
+    lookup_url_kwarg = 'sid'
 
-    if not company_id:
-        return JsonResponse(status=404, data={'error': 'You need to provide company id'})
-
-    company_id_map = {
-        '1': 'Capybara',
-        '2': 'Potato'
-    }
-
-    return JsonResponse({'name': company_id_map.get(company_id, 'A company')})
+    def retrieve(self, request, *args, **kwargs):
+        """
+        Overridden RetrieveAPIView retrieve() to get instance via GET param instead of URL keyword arg.
+        """
+        instance = get_object_or_404(self.queryset, **{self.lookup_field: request.GET.get(self.lookup_url_kwarg)})
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
