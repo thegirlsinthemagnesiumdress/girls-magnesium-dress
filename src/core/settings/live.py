@@ -66,3 +66,6 @@ TEMPLATES = [{
         )
     },
 }]
+
+# Disable REST Framework's browsable API in staging/production
+REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ('rest_framework.renderers.JSONRenderer',)

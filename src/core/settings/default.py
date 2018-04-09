@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'djangae.contrib.gauth_datastore',
     'djangae.contrib.security',
     'svg',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     # Application
     'core',
@@ -239,11 +241,26 @@ SVG_DIRS = [
     os.path.join(STATIC_ROOT, 'img')
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
+
 DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['^third_party$', 'sitepackages$', '^node_modules$', '^tests$']
 
 DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
     r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
     r".+\.py.$",  # Anything with an extension of .pyX, e.g. pyc or pyo
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'djangae.contrib.gauth_datastore.backends.AppEngineUserAPIBackend',
+)
 
 from .constants import *

@@ -3,9 +3,64 @@
 {% block body %}
 {% include 'inc/header.html' with type="static" %}
 <tr-registration>
+    <script type="text/template" id="form-confirmation">
+        <div class="tr-registration__confirmation">
+            <div class="row">
+                <div class="col-xs-12 col-tablet-offset-1 col-tablet-6">
+                    <h1 class="tr-beta tr-registration__title">
+                        Your unique survey has now been created
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-2 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
+                    <p class="tr-registration__confirmation-paragraph">
+                        Share the link below with your organisation to start collecting insights
+                    </p>
+                    <p class="tr-registration__confirmation-paragraph">
+                        <a
+                            class="tr-registration__link"
+                            data-tr-event
+                            data-tr-action="click"
+                            data-tr-category="Registration"
+                            data-tr-label="Survey Link"
+                            href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1"
+                            id="survey-link">
+                            https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1
+                        </a>
+                    </p>
+                    <button class="tr-btn tr-btn--primary"
+                        data-tr-event
+                        data-tr-action="click"
+                        data-tr-category="Registration"
+                        data-tr-label="Copy to Clipboard"
+                        data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
+                        Copy to clipboard
+                    </button>
+                </div>
+                <div class="col-xs-10 col-xs-offset-2 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
+                    <p class="tr-registration__confirmation-paragraph">
+                            Start with the lorem ipsum dolor sit amet lorem
+                    </p>
+                    <p class="tr-gamma tr-registration__company-name">
+                        [[company_name]]
+                    </p>
+                    <a class="tr-btn tr-btn--primary tr-registration__start-sponsor"
+                        data-tr-event
+                        data-tr-action="click"
+                        data-tr-category="Registration"
+                        data-tr-label="Survey Link (sponsor)"
+                        href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
+                        Get started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
     <section class="tr-registration">
         <section class="wrapper container-fluid">
             <form action="#" class="tr-registration__form" id="registration-form">
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-xs-12 col-tablet-offset-1 col-tablet-6">
                         <h1 class="tr-beta tr-registration__title">Ready to start benchmarking your business’s Digital Maturity?</h1>
@@ -25,7 +80,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-tablet-offset-2 col-tablet-6">
                         <label for="">Organization name</label>
-                        <input id="company-name" name="companu-name" type="text" required>
+                        <input id="company-name" name="company_name" type="text" required>
                         <button class="tr-btn tr-btn--primary tr-btn--disable tr-u-spacing-mt-6"
                             data-tr-event
                             data-tr-action="click"
@@ -34,57 +89,12 @@
                             type="submit" disabled>
                             Generate link
                         </button>
+                        <div class="tr-registration__error tr-u-spacing-mt-3">
+                            Oops! Something went wrong!
+                        </div>
                     </div>
                 </div>
             </form>
-            <div class="tr-registration__confirmation tr-u-display-none">
-                <div class="row">
-                    <div class="col-xs-12 col-tablet-offset-1 col-tablet-6">
-                        <h1 class="tr-beta tr-registration__title">
-                            Your unique survey has now been created
-                        </h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-10 col-xs-offset-2 col-tablet-offset-2 col-tablet-3 tr-registration__confirmation-step">
-                        <p class="tr-registration__confirmation-paragraph">
-                            Share the link below with your organisation to start collecting insights
-                        </p>
-                        <p class="tr-registration__confirmation-paragraph">
-                            <a class="tr-registration__link"
-                                data-tr-event
-                                data-tr-action="click"
-                                data-tr-category="Registration"
-                                data-tr-label="Survey Link"
-                                href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1" id="survey-link">https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1</a>
-                        </p>
-                        <button class="tr-btn tr-btn--primary"
-                            data-tr-event
-                            data-tr-action="click"
-                            data-tr-category="Registration"
-                            data-tr-label="Copy to Clipboard"
-                            data-clipboard-text="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1">
-                            Copy to clipboard
-                        </button>
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-2 col-tablet-3 col-tablet-offset-1 tr-registration__confirmation-step ">
-                        <p class="tr-registration__confirmation-paragraph">
-                                Start with the lorem ipsum dolor sit amet lorem
-                        </p>
-                        <p class="tr-gamma">
-                          Capybara
-                        </p>
-                        <a class="tr-btn tr-btn--primary"
-                            data-tr-event
-                            data-tr-action="click"
-                            data-tr-category="Registration"
-                            data-tr-label="Survey Link (sponsor)"
-                            href="https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD?sid=1&sponsor=true" target="_blank">
-                            Get started
-                        </a>
-                    </div>
-                </div>
-            </div>
         </section>
     </section>
 </tr-registration>
