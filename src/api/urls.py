@@ -1,6 +1,8 @@
 from django.conf.urls import url
-from . import views
+from api.views import CreateSurveyView, SurveyCompanyNameFromUIDView
+
 
 urlpatterns = [
-    url(r'company/$', views.company, name='company_api')
+    url(r'^survey$', CreateSurveyView.as_view(), name='create_survey'),
+    url(r'^company-name$', SurveyCompanyNameFromUIDView.as_view(), name='company_name'),
 ]
