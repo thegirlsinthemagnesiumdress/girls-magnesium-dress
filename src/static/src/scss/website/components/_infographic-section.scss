@@ -39,6 +39,7 @@ $dot-right: -22px;
 &__step-t {
   font-size: 14px;
   position: relative;
+  z-index: 1;
 
   @include mq($from: tablet) {
     line-height: base-unit(3);
@@ -48,12 +49,11 @@ $dot-right: -22px;
     position: absolute;
     text-transform: uppercase;
     transform: translateX(-100%);
-    z-index: 1;
   }
 
   &::after {
     border-radius: 50%;
-    border: $dot-border solid $tr-gray;
+    border: $dot-border solid $infographic-inactive;
     content: '';
     display: inline-block;
     height: $dot-size;
@@ -99,7 +99,7 @@ $dot-right: -22px;
     position: relative;
 
     &:before {
-      background-color: $tr-gray;
+      background-color: $infographic-inactive;
       content: '';
       display: inline-block;
       height: calc(100% + 3px);
