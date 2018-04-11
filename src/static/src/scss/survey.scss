@@ -9,13 +9,14 @@
 // Settings
 @import 'global/settings/all';
 
-//Generic
-@import 'global/generic/normalize';
-@import 'flexboxgrid';
-
 //Mixins
 @import 'mq';
 @import 'global/mixins/all';
+
+//Generic
+@import 'global/generic/all';
+@import 'flexboxgrid';
+
 
 //Global elements
 @import 'global/elements/all';
