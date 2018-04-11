@@ -20,6 +20,6 @@
     "max-len"              : [2, 120, 2],
     "object-curly-spacing" : [2, "always"],
     "semi": [2, "always"],
-    "comma-dangle": ["warning", "always-multiline"]
+    "comma-dangle": [2, "always-multiline"]
   }
 }
