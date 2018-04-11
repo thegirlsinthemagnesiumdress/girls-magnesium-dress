@@ -8,8 +8,8 @@ $header-min-height: base-unit(90);
   #SkinContent,
   .SkinInner {
     margin: 0;
-    min-width: auto;
     max-width: none;
+    min-width: auto;
     width: 100%;
   }
 
@@ -18,9 +18,9 @@ $header-min-height: base-unit(90);
   }
 
   #Questions {
-    @include spacing(py, 12);
     @extend .wrapper;
     @extend .container-fluid;
+    @include spacing(py, 12);
   }
 
   #SkinContent,
@@ -45,13 +45,13 @@ $header-min-height: base-unit(90);
     background: transparent;
     color: $tr-white;
     display: flex;
-    min-height: calc(100vh);
     margin: 0;
-    position: relative;
     margin-top: -$top-header-h;
-    padding-top: $top-header-h;
+    min-height: calc(100vh);
     padding-left: 0;
     padding-right: 0;
+    padding-top: $top-header-h;
+    position: relative;
 
     &::before {
       background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
@@ -60,10 +60,10 @@ $header-min-height: base-unit(90);
       content: '';
       display: block;
       height: 100%;
+      margin-left: -16px;
       position: absolute;
       top: 0;
       width: 100vw;
-      margin-left: -16px;
     }
 
     @include mq(tablet) {
@@ -72,12 +72,12 @@ $header-min-height: base-unit(90);
   }
 
   #Header {
-    background: transparent;
-    color: $tr-white;
-    position: relative;
     @extend .wrapper;
     @extend .container-fluid;
+    background: transparent;
+    color: $tr-white;
     padding-bottom: 40px;
+    position: relative;
   }
 
   .hero {
@@ -86,16 +86,13 @@ $header-min-height: base-unit(90);
       position: relative;
 
       @include mq(tablet) {
-        top: -$top-header-h;
         max-width: 650px;
+        top: -$top-header-h;
       }
     }
 
     &__title-intro {
-      // font-size: 22px;
-      // line-height: 28px;
       margin-bottom: base-unit(5);
-      // font-weight: 700;
 
       @include mq($from: desktop) {
         margin-bottom: base-unit(1);
@@ -103,29 +100,17 @@ $header-min-height: base-unit(90);
     }
 
     &__title {
-      // font-size: 36px;
       font-weight: $tr-font-weight-bold;
-      // line-height: 40px;
       margin-bottom: base-unit(5);
       text-transform: capitalize;
-
-      // @include mq($from: tablet) {
-      //   font-size: 70px;
-      //   line-height: 70px;
-      // }
     }
 
     &__description {
-      // font-size: 18px;
       margin-bottom: base-unit(5);
 
       @include mq($from: tablet) {
         max-width: 470px;
       }
-
-      // @include mq($from: desktop) {
-      //   font-size: 20px;
-      // }
     }
 
     &__bcg-logo {
