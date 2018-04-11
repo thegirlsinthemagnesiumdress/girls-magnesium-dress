@@ -36,6 +36,10 @@ $header-min-height: base-unit(90);
     z-index: 1;
   }
 
+  #Logo {
+    background: url('../img/dmb-logo-light.svg') left center no-repeat;
+  }
+
 
   #HeaderContainer {
     background: transparent;
