@@ -3,25 +3,24 @@
 $top-header-h: base-unit(10);
 $header-min-height: base-unit(90);
 
-.JFEContent {
-
-  &::before {
-    background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    content: '';
-    display: block;
-    height: 100vh;
-    min-height: $header-min-height;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-}
 
 .Skin {
+  #SkinContent,
+  .SkinInner {
+    margin: 0;
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  #SkinContent {
+    padding: 0;
+  }
+
   #Questions {
     @include spacing(py, 12);
+    @extend .wrapper;
+    @extend .container-fluid;
   }
 
   #SkinContent,
@@ -33,31 +32,56 @@ $header-min-height: base-unit(90);
   #LogoContainer {
     @include spacing(py, 4, true);
     height: $top-header-h;
+    position: relative;
+    z-index: 1;
   }
 
 
-  #Header {
+  #HeaderContainer {
     background: transparent;
     color: $tr-white;
     display: flex;
-    height: calc(100vh - #{$top-header-h});
+    min-height: calc(100vh);
     margin: 0;
-    min-height: $header-min-height - $top-header-h;
+    position: relative;
+    margin-top: -$top-header-h;
+    padding-top: $top-header-h;
+    padding-left: 0;
+    padding-right: 0;
+
+    &::before {
+      background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      margin-left: -16px;
+    }
 
     @include mq(tablet) {
       align-items: center;
     }
   }
 
+  #Header {
+    color: $tr-white;
+    @extend .wrapper;
+    @extend .container-fluid;
+  }
 
   .hero {
 
     &__content {
       position: relative;
+      padding-bottom: 40px;
 
       @include mq(tablet) {
         top: -$top-header-h;
-
+        max-width: 650px;
       }
     }
 
