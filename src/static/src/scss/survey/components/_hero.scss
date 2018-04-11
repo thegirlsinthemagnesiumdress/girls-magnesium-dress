@@ -72,16 +72,18 @@ $header-min-height: base-unit(90);
   }
 
   #Header {
+    background: transparent;
     color: $tr-white;
+    position: relative;
     @extend .wrapper;
     @extend .container-fluid;
+    padding-bottom: 40px;
   }
 
   .hero {
 
     &__content {
       position: relative;
-      padding-bottom: 40px;
 
       @include mq(tablet) {
         top: -$top-header-h;
@@ -124,6 +126,25 @@ $header-min-height: base-unit(90);
       // @include mq($from: desktop) {
       //   font-size: 20px;
       // }
+    }
+
+    &__bcg-logo {
+      margin-top: base-unit(3);
+      text-align: right;
+
+      img {
+        height: base-unit(3) !important;
+
+        @include mq($from: tablet) {
+          height: base-unit(5 !important);
+        }
+      }
+
+      @include mq($from: tablet) {
+        bottom: 0;
+        position: absolute;
+        right: 0;
+      }
     }
   }
 }
