@@ -92,10 +92,9 @@ export default class Registration extends HTMLElement {
    */
   generateConfirmation (e) {
     // Show step two.
-    const formData = new FormData(this.$form);
     this.$form.classList.remove(CLASSES.formError);
     const postData = {
-      'company_name': formData.get('company_name')
+      'company_name': this.$form.elements['company_name'].value
     };
 
     axios.post(API_ENDPOINT, postData, {
