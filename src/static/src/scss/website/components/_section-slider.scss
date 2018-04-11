@@ -14,7 +14,13 @@
     padding-top: base-unit(8);
   }
 
+  .slick-slider {
+    position: inherit;
+  }
+
   .slick-dots {
+    bottom: 25px;
+    left: 0;
     li,
     button {
       height: auto;
