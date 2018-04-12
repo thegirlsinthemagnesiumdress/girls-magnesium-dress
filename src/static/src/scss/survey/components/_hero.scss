@@ -3,24 +3,23 @@
 $top-header-h: base-unit(10);
 $header-min-height: base-unit(90);
 
-.JFEContent {
-
-  &::before {
-    background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    content: '';
-    display: block;
-    height: 100vh;
-    min-height: $header-min-height;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-}
 
 .Skin {
+  #SkinContent,
+  .SkinInner {
+    margin: 0;
+    max-width: none;
+    min-width: auto;
+    width: 100%;
+  }
+
+  #SkinContent {
+    padding: 0;
+  }
+
   #Questions {
+    @extend .wrapper;
+    @extend .container-fluid;
     @include spacing(py, 12);
   }
 
@@ -33,22 +32,53 @@ $header-min-height: base-unit(90);
   #LogoContainer {
     @include spacing(py, 4, true);
     height: $top-header-h;
+    position: relative;
+    z-index: 1;
+  }
+
+  #Logo {
+    background: url('../img/dmb-logo-light.svg') left center no-repeat;
   }
 
 
-  #Header {
+  #HeaderContainer {
     background: transparent;
     color: $tr-white;
     display: flex;
-    height: calc(100vh - #{$top-header-h});
     margin: 0;
-    min-height: $header-min-height - $top-header-h;
+    margin-top: -$top-header-h;
+    min-height: calc(100vh);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: $top-header-h;
+    position: relative;
+
+    &::before {
+      background-image: url('https://survey-dot-potato-trev-test.appspot.com/static/img/survey-hero.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      content: '';
+      display: block;
+      height: 100%;
+      margin-left: -16px;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+    }
 
     @include mq(tablet) {
       align-items: center;
     }
   }
 
+  #Header {
+    @extend .wrapper;
+    @extend .container-fluid;
+    background: transparent;
+    color: $tr-white;
+    padding-bottom: 40px;
+    position: relative;
+  }
 
   .hero {
 
@@ -56,16 +86,13 @@ $header-min-height: base-unit(90);
       position: relative;
 
       @include mq(tablet) {
+        max-width: 650px;
         top: -$top-header-h;
-
       }
     }
 
     &__title-intro {
-      // font-size: 22px;
-      // line-height: 28px;
       margin-bottom: base-unit(5);
-      // font-weight: 700;
 
       @include mq($from: desktop) {
         margin-bottom: base-unit(1);
@@ -73,29 +100,36 @@ $header-min-height: base-unit(90);
     }
 
     &__title {
-      // font-size: 36px;
       font-weight: $tr-font-weight-bold;
-      // line-height: 40px;
       margin-bottom: base-unit(5);
       text-transform: capitalize;
-
-      // @include mq($from: tablet) {
-      //   font-size: 70px;
-      //   line-height: 70px;
-      // }
     }
 
     &__description {
-      // font-size: 18px;
       margin-bottom: base-unit(5);
 
       @include mq($from: tablet) {
         max-width: 470px;
       }
+    }
 
-      // @include mq($from: desktop) {
-      //   font-size: 20px;
-      // }
+    &__bcg-logo {
+      margin-top: base-unit(3);
+      text-align: right;
+
+      img {
+        height: base-unit(3) !important;
+
+        @include mq($from: tablet) {
+          height: base-unit(5 !important);
+        }
+      }
+
+      @include mq($from: tablet) {
+        bottom: 0;
+        position: absolute;
+        right: 0;
+      }
     }
   }
 }

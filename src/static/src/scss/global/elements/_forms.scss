@@ -10,7 +10,11 @@ form {
 
   label:not(.q-radio) {
     display: block;
-    padding: 0 0 base-unit(3);
+    padding: 0 0 base-unit(2);
+
+    @include mq(tablet) {
+      padding: 0 0 base-unit(3);
+    }
   }
 
   input[type='text'],
