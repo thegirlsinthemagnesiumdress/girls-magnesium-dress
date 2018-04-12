@@ -1,29 +1,30 @@
 // Fileoverview:
-// Main survey file. This stiles are dynamically injected in the Qualtrics survey.
+// Main survey file. This stiles are dynamically injected in the Qualtrics
+// survey.
 
 @import 'global/settings/variables';
 
-//Functions
+// Functions
 @import 'global/functions/base-unit';
 
 // Settings
 @import 'global/settings/all';
 
-//Generic
-@import 'global/generic/normalize';
-@import 'flexboxgrid';
-
-//Mixins
+// Mixins
 @import 'mq';
 @import 'global/mixins/all';
 
-//Global elements
+// Generic
+@import 'global/generic/all';
+@import 'flexboxgrid';
+
+// Global elements
 @import 'global/elements/all';
 @import 'survey/generic/global';
 
-//Utilities
+// Utilities
 @import 'global/utilities/all';
 
-//Components
+// Components
 @import 'survey/components/hero';
 @import 'survey/components/question';
