@@ -1,48 +1,53 @@
 @mixin bg-image-full-width($img, $extension: 'jpg') {
-  background-image: url(#{$img}.#{$extension});
+  background-image: url(#{$img}-480.#{$extension});
   background-size: cover;
 
-  @include mq($and: $tr-hidpi) {
-    background-image: url(#{$img}-2x.#{$extension});
-  }
 
-  @include mq($from: mobile) {
-    background-image: url(#{$img}-480.#{$extension});
-  }
-
-  @include mq($from: mobile, $and: $tr-hidpi) {
+  @media #{$tr-hidpi} {
     background-image: url(#{$img}-480-2x.#{$extension});
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     background-image: url(#{$img}-768.#{$extension});
   }
 
-  @include mq($from: tablet, $and: $tr-hidpi) {
-    background-image: url(#{$img}-768-2x.#{$extension});
+  @include mq($from: mobile) {
+    @media #{$tr-hidpi} {
+      background-image: url(#{$img}-768-2x.#{$extension});
+    }
   }
 
-  @include mq($from: desktop) {
+  @include mq($from: tablet) {
     background-image: url(#{$img}-1000.#{$extension});
   }
 
-  @include mq($from: desktop, $and: $tr-hidpi) {
-    background-image: url(#{$img}-1000-2x.#{$extension});
+  @include mq($from: tablet) {
+    @media #{$tr-hidpi} {
+      background-image: url(#{$img}-1000-2x.#{$extension});
+    }
   }
 
-  @include mq($from: wide) {
+  @include mq($from: desktop) {
     background-image: url(#{$img}-1300.#{$extension});
   }
 
-  @include mq($from: wide, $and: $tr-hidpi) {
-    background-image: url(#{$img}-1300-2x.#{$extension});
+  @include mq($from: desktop) {
+    @media #{$tr-hidpi} {
+      background-image: url(#{$img}-1300-2x.#{$extension});
+    }
   }
 
-  @include mq($from: 1800px) {
+  @include mq($from: wide) {
     background-image: url(#{$img}-1800.#{$extension});
   }
 
-  @include mq($from: 1800px, $and: $tr-hidpi) {
+  @include mq($from: wide) {
+    @media #{$tr-hidpi} {
+      background-image: url(#{$img}-1800-2x.#{$extension});
+    }
+  }
+
+  @include mq($from: 1800px) {
     background-image: url(#{$img}-1800-2x.#{$extension});
   }
 }
