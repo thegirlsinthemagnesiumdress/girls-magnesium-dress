@@ -30,9 +30,9 @@
     }
 
     .SingleAnswer {
-      padding: base-unit(3) base-unit(2);
-      display: flex;
       align-items: center;
+      display: flex;
+      padding: base-unit(3) base-unit(2);
 
       @include mq($from: tablet) {
         padding: 0 !important;
