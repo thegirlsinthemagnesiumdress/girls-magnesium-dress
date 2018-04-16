@@ -121,7 +121,7 @@ $header-min-height: base-unit(90);
         height: base-unit(3) !important;
 
         @include mq($from: tablet) {
-          height: base-unit(5 !important);
+          height: base-unit(5) !important;
         }
       }
 
