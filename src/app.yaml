@@ -46,9 +46,9 @@ handlers:
   secure: always
   login: admin
 
-- url: /favicon\.ico
-  static_files: static/dist/img/favicon.ico
-  upload: static/dist/img/favicon\.ico
+- url: /favicon\.png
+  static_files: static/dist/img/favicon.png
+  upload: static/dist/img/favicon\.png
 
   # We currently have to set this handler to be able to
   # have static files locally being public.
