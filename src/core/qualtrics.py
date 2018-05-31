@@ -13,7 +13,11 @@ weights = {
 }
 
 categories = {
-    ''
+    'audience': [],
+    'automation': [],
+    'ads': [],
+    'analysis': [],
+    'access': [],
 }
 
 
@@ -77,7 +81,7 @@ def string_to_number_or_zero(number):
 def to_questions_array(survey_results):
     question_key_regex = re.compile(r'^Q\d+(_\d+)?$')
 
-    # filter results keys that are questions.
+    # filter results keys that are questions. Unfortunately we have to rely on property key names.
     questions_keys = filter(question_key_regex.search, survey_results.keys())
 
     # filter out questions without a response.

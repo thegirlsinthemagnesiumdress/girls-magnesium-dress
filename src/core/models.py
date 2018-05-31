@@ -16,6 +16,27 @@ class Survey(models.Model):
     company_name = models.CharField(max_length=50)
     uid = models.CharField(unique=True, editable=False, max_length=32)
 
+    DMB_overall_average = models.DecimalField()
+
+    DMB_activation_overall_average = models.DecimalField()
+    DMB_audience_overall_average = models.DecimalField()
+    DMB_automation_overall_average = models.DecimalField()
+    DMB_ads_overall_average = models.DecimalField()
+    DMB_analysis_overall_average = models.DecimalField()
+    DMB_access_overall_average = models.DecimalField()
+
+    DMB_overall_best_practice = models.DecimalField()
+
+    DMB_activation_overall_best_practice = models.DecimalField()
+    DMB_audience_overall_best_practice = models.DecimalField()
+    DMB_automation_overall_best_practice = models.DecimalField()
+    DMB_ads_overall_best_practice = models.DecimalField()
+    DMB_analysis_overall_best_practice = models.DecimalField()
+    DMB_access_overall_best_practice = models.DecimalField()
+
+
+
+
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
 
