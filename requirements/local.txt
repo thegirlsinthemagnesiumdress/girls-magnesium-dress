@@ -8,3 +8,5 @@ Pillow==3.1.1
 coverage==4.2
 GoogleAppEngineCloudStorageClient==1.9.22.1
 selenium==3.4.3
+requests
+numpy
