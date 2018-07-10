@@ -42,6 +42,7 @@ qualtrics_export = {
         'Organization-weightedAvg' : '0.0',
         'Organization-weightedStdDev' : '0.0',
         'sid' : '1',
+        'ResponseID': 'AAA',
         'Enter Embedded Data Field Name Here...' : '',
         'sponsor' : '',
         'company_name' : 'new survey',
@@ -70,6 +71,7 @@ qualtrics_export = {
         'Organization-weightedAvg' : '0.0',
         'Organization-weightedStdDev' : '0.0',
         'sid' : '1',
+        'ResponseID': 'AAB',
         'Enter Embedded Data Field Name Here...' : '',
         'sponsor' : '',
         'company_name' : 'new survey',
@@ -98,6 +100,7 @@ qualtrics_export = {
         'Organization-weightedAvg' : '0.0',
         'Organization-weightedStdDev' : '0.0',
         'sid' : '2',
+        'ResponseID': 'AAC',
         'Enter Embedded Data Field Name Here...' : '',
         'sponsor' : '',
         'company_name' : 'new survey',
@@ -157,3 +160,15 @@ def generate_surveys():
         surveys.append(s)
 
     return surveys
+
+
+def get_mocked_results(all=True, uid=None):
+    if all:
+        return qualtrics_export
+    else:
+        index = len(qualtrics_export)
+        for idx, item in enumerate(qualtrics_export):
+            if item.get('ResponseID') == uid:
+                index = idx
+                break
+        return qualtrics_export[index:]
