@@ -72,7 +72,6 @@ def get_results():
     os.remove(tmp_file)
     return json.loads(qualtrics_data)
 
-
 def string_to_number_or_zero(number):
     try:
         return float(number)
@@ -96,7 +95,6 @@ def to_questions_array(response_data):
     # create a tuple with an array of questions where an element is (key, value, weight).
     questions_key_value = map(lambda key: (key, string_to_number_or_zero(response_data.get(key)), weights.get(key, 1), get_question_dimension(key)), questions_keys_with_value)
     return questions_key_value
-
 
 def weighted_questions_average(questions_array):
     """[summary]

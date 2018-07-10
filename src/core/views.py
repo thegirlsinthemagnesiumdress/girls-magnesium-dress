@@ -9,7 +9,8 @@ def update_survey_results(request):
 
     for survey in surveys:
         survey.DMB_overall_average = calculate_benchmark(responses_by_survey[survey.uid])
-        survey.DMB_overall_average_by_dimension = calculate_benchmark(responses_by_survey[survey.uid], True)
+        survey.DMB_overall_average_by_dximension = calculate_benchmark(responses_by_survey[survey.uid], True)
 
 
     return HttpResponse(status=200)
+

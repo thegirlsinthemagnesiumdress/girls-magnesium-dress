@@ -1,6 +1,7 @@
 from core.tests.mocks import  qualtrics_export, weights, dimensions, response_0_questions, response_1_questions, DMB, response_1_overall
 from djangae.test import TestCase
 import core.qualtrics as qualtrics
+from unittest.mock import Mock, patch
 
 def sortQuestion(q):
     question_key_regex = re.compile(r'^Q(\d+)(_\d+)?$')
@@ -16,6 +17,16 @@ class QualtricsTest(TestCase):
         for q in qs_mock:
             not_sorted_q = filter(lambda not_sorted_q:  not_sorted_q[0] == q[0], qs)[0]
             self.assertEqual(q, not_sorted_q)
+
+    @patch('project.requests.get')
+    def test_get_results(self, mock_get):
+        mock_get.return_value.ok = True
+
+        # Call the service, which will send a request to the server.
+        data = qualtrics.get_results()
+
+        # If the request is sent successfully, then I expect a response to be returned.
+        self.assertIsInstance(data, dict)
 
     def test_get_question_dimension(self):
         """
