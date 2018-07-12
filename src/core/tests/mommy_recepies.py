@@ -1,5 +1,5 @@
 """Recipies for the Survey models."""
-from core.models import Survey, Benchmark
+from core.models import Survey, SurveyResult
 from model_mommy.recipe import Recipe
 
 
@@ -8,7 +8,6 @@ SurveyRecipe = Recipe(
     company_name='Test Survey',
 )
 
-BenchmarkRecipe = Recipe(
-    Benchmark,
-    sid='AAA'
+SurveyResultRecipe = Recipe(
+    SurveyResult,
 )
