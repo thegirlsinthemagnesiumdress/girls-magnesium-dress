@@ -2,7 +2,7 @@ import requests
 import zipfile
 import os
 import json
-from core.models import Survey, Benchmark
+from core.models import Survey, SurveyResult
 
 
 
@@ -18,23 +18,37 @@ response_id = 'R_2aIxNgtAMk8Q360'
 
 def get_results(uid):
     try:
-        survey = Benchmark.objects.filter(sid=uid).latest('loaded_at')
+        survey = Survey.objects.get(uid=uid)
+        survey_result = SurveyResult.objects.filter(sid=survey).latest('loaded_at')
         print("Found Survey already downloaded, download partial result")
-        return download_results(survey.sid, survey.response_id)
-
-    except Benchmark.DoesNotExist:
-        try:
-            print("Found new Survey, download all the results so far")
-            survey = Survey.objects.get(uid=uid)
-            return download_results(survey.uid)
-        except Survey.DoesNotExist:
-            print("Cannot find any survey {}".format(uid))
-            return
+        results = download_results(survey_result.sid, survey_result.response_id)
+        _create_survey_result(survey, results.get('responses'))
+    except SurveyResult.DoesNotExist:
+        print("Found new Survey, download all the results so far")
+        results = download_results(survey.uid)
+        _create_survey_result(survey, results.get('responses'))
+    except Survey.DoesNotExist:
+        print("Cannot find any survey {}".format(uid))
 
 
-def download_results(survey_id, response_id=None):
+def _create_survey_result(survey, results_data):
+    """Create `SurveyResult` given a list of `result_data`.
+
+    :param survey: `core.SurveyResult` which `results_data` refers to
+    :param results_data: dictionary containing the downloaded response
+        from Qualtrics API.
+    """
+    for data in results_data:
+        SurveyResult.objects.create(
+            survey=survey,
+            sid=data.get('sid'),
+            response_id=data.get('ResponseID'),
+            data=data,
+        )
+
+
+def download_results(survey_id, response_id=None, file_format='json'):
     # Setting user Parameters
-    file_format = 'json'
     survey_name = 'TRev'
 
     # Setting static parameters
