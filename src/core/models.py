@@ -6,7 +6,6 @@ from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from qualtrics import calculate_benchmark, dimensions
 
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
@@ -76,6 +75,8 @@ def string_to_number_or_zero(number):
 
 
 class SurveyResult(models.Model):
+    """Model to store a survey response entry."""
+
     _question_key_regex = re.compile(r'^Q\d+(_\d+)?$')
 
     survey = models.ForeignKey(Survey)
