@@ -167,8 +167,9 @@ def get_mocked_results(all=True, uid=None):
         return qualtrics_export
     else:
         index = len(qualtrics_export)
-        for idx, item in enumerate(qualtrics_export):
+        qualtrics_data = qualtrics_export.get('responses')
+        for idx, item in enumerate(qualtrics_data):
             if item.get('ResponseID') == uid:
                 index = idx
                 break
-        return qualtrics_export[index:]
+        return {'responses': qualtrics_data[index:]}
