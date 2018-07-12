@@ -5,7 +5,7 @@ from django.db import models
 from django.utils import timezone
 from djangae.fields import JSONField
 from qualtrics import calculate_benchmark, dimensions
-
+import re
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 
@@ -25,13 +25,16 @@ class Survey(models.Model):
     company_name = models.CharField(max_length=50)
     uid = models.CharField(unique=True, editable=False, max_length=32)
 
-    DMB_overall_average = models.DecimalField()
+    # DMB_overall_average = models.DecimalField()
 
-    DMB_overall_average_by_dimension = JSONField()
+    # DMB_overall_average_by_dimension = JSONField()
 
-    DMB_best_practice = models.DecimalField()
+    # DMB_best_practice = models.DecimalField()
 
-    DMB_best_practice_by_dimension = JSONField()
+    # DMB_best_practice_by_dimension = JSONField()
+
+    weight = JSONField(default=dict)
+    dimension = JSONField(default=dict)
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -65,3 +68,44 @@ class Survey(models.Model):
             self.uid = m.hexdigest()
         super(Survey, self).save(*args, **kwargs)
 
+
+def string_to_number_or_zero(number):
+    try:
+        return float(number)
+    except ValueError:
+        return 0
+
+
+class SurveyResult(models.Model):
+    _question_key_regex = re.compile(r'^Q\d+(_\d+)?$')
+
+    survey = models.ForeignKey(Survey)
+    sid = models.CharField(max_length=50)
+    response_id = models.CharField(max_length=50)
+    loaded_at = models.DateTimeField(auto_now_add=True)
+
+    data = JSONField()
+
+    @property
+    def questions(self):
+        # filter results keys that are questions. Unfortunately we have to rely on property key names.
+        questions_keys = filter(self._question_key_regex.search, self.data.keys())
+
+        # filter out questions without a response.
+        questions_keys_with_value = filter(lambda key: self.data.get(key), questions_keys)
+
+        def create_tuple(key):
+            return (
+                key,
+                string_to_number_or_zero(self.data.get(key)),
+                self.survey.weight.get(key, 1),
+                self.get_question_dimension(key)
+            )
+
+        questions_key_value = map(create_tuple, questions_keys_with_value)
+        return questions_key_value
+
+    def get_question_dimension(self, question_id):
+        for dimension_key, dimension_value in self.survey.dimension.iteritems():
+            if question_id in dimension_value:
+                return dimension_key
