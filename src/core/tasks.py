@@ -12,26 +12,23 @@ BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format(data_cente
 
 
 
-uid = 'SV_beH0HTFtnk4A5rD'
+qualtrics_survey_id = 'SV_beH0HTFtnk4A5rD'
 response_id = 'R_2aIxNgtAMk8Q360'
 
 
-def get_results(uid):
+def get_results():
     try:
-        survey = Survey.objects.get(uid=uid)
-        survey_result = SurveyResult.objects.filter(sid=survey).latest('loaded_at')
+        survey_result = SurveyResult.objects.latest('loaded_at')
         print("Found Survey already downloaded, download partial result")
-        results = download_results(survey_result.sid, survey_result.response_id)
-        _create_survey_result(survey, results.get('responses'))
+        results = download_results(survey_result.response_id)
     except SurveyResult.DoesNotExist:
         print("Found new Survey, download all the results so far")
-        results = download_results(survey.uid)
-        _create_survey_result(survey, results.get('responses'))
-    except Survey.DoesNotExist:
-        print("Cannot find any survey {}".format(uid))
+        results = download_results()
+    finally:
+        _create_survey_result(results.get('responses'))
 
 
-def _create_survey_result(survey, results_data):
+def _create_survey_result(results_data):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param survey: `core.SurveyResult` which `results_data` refers to
@@ -39,15 +36,15 @@ def _create_survey_result(survey, results_data):
         from Qualtrics API.
     """
     for data in results_data:
+        survey = Survey.objects.filter(sid=data.get('sid')).first()
         SurveyResult.objects.create(
             survey=survey,
-            sid=data.get('sid'),
             response_id=data.get('ResponseID'),
             data=data,
         )
 
 
-def download_results(survey_id, response_id=None, file_format='json'):
+def download_results(response_id=None, file_format='json'):
     # Setting user Parameters
     survey_name = 'TRev'
 
@@ -63,7 +60,7 @@ def download_results(survey_id, response_id=None, file_format='json'):
     request_check_progress = 0
     data_export_payload = {
         'format': file_format,
-        'surveyId': survey_id,
+        'surveyId': qualtrics_survey_id,
     }
 
     if response_id:

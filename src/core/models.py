@@ -24,7 +24,7 @@ class Survey(models.Model):
     """
 
     company_name = models.CharField(max_length=50)
-    uid = models.CharField(unique=True, editable=False, max_length=32)
+    sid = models.CharField(unique=True, editable=False, max_length=32)
 
     # DMB_overall_average = models.DecimalField()
 
@@ -41,11 +41,11 @@ class Survey(models.Model):
     def link(self):
         """
         Lint to qualtrics survey. Every company will have a different URL, created
-        out of the uid.
-        The uid will be stored for every survey response and we will be able to use
+        out of the sid.
+        The sid will be stored for every survey response and we will be able to use
         it to match the data against companies.
         """
-        return '{}?sid={}'.format(SURVEY_URL, self.uid)
+        return '{}?sid={}'.format(SURVEY_URL, self.sid)
 
     @property
     def link_sponsor(self):
@@ -63,7 +63,7 @@ class Survey(models.Model):
             self.created_at = timezone.now()
             m = hashlib.md5()
             md5 = m.update(self.company_name + self.created_at.isoformat())
-            self.uid = m.hexdigest()
+            self.sid = m.hexdigest()
         super(Survey, self).save(*args, **kwargs)
 
 
@@ -79,8 +79,7 @@ class SurveyResult(models.Model):
 
     _question_key_regex = re.compile(r'^Q\d+(_\d+)?$')
 
-    survey = models.ForeignKey(Survey)
-    sid = models.CharField(max_length=50)
+    survey = models.ForeignKey(Survey, null=True)
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
 
