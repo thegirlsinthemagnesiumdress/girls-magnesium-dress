@@ -1,11 +1,13 @@
 import hashlib
+import re
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
+from djangae.fields import JSONField
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from djangae.fields import JSONField
 from qualtrics import calculate_benchmark, dimensions
-import re
+
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 
@@ -32,9 +34,6 @@ class Survey(models.Model):
     # DMB_best_practice = models.DecimalField()
 
     # DMB_best_practice_by_dimension = JSONField()
-
-    weight = JSONField(default=dict)
-    dimension = JSONField(default=dict)
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -98,7 +97,7 @@ class SurveyResult(models.Model):
             return (
                 key,
                 string_to_number_or_zero(self.data.get(key)),
-                self.survey.weight.get(key, 1),
+                settings.WEIGHTS.get(key, 1),
                 self.get_question_dimension(key)
             )
 
@@ -106,6 +105,6 @@ class SurveyResult(models.Model):
         return questions_key_value
 
     def get_question_dimension(self, question_id):
-        for dimension_key, dimension_value in self.survey.dimension.iteritems():
+        for dimension_key, dimension_value in settings.DIMENSIONS.iteritems():
             if question_id in dimension_value:
                 return dimension_key
