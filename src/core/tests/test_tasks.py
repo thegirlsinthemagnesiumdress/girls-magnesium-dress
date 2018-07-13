@@ -36,7 +36,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-    @mock.patch('core.tasks.download_results', return_value=get_mocked_results(all=False, uid='AAB'))
+    @mock.patch('core.tasks.download_results', return_value=get_mocked_results(response_id='AAB'))
     def test_partial_download_existing_survey(self, download_mock):
         survey = make_survey(sid='1')
         make_survey_result(survey=survey, response_id='AAB')

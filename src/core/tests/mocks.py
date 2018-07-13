@@ -166,14 +166,14 @@ def generate_surveys():
     return surveys
 
 
-def get_mocked_results(all=True, uid=None):
-    if all:
+def get_mocked_results(response_id=None):
+    if not response_id:
         return qualtrics_export
     else:
         index = len(qualtrics_export)
         qualtrics_data = qualtrics_export.get('responses')
         for idx, item in enumerate(qualtrics_data):
-            if item.get('ResponseID') == uid:
+            if item.get('ResponseID') == response_id:
                 index = idx
                 break
         return {'responses': qualtrics_data[index:]}
