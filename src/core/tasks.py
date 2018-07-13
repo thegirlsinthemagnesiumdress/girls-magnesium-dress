@@ -1,9 +1,10 @@
-import requests
-import zipfile
-import os
 import json
-from core.models import Survey, SurveyResult
+import os
+import zipfile
 
+import requests
+
+from core.models import Survey, SurveyResult
 
 
 QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'

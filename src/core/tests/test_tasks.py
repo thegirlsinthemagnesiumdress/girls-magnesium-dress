@@ -1,9 +1,10 @@
-from djangae.test import TestCase
-from core.tasks import get_results
-from mommy_recepies import make_survey, make_survey_result
 import mock
-from mocks import get_mocked_results
+
 from core.models import Survey, SurveyResult
+from core.tasks import get_results
+from djangae.test import TestCase
+from mocks import get_mocked_results
+from mommy_recepies import make_survey, make_survey_result
 
 
 class GetResultsTestCase(TestCase):
