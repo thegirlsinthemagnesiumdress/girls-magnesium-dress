@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import zipfile
@@ -37,19 +38,16 @@ def _create_survey_result(results_data):
 
 
 def download_results(response_id=None, file_format='json'):
-    # Setting user Parameters
-    survey_name = 'TRev'
 
-    # Setting static parameters
     progress_status = 'in progress'
+    request_check_progress = 0
+    qualtrics_data = {}
     headers = {
         'content-type': 'application/json',
         'x-api-token': settings.QUALTRICS_API_TOKEN,
     }
-    tmp_file = 'src/core/tmp_results/results.zip'
 
     # Step 1: Creating Data Export
-    request_check_progress = 0
     data_export_payload = {
         'format': file_format,
         'surveyId': settings.QUALTRICS_SURVEY_ID,
@@ -58,36 +56,40 @@ def download_results(response_id=None, file_format='json'):
     if response_id:
         data_export_payload['lastResponseId'] = response_id
 
-    download_request_payload = json.dumps(data_export_payload)
     download_request_response = requests.request(
         'POST',
         settings.RESPONSE_EXPORT_BASE_URL,
-        data=download_request_payload,
+        json=data_export_payload,
         headers=headers
     )
     progress_id = download_request_response.json()['result']['id']
 
     # Step 2: Checking on Data Export Progress and waiting until export is ready
     while request_check_progress < 100 and progress_status is not 'complete':
-        request_check_url = settings.RESPONSE_EXPORT_BASE_URL + progress_id
+        request_check_url = ''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))
         request_check_response = requests.request('GET', request_check_url, headers=headers)
         request_check_progress = request_check_response.json()['result']['percentComplete']
-        print 'Download is ' + str(request_check_progress) + ' complete'
-        if request_check_progress == 100:
-            survey_responses_file = request_check_response.json()['result']['file']
-            print 'File: ' + survey_responses_file
 
     # Step 3: Downloading file
-    request_download_url = settings.RESPONSE_EXPORT_BASE_URL + progress_id + '/file'
+    request_download_url = ''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))
     request_download = requests.request('GET', request_download_url, headers=headers, stream=True)
 
     # Step 4: Unziping file
-    # TODO probably this should be saved to a static dir ?
-    with open(tmp_file, 'wb') as f:
+    with io.BytesIO() as in_memory_buffer:
         for chunk in request_download.iter_content(chunk_size=1024):
-            f.write(chunk)
+            in_memory_buffer.write(chunk)
+        # it seems slightly overengineered to write `_unpack_zip` function to loop through a zip
+        # file that should most likely cointain only one file (it will cointain more than one
+        # file in case the number of responses is abouve 1M), however, looping through the zip
+        # archive allow us to read file content anonymously.
+        qualtrics_data = [response for response in _unpack_zip(in_memory_buffer)]
+        qualtrics_data = qualtrics_data[0]
 
-    # zipfile.ZipFile('RequestFile.zip').extractall('SurveyResults')
-    qualtrics_data = zipfile.ZipFile(tmp_file).read('{}.json'.format(survey_name))
-    os.remove(tmp_file)
     return json.loads(qualtrics_data)
+
+
+def _unpack_zip(in_memory_buffer):
+    with zipfile.ZipFile(in_memory_buffer) as thezip:
+        for zipinfo in thezip.infolist():
+            with thezip.open(zipinfo) as thefile:
+                yield thefile.read()
