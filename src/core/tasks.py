@@ -5,16 +5,7 @@ import zipfile
 import requests
 
 from core.models import Survey, SurveyResult
-
-
-QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
-data_center = 'google.co1'
-BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format(data_center)
-
-
-
-qualtrics_survey_id = 'SV_beH0HTFtnk4A5rD'
-response_id = 'R_2aIxNgtAMk8Q360'
+from django.conf import settings
 
 
 def get_results():
@@ -53,7 +44,7 @@ def download_results(response_id=None, file_format='json'):
     progress_status = 'in progress'
     headers = {
         'content-type': 'application/json',
-        'x-api-token': QUALTRICS_API_TOKEN,
+        'x-api-token': settings.QUALTRICS_API_TOKEN,
     }
     tmp_file = 'src/core/tmp_results/results.zip'
 
@@ -61,7 +52,7 @@ def download_results(response_id=None, file_format='json'):
     request_check_progress = 0
     data_export_payload = {
         'format': file_format,
-        'surveyId': qualtrics_survey_id,
+        'surveyId': settings.QUALTRICS_SURVEY_ID,
     }
 
     if response_id:
@@ -70,7 +61,7 @@ def download_results(response_id=None, file_format='json'):
     download_request_payload = json.dumps(data_export_payload)
     download_request_response = requests.request(
         'POST',
-        BASE_URL,
+        settings.RESPONSE_EXPORT_BASE_URL,
         data=download_request_payload,
         headers=headers
     )
@@ -78,7 +69,7 @@ def download_results(response_id=None, file_format='json'):
 
     # Step 2: Checking on Data Export Progress and waiting until export is ready
     while request_check_progress < 100 and progress_status is not 'complete':
-        request_check_url = BASE_URL + progress_id
+        request_check_url = settings.RESPONSE_EXPORT_BASE_URL + progress_id
         request_check_response = requests.request('GET', request_check_url, headers=headers)
         request_check_progress = request_check_response.json()['result']['percentComplete']
         print 'Download is ' + str(request_check_progress) + ' complete'
@@ -87,7 +78,7 @@ def download_results(response_id=None, file_format='json'):
             print 'File: ' + survey_responses_file
 
     # Step 3: Downloading file
-    request_download_url = BASE_URL + progress_id + '/file'
+    request_download_url = settings.RESPONSE_EXPORT_BASE_URL + progress_id + '/file'
     request_download = requests.request('GET', request_download_url, headers=headers, stream=True)
 
     # Step 4: Unziping file
