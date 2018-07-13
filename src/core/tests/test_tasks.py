@@ -10,13 +10,6 @@ from mommy_recepies import make_survey, make_survey_result
 class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
 
-    @mock.patch('core.tasks.download_results')
-    def test_cannot_find_any_survey(self, download_mock):
-        get_results()
-
-        self.assertEqual(Survey.objects.count(), 0)
-        self.assertEqual(SurveyResult.objects.count(), 0)
-
     @mock.patch('core.tasks.download_results', return_value=get_mocked_results())
     def test_new_survey_first_time_download(self, download_mock):
         """We're assuming that all the Surveys have been created previously."""
