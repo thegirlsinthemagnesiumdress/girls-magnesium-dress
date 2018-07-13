@@ -67,13 +67,6 @@ class Survey(models.Model):
         super(Survey, self).save(*args, **kwargs)
 
 
-def string_to_number_or_zero(number):
-    try:
-        return float(number)
-    except ValueError:
-        return 0
-
-
 class SurveyResult(models.Model):
     """Model to store a survey response entry."""
 
@@ -93,12 +86,18 @@ class SurveyResult(models.Model):
         # filter out questions without a response.
         questions_keys_with_value = filter(lambda key: self.data.get(key), questions_keys)
 
-        def create_tuple(key):
+        def create_tuple(question_key):
+            question_value = 0
+            try:
+                question_value = float(self.data.get(question_key))
+            except ValueError:
+                pass
+
             return (
-                key,
-                string_to_number_or_zero(self.data.get(key)),
-                settings.WEIGHTS.get(key, 1),
-                self.get_question_dimension(key)
+                question_key,
+                question_value,
+                settings.WEIGHTS.get(question_key, 1),
+                self.get_question_dimension(question_key)
             )
 
         questions_key_value = map(create_tuple, questions_keys_with_value)
