@@ -4,7 +4,7 @@ from core.models import Survey
 from core.tests.mocks import generate_surveys
 from djangae.test import TestCase
 from django.test import override_settings
-from mommy_recepies import SurveyRecipe, SurveyResultRecipe
+from mommy_recepies import make_survey, make_survey_result
 
 
 class SurveyTest(TestCase):
@@ -87,8 +87,8 @@ class SurveyResultTest(TestCase):
     }
 
     def setUp(self):
-        survey = SurveyRecipe.make()
-        survey_result = SurveyResultRecipe.make(survey=survey, data=self.survey_result)
+        survey = make_survey()
+        survey_result = make_survey_result(survey=survey, data=self.survey_result)
         self.question_dict = {item[0]: item for item in survey_result.questions}
 
     def test_question_tuple_correctly_generated(self):
