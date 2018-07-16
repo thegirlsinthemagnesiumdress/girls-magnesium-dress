@@ -28,7 +28,7 @@ class SurveyTest(APITestCase):
         )
 
         surveys = generate_surveys()
-        self.uids = [survey.uid for survey in surveys]
+        self.sids = [survey.sid for survey in surveys]
 
         self.client.force_authenticate(user)
         self.url = reverse('survey-list')
@@ -55,7 +55,7 @@ class SurveyTest(APITestCase):
         Should return the filtered list.
         """
         response = self.client.get(self.url, {
-            "uid": self.uids[0]
+            "sid": self.sids[0]
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -67,7 +67,7 @@ class SurveyTest(APITestCase):
         """
         self.client.force_authenticate(user=self.qualtrics_user)
         response = self.client.get(self.url, {
-            "uid": self.uids[0]
+            "sid": self.sids[0]
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -79,7 +79,7 @@ class SurveyTest(APITestCase):
         """
         self.client.force_authenticate(user=self.qualtrics_user)
         response = self.client.post(self.url, {
-            "uid": self.uids[0]
+            "sid": self.sids[0]
         })
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 

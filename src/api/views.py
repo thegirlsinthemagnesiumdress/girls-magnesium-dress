@@ -25,7 +25,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     authentication_classes = (TokenAuthentication,)
     serializer_class = SurveyCompanyNameSerializer
     queryset = Survey.objects.all()
-    lookup_field = 'uid'
+    lookup_field = 'sid'
     lookup_url_kwarg = 'sid'
 
     def retrieve(self, request, *args, **kwargs):
