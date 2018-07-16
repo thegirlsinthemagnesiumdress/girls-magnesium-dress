@@ -16,3 +16,6 @@ django-debug-toolbar==1.6
 django-inline-svg==0.1.1
 GoogleAppEngineCloudStorageClient==1.9.22.1
 djangorestframework==3.7.7
+urllib3==1.23
+requests==2.19.1
+numpy==1.14.5

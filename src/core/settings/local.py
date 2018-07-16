@@ -26,3 +26,6 @@ CSP_CONNECT_SRC = CSP_CONNECT_SRC + ("localhost:8000", "ws://localhost:8000")
 CHROMEDRIVER_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "chromedriver")
 JASMINE_NODE_PATH = os.path.join(NODE_PREFIX, "node_modules", "jasmine-node", "lib", "jasmine-node", "cli.js")
 BABEL_NODE_PATH = os.path.join(NODE_PREFIX, "node_modules", ".bin", "babel-node")
+
+QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
+QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
