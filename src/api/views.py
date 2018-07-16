@@ -35,3 +35,4 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
         instance = get_object_or_404(self.queryset, **{self.lookup_field: request.GET.get(self.lookup_url_kwarg)})
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+

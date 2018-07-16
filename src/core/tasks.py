@@ -38,7 +38,6 @@ def _create_survey_result(results_data):
 
 
 def download_results(response_id=None, file_format='json'):
-
     progress_status = 'in progress'
     request_check_progress = 0
     qualtrics_data = {}
