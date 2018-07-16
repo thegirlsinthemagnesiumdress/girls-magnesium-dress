@@ -46,5 +46,7 @@ class GetResultsTestCase(TestCase):
 
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 1)
+        # mock is called with response_id
+        download_mock.assert_called_once_with('AAB')
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
