@@ -1,79 +1,197 @@
-from core.tests.mocks import  qualtrics_export, weights, dimensions, response_0_questions, response_1_questions, DMB, response_1_overall
-from djangae.test import TestCase
 import core.qualtrics as qualtrics
-from unittest.mock import Mock, patch
-
-def sortQuestion(q):
-    question_key_regex = re.compile(r'^Q(\d+)(_\d+)?$')
+from djangae.test import TestCase
+from django.conf import settings
+from django.test import override_settings
 
 
 class QualtricsTest(TestCase):
-    def setUp(self):
-        self.qualtrics_export = qualtrics_export
-        qualtrics.weights = weights
-        qualtrics.dimensions = dimensions
+    """Test class for utility funcions in qualtrics module."""
+    def test__weighted_questions_average(self):
+        """Test the right benchmark is calculated given an array of responses."""
+        responses = [
+            ('Q1', 1.0, 1, 'dimension_A'),
+            ('Q2', 3.0, 1, 'dimension_A'),
+        ]
 
-    def assert_questions_array_equality(self, qs_mock, qs):
-        for q in qs_mock:
-            not_sorted_q = filter(lambda not_sorted_q:  not_sorted_q[0] == q[0], qs)[0]
-            self.assertEqual(q, not_sorted_q)
+        weighted_average = qualtrics._weighted_questions_average(responses)
+        self.assertEqual(weighted_average, 2)
 
-    @patch('project.requests.get')
-    def test_get_results(self, mock_get):
-        mock_get.return_value.ok = True
+    def test__weighted_questions_average_complex(self):
+        """Test that given an array of questions the right weighetd average is calculated."""
+        weighted_average = 1.907407407
+        responses = [
+            ('Q3', 2.0, 2, 'dimension_A'),
+            ('Q4', 0.0, 0.5, 'dimension_A'),
+            ('Q5_1', 2.0, 1, 'dimension_A'),
+            ('Q5_2', 0.0, 1, 'dimension_A'),
+            ('Q5_3', 3.0, 1, 'dimension_B'),
+            ('Q6', 4.0, 1, 'dimension_B'),
+            ('Q7', 2.0, 0.3, 'dimension_B'),
+            ('Q8', 4.0, 1, 'dimension_C'),
+            ('Q10', 0.0, 1, 'dimension_C'),
+            ('Q11', 1.0, 1, 'dimension_C'),
+            ('Q12', 2.0, 1, 'dimension_C'),
+        ]
+        average = qualtrics._weighted_questions_average(responses)
+        self.assertAlmostEqual(average, weighted_average, places=4)
 
-        # Call the service, which will send a request to the server.
-        data = qualtrics.get_results()
+    def test__weighted_questions_average_empty_list(self):
+        """Test the right benchmark is calculated given an array of responses."""
+        responses = []
 
-        # If the request is sent successfully, then I expect a response to be returned.
-        self.assertIsInstance(data, dict)
-
-    def test_get_question_dimension(self):
-        """
-        Test that the given a question_id the given dimension is returned
-        """
-        dimension = qualtrics.get_question_dimension('Q6')
-        self.assertEqual(dimension, 'dimension_B')
-
-    def test_to_questions_array(self):
-        """
-        Test that given a qualtrics export data object an array of questions object is returned
-        """
-        questions = qualtrics.to_questions_array(qualtrics_export['responses'][0])
-        self.assert_questions_array_equality(response_0_questions, questions)
-
-
-    def test_weighted_questions_average(self):
-        """
-        Test that given an array of questions the right weighetd average is calculated
-        """
-        average = qualtrics.weighted_questions_average(response_0_questions)
-        self.assertAlmostEqual(average, response_1_overall, places=4)
-
-    def test_get_responses_by_field(self):
-        """
-        Test that given a qualtrics export data object it can be queried/filterd by field
-        """
-        responses_by_field = qualtrics.get_responses_by_field(qualtrics_export, 'sid')
-        self.assertEqual(responses_by_field.keys(), ['1', '2'])
-        self.assert_questions_array_equality(response_0_questions, responses_by_field['1'][0])
-        self.assert_questions_array_equality(response_1_questions, responses_by_field['1'][1])
-
-    def test_calculate_benchmark(self):
-        """
-        Test the right benchmark is calculated given an array of responses.
-        """
-        b = qualtrics.calculate_benchmark([response_0_questions, response_1_questions])
-        self.assertEqual(b, DMB['survey']['1']['overall'])
-
-    def test_calculate_benchmark_by_dimension(self):
-        """
-        Test the right benchmark is calculated given an array of responses.
-        """
-        b = qualtrics.calculate_benchmark([response_0_questions, response_1_questions], by_dimension=True)
-        self.assertIsInstance(b, dict)
-        self.assertEqual(b.keys(), dimensions.keys())
-        self.assertAlmostEqual(b['dimension_A'], DMB['survey']['1']['category_overall']['dimension_A'], places=4)
+        weighted_average = qualtrics._weighted_questions_average(responses)
+        self.assertEqual(weighted_average, 1)
 
 
+class CalculateResponseBenchmarkTest(TestCase):
+    """Test class for `calculate_response_benchmark` function."""
 
+    def test_calculate_response_benchmark_single_dimension(self):
+        """Test for a single dimension."""
+        responses = [
+            ('Q1', 1.0, 1, 'dimension_A'),
+            ('Q2', 3.0, 1, 'dimension_A'),
+            ('Q3', 2.0, 2, 'dimension_A'),
+        ]
+
+        dmb, dmb_d_dictionary = qualtrics.calculate_response_benchmark(responses)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 1)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertEqual(dmb, 2)
+
+    def test_calculate_response_benchmark_multi_dimensions(self):
+        """Test for a multiple dimension."""
+        responses = [
+            ('Q1', 1.0, 1, 'dimension_A'),
+            ('Q2', 3.0, 1, 'dimension_A'),
+            ('Q3', 2.0, 2, 'dimension_A'),
+            ('Q4', 1.0, 4, 'dimension_B'),
+            ('Q5', 1.0, 2, 'dimension_B'),
+        ]
+
+        dmb, dmb_d_dictionary = qualtrics.calculate_response_benchmark(responses)
+
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 2)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertTrue('dimension_B' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertEqual(dmb_d_dictionary.get('dimension_B'), 1)
+        self.assertEqual(dmb, 1.5)
+
+
+@override_settings(
+    DIMENSIONS={
+        'dimension_A': ['Q1', 'Q2'],
+        'dimension_B': ['Q3'],
+        'dimension_C': ['Q2'],
+        'dimension_D': ['Q1'],
+    }
+)
+class CalculateGroupBenchmarkTest(TestCase):
+    """Test class for `calculate_group_benchmark` function."""
+
+    def test_calculate_group_benchmark_single_response(self):
+        """Test for a single reponse."""
+        responses = [
+            [
+                ('Q1', 1.0, 1, 'dimension_A'),
+                ('Q2', 3.0, 1, 'dimension_A'),
+                ('Q3', 2.0, 2, 'dimension_B'),
+            ]
+        ]
+
+        dmb, dmb_d_dictionary = qualtrics.calculate_group_benchmark(responses)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+
+        # check all dimensions defined in settings are in the response dictionary
+        for dimension in settings.DIMENSIONS.keys():
+            self.assertTrue(dimension in dmb_d_dictionary)
+
+        # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
+        dimension_A_average = dmb_d_dictionary.get('dimension_A') # noqa
+        dimension_B_average = dmb_d_dictionary.get('dimension_B') # noqa
+        dimension_C_average = dmb_d_dictionary.get('dimension_C') # noqa
+        dimension_D_average = dmb_d_dictionary.get('dimension_D') # noqa
+
+        # for dimension_A it will be the average between:
+        # weighted average of dimension_A for `responses[0]` (that is 2.0)
+        # so the average will be 2.0
+        self.assertEqual(dimension_A_average, 2.0)
+
+        # dimension_B:
+        # weighted average for `responses[0]`: 2.0
+        # average: 2.0
+        self.assertEqual(dimension_B_average, 2.0)
+
+        # dimension_C:
+        # weighted average for `responses[0]`: 0 (there is not dimension_C in `resposes[0]`)
+        # average: 0
+        self.assertEqual(dimension_C_average, 0)
+
+        # dimension_D:
+        # weighted average for `responses[0]`: 0
+        # average: 0
+        self.assertEqual(dimension_D_average, 0)
+
+        # dmb represents the average between all elements of `dmb_d_dictionary`
+        self.assertEqual(dmb, 1.0)
+
+    def test_calculate_response_benchmark_multi_responses(self):
+        """Test for a multiple responses."""
+        responses = [
+            [
+                ('Q1', 1.0, 1, 'dimension_A'),
+                ('Q2', 3.0, 1, 'dimension_A'),
+                ('Q3', 2.0, 2, 'dimension_B'),
+            ],
+            [
+                ('Q1', 1.0, 1, 'dimension_C'),
+                ('Q2', 3.0, 1, 'dimension_C'),
+                ('Q3', 2.0, 2, 'dimension_A'),
+            ]
+        ]
+
+        dmb, dmb_d_dictionary = qualtrics.calculate_group_benchmark(responses)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+
+        # check all dimensions defined in settings are in the response dictionary
+        for dimension in settings.DIMENSIONS.keys():
+            self.assertTrue(dimension in dmb_d_dictionary)
+
+        # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
+        dimension_A_average = dmb_d_dictionary.get('dimension_A') # noqa
+        dimension_B_average = dmb_d_dictionary.get('dimension_B') # noqa
+        dimension_C_average = dmb_d_dictionary.get('dimension_C') # noqa
+        dimension_D_average = dmb_d_dictionary.get('dimension_D') # noqa
+
+        # for dimension_A it will be the average between:
+        # weighted average of dimension_A for `responses[0]` (that is 2.0) and
+        # weighted average of dimension_A for `response[1]` (that is 2.0)
+        # so the average will be 2.0
+        self.assertEqual(dimension_A_average, 2.0)
+
+        # dimension_B:
+        # weighted average for `responses[0]`: 2.0
+        # weighted average for `response[1]`: 0 (there is not dimension_B in `resposes[1]`)
+        # average: 1.0
+        self.assertEqual(dimension_B_average, 1.0)
+
+        # dimension_C:
+        # weighted average for `responses[0]`: 0 (there is not dimension_C in `resposes[0]`)
+        # weighted average for `response[1]`: 2.0
+        # average: 1.0
+        self.assertEqual(dimension_C_average, 1.0)
+
+        # dimension_D:
+        # weighted average for `responses[0]`: 0
+        # weighted average for `response[1]`: 0
+        # average: 0
+        self.assertEqual(dimension_D_average, 0)
+
+        # dmb represents the average between all elements of `dmb_d_dictionary`
+        self.assertEqual(dmb, 1.0)
