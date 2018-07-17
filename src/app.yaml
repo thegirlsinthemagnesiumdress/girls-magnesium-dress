@@ -7,11 +7,13 @@ instance_class: F4
 
 libraries:
 - name: ssl
-  version: latest
+  version: 2.7.11
 - name: lxml
   version: latest
 - name: PIL
   version: latest
+- name: numpy
+  version: "1.6.1"
 
 builtins:
 - appstats: on
