@@ -3,7 +3,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from djangae.environment import is_production_environment
 from core.views import update_survey_results
-
+from core import tasks
 import session_csrf
 session_csrf.monkeypatch()
 
@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^login/', include('djangae.contrib.gauth.urls')),
     url(r'', include(public.urls)),
     url(r'^api/', include(api.urls)),
+    url(r'^cron/pull_qualtrics_results/$', tasks.sync_qualtrics_results),
 ]
 
 # Only enable static serving locally, on prod we use app.yaml

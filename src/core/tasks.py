@@ -1,21 +1,35 @@
 import io
 import json
-import os
 import zipfile
 
 import requests
 
 from core.models import Survey, SurveyResult
 from django.conf import settings
+from django.http import HttpResponse
+from djangae.environment import task_or_admin_only
+import logging
+from djangae import deferred
+
+
+@task_or_admin_only
+def sync_qualtrics_results(request):
+    """Download new survey results using Qualtrics API."""
+    logging.info("Getting results from Qualtrics API")
+    deferred.defer(
+        get_results
+    )
+
+    return HttpResponse("OK")
 
 
 def get_results():
     try:
         survey_result = SurveyResult.objects.latest('loaded_at')
-        print("Found Survey already downloaded, download partial result")
+        logging.info("Found Survey already downloaded, download partial result")
         results = download_results(survey_result.response_id)
     except SurveyResult.DoesNotExist:
-        print("Found new Survey, download all the results so far")
+        logging.info("Found new Survey, download all the results so far")
         results = download_results()
     finally:
         _create_survey_result(results.get('responses'))

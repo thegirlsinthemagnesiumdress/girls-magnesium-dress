@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from qualtrics import get_responses_by_field, get_results, calculate_benchmark, dimensions
 from core.models import Survey
+from core.qualtrics import calculate_benchmark
+
 
 def update_survey_results(request):
     surveys = Survey.objects.all()

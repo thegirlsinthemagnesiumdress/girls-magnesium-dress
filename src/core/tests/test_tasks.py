@@ -50,3 +50,10 @@ class GetResultsTestCase(TestCase):
         download_mock.assert_called_once_with('AAB')
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
+
+
+class SyncQualtricsTestCase(TestCase):
+
+    @mock.patch('core.tasks.download_results')
+    def test_sync_ok(self, download_mock):
+        pass
