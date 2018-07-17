@@ -8,11 +8,15 @@
         <h1 class="tr-alpha">
           Companies reports:
         </h1>
-        {% for s in surveys %}
-          <a href="{% url 'report' s.sid %}">
-            {{s.company_name}}
-          </a>
-        {% endfor %}
+        <ul>
+          {% for s in surveys %}
+          <li>
+            <a href="{% url 'report' s.sid %}">
+              {{s.company_name}}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
   </div>
 </section>
