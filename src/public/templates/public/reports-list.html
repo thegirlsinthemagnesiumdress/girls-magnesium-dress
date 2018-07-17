@@ -1,0 +1,19 @@
+{% extends "./base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+<section class="tr-report wrapper container-fluid">
+  <div class="row">
+      <div class="col-xs-12">
+        <h1 class="tr-alpha">
+          Companies reports:
+        </h1>
+        {% for s in surveys %}
+          <a href="{% url 'report' s.sid %}">
+            {{s.company_name}}
+          </a>
+        {% endfor %}
+      </div>
+  </div>
+</section>
+{% endblock %}

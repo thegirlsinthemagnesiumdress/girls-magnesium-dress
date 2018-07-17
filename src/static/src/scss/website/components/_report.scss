@@ -1,0 +1,26 @@
+.tr-report {
+  // dt,
+  // dd {
+  //   display: inline-block;
+  // }
+
+
+
+  dt {
+    font-weight: bold;
+    display: inline-block;
+
+    &:first-child {
+      margin-bottom: 40px;
+    }
+  }
+
+  dd {
+    display: inline;
+
+    &:after {
+      content: '';
+      display: block;
+    }
+  }
+}
