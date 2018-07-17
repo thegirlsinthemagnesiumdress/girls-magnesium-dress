@@ -154,10 +154,10 @@ if __name__ == "__main__":
     create_third_party_dir()
 
     if "--js-only" not in sys.argv:
-        install_python_deps()
+        install_node_modules()
 
     if "--python-only" not in sys.argv:
-        install_node_modules()
+        install_python_deps()
 
     update_submodules()
     make_symlinks()
