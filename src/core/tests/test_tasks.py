@@ -2,6 +2,7 @@ import mock
 
 from core.models import Survey, SurveyResult
 from core.tasks import get_results
+from django.shortcuts import reverse
 from djangae.test import TestCase
 from mocks import get_mocked_results
 from mommy_recepies import make_survey, make_survey_result
@@ -56,4 +57,7 @@ class SyncQualtricsTestCase(TestCase):
 
     @mock.patch('core.tasks.download_results')
     def test_sync_ok(self, download_mock):
-        pass
+        url = reverse('pull-qualtrics-results')
+        response = self.client.get(url)
+        self.process_task_queues()
+        download_mock.assert_called_once()

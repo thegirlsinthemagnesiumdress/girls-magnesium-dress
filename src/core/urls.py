@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^login/', include('djangae.contrib.gauth.urls')),
     url(r'', include(public.urls)),
     url(r'^api/', include(api.urls)),
-    url(r'^cron/pull_qualtrics_results/$', tasks.sync_qualtrics_results),
+    url(r'^cron/pull_qualtrics_results/$', tasks.sync_qualtrics_results, name="pull-qualtrics-results"),
 ]
 
 # Only enable static serving locally, on prod we use app.yaml
