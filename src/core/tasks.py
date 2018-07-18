@@ -6,21 +6,7 @@ import requests
 
 from core.models import Survey, SurveyResult
 from django.conf import settings
-from django.http import HttpResponse
 import logging
-from djangae import deferred
-
-
-def sync_qualtrics_results(request):
-    """Download new survey results using Qualtrics API."""
-    logging.info("Getting results from Qualtrics API")
-
-    deferred.defer(
-        get_results,
-        _queue='default',
-    )
-
-    return HttpResponse("OK")
 
 
 def get_results():

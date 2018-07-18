@@ -1,18 +1,19 @@
 from django.http import HttpResponse
-from qualtrics import get_responses_by_field, get_results, calculate_benchmark, dimensions
-from core.models import Survey
-from core.qualtrics import calculate_benchmark
+from core.tasks import get_results
+from djangae import deferred
+import logging
+from djangae.environment import task_or_admin_only
 
 
-def update_survey_results(request):
-    surveys = Survey.objects.all()
-    data = get_results()
-    responses_by_survey =  get_responses_by_field(data, 'survey_id')
+@task_or_admin_only
+def sync_qualtrics_results(request):
+    """Download new survey results using Qualtrics API."""
+    msg = "Getting results from Qualtrics API started"
+    logging.info(msg)
 
-    for survey in surveys:
-        survey.DMB_overall_average = calculate_benchmark(responses_by_survey[survey.uid])
-        survey.DMB_overall_average_by_dximension = calculate_benchmark(responses_by_survey[survey.uid], True)
+    deferred.defer(
+        get_results,
+        _queue='default',
+    )
 
-
-    return HttpResponse(status=200)
-
+    return HttpResponse(msg)
