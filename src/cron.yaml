@@ -1,4 +1,4 @@
 cron:
 - description: Pull new survey results from Qualtrics
   url: /cron/pull_qualtrics_results/
-  schedule: every 1 hours
+  schedule: every 10 mins
