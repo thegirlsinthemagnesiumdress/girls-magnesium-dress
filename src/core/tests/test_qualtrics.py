@@ -1,5 +1,5 @@
 import core.qualtrics as qualtrics
-from djangae.test import TestCase
+from mock import Mock, patch
 from django.conf import settings
 from django.test import override_settings
 

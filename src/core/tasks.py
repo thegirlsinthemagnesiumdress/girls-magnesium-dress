@@ -6,7 +6,6 @@ from core.models import Survey, SurveyResult
 from django.conf import settings
 import logging
 from google.appengine.api import urlfetch
-import urllib
 
 
 def get_results():
@@ -20,7 +19,6 @@ def get_results():
 
     results = download_results(response_id=response_id)
     _create_survey_result(results.get('responses'))
-
 
 
 def _create_survey_result(results_data):
@@ -40,7 +38,6 @@ def _create_survey_result(results_data):
 
 
 def download_results(response_id=None, file_format='json'):
-    QUALTRICS_REQUEST_DEADLINE=60
     progress_status = 'in progress'
     request_check_progress = 0
     qualtrics_data = {}
@@ -61,7 +58,7 @@ def download_results(response_id=None, file_format='json'):
     download_request_response = urlfetch.fetch(
         method=urlfetch.POST,
         url=settings.RESPONSE_EXPORT_BASE_URL,
-        deadline=QUALTRICS_REQUEST_DEADLINE,
+        deadline=settings.QUALTRICS_REQUEST_DEADLINE,
         payload=json.dumps(data_export_payload),
         headers=headers
     )
@@ -74,7 +71,7 @@ def download_results(response_id=None, file_format='json'):
         request_check_response = urlfetch.fetch(
             method=urlfetch.GET,
             url=request_check_url,
-            deadline=QUALTRICS_REQUEST_DEADLINE,
+            deadline=settings.QUALTRICS_REQUEST_DEADLINE,
             headers=headers)
         request_check_progress = json.loads(request_check_response.content)['result']['percentComplete']
 
@@ -85,7 +82,7 @@ def download_results(response_id=None, file_format='json'):
         method='GET',
         url=request_download_url,
         headers=headers,
-        deadline=QUALTRICS_REQUEST_DEADLINE
+        deadline=settings.QUALTRICS_REQUEST_DEADLINE
     )
 
     # Step 4: Unziping file
