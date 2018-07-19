@@ -2,23 +2,25 @@ import io
 import json
 import zipfile
 
-import requests
-
 from core.models import Survey, SurveyResult
 from django.conf import settings
 import logging
+from google.appengine.api import urlfetch
+import urllib
 
 
 def get_results():
     try:
         survey_result = SurveyResult.objects.latest('loaded_at')
-        logging.info("Found Survey already downloaded, download partial result")
-        results = download_results(survey_result.response_id)
+        response_id = survey_result.response_id
+        logging.info('Some Survey results has already been downloaded, partially download new results.')
     except SurveyResult.DoesNotExist:
-        logging.info("Found new Survey, download all the results so far")
-        results = download_results()
-    finally:
-        _create_survey_result(results.get('responses'))
+        response_id = None
+        logging.info('No Survey results has already been downloaded so far, download all the results.')
+
+    results = download_results(response_id=response_id)
+    _create_survey_result(results.get('responses'))
+
 
 
 def _create_survey_result(results_data):
@@ -38,7 +40,7 @@ def _create_survey_result(results_data):
 
 
 def download_results(response_id=None, file_format='json'):
-
+    QUALTRICS_REQUEST_DEADLINE=60
     progress_status = 'in progress'
     request_check_progress = 0
     qualtrics_data = {}
@@ -56,28 +58,40 @@ def download_results(response_id=None, file_format='json'):
     if response_id:
         data_export_payload['lastResponseId'] = response_id
 
-    download_request_response = requests.request(
-        'POST',
-        settings.RESPONSE_EXPORT_BASE_URL,
-        json=data_export_payload,
+    download_request_response = urlfetch.fetch(
+        method=urlfetch.POST,
+        url=settings.RESPONSE_EXPORT_BASE_URL,
+        deadline=QUALTRICS_REQUEST_DEADLINE,
+        payload=json.dumps(data_export_payload),
         headers=headers
     )
-    progress_id = download_request_response.json()['result']['id']
+
+    progress_id = json.loads(download_request_response.content)['result']['id']
 
     # Step 2: Checking on Data Export Progress and waiting until export is ready
     while request_check_progress < 100 and progress_status is not 'complete':
         request_check_url = ''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))
-        request_check_response = requests.request('GET', request_check_url, headers=headers)
-        request_check_progress = request_check_response.json()['result']['percentComplete']
+        request_check_response = urlfetch.fetch(
+            method=urlfetch.GET,
+            url=request_check_url,
+            deadline=QUALTRICS_REQUEST_DEADLINE,
+            headers=headers)
+        request_check_progress = json.loads(request_check_response.content)['result']['percentComplete']
 
     # Step 3: Downloading file
     request_download_url = ''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))
-    request_download = requests.request('GET', request_download_url, headers=headers, stream=True)
+
+    request_download = urlfetch.fetch(
+        method='GET',
+        url=request_download_url,
+        headers=headers,
+        deadline=QUALTRICS_REQUEST_DEADLINE
+    )
 
     # Step 4: Unziping file
     with io.BytesIO() as in_memory_buffer:
-        for chunk in request_download.iter_content(chunk_size=1024):
-            in_memory_buffer.write(chunk)
+        in_memory_buffer.write(request_download.content)
+
         # it seems slightly overengineered to write `_unpack_zip` function to loop through a zip
         # file that should most likely cointain only one file (it will cointain more than one
         # file in case the number of responses is abouve 1M), however, looping through the zip
