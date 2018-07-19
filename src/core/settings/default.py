@@ -266,3 +266,7 @@ AUTHENTICATION_BACKENDS = (
 RESPONSE_EXPORT_BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format('google.co1')
 
 from .constants import *
+
+
+QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
+QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'

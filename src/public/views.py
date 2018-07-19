@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 from core.models import SurveyResult, Survey
-from core.qualtrics import calculate_response_benchmark, calculate_group_benchmark
+from core.qualtrics import calculate_response_benchmark
 
 
 def reports_list(request):
@@ -19,7 +19,7 @@ def reports_list(request):
 
 def report_view(request, sid):
     try:
-        s = Survey.objects.filter(sid=sid).first()
+        s = Survey.objects.get(sid=sid)
         s_result = SurveyResult.objects.filter(survey=s).latest('loaded_at')
     except Survey.DoesNotExist:
         raise Http404("Survey does not exist.")
