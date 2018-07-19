@@ -17,7 +17,7 @@ class QualtricsTest(TestCase):
         self.assertEqual(weighted_average, 2)
 
     def test__weighted_questions_average_complex(self):
-        """Test that given an array of questions the right weighetd average is calculated."""
+        """Test that given an array of questions the right weighted average is calculated."""
         weighted_average = 1.907407407
         responses = [
             ('Q3', 2.0, 2, 'dimension_A'),
