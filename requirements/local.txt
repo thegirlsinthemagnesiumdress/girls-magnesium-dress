@@ -9,3 +9,4 @@ coverage==4.2
 GoogleAppEngineCloudStorageClient==1.9.22.1
 selenium==3.4.3
 mock==2.0.0
+numpy==1.6.1

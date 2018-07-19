@@ -1,4 +1,3 @@
-import requests
 import zipfile
 import os
 import re

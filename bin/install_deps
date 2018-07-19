@@ -22,7 +22,7 @@ REQUIREMENTS_DIR = path.join(PROJECT_ROOT, 'requirements')
 
 REQUIREMENTS_FILE = os.path.join(REQUIREMENTS_DIR, "prod.txt")
 DEV_REQUIREMENTS_FILE = os.path.join(REQUIREMENTS_DIR, "local.txt")
-DEV_TARGET_DIR = os.path.join(THIRD_PARTY_DIR, "dev", "sitepackages")
+DEV_TARGET_DIR = os.path.join(THIRD_PARTY_DIR, "local", "sitepackages")
 PROD_TARGET_DIR = os.path.join(THIRD_PARTY_DIR, "prod", "sitepackages")
 
 PACKAGE_JSON = path.join(PROJECT_ROOT, 'package.json')

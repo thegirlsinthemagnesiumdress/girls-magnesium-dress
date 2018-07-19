@@ -1,7 +1,7 @@
 from core.tests.mocks import  qualtrics_export, weights, dimensions, response_0_questions, response_1_questions, DMB, response_1_overall
 from djangae.test import TestCase
 import core.qualtrics as qualtrics
-from unittest.mock import Mock, patch
+from mock import Mock, patch
 
 def sortQuestion(q):
     question_key_regex = re.compile(r'^Q(\d+)(_\d+)?$')
