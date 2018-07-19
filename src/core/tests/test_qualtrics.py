@@ -1,5 +1,5 @@
 import core.qualtrics as qualtrics
-from mock import Mock, patch
+from djangae.test import TestCase
 from django.conf import settings
 from django.test import override_settings
 
@@ -34,13 +34,6 @@ class QualtricsTest(TestCase):
         ]
         average = qualtrics._weighted_questions_average(responses)
         self.assertAlmostEqual(average, weighted_average, places=4)
-
-    def test__weighted_questions_average_empty_list(self):
-        """Test the right benchmark is calculated given an array of responses."""
-        responses = []
-
-        weighted_average = qualtrics._weighted_questions_average(responses)
-        self.assertEqual(weighted_average, 1)
 
 
 class CalculateResponseBenchmarkTest(TestCase):
