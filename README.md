@@ -46,6 +46,7 @@ When building these files are build (as per gulpfile.js) and then output to:
  - 'src/static/dist' - When in production mode (this is what's deployed)
 
  # Deploy
- - `./manage.py gulp build --settings=core.settings.live`
- - `python manage.py collectstatic --settings=core.settings.live`
- - `./third_party/google_appengine/appcfg.py update --no_cookies -A potato-trev-test -V [version] ./src`
+ The deployment script is inside `scripts` folder and it can be called with or without parameters. Calling the script without parameters will deploy a version based on the last tagged version where the current hash commit is appended. Alternatively, the deploy script can be called with the following paramenters:
+ - `major`: it will generate a new major version number and deploy it;
+ - `minor`: it will generate a new minor version number and deploy it;
+ - `patch`: it will generate a new patch version number and deploy it.
