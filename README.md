@@ -56,4 +56,4 @@ ie.
 `$ ./scripts/deploy` can be used to deploy a feature that has to be tested in staging
 `$ ./scripts/deploy patch` can be used to launch some copy updates
 `$ ./scripts/deploy minor` can be used to launch some new features
-`$ ./scripts/deploy major` can be used to launch some a
+`$ ./scripts/deploy major` can be used to launch some a major change
