@@ -50,3 +50,10 @@ When building these files are build (as per gulpfile.js) and then output to:
  - `major`: it will generate a new major version number and deploy it;
  - `minor`: it will generate a new minor version number and deploy it;
  - `patch`: it will generate a new patch version number and deploy it.
+
+Please run the script from the root of the project, as shown above.
+ie.
+`$ ./scripts/deploy` can be used to deploy a feature that has to be tested in staging
+`$ ./scripts/deploy patch` can be used to launch some copy updates
+`$ ./scripts/deploy minor` can be used to launch some new features
+`$ ./scripts/deploy major` can be used to launch some a

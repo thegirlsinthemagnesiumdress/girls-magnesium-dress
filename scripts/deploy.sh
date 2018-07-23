@@ -51,7 +51,7 @@ VERSION_ADDED=0;
 
 if [ ! -z $DEPLOYMENT_TYPE ]; then
     echo "Tagging commit..";
-    ./versions.sh $DEPLOYMENT_TYPE &>/dev/null;
+    ./scripts/versions.sh $DEPLOYMENT_TYPE &>/dev/null;
     VERSION_ADDED=$?;
     LATEST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null)
 fi
