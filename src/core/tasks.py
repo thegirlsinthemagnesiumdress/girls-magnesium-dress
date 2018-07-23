@@ -13,7 +13,7 @@ def get_results():
         response_id = None
         logging.info('No Survey results has already been downloaded so far, download all the results.')
 
-    results = download.download_results(response_id=response_id)
+    results = download.fetch_results(response_id=response_id)
     _create_survey_result(results.get('responses'))
 
 
