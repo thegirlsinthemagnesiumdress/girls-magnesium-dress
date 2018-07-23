@@ -60,11 +60,11 @@ class Survey(models.Model):
 
 
 class SurveyResult(models.Model):
-    """Model to store a survey response entry."""
+    """Model to store a survey response benchmark."""
 
     survey = models.ForeignKey(Survey, null=True)
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
 
-    dmb = models.DecimalField()
-    dmb_d = models.DecimalField()
+    dmb = models.DecimalField(max_digits=4, decimal_places=2)
+    dmb_d = JSONField()
