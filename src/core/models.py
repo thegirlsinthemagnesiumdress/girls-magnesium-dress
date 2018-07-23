@@ -26,14 +26,6 @@ class Survey(models.Model):
     company_name = models.CharField(max_length=50)
     sid = models.CharField(unique=True, editable=False, max_length=32)
 
-    # DMB_overall_average = models.DecimalField()
-
-    # DMB_overall_average_by_dimension = JSONField()
-
-    # DMB_best_practice = models.DecimalField()
-
-    # DMB_best_practice_by_dimension = JSONField()
-
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -70,40 +62,9 @@ class Survey(models.Model):
 class SurveyResult(models.Model):
     """Model to store a survey response entry."""
 
-    _question_key_regex = re.compile(r'^Q\d+(_\d+)?$')
-
     survey = models.ForeignKey(Survey, null=True)
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
 
-    data = JSONField()
-
-    @property
-    def questions(self):
-        # filter results keys that are questions. Unfortunately we have to rely on property key names.
-        questions_keys = filter(self._question_key_regex.search, self.data.keys())
-
-        # filter out questions without a response.
-        questions_keys_with_value = filter(lambda key: self.data.get(key), questions_keys)
-
-        def create_tuple(question_key):
-            question_value = 0
-            try:
-                question_value = float(self.data.get(question_key))
-            except ValueError:
-                pass
-
-            return (
-                question_key,
-                question_value,
-                settings.WEIGHTS.get(question_key, 1),
-                self.get_question_dimension(question_key)
-            )
-
-        questions_key_value = map(create_tuple, questions_keys_with_value)
-        return questions_key_value
-
-    def get_question_dimension(self, question_id):
-        for dimension_key, dimension_value in settings.DIMENSIONS.iteritems():
-            if question_id in dimension_value:
-                return dimension_key
+    dmb = models.DecimalField()
+    dmb_d = models.DecimalField()

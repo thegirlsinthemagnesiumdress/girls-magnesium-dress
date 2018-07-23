@@ -10,7 +10,7 @@ from mommy_recepies import make_survey, make_survey_result
 class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
 
-    @mock.patch('core.qualtrics.download_results', return_value=get_mocked_results())
+    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_new_survey_first_time_download(self, download_mock):
         """We're assuming that all the Surveys have been created previously."""
         make_survey(sid='1')
@@ -25,7 +25,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-    @mock.patch('core.qualtrics.download_results', return_value=get_mocked_results())
+    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_surveys_results_are_always_saved(self, download_mock):
         """Survey results are saved anyway, regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)
@@ -36,7 +36,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-    @mock.patch('core.qualtrics.download_results', return_value=get_mocked_results(response_id='AAB'))
+    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results(response_id='AAB'))
     def test_partial_download_existing_survey(self, download_mock):
         survey = make_survey(sid='1')
         make_survey_result(survey=survey, response_id='AAB')

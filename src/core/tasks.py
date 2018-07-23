@@ -1,6 +1,6 @@
 import logging
 
-import qualtrics
+from core.qualtrics import download, benchmark, question
 from core.models import Survey, SurveyResult
 
 
@@ -13,7 +13,7 @@ def get_results():
         response_id = None
         logging.info('No Survey results has already been downloaded so far, download all the results.')
 
-    results = qualtrics.download_results(response_id=response_id)
+    results = download.download_results(response_id=response_id)
     _create_survey_result(results.get('responses'))
 
 
@@ -25,9 +25,12 @@ def _create_survey_result(results_data):
         from Qualtrics API.
     """
     for data in results_data:
+        questions = question.data_to_questions(data)
+        dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
         survey = Survey.objects.filter(sid=data.get('sid')).first()
         SurveyResult.objects.create(
             survey=survey,
             response_id=data.get('ResponseID'),
-            data=data,
+            dmb=dmb,
+            dmb_d=dmb_d,
         )

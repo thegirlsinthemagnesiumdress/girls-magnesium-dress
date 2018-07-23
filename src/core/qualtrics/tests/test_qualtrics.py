@@ -1,39 +1,7 @@
-import core.qualtrics as qualtrics
+from core.qualtrics import benchmark
 from djangae.test import TestCase
 from django.conf import settings
 from django.test import override_settings
-
-
-class QualtricsTest(TestCase):
-    """Test class for utility funcions in qualtrics module."""
-    def test__weighted_questions_average(self):
-        """Test the right benchmark is calculated given an array of responses."""
-        responses = [
-            ('Q1', 1.0, 1, 'dimension_A'),
-            ('Q2', 3.0, 1, 'dimension_A'),
-        ]
-
-        weighted_average = qualtrics._weighted_questions_average(responses)
-        self.assertEqual(weighted_average, 2)
-
-    def test__weighted_questions_average_complex(self):
-        """Test that given an array of questions the right weighted average is calculated."""
-        weighted_average = 1.907407407
-        responses = [
-            ('Q3', 2.0, 2, 'dimension_A'),
-            ('Q4', 0.0, 0.5, 'dimension_A'),
-            ('Q5_1', 2.0, 1, 'dimension_A'),
-            ('Q5_2', 0.0, 1, 'dimension_A'),
-            ('Q5_3', 3.0, 1, 'dimension_B'),
-            ('Q6', 4.0, 1, 'dimension_B'),
-            ('Q7', 2.0, 0.3, 'dimension_B'),
-            ('Q8', 4.0, 1, 'dimension_C'),
-            ('Q10', 0.0, 1, 'dimension_C'),
-            ('Q11', 1.0, 1, 'dimension_C'),
-            ('Q12', 2.0, 1, 'dimension_C'),
-        ]
-        average = qualtrics._weighted_questions_average(responses)
-        self.assertAlmostEqual(average, weighted_average, places=4)
 
 
 class CalculateResponseBenchmarkTest(TestCase):
@@ -47,7 +15,7 @@ class CalculateResponseBenchmarkTest(TestCase):
             ('Q3', 2.0, 2, 'dimension_A'),
         ]
 
-        dmb, dmb_d_dictionary = qualtrics.calculate_response_benchmark(responses)
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses)
         self.assertIsInstance(dmb_d_dictionary, dict)
         self.assertEqual(len(dmb_d_dictionary), 1)
         self.assertTrue('dimension_A' in dmb_d_dictionary)
@@ -64,7 +32,7 @@ class CalculateResponseBenchmarkTest(TestCase):
             ('Q5', 1.0, 2, 'dimension_B'),
         ]
 
-        dmb, dmb_d_dictionary = qualtrics.calculate_response_benchmark(responses)
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses)
 
         self.assertIsInstance(dmb_d_dictionary, dict)
         self.assertEqual(len(dmb_d_dictionary), 2)
@@ -96,7 +64,7 @@ class CalculateGroupBenchmarkTest(TestCase):
             ]
         ]
 
-        dmb, dmb_d_dictionary = qualtrics.calculate_group_benchmark(responses)
+        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark(responses)
         self.assertIsInstance(dmb_d_dictionary, dict)
         self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
 
@@ -148,7 +116,7 @@ class CalculateGroupBenchmarkTest(TestCase):
             ]
         ]
 
-        dmb, dmb_d_dictionary = qualtrics.calculate_group_benchmark(responses)
+        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark(responses)
         self.assertIsInstance(dmb_d_dictionary, dict)
         self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
 
