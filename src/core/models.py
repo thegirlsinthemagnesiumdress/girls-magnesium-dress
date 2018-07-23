@@ -1,9 +1,7 @@
 import hashlib
-import re
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
 from djangae.fields import JSONField
-from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
