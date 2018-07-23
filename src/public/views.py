@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 from core.models import SurveyResult, Survey
-from core.qualtrics import calculate_response_benchmark
+from core.qualtrics.benchmark import calculate_response_benchmark
 
 
 def reports_list(request):
