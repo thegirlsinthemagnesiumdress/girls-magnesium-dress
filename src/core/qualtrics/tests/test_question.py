@@ -117,3 +117,25 @@ class WeightedQuestionAverageTest(TestCase):
         ]
         average = question.weighted_questions_average(responses)
         self.assertAlmostEqual(average, weighted_average, places=4)
+
+
+@override_settings(
+    DIMENSIONS={
+        'activation': ['Q3', 'Q4'],
+        'audience': ['Q2'],
+    }
+)
+class GetQuestionDimensionTest(TestCase):
+    """Test case for `core.qualtrics.question.get_question_dimension` function."""
+
+    def test_question_with_dimension(self):
+        """When question belongs to a dimension, it should be returned"""
+        dimension = question.get_question_dimension('Q3')
+
+        self.assertEqual(dimension, 'activation')
+
+    def test_no_dimension_found_for_question(self):
+        """When a dimension cannot be found for a question it should return `None`."""
+        dimension = question.get_question_dimension('Q1')
+
+        self.assertIsNone(dimension)
