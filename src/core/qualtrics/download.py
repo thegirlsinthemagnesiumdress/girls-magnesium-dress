@@ -1,11 +1,46 @@
 import io
 import json
 import zipfile
+from exceptions import FetchResultException
+
 from google.appengine.api import urlfetch
+
 from django.conf import settings
 
 
 def fetch_results(response_id=None, file_format='json'):
+    """Fetch results from Quatrics API.
+
+        :raises: `core.qualtrics.exceptions.FetchResultException` if
+            any of the steps to generate and retrieve the data export
+            fails
+        :returns: dictionary of survey responses in the following format:
+            {
+                'responses': [
+                    {
+                        'Organization-sum': '0.0',
+                        'Organization-weightedAvg': '0.0',
+                        'Organization-weightedStdDev': '0.0',
+                        'sid': '1',
+                        'ResponseID': 'AAA',
+                        'Enter Embedded Data Field Name Here...': '',
+                        'sponsor': '',
+                        'company_name': 'new survey',
+                        'industry': 'A',
+                        'dmb': '0.5',
+                        'Q1_1_TEXT': '',
+                        'Q1_2_TEXT': '',
+                        'Q2_1_TEXT': '',
+                        'Q2_2_TEXT': '',
+
+                        'Q3': '2',
+                        'Q4': '0',
+                        'Q5_1': '2',
+                    },
+                    ...
+                ]
+            }
+    """
     progress_status = 'in progress'
     request_check_progress = 0
     qualtrics_data = {}
@@ -31,7 +66,11 @@ def fetch_results(response_id=None, file_format='json'):
         headers=headers
     )
 
-    progress_id = json.loads(download_request_response.content)['result']['id']
+    try:
+        export_generation_response = json.loads(download_request_response.content)
+        progress_id = export_generation_response['result']['id']
+    except KeyError:
+        raise FetchResultException(export_generation_response)
 
     # Step 2: Checking on Data Export Progress and waiting until export is ready
     while request_check_progress < 100 and progress_status is not 'complete':
@@ -41,7 +80,11 @@ def fetch_results(response_id=None, file_format='json'):
             url=request_check_url,
             deadline=settings.QUALTRICS_REQUEST_DEADLINE,
             headers=headers)
-        request_check_progress = json.loads(request_check_response.content)['result']['percentComplete']
+        progress_response = json.loads(request_check_response.content)
+        try:
+            request_check_progress = progress_response['result']['percentComplete']
+        except KeyError:
+            raise FetchResultException(progress_response)
 
     # Step 3: Downloading file
     request_download_url = ''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))
@@ -61,9 +104,12 @@ def fetch_results(response_id=None, file_format='json'):
         # file that should most likely cointain only one file (it will cointain more than one
         # file in case the number of responses is abouve 1M), however, looping through the zip
         # archive allow us to read file content anonymously.
-        qualtrics_data = [response for response in _unpack_zip(in_memory_buffer)]
-        qualtrics_data = qualtrics_data[0]
+        try:
+            qualtrics_data = [response for response in _unpack_zip(in_memory_buffer)]
+            qualtrics_data = qualtrics_data[0]
 
+        except zipfile.BadZipfile as e:
+            raise FetchResultException(json.loads(request_download.content))
     return json.loads(qualtrics_data)
 
 
