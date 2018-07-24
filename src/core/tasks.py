@@ -1,6 +1,6 @@
 import logging
 
-from core.qualtrics import download, benchmark, question
+from core.qualtrics import download, benchmark, question, exceptions
 from core.models import Survey, SurveyResult
 
 
@@ -13,8 +13,11 @@ def get_results():
         response_id = None
         logging.info('No Survey results has already been downloaded so far, download all the results.')
 
-    results = download.fetch_results(response_id=response_id)
-    _create_survey_result(results.get('responses'))
+    try:
+        results = download.fetch_results(response_id=response_id)
+        _create_survey_result(results.get('responses'))
+    except exceptions.FetchResultException as fe:
+        logging.error('Fetching results failed with: {}'.format(fe))
 
 
 def _create_survey_result(results_data):

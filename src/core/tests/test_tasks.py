@@ -5,6 +5,7 @@ from core.tasks import get_results
 from djangae.test import TestCase
 from mocks import get_mocked_results
 from mommy_recepies import make_survey, make_survey_result
+from core.qualtrics.exceptions import FetchResultException
 
 
 class GetResultsTestCase(TestCase):
@@ -50,3 +51,26 @@ class GetResultsTestCase(TestCase):
         download_mock.assert_called_once_with(response_id='AAB')
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
+
+    @mock.patch('core.qualtrics.download.fetch_results')
+    def test_fetch_results_fails(self, download_mock):
+        exception_body = {
+            'meta': {
+                'httpStatus': 400,
+                'error': {
+                    'errorMesasge': 'some error'
+                }
+            }
+        }
+        download_mock.side_effect = FetchResultException(exception_body)
+
+        survey = make_survey(sid='1')
+        make_survey_result(survey=survey, response_id='AAB')
+        self.assertEqual(SurveyResult.objects.count(), 1)
+
+        with mock.patch('core.tasks._create_survey_result') as survey_result_mock:
+            get_results()
+            survey_result_mock.assert_not_called()
+            download_mock.assert_called_once_with(response_id='AAB')
+            self.assertEqual(Survey.objects.count(), 1)
+            self.assertEqual(SurveyResult.objects.count(), 1)
