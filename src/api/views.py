@@ -1,9 +1,10 @@
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, get_object_or_404
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
-from api.serializers import SurveySerializer, SurveyCompanyNameSerializer
-from core.models import Survey
+from api.serializers import SurveySerializer, SurveyCompanyNameSerializer, SurveyResultSerializer
+from core.models import Survey, SurveyResult
 
 
 class CreateSurveyView(CreateAPIView):
@@ -36,3 +37,14 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
+
+class SurveyResultsDetail(RetrieveAPIView):
+    """
+    Retrieve `SurveyResults` instance.
+    """
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
+    serializer_class = SurveyResultSerializer
+    queryset = SurveyResult.objects.all()
+    lookup_field = 'survey_id'
+    lookup_url_kwarg = 'sid'
