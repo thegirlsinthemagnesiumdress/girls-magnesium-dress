@@ -21,8 +21,8 @@ class Survey(models.Model):
     }
     """
 
+    sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
-    sid = models.CharField(unique=True, editable=False, max_length=32)
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -49,10 +49,10 @@ class Survey(models.Model):
         self.DMB_overall_average_by_dimension.get(dimension)
 
     def save(self, *args, **kwargs):
-        if self.pk is None:
+        if not self.pk:
             self.created_at = timezone.now()
             m = hashlib.md5()
-            md5 = m.update(self.company_name + self.created_at.isoformat())
+            m.update(self.company_name + self.created_at.isoformat())
             self.sid = m.hexdigest()
         super(Survey, self).save(*args, **kwargs)
 
