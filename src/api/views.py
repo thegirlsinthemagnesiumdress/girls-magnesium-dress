@@ -41,6 +41,9 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
 class SurveyResultsDetail(RetrieveAPIView):
     """
     Retrieve `SurveyResults` instance.
+    By spec we assume we should have a single SurveyResult per Survey and in case we have
+    more than one we just take the latest. That's why we are using survey_id as lookup field
+    instead of the pk.
     """
     authentication_classes = ()
     permission_classes = (AllowAny,)

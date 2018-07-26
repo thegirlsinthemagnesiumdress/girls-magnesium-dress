@@ -65,6 +65,18 @@ class SurveyResultTest(APITestCase):
         self.assertAlmostEqual(float(response.data.get('dmb')), self.survey_result.dmb)
         self.assertEqual(response.data.get('response_id'), self.survey_result.response_id)
 
+    def test_return_last_survey_result(self):
+        survey_result = SurveyResult.objects.create(
+            survey=self.survey,
+            response_id='BBB',
+            dmb=2.0,
+            dmb_d='{}'
+        )
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertAlmostEqual(float(response.data.get('dmb')), survey_result.dmb)
+        self.assertEqual(response.data.get('response_id'), survey_result.response_id)
+
     def test_survey_result_not_found(self):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
         response = self.client.get(url)
