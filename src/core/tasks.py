@@ -1,7 +1,7 @@
 import logging
 
 from core.qualtrics import download, benchmark, question, exceptions
-from core.models import Survey, SurveyResult
+from core.models import SurveyResult
 
 
 def get_results():
@@ -30,9 +30,9 @@ def _create_survey_result(results_data):
     for data in results_data:
         questions = question.data_to_questions(data)
         dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
-        survey = Survey.objects.filter(sid=data.get('sid')).first()
+        # survey = Survey.objects.filter(sid=data.get('sid')).first()
         SurveyResult.objects.create(
-            survey=survey,
+            survey_id=data.get('sid'),
             response_id=data.get('ResponseID'),
             dmb=dmb,
             dmb_d=dmb_d,
