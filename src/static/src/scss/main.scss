@@ -1,62 +1,25 @@
-// sass-lint:disable clean-import-paths
+// main.scss
+// Sass compiler knows the paths to glue Sass through the Gulp
+// compiler configuration.
+@import 'hercules/lib/global/scss/settings/all';
 
-// Fileoverview:
-// Main website scss file.
+// If you have Sass variable overrides, include them here and uncomment.
+// @import 'myproject/custom/settings';
 
-@import 'global/settings/variables';
+@import 'hercules/lib/global/scss/tools/all';
+@import 'hercules/lib/global/scss/generic/all';
+@import 'hercules/lib/global/scss/elements/all';
 
-// Functions
-@import 'global/functions/base-unit';
+// Glue component base styles
+@import 'scss/zippy';
 
-// Settings
-@import 'global/settings/all';
-@import 'website/settings/variables';
+// If you'd like to optimize your css size, you can replace
+// 'all' below with the specific components you want, such as
+// buttons, type, icons. Details on how to do this are within the
+// component documentation.
+@import 'hercules/lib/components/buttons/buttons';
 
-// Mixins
-@import 'mq';
-@import 'global/mixins/all';
+// Include your project specific styles here.
+// @import 'myproject/components/foo';
 
-// Generic
-@import 'global/generic/all';
-@import 'website/generic/generic';
-@import 'flexboxgrid';
-
-
-// Global elements
-@import 'global/elements/all';
-@import 'website/elements/forms';
-@import 'website/elements/links';
-
-// Utilities
-@import 'global/utilities/all';
-
-// Fullpage css
-@import 'jquery.fullpage';
-@import 'slick.scss';
-@import 'slick-theme.scss';
-
-// Components
-@import 'website/components/section';
-@import 'website/components/section-slider';
-@import 'website/components/hero';
-@import 'website/components/header';
-@import 'website/components/footer';
-@import 'website/components/registration';
-@import 'website/components/accordion';
-@import 'website/components/infographic-section';
-@import 'website/components/report';
-
-
-// Pages
-
-
-.responsive {
-  @include mq($from: tablet) {
-    background-color: #f00;
-  }
-}
-
-
-* {
-  box-sizing: border-box;
-}
+@import 'hercules/lib/global/scss/trumps/all';

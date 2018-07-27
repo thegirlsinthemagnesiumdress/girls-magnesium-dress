@@ -1,7 +1,8 @@
 # This is adapted from the GitHub version: https://github.com/github/gitignore/blob/master/Python.gitignore
 
 third_party/*
-src/static/dev
+src/static/dev/*
+
 src/static/dist
 src/.storage/*
 coverage_html/*

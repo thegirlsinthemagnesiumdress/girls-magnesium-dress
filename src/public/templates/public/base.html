@@ -5,13 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% include 'inc/analytics.html' %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <script src="{% static 'js/lib.js' %}" defer></script>
-    <script src="{% static 'js/main.js' %}" defer></script>
     <link rel="shortcut icon" href="/favicon.png">
-    {% comment %} Fullpage dependencies {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    {% if debug %}
+      <script src="node_modules/google-closure-library/closure/goog/base.js"></script>
+      <script src="{% static 'js/deps.js' %}"></script>
+      <script>goog.require('sandbox.detect')</script>
+
+      {% comment %} Deferred scripts {% endcomment %}
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js" defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js" defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.js" defer></script>
+
+      <script src="{% static 'js/templates.js' %}" defer></script>
+      <script defer>goog.require('sandbox.app')</script>
+    {% else %}
+      <script src="{% static 'js/detect.min.js' %}"></script>
+
+      {% comment %} Deferred scripts {% endcomment %}
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js" defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js" defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js" defer></script>
+        <!-- Angular Material Library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js" defer></script>
+      <!-- Third party -->
+      <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js" defer></script>
+      <script src="{% static 'js/main.min.js' %}" defer></script>
+    {% endif %}
+
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
     <title>Digital Maturity Benchmark</title>
 </head>
 <body>
@@ -21,5 +44,7 @@
 {% block footer %}
     {% include '../inc/footer.html' %}
 {% endblock footer %}
+
+{% include "core/inc/_svg.inc.html" %}
 </body>
 </html>

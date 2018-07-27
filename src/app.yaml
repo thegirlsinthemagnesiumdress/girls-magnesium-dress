@@ -52,14 +52,12 @@ handlers:
   static_files: static/dist/img/favicon.png
   upload: static/dist/img/favicon\.png
 
-  # We currently have to set this handler to be able to
-  # have static files locally being public.
-  # TODO: We need to remove this in prod
-- url: /devstatic.*
-  script: core.wsgi.application
-  secure: always
-  login: optional
 
+# This is used for development only
+# We could probably think of a better configuration
+- url: /node_modules
+  static_dir: node_modules
+  secure: always
 
 - url: /.*
   script: core.wsgi.application
@@ -78,3 +76,4 @@ skip_files:
     - (.*)\.pyc
     - (.*)\.scss
     - (.*)\.DS_Store
+    - node_modules
