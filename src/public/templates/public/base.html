@@ -6,17 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="/favicon.png">
-
     {% if debug %}
       <script src="node_modules/google-closure-library/closure/goog/base.js"></script>
       <script src="{% static 'js/deps.js' %}"></script>
       <script>goog.require('dmb.detect')</script>
-
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
-
-      <script src="{% static 'js/templates.js' %}" ></script>
-      <script >goog.require('dmb.app')</script>
     {% else %}
       <script src="{% static 'js/detect.min.js' %}"></script>
 
@@ -43,5 +36,14 @@
 {% endblock footer %}
 
 {% include "core/inc/_svg.inc.html" %}
+
+{% if debug %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+  <script src="{% static 'js/templates.js' %}" ></script>
+  <script >goog.require('dmb.app')</script>
+{% endif %}
 </body>
 </html>
