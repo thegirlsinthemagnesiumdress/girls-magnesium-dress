@@ -1,30 +1,24 @@
-// // Fileoverview:
-// // Main survey file. This stiles are dynamically injected in the Qualtrics
-// // survey.
+// main.scss
+// Sass compiler knows the paths to glue Sass through the Gulp
+// compiler configuration.
+@import 'hercules/lib/global/scss/settings/all';
 
-// @import 'global/settings/variables';
+// If you have Sass variable overrides, include them here and uncomment.
+// @import 'myproject/custom/settings';
 
-// // Functions
-// @import 'global/functions/base-unit';
+@import 'hercules/lib/global/scss/tools/all';
+@import 'hercules/lib/global/scss/generic/all';
+@import 'hercules/lib/global/scss/elements/all';
 
-// // Settings
-// @import 'global/settings/all';
+// Glue component base styles
+// @import 'scss/zippy';
 
-// // Mixins
-// @import 'mq';
-// @import 'global/mixins/all';
+// Hercules component base styles
+@import 'hercules/lib/components/page/page';
+@import 'hercules/lib/components/type/type';
 
-// // Generic
-// @import 'global/generic/all';
-// @import 'flexboxgrid';
 
-// // Global elements
-// @import 'global/elements/all';
-// @import 'survey/generic/global';
+// Include your project specific styles here.
+// @import 'myproject/components/foo';
 
-// // Utilities
-// @import 'global/utilities/all';
-
-// // Components
-// @import 'survey/components/hero';
-// @import 'survey/components/question';
+@import 'hercules/lib/global/scss/trumps/all';

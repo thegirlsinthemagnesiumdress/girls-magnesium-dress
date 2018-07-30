@@ -6,7 +6,7 @@ const gulp = require('gulp');
 const path = require('path');
 const hercules = require('glue').gulp.hercules;
 var sourcemaps = require('gulp-sourcemaps');
-var sassLint = require('sass-lint');
+var sassLint = require('gulp-sass-lint');
 var eslint = require('gulp-eslint');
 var del = require('del');
 const templateCache = require('gulp-angular-templatecache');
@@ -17,38 +17,54 @@ const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 
 
-
 var STATIC_DIR = './src/static';
 var SRC_STATIC_DIR = './src/static/src';
 var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
 var DIST_DIR = STATIC_DIR + '/dist/';
+
+var PATHS = {
+  src: {
+    js: path.join(SRC_STATIC_DIR, 'js'),
+    scss: path.join(SRC_STATIC_DIR, 'scss'),
+  },
+  dev: {
+    js: path.join(DEV_STATIC_DIR, 'js'),
+    scss: path.join(DEV_STATIC_DIR, 'css'),
+  },
+  dist: {
+    js: path.join(DIST_DIR, 'js'),
+    scss: path.join(DIST_DIR, 'css'),
+  },
+}
+
+
 const TEMPLATE_SRC = [
   'node_modules/glue/hercules/lib/components/**/*.html',
   '!node_modules/glue/hercules/lib/components/**/*_test.html',
 ];
 
 gulp.task('js-dev', function() {
-  return gulp.src(path.join(SRC_STATIC_DIR, 'js', '/**/*.js'))
+  return gulp.src(`${PATHS.src.js}/**/*.js`)
       .pipe(hercules.js.dev())
-      .pipe(gulp.dest(path.join(DEV_STATIC_DIR, 'js')))
+      .pipe(gulp.dest(PATHS.dev.js))
       .pipe(livereload());
 });
 
 gulp.task('js', function() {
-  return gulp.src(path.join(SRC_STATIC_DIR, 'js', '/**/*.js'))
+  return gulp.src(`${PATHS.src.js}/**/*.js`)
       .pipe(hercules.js.prod({
         entry_point: 'dmb.app',
       }))
-      .pipe(gap.prependFile(path.join(DEV_STATIC_DIR, 'js')))
-      .pipe(gulp.dest(path.join(DIST_DIR, 'js')));
+      .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
+      .pipe(gulp.dest(PATHS.dist.js));
 });
 
 gulp.task('js-detect', function() {
-  return gulp.src(path.join(SRC_STATIC_DIR, 'js', '/**/*.js'))
+  return gulp.src(`${PATHS.src.js}/**/*.js`)
       // Note that entry_point matches the namespace defined in detect.js
       .pipe(hercules.js.prod({entry_point: 'dmb.detect'}))
       .pipe(rename('detect.min.js'))
-      .pipe(gulp.dest(path.join(DIST_DIR, 'js')));
+      .pipe(gulp.dest(PATHS.dist.js));
 });
 
 gulp.task('js-templates', function() {
@@ -64,7 +80,7 @@ gulp.task('js-templates', function() {
         }
       }
     ))
-    .pipe(gulp.dest(path.join(DEV_STATIC_DIR, 'js')));
+    .pipe(gulp.dest(PATHS.dev.js));
 });
 
 // gulp.task('copy-hercules-assets', function() {
@@ -87,24 +103,29 @@ const AUTOPREFIXER_CONFIG = {
   cascade: false
 };
 
-gulp.task('clean', function() {
+gulp.task('clean-dev', function() {
   return del([
-    path.join(DEV_STATIC_DIR, 'js', '**/*'),
-    path.join(DEV_STATIC_DIR, 'scss', '**/*'),
-    path.join(DIST_DIR, 'js', '**/*'),
-    path.join(DIST_DIR, 'scss', '**/*'),
+    path.join(PATHS.dev.js, '**/*'),
+    path.join(PATHS.dev.scss, '**/*'),
+  ]);
+});
+
+gulp.task('clean-dist', function() {
+  return del([
+    path.join(PATHS.dist.js, '**/*'),
+    path.join(PATHS.dist.scss, '**/*'),
   ]);
 });
 
 
 gulp.task('sass-dev', function() {
   // Fill out the line below with the path to your main Sass file.
-  return gulp.src(path.join(SRC_STATIC_DIR, 'scss', '/**/*.scss'))
+  return gulp.src(`${PATHS.src.scss}/**/*.scss`)
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(sourcemaps.init())
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(path.join(DEV_STATIC_DIR, 'css')))
+      .pipe(gulp.dest(PATHS.dev.scss))
       .pipe(livereload())
       .pipe(notify({
         message: 'Sass compilation complete.'
@@ -113,10 +134,10 @@ gulp.task('sass-dev', function() {
 
 gulp.task('sass', function() {
   // Fill out the line below with the path to your main Sass file.
-  return gulp.src(path.join(SRC_STATIC_DIR, 'scss', '/**/*.scss'))
+  return gulp.src(`${PATHS.src.scss}/**/*.scss`)
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
-      .pipe(gulp.dest(path.join(DIST_DIR, 'css')))
+      .pipe(gulp.dest(PATHS.dist.scss))
       .pipe(notify({
         message: 'Sass compilation complete.'
       }));
@@ -131,19 +152,22 @@ gulp.task('js-lint', function() {
 });
 
 gulp.task('sass-lint', function() {
-  return gulp.src(path.join(SRC_STATIC_DIR, '/**/*.scss'))
+  return gulp.src([
+    `${PATHS.src.scss}/**/*.scss`,
+    `!${PATHS.src.scss}/legacy/**/*.scss`,
+  ])
     .pipe(sassLint())
     .pipe(sassLint.format());
 });
 
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(path.join(SRC_STATIC_DIR, '/**/*.js'), gulp.parallel(
+  gulp.watch(`${PATHS.src.js}/**/*.js`, gulp.parallel(
     'js-lint',
     'js-dev'
   ));
 
-  gulp.watch(path.join(SRC_STATIC_DIR, '/**/*.scss'), gulp.parallel(
+  gulp.watch(`${PATHS.src.scss}/**/*.scss`, gulp.parallel(
     'sass-lint',
     'sass-dev'
   ));
@@ -155,18 +179,18 @@ gulp.task('lint', gulp.parallel(
 ));
 
 gulp.task('build', gulp.series(
-  'clean',
-  'js-detect',
+  'clean-dist',
   'js-templates',
+  'js-detect',
   'js',
   'sass'
 ));
 
 gulp.task('default', gulp.series(
-  'clean',
+  'clean-dev',
   gulp.parallel(
-    // 'js-lint',
-    // 'sass-lint',
+    'js-lint',
+    'sass-lint',
     'js-templates',
     'js-dev',
     'sass-dev'

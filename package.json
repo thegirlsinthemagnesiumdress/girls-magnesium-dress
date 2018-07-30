@@ -21,6 +21,7 @@
     "gulp-eslint": "^5.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.4.0",
+    "gulp-sass-lint": "^1.4.0",
     "lazypipe": "1.0.1",
     "sass-lint": "^1.12.1"
   }
