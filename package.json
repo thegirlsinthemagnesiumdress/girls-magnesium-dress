@@ -1,28 +1,27 @@
 {
   "dependencies": {
     "glue": "git+https://webmaster.googlesource.com/bs/glue#v18.0.1",
-    "google-closure-compiler": "^20180716.0.1",
-    "google-closure-library": "^20180716.0.0",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-closure-compiler": "^0.4.0",
-    "gulp-notify": "^3.2.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "2.6.4"
+    "google-closure-compiler": "20180716.0.1",
+    "google-closure-library": "20180716.0.0"
   },
   "devDependencies": {
-    "del": "^3.0.0",
-    "eslint": "^5.2.0",
-    "eslint-plugin-babel": "^5.1.0",
-    "gulp-angular-templatecache": "^2.2.1",
-    "gulp-append-prepend": "^1.0.4",
-    "gulp-cli": "^2.0.1",
+    "gulp": "4.0.0",
+    "gulp-autoprefixer": "5.0.0",
+    "gulp-closure-compiler": "0.4.0",
+    "gulp-notify": "3.2.0",
+    "gulp-sass": "4.0.1",
+    "gulp-sourcemaps": "2.6.4",
+    "del": "3.0.0",
+    "eslint": "5.2.0",
+    "eslint-plugin-babel": "5.1.0",
+    "gulp-angular-templatecache": "2.2.1",
+    "gulp-append-prepend": "1.0.4",
+    "gulp-cli": "2.0.1",
     "gulp-closure-deps": "github:nckh/gulp-closure-deps",
-    "gulp-eslint": "^5.0.0",
-    "gulp-livereload": "^3.8.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass-lint": "^1.4.0",
-    "lazypipe": "1.0.1",
-    "sass-lint": "^1.12.1"
+    "gulp-eslint": "5.0.0",
+    "gulp-livereload": "3.8.1",
+    "gulp-rename": "1.4.0",
+    "gulp-sass-lint": "1.4.0",
+    "lazypipe": "1.0.1"
   }
 }
