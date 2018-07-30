@@ -80,3 +80,6 @@ skip_files:
     - (.*)\.scss
     - (.*)\.DS_Store
     - node_modules
+    - src/node_modules
+    - src/static/dev
+    - src/static/src
