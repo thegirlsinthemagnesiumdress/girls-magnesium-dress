@@ -83,13 +83,6 @@ gulp.task('js-templates', function() {
     .pipe(gulp.dest(PATHS.dev.js));
 });
 
-// gulp.task('copy-hercules-assets', function() {
-//   return gulp.src('node_modules/glue/hercules/lib/assets/icons/svgs.inc.html')
-//     .pipe(rename('_hercules-icons.html'))
-//     .pipe(gulp.dest(PATHS.templates));
-// });
-
-
 /** @const {Object<*>} */
 var SASS_CONFIG = {
   outputStyle: 'compressed',
@@ -145,7 +138,8 @@ gulp.task('sass', function() {
 
 gulp.task('js-lint', function() {
   return gulp.src([
-    path.join(SRC_STATIC_DIR, '/**/*.js'),
+    `${PATHS.src.js}/**/*.js`,
+    `!${PATHS.src.js}/legacy/**/*.js`,
   ])
     .pipe(eslint())
     .pipe(eslint.format());

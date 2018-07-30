@@ -1,25 +1,28 @@
 {
-  "parser": "babel-eslint",
   "extends": [
-    "standard",
-  ],
-  "plugins": [
-    "babel",
-    "promise"
+    "eslint:recommended",
+    "google"
   ],
   "env": {
-    "browser" : true,
-    "jest": true
+    "browser": true,
+    "node": false,
+    "es6": true,
+    "jasmine": true
   },
   "globals": {
-    "NODE_ENV" : false
+    "goog": true,
+    "google": false,
+    "angular": true,
+    "glue": true,
+    "exports": true,
+    "dmb": true
   },
   "rules": {
-    "key-spacing"          : 0,
-    "jsx-quotes"           : [2, "prefer-single"],
-    "max-len"              : [2, 120, 2],
-    "object-curly-spacing" : [2, "always"],
-    "semi": [2, "always"],
-    "comma-dangle": [2, "always-multiline"]
+    "max-len": [2, {
+      "code": 120,
+      "tabWidth": 2,
+      "ignoreUrls": true,
+      "ignorePattern": "^goog\\.(module|require)"
+    }]
   }
 }
