@@ -19,6 +19,7 @@ const gap = require('gulp-append-prepend');
 
 
 var STATIC_DIR = './src/static';
+var SRC_STATIC_DIR = './src/static/src';
 var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
 var DIST_DIR = STATIC_DIR + '/dist/';
 const TEMPLATE_SRC = [
@@ -27,14 +28,14 @@ const TEMPLATE_SRC = [
 ];
 
 gulp.task('js-dev', function() {
-  return gulp.src(path.join(STATIC_DIR, '/**/*.js'))
+  return gulp.src(path.join(SRC_STATIC_DIR, 'js', '/**/*.js'))
       .pipe(hercules.js.dev())
       .pipe(gulp.dest(path.join(DEV_STATIC_DIR, 'js')))
       .pipe(livereload());
 });
 
 gulp.task('js', function() {
-  return gulp.src(path.join(STATIC_DIR, '/**/*.js'))
+  return gulp.src(path.join(SRC_STATIC_DIR, 'js', '/**/*.js'))
       .pipe(hercules.js.prod({
         entry_point: 'dmb.app',
       }))
@@ -43,7 +44,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('js-detect', function() {
-  return gulp.src(path.join(STATIC_DIR, '/**/*.js'))
+  return gulp.src(path.join(SRC_STATIC_DIR, 'js', '/**/*.js'))
       // Note that entry_point matches the namespace defined in detect.js
       .pipe(hercules.js.prod({entry_point: 'dmb.detect'}))
       .pipe(rename('detect.min.js'))
@@ -81,6 +82,11 @@ var SASS_CONFIG = {
   ]
 };
 
+const AUTOPREFIXER_CONFIG = {
+  browsers: ['last 2 versions'],
+  cascade: false
+};
+
 gulp.task('clean', function() {
   return del([
     path.join(DEV_STATIC_DIR, 'js', '**/*'),
@@ -93,15 +99,11 @@ gulp.task('clean', function() {
 
 gulp.task('sass-dev', function() {
   // Fill out the line below with the path to your main Sass file.
-  return gulp.src(path.join(STATIC_DIR, '/**/*.scss'))
+  return gulp.src(path.join(SRC_STATIC_DIR, 'scss', '/**/*.scss'))
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(sourcemaps.init())
-      .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
-      }))
-      .pipe(sourcemaps.write())
-      .pipe(rename('main.min.css'))
+      .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
+      .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(path.join(DEV_STATIC_DIR, 'css')))
       .pipe(livereload())
       .pipe(notify({
@@ -111,13 +113,9 @@ gulp.task('sass-dev', function() {
 
 gulp.task('sass', function() {
   // Fill out the line below with the path to your main Sass file.
-  return gulp.src(path.join(STATIC_DIR, '/**/*.scss'))
+  return gulp.src(path.join(SRC_STATIC_DIR, 'scss', '/**/*.scss'))
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
-      .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
-      }))
-      .pipe(rename('main.min.css'))
+      .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(gulp.dest(path.join(DIST_DIR, 'css')))
       .pipe(notify({
         message: 'Sass compilation complete.'
@@ -126,26 +124,26 @@ gulp.task('sass', function() {
 
 gulp.task('js-lint', function() {
   return gulp.src([
-    path.join(STATIC_DIR, '/**/*.js'),
+    path.join(SRC_STATIC_DIR, '/**/*.js'),
   ])
     .pipe(eslint())
     .pipe(eslint.format());
 });
 
 gulp.task('sass-lint', function() {
-  return gulp.src(path.join(STATIC_DIR, '/**/*.scss'))
+  return gulp.src(path.join(SRC_STATIC_DIR, '/**/*.scss'))
     .pipe(sassLint())
     .pipe(sassLint.format());
 });
 
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(path.join(STATIC_DIR, '/**/*.js'), gulp.parallel(
+  gulp.watch(path.join(SRC_STATIC_DIR, '/**/*.js'), gulp.parallel(
     'js-lint',
     'js-dev'
   ));
 
-  gulp.watch(path.join(STATIC_DIR, '/**/*.scss'), gulp.parallel(
+  gulp.watch(path.join(SRC_STATIC_DIR, '/**/*.scss'), gulp.parallel(
     'sass-lint',
     'sass-dev'
   ));

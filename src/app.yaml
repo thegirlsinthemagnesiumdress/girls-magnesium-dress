@@ -53,10 +53,13 @@ handlers:
   upload: static/dist/img/favicon\.png
 
 
-# This is used for development only
-# We could probably think of a better configuration
-- url: /node_modules
-  static_dir: node_modules
+# Only used on development
+- url: /src/static/
+  static_dir: static/
+  secure: always
+
+- url: /node_modules/
+  static_dir: node_modules/
   secure: always
 
 - url: /.*

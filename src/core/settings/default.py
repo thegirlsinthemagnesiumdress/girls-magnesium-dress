@@ -172,9 +172,11 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
 CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com")
 CSP_CHILD_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'", "data:",
-    "'sha256-6DHuIhj3k6afOsLFU89YxwimNA48CWiNpJAlIfbOR3I='",
-    "https://www.google-analytics.com")
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "https://www.google-analytics.com",
+    'ajax.googleapis.com',
+)
 CSP_IMG_SRC = ("'self'", "data:", "https://www.google-analytics.com")
 CSP_MEDIA_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
