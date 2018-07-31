@@ -1,9 +1,8 @@
+from core.models import Survey, SurveyResult
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
-
 from rest_framework import status
 from rest_framework.test import APITestCase
-from core.models import Survey, SurveyResult
 
 
 User = get_user_model()
@@ -81,6 +80,18 @@ class SurveyResultTest(APITestCase):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_cors_not_supported(self):
+        url = reverse('survey_report', kwargs={'sid': self.survey.pk})
+        headers = {
+            'HTTP_ORIGIN': 'http://example.com',
+            'HTTP_ACCESS_CONTROL_REQUEST_METHOD': 'POST',
+            'HTTP_ACCESS_CONTROL_REQUEST_HEADERS': 'X-Requested-With',
+
+        }
+        response = self.client.get(url, **headers)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertFalse(response.has_header('access-control-allow-origin'))
 
 
 class CreateSurveyTest(APITestCase):
