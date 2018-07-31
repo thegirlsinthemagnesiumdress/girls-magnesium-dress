@@ -154,12 +154,56 @@ gulp.task('sass-lint', function() {
     .pipe(sassLint.format());
 });
 
+
+function copy(src, dest) {
+  return gulp.src(src).pipe(gulp.dest(dest));
+}
+
+gulp.task('fonts-dev', function() {
+  const outputDir = path.join(DEV_STATIC_DIR, 'fonts');
+  const src = [
+    `${SRC_STATIC_DIR}/fonts/**/*.{otf,ttf,svg,woff,eot}`,
+  ];
+
+  return copy(src, outputDir);
+});
+
+gulp.task('fonts-dist', function() {
+  const outputDir = path.join(DIST_DIR, 'fonts');
+  const src = [
+    `${SRC_STATIC_DIR}/fonts/**/*.{otf,ttf,svg,woff,eot}`,
+  ];
+
+  return copy(src, outputDir);
+});
+
+gulp.task('images-dev', function() {
+  const outputDir = path.join(DEV_STATIC_DIR, 'img');
+  const src = [
+    `${SRC_STATIC_DIR}/img/**/*.{jpg,png,svg,gif}`,
+  ];
+
+  return copy(src, outputDir);
+});
+
+gulp.task('images-dist', function() {
+  const outputDir = path.join(DIST_DIR, 'img');
+  const src = [
+    `${SRC_STATIC_DIR}/img/**/*.{jpg,png,svg,gif}`,
+  ];
+
+  return copy(src, outputDir);
+});
+
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(`${PATHS.src.js}/**/*.js`, gulp.parallel(
     'js-lint',
     'js-dev'
   ));
+
+  gulp.watch(`${SRC_STATIC_DIR}/img/**/*.{jpg,png,svg,gif}`, gulp.parallel('images-dev'));
+  gulp.watch(`${SRC_STATIC_DIR}/fonts/**/*.{otf,ttf,svg,woff,eot}`, gulp.parallel('fonts-dev'));
 
   gulp.watch(`${PATHS.src.scss}/**/*.scss`, gulp.parallel(
     'sass-lint',
@@ -172,13 +216,19 @@ gulp.task('lint', gulp.parallel(
   'sass-lint'
 ));
 
-gulp.task('build', gulp.series(
-  'clean-dist',
-  'js-templates',
-  'js-detect',
-  'js',
-  'sass'
-));
+gulp.task('build',
+  gulp.parallel(
+    gulp.series(
+    'clean-dist',
+    'js-templates',
+    'js-detect',
+    'js',
+    'sass'
+    ),
+    'images-dist',
+    'fonts-dist'
+  )
+);
 
 gulp.task('default', gulp.series(
   'clean-dev',
@@ -187,7 +237,9 @@ gulp.task('default', gulp.series(
     'sass-lint',
     'js-templates',
     'js-dev',
-    'sass-dev'
+    'sass-dev',
+    'fonts-dev',
+    'images-dev'
   ),
   'watch'
 ));
