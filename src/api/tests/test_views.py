@@ -3,14 +3,14 @@ from django.core.urlresolvers import reverse
 
 from rest_framework import status
 from rest_framework.test import APITestCase
-from core.models import Survey
-from core.tests.mocks import generate_surveys
+from core.models import Survey, SurveyResult
 
 
 User = get_user_model()
 
 
 class SurveyTest(APITestCase):
+    """Tests for `api.views.SurveyCompanyNameFromUIDView` view."""
     user_email = 'test@example.com'
 
     def setUp(self):
@@ -20,80 +20,64 @@ class SurveyTest(APITestCase):
             password='pass',
         )
 
-        self.qualtrics_user = User.objects.create(
-            username='test2',
-            email='qualtrics@qualtrics.com',
-            password='qualtrics',
-            is_qualtrics=True,
-        )
-
-        surveys = generate_surveys()
-        self.sids = [survey.sid for survey in surveys]
-
         self.client.force_authenticate(user)
-        self.url = reverse('survey-list')
-
+        self.url = reverse('company_name')
 
     def test_fail_not_authenticated(self):
-        """
-        Ensure we can't hit the api if not authenticated
-        """
+        """Ensure we can't hit the api if not authenticated."""
         self.client.force_authenticate(user=None)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_list_surveys_should_be_empty(self):
-        """
-        List surveys should return an empty list.
-        Not exposing all companies it for now.
-        """
+    def test_not_provide_company_name(self):
+        """Get survey without providing `sid` in url should return 404."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_survey_exists(self):
+        """Should return the `company_name` related to `sid` provided."""
+        survey = Survey.objects.create(company_name='some company')
+        response = self.client.get(self.url, {
+            "sid": survey.sid
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data.get('company_name'), survey.company_name)
+
+
+class SurveyResultTest(APITestCase):
+    """Tests for `api.views.SurveyResultsDetail` view."""
+    user_email = 'test@example.com'
+
+    def setUp(self):
+        self.survey = Survey.objects.create(company_name='test company')
+        self.survey_result = SurveyResult.objects.create(
+            survey=self.survey,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.url = reverse('survey_report', kwargs={'sid': self.survey.pk})
+
+    def test_survey_result_found(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertAlmostEqual(float(response.data.get('dmb')), self.survey_result.dmb)
+        self.assertEqual(response.data.get('response_id'), self.survey_result.response_id)
 
-    def test_list_filtered(self):
-        """
-        Should return the filtered list.
-        """
-        response = self.client.get(self.url, {
-            "sid": self.sids[0]
-        })
+    def test_return_last_survey_result(self):
+        survey_result = SurveyResult.objects.create(
+            survey=self.survey,
+            response_id='BBB',
+            dmb=2.0,
+            dmb_d='{}'
+        )
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertAlmostEqual(float(response.data.get('dmb')), survey_result.dmb)
+        self.assertEqual(response.data.get('response_id'), survey_result.response_id)
 
-    def test_list_filtered_qualtrics_user(self):
-        """
-        Should return the filtered list for a qualtrics user.
-        """
-        self.client.force_authenticate(user=self.qualtrics_user)
-        response = self.client.get(self.url, {
-            "sid": self.sids[0]
-        })
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-
-    def test_qualtrics_not_authorized(self):
-        """
-        Should not allow qualtrics user to list companies only.
-        """
-        self.client.force_authenticate(user=self.qualtrics_user)
-        response = self.client.post(self.url, {
-            "sid": self.sids[0]
-        })
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        # from nose.tools import set_trace; set_trace()
-        response = self.client.post(self.url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.put(self.url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.patch(self.url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.delete(self.url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-
+    def test_survey_result_not_found(self):
+        url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
