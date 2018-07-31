@@ -126,6 +126,7 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(post_response.get('company_name'), survey_db.company_name)
         self.assertEqual(post_response.get('link'), survey_db.link)
         self.assertEqual(post_response.get('link_sponsor'), survey_db.link_sponsor)
+        self.assertEqual(post_response.get('engagement_lead'), survey_db.engagement_lead)
 
     def test_required_fields_not_matched(self):
         """Posting data not matching required parameters should fail."""

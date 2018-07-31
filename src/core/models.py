@@ -23,6 +23,7 @@ class Survey(models.Model):
 
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
+    engagement_lead = models.CharField(max_length=32, null=True)
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)

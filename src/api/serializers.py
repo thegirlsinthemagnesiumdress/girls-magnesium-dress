@@ -5,7 +5,7 @@ from rest_framework.serializers import ModelSerializer
 class SurveySerializer(ModelSerializer):
     class Meta:
         model = Survey
-        fields = ('company_name', 'link', 'link_sponsor')
+        fields = ('company_name', 'link', 'link_sponsor', 'engagement_lead')
 
 
 class SurveyCompanyNameSerializer(ModelSerializer):
