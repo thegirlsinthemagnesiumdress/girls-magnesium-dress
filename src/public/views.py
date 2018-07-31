@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from core.models import Survey, SurveyResult
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from core.models import SurveyResult, Survey
+from django.shortcuts import render
 
 
 def reports_list(request):
@@ -29,4 +30,25 @@ def report_view(request, sid):
         'company_name': s.company_name,
         'DMB': s_result.dmb,
         'DMBd': s_result.dmb_d,
+    })
+
+
+@login_required
+def reports_admin(request):
+    el_id = request.GET.get('el_id')
+    if request.user.is_whitelisted:
+        s_results = SurveyResult.objects.all()
+    elif el_id:
+        engagement_lead_surveys = Survey.objects.filter(engagement_lead=el_id)
+        s_results = SurveyResult.objects.filter(survey__in=engagement_lead_surveys)
+    else:
+        raise Http404("Engagement lead parameter not provided.")
+    surveys = []
+
+    for result in s_results:
+        if result.survey:
+            surveys.append(result.survey)
+
+    return render(request, 'public/reports-list.html', {
+        'surveys': set(surveys),
     })

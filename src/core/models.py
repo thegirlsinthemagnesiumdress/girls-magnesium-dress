@@ -2,6 +2,7 @@ import hashlib
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
 from djangae.fields import JSONField
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -10,7 +11,10 @@ SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
 
 
 class User(GaeAbstractDatastoreUser):
-    pass
+
+    @property
+    def is_whitelisted(self):
+        return True if self.email in settings.SUPER_USER else False
 
 
 class Survey(models.Model):
