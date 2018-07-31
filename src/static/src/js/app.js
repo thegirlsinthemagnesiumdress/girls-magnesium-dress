@@ -12,7 +12,7 @@ const module = angular.module('dmb', [
   glueZippy.module.name,
   'ngAnimate',
   header.module.name,
-  'hercules_template_bundle'
+  'hercules_template_bundle',
 ]);
 
 // Conditionally start the app if it's a supported browser.

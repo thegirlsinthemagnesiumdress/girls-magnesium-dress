@@ -28,14 +28,19 @@
     <title>Digital Maturity Benchmark</title>
 </head>
 <body>
-{% block body %}
-{% endblock body %}
 
-{% block footer %}
+  {% block header %}
+    {% include '../inc/header.html' %}
+  {% endblock header %}
+
+  {% block main %}
+  {% endblock main %}
+
+  {% block footer %}
     {% include '../inc/footer.html' %}
-{% endblock footer %}
+  {% endblock footer %}
 
-{% include "core/inc/_svg.inc.html" %}
+  {% include "core/inc/_svg.inc.html" %}
 
 {% if debug %}
 
