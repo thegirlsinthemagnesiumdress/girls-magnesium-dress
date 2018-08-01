@@ -14,7 +14,18 @@ class User(GaeAbstractDatastoreUser):
 
     @property
     def is_whitelisted(self):
+        """
+        Returns `True` if email is in `settings.SUPER_USER` list,
+        `False` otherwise.
+        """
         return True if self.email in settings.SUPER_USER else False
+
+    @property
+    def engagement_lead(self):
+        """Returns MD5 of email field."""
+        m = hashlib.md5()
+        m.update(self.email)
+        return m.hexdigest()
 
 
 class Survey(models.Model):
@@ -27,6 +38,7 @@ class Survey(models.Model):
 
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
+    engagement_lead = models.CharField(max_length=32, null=True)
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)

@@ -45,24 +45,17 @@ class ReportsAdminTestCase(TestCase):
         os.environ["USER_EMAIL"] = user.email
         os.environ["USER_ID"] = str(user.id)
 
-    def test_standard_user_logged_in_missing_engagement_lead_param(self):
-        """
-        Standard user cannot retrieve reports belonging to its engagement_lead,
-        if engagement_lead parameter is not provided in url.
-        """
-        self.login()
-        get_params = {}
-        response = self.client.get(self.url, get_params)
-        self.assertEqual(response.status_code, 404)
-
-    def test_standard_user_logged_in_with_engagement_lead_param(self):
+    def test_standard_user_logged_in(self):
         """Standard user can retrieve reports belonging to its engagement_lead."""
         self.login()
-        get_params = {
-            'el_id': '123'
-        }
-        response = self.client.get(self.url, get_params)
+
+        # set a survey to belong to logged user
+        self.survey_1.engagement_lead = self.user.engagement_lead
+        self.survey_1.save()
+
+        response = self.client.get(self.url)
         surveys = list(response.context.get('surveys'))
+
         self.assertEqual(response.status_code, 200)
         self.assertTrue(surveys)
         self.assertEqual(len(surveys), 1)
@@ -79,6 +72,7 @@ class ReportsAdminTestCase(TestCase):
         response = self.client.get(self.url)
         surveys = list(response.context.get('surveys'))
         engagement_lead_ids = [el.engagement_lead for el in surveys]
+
         self.assertEqual(response.status_code, 200)
         self.assertTrue(surveys)
         self.assertEqual(len(surveys), 2)

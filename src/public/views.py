@@ -35,20 +35,15 @@ def report_view(request, sid):
 
 @login_required
 def reports_admin(request):
-    el_id = request.GET.get('el_id')
-    if request.user.is_whitelisted:
-        s_results = SurveyResult.objects.all()
-    elif el_id:
-        engagement_lead_surveys = Survey.objects.filter(engagement_lead=el_id)
-        s_results = SurveyResult.objects.filter(survey__in=engagement_lead_surveys)
-    else:
-        raise Http404("Engagement lead parameter not provided.")
-    surveys = []
 
-    for result in s_results:
-        if result.survey:
-            surveys.append(result.survey)
+    if request.user.is_whitelisted:
+        s_results = SurveyResult.objects.exclude(survey__isnull=True)
+    else:
+        engagement_lead_surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
+        s_results = SurveyResult.objects.filter(survey__in=engagement_lead_surveys)
+
+    surveys = [result.survey for result in s_results if result.survey]
 
     return render(request, 'public/reports-list.html', {
-        'surveys': set(surveys),
+        'surveys': surveys,
     })
