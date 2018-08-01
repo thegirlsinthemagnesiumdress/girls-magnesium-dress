@@ -156,3 +156,115 @@ class CalculateGroupBenchmarkTest(TestCase):
 
         # dmb represents the average between all elements of `dmb_d_dictionary`
         self.assertEqual(dmb, 1.0)
+
+
+@override_settings(
+    DIMENSIONS={
+        'dimension_A': ['Q1', 'Q2'],
+        'dimension_B': ['Q3'],
+        'dimension_C': ['Q2'],
+        'dimension_D': ['Q1'],
+    }
+)
+class CalculateDimensionBenchmarkTest(TestCase):
+    """Test class for `calculate_dimension_benchmark` function."""
+
+    def test_calculate_group_benchmark_single_response(self):
+        """Test for a single reponse."""
+        responses = [
+            {
+                'dimension_A': 2.0,
+                'dimension_B': 2.0,
+            },
+        ]
+
+        dmb, dmb_d_dictionary = benchmark.calculate_dimension_benchmark(responses)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+
+        # check all dimensions defined in settings are in the response dictionary
+        for dimension in settings.DIMENSIONS.keys():
+            self.assertTrue(dimension in dmb_d_dictionary)
+
+        # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
+        dimension_A_average = dmb_d_dictionary.get('dimension_A') # noqa
+        dimension_B_average = dmb_d_dictionary.get('dimension_B') # noqa
+        dimension_C_average = dmb_d_dictionary.get('dimension_C') # noqa
+        dimension_D_average = dmb_d_dictionary.get('dimension_D') # noqa
+
+        # for dimension_A it will be the average between:
+        # weighted average of dimension_A for `responses[0]` (that is 2.0)
+        # so the average will be 2.0
+        self.assertEqual(dimension_A_average, 2.0)
+
+        # dimension_B:
+        # weighted average for `responses[0]`: 2.0
+        # average: 2.0
+        self.assertEqual(dimension_B_average, 2.0)
+
+        # dimension_C:
+        # weighted average for `responses[0]`: 0 (there is not dimension_C in `resposes[0]`)
+        # average: 0
+        self.assertEqual(dimension_C_average, 0)
+
+        # dimension_D:
+        # weighted average for `responses[0]`: 0
+        # average: 0
+        self.assertEqual(dimension_D_average, 0)
+
+        # dmb represents the average between all elements of `dmb_d_dictionary`
+        self.assertEqual(dmb, 1.0)
+
+    def test_calculate_response_benchmark_multi_responses(self):
+        """Test for a multiple responses."""
+        responses = [
+            {
+                'dimension_A': 2.0,
+                'dimension_B': 2.0,
+            },
+            {
+                'dimension_A': 2.0,
+                'dimension_C': 2.0,
+            },
+        ]
+
+        dmb, dmb_d_dictionary = benchmark.calculate_dimension_benchmark(responses)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+
+        # check all dimensions defined in settings are in the response dictionary
+        for dimension in settings.DIMENSIONS.keys():
+            self.assertTrue(dimension in dmb_d_dictionary)
+
+        # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
+        dimension_A_average = dmb_d_dictionary.get('dimension_A') # noqa
+        dimension_B_average = dmb_d_dictionary.get('dimension_B') # noqa
+        dimension_C_average = dmb_d_dictionary.get('dimension_C') # noqa
+        dimension_D_average = dmb_d_dictionary.get('dimension_D') # noqa
+
+        # for dimension_A it will be the average between:
+        # dimension_A (weighted average) for `responses[0]` (that is 2.0) and
+        # dimension_A (weighted average) for `response[1]` (that is 2.0)
+        # so the average will be 2.0
+        self.assertEqual(dimension_A_average, 2.0)
+
+        # dimension_B:
+        # `responses[0]`: 2.0
+        # `response[1]`: 0 (there is not dimension_B in `resposes[1]`)
+        # average: 1.0
+        self.assertEqual(dimension_B_average, 1.0)
+
+        # dimension_C:
+        # `responses[0]`: 0 (there is not dimension_C in `resposes[0]`)
+        # `response[1]`: 2.0
+        # average: 1.0
+        self.assertEqual(dimension_C_average, 1.0)
+
+        # dimension_D:
+        # `responses[0]`: 0
+        # `response[1]`: 0
+        # average: 0
+        self.assertEqual(dimension_D_average, 0)
+
+        # dmb represents the average between all elements of `dmb_d_dictionary`
+        self.assertEqual(dmb, 1.0)
