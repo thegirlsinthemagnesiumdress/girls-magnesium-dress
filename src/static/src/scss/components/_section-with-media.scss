@@ -1,0 +1,83 @@
+.dmb-section-with-media {
+  padding: 56px 0;
+
+  @include bp(m) {
+    padding: 148px 0;
+  }
+
+  @include bp(m) {
+    padding: 176px 0;
+  }
+
+  &__title {
+    margin-bottom: $margin-medium;
+
+    @include bp(m) {
+      margin-bottom: $margin-big;
+    }
+  }
+
+  &__body {
+    width: 75%;
+  }
+
+  &__col-content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: $margin-medium;
+
+    @include bp(m) {
+      padding-bottom: 0;
+    }
+  }
+
+  &__col-media {
+    display: flex;
+    align-items: center;
+  }
+
+  &__collage {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    img {
+      flex-basis: 50%;
+      height: auto;
+      max-width: 50%;
+      padding: 8px;
+      width: auto;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        padding-top: 0;
+      }
+
+      &:nth-child(3),
+      &:nth-child(4) {
+        padding-bottom: 0;
+      }
+
+      &:nth-child(1),
+      &:nth-child(3) {
+        padding-left: 0;
+      }
+
+      &:nth-child(2),
+      &:nth-child(4) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  &--desktop-content-right {
+    .h-c-grid {
+      @include bp(m) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}

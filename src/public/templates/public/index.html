@@ -3,5 +3,71 @@
 
 {% block main %}
   {% include 'inc/home/hero.html' %}
+  <div class="dmb-section-with-media dmb-section-with-media--desktop-content-right">
+    <div class="h-c-page">
+      <div class="h-c-grid">
+        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1">
+          <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--two">
+            Everyday there are hundreds of chances to engage with customers digitally
+          </h2>
+          <p class="dmb-section-with-media__body">
+            Only 2% of businesses make the most of these opportunities, using their insights and technology to create useful, personalised experiences at multiple moments across the purchase journey.
+          </p>
+        </div>
+        <div class="dmb-section-with-media__col-media h-c-grid__col h-c-grid__col--6">
+          <div class="dmb-section-with-media__collage">
+            <img src="{% static 'img/home/everyday-1.jpg' %}" alt="">
+            <img src="{% static 'img/home/everyday-2.jpg' %}" alt="">
+            <img src="{% static 'img/home/everyday-3.jpg' %}" alt="">
+            <img src="{% static 'img/home/everyday-4.jpg' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dmb-section-with-media dmb-bg-light-grey">
+    <div class="h-c-page">
+      <div class="h-c-grid">
+        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--5">
+          <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--two">
+            These businesses have a sustainable competitive advantage
+          </h2>
+          <p class="dmb-section-with-media__body">
+            Companies leading the way in multi-moment marketing see 30% cost efficiency savings and a 20% increase in revenue.
+          </p>
+        </div>
+        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col--offset-1">
+          <img src="{% static 'img/home/competitive-advantage.jpg' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dmb-section-with-media">
+    <div class="h-c-page">
+      <div class="h-c-grid">
+        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--5">
+          <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--two">
+            Benchmark your business now
+          </h2>
+          <div class="dmb-section-with-media__body">
+            <p class="h-u-mb-std">
+              This in-depth assessment can be completed by you or in collaboration with your team. It takes up to an hour and can be completed in a number of sessions, saving as you go.
+            </p>
+            <p class="h-u-mb-l h-c-headline--subhead h-u-font-weight-medium">
+                Discover how your marketing maturity measures up, plan your progress, reach more customers.
+            </p>
+          </div>
+          <button class="h-c-button h-c-button--primary">
+              Start the diagnosis now
+            </button>
+        </div>
+        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col--offset-1">
+          <img src="{% static 'img/home/benchmark.jpg' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock main %}
 
