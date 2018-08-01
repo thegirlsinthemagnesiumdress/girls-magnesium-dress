@@ -1,0 +1,12 @@
+// Hercules Header overrides.
+$header-logo-text-override-max-width: 390px;
+$header-logo-text-override-font-size: 18px;
+
+
+.dmb-header {
+  .h-c-header__product-logo-text {
+    @media (max-width: #{$header-logo-text-override-max-width}) {
+      font-size: $header-logo-text-override-font-size;
+    }
+  }
+}
