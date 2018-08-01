@@ -114,8 +114,8 @@ gulp.task('clean-dist', function() {
 gulp.task('sass-dev', function() {
   // Fill out the line below with the path to your main Sass file.
   return gulp.src(`${PATHS.src.scss}/**/*.scss`)
-      .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(sourcemaps.init())
+      .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(PATHS.dev.scss))
