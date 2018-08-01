@@ -5,10 +5,10 @@ const sass = require('gulp-sass');
 const gulp = require('gulp');
 const path = require('path');
 const hercules = require('glue').gulp.hercules;
-var sourcemaps = require('gulp-sourcemaps');
-var sassLint = require('gulp-sass-lint');
-var eslint = require('gulp-eslint');
-var del = require('del');
+const sourcemaps = require('gulp-sourcemaps');
+const sassLint = require('gulp-sass-lint');
+const eslint = require('gulp-eslint');
+const del = require('del');
 const templateCache = require('gulp-angular-templatecache');
 const autoprefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
@@ -17,12 +17,12 @@ const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 
 
-var STATIC_DIR = './src/static';
-var SRC_STATIC_DIR = './src/static/src';
-var DEV_STATIC_DIR = STATIC_DIR + '/dev/';
-var DIST_DIR = STATIC_DIR + '/dist/';
+const STATIC_DIR = './src/static';
+const SRC_STATIC_DIR = './src/static/src';
+const DEV_STATIC_DIR = STATIC_DIR + '/dev/';
+const DIST_DIR = STATIC_DIR + '/dist/';
 
-var PATHS = {
+const PATHS = {
   src: {
     js: path.join(SRC_STATIC_DIR, 'js'),
     scss: path.join(SRC_STATIC_DIR, 'scss'),
@@ -84,7 +84,7 @@ gulp.task('js-templates', function() {
 });
 
 /** @const {Object<*>} */
-var SASS_CONFIG = {
+const SASS_CONFIG = {
   outputStyle: 'compressed',
   includePaths: [
     'node_modules/glue'
@@ -93,7 +93,7 @@ var SASS_CONFIG = {
 
 const AUTOPREFIXER_CONFIG = {
   browsers: ['last 2 versions'],
-  cascade: false
+  cascade: false,
 };
 
 gulp.task('clean-dev', function() {
