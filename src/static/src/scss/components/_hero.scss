@@ -5,7 +5,7 @@
   position: relative;
 
   &::before {
-    background-image: linear-gradient(-269deg, rgba($h-black, 0) 0%, $h-white 100%);
+    background-image: linear-gradient(to left, rgba($h-black, 0) 0%, $h-white 100%);
     content: '';
     height: 100%;
     left: 0;
@@ -15,11 +15,44 @@
   }
 
   @include bp(m) {
-    padding: 193px 0 30px;
+    padding: 193px 0 58px;
   }
 
   // To make sure sits on top of the gradient.
   .h-c-page {
     position: relative;
+  }
+
+
+  &__content {
+    padding-bottom: 50px;
+  }
+
+  &__title {
+    margin-bottom: $margin-medium;
+  }
+
+  &__description {
+    margin-bottom: $margin-small;
+    max-width: 300px;
+
+    @include bp(l) {
+      max-width: 460px;
+    }
+  }
+
+  &__bcg-wrp {
+
+    p {
+      color: #9AA0A6;
+      font-family: $h-font-family-google-sans;
+      font-size: 14px;
+      letter-spacing: .04em;
+      padding-bottom: 5px;
+    }
+
+    img {
+      height: 44px;
+    }
   }
 }
