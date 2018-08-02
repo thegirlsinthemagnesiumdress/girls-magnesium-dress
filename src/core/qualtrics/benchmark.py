@@ -51,3 +51,21 @@ def calculate_response_benchmark(response_questions):
         benchmark_by_dimension[dimension] = weighted_questions_average(questions)
 
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
+
+
+def calculate_dimension_benchmark(weighted_responses):
+    """ Calculates benchmark on the weighted_responses dataset."""
+    responses_benchmarks_by_dimension = defaultdict(list)
+
+    for response in weighted_responses:
+
+        for dimension in settings.DIMENSIONS:
+            benchmark = response.get(dimension, 0)
+            responses_benchmarks_by_dimension[dimension].append(benchmark)
+
+    benchmark_by_dimension = {}
+
+    for dimension in settings.DIMENSIONS:
+        benchmark_by_dimension[dimension] = numpy.average(responses_benchmarks_by_dimension[dimension])
+
+    return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
