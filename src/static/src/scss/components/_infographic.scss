@@ -1,0 +1,124 @@
+$dot-size: 23px;
+$dot-border: 2px;
+$dot-size-inner: 9px;
+$dot-right: -22px;
+
+$infographic-default: $h-google-blue-400;
+
+$step-colors:  $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
+
+.dmb-infographic {
+  padding-left: 40px;
+
+  @include bp(m) {
+    padding-left: 0
+  }
+
+
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  &__step-t {
+    font-family: $h-font-family-google-sans;
+    font-size: 18px;
+    font-weight: $h-font-weight-regular;
+    position: relative;
+    z-index: 1;
+
+    @include bp(m) {
+      line-height: 24px;
+      margin-left: -61px;
+      margin-top: 5px;
+      padding-right: 7px;
+      position: absolute;
+      transform: translateX(-100%);
+    }
+
+    &::before {
+      background-color: $infographic-default;
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+      height: $dot-size-inner;
+      left: -30px;
+      margin-left: ($dot-size - $dot-size-inner) / 2;
+      position: absolute;
+      top: ($dot-size - $dot-size-inner) / 2;
+      width: $dot-size-inner;
+
+      @include bp(m) {
+        left: auto;
+        margin-right: ($dot-size - $dot-size-inner) / 2;
+        right: $dot-right;
+      }
+    }
+
+    &::after {
+      border: $dot-border solid $infographic-default;
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+      height: $dot-size;
+      left: -30px;
+      position: absolute;
+      width: $dot-size;
+
+      @include bp(m) {
+        left: auto;
+        right: $dot-right;
+      }
+    }
+  }
+
+  &__step-d {
+    margin-left: 0;
+    padding-bottom: 44px;
+    position: relative;
+
+    &::before {
+      background-color: $infographic-default;
+      content: '';
+      display: inline-block;
+      height: calc(100% + 3px);
+      left: -23px;
+      position: absolute;
+      top: -2px;
+      width: 8px;
+
+      @include bp(m) {
+        height: calc(100% - #{$dot-size} + 2px);
+        left: -55px;
+        top: $dot-size + 4px;
+      }
+    }
+
+    &:last-child {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  @each $color in $step-colors {
+    $i: index($step-colors, $color);
+
+    &__step-t:nth-of-type(#{$i + 1}) {
+      &::before {
+        background-color: $color;
+      }
+
+      &::after {
+        border-color: $color;
+      }
+    }
+
+    &__step-d:nth-of-type(#{$i + 1}) {
+      &::before {
+        background-color: $color;
+      }
+    }
+  }
+
+}
