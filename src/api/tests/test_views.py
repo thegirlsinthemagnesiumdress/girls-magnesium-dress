@@ -1,9 +1,8 @@
+from core.models import Survey, SurveyResult
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
-
 from rest_framework import status
 from rest_framework.test import APITestCase
-from core.models import Survey, SurveyResult
 
 
 User = get_user_model()
@@ -81,3 +80,55 @@ class SurveyResultTest(APITestCase):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_cors_not_supported(self):
+        url = reverse('survey_report', kwargs={'sid': self.survey.pk})
+        headers = {
+            'HTTP_ORIGIN': 'http://example.com',
+            'HTTP_ACCESS_CONTROL_REQUEST_METHOD': 'POST',
+            'HTTP_ACCESS_CONTROL_REQUEST_HEADERS': 'X-Requested-With',
+
+        }
+        response = self.client.get(url, **headers)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertFalse(response.has_header('access-control-allow-origin'))
+
+
+class CreateSurveyTest(APITestCase):
+    """Tests for `api.views.CreateSurveyView` view."""
+
+    def setUp(self):
+        user = User.objects.create(
+            username='test1',
+            email='test@example.com',
+            password='pass',
+        )
+
+        self.data = {
+            'company_name': 'test company',
+        }
+
+        self.client.force_authenticate(user)
+        self.url = reverse('create_survey')
+
+    def test_unauthenticated_user(self):
+        """Unauthenticated users should not be able to post."""
+        self.client.force_authenticate(None)
+        response = self.client.post(self.url, self.data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_required_fields_matched(self):
+        """Posting data matching required parameters should succed."""
+        response = self.client.post(self.url, self.data)
+        post_response = response.data
+        survey_db = Survey.objects.get(company_name=self.data.get('company_name'))
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(post_response.get('company_name'), survey_db.company_name)
+        self.assertEqual(post_response.get('link'), survey_db.link)
+        self.assertEqual(post_response.get('link_sponsor'), survey_db.link_sponsor)
+        self.assertEqual(post_response.get('engagement_lead'), survey_db.engagement_lead)
+
+    def test_required_fields_not_matched(self):
+        """Posting data not matching required parameters should fail."""
+        response = self.client.post(self.url, {'randomkey': 'randomvalue'})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
