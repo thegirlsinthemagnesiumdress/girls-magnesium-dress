@@ -1,20 +1,8 @@
 .dmb-section-with-media {
-  padding: 56px 0;
-
-  @include bp(m) {
-    padding: 148px 0;
-  }
-
-  @include bp(m) {
-    padding: 176px 0;
-  }
+  @extend %dmb-section;
 
   &__title {
-    margin-bottom: $margin-medium;
-
-    @include bp(m) {
-      margin-bottom: $margin-big;
-    }
+    @extend %dmb-section__title;
   }
 
   &__body {

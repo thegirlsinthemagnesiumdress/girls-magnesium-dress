@@ -1,0 +1,18 @@
+.dmb-roadmap-section {
+  @extend %dmb-section;
+
+  &__title {
+    @extend %dmb-section__title;
+    text-align: center;
+
+    &::after {
+      background-image: url('../img/icons/bulb.svg');
+      content: '';
+      display: inline-block;
+      height: 70px;
+      margin-left: 5px;
+      vertical-align: middle;
+      width: 60px;
+    }
+  }
+}
