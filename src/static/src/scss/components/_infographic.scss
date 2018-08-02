@@ -8,7 +8,7 @@ $infographic-default: $h-google-blue-400;
 $step-colors:  $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
 
 .dmb-infographic {
-  padding-left: 40px;
+  padding-left: 30px;
 
   @include bp(m) {
     padding-left: 0
@@ -81,10 +81,10 @@ $step-colors:  $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
       background-color: $infographic-default;
       content: '';
       display: inline-block;
-      height: calc(100% + 3px);
+      height: calc(100% + 9px);
       left: -23px;
       position: absolute;
-      top: -2px;
+      top: -8px;
       width: 8px;
 
       @include bp(m) {
@@ -95,6 +95,8 @@ $step-colors:  $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
     }
 
     &:last-child {
+      padding-bottom: 0;
+
       &::before {
         display: none;
       }

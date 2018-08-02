@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="24px" viewBox="0 0 20 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Homepage" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="v7c" transform="translate(-119.000000, -3251.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1440" height="6628"></rect>
+            <g id="Group-8" transform="translate(119.000000, 3251.000000)" fill="#4285F4">
+                <path d="M10,0 L0,4.36363636 L0,10.9090909 C0,16.9636364 4.26666667,22.6254545 10,24 C15.7333333,22.6254545 20,16.9636364 20,10.9090909 L20,4.36363636 L10,0 Z" id="Fill-1"></path>
+            </g>
+        </g>
+    </g>
+</svg>
