@@ -7,6 +7,13 @@
     padding-left: 40px;
   }
 
+  .dmb-partnership-with-bcg {
+    @include bp(m) {
+      position: absolute;
+      transform: translateY(-100%);
+    }
+  }
+
   &__title {
     @extend .h-u-mt-std;
     padding-bottom: $margin-medium;
@@ -34,6 +41,10 @@
 
   }
 
+  &__phone {
+    margin-top: -40px;
+  }
+
   & + & {
 
     #{$block}__title {
@@ -59,7 +70,7 @@
   position: relative;
 
   &:before {
-    background-color: $h-google-grey-100;
+    background-color: $h-google-grey-50;
     border: $h-tile-container-border;
     content: '';
     display: block;

@@ -16,14 +16,14 @@
     justify-content: center;
     padding-bottom: $margin-medium;
 
-    @include bp(m) {
+    @include bp(s) {
       padding-bottom: 0;
     }
   }
 
   &__col-media {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   &__collage {
@@ -63,7 +63,7 @@
 
   &--desktop-content-right {
     .h-c-grid {
-      @include bp(m) {
+      @include bp(s) {
         flex-direction: row-reverse;
       }
     }
