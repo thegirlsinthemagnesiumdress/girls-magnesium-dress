@@ -34,10 +34,7 @@
 
   }
 
-
-
-  &:nth-of-type(2) {
-    background-color: red;
+  & + & {
 
     #{$block}__title {
       &::before {
@@ -46,7 +43,7 @@
     }
   }
 
-  &:nth-of-type(3) {
+  & + & + & {
 
     #{$block}__title {
       &::before {
