@@ -139,3 +139,54 @@ class GetQuestionDimensionTest(TestCase):
         dimension = question.get_question_dimension('Q1')
 
         self.assertIsNone(dimension)
+
+
+class DataReliableTest(TestCase):
+    """Test case for `core.qualtrics.question.discard_scores` function."""
+
+    survey_result = {
+        'Organization-sum': '0.0',
+        'Organization-weightedAvg': '0.0',
+        'Organization-weightedStdDev': '0.0',
+        'sid': '2',
+        'ResponseID': 'AAC',
+        'Enter Embedded Data Field Name Here...': '',
+        'sponsor': '',
+        'company_name': 'new survey',
+        'industry': 'B',
+        'dmb': '0.5',
+        'StartDate': '2018-07-31 14:16:06',
+        'EndDate': '2018-07-31 14:18:56',
+
+        'Q1_1_TEXT': '',
+        'Q1_2_TEXT': '',
+        'Q2_1_TEXT': '',
+        'Q2_2_TEXT': '',
+
+        'Q3': '1',
+        'Q4': '1',
+        'Q5_1': '1',
+
+        'Q5_2': '0',
+        'Q5_3': '2',
+        'Q6': '0',
+        'Q7': '1',
+
+        'Q8': '0',
+        'Q10': '0',
+        'Q11': '1',
+        'Q12': '4',
+    }
+
+    def test_survey_invalid_short_time(self):
+        """When the survey has been filled up in less than 5 minutes, it should be excluded from best practice."""
+        exclude_score = question.discard_scores(self.survey_result)
+
+        self.assertTrue(exclude_score)
+
+    def test_survey_valid_time_check(self):
+        """When the survey has been filled up in more than 5 minutes, it should be included in best practice."""
+
+        self.survey_result['EndDate'] = '2018-07-31 15:18:56'
+        exclude_score = question.discard_scores(self.survey_result)
+        self.assertFalse(exclude_score)

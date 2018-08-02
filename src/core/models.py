@@ -79,6 +79,7 @@ class SurveyResult(models.Model):
     survey = models.ForeignKey(Survey, null=True)
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
+    excluded_from_best_practice = models.BooleanField(default=False)
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)
     dmb_d = JSONField()
