@@ -141,7 +141,6 @@ NOSE_PLUGINS = [
     'disabledoc.plugin.DisableDocstring',
     'noseprogressive.plugin.ProgressivePlugin',
     'djangae.noseplugin.DjangaePlugin',
-    'core.test.WebdriverPlugin'
     # 'nose_exclude.NoseExclude'
 ]
 
