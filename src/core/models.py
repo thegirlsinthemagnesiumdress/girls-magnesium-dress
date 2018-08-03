@@ -61,9 +61,6 @@ class Survey(models.Model):
         """
         return '{}&sp=true'.format(self.link)
 
-    def get_dmb_overall_by_dimension(self, dimension):
-        self.DMB_overall_average_by_dimension.get(dimension)
-
     def save(self, *args, **kwargs):
         if not self.pk:
             self.created_at = timezone.now()
