@@ -6,7 +6,6 @@ INSTALLED_APPS = tuple(list(INSTALLED_APPS) + [
 ])
 
 MIDDLEWARE_CLASSES = tuple([
-    'core.middleware.ProfileMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware'
 ] + list(MIDDLEWARE_CLASSES))
 
