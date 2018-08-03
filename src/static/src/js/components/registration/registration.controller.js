@@ -27,7 +27,8 @@ class RegistrationController {
     /**
      * @export
      */
-    this.elId= $location.search().el_id;
+    const elMatches = $location.hash().match(/el=([^&]*)/);
+    this.elId= elMatches ? elMatches[1] : null;
 
     /**
      * @export
