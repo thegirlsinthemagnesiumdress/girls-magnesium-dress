@@ -6,14 +6,22 @@ const glueCommon = goog.require('glue.ng.common');
 const glueZippy = goog.require('glue.ng.zippy');
 const header = goog.require('glue.ng.ui.header');
 
+const registration = goog.require('dmb.components.registration');
+
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
   glueCommon.module.name, // Progressive enhancement/browser detections.
   glueZippy.module.name,
   'ngAnimate',
   header.module.name,
+  registration.module.name,
   'hercules_template_bundle',
+  'ngclipboard',
 ]);
+
+
+const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+module.constant('csrfToken', csrfToken);
 
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);

@@ -56,6 +56,8 @@ gulp.task('js', function() {
         entry_point: 'dmb.app',
       }))
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
+      .pipe(gap.prependFile('node_modules/clipboard/dist/clipboard.min.js'))
+      .pipe(gap.prependFile('node_modules/ngclipboard/dist/ngclipboard.min.js'))
       .pipe(gulp.dest(PATHS.dist.js));
 });
 

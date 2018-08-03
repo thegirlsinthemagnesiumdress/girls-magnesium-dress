@@ -99,7 +99,7 @@ export default class Registration extends HTMLElement {
 
     axios.post(API_ENDPOINT, postData, {
       headers: {
-        'X-CSRFToken': this.csrf
+        'X-CSRFToken': this.csrf,
       }
     })
       .then((res) => {
