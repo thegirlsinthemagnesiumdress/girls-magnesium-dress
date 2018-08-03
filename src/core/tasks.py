@@ -30,11 +30,11 @@ def _create_survey_result(results_data):
     for data in results_data:
         questions = question.data_to_questions(data)
         dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
-        exclude_from_best_practice = question.discard_scores(data)
+        excluded_from_best_practice = question.discard_scores(data)
         SurveyResult.objects.create(
             survey_id=data.get('sid'),
             response_id=data.get('ResponseID'),
-            exclude_from_best_practice=exclude_from_best_practice,
+            excluded_from_best_practice=excluded_from_best_practice,
             dmb=dmb,
             dmb_d=dmb_d,
         )
