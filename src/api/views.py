@@ -1,9 +1,11 @@
 from api.serializers import (
     SurveyCompanyNameSerializer,
+    SurveyIndustrySerializer,
     SurveyResultSerializer,
     SurveySerializer,
 )
 from core.models import Survey, SurveyResult
+from core.qualtrics.benchmark import calculate_group_benchmark
 from django.http import Http404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.filters import OrderingFilter
@@ -15,6 +17,7 @@ from rest_framework.generics import (
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class CreateSurveyView(CreateAPIView):
@@ -73,3 +76,31 @@ class SurveyResultsDetail(ListAPIView):
             serializer = self.get_serializer(queryset.first())
             return Response(serializer.data)
         raise Http404
+
+
+class SurveyResultsIndustryDetail(APIView):
+    """
+    Retrieve `SurveyResults` instance.
+    By spec we assume we should have a single SurveyResult per Survey and in case we have
+    more than one we just take the latest. That's why we are using survey_id as lookup field
+    instead of the pk.
+    """
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
+
+    def get(self, request, industry_name, *args, **kwargs):
+        dmb = None
+        dmb_d = None
+
+        surveys = Survey.objects.filter(industry=industry_name)
+        dmb_d_list = [survey_result.dmb_d for survey_result in SurveyResult.objects.filter(survey__in=surveys)]
+        if dmb_d_list:
+            dmb, dmb_d = calculate_group_benchmark(dmb_d_list)
+
+        data = {
+            'industry_name': industry_name,
+            'dmb': dmb,
+            'dmb_d': dmb_d,
+        }
+
+        return Response(data)
