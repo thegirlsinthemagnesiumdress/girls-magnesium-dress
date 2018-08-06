@@ -5,6 +5,7 @@ const glueApp = goog.require('glue.app');
 const glueCommon = goog.require('glue.ng.common');
 const glueZippy = goog.require('glue.ng.zippy');
 const header = goog.require('glue.ng.ui.header');
+const smoothScroll = goog.require('glue.ng.smoothScroll');
 
 const registration = goog.require('dmb.components.registration');
 
@@ -15,6 +16,7 @@ const module = angular.module('dmb', [
   'ngAnimate',
   header.module.name,
   registration.module.name,
+  smoothScroll.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);
