@@ -1,6 +1,6 @@
 import logging
 
-from core.models import SurveyResult
+from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
 
 
@@ -38,3 +38,9 @@ def _create_survey_result(results_data):
             dmb=dmb,
             dmb_d=dmb_d,
         )
+        try:
+            s = Survey.objects.get(pk=data.get('sid'))
+            s.industry = data.get('industry')
+            s.save(update_fields=['industry'])
+        except Survey.DoesNotExist:
+            logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
