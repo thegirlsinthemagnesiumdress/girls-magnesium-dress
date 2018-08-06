@@ -1,6 +1,5 @@
 from api.serializers import (
     SurveyCompanyNameSerializer,
-    SurveyIndustrySerializer,
     SurveyResultSerializer,
     SurveySerializer,
 )
