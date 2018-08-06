@@ -12,10 +12,13 @@
 
 
   input {
-    color: $h-gm-grey-500;
     border: 1px solid $h-gm-grey-500;
     padding: 23px;
     width: 100%;
+
+    &::placeholder {
+      color: $h-gm-grey-500;
+    }
 
     @include bp(m) {
       width: 75%;
@@ -28,8 +31,8 @@
   }
 
   &__link {
-    border-radius: 5px;
     border: 1px dashed $h-gm-grey-500;
+    border-radius: 5px;
     color: $h-google-blue-500;
     display: flex;
     flex-direction: column;
@@ -44,10 +47,14 @@
 
 
     button {
+      appearance: none;
+      background-color: transparent;
+      flex-shrink: 0;
       margin-top: $margin-small;
 
       @include bp(m) {
         margin-top: 0;
+        padding-left: 80px;
       }
     }
 

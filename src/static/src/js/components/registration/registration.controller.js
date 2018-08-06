@@ -2,17 +2,18 @@ goog.module('dmb.components.registration.controller');
 
 const SURVEY_ENDPOINT = '/api/survey';
 
+
 /**
  * Registration controller.
  */
 class RegistrationController {
-
   /**
    *
    * @param {!angular.$http} $http
    * @param {!angular.$scope} $scope
    * @param {!angular.$location} $location
    * @param {!object} csrfToken
+   * @ngInject
    */
   constructor($http, $scope, $location, csrfToken) {
     this._ngHttp = $http;
@@ -24,10 +25,11 @@ class RegistrationController {
      */
     this.companyName= '';
 
+    const elMatches = $location.hash().match(/el=([^&]*)/);
+
     /**
      * @export
      */
-    const elMatches = $location.hash().match(/el=([^&]*)/);
     this.elId= elMatches ? elMatches[1] : null;
 
     /**
@@ -38,14 +40,15 @@ class RegistrationController {
 
   /**
    * Submit data to API endopoint
+   * @export
    */
   submit() {
     let data = {
-      company_name: this.companyName,
+      'company_name': this.companyName,
     };
 
     if (this.elId) {
-      data.engagement_lead = this.elId;
+      data['engagement_lead'] = this.elId;
     }
 
     this._ngHttp.post(
@@ -65,12 +68,7 @@ class RegistrationController {
 RegistrationController.CONTROLLER_NAME = 'RegistrationCtrl';
 
 
-/** @const {string} */
-RegistrationController.CONTROLLER_AS_NAME = 'RegistrationCtrl';
-
-
 exports = {
   main: RegistrationController,
   CONTROLLER_NAME: RegistrationController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: RegistrationController.CONTROLLER_AS_NAME,
 };
