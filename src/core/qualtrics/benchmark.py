@@ -7,7 +7,7 @@ from core.qualtrics.question import weighted_questions_average
 from django.conf import settings
 
 
-def calculate_group_benchmark(filtered_responses):
+def calculate_group_benchmark_from_raw_responses(filtered_responses):
     """ Calculates benchmark on the responses filtered dataset
 
     Arguments:
@@ -53,19 +53,19 @@ def calculate_response_benchmark(response_questions):
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
 
 
-def calculate_dimension_benchmark(weighted_responses):
-    """ Calculates benchmark on the weighted_responses dataset."""
-    responses_benchmarks_by_dimension = defaultdict(list)
+def calculate_group_benchmark(dmb_d_list):
+    """ Calculates benchmark on the dmb_d_list dataset."""
+    dmb_d_by_dimension = defaultdict(list)
 
-    for response in weighted_responses:
+    for dmb_d in dmb_d_list:
 
         for dimension in settings.DIMENSIONS:
-            benchmark = response.get(dimension, 0)
-            responses_benchmarks_by_dimension[dimension].append(benchmark)
+            benchmark = dmb_d.get(dimension, 0)
+            dmb_d_by_dimension[dimension].append(benchmark)
 
     benchmark_by_dimension = {}
 
     for dimension in settings.DIMENSIONS:
-        benchmark_by_dimension[dimension] = numpy.average(responses_benchmarks_by_dimension[dimension])
+        benchmark_by_dimension[dimension] = numpy.average(dmb_d_by_dimension[dimension])
 
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
