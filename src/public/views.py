@@ -26,15 +26,15 @@ def reports_admin(request):
         engagement_lead_surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
         s_results = SurveyResult.objects.filter(survey__in=engagement_lead_surveys)
 
-    surveys_with_results = []
-    surveys_without_results = []
+    results_with_survey = []
+    results_without_survey = []
 
     for result in s_results:
         if result.survey:
-            surveys_with_results.append(result.survey)
+            results_with_survey.append(result.survey)
         else:
-            surveys_without_results.append(result)
+            results_without_survey.append(result)
 
     return render(request, 'public/reports-list.html', {
-        'surveys': surveys_with_results,
+        'surveys': results_with_survey,
     })
