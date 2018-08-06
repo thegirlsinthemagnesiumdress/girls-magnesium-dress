@@ -3,6 +3,7 @@ import re
 from core.models import Survey
 from core.tests.mocks import generate_surveys
 from djangae.test import TestCase
+from django.test import override_settings
 
 
 class SurveyTest(TestCase):
@@ -38,3 +39,23 @@ class SurveyTest(TestCase):
         self.assertEqual(match.groups(1)[0], survey.sid)
         match = re.search(r'sp=([^&]*)', survey.link_sponsor)
         self.assertEqual(match.groups(1)[0], 'true')
+
+    @override_settings(
+        INDUSTRIES={
+            'IT': 'Information Technology',
+        }
+    )
+    def test_save_invalid_industry(self):
+        """Saving an industry that is not in industry list, should set industry field to `None`."""
+        survey = Survey.objects.create(company_name='some company', industry='Not an industry')
+        self.assertIsNone(survey.industry)
+
+    @override_settings(
+        INDUSTRIES={
+            'IT': 'Information Technology',
+        }
+    )
+    def test_save_valid_industry(self):
+        """Saving an industry that is in industry list, should set industry field to that industry."""
+        survey = Survey.objects.create(company_name='some company', industry='IT')
+        self.assertEqual(survey.industry, 'IT')
