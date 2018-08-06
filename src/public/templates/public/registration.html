@@ -25,6 +25,7 @@
           <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
             Create Survey
           </button>
+          <div class="input-wrp__error" ng-hide="!this.serverError">Oops, something went wrong!</div>
         </form>
       </div>
     </div>

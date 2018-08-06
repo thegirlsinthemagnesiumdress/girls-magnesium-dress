@@ -25,6 +25,12 @@ class RegistrationController {
      */
     this.companyName= '';
 
+    /**
+     * @export
+     * @type {bool}
+     */
+    this.serverError = false;
+
     const elMatches = $location.hash().match(/el=([^&]*)/);
 
     /**
@@ -59,6 +65,8 @@ class RegistrationController {
       },
     }).then((res) => {
       this.link = res.data.link;
+    }, (res) => {
+      this.serverError = true;
     });
   }
 }
