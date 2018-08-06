@@ -175,7 +175,14 @@ class SurveyIndustryResultTest(APITestCase):
             dmb_d=json.dumps(survey_2_dmb_d)
         )
 
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=1
+    )
     def test_industry_with_results(self):
+        """
+        When there are some results for an industry, and we are above minimum
+        threshold, we expect some results back.
+        """
         url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
         response = self.client.get(url)
         response_data_keys = response.data.keys()
@@ -183,8 +190,15 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertTrue('industry_name' in response_data_keys)
         self.assertTrue('dmb' in response_data_keys)
         self.assertTrue('dmb_d' in response_data_keys)
+        self.assertIsNotNone(response.data.get('industry_name'))
+        self.assertIsNotNone(response.data.get('dmb'))
+        self.assertIsNotNone(response.data.get('dmb_d'))
 
-    def test_industry_without_results(self):
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=1
+    )
+    def test_industry_without_results_no_industry_name(self):
+        """When the is no industry with that specific name, we expect no results back."""
         url = reverse('survey_industry', kwargs={'industry_name': 'MKT'})
         response = self.client.get(url)
         response_data_keys = response.data.keys()
@@ -194,5 +208,27 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertTrue('dmb_d' in response_data_keys)
 
         # if industry is not found, dmb and dmb_d are returned as `None`
+        self.assertIsNone(response.data.get('dmb'))
+        self.assertIsNone(response.data.get('dmb_d'))
+
+    def test_industry_without_results_not_enough_results(self):
+        """
+        When the is no industry with that specific name and there are not enough
+        results, we expect no results back.
+        """
+        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue('industry_name' in response_data_keys)
+        self.assertTrue('dmb' in response_data_keys)
+        self.assertTrue('dmb_d' in response_data_keys)
+
+        # if industry is not found, or there are not enough results to calculate
+        # dmb and dmb_d are returned as `None`
+        self.assertTrue('industry_name' in response_data_keys)
+        self.assertTrue('dmb' in response_data_keys)
+        self.assertTrue('dmb_d' in response_data_keys)
+        self.assertIsNotNone(response.data.get('industry_name'))
         self.assertIsNone(response.data.get('dmb'))
         self.assertIsNone(response.data.get('dmb_d'))
