@@ -141,7 +141,6 @@ NOSE_PLUGINS = [
     'disabledoc.plugin.DisableDocstring',
     'noseprogressive.plugin.ProgressivePlugin',
     'djangae.noseplugin.DjangaePlugin',
-    'core.test.WebdriverPlugin'
     # 'nose_exclude.NoseExclude'
 ]
 
@@ -277,3 +276,5 @@ from .constants import *
 
 QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
 QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
+
+SUPER_USER = []

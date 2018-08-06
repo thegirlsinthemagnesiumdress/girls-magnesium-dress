@@ -1,4 +1,5 @@
 import re
+from datetime import datetime, timedelta
 
 import numpy
 from django.conf import settings
@@ -6,6 +7,7 @@ from django.conf import settings
 
 _question_key_regex = re.compile(r'^Q\d+(_\d+)?$')
 DEFAULT_WEIGHT = 1
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 def weighted_questions_average(questions_array):
@@ -52,3 +54,16 @@ def get_question_dimension(question_id):
     for dimension_key, dimension_value in settings.DIMENSIONS.iteritems():
         if question_id in dimension_value:
             return dimension_key
+
+
+def discard_scores(survey_data):
+    """
+    Returns `True` if survey data should be discarded from best practice.
+
+    :param survey_data: dictionary object representing survey response data.
+    :returns: `True` if time to give the `survey_data` answers took less than 5
+    minutes, `False` otherwise
+    """
+    start_date = datetime.strptime(survey_data.get('StartDate'), DATE_FORMAT)
+    end_date = datetime.strptime(survey_data.get('EndDate'), DATE_FORMAT)
+    return end_date - start_date < timedelta(minutes=5)
