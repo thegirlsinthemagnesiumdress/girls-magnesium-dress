@@ -1,12 +1,13 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head ng-csp>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="/favicon.png">
     {% if debug %}
+      <link rel="stylesheet" href="node_modules/angular/angular-csp.css">
       <script src="node_modules/google-closure-library/closure/goog/base.js"></script>
       <script src="{% static 'js/deps.js' %}"></script>
       <script>goog.require('dmb.detect')</script>

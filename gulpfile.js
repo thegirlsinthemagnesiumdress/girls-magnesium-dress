@@ -56,8 +56,8 @@ gulp.task('js', function() {
         entry_point: 'dmb.app',
       }))
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
-      .pipe(gap.prependFile('node_modules/clipboard/dist/clipboard.min.js'))
       .pipe(gap.prependFile('node_modules/ngclipboard/dist/ngclipboard.min.js'))
+      .pipe(gap.prependFile('node_modules/clipboard/dist/clipboard.min.js'))
       .pipe(gulp.dest(PATHS.dist.js));
 });
 
@@ -132,9 +132,10 @@ gulp.task('sass', function() {
   return gulp.src(`${PATHS.src.scss}/**/*.scss`)
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
+      .pipe(gap.prependFile('node_modules/angular/angular-csp.css'))
       .pipe(gulp.dest(PATHS.dist.scss))
       .pipe(notify({
-        message: 'Sass compilation complete.'
+        message: 'Sass compilation complete.',
       }));
 });
 
