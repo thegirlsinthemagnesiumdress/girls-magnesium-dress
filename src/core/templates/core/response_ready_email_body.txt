@@ -1,0 +1,5 @@
+You can to your survey results here:
+    {{ url }}
+
+--
+DMB Team (automated message - please do not reply)

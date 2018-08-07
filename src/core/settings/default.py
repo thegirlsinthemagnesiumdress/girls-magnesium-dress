@@ -202,7 +202,7 @@ USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
 DJANGAE_CREATE_UNKNOWN_USER = False
 AUTH_USER_MODEL = "core.User"
 
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DEFAULT_FILE_STORAGE = 'djangae.storage.CloudStorage'
 
