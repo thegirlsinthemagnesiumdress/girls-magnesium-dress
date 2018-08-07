@@ -200,9 +200,9 @@ class SurveyIndustryResultTest(APITestCase):
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue('industry_name' in response_data_keys)
-        self.assertTrue('dmb' in response_data_keys)
-        self.assertTrue('dmb_d' in response_data_keys)
+
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertTrue(key in response_data_keys)
 
         # if industry is not found, dmb and dmb_d are returned as `None`
         self.assertIsNone(response.data.get('dmb'))
@@ -217,15 +217,14 @@ class SurveyIndustryResultTest(APITestCase):
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue('industry_name' in response_data_keys)
-        self.assertTrue('dmb' in response_data_keys)
-        self.assertTrue('dmb_d' in response_data_keys)
 
         # if industry is not found, or there are not enough results to calculate
         # dmb and dmb_d are returned as `None`
-        self.assertTrue('industry_name' in response_data_keys)
-        self.assertTrue('dmb' in response_data_keys)
-        self.assertTrue('dmb_d' in response_data_keys)
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertTrue(key in response_data_keys)
+
         self.assertIsNotNone(response.data.get('industry_name'))
         self.assertIsNone(response.data.get('dmb'))
         self.assertIsNone(response.data.get('dmb_d'))
+        self.assertIsNone(response.data.get('dmb_bp'))
+        self.assertIsNone(response.data.get('dmb_d_bp'))

@@ -56,7 +56,8 @@ def calculate_response_benchmark(response_questions):
 def _by_dimension(dmb_d_list, aggregated_function):
     """
     Given a `dmb_d_list` and an `aggregated_function`, returns a dictionary
-    where the `aggregated_function` is applied for each `settings.DIMENSION`"""
+    where the `aggregated_function` is applied for each `settings.DIMENSION`
+    """
     dmb_d_by_dimension = defaultdict(list)
     benchmark_by_dimension = {}
 
