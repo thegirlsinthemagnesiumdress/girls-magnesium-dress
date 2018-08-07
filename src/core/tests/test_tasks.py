@@ -39,14 +39,21 @@ class GetResultsTestCase(TestCase):
 
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results(response_id='AAB'))
     def test_partial_download_existing_survey(self, download_mock):
+        # survey has been created on datastore
         survey = make_survey(sid='1')
+        make_survey(sid='2')
+        make_survey(sid='3')
+
+        # only survey result with response_id='AAB' has been downloaded
         make_survey_result(survey=survey, response_id='AAB')
+
+        self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         get_results()
 
         # no new Survey objects are created
-        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(Survey.objects.count(), 3)
         # mock is called with response_id
         download_mock.assert_called_once_with(response_id='AAB')
         # only two new items will be created

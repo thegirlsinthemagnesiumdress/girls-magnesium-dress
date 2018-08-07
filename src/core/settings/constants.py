@@ -15,7 +15,7 @@ DIMENSIONS = {
         'Q37',
         'Q38',
         'Q39',
-        ],
+    ],
     'audience': [
         'Q40',
         'Q41',
@@ -75,5 +75,10 @@ DIMENSIONS = {
         'Q87',
         'Q88',
         'Q89',
-        ],
+    ],
+}
+
+INDUSTRIES = {
+    'IT': 'Information Technology',
+    'MKT': 'Marketing',
 }

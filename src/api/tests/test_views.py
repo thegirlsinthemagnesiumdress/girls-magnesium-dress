@@ -1,6 +1,9 @@
+import json
+
 from core.models import Survey, SurveyResult
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
+from django.test import override_settings
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -132,3 +135,97 @@ class CreateSurveyTest(APITestCase):
         """Posting data not matching required parameters should fail."""
         response = self.client.post(self.url, {'randomkey': 'randomvalue'})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+@override_settings(
+    DIMENSIONS={
+        'dimension_A': ['Q1', 'Q2'],
+        'dimension_B': ['Q3'],
+        'dimension_C': ['Q2'],
+    }
+)
+class SurveyIndustryResultTest(APITestCase):
+    """Tests for `api.views.SurveyResultsIndustryDetail` view."""
+
+    def setUp(self):
+        survey_1_dmb_d = {
+            'dimension_A': 2.0,
+            'dimension_B': 2.0,
+        }
+
+        survey_2_dmb_d = {
+            'dimension_A': 2.0,
+            'dimension_C': 2.0,
+        }
+
+        self.survey = Survey.objects.create(company_name='test company', industry='IT')
+        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='IT')
+
+        self.survey_result = SurveyResult.objects.create(
+            survey=self.survey,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d=json.dumps(survey_1_dmb_d)
+        )
+
+        SurveyResult.objects.create(
+            survey=self.survey_2,
+            response_id='AAB',
+            dmb=2.0,
+            dmb_d=json.dumps(survey_2_dmb_d)
+        )
+
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=1
+    )
+    def test_industry_with_results(self):
+        """
+        When there are some results for an industry, and we are above minimum
+        threshold, we expect some results back.
+        """
+        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIsNotNone(response.data.get('industry_name'))
+        self.assertIsNotNone(response.data.get('dmb'))
+        self.assertIsNotNone(response.data.get('dmb_d'))
+
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=1
+    )
+    def test_industry_without_results_no_industry_name(self):
+        """When the is no industry with that specific name, we expect no results back."""
+        url = reverse('survey_industry', kwargs={'industry_name': 'MKT'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue('industry_name' in response_data_keys)
+        self.assertTrue('dmb' in response_data_keys)
+        self.assertTrue('dmb_d' in response_data_keys)
+
+        # if industry is not found, dmb and dmb_d are returned as `None`
+        self.assertIsNone(response.data.get('dmb'))
+        self.assertIsNone(response.data.get('dmb_d'))
+
+    def test_industry_without_results_not_enough_results(self):
+        """
+        When the is no industry with that specific name and there are not enough
+        results, we expect no results back.
+        """
+        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue('industry_name' in response_data_keys)
+        self.assertTrue('dmb' in response_data_keys)
+        self.assertTrue('dmb_d' in response_data_keys)
+
+        # if industry is not found, or there are not enough results to calculate
+        # dmb and dmb_d are returned as `None`
+        self.assertTrue('industry_name' in response_data_keys)
+        self.assertTrue('dmb' in response_data_keys)
+        self.assertTrue('dmb_d' in response_data_keys)
+        self.assertIsNotNone(response.data.get('industry_name'))
+        self.assertIsNone(response.data.get('dmb'))
+        self.assertIsNone(response.data.get('dmb_d'))
