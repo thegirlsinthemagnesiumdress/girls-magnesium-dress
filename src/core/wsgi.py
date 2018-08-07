@@ -1,14 +1,17 @@
+import os  # noqa
+
 from core.boot import fix_path
 fix_path()
 
-import os
-from django.core.wsgi import get_wsgi_application
-from djangae.wsgi import DjangaeApplication
-from djangae.environment import is_production_environment
-
+from djangae.environment import is_production_environment, application_id  # noqa
+from djangae.wsgi import DjangaeApplication  # noqa
+from django.core.wsgi import get_wsgi_application  # noqa
 
 if is_production_environment():
-    settings = "core.settings.live"
+    if "staging" in application_id():
+        settings = "core.settings.staging"
+    else:
+        settings = "core.settings.live"
 else:
     settings = "core.settings.local"
 
