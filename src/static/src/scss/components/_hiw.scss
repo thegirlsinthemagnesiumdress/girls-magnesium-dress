@@ -57,17 +57,17 @@ body {
   padding: $h-tile-container-padding;
   position: relative;
 
-  &:before {
+  &::before {
     background-color: $h-google-grey-50;
     border: $h-tile-container-border;
     content: '';
     display: block;
     height: 85%;
-    position: absolute;
-    width: 100%;
     left: 0;
-    z-index: -1;
+    position: absolute;
     top: 0;
+    width: 100%;
+    z-index: -1;
   }
 
   .h-c-tile {
