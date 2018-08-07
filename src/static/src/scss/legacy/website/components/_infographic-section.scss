@@ -1,9 +1,11 @@
-$dot-size: 19px;
-$dot-border: 2px;
-$dot-size-inner: 11px;
-$dot-right: -22px;
 
 .infographic-section {
+  $dot-size: 19px;
+  $dot-border: 2px;
+  $dot-size-inner: 11px;
+  $dot-right: -22px;
+
+
   $block: &;
   color: $tr-white;
   position: relative;

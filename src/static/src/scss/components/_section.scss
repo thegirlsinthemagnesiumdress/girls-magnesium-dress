@@ -11,10 +11,10 @@
 }
 
 %dmb-section__title {
-  margin-bottom: $margin-medium;
+  margin-bottom: $dmb-margin-medium;
 
   @include bp(m) {
-    margin-bottom: $margin-big;
+    margin-bottom: $dmb-margin-big;
   }
 }
 

@@ -5,7 +5,7 @@
   position: relative;
 
   &::before {
-    background-image: linear-gradient(to left, rgba($h-black, 0) 0%, $h-white 100%);
+    background-image: linear-gradient(to left, rgba($h-white, 0) 0%, $h-white 100%);
     content: '';
     height: 100%;
     left: 0;
@@ -29,11 +29,11 @@
   }
 
   &__title {
-    margin-bottom: $margin-medium;
+    margin-bottom: $dmb-margin-medium;
   }
 
   &__description {
-    margin-bottom: $margin-small;
+    margin-bottom: $dmb-margin-small;
     max-width: 300px;
 
     @include bp(l) {

@@ -1,6 +1,12 @@
+body {
+  counter-reset: hiw;
+}
+
 .dmb-hiw-section {
   @extend %dmb-section;
   $block: &;
+
+  counter-increment: hiw;
 
   &__eyebrow,
   &__title {
@@ -16,17 +22,17 @@
 
   &__title {
     @extend .h-u-mt-std;
-    padding-bottom: $margin-medium;
+    padding-bottom: $dmb-margin-medium;
     position: relative;
 
     @include bp(m) {
-      padding-bottom: $margin-big;
+      padding-bottom: $dmb-margin-big;
     }
 
     &::before {
       background-image: url('../img/icons/shield.svg');
       color: $h-white;
-      content: '1';
+      content: counter(hiw);
       display: inline-block;
       font-family: $h-font-family-google-sans;
       font-size: 14px;
@@ -43,24 +49,6 @@
 
   &__phone {
     margin-top: -40px;
-  }
-
-  & + & {
-
-    #{$block}__title {
-      &::before {
-        content: '2';
-      }
-    }
-  }
-
-  & + & + & {
-
-    #{$block}__title {
-      &::before {
-        content: '3';
-      }
-    }
   }
 }
 

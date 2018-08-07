@@ -2,7 +2,7 @@
   @extend %dmb-section;
 
   .input-wrp {
-    margin: $margin-medium 0;
+    margin: $dmb-margin-medium 0;
 
     &__error {
       color: $h-google-red-500;
@@ -26,7 +26,7 @@
   }
 
   &__col-asset {
-    padding-bottom: $margin-medium;
+    padding-bottom: $dmb-margin-medium;
     text-align: center;
   }
 
@@ -36,7 +36,7 @@
     color: $h-google-blue-500;
     display: flex;
     flex-direction: column;
-    margin: $margin-small 0;
+    margin: $dmb-margin-small 0;
     padding: 30px 20px;
     word-break: break-all;
 
@@ -50,7 +50,7 @@
       appearance: none;
       background-color: transparent;
       flex-shrink: 0;
-      margin-top: $margin-small;
+      margin-top: $dmb-margin-small;
 
       @include bp(m) {
         margin-top: 0;
@@ -65,6 +65,6 @@
   }
 
   &__share-copy {
-    margin-bottom: $margin-small;
+    margin-bottom: $dmb-margin-small;
   }
 }
