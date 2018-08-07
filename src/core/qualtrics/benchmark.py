@@ -53,9 +53,12 @@ def calculate_response_benchmark(response_questions):
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
 
 
-def calculate_group_benchmark(dmb_d_list):
-    """ Calculates benchmark on the dmb_d_list dataset."""
+def _by_dimension(dmb_d_list, aggregated_function):
+    """
+    Given a `dmb_d_list` and an `aggregated_function`, returns a dictionary
+    where the `aggregated_function` is applied for each `settings.DIMENSION`"""
     dmb_d_by_dimension = defaultdict(list)
+    benchmark_by_dimension = {}
 
     for dmb_d in dmb_d_list:
 
@@ -63,9 +66,19 @@ def calculate_group_benchmark(dmb_d_list):
             benchmark = dmb_d.get(dimension, 0)
             dmb_d_by_dimension[dimension].append(benchmark)
 
-    benchmark_by_dimension = {}
-
     for dimension in settings.DIMENSIONS:
-        benchmark_by_dimension[dimension] = numpy.average(dmb_d_by_dimension[dimension])
+        benchmark_by_dimension[dimension] = aggregated_function(dmb_d_by_dimension[dimension])
 
+    return benchmark_by_dimension
+
+
+def calculate_group_benchmark(dmb_d_list):
+    """ Calculates benchmark on the dmb_d_list dataset."""
+    benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.average)
+    return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
+
+
+def calculate_best_practice(dmb_d_list):
+    """ Calculates best practice on the dmb_d_list dataset."""
+    benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.amax)
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
