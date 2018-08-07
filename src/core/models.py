@@ -5,7 +5,6 @@ from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
 
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
@@ -40,7 +39,7 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, null=True)
-    industry = models.CharField(choices=settings.INDUSTRIES.iteritems(), null=True)
+    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
