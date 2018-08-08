@@ -14,6 +14,12 @@ INTERNAL_IPS = [
     '::1'
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
 # This is just to allow the inline styles on Django error pages when DEBUG = True
 # this settings file won't be used on production only during local development
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com")  + ("localhost:8000",)

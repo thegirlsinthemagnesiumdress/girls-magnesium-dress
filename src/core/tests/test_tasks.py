@@ -6,6 +6,7 @@ from djangae.test import TestCase
 from mocks import get_mocked_results
 from mommy_recepies import make_survey, make_survey_result
 from core.qualtrics.exceptions import FetchResultException
+from django.test import override_settings
 
 
 class GetResultsTestCase(TestCase):
@@ -26,18 +27,31 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
+    @override_settings(
+        INDUSTRIES={
+            'IT': 'IT',
+            'B': 'B',
+        }
+    )
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_surveys_results_and_survey_updated(self, download_mock):
         """Survey results are saved anyway, regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
+        make_survey(sid='1')
+        make_survey(sid='2')
+        make_survey(sid='3')
+
         get_results()
+
         survey_1 = Survey.objects.get(pk='1')
+
         # Industry is updated.
-        self.assertEqual(survey_1.industry, 'A')
+        self.assertEqual(survey_1.industry, 'IT')
+
         # Last result is updated.
-        self.assertNotNone(survey_1.last_survey_result)
+        self.assertIsNotNone(survey_1.last_survey_result)
 
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_surveys_results_are_always_saved(self, download_mock):

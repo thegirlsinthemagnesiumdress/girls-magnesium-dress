@@ -2,6 +2,7 @@ import logging
 
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
+from djangae.db import transaction
 
 
 def get_results():
@@ -31,16 +32,19 @@ def _create_survey_result(results_data):
         questions = question.data_to_questions(data)
         dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
         excluded_from_best_practice = question.discard_scores(data)
-        survey_result = SurveyResult.objects.create(
-            survey_id=data.get('sid'),
-            response_id=data.get('ResponseID'),
-            excluded_from_best_practice=excluded_from_best_practice,
-            dmb=dmb,
-            dmb_d=dmb_d,
-        )
-        try:
-            s = Survey.objects.get(pk=data.get('sid'), last_survey_result=survey_result)
-            s.industry = data.get('industry')
-            s.save(update_fields=['industry'])
-        except Survey.DoesNotExist:
-            logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+        with transaction.atomic(xg=True):
+            survey_result = SurveyResult.objects.create(
+                survey_id=data.get('sid'),
+                response_id=data.get('ResponseID'),
+                excluded_from_best_practice=excluded_from_best_practice,
+                dmb=dmb,
+                dmb_d=dmb_d,
+            )
+            try:
+                s = Survey.objects.get(pk=data.get('sid'))
+                s.last_survey_result = survey_result
+                s.industry = data.get('industry')
+                print(s.industry)
+                s.save(update_fields=['industry', 'last_survey_result'])
+            except Survey.DoesNotExist:
+                logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))

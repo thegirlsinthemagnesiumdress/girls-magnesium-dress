@@ -201,6 +201,9 @@ class SurveyIndustryResultTest(APITestCase):
         for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
             self.assertIsNotNone(key in response_data_keys)
 
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=1
+    )
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
     def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_benchmark):
         """
@@ -224,7 +227,7 @@ class SurveyIndustryResultTest(APITestCase):
         for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
             self.assertIsNotNone(key in response_data_keys)
 
-        # mocked_benchmark.assert_called()
+        mocked_benchmark.assert_called()
 
         call = mocked_benchmark.call_args_list[0]
         args, kwargs = call
