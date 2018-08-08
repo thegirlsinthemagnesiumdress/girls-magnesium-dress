@@ -81,6 +81,8 @@ def send_emails_for_new_reports(email_list):
                 bcc=bcc
             ).send()
 
+            logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
+
 
 def is_valid_email(email):
     email_validator = EmailValidator()
