@@ -44,7 +44,6 @@ def _create_survey_result(results_data):
                 s = Survey.objects.get(pk=data.get('sid'))
                 s.last_survey_result = survey_result
                 s.industry = data.get('industry')
-                print(s.industry)
                 s.save(update_fields=['industry', 'last_survey_result'])
             except Survey.DoesNotExist:
                 logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))

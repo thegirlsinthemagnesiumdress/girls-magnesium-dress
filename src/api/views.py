@@ -4,7 +4,7 @@ from api.serializers import (
     SurveySerializer,
 )
 from core.models import Survey, SurveyResult
-from core.qualtrics.benchmark import calculate_group_benchmark, calculate_best_practice
+from core.qualtrics import benchmark
 from django.conf import settings
 from django.http import Http404
 from django.utils.decorators import method_decorator
@@ -97,8 +97,8 @@ class SurveyResultsIndustryDetail(APIView):
         surveys = Survey.objects.filter(industry=industry_name).exclude(last_survey_result__isnull=True)
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
         if dmb_d_list and len(dmb_d_list) > settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
-            dmb, dmb_d = calculate_group_benchmark(dmb_d_list)
-            dmb_bp, dmb_d_bp = calculate_best_practice(dmb_d_list)
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
 
         data = {
             'industry_name': industry_name,
