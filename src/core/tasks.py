@@ -24,7 +24,10 @@ def get_results():
 
     try:
         results = download.fetch_results(response_id=response_id)
-        _create_survey_result(results.get('responses'))
+        responses = results.get('responses')
+        _create_survey_result(responses)
+        email_list = [(item.get('to'), item.get('bcc'), item.get('sid')) for item in responses]
+        send_emails_for_new_reports(email_list)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
 
@@ -54,25 +57,31 @@ def _create_survey_result(results_data):
         except Survey.DoesNotExist:
             logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
 
-        to, bcc = data.get('to'), data.get('bcc')
-        if is_valid_email(to):
-            link = reverse('report', kwargs={'sid': data.get('sid')})
-            bcc = [bcc] if is_valid_email(bcc) else None
-            send_mail_report(to=[to], bcc=bcc, context={'url': link})
 
+def send_emails_for_new_reports(email_list):
+    """Send an email for every element of `email_list`.
 
-def send_mail_report(to, bcc, context):
-    """Send an email to everyone in the given `bcc`."""
+    :param email_list: tuple of element (to, bcc, sid)
+    """
     subject_template = get_template("core/response_ready_email_subject.txt")
     message_template = get_template("core/response_ready_email_body.txt")
 
-    mail.EmailMessage(
-        subject=subject_template.render(context).split("\n")[0],
-        body=message_template.render(context),
-        from_email=CONTACT_EMAIL,
-        to=to,
-        bcc=bcc
-    ).send()
+    for email_data in email_list:
+        to, bcc, sid = email_data
+        if is_valid_email(to):
+            link = reverse('report', kwargs={'sid': sid})
+            bcc = [bcc] if is_valid_email(bcc) else None
+            context = {
+                'url': link
+            }
+
+            mail.EmailMessage(
+                subject=subject_template.render(context).split("\n")[0],
+                body=message_template.render(context),
+                from_email=CONTACT_EMAIL,
+                to=[to],
+                bcc=bcc
+            ).send()
 
 
 def is_valid_email(email):
