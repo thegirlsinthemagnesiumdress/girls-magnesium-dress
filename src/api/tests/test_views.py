@@ -143,6 +143,10 @@ class CreateSurveyTest(APITestCase):
         'dimension_A': ['Q1', 'Q2'],
         'dimension_B': ['Q3'],
         'dimension_C': ['Q2'],
+    },
+    INDUSTRIES={
+        'IT': 'IT',
+        'B': 'B',
     }
 )
 class SurveyIndustryResultTest(APITestCase):
