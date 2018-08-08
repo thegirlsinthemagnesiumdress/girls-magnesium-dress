@@ -37,11 +37,6 @@ indexes:
   properties:
   - name: survey_id
   - name: loaded_at
-
-- kind: core_surveyresult
-  properties:
-  - name: survey_id
-  - name: loaded_at
     direction: desc
 
 - kind: core_user
