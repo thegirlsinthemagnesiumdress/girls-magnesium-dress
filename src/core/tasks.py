@@ -31,7 +31,7 @@ def _create_survey_result(results_data):
         questions = question.data_to_questions(data)
         dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
         excluded_from_best_practice = question.discard_scores(data)
-        SurveyResult.objects.create(
+        survey_result = SurveyResult.objects.create(
             survey_id=data.get('sid'),
             response_id=data.get('ResponseID'),
             excluded_from_best_practice=excluded_from_best_practice,
@@ -39,7 +39,7 @@ def _create_survey_result(results_data):
             dmb_d=dmb_d,
         )
         try:
-            s = Survey.objects.get(pk=data.get('sid'))
+            s = Survey.objects.get(pk=data.get('sid'), last_survey_result=survey_result)
             s.industry = data.get('industry')
             s.save(update_fields=['industry'])
         except Survey.DoesNotExist:

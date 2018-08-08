@@ -27,6 +27,19 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(SurveyResult.objects.count(), 3)
 
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
+    def test_surveys_results_and_survey_updated(self, download_mock):
+        """Survey results are saved anyway, regardless Survey's related object exists."""
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        get_results()
+        survey_1 = Survey.objects.get(pk='1')
+        # Industry is updated.
+        self.assertEqual(survey_1.industry, 'A')
+        # Last result is updated.
+        self.assertNotNone(survey_1.last_survey_result)
+
+    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_surveys_results_are_always_saved(self, download_mock):
         """Survey results are saved anyway, regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)

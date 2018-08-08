@@ -94,8 +94,8 @@ class SurveyResultsIndustryDetail(APIView):
         dmb_bp = None
         dmb_d_bp = None
 
-        surveys = Survey.objects.filter(industry=industry_name)
-        dmb_d_list = [survey_result.dmb_d for survey_result in SurveyResult.objects.filter(survey__in=surveys)]
+        surveys = Survey.objects.filter(industry=industry_name).exclude(last_survey_result__isnull=True)
+        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
         if dmb_d_list and len(dmb_d_list) > settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             dmb, dmb_d = calculate_group_benchmark(dmb_d_list)
             dmb_bp, dmb_d_bp = calculate_best_practice(dmb_d_list)

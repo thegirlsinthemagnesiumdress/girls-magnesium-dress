@@ -4,6 +4,7 @@ from core.models import Survey, SurveyResult
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import override_settings
+import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -148,32 +149,41 @@ class SurveyIndustryResultTest(APITestCase):
     """Tests for `api.views.SurveyResultsIndustryDetail` view."""
 
     def setUp(self):
-        survey_1_dmb_d = {
+        self.survey_1_dmb_d = {
             'dimension_A': 2.0,
             'dimension_B': 2.0,
         }
 
-        survey_2_dmb_d = {
-            'dimension_A': 2.0,
-            'dimension_C': 2.0,
+        self.survey_2_dmb_d = {
+            'dimension_A': 3.0,
+            'dimension_C': 3.0,
+        }
+
+        self.survey_3_dmb_d = {
+            'dimension_A': 1.0,
+            'dimension_C': 1.0,
         }
 
         self.survey = Survey.objects.create(company_name='test company', industry='IT')
         self.survey_2 = Survey.objects.create(company_name='test company 2', industry='IT')
 
-        self.survey_result = SurveyResult.objects.create(
+        survey_result = SurveyResult.objects.create(
             survey=self.survey,
             response_id='AAA',
             dmb=1.0,
-            dmb_d=json.dumps(survey_1_dmb_d)
+            dmb_d=json.dumps(self.survey_1_dmb_d)
         )
 
-        SurveyResult.objects.create(
+        survey_result_2 = SurveyResult.objects.create(
             survey=self.survey_2,
             response_id='AAB',
             dmb=2.0,
-            dmb_d=json.dumps(survey_2_dmb_d)
+            dmb_d=json.dumps(self.survey_2_dmb_d)
         )
+        self.survey.last_survey_result = survey_result
+        self.survey_2.last_survey_result = survey_result_2
+        self.survey.save()
+        self.survey_2.save()
 
     @override_settings(
         MIN_ITEMS_INDUSTRY_THRESHOLD=1
@@ -187,9 +197,40 @@ class SurveyIndustryResultTest(APITestCase):
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIsNotNone(response.data.get('industry_name'))
-        self.assertIsNotNone(response.data.get('dmb'))
-        self.assertIsNotNone(response.data.get('dmb_d'))
+
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertIsNotNone(key in response_data_keys)
+
+    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
+    def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_benchmark):
+        """
+        When a survey has multiple results, only the last one should be use
+        to calculate the aggregated benchmarks.
+        """
+        survey_result_3 = SurveyResult.objects.create(
+            survey=self.survey_2,
+            response_id='AAB',
+            dmb=2.0,
+            dmb_d=json.dumps(self.survey_3_dmb_d)
+        )
+        self.survey_2.last_survey_result = survey_result_3
+        self.survey_2.save()
+
+        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertIsNotNone(key in response_data_keys)
+
+        # mocked_benchmark.assert_called()
+
+        call = mocked_benchmark.call_args_list[0]
+        args, kwargs = call
+
+        self.assertDictEqual(args[0][0], self.survey_1_dmb_d)
+        self.assertDictEqual(args[0][1], self.survey_3_dmb_d)
 
     @override_settings(
         MIN_ITEMS_INDUSTRY_THRESHOLD=1

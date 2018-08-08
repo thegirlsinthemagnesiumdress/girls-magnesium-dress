@@ -40,6 +40,7 @@ class Survey(models.Model):
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, null=True)
     industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
+    last_survey_result = models.ForeignKey('SurveyResult', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
@@ -74,7 +75,7 @@ class Survey(models.Model):
 class SurveyResult(models.Model):
     """Model to store a survey response benchmark."""
 
-    survey = models.ForeignKey(Survey, null=True)
+    survey = models.ForeignKey('Survey', null=True)
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
     excluded_from_best_practice = models.BooleanField(default=False)
