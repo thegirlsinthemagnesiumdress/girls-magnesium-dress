@@ -8,6 +8,7 @@ from djangae.environment import application_id
 from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
 from django.shortcuts import reverse
+from django.conf import settings
 
 
 CONTACT_EMAIL = "no-reply@{}.appspotmail.com".format(application_id())
@@ -26,7 +27,8 @@ def get_results():
         results = download.fetch_results(response_id=response_id)
         responses = results.get('responses')
         _create_survey_result(responses)
-        email_list = [(item.get('to'), item.get('bcc'), item.get('sid')) for item in responses]
+        to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
+        email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses]
         send_emails_for_new_reports(email_list)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))

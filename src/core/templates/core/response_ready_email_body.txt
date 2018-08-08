@@ -1,4 +1,4 @@
-You can to your survey results here:
+You can see your survey results here:
     {{ url }}
 
 --
