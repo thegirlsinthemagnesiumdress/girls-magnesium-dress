@@ -281,3 +281,5 @@ QUALTRICS_EMAIL_BCC = 'Q99'
 
 SUPER_USER = []
 MIN_ITEMS_INDUSTRY_THRESHOLD = 100
+
+CONTACT_EMAIL = "no-reply@{}.appspotmail.com".format(application_id())

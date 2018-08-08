@@ -2,16 +2,12 @@ import logging
 
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
-from django.core import mail
-from django.template.loader import get_template
-from djangae.environment import application_id
-from django.core.validators import EmailValidator
-from django.core.exceptions import ValidationError
-from django.shortcuts import reverse
 from django.conf import settings
-
-
-CONTACT_EMAIL = "no-reply@{}.appspotmail.com".format(application_id())
+from django.core import mail
+from django.core.exceptions import ValidationError
+from django.core.validators import EmailValidator
+from django.shortcuts import reverse
+from django.template.loader import get_template
 
 
 def get_results():
@@ -80,7 +76,7 @@ def send_emails_for_new_reports(email_list):
             mail.EmailMessage(
                 subject=subject_template.render(context).split("\n")[0],
                 body=message_template.render(context),
-                from_email=CONTACT_EMAIL,
+                from_email=settings.CONTACT_EMAIL,
                 to=[to],
                 bcc=bcc
             ).send()
