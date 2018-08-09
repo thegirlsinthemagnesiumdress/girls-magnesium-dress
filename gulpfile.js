@@ -198,6 +198,24 @@ gulp.task('images-dist', function() {
   return copy(src, outputDir);
 });
 
+gulp.task('survey-dev', function() {
+  const outputDir = path.join(DEV_STATIC_DIR, 'js');
+  const src = [
+    `${SRC_STATIC_DIR}/js/survey.js`,
+  ];
+
+  return copy(src, outputDir);
+});
+
+gulp.task('survey-dist', function() {
+  const outputDir = path.join(DIST_DIR, 'js');
+  const src = [
+    `${SRC_STATIC_DIR}/js/survey.js`,
+  ];
+
+  return copy(src, outputDir);
+});
+
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(`${PATHS.src.js}/**/*.js`, gulp.parallel(
@@ -212,6 +230,8 @@ gulp.task('watch', function() {
     'sass-lint',
     'sass-dev'
   ));
+
+  gulp.watch(`${SRC_STATIC_DIR}/js/survey.js`, gulp.parallel('survey-dev'));
 });
 
 gulp.task('lint', gulp.parallel(
@@ -228,6 +248,7 @@ gulp.task('build',
     'js',
     'sass'
     ),
+    'survey-dist',
     'images-dist',
     'fonts-dist'
   )
