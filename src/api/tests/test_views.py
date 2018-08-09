@@ -147,10 +147,22 @@ class CreateSurveyTest(APITestCase):
     INDUSTRIES={
         'IT': 'IT',
         'B': 'B',
-    }
+    },
+    MIN_ITEMS_INDUSTRY_THRESHOLD=1
 )
 class SurveyIndustryResultTest(APITestCase):
     """Tests for `api.views.SurveyResultsIndustryDetail` view."""
+
+    def _assert_dict_in_list(self, d, list_to_ckeck):
+        item_equal = []
+        for l in list_to_ckeck:
+            if not set(d.keys()) - set(l.keys()):
+                equals = True
+                for k, v in d.iteritems():
+                    if v != l.get(k):
+                        equals = False
+                item_equal.append(equals)
+        return any(item_equal)
 
     def setUp(self):
         self.survey_1_dmb_d = {
@@ -189,9 +201,6 @@ class SurveyIndustryResultTest(APITestCase):
         self.survey.save()
         self.survey_2.save()
 
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=1
-    )
     def test_industry_with_results(self):
         """
         When there are some results for an industry, and we are above minimum
@@ -205,9 +214,6 @@ class SurveyIndustryResultTest(APITestCase):
         for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
             self.assertIsNotNone(key in response_data_keys)
 
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=1
-    )
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
     def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_benchmark):
         """
@@ -233,15 +239,13 @@ class SurveyIndustryResultTest(APITestCase):
 
         mocked_benchmark.assert_called()
 
-        call = mocked_benchmark.call_args_list[0]
-        args, kwargs = call
+        args, _ = mocked_benchmark.call_args_list[0]
+        dmb_d_list_arg = args[0]
 
-        self.assertDictEqual(args[0][0], self.survey_1_dmb_d)
-        self.assertDictEqual(args[0][1], self.survey_3_dmb_d)
+        self.assertEqual(len(dmb_d_list_arg), 2)
+        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
+        self.assertTrue(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
 
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=1
-    )
     def test_industry_without_results_no_industry_name(self):
         """When the is no industry with that specific name, we expect no results back."""
         url = reverse('survey_industry', kwargs={'industry_name': 'MKT'})
@@ -256,6 +260,9 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertIsNone(response.data.get('dmb'))
         self.assertIsNone(response.data.get('dmb_d'))
 
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=100
+    )
     def test_industry_without_results_not_enough_results(self):
         """
         When the is no industry with that specific name and there are not enough
@@ -276,3 +283,27 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertIsNone(response.data.get('dmb_d'))
         self.assertIsNone(response.data.get('dmb_bp'))
         self.assertIsNone(response.data.get('dmb_d_bp'))
+
+    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
+    def test_last_survey_result_is_excluded_if_null(self, mocked_benchmark):
+        """When last_survey_result is None, element is excluded from dmb calculation."""
+        Survey.objects.create(company_name='test company 3', industry='IT', last_survey_result=None)
+
+        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertIsNotNone(key in response_data_keys)
+
+        mocked_benchmark.assert_called()
+
+        call = mocked_benchmark.call_args_list[0]
+        args, _ = call
+
+        dmb_d_list_arg = args[0]
+        self.assertEqual(len(dmb_d_list_arg), 2)
+        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
+        self.assertTrue(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
+        self.assertFalse(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
