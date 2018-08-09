@@ -57,3 +57,7 @@ ie.
 `$ ./scripts/deploy.sh patch` can be used to launch some copy updates
 `$ ./scripts/deploy.sh minor` can be used to launch some new features
 `$ ./scripts/deploy.sh major` can be used to launch some a major change
+
+When asked, you will probably want to override the existing static files, `yes`.
+
+Authentication will most likely be your @potatolondon.com account
