@@ -42,6 +42,14 @@ handlers:
   secure: always
   login: optional
 
+# We currently have to set this handler to be able to
+# have static files locally being public.
+# TODO: We need to remove this in prod
+- url: /devstatic.*
+  script: core.wsgi.application
+  secure: always
+  login: optional
+
 # Set Django admin to be login:admin
 - url: /admin.*
   script: core.wsgi.application
