@@ -1,5 +1,5 @@
 https://github.com/potatolondon/djangae/archive/v0.9.11.zip
-git+https://github.com/potatolondon/gae-pytz.git#egg=pytz
+git+https://github.com/potatolondon/gae-pytz.git#egg=gae-pytz
 git+https://github.com/potatolondon/search.git@78b63fda9756a598e9607aab9d61c084b108b75c#egg=search
 git+https://github.com/adamalton/django-choices.git@852bc34a5b09e660ef06aa4c55787534399f3312#egg=django-choices
 git+https://github.com/potatolondon/archivable.git#egg=archivable
