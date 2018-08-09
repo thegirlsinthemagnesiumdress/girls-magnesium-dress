@@ -10,9 +10,9 @@ class RegistrationController {
   /**
    *
    * @param {!angular.$http} $http
-   * @param {!angular.$scope} $scope
+   * @param {!angular.Scope} $scope
    * @param {!angular.$location} $location
-   * @param {!object} csrfToken
+   * @param {!Object} csrfToken
    * @ngInject
    */
   constructor($http, $scope, $location, csrfToken) {
@@ -27,7 +27,7 @@ class RegistrationController {
 
     /**
      * @export
-     * @type {bool}
+     * @type {boolean}
      */
     this.serverError = false;
 
