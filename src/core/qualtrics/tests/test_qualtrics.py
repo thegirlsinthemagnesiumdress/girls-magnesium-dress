@@ -268,3 +268,81 @@ class CalculateDimensionBenchmarkTest(TestCase):
 
         # dmb represents the average between all elements of `dmb_d_dictionary`
         self.assertEqual(dmb, 1.0)
+
+
+@override_settings(
+    DIMENSIONS={
+        'dimension_A': ['Q1', 'Q2'],
+        'dimension_B': ['Q3'],
+        'dimension_C': ['Q2'],
+        'dimension_D': ['Q1'],
+    }
+)
+class CalculateBestPracticeTest(TestCase):
+    """Test class for `calculate_best_practice` function."""
+
+    def test_calculate_best_practice_single_response(self):
+        """Test for a single reponse."""
+        dmb_d_list = [
+            {
+                'dimension_A': 2.0,
+                'dimension_B': 2.0,
+            },
+        ]
+
+        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list)
+        self.assertIsInstance(dmb_d_max_dictionary, dict)
+        self.assertEqual(len(dmb_d_max_dictionary), len(settings.DIMENSIONS))
+
+        # check all dimensions defined in settings are in the response dictionary
+        for dimension in settings.DIMENSIONS.keys():
+            self.assertTrue(dimension in dmb_d_max_dictionary)
+
+        # each element of `dmb_d_max_dictionary` will be the max of weighted averages by dimension
+        dimension_A_max = dmb_d_max_dictionary.get('dimension_A') # noqa
+        dimension_B_max = dmb_d_max_dictionary.get('dimension_B') # noqa
+        dimension_C_max = dmb_d_max_dictionary.get('dimension_C') # noqa
+        dimension_D_max = dmb_d_max_dictionary.get('dimension_D') # noqa
+
+        self.assertEqual(dimension_A_max, 2.0)
+        self.assertEqual(dimension_B_max, 2.0)
+        self.assertEqual(dimension_C_max, 0)
+        self.assertEqual(dimension_D_max, 0)
+
+        # dmb represents the average between all elements of `dmb_d_max_dictionary`
+        self.assertEqual(dmb, 1.0)
+
+    def test_calculate_response_benchmark_multi_responses(self):
+        """Test for a multiple dmb_d_list."""
+        dmb_d_list = [
+            {
+                'dimension_A': 2.0,
+                'dimension_B': 2.0,
+            },
+            {
+                'dimension_A': 1.0,
+                'dimension_C': 2.0,
+            },
+        ]
+
+        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list)
+        self.assertIsInstance(dmb_d_max_dictionary, dict)
+        self.assertEqual(len(dmb_d_max_dictionary), len(settings.DIMENSIONS))
+
+        # check all dimensions defined in settings are in the response dictionary
+        for dimension in settings.DIMENSIONS.keys():
+            self.assertTrue(dimension in dmb_d_max_dictionary)
+
+        # each element of `dmb_d_max_dictionary` will be the max of weighted averages by dimension
+        dimension_A_max = dmb_d_max_dictionary.get('dimension_A') # noqa
+        dimension_B_max = dmb_d_max_dictionary.get('dimension_B') # noqa
+        dimension_C_max = dmb_d_max_dictionary.get('dimension_C') # noqa
+        dimension_D_max = dmb_d_max_dictionary.get('dimension_D') # noqa
+
+        self.assertEqual(dimension_A_max, 2.0)
+        self.assertEqual(dimension_B_max, 2.0)
+        self.assertEqual(dimension_C_max, 2.0)
+        self.assertEqual(dimension_D_max, 0)
+
+        # dmb represents the average between all elements of `dmb_d_max_dictionary`
+        self.assertEqual(dmb, 1.5)

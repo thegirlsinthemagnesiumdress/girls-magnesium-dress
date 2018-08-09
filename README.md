@@ -53,7 +53,11 @@ When building these files are build (as per gulpfile.js) and then output to:
 
 Please run the script from the root of the project, as shown above.
 ie.
-`$ ./scripts/deploy` can be used to deploy a feature that has to be tested in staging
-`$ ./scripts/deploy patch` can be used to launch some copy updates
-`$ ./scripts/deploy minor` can be used to launch some new features
-`$ ./scripts/deploy major` can be used to launch some a major change
+`$ ./scripts/deploy.sh` can be used to deploy a feature that has to be tested in staging
+`$ ./scripts/deploy.sh patch` can be used to launch some copy updates
+`$ ./scripts/deploy.sh minor` can be used to launch some new features
+`$ ./scripts/deploy.sh major` can be used to launch some a major change
+
+When asked, you will probably want to override the existing static files, `yes`.
+
+Authentication will most likely be your @potatolondon.com account

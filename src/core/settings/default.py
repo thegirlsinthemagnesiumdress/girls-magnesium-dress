@@ -202,7 +202,7 @@ USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
 DJANGAE_CREATE_UNKNOWN_USER = False
 AUTH_USER_MODEL = "core.User"
 
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+EMAIL_BACKEND = 'djangae.mail.AsyncEmailBackend'
 
 DEFAULT_FILE_STORAGE = 'djangae.storage.CloudStorage'
 
@@ -276,6 +276,10 @@ from .constants import *
 
 QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
 QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
+QUALTRICS_EMAIL_TO = 'Q97'
+QUALTRICS_EMAIL_BCC = 'Q99'
 
 SUPER_USER = []
 MIN_ITEMS_INDUSTRY_THRESHOLD = 100
+
+CONTACT_EMAIL = "no-reply@{}.appspotmail.com".format(application_id())

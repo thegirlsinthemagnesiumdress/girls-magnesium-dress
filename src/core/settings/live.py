@@ -29,8 +29,6 @@ ALLOWED_HOSTS = [
     '.appspot.com'
 ]
 
-EMAIL_BACKEND = 'djangae.mail.AsyncEmailBackend'
-
 from google.appengine.api import app_identity
 
 # Remove the appstats middleware on prod
