@@ -74,8 +74,6 @@ handlers:
   script: core.wsgi.application
   secure: always
 
-  login: admin
-
 skip_files:
     - manage.py
     - README.md
