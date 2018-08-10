@@ -1,0 +1,23 @@
+.Skin {
+  // Put the main content above the hero-scrim
+  position: relative;
+  z-index: 1;
+
+  #SkinContent {
+    @extends .h-c-page;
+  }
+
+  #SkinContent,
+  .SkinInner {
+    background: transparent;
+    border-radius: 0 none;
+    margin: 0;
+    max-width: none;
+    min-width: auto;
+    width: 100%;
+  }
+
+  #SkinContent {
+    padding: 0;
+  }
+}

@@ -1,0 +1,71 @@
+.JFEContent {
+  &::before {
+    @include hero();
+  }
+
+  &::after {
+    @include hero-scrim();
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 100vh;
+    min-height: 720px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.dmb-hero {
+  &__content {
+    padding-bottom: 50px;
+  }
+
+  &__pre-title {
+    margin-bottom: $dmb-margin-small;
+  }
+
+  &__title {
+    margin-bottom: $dmb-margin-medium;
+  }
+
+  &__description {
+    margin-bottom: $dmb-margin-small;
+    max-width: 300px;
+
+    @include bp(l) {
+      max-width: 460px;
+    }
+  }
+}
+
+
+.Skin {
+  #SkinContent,
+  #HeaderContainer {
+    background: transparent;
+    margin-bottom: 0;
+  }
+
+  #LogoContainer {
+    position: relative;
+    z-index: 1;
+  }
+
+  #HeaderContainer {
+    display: flex;
+    height: 100vh;
+    min-height: 720px;
+    position: relative;
+    text-align: initial;
+  }
+
+  #Header {
+    background: transparent;
+    padding-bottom: 40px;
+    position: relative;
+  }
+}

@@ -1,0 +1,6 @@
+.Skin {
+  .Button {
+    @extend .h-c-button;
+    @extend .h-c-button--primary;
+  }
+}

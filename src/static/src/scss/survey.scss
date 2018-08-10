@@ -14,11 +14,26 @@
 // @import 'scss/zippy';
 
 // Hercules component base styles
+@import 'hercules/lib/components/buttons/buttons';
+@import 'hercules/lib/components/grids/grids';
+@import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
 @import 'hercules/lib/components/type/type';
 
+// Variables
+@import 'variables';
 
-// Include your project specific styles here.
-// @import 'myproject/components/foo';
+// Variables
+@import 'utils';
 
+// Hercules overrides
+@import 'hercules-overrides';
+
+// Components
+@import './shared/hero';
+@import './survey/buttons';
+@import './survey/header';
+@import './survey/layout';
+
+// Hercules part that needs to come last
 @import 'hercules/lib/global/scss/trumps/all';
