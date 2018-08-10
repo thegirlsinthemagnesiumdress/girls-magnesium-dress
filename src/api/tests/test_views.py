@@ -116,10 +116,10 @@ class CreateSurveyTest(APITestCase):
         self.url = reverse('create_survey')
 
     def test_unauthenticated_user(self):
-        """Unauthenticated users should not be able to post."""
+        """Unauthenticated users should be able to post."""
         self.client.force_authenticate(None)
         response = self.client.post(self.url, self.data)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_required_fields_matched(self):
         """Posting data matching required parameters should succed."""
