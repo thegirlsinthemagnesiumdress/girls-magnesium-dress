@@ -1,3 +1,4 @@
+// sass-lint:disable no-ids
 .Skin {
   color: inherit;
   // Put the main content above the hero-scrim
@@ -10,5 +11,10 @@
 
   #SkinContent {
     @extend .h-c-page;
+    max-width: $dmb-survey-max-width;
+  }
+
+  #Questions {
+    padding-top: 120px;
   }
 }

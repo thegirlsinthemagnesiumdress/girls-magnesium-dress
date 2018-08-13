@@ -5,3 +5,9 @@ $dmb-margin-big: 96px;
 
 $dmb-input-color--passive: #979797;
 $dmb-input-color--active: map-get($h-gm-blues, 500);
+
+$dmb-progress-color--passive: #f4f4f4;
+$dmb-progress-color--active: map-get($h-gm-blues, 500);
+$dmb-progress-height: 8px;
+
+$dmb-survey-max-width: 800px;
