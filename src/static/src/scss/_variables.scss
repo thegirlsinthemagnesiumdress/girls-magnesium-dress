@@ -2,3 +2,6 @@
 $dmb-margin-small: 24px;
 $dmb-margin-medium: 48px;
 $dmb-margin-big: 96px;
+
+$dmb-input-color--passive: #979797;
+$dmb-input-color--active: map-get($h-gm-blues, 500);

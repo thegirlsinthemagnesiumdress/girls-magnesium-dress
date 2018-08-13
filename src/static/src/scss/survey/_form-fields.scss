@@ -22,4 +22,14 @@
     overflow: visible;
     padding: 0;
   }
+
+  input[type=text] {
+    border: 0 none;
+    border-bottom: 1px solid $dmb-input-color--passive;
+    border-radius: 0;
+
+    &:focus {
+      border-bottom-color: $dmb-input-color--active;
+    }
+  }
 }
