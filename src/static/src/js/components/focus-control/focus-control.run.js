@@ -1,5 +1,8 @@
 goog.module('dmb.components.focusControl.run');
 
+const googDomSafe = goog.require('goog.dom.safe');
+const googSafeHtml = goog.require('goog.html.SafeHtml');
+
 /**
  * Class for handling focus control on the page. Hiding all outlines when the
  * user uses the mouse, but showing the outlines again when the tab key is
@@ -11,19 +14,24 @@ class FocusControl {
    */
   constructor() {
     this.element = document.createElement('style');
-    this.cssSnippet = ':focus{outline:0}::-moz-focus-inner{border:0}:focus-within *{outline:0 !important}';
+    this.cssSnippet = googSafeHtml
+        .htmlEscape(':focus{outline:0}::-moz-focus-inner{border:0}:focus-within *{outline:0 !important}');
+    this.emptyCss = googSafeHtml.htmlEscape('');
 
     document.querySelector('head').appendChild(this.element);
 
-    this.mouseDownHandler = document.addEventListener('mousedown', this.handleMouseDown.bind(this));
-    this.keyDownHandler = document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    this.mouseDownHandler = this.handleMouseDown.bind(this);
+    this.keyDownHandler = this.handleKeyDown.bind(this);
+
+    document.addEventListener('mousedown', this.mouseDownHandler);
+    document.addEventListener('keydown', this.keyDownHandler);
   }
 
   /**
    * Adds the hide-focus styles to the style tag
    */
   handleMouseDown() {
-    this.element.innerHTML = this.cssSnippet;
+    googDomSafe.setInnerHtml(this.element, this.cssSnippet);
   }
 
   /**
@@ -33,7 +41,7 @@ class FocusControl {
    */
   handleKeyDown(event) {
     if (event.keyCode === 9) {
-      this.element.innerHTML = '';
+      googDomSafe.setInnerHtml(this.element, this.emptyCss);
     }
   }
 
