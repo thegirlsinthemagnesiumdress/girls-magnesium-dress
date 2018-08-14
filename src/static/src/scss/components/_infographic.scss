@@ -40,23 +40,6 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
     left: 100%;
   }
 
-  &__window {
-    margin-left: -$h-site-padding-mobile;
-    margin-right: -$h-site-padding-mobile;
-    overflow: auto;
-
-    @include bp(s) {
-      margin-left: -$h-site-padding;
-      margin-right: -$h-site-padding;
-    }
-
-    @include bp(m) {
-      margin-left: 0;
-      margin-right: 0;
-      overflow: visible;
-    }
-  }
-
   &__inner {
     display: flex;
     list-style-type: none;
