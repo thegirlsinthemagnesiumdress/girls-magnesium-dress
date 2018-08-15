@@ -41,12 +41,14 @@
 @import 'hercules-overrides';
 
 // DMB components
-@import 'components/section';
+@import 'components/dimensions-tiles';
 @import 'components/header';
-@import 'components/partnership-with-bcg';
 @import 'components/hero';
-@import 'components/section-with-media';
-@import 'components/roadmap-section';
-@import 'components/infographic';
 @import 'components/hiw';
+@import 'components/infographic';
+@import 'components/mobile-overflow-wrapper';
+@import 'components/partnership-with-bcg';
 @import 'components/registration';
+@import 'components/roadmap-section';
+@import 'components/section';
+@import 'components/section-with-media';

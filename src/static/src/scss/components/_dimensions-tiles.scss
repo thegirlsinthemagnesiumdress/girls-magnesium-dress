@@ -1,0 +1,113 @@
+.dmb-dimensions-tiles {
+  // Local variables
+  $number-of-tiles: 5;
+  $tile-gutter: 10px;
+  $tile-breakpoints: (
+    0: 1.5,
+    600px: 2.5,
+    860px: 3.5
+  );
+  $tile-ideal-width: 220px;
+
+  position: relative;
+
+  &::before {
+    background-color: $h-google-grey-50;
+    border: $h-tile-container-border;
+    content: '';
+    display: block;
+    height: 85%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__header-headline {
+    margin-top: 20px;
+  }
+
+  &__header-icon {
+    @extend .h-c-tile__icon;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    padding: $h-tile-container-padding $h-tile-container-padding 32px;
+  }
+
+  &__header-body {
+    padding-left: 25px;
+  }
+
+  &__headline {
+    color: $h-tile-description-color;
+    font-family: $h-font-family-google-sans;
+    font-size: $h-tile-header-font-size;
+    font-weight: $h-font-weight-medium;
+    margin: 8px 0 5px;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row nowrap;
+    list-style-type: none;
+    margin: 0;
+    padding-left: $h-tile-container-padding + $h-site-padding-mobile;
+    padding-right: $h-tile-container-padding + $h-site-padding-mobile;
+
+    @include bp(s) {
+      padding-left: $h-tile-container-padding + $h-site-padding;
+      padding-right: $h-tile-container-padding + $h-site-padding;
+    }
+
+    @include bp(m) {
+      justify-content: center;
+      padding: 0 $h-tile-container-padding $h-tile-container-padding;
+    }
+
+    @each $bp, $count in $tile-breakpoints {
+      @media (min-width: #{$bp}) {
+        width: #{100% * ($number-of-tiles / $count)};
+      }
+    }
+
+    @include bp(m) {
+      width: auto;
+    }
+  }
+
+
+  &__item {
+    display: flex;
+    padding: 0 #{$tile-gutter / 2};
+
+    @each $bp, $count in $tile-breakpoints {
+      @media (min-width: #{$bp}) {
+        width: #{100% / $count};
+      }
+    }
+
+    @include bp(m) {
+      width: #{$tile-ideal-width + $tile-gutter};
+    }
+  }
+
+  .h-c-tile {
+    width: 100%;
+
+    &__header {
+      min-height: 0;
+    }
+
+    &__headline {
+      margin-top: 16px;
+    }
+
+    &__description {
+      margin-bottom: 16px;
+    }
+  }
+}
