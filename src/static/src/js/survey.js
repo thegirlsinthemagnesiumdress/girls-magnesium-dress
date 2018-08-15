@@ -31,7 +31,7 @@
       return;
     }
 
-    var questionOffset = (findError() || questions).getBoundingClientRect().y + window.scrollY;
+    var questionOffset = (findError() || questions).getBoundingClientRect().top + window.scrollY;
 
     console.debug('[Q] scrollTo', questionOffset); // eslint-disable-line
 
