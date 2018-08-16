@@ -41,11 +41,13 @@
 @import 'hercules-overrides';
 
 // DMB components
+@import 'components/dimensions-tiles';
 @import 'components/fab';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/hiw';
 @import 'components/infographic';
+@import 'components/mobile-overflow-wrapper';
 @import 'components/partnership-with-bcg';
 @import 'components/registration';
 @import 'components/roadmap-section';
