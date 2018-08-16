@@ -11,12 +11,14 @@
   $tile-ideal-width: 220px;
   $padding--v: 32px;
   $padding--h: 16px;
+  $tile-border-radius: 3px;
 
   position: relative;
 
   &::before {
     background-color: $h-google-grey-50;
     border: $h-tile-container-border;
+    border-radius: $tile-border-radius;
     content: '';
     display: block;
     height: 85%;
@@ -91,7 +93,7 @@
   }
 
   .h-c-tile {
-    border-radius: 3px;
+    border-radius: $tile-border-radius;
     width: 100%;
 
     &__header {
