@@ -60,21 +60,21 @@ class SidePanel {
 
     /**
      * The trigger that opened the side panel, used for focusing on close
-     * @type {?Element}
+     * @type {?EventTarget}
      * @export
      */
     this.lastTrigger = null;
 
     /**
      * Bound context for triggerClickHandler
-     * @type {Fuction}
+     * @type {Function}
      * @export
      */
     this.onTriggerClick = this.triggerClickHandler.bind(this);
 
     /**
      * Bound context for closeClickHandler
-     * @type {Fuction}
+     * @type {Function}
      * @export
      */
     this.onCloseClick = this.closeClickHandler.bind(this);
@@ -191,7 +191,7 @@ class SidePanel {
     const backdropEl = document.createElement('div');
     backdropEl.classList.add(classes.BACKDROP);
     backdropEl.classList.add(classes.HIDDEN);
-    document.body.append(backdropEl);
+    document.body.appendChild(backdropEl);
 
     return backdropEl;
   }
@@ -250,7 +250,7 @@ class SidePanel {
    * @export
    */
   destroy() {
-    this.triggers.forEach((trigger) => {
+    this.triggerEls.forEach((trigger) => {
       trigger.removeEventListener('click', this.onTriggerClick);
     });
   }
