@@ -1,3 +1,27 @@
 .dmb-bg-light-grey {
   background-color: $h-google-grey-50;
 }
+
+.dmb-h-visible {
+  display: block !important;
+}
+
+.dmb-h-hidden {
+  display: none !important;
+}
+
+.dmb-body--has-modal {
+  overflow: hidden;
+}
+
+.dmb-h-mb--small {
+  margin-bottom: $dmb-margin-small;
+}
+
+.dmb-h-mb--medium {
+  margin-bottom: $dmb-margin-medium;
+}
+
+.dmb-h-mb--big {
+  $dmb-margin-big: $dmb-margin-big;
+}

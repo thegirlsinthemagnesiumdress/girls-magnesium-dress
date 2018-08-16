@@ -1,6 +1,6 @@
 goog.module('dmb.components.sidePanel.directive');
 
-const SidePanel = goog.require('dmb.components.sidePanel.class').main;
+const SidePanel = goog.require('dmb.components.sidePanel.class');
 
 /**
  * Side panel directive.
