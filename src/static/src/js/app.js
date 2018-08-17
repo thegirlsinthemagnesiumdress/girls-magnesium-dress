@@ -8,7 +8,9 @@ const header = goog.require('glue.ng.ui.header');
 const smoothScroll = goog.require('glue.ng.smoothScroll');
 
 const focusControl = goog.require('dmb.components.focusControl');
+const headerFix = goog.require('dmb.components.headerFix');
 const registration = goog.require('dmb.components.registration');
+const scrollHandler = goog.require('dmb.components.scroll');
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -17,7 +19,9 @@ const module = angular.module('dmb', [
   glueZippy.module.name,
   'ngAnimate',
   header.module.name,
+  headerFix.module.name,
   registration.module.name,
+  scrollHandler.module.name,
   smoothScroll.module.name,
   'hercules_template_bundle',
   'ngclipboard',
