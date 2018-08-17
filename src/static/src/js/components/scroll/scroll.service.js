@@ -33,7 +33,7 @@ function scrollService() {
   function removeListener(toRemove) {
     listeners = listeners.filter((listener) => listener !== toRemove);
 
-    if (!listeners.lenght) {
+    if (!listeners.length) {
       document.removeEventListener('scroll', onScroll);
       isListening = false;
     }

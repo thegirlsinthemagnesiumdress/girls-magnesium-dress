@@ -1,6 +1,6 @@
 goog.module('dmb.components.headerFix');
 
-const cssClasses = goog.require('glue.ui.header.HeaderFoundation').cssClasses;
+const HeaderFoundation = goog.require('glue.ui.header.HeaderFoundation');
 
 
 /** @const {string} */
@@ -39,7 +39,7 @@ function headerFixRun(scrollService) {
       return;
     }
 
-    headerEl.classList.remove(cssClasses.IS_WHOLLY_SCROLLED);
+    headerEl.classList.remove(HeaderFoundation.cssClasses.IS_WHOLLY_SCROLLED);
   }
 }
 
