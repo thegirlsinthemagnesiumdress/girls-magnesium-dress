@@ -18,6 +18,9 @@ function scrollAwareDirective(scrollService) {
       const nativeElement = element[0];
       let cachedDimensions = null;
 
+      const enterClass = attrs['dmbScrollAwareEnterClass'];
+      const exitClass = attrs['dmbScrollAwareExitClass'];
+
       ctrl.cacheValid = false;
       ctrl.checkElementPosition = checkElementPosition;
       ctrl.getElementDimensions = getElementDimensions;
@@ -72,11 +75,11 @@ function scrollAwareDirective(scrollService) {
        * Function called when the element enters the viewport
        */
       function isInView() {
-        if (attrs.dmbScrollAwareEnterClass) {
-          nativeElement.classList.add(attrs.dmbScrollAwareEnterClass);
+        if (enterClass) {
+          nativeElement.classList.add(enterClass);
 
           // If the classes have been added and there are no classes to remove, we're done
-          if (!attrs.dmbScrollAwareExitClass) {
+          if (!exitClass) {
             ctrl.onDestroy();
           }
         }
@@ -86,11 +89,11 @@ function scrollAwareDirective(scrollService) {
        * Function called when the element leaves the viewport
        */
       function isOutOfView() {
-        if (attrs.dmbScrollAwareExitClass) {
-          nativeElement.classList.remove(attrs.dmbScrollAwareExitClass);
+        if (exitClass) {
+          nativeElement.classList.remove(exitClass);
 
           // If the classes have been removed and there are no classes to add, we're done
-          if (!attrs.dmbScrollAwareEnterClass) {
+          if (!enterClass) {
             ctrl.onDestroy();
           }
         }
