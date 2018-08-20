@@ -1,13 +1,14 @@
-$dot-size: 23px;
-$dot-border: 2px;
-$dot-size-inner: 9px;
-$dot-right: -22px;
-
 $infographic-default: $h-google-blue-400;
 
-$step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
+$step-colors: $h-google-blue-100, $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
+$step-text-colors: $h-google-blue-500, $h-google-blue-600, $h-google-blue-800, $h-google-blue-900;
+$step-bar-height: 8px;
+$step-header-height: 64px;
+$roundel-size: 22px;
 
 .dmb-infographic {
+  $block: &;
+
   position: relative;
 
   &::before,
@@ -45,6 +46,7 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
     list-style-type: none;
     margin-bottom: 0;
     margin-left: 0;
+    overflow: hidden;
     padding-left: $h-site-padding-mobile;
     padding-right: $h-site-padding-mobile;
     position: relative;
@@ -60,6 +62,58 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
 
     @include bp(m) {
       width: auto;
+    }
+  }
+
+  &__roundel {
+    background: $h-google-grey-50;
+    height: $roundel-size;
+    left: $h-site-padding-mobile;
+    position: absolute;
+    right: $h-site-padding-mobile;
+    top: #{$step-header-height + ($step-bar-height / 2) - ($roundel-size / 2)};
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+
+    @include bp(s) {
+      left: $h-site-padding;
+      right: $h-site-padding;
+    }
+
+    &::before,
+    &::after {
+      border-color: $infographic-default;
+      border-radius: 50%;
+      border-style: solid;
+      content: '';
+      display: block;
+      left: -#{$roundel-size / 2};
+      position: absolute;
+      z-index: 3;
+    }
+
+    &::before {
+      background-color: #fff;
+      border-width: 2px;
+      height: $roundel-size;
+      width: $roundel-size;
+    }
+
+    &::after {
+      border-width: 4px;
+      margin: #{($roundel-size - 8px) / 2};
+    }
+
+    #{$block}--in-view & {
+      transform: translateX(100%);
+      transform: translate3d(100%, 0, 0);
+      transition: transform 1.5s .5s cubic-bezier(0, 0, .2, 1);
+
+      &::before,
+      &::after {
+        border-color: $h-google-blue-900;
+        transition: border-color 1.5s .5s cubic-bezier(0, 0, .2, 1);
+      }
     }
   }
 
@@ -87,6 +141,8 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
     font-family: $h-font-family-google-sans;
     font-size: 18px;
     font-weight: $h-font-weight-regular;
+    height: $step-header-height;
+    line-height: 24px;
     padding-bottom: 20px;
     padding-top: 20px;
     position: relative;
@@ -94,8 +150,9 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
     white-space: nowrap;
     z-index: 1;
 
-    @include bp(m) {
-      line-height: 24px;
+    @media (min-width: 1400px) {
+      // Max wants the text to look centered without using text-align: justify on the body
+      text-indent: -25px;
     }
   }
 
@@ -109,40 +166,45 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
     &::after {
       content: '';
       display: block;
-      height: 8px;
+      height: $step-bar-height;
       left: 0;
       position: absolute;
       top: 0;
       width: 100%;
     }
 
-    &::before {
-      background-color: $infographic-default;
-    }
-
     &::after {
       left: -50%;
     }
+  }
 
-    &:first-child::after {
-      content: none;
-      display: none;
+
+  @each $color in $step-text-colors {
+    $i: index($step-text-colors, $color);
+
+    &__step:nth-of-type(#{$i}) &__step-t {
+      color: $color;
     }
   }
 
   @each $color in $step-colors {
     $i: index($step-colors, $color);
 
-    &__step:nth-of-type(#{$i}) &__step-t {
-      color: $color;
-    }
-
     &__step:nth-of-type(#{$i}) &__step-d {
-      &::before {
-        background-color: $color;
-      }
+      @if ($i == 1) {
+        &::before {
+          background-image: linear-gradient(to right, transparent 0%, $color 30%, $color 100%);
+        }
 
-      @if ($i > 1) {
+        &::after {
+          content: none;
+          display: none;
+        }
+      } @else {
+        &::before {
+          background-color: $color;
+        }
+
         &::after {
           $previous-color: nth($step-colors, $i - 1);
           background-image: linear-gradient(to right, $previous-color 0%, $color 100%);
@@ -150,5 +212,4 @@ $step-colors: $h-google-blue-400, $h-google-blue-500, $h-google-blue-700, $h-goo
       }
     }
   }
-
 }
