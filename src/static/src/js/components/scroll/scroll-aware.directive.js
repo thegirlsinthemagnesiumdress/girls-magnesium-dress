@@ -8,16 +8,46 @@ goog.module('dmb.components.scroll.directive');
 function scrollAwareDirective(scrollService) {
   return {
     restrict: 'A',
+    /**
+     * @param  {!angular.Scope} scope The scope of the directive
+     * @param  {!angular.JQLite} element The element to be scroll aware
+     * @param  {{dmbScrollAwareEnterClass: string, dmbScrollAwareExitClass: string}} attrs The attributes on the html
+     * @param  {!angular.ComponentController} ctrl The controller to bind to
+     */
     link(scope, element, attrs, ctrl) {
       const nativeElement = element[0];
       let cachedDimensions = null;
 
+      ctrl.cacheValid = false;
+      ctrl.checkElementPosition = checkElementPosition;
       ctrl.getElementDimensions = getElementDimensions;
       ctrl.isInView = isInView;
       ctrl.isOutOfView = isOutOfView;
+      ctrl.onDestroy = onDestroy;
+      ctrl.onReady = onReady;
+      ctrl.onResize = onResize;
 
-      // Once everything is bound, call the onReady function
+      scrollService.addListener(ctrl.checkElementPosition);
+      window.addEventListener('resize', ctrl.onResize);
+      scope.$on('$destroy', onDestroy);
+
       ctrl.onReady();
+
+      /**
+       * Checks if the element is on screen or not
+       * @param  {number} screenTop How far down the page the top of the screen has scrolled
+       */
+      function checkElementPosition(screenTop) {
+        const {elTop, elHeight, screenHeight} = ctrl.getElementDimensions();
+        const elBottom = elTop + elHeight;
+        const screenBottom = screenTop + screenHeight;
+
+        if (screenBottom > elTop && screenTop < elBottom) {
+          ctrl.isInView();
+        } else {
+          ctrl.isOutOfView();
+        }
+      }
 
       /**
        * [getElementDimensions description]
@@ -44,6 +74,11 @@ function scrollAwareDirective(scrollService) {
       function isInView() {
         if (attrs.dmbScrollAwareEnterClass) {
           nativeElement.classList.add(attrs.dmbScrollAwareEnterClass);
+
+          // If the classes have been added and there are no classes to remove, we're done
+          if (!attrs.dmbScrollAwareExitClass) {
+            ctrl.onDestroy();
+          }
         }
       }
 
@@ -53,39 +88,11 @@ function scrollAwareDirective(scrollService) {
       function isOutOfView() {
         if (attrs.dmbScrollAwareExitClass) {
           nativeElement.classList.remove(attrs.dmbScrollAwareExitClass);
-        }
-      }
-    },
-    controller() {
-      const ctrl = this;
 
-      ctrl.$onInit = onInit;
-      ctrl.checkElementPosition = checkElementPosition;
-      ctrl.onResize = onResize;
-      ctrl.onReady = onReady;
-      ctrl.cacheValid = false;
-
-      /**
-       * Init event callback
-       */
-      function onInit() {
-        scrollService.addListener(ctrl.checkElementPosition);
-        window.addEventListener('resize', ctrl.onResize);
-      }
-
-      /**
-       * Checks if the element is on screen or not
-       * @param  {number} screenTop How far down the page the top of the screen has scrolled
-       */
-      function checkElementPosition(screenTop) {
-        const {elTop, elHeight, screenHeight} = ctrl.getElementDimensions();
-        const elBottom = elTop + elHeight;
-        const screenBottom = scrollY + screenHeight;
-
-        if (screenBottom > elTop && screenTop < elBottom) {
-          ctrl.isInView();
-        } else {
-          ctrl.isOutOfView();
+          // If the classes have been removed and there are no classes to add, we're done
+          if (!attrs.dmbScrollAwareEnterClass) {
+            ctrl.onDestroy();
+          }
         }
       }
 
@@ -102,7 +109,16 @@ function scrollAwareDirective(scrollService) {
       function onReady() {
         ctrl.checkElementPosition(window.scrollY);
       }
+
+      /**
+       * Unbinds the events when the scope is destroyed
+       */
+      function onDestroy() {
+        scrollService.removeListener(ctrl.checkElementPosition);
+        window.removeEventListener('resize', ctrl.onResize);
+      }
     },
+    controller() {},
   };
 }
 
