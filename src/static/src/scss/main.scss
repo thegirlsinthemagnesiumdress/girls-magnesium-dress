@@ -4,7 +4,7 @@
 @import 'hercules/lib/global/scss/settings/all';
 
 // If you have Sass variable overrides, include them here and uncomment.
-// @import 'myproject/custom/settings';
+@import 'hercules-variable-overrides';
 
 @import 'hercules/lib/global/scss/tools/all';
 @import 'hercules/lib/global/scss/generic/all';

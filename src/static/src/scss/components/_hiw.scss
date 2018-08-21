@@ -44,10 +44,18 @@ body {
       top: 3px;
       width: 20px;
     }
+  }
 
+  &__title-text {
+    max-width: 17em;
   }
 
   &__phone {
     margin-top: -40px;
+    padding-left: 9%;
+
+    @include bp(s) {
+      padding-left: 0;
+    }
   }
 }
