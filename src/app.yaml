@@ -65,6 +65,8 @@ handlers:
 - url: /src/static/
   static_dir: static/
   secure: always
+  http_headers:
+    Access-Control-Allow-Origin: https://google.co1.qualtrics.com
 
 - url: /node_modules/
   static_dir: node_modules/

@@ -1,13 +1,23 @@
 // sass-lint:disable no-ids
 #ProgressBar {
-  @extend .h-c-page;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(198, 198, 198, .5);
   left: 0;
-  max-width: $dmb-survey-max-width;
-  padding-bottom: 60px;
-  padding-top: 20px;
+  padding: 20px 0 60px;
   position: absolute;
   right: 0;
   top: 100vh;
+  z-index: 2;
+
+  &.is-sticky {
+    position: fixed;
+    top: 0 !important;
+  }
+
+  > div {
+    @extend .h-c-page;
+    max-width: $dmb-survey-max-width;
+  }
 
   .ProgressBarContainer {
     width: 100%;

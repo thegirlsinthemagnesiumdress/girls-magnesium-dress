@@ -69,6 +69,14 @@ gulp.task('js-detect', function() {
       .pipe(gulp.dest(PATHS.dist.js));
 });
 
+gulp.task('js-survey', function() {
+  return gulp.src(`${PATHS.src.js}/**/*.js`)
+      // Note that entry_point matches the namespace defined in survey.js
+      .pipe(hercules.js.prod({entry_point: 'dmb.survey'}))
+      .pipe(rename('survey.min.js'))
+      .pipe(gulp.dest(PATHS.dist.js));
+});
+
 gulp.task('js-templates', function() {
   return gulp.src(TEMPLATE_SRC)
     .pipe(templateCache({
@@ -198,24 +206,6 @@ gulp.task('images-dist', function() {
   return copy(src, outputDir);
 });
 
-gulp.task('survey-dev', function() {
-  const outputDir = path.join(DEV_STATIC_DIR, 'js');
-  const src = [
-    `${SRC_STATIC_DIR}/js/survey.js`,
-  ];
-
-  return copy(src, outputDir);
-});
-
-gulp.task('survey-dist', function() {
-  const outputDir = path.join(DIST_DIR, 'js');
-  const src = [
-    `${SRC_STATIC_DIR}/js/survey.js`,
-  ];
-
-  return copy(src, outputDir);
-});
-
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(`${PATHS.src.js}/**/*.js`, gulp.parallel(
@@ -230,8 +220,6 @@ gulp.task('watch', function() {
     'sass-lint',
     'sass-dev'
   ));
-
-  gulp.watch(`${SRC_STATIC_DIR}/js/survey.js`, gulp.parallel('survey-dev'));
 });
 
 gulp.task('lint', gulp.parallel(
@@ -245,10 +233,10 @@ gulp.task('build',
     'clean-dist',
     'js-templates',
     'js-detect',
+    'js-survey',
     'js',
     'sass'
     ),
-    'survey-dist',
     'images-dist',
     'fonts-dist'
   )
