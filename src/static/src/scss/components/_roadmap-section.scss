@@ -5,13 +5,14 @@
     @extend %dmb-section__title;
     text-align: center;
 
-    &::after {
+    &::before {
       background-image: url('../img/icons/bulb.svg');
       content: '';
-      display: inline-block;
+      display: block;
       height: 70px;
-      margin-left: 5px;
-      vertical-align: middle;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
       width: 60px;
     }
   }
