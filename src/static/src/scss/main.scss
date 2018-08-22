@@ -4,7 +4,7 @@
 @import 'hercules/lib/global/scss/settings/all';
 
 // If you have Sass variable overrides, include them here and uncomment.
-// @import 'myproject/custom/settings';
+@import 'hercules-variable-overrides';
 
 @import 'hercules/lib/global/scss/tools/all';
 @import 'hercules/lib/global/scss/generic/all';
@@ -44,12 +44,16 @@
 @import 'shared/hero';
 
 // DMB components
-@import 'components/section';
+@import 'components/dimensions-tiles';
+@import 'components/fab';
 @import 'components/header';
-@import 'components/partnership-with-bcg';
 @import 'components/hero';
-@import 'components/section-with-media';
-@import 'components/roadmap-section';
-@import 'components/infographic';
 @import 'components/hiw';
+@import 'components/infographic';
+@import 'components/mobile-overflow-wrapper';
+@import 'components/partnership-with-bcg';
 @import 'components/registration';
+@import 'components/roadmap-section';
+@import 'components/section';
+@import 'components/section-with-media';
+@import 'components/side-panel';

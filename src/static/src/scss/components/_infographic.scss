@@ -1,126 +1,215 @@
-$dot-size: 23px;
-$dot-border: 2px;
-$dot-size-inner: 9px;
-$dot-right: -22px;
-
 $infographic-default: $h-google-blue-400;
 
-$step-colors:  $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
+$step-colors: $h-google-blue-100, $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
+$step-text-colors: $h-google-blue-500, $h-google-blue-600, $h-google-blue-800, $h-google-blue-900;
+$step-bar-height: 8px;
+$step-header-height: 64px;
+$roundel-size: 22px;
 
 .dmb-infographic {
-  padding-left: 30px;
+  $block: &;
 
-  @include bp(m) {
-    padding-left: 0;
+  position: relative;
+
+  &::before,
+  &::after {
+    bottom: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: $h-site-padding-mobile;
+    z-index: 2;
+
+    @include bp(s) {
+      width: $h-site-padding;
+    }
+
+    @include bp(m) {
+      content: none;
+      display: none;
+    }
   }
 
+  &::before {
+    background-image: linear-gradient(to right, $h-google-grey-50 0%, transparent 100%);
+    right: 100%;
+  }
 
-  dl,
-  dd {
-    margin: 0;
+  &::after {
+    background-image: linear-gradient(to right, transparent 0%, $h-google-grey-50 100%);
+    left: 100%;
+  }
+
+  &__inner {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-left: 0;
+    overflow: hidden;
+    padding-left: $h-site-padding-mobile;
+    padding-right: $h-site-padding-mobile;
+    position: relative;
+    width: 400%;
+    width: calc(400% - #{$h-site-padding-mobile * 6});
+
+    @include bp(s) {
+      padding-left: $h-site-padding;
+      padding-right: $h-site-padding;
+      width: 200%;
+      width: calc(200% - #{$h-site-padding * 2});
+    }
+
+    @include bp(m) {
+      width: auto;
+    }
+  }
+
+  &__roundel {
+    background: $h-google-grey-50;
+    height: $roundel-size;
+    left: $h-site-padding-mobile;
+    position: absolute;
+    right: $h-site-padding-mobile;
+    top: #{$step-header-height + ($step-bar-height / 2) - ($roundel-size / 2)};
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+
+    @include bp(s) {
+      left: $h-site-padding;
+      right: $h-site-padding;
+    }
+
+    &::before,
+    &::after {
+      border-color: $infographic-default;
+      border-radius: 50%;
+      border-style: solid;
+      content: '';
+      display: block;
+      left: -#{$roundel-size / 2};
+      position: absolute;
+      z-index: 3;
+    }
+
+    &::before {
+      background-color: #fff;
+      border-width: 2px;
+      height: $roundel-size;
+      width: $roundel-size;
+    }
+
+    &::after {
+      border-width: 4px;
+      margin: #{($roundel-size - 8px) / 2};
+    }
+
+    #{$block}--in-view & {
+      transform: translateX(100%);
+      transform: translate3d(100%, 0, 0);
+      transition: transform 1.5s .5s cubic-bezier(0, 0, .2, 1);
+
+      &::before,
+      &::after {
+        border-color: $h-google-blue-900;
+        transition: border-color 1.5s .5s cubic-bezier(0, 0, .2, 1);
+      }
+    }
+  }
+
+  &__step {
+    width: 25%;
+  }
+
+  &__step-t,
+  &__step-d {
+    padding-left: $h-site-padding-mobile;
+    padding-right: $h-site-padding-mobile;
+
+    @include bp(s) {
+      padding-left: $h-site-padding;
+      padding-right: $h-site-padding;
+    }
+
+    @include bp(m) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 
   &__step-t {
     font-family: $h-font-family-google-sans;
     font-size: 18px;
     font-weight: $h-font-weight-regular;
+    height: $step-header-height;
+    line-height: 24px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     position: relative;
+    text-align: center;
+    white-space: nowrap;
     z-index: 1;
 
-    @include bp(m) {
-      line-height: 24px;
-      margin-left: -61px;
-      margin-top: 5px;
-      padding-right: 7px;
-      position: absolute;
-      transform: translateX(-100%);
-    }
-
-    &::before {
-      background-color: $infographic-default;
-      border-radius: 50%;
-      content: '';
-      display: inline-block;
-      height: $dot-size-inner;
-      left: -30px;
-      margin-left: ($dot-size - $dot-size-inner) / 2;
-      position: absolute;
-      top: ($dot-size - $dot-size-inner) / 2;
-      width: $dot-size-inner;
-
-      @include bp(m) {
-        left: auto;
-        margin-right: ($dot-size - $dot-size-inner) / 2;
-        right: $dot-right;
-      }
-    }
-
-    &::after {
-      border: $dot-border solid $infographic-default;
-      border-radius: 50%;
-      content: '';
-      display: inline-block;
-      height: $dot-size;
-      left: -30px;
-      position: absolute;
-      width: $dot-size;
-
-      @include bp(m) {
-        left: auto;
-        right: $dot-right;
-      }
+    @media (min-width: 1400px) {
+      // Max wants the text to look centered without using text-align: justify on the body
+      text-indent: -25px;
     }
   }
 
   &__step-d {
     margin-left: 0;
     padding-bottom: 44px;
+    padding-top: 44px;
     position: relative;
 
-    &::before {
-      background-color: $infographic-default;
+    &::before,
+    &::after {
       content: '';
-      display: inline-block;
-      height: calc(100% + 9px);
-      left: -23px;
+      display: block;
+      height: $step-bar-height;
+      left: 0;
       position: absolute;
-      top: -8px;
-      width: 8px;
-
-      @include bp(m) {
-        height: calc(100% - #{$dot-size} + 2px);
-        left: -55px;
-        top: $dot-size + 4px;
-      }
+      top: 0;
+      width: 100%;
     }
 
-    &:last-child {
-      padding-bottom: 0;
+    &::after {
+      left: -50%;
+    }
+  }
 
-      &::before {
-        display: none;
-      }
+
+  @each $color in $step-text-colors {
+    $i: index($step-text-colors, $color);
+
+    &__step:nth-of-type(#{$i}) &__step-t {
+      color: $color;
     }
   }
 
   @each $color in $step-colors {
     $i: index($step-colors, $color);
 
-    &__step-t:nth-of-type(#{$i + 1}) {
-      &::before {
-        background-color: $color;
-      }
+    &__step:nth-of-type(#{$i}) &__step-d {
+      @if ($i == 1) {
+        &::before {
+          background-image: linear-gradient(to right, transparent 0%, $color 30%, $color 100%);
+        }
 
-      &::after {
-        border-color: $color;
-      }
-    }
+        &::after {
+          content: none;
+          display: none;
+        }
+      } @else {
+        &::before {
+          background-color: $color;
+        }
 
-    &__step-d:nth-of-type(#{$i + 1}) {
-      &::before {
-        background-color: $color;
+        &::after {
+          $previous-color: nth($step-colors, $i - 1);
+          background-image: linear-gradient(to right, $previous-color 0%, $color 100%);
+        }
       }
     }
   }
-
 }

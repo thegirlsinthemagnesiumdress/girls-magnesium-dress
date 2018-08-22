@@ -3,6 +3,11 @@ $dmb-margin-small: 24px;
 $dmb-margin-medium: 48px;
 $dmb-margin-big: 96px;
 
+$dmb-default-transition-duration: .15s;
+$dmb-easing--standard: cubic-bezier(.4, 0, .2, 1);
+$dmb-easing--out: cubic-bezier(0, 0, .2, 1);
+$dmb-easing--in: cubic-bezier(.4, 0, 1, 1);
+
 $dmb-input-color--passive: #979797;
 $dmb-input-color--active: map-get($h-gm-blues, 500);
 

@@ -33,8 +33,6 @@
 
     var questionOffset = (findError() || questions).getBoundingClientRect().top + window.scrollY;
 
-    console.debug('[Q] scrollTo', questionOffset); // eslint-disable-line
-
     // @TODO maybe make this a smooth scroll down the line
     window.scrollTo(0, questionOffset);
   }
