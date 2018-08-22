@@ -9,10 +9,10 @@ $dmb-easing--out: cubic-bezier(0, 0, .2, 1);
 $dmb-easing--in: cubic-bezier(.4, 0, 1, 1);
 
 $dmb-input-color--passive: #979797;
-$dmb-input-color--active: map-get($h-gm-blues, 500);
+$dmb-input-color--active: $h-button-primary-bg-color;
 
 $dmb-progress-color--passive: #f4f4f4;
-$dmb-progress-color--active: map-get($h-gm-blues, 500);
+$dmb-progress-color--active: $h-button-primary-bg-color;
 $dmb-progress-height: 8px;
 
 $dmb-survey-max-width: 800px;
