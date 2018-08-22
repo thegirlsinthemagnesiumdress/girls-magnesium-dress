@@ -1,4 +1,3 @@
-/* global Qualtrics */
 goog.module('dmb.survey.scrollPosition');
 
 /**
@@ -11,7 +10,7 @@ function init() {
    * - addOnReady
    * - addOnUnload
    */
-  Qualtrics.SurveyEngine.addOnReady(setScrollPosition);
+  window.Qualtrics.SurveyEngine.addOnReady(setScrollPosition);
 }
 
 /**

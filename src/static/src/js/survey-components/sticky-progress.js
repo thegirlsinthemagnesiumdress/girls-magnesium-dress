@@ -1,4 +1,3 @@
-/* global Qualtrics */
 goog.module('dmb.survey.stickyProgress');
 
 const scrollServiceConfig = goog.require('dmb.components.scroll.service');
@@ -18,17 +17,22 @@ function init() {
  */
 class ProgressBar {
   /**
-   * @param {Element} element The progressBar element
-   * @param {Element} positionElement The element to have the progress bar positioned at the top of
+   * @param {string} elementId The progressBar element's id
+   * @param {string} positionElementId The id of the element to have the progress bar positioned at the top of
    */
   constructor(elementId, positionElementId) {
     this.id = elementId;
     this.positionId = positionElementId;
 
+    this.el = null;
+    this.positionEl = null;
+
     this.findElements();
 
     this.positionElOffset = null;
     this.stickyClass = 'is-sticky';
+
+    this.resizeTimout = null;
 
     this.onScrollHandler = this.onScroll.bind(this);
     this.onResizeHandler = this.onResize.bind(this);
@@ -36,7 +40,7 @@ class ProgressBar {
 
     scrollService.addListener(this.onScrollHandler);
     window.addEventListener('resize', this.onResizeHandler);
-    Qualtrics.SurveyEngine.addOnReady(this.onLoadHandler);
+    window.Qualtrics.SurveyEngine.addOnReady(this.onLoadHandler);
   }
 
   /**
@@ -82,6 +86,10 @@ class ProgressBar {
    */
   onResize() {
     this.positionElOffset = null;
+    window.clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = window.setTimeout(() => {
+      this.onScroll(window.scrollY);
+    }, 32);
   }
 }
 
