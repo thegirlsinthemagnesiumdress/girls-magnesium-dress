@@ -1,0 +1,31 @@
+.dmb-styled-list {
+  list-style: none;
+  margin-left: 36px;
+  margin-bottom: $dmb-margin-medium;
+
+  @include bp(s) {
+    margin-left: 58px;
+  }
+
+  &__item {
+    font-size: 16px;
+    margin-bottom: 24px;
+    position: relative;
+
+    &::before {
+      background-color: $h-button-primary-bg-color;
+      border-radius: 6px;
+      content: '';
+      display: block;
+      height: 12px;
+      left: -36px;
+      position: absolute;
+      top: 6px;
+      width: 12px;
+
+      @include bp(s) {
+        left: -58px;
+      }
+    }
+  }
+}

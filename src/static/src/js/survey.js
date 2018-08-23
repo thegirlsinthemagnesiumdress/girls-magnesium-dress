@@ -14,7 +14,9 @@ goog.module('dmb.survey');
 window.Qualtrics;
 
 const scrollPosition = goog.require('dmb.survey.scrollPosition');
+const sidePanel = goog.require('dmb.survey.sidePanel');
 const stickyProgress = goog.require('dmb.survey.stickyProgress');
 
 scrollPosition.init();
+sidePanel.init();
 stickyProgress.init();

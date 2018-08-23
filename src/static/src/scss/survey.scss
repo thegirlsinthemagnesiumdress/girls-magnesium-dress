@@ -29,15 +29,21 @@
 // Hercules overrides
 @import 'hercules-overrides';
 
+// Shared
+@import 'shared/fab';
+@import 'shared/hero';
+@import 'shared/side-panel';
+
 // Components
-@import './shared/hero';
-@import './survey/buttons';
-@import './survey/form-fields';
-@import './survey/header';
-@import './survey/layout';
-@import './survey/progress-bar';
-@import './survey/radio-buttons';
-@import './survey/matrix';
+@import 'survey/buttons';
+@import 'survey/form-fields';
+@import 'survey/header';
+@import 'survey/layout';
+@import 'survey/matrix';
+@import 'survey/progress-bar';
+@import 'survey/radio-buttons';
+@import 'survey/side-panel';
+@import 'survey/styled-list';
 
 // Hercules part that needs to come last
 @import 'hercules/lib/global/scss/trumps/all';

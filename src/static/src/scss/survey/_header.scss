@@ -1,25 +1,4 @@
 // sass-lint:disable no-ids
-.JFEContent {
-  &::before {
-    @include hero();
-  }
-
-  &::after {
-    @include hero-scrim();
-  }
-
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    height: 100vh;
-    min-height: 720px;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-}
-
 .dmb-hero {
   &__content {
     padding-bottom: 50px;
@@ -31,14 +10,19 @@
 
   &__title {
     margin-bottom: $dmb-margin-medium;
+    max-width: 743px;
+
+    @include bp(s) {
+      width: 75%
+    }
   }
 
   &__description {
     margin-bottom: $dmb-margin-small;
-    max-width: 300px;
+    max-width: 524px;
 
-    @include bp(l) {
-      max-width: 460px;
+    @include bp(s) {
+      width: 75%
     }
   }
 }
@@ -49,9 +33,10 @@
   #HeaderContainer {
     background: transparent;
     margin-bottom: 0;
+    margin-top: 0;
   }
 
-  #LogoContainer {
+  #LogoContainer .h-c-page {
     position: relative;
     z-index: 1;
   }
@@ -59,16 +44,42 @@
   #HeaderContainer {
     align-items: center;
     display: flex;
-    height: 100vh;
-    min-height: 720px;
+    max-width: none;
+    min-height: 100vh;
     position: relative;
     text-align: initial;
+
+    @media (max-height: 720px) {
+      min-height: 720px;
+    }
+
+    &::before {
+      @include hero();
+    }
+
+    &::after {
+      @include hero-scrim();
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
   }
 
   #Header {
     background: transparent;
-    padding: 0 0 40px;
+    padding: $dmb-margin-medium 0 $dmb-margin-medium;
     position: relative;
     width: 100%;
+
+    .h-c-button.h-c-button--primary {
+      margin: $dmb-margin-medium 0;
+    }
   }
 }
