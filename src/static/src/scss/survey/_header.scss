@@ -29,6 +29,25 @@
 
 
 .Skin {
+  #Logo {
+    background-image: url('../img/dmb-logo.svg');
+    display: block;
+    height: 24px;
+    left: $h-site-padding-mobile;
+    position: absolute;
+    top: 24px;
+    width: 291px;
+    z-index: 1;
+
+    @include bp(s) {
+      left: $h-site-padding;
+    }
+
+    @include bp(m) {
+      left: 24px;
+    }
+  }
+
   #SkinContent,
   #HeaderContainer {
     background: transparent;
@@ -74,12 +93,12 @@
 
   #Header {
     background: transparent;
-    padding: $dmb-margin-medium 0 $dmb-margin-medium;
+    padding: #{$dmb-margin-medium + 48px} 0 $dmb-margin-medium;
     position: relative;
     width: 100%;
 
     .h-c-button.h-c-button--primary {
-      margin: $dmb-margin-medium 0;
+      margin: $dmb-margin-medium 0 $dmb-margin-small;
     }
   }
 }
