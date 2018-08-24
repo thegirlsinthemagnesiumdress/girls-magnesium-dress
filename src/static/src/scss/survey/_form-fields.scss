@@ -59,146 +59,22 @@
     }
   }
 
-  // Radio groups
-  .MC .QuestionBody {
-    overflow: visible;
-    padding: 0;
-
-    .Selection {
-      padding: 0;
-      position: relative;
-
-      & + .Selection {
-        margin-top: 16px;
+  .TE .FORM {
+    @include bp(s) {
+      table,
+      tr,
+      td {
+        display: block;
       }
 
-      .radio {
-        @include element-invisible();
+      tbody {
+        display: flex;
+        flex-flow: row wrap;
       }
 
       .LabelWrapper {
-        display: block;
-        width: auto;
-
-        .SingleAnswer {
-          align-items: center;
-          border: 1px solid #c7c7c7;
-          border-radius: 5px;
-          color: #5f6368;
-          cursor: pointer;
-          display: flex;
-          font-size: 16px;
-          height: 96px;
-          padding: 12px 24px 12px 75px;
-          transition:
-            background-color $dmb-default-transition-duration $dmb-easing--standard,
-            border-color $dmb-default-transition-duration $dmb-easing--standard,
-            color $dmb-default-transition-duration $dmb-easing--standard;
-          width: auto;
-
-          @include bp(s) {
-            font-size: 18px;
-          }
-
-          @include bp(m) {
-            font-size: 20px;
-          }
-
-          &.q-checked {
-            background-color: rgba(232, 240, 254, .5) !important;
-            border-color: $h-button-primary-bg-color;
-            border-width: 2px;
-            padding: 11px 23px 11px 74px;
-
-            & ~ .TextEntryBox {
-              display: block;
-            }
-          }
-        }
-      }
-
-      .TextEntryBox {
-        -webkit-appearance: none;
-        display: none;
-        margin-top: 16px;
-        width: 100% !important;
-
-        @include bp(s) {
-          margin-left: 75px;
-          max-width: calc(100% - 75px);
-        }
-
-        &.InputText {
-          max-width: 190px;
-        }
-
-        &.TextEntryMedium {
-          height: 92px;
-        }
-
-        &.TextEntryLarge {
-          height: 120px;
-        }
-      }
-
-      br {
-        display: none;
-      }
-
-      // Used visually as the radio element
-      .q-radio {
-        border: 2px solid #979797;
-        border-radius: 12px;
-        cursor: pointer;
-        display: block;
-        height: 24px;
-        left: 24px;
-        margin: 0;
-        position: absolute;
-        top: 36px;
-        transition: border-color $dmb-default-transition-duration $dmb-easing--standard;
-        width: 24px;
-
-        &::before,
-        &::after {
-          border-radius: 50%;
-          content: '';
-          display: block;
-          left: 50%;
-          position: absolute;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          transition: background-color $dmb-default-transition-duration $dmb-easing--standard;
-        }
-
-        &::before {
-          height: 14px;
-          width: 14px;
-        }
-
-        &::after {
-          height: 58px;
-          width: 58px;
-        }
-
-        &.q-checked {
-          background-color: #fff;
-          border-color: #1967d2;
-
-          &::before {
-            background-color: #1967d2;
-          }
-        }
-      }
-
-      &:hover .LabelWrapper .SingleAnswer,
-      .LabelWrapper .SingleAnswer.q-focused {
-        background-color: #f8f9fa;
-        color: $h-gm-grey-rgba-900;
-      }
-
-      &:hover .q-radio:not(.q-checked)::after {
-        background-color: rgba(0, 0, 0, .04);
+        color: #5f6368;
+        font-size: 16px;
       }
     }
   }
