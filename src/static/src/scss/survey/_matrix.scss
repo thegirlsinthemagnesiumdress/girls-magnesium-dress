@@ -94,8 +94,6 @@
 
     &.desktop {
       // Desktop-specific styles go here
-      //
-
       table td {
         flex: 1;
 
@@ -103,6 +101,7 @@
           margin-left: 12px;
         }
       }
+
       .single-answer.mobile {
         border-color: transparent;
         font-size: 16px;

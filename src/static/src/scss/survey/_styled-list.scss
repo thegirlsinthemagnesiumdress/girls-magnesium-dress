@@ -1,7 +1,7 @@
 .dmb-styled-list {
   list-style: none;
-  margin-left: 36px;
   margin-bottom: $dmb-margin-medium;
+  margin-left: 36px;
 
   @include bp(s) {
     margin-left: 58px;

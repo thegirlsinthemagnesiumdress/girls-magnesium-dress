@@ -12,7 +12,8 @@
         margin-top: 16px;
       }
 
-      .radio {
+      .radio,
+      .checkbox {
         @include element-invisible();
       }
 
@@ -20,7 +21,8 @@
         display: block;
         width: auto;
 
-        .SingleAnswer {
+        .SingleAnswer,
+        .MultipleAnswer {
           @extend %dmb-radio-label;
 
           &.q-checked {
@@ -66,12 +68,30 @@
         @extend %dmb-radio-input;
       }
 
-      &:hover .q-radio {
+      .q-checkbox {
+        @extend %dmb-radio-input;
+
+        &,
+        &::before {
+          border-radius: 3px !important;
+        }
+
+        &.q-checked::before {
+          content: url('../img/icons/check.svg');
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      &:hover .q-radio,
+      &:hover .q-checkbox {
         @extend %dmb-radio-input--hover;
       }
 
       &:hover .LabelWrapper .SingleAnswer,
-      .LabelWrapper .SingleAnswer.q-focused {
+      .LabelWrapper .SingleAnswer.q-focused,
+      &:hover .LabelWrapper .MultipleAnswer,
+      .LabelWrapper .MultipleAnswer.q-focused {
         @extend %dmb-radio-label--hover;
       }
     }
