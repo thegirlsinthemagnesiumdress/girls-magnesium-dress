@@ -76,6 +76,12 @@
           border-radius: 3px !important;
         }
 
+        &::after {
+          border-radius: 6px !important;
+          height: 51px;
+          width: 51px;
+        }
+
         &.q-checked::before {
           content: url('../img/icons/check.svg');
           height: 24px;
