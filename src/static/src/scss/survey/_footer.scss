@@ -1,0 +1,29 @@
+.dmb-survey-footer {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 16px;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0 auto;
+
+  > li {
+    display: block;
+    padding: 0 6px;
+  }
+}
+
+.Skin {
+  #Footer {
+    padding: 0;
+    margin: $dmb-margin-medium auto $dmb-margin-small;
+  }
+
+  #PushStickyFooter {
+    display: none;
+  }
+
+  #Plug {
+    @include element-invisible();
+  }
+}
