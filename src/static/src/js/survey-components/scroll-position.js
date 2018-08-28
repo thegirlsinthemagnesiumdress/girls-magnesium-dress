@@ -10,7 +10,7 @@ function init() {
    * - addOnReady
    * - addOnUnload
    */
-  window.Qualtrics.SurveyEngine.addOnReady(setScrollPosition);
+  window['Qualtrics']['SurveyEngine']['addOnReady'](setScrollPosition);
 }
 
 /**

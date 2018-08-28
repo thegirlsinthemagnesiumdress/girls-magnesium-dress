@@ -32,7 +32,7 @@ class ProgressBar {
     this.positionElOffset = null;
     this.stickyClass = 'is-sticky';
 
-    this.resizeTimout = null;
+    this.resizeTimeout = null;
 
     this.onScrollHandler = this.onScroll.bind(this);
     this.onResizeHandler = this.onResize.bind(this);
@@ -40,7 +40,7 @@ class ProgressBar {
 
     scrollService.addListener(this.onScrollHandler);
     window.addEventListener('resize', this.onResizeHandler);
-    window.Qualtrics.SurveyEngine.addOnReady(this.onLoadHandler);
+    window['Qualtrics']['SurveyEngine']['addOnReady'](this.onLoadHandler);
   }
 
   /**
