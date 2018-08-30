@@ -6,6 +6,7 @@ const glueCommon = goog.require('glue.ng.common');
 const glueZippy = goog.require('glue.ng.zippy');
 const header = goog.require('glue.ng.ui.header');
 const smoothScroll = goog.require('glue.ng.smoothScroll');
+const tableSort = goog.require('glue.ng.tableSort');
 
 const focusControl = goog.require('dmb.components.focusControl');
 const headerFix = goog.require('dmb.components.headerFix');
@@ -25,6 +26,7 @@ const module = angular.module('dmb', [
   scrollHandler.module.name,
   sidePanel.module.name,
   smoothScroll.module.name,
+  tableSort.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);

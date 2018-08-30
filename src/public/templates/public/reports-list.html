@@ -1,25 +1,136 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
 
-{% block body %}
-<section class="tr-report wrapper container-fluid">
-  <div class="row">
-      <div class="col-xs-12">
-        <h1 class="tr-alpha">
-          Companies reports:
-        </h1>
-        <ul>
-          {% for s in surveys %}
-            {% if s.sid %}
-            <li>
-              <a href="{% url 'report' s.sid %}">
-                {{s.company_name}}
-              </a>
-            </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
+{% block main %}
+
+<div class="h-c-page h-u-mt-xl">
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5">
+      <h1 class="h-c-headline h-c-headline--one h-u-mb-std">Digital Maturity Admin Dashboard</h1>
+      <p>Use this page to manage your connected organizations and create new surveys.</p>
+    </div>
+
+    <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--offset-1">
+      <form class="h-u-mb-l" name="referral" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
+        <div class="input-wrp">
+          <input name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter organization name">
+          <div class="input-wrp__error" ng-show="!referral.companyName.$pristine && referral.companyName.$error.required" ng-cloak>This field is required.</div>
+        </div>
+        <button ng-disabled="!referral.$valid" class="h-c-button h-c-button--primary">
+          Create new survey
+        </button>
+        <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError" ng-cloak>Oops, something went wrong!</div>
+      </form>
+
+      <div class="dmb-box dmb-box--alt">
+        <h2 class="h-c-headline h-c-headline--five">Your survey referral link</h2>
+        <div class="dmb-referral-copy-row">
+          <a href="https://google.qualtrics.com/sendform/new/user123456789" target="_blank" id="survey-link">
+            https://google.qualtrics.com/sendform/new/user123456789
+          </a>
+          <button
+              class="h-c-button h-c-button--flat"
+              ngclipboard
+              data-clipboard-target="#survey-link"
+              aria-label="Copy to clipboard">
+            <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
+          </button>
+        </div>
       </div>
+    </div>
   </div>
+
+  <div class="h-c-table__overflowcontainer h-u-mt-l">
+    <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows glue-table-sort"
+      data-glue-table-sort-ascending-text="ascending"
+      data-glue-table-sort-descending-text="descending"
+      data-glue-table-sort-unsorted-text="unsorted"
+      role="table"
+      summary="A sample data table of countries, cities, and numbers"
+      width="100%"
+    >
+      <thead>
+        <tr role="row">
+          <th scope="col"
+            role="columnheader"
+            title="Sort by organization name alphabetically"
+            data-glue-table-sort-type="alpha"
+          >Organization name </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by date created chronologically"
+            data-glue-table-sort-type="datetime"
+          >Date created </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by survey completions numerically"
+            data-glue-table-sort-type="numeric"
+          >Survey completions </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by survey link"
+            data-glue-table-sort-type="alpha"
+          >Survey link </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by report link"
+            data-glue-table-sort-type="alpha"
+          >Report link </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr role="row">
+          <td role="rowheader">Potato</td>
+          <td role="gridcell">02/08/2018</td>
+          <td role="gridcell">0</td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat" disabled>Report</a></td>
+        </tr>
+        <tr role="row">
+          <td role="rowheader">Coca-Cola</td>
+          <td role="gridcell">02/08/2018</td>
+          <td role="gridcell">1</td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Report</a></td>
+        </tr>
+        <tr role="row">
+          <td role="rowheader">Disney</td>
+          <td role="gridcell">02/08/2018</td>
+          <td role="gridcell">1</td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Report</a></td>
+        </tr>
+        <tr role="row">
+          <td role="rowheader">Cadbury</td>
+          <td role="gridcell">02/08/2018</td>
+          <td role="gridcell">0</td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat" disabled>Report</a></td>
+        </tr>
+        <tr role="row">
+          <td role="rowheader">McDonald's</td>
+          <td role="gridcell">02/08/2018</td>
+          <td role="gridcell">1</td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Report</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="glue-js-table__caption"></div>
+  </div>
+</div>
+
+<section>
+  <ul>
+    {% for survey in surveys %}
+      {% if survey.sid %}
+      <li>
+        <a href="{% url 'report' s.sid %}">
+          {{survey.company_name}}
+        </a>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </section>
 {% endblock %}
