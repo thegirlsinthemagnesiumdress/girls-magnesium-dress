@@ -1,0 +1,53 @@
+
+$dmb-prog-circ-prog-bar-color: $dmb-color-blue-charade;
+$dmb-prog-circ-bg-bar-color: $dmb-color-grey-athens;
+$dmb-prog-circ-target-color: $dmb-color-grey-aluminium;
+$dmb-prog-circ-inverted-bar-color: #ffffff;
+
+.dmb-progress-circle {
+  display: inline-block;
+  margin: 32px 0;
+  position: relative;
+
+  svg {
+    transform: rotate(-90deg)
+  }
+
+  &__bg-bar {
+    stroke: $dmb-prog-circ-bg-bar-color;
+  }
+
+  &__prog-bar {
+    stroke: $dmb-prog-circ-prog-bar-color;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    stroke-linecap: round;
+    transition: stroke-dashoffset $dmb-trans-time $dmb-trans-fn;
+  }
+
+  &__text {
+    font-family: 'Google Sans';
+    font-size: 12px;
+    left: 15%;
+    letter-spacing: 0.96px;
+    position: absolute;
+    right: 15%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__title {
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__result {
+    font-size: 3em;
+  }
+
+  &__target {
+    color: $dmb-prog-circ-target-color;
+    font-size: 1.5em;
+  }
+}

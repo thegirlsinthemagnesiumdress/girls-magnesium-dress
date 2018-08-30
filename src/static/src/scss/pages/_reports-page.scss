@@ -1,0 +1,62 @@
+$report-page-color-map: (
+  attribution: (
+    main: $dmb-color-blue-cornflower,
+    light: $dmb-color-blue-alice
+  ),
+  assets: (
+    main: $dmb-color-red-cinnabar,
+    light: $dmb-color-red-pale-pink
+  ),
+  audience: (
+    main: $dmb-color-yellow-selective,
+    light: $dmb-color-yellow-forget-me-not
+  ),
+  access: (
+    main: $dmb-color-green-ecalyptus,
+    light: $dmb-color-green-frosted-mint
+  ),
+  automation: (
+    main: $dmb-color-grey-chateau,
+    light: $dmb-color-blue-solitude
+  ),
+  organization: (
+    main: $dmb-color-blue-denim-2,
+    light: $dmb-color-blue-lavender
+  )
+);
+
+.dmb-report-page {
+  .dmb-hero {
+    background: $dmb-color-blue-denim;
+    color: $dmb-light-text-color;
+    padding: 24px 28px 37px;
+
+    .dmb-progress-circle {
+      &__bg-bar {
+        stroke: rgba($dmb-prog-circ-inverted-bar-color,.24);
+      }
+
+      &__prog-bar {
+        stroke: $dmb-prog-circ-inverted-bar-color;
+      }
+    }
+  }
+
+  @each $name, $color in $report-page-color-map {
+    .#{$name} {
+      .dmb-progress-table__row--main {
+        background-color: map-get($color,main);
+      }
+
+      .dmb-progress-circle {
+        &__bg-bar {
+          stroke: map-get($color,light);
+        }
+
+        &__prog-bar {
+          stroke: map-get($color,main);
+        }
+      }
+    }
+  }
+}

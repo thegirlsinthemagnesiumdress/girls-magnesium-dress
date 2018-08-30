@@ -1,0 +1,145 @@
+$dmb-prog-table-border-color: $dmb-color-grey-chateau;
+$dmb-prog-table-label-color: $dmb-color-grey-shuttle;
+$dmb-prog-table-bar-color: $dmb-color-grey-light;
+$dmb-prog-table-main-label-color: $dmb-black-russian;
+$dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
+$dmb-prog-table-active-bg-color: $dmb-color-blue-alice;
+$dmb-prog-table-active-color: $dmb-color-blue-navy;
+$dmb-prog-table-row-height-mobile: 5px;
+
+.dmb-progress-table {
+  display: flex;
+  font-family: 'Google Sans';
+  margin: 32px 0;
+  text-align: center;
+  width: 100%;
+
+  &__col {
+    padding-top: 20px;
+    width: 17.5%;
+
+    @media (min-width: 721px) {
+      border-right: 1px solid $dmb-prog-table-border-color;
+      padding-top: 15px;
+    }
+
+    &--active {
+      background-color: $dmb-prog-table-active-bg-color;
+    }
+
+    &:nth-of-type(1) {
+      width: 30%
+    }
+
+    @media (max-width: 720px) {
+      width: 25%;
+
+      &--active {
+        color: $dmb-prog-table-active-color;
+      }
+
+      &:nth-of-type(1) {
+        display: none;
+      }
+
+      &:not(&--active) {
+        h3 {
+          display: none;
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-size: 12px;
+    font-weight: 400;
+
+    @media (max-width: 720px) {
+      font-weight: 500;
+    }
+
+    @media (min-width: 721px) {
+      text-transform: uppercase;
+    }
+  }
+
+  &__rating {
+    margin-left: 6px;
+
+    @media (min-width: 721px) {
+      display: none;
+    }
+  }
+
+  &__row {
+    background: $dmb-prog-table-bar-color;
+    font-size: 12px;
+    height: $dmb-prog-table-row-height-mobile;
+    line-height: 1em;
+    position: relative;
+    transition: width $dmb-trans-time $dmb-trans-fn;
+    width: calc((75% * 4) + 1px);
+
+    @media (min-width: 721px) {
+      font-size: 16px;
+      height: 1em;
+    }
+
+    &:after {
+      content: attr(data-rating);
+      left: calc(100% + 10px);
+      position: absolute;
+
+      @media (max-width: 720px) {
+        display: none;
+      }
+    }
+
+    &:first-of-type {
+      margin-top: 40px;
+
+      @media (min-width: 721px) {
+        margin-top: 83px;
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: calc(1em + 21px);
+
+      @media (min-width: 721px) {
+        margin-bottom: 47px;
+      }
+    }
+
+    & ~ & {
+      margin-top: 30px;
+
+      @media (min-width: 721px) {
+        margin-top: 20px;
+      }
+    }
+
+    &--main {
+      background: $dmb-prog-table-main-bar-color;
+
+      .progress-table__label {
+        color: $dmb-prog-table-main-label-color;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__label {
+    color: $dmb-prog-table-label-color;
+    left: 0;
+    position: absolute;
+    top: calc(100% + 5px);
+    white-space: nowrap;
+
+    @media (min-width: 721px) {
+      font-size: 16px;
+      top: 0;
+      transform: translateX(calc(-100% - 27px));
+    }
+  }
+}

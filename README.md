@@ -7,8 +7,8 @@
 # Installation
 
 1. Clone the repository (you might have already done that!)
-2. Run ./bin/install_deps --with-appengine
-3. ./manage.py runserver
+1. Run `./bin/install_deps --with-appengine`. If you get errors try using a virtualenv `mkvirtualenv dmb && setvirtualenv`. To use this in future run `workon dmb`.
+1. Run `./manage.py runserver` to start the server and gulp
 
 # Frontend Setup
 
