@@ -40,9 +40,12 @@
 form[name='referral'] {
   align-items: center;
   display: flex;
+  flex-direction: column;
 
   .input-wrp {
     flex: 1;
+    margin-bottom: 12px;
+    width: 100%;
 
     input {
       width: 100%;
@@ -50,6 +53,21 @@ form[name='referral'] {
   }
 
   .h-c-button {
-    margin: 0 0 0 16px;
+    margin: 0;
+    width: 100%;
+  }
+
+  @include bp(m) {
+    flex-direction: row;
+
+    .input-wrp {
+      margin-bottom: 0;
+      width: auto;
+    }
+
+    .h-c-button {
+      margin-left: 16px;
+      width: auto;
+    }
   }
 }

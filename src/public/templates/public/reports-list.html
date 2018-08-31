@@ -7,16 +7,15 @@
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5">
       <h1 class="h-c-headline h-c-headline--one h-u-mb-std">Digital Maturity Admin Dashboard</h1>
-      <p>Use this page to manage your connected organizations and create new surveys.</p>
+      <p class="h-u-mb-std">Use this page to manage your connected organizations and create new surveys.</p>
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--offset-1">
       <form class="h-u-mb-l" name="referral" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
         <div class="input-wrp">
-          <input name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter organization name">
-          <div class="input-wrp__error" ng-show="!referral.companyName.$pristine && referral.companyName.$error.required" ng-cloak>This field is required.</div>
+          <input class="dmb-input dmb-input--simple" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter organization name">
         </div>
-        <button ng-disabled="!referral.$valid" class="h-c-button h-c-button--primary">
+        <button ng-disabled="referral.$invalid" disabled class="h-c-button h-c-button--primary">
           Create new survey
         </button>
         <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError" ng-cloak>Oops, something went wrong!</div>
@@ -25,8 +24,8 @@
       <div class="dmb-box dmb-box--alt">
         <h2 class="h-c-headline h-c-headline--five">Your survey referral link</h2>
         <div class="dmb-referral-copy-row">
-          <a href="https://google.qualtrics.com/sendform/new/user123456789" target="_blank" id="survey-link">
-            https://google.qualtrics.com/sendform/new/user123456789
+          <a href="https://google.qualtrics.com/sendform/new/{{user.id}}" target="_blank" id="survey-link">
+            https://google.qualtrics.com/sendform/new/{{user.id}}
           </a>
           <button
               class="h-c-button h-c-button--flat"

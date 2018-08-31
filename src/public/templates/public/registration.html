@@ -16,7 +16,7 @@
         </p>
         <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
           <div class="input-wrp">
-            <input name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Organization">
+            <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Organization">
             <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
           </div>
           <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
