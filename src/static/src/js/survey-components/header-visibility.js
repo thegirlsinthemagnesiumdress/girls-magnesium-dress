@@ -33,10 +33,11 @@ function setHeaderVisibility() {
 
   if (!progressPercent || progressPercent === '0%') {
     header.classList.remove(hiddenClass);
-    return;
+  } else {
+    header.classList.add(hiddenClass);
   }
 
-  header.classList.add(hiddenClass);
+  window.scrollTo(0, 0);
 }
 
 

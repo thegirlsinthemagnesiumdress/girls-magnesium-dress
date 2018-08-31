@@ -106,8 +106,7 @@
   cursor: pointer;
   display: flex;
   font-size: 16px;
-  min-height: 96px;
-  padding: 31px 31px 31px 75px;
+  padding: 23px 31px 23px 75px;
   transition:
     background-color $dmb-default-transition-duration $dmb-easing--standard,
     border-color $dmb-default-transition-duration $dmb-easing--standard,
@@ -116,10 +115,6 @@
 
   @include bp(s) {
     font-size: 18px;
-  }
-
-  @include bp(m) {
-    font-size: 20px;
   }
 }
 
@@ -132,7 +127,7 @@
   background-color: rgba(232, 240, 254, .5) !important;
   border-color: $h-button-primary-bg-color;
   border-width: 2px;
-  padding: 30px 30px 30px 74px;
+  padding: 22px 30px 22px 74px;
 }
 
 %dmb-radio-input {
