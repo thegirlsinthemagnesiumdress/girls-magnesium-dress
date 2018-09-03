@@ -30,7 +30,7 @@
   }
 
   .QuestionBody {
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
 
   // Standard inputs
@@ -91,5 +91,18 @@
     tr + tr {
       margin-top: 42px;
     }
+  }
+
+  .QuestionOuter.Highlight .Inner {
+    background: transparent;
+  }
+
+  .ValidationError {
+    color: $h-gm-red-500;
+    border-bottom: 2px solid $h-gm-red-500;
+    font-size: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 4px;
+    text-align: left;
   }
 }

@@ -31,6 +31,7 @@ class ProgressBar {
 
     this.positionElOffset = null;
     this.stickyClass = 'is-sticky';
+    this.hiddenClass = 'dmb-h-hidden';
 
     this.resizeTimeout = null;
 
@@ -62,6 +63,16 @@ class ProgressBar {
     this.findElements();
     this.positionElOffset = null;
     this.onScroll(window.scrollY);
+
+    const progress = this.el.querySelector('.ProgressBarFillContainer');
+    const progressText = progress.textContent.match(/[.\d]+%/);
+    const progressPercent = progressText && progressText[0];
+
+    if (progressPercent === '0%') {
+      this.el.classList.add(this.hiddenClass);
+    } else {
+      this.el.classList.remove(this.hiddenClass);
+    }
   }
 
   /**

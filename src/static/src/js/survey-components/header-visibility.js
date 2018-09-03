@@ -37,7 +37,24 @@ function setHeaderVisibility() {
     header.classList.add(hiddenClass);
   }
 
-  window.scrollTo(0, 0);
+  const firstError = document.querySelector('.QuestionOuter.Highlight');
+
+  if (!firstError) {
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  const progressContainer = document.getElementById('ProgressBar');
+
+  const elementOffset = firstError.getBoundingClientRect().top + window.scrollY;
+  const stickyHeight = progressContainer.offsetHeight + 20; // padding for good measure
+
+  const newY = elementOffset - stickyHeight;
+
+  // Need to trigger our scroll after theirs
+  setTimeout(() => {
+    window.scrollTo(0, newY);
+  }, 0);
 }
 
 
