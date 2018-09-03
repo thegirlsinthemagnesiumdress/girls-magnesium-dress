@@ -37,7 +37,8 @@ function setHeaderVisibility() {
     header.classList.add(hiddenClass);
   }
 
-  const firstError = document.querySelector('.QuestionOuter.Highlight');
+  const firstError = [...document.querySelectorAll('.ValidationError')]
+    .find(err => err.style.display !== 'none');
 
   if (!firstError) {
     window.scrollTo(0, 0);
@@ -46,7 +47,8 @@ function setHeaderVisibility() {
 
   const progressContainer = document.getElementById('ProgressBar');
 
-  const elementOffset = firstError.getBoundingClientRect().top + window.scrollY;
+  const elementOffset = firstError.closest('.QuestionBody')
+    .getBoundingClientRect().top + window.scrollY;
   const stickyHeight = progressContainer.offsetHeight + 20; // padding for good measure
 
   const newY = elementOffset - stickyHeight;
