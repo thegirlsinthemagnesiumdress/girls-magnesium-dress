@@ -47,7 +47,7 @@ function setHeaderVisibility() {
 
   const progressContainer = document.getElementById('ProgressBar');
 
-  const elementOffset = firstError.closest('.QuestionBody')
+  const elementOffset = firstError.closest('.QuestionOuter')
     .getBoundingClientRect().top + window.scrollY;
   const stickyHeight = progressContainer.offsetHeight + 20; // padding for good measure
 
