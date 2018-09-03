@@ -38,7 +38,7 @@ function setHeaderVisibility() {
   }
 
   const firstError = [...document.querySelectorAll('.ValidationError')]
-    .find(err => err.style.display !== 'none');
+    .find((err) => err.style.display !== 'none');
 
   if (!firstError) {
     window.scrollTo(0, 0);
