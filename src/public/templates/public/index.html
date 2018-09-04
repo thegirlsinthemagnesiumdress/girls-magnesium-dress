@@ -1,6 +1,12 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
 
+{% block header %}
+  {% with register=True %}
+    {% include 'public/inc/global/header.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block main %}
   {% include 'public/inc/home/hero.html' %}
   <div id="content" class="dmb-section-with-media dmb-section-with-media--desktop-content-right">
@@ -220,7 +226,7 @@
           </h3>
         </div>
         <div class="h-c-grid__col h-c-grid__col--4">
-          <img class="dmb-hiw-section__phone" src="{% static 'img/home/phone.png' %}" alt="">
+          <img class="dmb-hiw-section__phone" src="{% static 'img/home/phone-2.png' %}" alt="">
         </div>
       </div>
       {% include 'public/inc/global/partnership-with-bcg.html' %}

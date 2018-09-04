@@ -1,0 +1,81 @@
+// sass-lint:disable no-ids
+.Skin {
+  fieldset {
+    border: 0 none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  legend {
+    @extend .h-c-headline;
+    @extend .h-c-headline--four;
+    margin-bottom: $dmb-margin-small;
+  }
+
+  .QuestionText,
+  .QuestionBody {
+    padding: 0;
+  }
+
+  .QuestionBody {
+    margin-bottom: $dmb-margin-medium;
+  }
+
+  // Standard inputs
+  input[type='text'] {
+    border: 0 none;
+    border-bottom: 1px solid $dmb-input-color--passive;
+    border-radius: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: .00937em;
+    line-height: 1.75em;
+    padding: 1px 0;
+    text-decoration: inherit;
+    text-transform: inherit;
+
+    &:focus {
+      border-bottom-color: $dmb-input-color--active;
+      border-bottom-width: 2px;
+      padding-bottom: 0;
+    }
+  }
+
+  textarea {
+    border: 1px solid $dmb-input-color--passive;
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 16px;
+
+    &:focus {
+      border-color: $dmb-input-color--active;
+      border-width: 2px;
+      padding: 15px;
+    }
+  }
+
+  .TE .FORM {
+    @include bp(s) {
+      table,
+      tr,
+      td {
+        display: block;
+      }
+
+      tbody {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      .LabelWrapper {
+        color: #5f6368;
+        font-size: 16px;
+      }
+    }
+  }
+}

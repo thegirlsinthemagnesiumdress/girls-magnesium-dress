@@ -8,6 +8,16 @@ $dmb-easing--standard: cubic-bezier(.4, 0, .2, 1);
 $dmb-easing--out: cubic-bezier(0, 0, .2, 1);
 $dmb-easing--in: cubic-bezier(.4, 0, 1, 1);
 
-//Progress components
+$dmb-input-color--passive: #979797;
+$dmb-input-color--active: $h-button-primary-bg-color;
+
+$dmb-progress-color--passive: #f4f4f4;
+$dmb-progress-color--active: $h-button-primary-bg-color;
+$dmb-progress-height: 8px;
+
+$dmb-survey-max-width: 800px;
+
+$dmb-background-grey-color: #f4f4f4;
+
 $dmb-trans-time: 1.5s;
 $dmb-trans-fn: ease-in-out;

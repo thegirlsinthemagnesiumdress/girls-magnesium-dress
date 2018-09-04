@@ -16,7 +16,7 @@
   position: relative;
 
   &::before {
-    background-color: $h-google-grey-50;
+    background-color: $dmb-background-grey-color;
     border: $h-tile-container-border;
     border-radius: $tile-border-radius;
     content: '';

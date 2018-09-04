@@ -1,0 +1,33 @@
+.Skin {
+  .Button {
+    @extend .h-c-button;
+    @extend .h-c-button--primary;
+  }
+
+  .dmb-survey-checklist-button {
+    @extend .h-c-button;
+    @extend .h-c-button--flat;
+
+    align-items: center;
+    border: 1px solid;
+    border-radius: 22px;
+    display: flex;
+    height: 44px;
+    padding: 0 18px;
+
+    &,
+    &:hover {
+      background: #fff;
+    }
+
+    &:focus {
+      // Outline is already indicated by the background-color change
+      outline: none;
+    }
+
+    &__icon {
+      fill: currentColor;
+      margin-right: 11px;
+    }
+  }
+}
