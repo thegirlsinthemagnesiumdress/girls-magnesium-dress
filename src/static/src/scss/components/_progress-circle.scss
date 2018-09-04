@@ -2,7 +2,7 @@
 $dmb-prog-circ-prog-bar-color: $dmb-color-blue-charade;
 $dmb-prog-circ-bg-bar-color: $dmb-color-grey-athens;
 $dmb-prog-circ-target-color: $dmb-color-grey-aluminium;
-$dmb-prog-circ-inverted-bar-color: #ffffff;
+$dmb-prog-circ-inverted-bar-color: #fff;
 
 .dmb-progress-circle {
   display: inline-block;
@@ -10,7 +10,7 @@ $dmb-prog-circ-inverted-bar-color: #ffffff;
   position: relative;
 
   svg {
-    transform: rotate(-90deg)
+    transform: rotate(-90deg);
   }
 
   &__bg-bar {
@@ -29,7 +29,7 @@ $dmb-prog-circ-inverted-bar-color: #ffffff;
     font-family: 'Google Sans';
     font-size: 12px;
     left: 15%;
-    letter-spacing: 0.96px;
+    letter-spacing: .96px;
     position: absolute;
     right: 15%;
     text-align: center;

@@ -33,7 +33,7 @@ $report-page-color-map: (
 
     .dmb-progress-circle {
       &__bg-bar {
-        stroke: rgba($dmb-prog-circ-inverted-bar-color,.24);
+        stroke: rgba($dmb-prog-circ-inverted-bar-color, .24);
       }
 
       &__prog-bar {
@@ -45,16 +45,16 @@ $report-page-color-map: (
   @each $name, $color in $report-page-color-map {
     .#{$name} {
       .dmb-progress-table__row--main {
-        background-color: map-get($color,main);
+        background-color: map-get($color, main);
       }
 
       .dmb-progress-circle {
         &__bg-bar {
-          stroke: map-get($color,light);
+          stroke: map-get($color, light);
         }
 
         &__prog-bar {
-          stroke: map-get($color,main);
+          stroke: map-get($color, main);
         }
       }
     }

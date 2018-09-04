@@ -1,7 +1,7 @@
 $dmb-prog-table-border-color: $dmb-color-grey-chateau;
 $dmb-prog-table-label-color: $dmb-color-grey-shuttle;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
-$dmb-prog-table-main-label-color: $dmb-black-russian;
+$dmb-prog-table-main-label-color: $dmb-color-black-russian;
 $dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
 $dmb-prog-table-active-bg-color: $dmb-color-blue-alice;
 $dmb-prog-table-active-color: $dmb-color-blue-navy;
@@ -28,7 +28,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     }
 
     &:nth-of-type(1) {
-      width: 30%
+      width: 30%;
     }
 
     @media (max-width: 720px) {
@@ -85,7 +85,7 @@ $dmb-prog-table-row-height-mobile: 5px;
       height: 1em;
     }
 
-    &:after {
+    &::after {
       content: attr(data-rating);
       left: calc(100% + 10px);
       position: absolute;
