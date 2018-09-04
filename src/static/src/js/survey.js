@@ -1,51 +1,24 @@
-(function() {
-  /* global Qualtrics */
-  /* eslint-disable no-var */
+goog.module('dmb.survey');
 
-  /*
-   * Possible events:
-   * - addOnload
-   * - addOnReady
-   * - addOnUnload
-   */
+/**
+ * Defining the properties we use on the globally provided Qualtrics instance
+ *
+ * @type {{
+ *  SurveyEngine: {
+      addOnload:Function,
+      addOnReady:Function,
+      addOnUnload:Function
+ *  }
+ * }}
+ */
+window.Qualtrics;
 
-  Qualtrics.SurveyEngine.addOnReady(setScrollPosition);
+const focusControl = goog.require('dmb.components.focusControl.run');
+const scrollPosition = goog.require('dmb.survey.scrollPosition');
+const sidePanel = goog.require('dmb.survey.sidePanel');
+const stickyProgress = goog.require('dmb.survey.stickyProgress');
 
-  /**
-   * Sets the scroll position to the first error or the top of the questions (if
-   * not on the first page or the survey). Depends on the progress bar for
-   * working this out.
-   */
-  function setScrollPosition() {
-    var progress = document.getElementById('ProgressBarFillContainer');
-    var questions = document.getElementById('Questions');
-
-    if (!progress || !questions) {
-      return;
-    }
-
-    var progressText = progress.textContent.match(/[.\d]+%/);
-    var progressPercent = progressText && progressText[0];
-
-    if (!progressPercent || progressPercent === '0%') {
-      return;
-    }
-
-    var questionOffset = (findError() || questions).getBoundingClientRect().top + window.scrollY;
-
-    // @TODO maybe make this a smooth scroll down the line
-    window.scrollTo(0, questionOffset);
-  }
-
-  /**
-   * Finds any errors on the page and returns the first visible one
-   * @return {Element|undefined} Returns the first visible error if there is one
-   */
-  function findError() {
-    var errors = document.querySelectorAll('.ValidationError');
-    var visibleErrors = Array.prototype.filter.call(errors, function(error) {
-      return error.style.display !== 'none';
-    });
-    return visibleErrors[0];
-  }
-}());
+focusControl.main();
+scrollPosition.init();
+sidePanel.init();
+stickyProgress.init();

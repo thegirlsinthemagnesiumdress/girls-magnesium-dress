@@ -43,11 +43,15 @@
 // Hercules overrides
 @import 'hercules-overrides';
 
+// DMB shared
+@import 'shared/fab';
+@import 'shared/hero';
+@import 'shared/side-panel';
+
 // DMB components
 @import 'components/admin';
 @import 'components/box';
 @import 'components/dimensions-tiles';
-@import 'components/fab';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/hiw';
@@ -59,4 +63,3 @@
 @import 'components/roadmap-section';
 @import 'components/section';
 @import 'components/section-with-media';
-@import 'components/side-panel';
