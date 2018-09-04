@@ -25,11 +25,20 @@ $report-page-color-map: (
   )
 );
 
+$dmb-button-height: 46px;
+$dmb-report-hero-padding-bottom: 37px;
+
 .dmb-report-page {
-  .dmb-hero {
+  &__hero {
     background: $dmb-color-blue-denim;
     color: $dmb-light-text-color;
-    padding: 24px 28px 37px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin-top: -$_h-header-height--full-size;
+    min-height: 100vh;
+    padding: #{$_h-header-height--full-size + 24px} 0 #{$dmb-margin-medium + $dmb-button-height + $dmb-report-hero-padding-bottom};
+    position: relative;
 
     .dmb-progress-circle {
       &__bg-bar {
@@ -40,6 +49,39 @@ $report-page-color-map: (
         stroke: $dmb-prog-circ-inverted-bar-color;
       }
     }
+
+    .h-c-headline:not(.dmb-report-page__hero-accent) {
+      color: inherit;
+    }
+  }
+
+  &__hero-title {
+    @include bp(m) {
+      font-size: 96px !important;
+    }
+  }
+
+  &__hero-sub-title {
+    @include bp(m) {
+      font-size: 66px !important;
+    }
+  }
+
+  &__hero-accent {
+    color: rgba($dmb-light-text-color, .62);
+    display: block;
+  }
+
+  &__hero-cta {
+    bottom: $dmb-report-hero-padding-bottom;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  &__hero-button {
+    border-radius: 23px;
+    margin: auto 0 0;
   }
 
   @each $name, $color in $report-page-color-map {

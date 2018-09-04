@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^registration$', TemplateView.as_view(template_name="public/registration.html"), name="registration"),
     url(r'^reports$', reports_admin, name="reports"),
     url(r'^reports/(?P<sid>[\w]+)$', report_view, name="report"),
+    # Don't merge with this, it's just for testing
+    url(r'^report-static$', TemplateView.as_view(template_name="public/report-static.html"), name="report-static"),
 ]
