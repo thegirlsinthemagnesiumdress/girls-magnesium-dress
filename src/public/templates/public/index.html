@@ -1,6 +1,12 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
 
+{% block header %}
+  {% with register=True %}
+    {% include 'public/inc/global/header.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block main %}
   {% include 'public/inc/home/hero.html' %}
   <div id="content" class="dmb-section-with-media dmb-section-with-media--desktop-content-right">
