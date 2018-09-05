@@ -10,7 +10,6 @@ $dmb-prog-table-row-height-mobile: 5px;
 .dmb-progress-table {
   display: flex;
   font-family: 'Google Sans';
-  margin: 32px 0;
   text-align: center;
   width: 100%;
 
@@ -78,7 +77,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     line-height: 1em;
     position: relative;
     transition: width $dmb-trans-time $dmb-trans-fn;
-    width: calc((75% * 4) + 1px);
+    width: 1px;
 
     @media (min-width: 721px) {
       font-size: 16px;

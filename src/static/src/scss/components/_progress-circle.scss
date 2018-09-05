@@ -6,12 +6,13 @@ $dmb-prog-circ-inverted-bar-color: #fff;
 
 .dmb-progress-circle {
   display: inline-block;
-  position: relative;
   max-width: 100%;
+  position: relative;
 
-  svg {
-    transform: rotate(-90deg);
+  &__prog-svg {
+    display: block;
     max-width: 100%;
+    transform: rotate(-90deg);
   }
 
   &__bg-bar {
@@ -26,16 +27,31 @@ $dmb-prog-circ-inverted-bar-color: #fff;
     transition: stroke-dashoffset $dmb-trans-time $dmb-trans-fn;
   }
 
+  &__text,
+  &__icon {
+    left: 15%;
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   &__text {
     font-family: 'Google Sans';
     font-size: 12px;
-    left: 15%;
     letter-spacing: .96px;
-    position: absolute;
-    right: 15%;
     text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
+  }
+
+  &__icon {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: block;
+    height: 31px;
+    margin: 0 auto;
+    max-width: 70%;
+    width: 31px;
   }
 
   &__title {
