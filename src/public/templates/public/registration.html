@@ -33,9 +33,9 @@
         </h1>
         <h2 class="h-c-headline h-c-headline--four">Your personalised survey link</h2>
         <div class="dmb-registration__link">
-          <div id="survey-link">
+          <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
             {[ registrationCtrl.link ]}
-          </div>
+          </a>
           <button
               class="h-c-link"
               ngclipboard
@@ -44,7 +44,7 @@
           </button>
         </div>
         <p class="dmb-registration__share-copy">
-            Share this link with others in your business who could contribute to your maturity assessment. <strong>Keep it safe in case you need to access it again.</strong>
+            Here is the link to your personalised digital marketing maturity assessment.<br><strong>Keep it safe in case you need to access it again.</strong>
         </p>
         <a ng-href="{[ registrationCtrl.link ]}" class="h-c-button h-c-button--primary" target="_blank">
           Take the survey now
