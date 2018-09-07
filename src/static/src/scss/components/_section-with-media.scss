@@ -1,12 +1,16 @@
 .dmb-section-with-media {
   @extend %dmb-section;
 
+  $block: &;
+
   &__title {
     @extend %dmb-section__title;
   }
 
   &__body {
-    width: 75%;
+    @include bp(s) {
+      width: 75%;
+    }
   }
 
   &__col-content {
@@ -19,11 +23,34 @@
     @include bp(s) {
       padding-bottom: 0;
     }
+
+    #{$block}--benchmark-your-business & {
+      order: 2;
+      padding-bottom: 0;
+
+      @include bp(m) {
+        order: initial;
+      }
+    }
   }
 
   &__col-media {
     align-items: center;
     display: flex;
+
+    #{$block}--benchmark-your-business & {
+      order: 1;
+      padding-bottom: $dmb-margin-medium;
+
+      > img {
+        width: 626px;
+      }
+
+      @include bp(m) {
+        order: initial;
+        padding-bottom: 0;
+      }
+    }
   }
 
   &__collage {

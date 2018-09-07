@@ -168,7 +168,7 @@ INTERNAL_IPS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
+CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com", "'sha256-D9XwZtGGJx3RA4mBPaZHnGk4TtubENucxpnSadzYKrU='", "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='")
 CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com")
 CSP_CHILD_SRC = ("'self'",)
 CSP_SCRIPT_SRC = (
@@ -276,8 +276,8 @@ from .constants import *
 
 QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
 QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
-QUALTRICS_EMAIL_TO = 'Q97'
-QUALTRICS_EMAIL_BCC = 'Q99'
+QUALTRICS_EMAIL_TO = 'Q97_4_TEXT'
+QUALTRICS_EMAIL_BCC = 'Q97_5_TEXT'
 
 SUPER_USER = []
 MIN_ITEMS_INDUSTRY_THRESHOLD = 100

@@ -1,0 +1,28 @@
+@mixin hero() {
+  background-image: url('../img/hero/hero_m.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include bp(s) {
+    background-position: 50%;
+  }
+
+  @include bp(m) {
+    background-image: url('../img/hero/hero_l.jpg');
+    background-position: left;
+  }
+}
+
+@mixin hero-scrim() {
+  background-image: linear-gradient(to left, rgba($h-white, .25) 0%, $h-white 100%);
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  @include bp(m) {
+    background-image: linear-gradient(to left, rgba($h-white, 0) 0%, $h-white 100%);
+  }
+}

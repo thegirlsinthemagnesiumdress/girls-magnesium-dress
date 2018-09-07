@@ -1,0 +1,60 @@
+// sass-lint:disable no-ids
+#ProgressBar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(198, 198, 198, .5);
+  left: 0;
+  padding: 20px 0 60px;
+  position: absolute;
+  right: 0;
+  top: 100vh;
+  z-index: 2;
+
+  &.is-sticky {
+    position: fixed;
+    top: 0 !important;
+  }
+
+  > div {
+    @extend .h-c-page;
+    max-width: $dmb-survey-max-width;
+  }
+
+  .ProgressBarContainer {
+    width: 100%;
+
+    > tbody> tr > td {
+      &:first-child,
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  .ProgressBarFillContainer,
+  .ProgressBarFill {
+    border-radius: #{$dmb-progress-height / 2};
+    height: $dmb-progress-height;
+  }
+
+  .ProgressBarFillContainer {
+    background-color: $dmb-progress-color--passive;
+    position: relative;
+    width: 100%;
+
+    .offScreen {
+      font-size: 16px; // @TODO
+      height: auto;
+      left: 0;
+      overflow: visible;
+      position: absolute;
+      top: #{$dmb-progress-height + 16px};
+      width: auto;
+    }
+  }
+
+  .ProgressBarFill {
+    background-color: $dmb-progress-color--active;
+    min-width: $dmb-progress-height;
+    transition: width 2s;
+  }
+}

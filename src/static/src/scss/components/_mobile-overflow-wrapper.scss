@@ -1,0 +1,17 @@
+.dmb-mobile-overflow-wrapper {
+  margin-left: -$h-site-padding-mobile;
+  margin-right: -$h-site-padding-mobile;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  @include bp(s) {
+    margin-left: -$h-site-padding;
+    margin-right: -$h-site-padding;
+  }
+
+  @include bp(m) {
+    margin-left: 0;
+    margin-right: 0;
+    overflow: visible;
+  }
+}

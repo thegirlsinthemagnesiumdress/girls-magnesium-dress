@@ -57,6 +57,8 @@ class RegistrationController {
       data['engagement_lead'] = this.elId;
     }
 
+    this.serverError = false;
+
     this._ngHttp.post(
       SURVEY_ENDPOINT,
       data, {

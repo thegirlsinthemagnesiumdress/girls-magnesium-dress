@@ -1,17 +1,10 @@
 .dmb-hero {
-  background-image: url('../img/hero/hero.jpg');
-  background-size: cover;
+  @include hero();
   padding: 80px 0 70px;
   position: relative;
 
   &::before {
-    background-image: linear-gradient(to left, rgba($h-white, 0) 0%, $h-white 100%);
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
+    @include hero-scrim();
   }
 
   @include bp(m) {

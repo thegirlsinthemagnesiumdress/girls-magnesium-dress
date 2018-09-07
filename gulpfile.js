@@ -69,6 +69,14 @@ gulp.task('js-detect', function() {
       .pipe(gulp.dest(PATHS.dist.js));
 });
 
+gulp.task('js-survey', function() {
+  return gulp.src(`${PATHS.src.js}/**/*.js`)
+      // Note that entry_point matches the namespace defined in survey.js
+      .pipe(hercules.js.prod({entry_point: 'dmb.survey'}))
+      .pipe(rename('survey.min.js'))
+      .pipe(gulp.dest(PATHS.dist.js));
+});
+
 gulp.task('js-templates', function() {
   return gulp.src(TEMPLATE_SRC)
     .pipe(templateCache({
@@ -225,6 +233,7 @@ gulp.task('build',
     'clean-dist',
     'js-templates',
     'js-detect',
+    'js-survey',
     'js',
     'sass'
     ),
