@@ -119,12 +119,14 @@
           </a>
         </li>
         {% endcomment %}
+        {% if register %}
         <li class="h-c-header__cta-li h-c-header__cta-li--primary">
           <a href="{% url 'registration' %}" class="h-c-header__cta-li-link
               h-c-header__cta-li-link--primary">
             Start now
           </a>
         </li>
+        {% endif %}
       </ul>
     </div>
 
