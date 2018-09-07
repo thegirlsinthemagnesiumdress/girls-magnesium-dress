@@ -26,6 +26,8 @@ class CreateSurveyView(CreateAPIView):
     """
     Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
     """
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
 
