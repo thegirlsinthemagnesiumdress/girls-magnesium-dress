@@ -19,4 +19,8 @@
   #Questions {
     padding-top: 140px;
   }
+
+  #ProgressBar.dmb-h-hidden + .SkinInner #Questions {
+    padding-top: 80px;
+  }
 }

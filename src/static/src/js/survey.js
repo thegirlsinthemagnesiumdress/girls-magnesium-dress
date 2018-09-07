@@ -14,11 +14,11 @@ goog.module('dmb.survey');
 window.Qualtrics;
 
 const focusControl = goog.require('dmb.components.focusControl.run');
-const scrollPosition = goog.require('dmb.survey.scrollPosition');
+const headerVisibility = goog.require('dmb.survey.headerVisibility');
 const sidePanel = goog.require('dmb.survey.sidePanel');
 const stickyProgress = goog.require('dmb.survey.stickyProgress');
 
 focusControl.main();
-scrollPosition.init();
+headerVisibility.init();
 sidePanel.init();
 stickyProgress.init();
