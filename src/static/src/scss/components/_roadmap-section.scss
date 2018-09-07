@@ -3,16 +3,48 @@
 
   &__title {
     @extend %dmb-section__title;
+    position: relative;
     text-align: center;
 
-    &::after {
+    &::before {
       background-image: url('../img/icons/bulb.svg');
       content: '';
-      display: inline-block;
+      display: block;
       height: 70px;
-      margin-left: 5px;
-      vertical-align: middle;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
       width: 60px;
+      z-index: 1;
+    }
+
+    &:hover::after {
+      animation: lightbuld .75s 4s forwards cubic-bezier(0, 0, 0, 1.63);
+      background: #feefc3;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: 48px;
+      left: 0;
+      margin: 0 auto;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 6px;
+      width: 48px;
+
+      @keyframes lightbuld {
+        from {
+          opacity: 0;
+          transform: scale(.25);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
     }
   }
 }

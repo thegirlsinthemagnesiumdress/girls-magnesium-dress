@@ -1,0 +1,104 @@
+// sass-lint:disable no-ids
+.dmb-hero {
+  &__content {
+    padding-bottom: 50px;
+  }
+
+  &__pre-title {
+    margin-bottom: $dmb-margin-small;
+  }
+
+  &__title {
+    margin-bottom: $dmb-margin-medium;
+    max-width: 743px;
+
+    @include bp(s) {
+      width: 75%;
+    }
+  }
+
+  &__description {
+    margin-bottom: $dmb-margin-small;
+    max-width: 524px;
+
+    @include bp(s) {
+      width: 75%;
+    }
+  }
+}
+
+
+.Skin {
+  #Logo {
+    background-image: url('../img/dmb-logo.svg');
+    display: block;
+    height: 24px;
+    left: $h-site-padding-mobile;
+    position: absolute;
+    top: 24px;
+    width: 291px;
+    z-index: 1;
+
+    @include bp(s) {
+      left: $h-site-padding;
+    }
+
+    @include bp(m) {
+      left: 24px;
+    }
+  }
+
+  #SkinContent,
+  #HeaderContainer {
+    background: transparent;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  #LogoContainer .h-c-page {
+    position: relative;
+    z-index: 1;
+  }
+
+  #HeaderContainer {
+    align-items: center;
+    display: flex;
+    max-width: none;
+    min-height: 100vh;
+    position: relative;
+    text-align: initial;
+
+    @media (max-height: 720px) {
+      min-height: 720px;
+    }
+
+    &::before {
+      @include hero();
+    }
+
+    &::after {
+      @include hero-scrim();
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  #Header {
+    background: transparent;
+    padding: #{$dmb-margin-medium + 48px} 0 $dmb-margin-medium;
+    position: relative;
+    width: 100%;
+
+    .h-c-button.h-c-button--primary {
+      margin: $dmb-margin-medium 0 $dmb-margin-small;
+    }
+  }
+}

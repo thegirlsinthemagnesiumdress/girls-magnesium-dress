@@ -97,6 +97,8 @@ class SurveyResultsIndustryDetail(APIView):
         dmb_d_bp = None
 
         surveys = Survey.objects.filter(industry=industry_name).exclude(last_survey_result__isnull=True)
+        if not surveys:
+            raise Http404
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
         if dmb_d_list and len(dmb_d_list) > settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)

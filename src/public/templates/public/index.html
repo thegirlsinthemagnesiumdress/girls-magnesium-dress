@@ -1,6 +1,12 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
 
+{% block header %}
+  {% with register=True %}
+    {% include 'public/inc/global/header.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block main %}
   {% include 'public/inc/home/hero.html' %}
   <div id="content" class="dmb-section-with-media dmb-section-with-media--desktop-content-right">
@@ -56,12 +62,12 @@
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4 h-c-grid__col-l--offset-2">
           <p>
-            The <strong> Digital Maturity Benchmark</strong> is a diagnostic tool developed by Google and Boston Consulting Group based on a study to identify the success factors and best practices that drive businesses up the maturity scale.
+            The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed by Google and Boston Consulting Group, based on a study to identify what drives data-driven marketing maturity.
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4">
           <p>
-            First, it analyses where your business currently sits on a path to full data-driven marketing and attribution. Then, it generates a personalised report to help you level up and grow.
+            It analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised interactive report to help you level up.
           </p>
         </div>
       </div>
@@ -71,24 +77,35 @@
 
   <div class="dmb-hiw-section dmb-bg-light-grey">
     <div class="h-c-page">
-      <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--4">
-          <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
-          <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
-            Benchmark which stage your organisation is at on our digital maturity scale.
-          </h3>
-        </div>
-        <div class="h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-3">
-          <dl class="dmb-infographic">
-              <dt class="dmb-infographic__step-t">Nascent</dt>
-              <dd class="dmb-infographic__step-d">Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales</dd>
-              <dt class="dmb-infographic__step-t">Emerging</dt>
-              <dd class="dmb-infographic__step-d">In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing</dd>
-              <dt class="dmb-infographic__step-t">Connected</dt>
-              <dd class="dmb-infographic__step-d">By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies</dd>
-              <dt class="dmb-infographic__step-t">Multi-moment</dt>
-              <dd class="dmb-infographic__step-d">At this stage, businesses have dynamic execution optimised towards a single-customer view across channels</dd>
-          </dl>
+      <div>
+        <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
+        <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
+          <div class="dmb-hiw-section__title-text">
+            Find out where your organisation is on the digital maturity scale
+          </div>
+        </h3>
+      </div>
+      <div class="dmb-infographic" dmb-scroll-aware dmb-scroll-aware-enter-class="dmb-infographic--in-view">
+        <div class="dmb-mobile-overflow-wrapper">
+          <ol class="dmb-infographic__inner">
+            <li class="dmb-infographic__step dmb-infographic__step--first">
+              <h4 class="dmb-infographic__step-t">Nascent</h4>
+              <p class="dmb-infographic__step-d">Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales</p>
+            </li>
+            <li class="dmb-infographic__step">
+              <h4 class="dmb-infographic__step-t">Emerging</h4>
+              <p class="dmb-infographic__step-d">In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing</p>
+            </li>
+            <li class="dmb-infographic__step">
+              <h4 class="dmb-infographic__step-t">Connected</h4>
+              <p class="dmb-infographic__step-d">By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies</p>
+            </li>
+            <li class="dmb-infographic__step">
+              <h4 class="dmb-infographic__step-t">Multi-moment</h4>
+              <p class="dmb-infographic__step-d">At this stage, businesses have dynamic execution optimised towards a single-customer view across channels</p>
+            </li>
+            <li class="dmb-infographic__roundel"></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -96,100 +113,102 @@
 
   <div class="dmb-hiw-section">
     <div class="h-c-page">
-      <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--4">
-          <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
-          <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
-            Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability.
-          </h3>
-        </div>
+      <div>
+        <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
+        <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
+          <div class="dmb-hiw-section__title-text">
+            Dig deeper into how your organisation performs across 6 marketing dimensions
+          </div>
+        </h3>
       </div>
       <div class="dmb-dimensions-tiles">
         <div class="dmb-dimensions-tiles__header">
-          <img class="h-c-tile__icon" src="{% static 'img/icons/organization.svg' %}" alt="">
+          <img class="h-c-tile__icon" src="{% static 'img/icons/organization.svg' %}" alt="" height="41" width="41">
           <div class="dmb-dimensions-tiles__header-body">
             <h4 class="dmb-dimensions-tiles__headline">
               Organization
             </h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, exercitationem.</p>
+            <p>Improve decision-making and results by working collaboratively across teams and with specialised partners</p>
           </div>
         </div>
-        <div class="h-c-tile-set">
-          <li>
-            <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-              <div class="h-c-tile__header h-c-tile__header--icon">
-                <img class="h-c-tile__icon" src="{% static 'img/icons/attribution.svg' %}" alt="">
+        <div class="dmb-mobile-overflow-wrapper">
+          <ul class="dmb-dimensions-tiles__list">
+            <li class="dmb-dimensions-tiles__item">
+              <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
+                <div class="h-c-tile__header h-c-tile__header--icon">
+                  <img class="h-c-tile__icon" src="{% static 'img/icons/attribution.svg' %}" alt="" height="41" width="41">
+                </div>
+                <div class="h-c-tile__body">
+                  <h4 class="h-c-tile__headline">
+                      Attribution
+                  </h4>
+                  <p class="h-c-tile__description">
+                    Accurately measure and value customer touchpoints
+                  </p>
+                </div>
               </div>
-              <div class="h-c-tile__body">
-                <h4 class="h-c-tile__headline">
-                    Attribution
-                </h4>
-                <p class="h-c-tile__description">
-                  Accurately measure and value customer touchpoints
-                </p>
+            </li>
+            <li class="dmb-dimensions-tiles__item">
+              <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
+                <div class="h-c-tile__header h-c-tile__header--icon">
+                  <img class="h-c-tile__icon" src="{% static 'img/icons/assets.svg' %}" alt="" height="41" width="41">
+                </div>
+                <div class="h-c-tile__body">
+                  <h4 class="h-c-tile__headline">
+                    Assets and ads
+                  </h4>
+                  <p class="h-c-tile__description">
+                    Deliver attention-driving, intuitive experiences across digital touchpoints
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-              <div class="h-c-tile__header h-c-tile__header--icon">
-                <img class="h-c-tile__icon" src="{% static 'img/icons/assets.svg' %}" alt="">
+            </li>
+            <li class="dmb-dimensions-tiles__item">
+              <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
+                <div class="h-c-tile__header h-c-tile__header--icon">
+                  <img class="h-c-tile__icon" src="{% static 'img/icons/audience.svg' %}" alt="" height="41" width="41">
+                </div>
+                <div class="h-c-tile__body">
+                  <h4 class="h-c-tile__headline">
+                    Audience
+                  </h4>
+                  <p class="h-c-tile__description">
+                    Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel
+                  </p>
+                </div>
               </div>
-              <div class="h-c-tile__body">
-                <h4 class="h-c-tile__headline">
-                  Assets
-                </h4>
-                <p class="h-c-tile__description">
-                  Deliver attention-driving, intuitive experiences across digital touchpoints
-                </p>
+            </li>
+            <li class="dmb-dimensions-tiles__item">
+              <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
+                <div class="h-c-tile__header h-c-tile__header--icon">
+                  <img class="h-c-tile__icon" src="{% static 'img/icons/access.svg' %}" alt="" height="41" width="41">
+                </div>
+                <div class="h-c-tile__body">
+                  <h4 class="h-c-tile__headline">
+                    Access
+                  </h4>
+                  <p class="h-c-tile__description">
+                    Reach and deliver across all inventory types and channels
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-              <div class="h-c-tile__header h-c-tile__header--icon">
-                <img class="h-c-tile__icon" src="{% static 'img/icons/automation.svg' %}" alt="">
+            </li>
+            <li class="dmb-dimensions-tiles__item">
+              <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
+                <div class="h-c-tile__header h-c-tile__header--icon">
+                  <img class="h-c-tile__icon" src="{% static 'img/icons/automation.svg' %}" alt="" height="41" width="41">
+                </div>
+                <div class="h-c-tile__body">
+                  <h4 class="h-c-tile__headline">
+                    Automation
+                  </h4>
+                  <p class="h-c-tile__description">
+                    Optimise marketing operations to drive profitability and growth
+                  </p>
+                </div>
               </div>
-              <div class="h-c-tile__body">
-                <h4 class="h-c-tile__headline">
-                  Automation
-                </h4>
-                <p class="h-c-tile__description">
-                  Optimise marketing operations to drive profitability and growth
-                </p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-              <div class="h-c-tile__header h-c-tile__header--icon">
-                <img class="h-c-tile__icon" src="{% static 'img/icons/audience.svg' %}" alt="">
-              </div>
-              <div class="h-c-tile__body">
-                <h4 class="h-c-tile__headline">
-                  Audience
-                </h4>
-                <p class="h-c-tile__description">
-                  Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel
-                </p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-              <div class="h-c-tile__header h-c-tile__header--icon">
-                <img class="h-c-tile__icon" src="{% static 'img/icons/access.svg' %}" alt="">
-              </div>
-              <div class="h-c-tile__body">
-                <h4 class="h-c-tile__headline">
-                  Access
-                </h4>
-                <p class="h-c-tile__description">
-                  Reach and deliver across all inventory types and channels
-                </p>
-              </div>
-            </div>
-          </li>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -198,40 +217,42 @@
   <div class="dmb-hiw-section dmb-bg-light-grey">
     <div class="h-c-page">
       <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--4">
+        <div class="h-c-grid__col h-c-grid__col--7">
           <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
           <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
-            Use these insights to identify where you need to develop to drive your organisation to the next level.
+            <div class="dmb-hiw-section__title-text">
+              Use these insights to identify where you need to develop to drive your organisation to the next level.
+            </div>
           </h3>
         </div>
-        <div class="h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-3">
-          <img class="dmb-hiw-section__phone" src="{% static 'img/home/phone.png' %}" alt="">
+        <div class="h-c-grid__col h-c-grid__col--4">
+          <img class="dmb-hiw-section__phone" src="{% static 'img/home/phone-2.png' %}" alt="">
         </div>
       </div>
       {% include 'public/inc/global/partnership-with-bcg.html' %}
     </div>
   </div>
 
-  <div class="dmb-section-with-media">
+  <div class="dmb-section-with-media dmb-section-with-media--benchmark-your-business">
     <div class="h-c-page">
       <div class="h-c-grid">
-        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--5">
+        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col-l--5">
           <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--three">
             Benchmark your business now
           </h2>
           <div class="dmb-section-with-media__body">
             <p class="h-u-mb-std">
-              This in-depth assessment can be completed by you or in collaboration with your team. It takes up to an hour and can be completed in a number of sessions, saving as you go.
+              The assessment can be completed in around 30 minutes.
             </p>
             <p class="h-u-mb-l h-c-headline--subhead h-u-font-weight-medium">
                 Discover how your marketing maturity measures up, plan your progress, reach more customers.
             </p>
           </div>
-          <button class="h-c-button h-c-button--primary">
-              Start the diagnosis now
-            </button>
+          <a href="{% url 'registration' %}" class="h-c-button h-c-button--primary">
+            Start the assessment now
+          </a>
         </div>
-        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col--offset-1">
+        <div class="dmb-section-with-media__col-media h-c-grid__col h-c-grid__col-l--6 h-c-grid__col-l--offset-1">
           <img src="{% static 'img/home/benchmark.jpg' %}" alt="">
         </div>
       </div>
