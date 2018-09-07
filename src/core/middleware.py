@@ -34,12 +34,12 @@ class DomainRestrictionMiddleware(object):
                 return
             else:
                 logging.info("Redirecting user to login")
-                print("AAAAAAAA")
                 return redirect_to_login(request.get_full_path())
 
         ALLOWED_AUTH_DOMAINS = getattr(settings, "ALLOWED_AUTH_DOMAINS", [])  # noqa
 
         domain = request.user.email.split("@")[-1]
-        print('domain ===> ', domain)
+
         if domain not in ALLOWED_AUTH_DOMAINS and '*' not in ALLOWED_AUTH_DOMAINS:
-            return HttpResponseForbidden("User is not on a valid domain")
+            logging.info('User is not on a valid domain')
+            return HttpResponseForbidden("Forbidden")

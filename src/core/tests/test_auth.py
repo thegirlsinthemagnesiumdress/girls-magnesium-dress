@@ -106,14 +106,14 @@ class DomainRestrictionMiddlewareTests(TestCase):
     @with_appengine_anon
     @override_settings(ALLOWED_AUTH_DOMAINS=["*"], DJANGAE_CREATE_UNKNOWN_USER=False)
     def test_login_required_page_anon_user_access_denied_when_create_unknown_false(self):
-        """A login required page for anonymous it will rediret to login. Returns 302."""
+        """A login required page for anonymous it will redirect to login. Returns 302."""
         response = self.client.get("/logged_in_view/")
         self.assertEqual(response.status_code, 302)
 
     @with_appengine_anon
     @override_settings(ALLOWED_AUTH_DOMAINS=["*"], DJANGAE_CREATE_UNKNOWN_USER=True)
     def test_login_required_page_anon_user_access_denied_when_create_unknown_true(self):
-        """A login required page for anonymous it will rediret to login. Returns 302."""
+        """A login required page for anonymous it will redirect to login. Returns 302."""
         response = self.client.get("/logged_in_view/")
         self.assertEqual(response.status_code, 302)
 
