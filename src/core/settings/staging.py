@@ -1,5 +1,4 @@
-from core.settings.default import *  # noqa
-
+from core.settings.live import *  # noqa
 
 MIDDLEWARE_CLASSES = tuple(
     list(MIDDLEWARE_CLASSES) +
