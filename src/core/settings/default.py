@@ -269,6 +269,7 @@ DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
 AUTHENTICATION_BACKENDS = (
     'djangae.contrib.gauth_datastore.backends.AppEngineUserAPIBackend',
 )
+DJANGAE_CREATE_UNKNOWN_USER = True
 
 RESPONSE_EXPORT_BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format('google.co1')
 QUALTRICS_REQUEST_DEADLINE = 60
