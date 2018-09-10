@@ -4,7 +4,10 @@ import sys
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 APPENGINE_DIR = os.path.join(THIS_DIR, "third_party", "google_appengine")
-DEVELOPMENT_DIR = os.path.join(THIS_DIR, "third_party", "local", "sitepackages")
+
+# We add the symlinked version of this folder, inside the GAE project folder, otherwise it's not
+# accessible when running the local server because it's outside the sandbox
+DEVELOPMENT_DIR = os.path.join(THIS_DIR, "src", "sitepackages_local")
 
 sys.path[0:0] = [
     os.path.join(THIS_DIR, 'src'),
