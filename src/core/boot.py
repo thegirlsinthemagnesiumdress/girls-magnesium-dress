@@ -50,3 +50,19 @@ def get_app_config():
         entity.put()
 
     return entity
+
+
+def patch_sdk_logging():
+    """ The local App Engine SDK logs every attempt to access files/folders outside of the
+        project directory, which happens with every call to os.path.realpath. This causes heavy
+        logging in the terminal and drastically slows down the local server.
+        This patches that logging call out of the way, to bring less logging and more joy.
+    """
+
+    from google.appengine.tools.devappserver2.python import stubs
+
+    def _log_access_check_fail_replacement(filename):
+        return
+
+    stubs.log_access_check_fail = _log_access_check_fail_replacement
+    print("Patched `log_access_check_fail` function in SDK to avoid excess logging.")

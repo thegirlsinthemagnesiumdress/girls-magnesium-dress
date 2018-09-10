@@ -15,8 +15,9 @@ sys.path[0:0] = [
     DEVELOPMENT_DIR
 ]
 
-from core.boot import fix_path
+from core.boot import fix_path, patch_sdk_logging
 fix_path()
+patch_sdk_logging()
 
 if __name__ == "__main__":
     # Make sure that if we are deploying and we don't specify any settings
