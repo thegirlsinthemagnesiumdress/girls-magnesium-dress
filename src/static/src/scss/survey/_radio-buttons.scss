@@ -76,12 +76,6 @@
           border-radius: 3px !important;
         }
 
-        &::after {
-          border-radius: 6px !important;
-          height: 51px;
-          width: 51px;
-        }
-
         &.q-checked::before {
           content: url('../img/icons/check.svg');
           height: 24px;
@@ -112,8 +106,7 @@
   cursor: pointer;
   display: flex;
   font-size: 16px;
-  height: 96px;
-  padding: 12px 24px 12px 75px;
+  padding: 23px 31px 23px 75px;
   transition:
     background-color $dmb-default-transition-duration $dmb-easing--standard,
     border-color $dmb-default-transition-duration $dmb-easing--standard,
@@ -122,10 +115,6 @@
 
   @include bp(s) {
     font-size: 18px;
-  }
-
-  @include bp(m) {
-    font-size: 20px;
   }
 }
 
@@ -138,7 +127,7 @@
   background-color: rgba(232, 240, 254, .5) !important;
   border-color: $h-button-primary-bg-color;
   border-width: 2px;
-  padding: 11px 23px 11px 74px;
+  padding: 22px 30px 22px 74px;
 }
 
 %dmb-radio-input {
@@ -148,9 +137,9 @@
   display: block;
   height: 24px;
   left: 24px;
-  margin: 0;
+  margin: -12px 0 0;
   position: absolute;
-  top: 36px;
+  top: 50%;
   transition: border-color $dmb-default-transition-duration $dmb-easing--standard;
   width: 24px;
 
