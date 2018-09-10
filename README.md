@@ -7,7 +7,7 @@
 # Installation
 
 1. Clone the repository (you might have already done that!)
-2. Run ./bin/install_deps --with-appengine
+2. Run ./bin/install_deps
 3. ./manage.py runserver
 
 # Frontend Setup
