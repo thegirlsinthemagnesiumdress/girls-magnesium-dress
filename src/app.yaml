@@ -82,6 +82,7 @@ skip_files:
     - install_deps
     - requirements.txt
     - sitepackages/google_appengine*
+    - sitepackages_local
     - (.*)\.scss
     - \.storage.*
     - (.*)\.pyc
