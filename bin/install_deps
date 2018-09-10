@@ -162,10 +162,10 @@ if __name__ == "__main__":
     check_requirements()
     create_third_party_dir()
 
-    if "--js-only" not in sys.argv:
+    if "--python-only" not in sys.argv:
         install_node_modules()
 
-    if "--python-only" not in sys.argv:
+    if "--js-only" not in sys.argv:
         install_python_deps()
 
     install_app_engine_sdk()
