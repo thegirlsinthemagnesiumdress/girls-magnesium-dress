@@ -10,17 +10,8 @@
     }
   }
 
-
-  input {
-    border: 1px solid $h-gm-grey-500;
-    border-radius: 6px;
-    max-width: 437px;
-    padding: 23px;
+  .dmb-input {
     width: 100%;
-
-    &::placeholder {
-      color: $h-gm-grey-500;
-    }
 
     @include bp(m) {
       width: 75%;

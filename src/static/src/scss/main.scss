@@ -22,6 +22,9 @@
 @import 'hercules/lib/components/social/social';
 @import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
+@import 'hercules/lib/components/table/settings';
+@import 'hercules/lib/components/table/tools';
+@import 'hercules/lib/components/table/table';
 @import 'hercules/lib/components/type/type';
 @import 'hercules/lib/components/tiles/tiles';
 @import 'hercules/lib/components/carousel/carousel';
@@ -37,6 +40,9 @@
 // Variables
 @import 'utils';
 
+//Colors
+@import 'colors';
+
 // Hercules overrides
 @import 'hercules-overrides';
 
@@ -46,14 +52,22 @@
 @import 'shared/side-panel';
 
 // DMB components
+@import 'components/admin';
+@import 'components/box';
 @import 'components/dimensions-tiles';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/hiw';
 @import 'components/infographic';
+@import 'components/input';
 @import 'components/mobile-overflow-wrapper';
 @import 'components/partnership-with-bcg';
+@import 'components/progress-circle';
+@import 'components/progress-table';
 @import 'components/registration';
 @import 'components/roadmap-section';
 @import 'components/section';
 @import 'components/section-with-media';
+
+//Page styles
+@import 'pages/reports-page';
