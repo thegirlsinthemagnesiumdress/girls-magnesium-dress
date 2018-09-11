@@ -17,24 +17,37 @@ def report_view(request, sid):
     })
 
 
+# @login_required
+# def reports_admin(request):
+
+#     if request.user.is_whitelisted:
+#         s_results = SurveyResult.objects.all()
+#     else:
+#         engagement_lead_surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
+#         s_results = SurveyResult.objects.filter(survey__in=engagement_lead_surveys)
+
+#     results_with_survey = []
+#     results_without_survey = []
+
+#     for result in s_results:
+#         if result.survey is None:
+#             results_without_survey.append(result)
+#         else:
+#             results_with_survey.append(result.survey)
+
+#     return render(request, 'public/reports-list.html', {
+#         'surveys': results_with_survey,
+#     })
+
+
 @login_required
 def reports_admin(request):
 
     if request.user.is_whitelisted:
-        s_results = SurveyResult.objects.all()
+        surveys = Survey.objects.all()
     else:
-        engagement_lead_surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
-        s_results = SurveyResult.objects.filter(survey__in=engagement_lead_surveys)
-
-    results_with_survey = []
-    results_without_survey = []
-
-    for result in s_results:
-        if result.survey is None:
-            results_without_survey.append(result)
-        else:
-            results_with_survey.append(result.survey)
+        surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
     return render(request, 'public/reports-list.html', {
-        'surveys': results_with_survey,
+        'surveys': surveys,
     })
