@@ -23,8 +23,8 @@
       <div class="dmb-box dmb-box--alt">
         <h2 class="h-c-headline h-c-headline--five">Your survey referral link</h2>
         <div class="dmb-referral-copy-row">
-          <a href="https://google.qualtrics.com/sendform/new/{{user.id}}" target="_blank" id="survey-link">
-            https://google.qualtrics.com/sendform/new/{{user.id}}
+          <a href="{% url 'registration' %}#el={{engagement_lead}}" target="_blank" id="survey-link">
+              {{ request.get_host }}{% url 'registration' %}#el={{engagement_lead}}
           </a>
           <button
               class="h-c-button h-c-button--flat"

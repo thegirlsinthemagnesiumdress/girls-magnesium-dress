@@ -27,4 +27,5 @@ def reports_admin(request):
 
     return render(request, 'public/reports-list.html', {
         'surveys': surveys,
+        'engagement_lead': request.user.engagement_lead,
     })
