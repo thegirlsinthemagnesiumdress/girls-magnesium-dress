@@ -25,10 +25,6 @@ for template_config in TEMPLATES:
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dist')
 
-ALLOWED_HOSTS = [
-    '.appspot.com'
-]
-
 from google.appengine.api import app_identity
 
 # Remove the appstats middleware on prod

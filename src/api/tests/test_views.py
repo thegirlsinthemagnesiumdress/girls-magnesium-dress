@@ -116,10 +116,10 @@ class CreateSurveyTest(APITestCase):
         self.url = reverse('create_survey')
 
     def test_unauthenticated_user(self):
-        """Unauthenticated users should not be able to post."""
+        """Unauthenticated users should be able to post."""
         self.client.force_authenticate(None)
         response = self.client.post(self.url, self.data)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_required_fields_matched(self):
         """Posting data matching required parameters should succed."""
@@ -251,15 +251,7 @@ class SurveyIndustryResultTest(APITestCase):
         """When the is no industry with that specific name, we expect no results back."""
         url = reverse('survey_industry', kwargs={'industry_name': 'MKT'})
         response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
-            self.assertTrue(key in response_data_keys)
-
-        # if industry is not found, dmb and dmb_d are returned as `None`
-        self.assertIsNone(response.data.get('dmb'))
-        self.assertIsNone(response.data.get('dmb_d'))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     @override_settings(
         MIN_ITEMS_INDUSTRY_THRESHOLD=100

@@ -76,14 +76,13 @@ handlers:
   script: core.wsgi.application
   secure: always
 
-  login: admin
-
 skip_files:
     - manage.py
     - README.md
     - install_deps
     - requirements.txt
     - sitepackages/google_appengine*
+    - sitepackages_local
     - (.*)\.scss
     - \.storage.*
     - (.*)\.pyc

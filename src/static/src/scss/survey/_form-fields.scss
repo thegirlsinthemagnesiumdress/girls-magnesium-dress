@@ -19,8 +19,18 @@
     padding: 0;
   }
 
+  .QuestionText {
+    color: inherit;
+    font-size: 22px;
+    font-weight: 500;
+
+    @include bp(m) {
+      font-size: 24px;
+    }
+  }
+
   .QuestionBody {
-    margin-bottom: $dmb-margin-medium;
+    margin-bottom: 120px;
   }
 
   // Standard inputs
@@ -60,22 +70,46 @@
   }
 
   .TE .FORM {
-    @include bp(s) {
-      table,
-      tr,
-      td {
-        display: block;
-      }
+    table,
+    tbody,
+    tr,
+    td {
+      display: block;
+    }
 
-      tbody {
-        display: flex;
-        flex-flow: row wrap;
-      }
+    .LabelWrapper {
+      color: #5f6368;
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
 
-      .LabelWrapper {
-        color: #5f6368;
-        font-size: 16px;
-      }
+    legend {
+      margin-bottom: 36px;
+    }
+
+    tr + tr {
+      margin-top: 42px;
+    }
+  }
+
+  .QuestionOuter.Highlight .Inner {
+    background: transparent;
+  }
+
+  .ValidationError {
+    border-bottom: 2px solid $h-gm-red-500;
+    color: $h-gm-red-500;
+    font-size: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 4px;
+    text-align: left;
+
+    &.Sub {
+      border-bottom: 0 none;
+      font-size: 16px;
+      padding-left: 0;
+      position: static;
     }
   }
 }

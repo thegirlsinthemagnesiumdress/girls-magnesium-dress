@@ -1,0 +1,16 @@
+.dmb-input {
+  border: 1px solid $h-gm-grey-500;
+  border-radius: 6px;
+  max-width: 437px;
+  padding: 23px;
+
+  &::placeholder {
+    color: $h-gm-grey-500;
+  }
+
+  &--simple {
+    border-radius: 0;
+    border-width: 0 0 1px;
+    padding: 9px;
+  }
+}
