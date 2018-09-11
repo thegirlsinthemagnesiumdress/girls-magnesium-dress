@@ -30,10 +30,10 @@ def reports_admin(request):
     results_without_survey = []
 
     for result in s_results:
-        if result.survey:
-            results_with_survey.append(result.survey)
-        else:
+        if result.survey is None:
             results_without_survey.append(result)
+        else:
+            results_with_survey.append(result.survey)
 
     return render(request, 'public/reports-list.html', {
         'surveys': results_with_survey,

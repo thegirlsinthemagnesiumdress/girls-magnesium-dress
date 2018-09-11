@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block main %}
-
 <div class="h-c-page h-u-mt-xl">
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5">
@@ -79,39 +78,15 @@
       </thead>
       <tbody>
         <tr role="row">
-          <td role="rowheader">Potato</td>
-          <td role="gridcell">02/08/2018</td>
-          <td role="gridcell">0</td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat" disabled>Report</a></td>
-        </tr>
-        <tr role="row">
-          <td role="rowheader">Coca-Cola</td>
-          <td role="gridcell">02/08/2018</td>
-          <td role="gridcell">1</td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Report</a></td>
-        </tr>
-        <tr role="row">
-          <td role="rowheader">Disney</td>
-          <td role="gridcell">02/08/2018</td>
-          <td role="gridcell">1</td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Report</a></td>
-        </tr>
-        <tr role="row">
-          <td role="rowheader">Cadbury</td>
-          <td role="gridcell">02/08/2018</td>
-          <td role="gridcell">0</td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat" disabled>Report</a></td>
-        </tr>
-        <tr role="row">
-          <td role="rowheader">McDonald's</td>
-          <td role="gridcell">02/08/2018</td>
-          <td role="gridcell">1</td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell"><a href="#" class="h-c-button h-c-button--flat">Report</a></td>
+          {% for survey in surveys %}
+            {% if survey.sid %}
+              <td role="rowheader">{{survey.company_name}}</td>
+              <td role="gridcell">{{survey.created_at|date:"SHORT_DATE_FORMAT"}}</td>
+              <td role="gridcell">0</td>
+              <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
+              <td role="gridcell"><a href="{% url 'report' survey.sid %}" target="_blank" class="h-c-button h-c-button--flat">Report</a></td>
+            {% endif %}
+          {% endfor %}
         </tr>
       </tbody>
     </table>
@@ -119,17 +94,4 @@
   </div>
 </div>
 
-<section>
-  <ul>
-    {% for survey in surveys %}
-      {% if survey.sid %}
-      <li>
-        <a href="{% url 'report' s.sid %}">
-          {{survey.company_name}}
-        </a>
-      </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</section>
 {% endblock %}
