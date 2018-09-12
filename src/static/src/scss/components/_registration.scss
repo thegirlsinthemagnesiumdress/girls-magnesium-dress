@@ -1,6 +1,10 @@
 .dmb-registration {
   @extend %dmb-section;
 
+  @include bp(m) {
+    padding-top: 120px !important;
+  }
+
   .input-wrp {
     margin: $dmb-margin-medium 0;
 
@@ -10,8 +14,24 @@
     }
   }
 
+  .dmb-input-wrp {
+    margin-bottom: 24px;
+  }
+
+  select {
+    height: 40px;
+  }
+
+  label {
+    color: $h-gm-grey-700;
+    display: block;
+    margin-bottom: 8px;
+  }
+
   .dmb-input {
+    display: block;
     width: 100%;
+
 
     @include bp(m) {
       width: 75%;

@@ -27,6 +27,16 @@ class RegistrationController {
 
     /**
      * @export
+     */
+    this.industry= '';
+
+    /**
+     * @export
+     */
+    this.country= '';
+
+    /**
+     * @export
      * @type {boolean}
      */
     this.serverError = false;
@@ -51,6 +61,8 @@ class RegistrationController {
   submit() {
     let data = {
       'company_name': this.companyName,
+      'industry': this.industry,
+      'country': this.country,
     };
 
     if (this.elId) {
