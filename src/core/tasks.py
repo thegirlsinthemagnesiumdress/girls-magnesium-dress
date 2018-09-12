@@ -51,12 +51,18 @@ def _create_survey_result(results_data):
                 dmb_d=dmb_d,
             )
             try:
+                industry_key = settings.QUALTRICS_INDUSTRY
+
+                # Qualtrics has no way to set an option value. We get the index option that
+                # we use as a index in the OrderedDict.
+                industry = settings.INDUSTRIES.keys()[int(data.get(industry_key))]
                 s = Survey.objects.get(pk=data.get('sid'))
                 s.last_survey_result = survey_result
-                s.industry = data.get('industry')
+                s.industry = industry
                 s.save(update_fields=['industry', 'last_survey_result'])
             except Survey.DoesNotExist:
                 logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+
 
 def send_emails_for_new_reports(email_list):
     """Send an email for every element of `email_list`.
@@ -64,7 +70,7 @@ def send_emails_for_new_reports(email_list):
     :param email_list: tuple of element (to, bcc, sid)
     """
     subject_template = get_template("core/response_ready_email_subject.txt")
-    message_template = get_template("core/response_ready_email_body.txt")
+    message_template = get_template("core/response_ready_email_body.html")
 
     for email_data in email_list:
         to, bcc, sid = email_data

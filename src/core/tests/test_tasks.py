@@ -1,5 +1,5 @@
 import mock
-
+from collections import OrderedDict
 from core.models import Survey, SurveyResult
 from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_result
 from djangae.test import TestCase
@@ -10,6 +10,12 @@ from django.shortcuts import reverse
 from django.test import override_settings
 
 
+@override_settings(
+    INDUSTRIES=OrderedDict([
+        ('IT', 'IT'),
+        ('B', 'B'),
+    ])
+)
 class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
 
@@ -28,12 +34,6 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-    @override_settings(
-        INDUSTRIES={
-            'IT': 'IT',
-            'B': 'B',
-        }
-    )
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_surveys_results_and_survey_updated(self, download_mock):
         """Survey results are saved anyway, regardless Survey's related object exists."""
