@@ -48,9 +48,6 @@ class GetResultsTestCase(TestCase):
 
         survey_1 = Survey.objects.get(pk='1')
 
-        # Industry is updated.
-        self.assertEqual(survey_1.industry, 'IT')
-
         # Last result is updated.
         self.assertIsNotNone(survey_1.last_survey_result)
 
