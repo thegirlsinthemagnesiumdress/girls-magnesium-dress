@@ -13,6 +13,7 @@ const headerFix = goog.require('dmb.components.headerFix');
 const registration = goog.require('dmb.components.registration');
 const scrollHandler = goog.require('dmb.components.scroll');
 const sidePanel = goog.require('dmb.components.sidePanel');
+const report = goog.require('dmb.components.report');
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -25,6 +26,7 @@ const module = angular.module('dmb', [
   registration.module.name,
   scrollHandler.module.name,
   sidePanel.module.name,
+  report.module.name,
   smoothScroll.module.name,
   tableSort.module.name,
   'hercules_template_bundle',
