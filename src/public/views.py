@@ -1,5 +1,6 @@
 from core.models import Survey, SurveyResult
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from django.http import Http404
 from django.shortcuts import render
 
@@ -14,6 +15,13 @@ def report_view(request, sid):
         'company_name': s_result.survey.company_name,
         'DMB': s_result.dmb,
         'DMBd': s_result.dmb_d,
+    })
+
+
+def registration(request):
+    return render(request, 'public/registration.html', {
+        'industries': settings.INDUSTRIES,
+        'countries': settings.COUNTRIES,
     })
 
 

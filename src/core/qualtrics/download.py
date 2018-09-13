@@ -2,6 +2,7 @@ import io
 import json
 import zipfile
 from exceptions import FetchResultException
+import random
 
 from google.appengine.api import urlfetch
 
@@ -53,6 +54,7 @@ def fetch_results(response_id=None, file_format='json'):
     data_export_payload = {
         'format': file_format,
         'surveyId': settings.QUALTRICS_SURVEY_ID,
+        'seenUnansweredRecode': str(random.randint(1, 1000))
     }
 
     if response_id:
