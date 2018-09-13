@@ -1,6 +1,6 @@
 goog.module('dmb.components.report.directive');
 
-const Report = goog.require('dmb.components.report.class');
+const reportCtrl = goog.require('dmb.components.report.controller');
 
 /**
  * Side panel directive.
@@ -10,8 +10,9 @@ const Report = goog.require('dmb.components.report.class');
 function ReportDirective() {
   return {
     restrict: 'A',
-    controller: '',
-    controllerAs:'',
+    controller: reportCtrl.main,
+    controllerAs: reportCtrl.CONTROLLER_AS_NAME,
+
   };
 }
 
