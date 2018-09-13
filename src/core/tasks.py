@@ -1,4 +1,5 @@
 import logging
+import os
 
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
@@ -63,6 +64,7 @@ def send_emails_for_new_reports(email_list):
 
     :param email_list: tuple of element (to, bcc, sid)
     """
+    domain = os.environ['HTTP_HOST']
     subject_template = get_template("core/response_ready_email_subject.txt")
     message_template = get_template("core/response_ready_email_body.html")
 
@@ -72,7 +74,7 @@ def send_emails_for_new_reports(email_list):
             link = reverse('report', kwargs={'sid': sid})
             bcc = [bcc] if is_valid_email(bcc) else None
             context = {
-                'url': link
+                'url': "http://{}{}".format(domain, link)
             }
 
             mail.EmailMessage(
