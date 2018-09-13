@@ -50,7 +50,18 @@
     </div>
   </header>
 
-  <main class="dmb-report-page__content">
+  <main class="dmb-report-page__content" id="dmb-report-page-main">
+    <button class="dmb-right-panel-trigger" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+      <div class="dmb-right-panel-trigger__icon">
+        <svg role="img" class="h-c-icon">
+          <use xlink:href="#mi-chevron"></use>
+        </svg>
+      </div>
+      <div class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
+        Why digital maturity matters
+      </div>
+    </button>
+
     <section class="h-c-page">
       <h2 class="h-c-eyebrow h-u-mb-l">Your overall digital maturity</h2>
 
@@ -74,8 +85,24 @@
             </progress-circle>
           </div>
           <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--9">
-            <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
-              <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>Emerging</strong>
+            <h3 class="dmb-report-page__headline h-c-headline h-c-headline--two dmb-h-mb--small">
+              <span class="dmb-report-page__headline-accent">Your maturity is </span>&nbsp;
+              <strong>Emerging
+              </strong>&nbsp;
+              <svg width="18px" height="18px" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" dmb-side-panel-trigger="#dmb-report-left-side-panel">
+                <defs>
+                  <circle id="a" cx="8.5" cy="8.5" r="8.5" />
+                </defs>
+                <g fill="none" fill-rule="evenodd">
+                  <mask id="b" fill="#fff">
+                    <use xlink:href="#a" />
+                  </mask>
+                  <use fill="#F1F3F4" fill-rule="nonzero" xlink:href="#a" /><text mask="url(#b)" font-family="GoogleSans-Medium, Google Sans"
+                    font-size="12" font-weight="400" letter-spacing="-.136" fill="#5F6368">
+                    <tspan x="5.454" y="13">?</tspan>
+                  </text>
+                </g>
+              </svg>
             </h3>
             <p class="dmb-report-page__maturity-intro">
               This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
@@ -250,22 +277,6 @@
       </div>
     </section>
   </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <div class="h-c-page dmb-h-hidden">
     <h1>UI Kit</h1>
@@ -661,7 +672,6 @@
       </progress-table>
     </section>
 
-
     <script type="text/javascript">
       const element = document.getElementsByClassName('demo-button')[0];
       element.addEventListener('click', () => {
@@ -727,5 +737,44 @@
       });
     </script>
   </div>
+
+  <aside id="dmb-report-left-side-panel" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+      <span class="dmb-fab__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <use xlink:href="#mi-close"></use>
+        </svg>
+      </span>
+      <span class="dmb-fab__text">Close</span>
+    </button>
+
+    <div class="dmb-side-panel__inner">
+      <h1 class="h-c-headline h-c-headline--two dmb-h-mb--medium">Why digital maturity matters</h1>
+
+      [Side panel content goes here…]
+
+
+    </div>
+  </aside>
+
+  <aside id="dmb-report-right-side-panel" class="dmb-side-panel dmb-side-panel" dmb-side-panel>
+    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+      <span class="dmb-fab__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <use xlink:href="#mi-close"></use>
+        </svg>
+      </span>
+      <span class="dmb-fab__text">Close</span>
+    </button>
+
+    <div class="dmb-side-panel__inner">
+      <h1 class="h-c-headline h-c-headline--two dmb-h-mb--medium">Why digital maturity matters</h1>
+
+      [Side panel content goes here…]
+
+
+    </div>
+  </aside>
+
 </div>
 {% endblock %}
