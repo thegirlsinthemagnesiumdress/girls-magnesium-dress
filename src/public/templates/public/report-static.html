@@ -129,139 +129,252 @@
       </div>
     </section>
 
-    <div class="dmb-h-mb--big">
-      <div class="h-c-page">
-        <div class="h-c-grid">
+    <section class="dmb-report-page__tabs dmb-h-mb--big h-c-page">
+        <div class="dmb-report-page__tabs-icons">
           {% for dimension in "123456"|make_list %}
-            <div class="h-c-grid__col h-c-grid__col--2 h-u-text-center">
-              <progress-circle class="dmb-progress-circle dmb-progress-circle--{% cycle 'attribution' 'assets' 'audience' 'access' 'automation' 'organization' %}" data-progress="{% cycle 52.5 10 80 5 70 45 %}">
-                <svg class="dmb-progress-circle__prog-svg" width="80" height="80" viewBox="0 0 120 120">
-                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                </svg>
-                <div class="dmb-progress-circle__icon"></div>
-              </progress-circle>
-              <div>
-                <button class="h-c-button h-c-button--secondary">{% cycle 'Attribution' 'Assets & Ads' 'Audience' 'Access' 'Automation' 'Organization' %}</button>
-              </div>
-            </div>
+          <div class="h-u-text-center">
+            <progress-circle class="dmb-progress-circle dmb-progress-circle--{% cycle 'attribution' 'assets' 'audience' 'access' 'automation' 'organization' %}" data-progress="{% cycle 52.5 10 80 5 70 45 %}">
+              <svg class="dmb-progress-circle__prog-svg" width="80" height="80" viewBox="0 0 120 120">
+                <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+              </svg>
+              <div class="dmb-progress-circle__icon"></div>
+            </progress-circle>
+          </div>
           {% endfor %}
         </div>
-      </div>
-    </div>
 
-    <section class="h-c-page">
-      <div class="dmb-h-mb--big">
-        <div class="h-c-grid">
-          <div class="h-c-grid__col h-c-grid__col--6">
-            <h2 class="h-c-headline h-c-headline--one h-u-mb-std">Attribution</h2>
-            <p>Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.</p>
-          </div>
-          <div class="h-c-grid__col h-c-grid__col--6">
-            <div class="h-c-grid">
-              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--4 h-u-text-center">
-                <progress-circle class="dmb-progress-circle dmb-progress-circle--attribution" data-progress="52.5">
-                  <svg class="dmb-progress-circle__prog-svg" width="121" height="121" viewBox="0 0 120 120">
-                    <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                    <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                  </svg>
-                  <div class="dmb-progress-circle__icon"></div>
-                </progress-circle>
-                <span class="dmb-progress-circle__result">2.1</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4.0</span>
-          </span>
-              </div>
-              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--8">
-                <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-                  <span class="dmb-report-page__headline-accent">You are</span> <strong>Connected</strong>
-                </h3>
-                <p>You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div class="glue-tabby glue-zippy-style" data-glue-tabby-tabset-breakpoints="['medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
+          <ul>
+            <li glue-label="Opens tab 1" id="tab-1">
+              <h3 class="dmb-report-page__tab-heading">Attribution</h3>
 
-      <progress-table class="dmb-progress-table dmb-progress-table--attribution dmb-h-mb--big">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="2.1" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">2.1</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
+              <div class="dmb-report-page__tab-content">
 
-      <div>
-        <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-          <span class="dmb-report-page__headline-accent">You could be</span> <strong>Multi-moment</strong>
-        </h3>
-        <p class="h-c-headline h-c-headline--four h-u-mb-xl">Here's how you get there:</p>
+                <div class="dmb-report-page__tab-header h-c-grid">
+                  <div class="h-c-grid__col h-c-grid__col--5">
+                    <h2 class="h-c-headline h-c-headline--one h-u-mb-std">Attribution</h2>
+                    <p>Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make
+                      informed investment decisions and create even better, even more impactful experiences.</p>
+                  </div>
+                  <div class="h-c-grid__col h-c-grid__col--7">
+                    <div class="h-c-grid">
+                      <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--4 h-u-text-center">
+                        <progress-circle class="dmb-progress-circle dmb-progress-circle--attribution" data-progress="52.5">
+                          <svg class="dmb-progress-circle__prog-svg" width="121" height="121" viewBox="0 0 120 120">
+                            <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                            <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                          </svg>
+                          <div class="dmb-progress-circle__icon"></div>
+                        </progress-circle>
+                        <span class="dmb-progress-circle__result">2.1</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4.0</span>
+                        </span>
+                      </div>
+                      <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--8">
+                        <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
+                          <span class="dmb-report-page__headline-accent">You are</span> <strong>Connected</strong>
+                        </h3>
+                        <p>You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent
+                          A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities
+                          tends to be based on business outcomes.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-        <ul class="dmb-report-page__recommendations h-u-mb-xl">
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Measure the true value of your marketing activities</h4>
-            <p>Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.</p>
-          </li>
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Build your teams’ skills in web analytics</h4>
-            <p>Ask relevant people to take the advanced courses of the Analytics Academy.</p>
-            <button class="h-c-button h-c-button--secondary">Find out more</button>
-          </li>
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Capture marketing performance data comprehensively</h4>
-            <p>Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.</p>
-          </li>
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Expand your measurement capabilities</h4>
-            <p>Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.</p>
-          </li>
-        </ul>
+                <progress-table class="dmb-progress-table dmb-progress-table--attribution dmb-h-mb--big">
+                  <div class="dmb-progress-table__col">
+                  </div>
+                  <div class="dmb-progress-table__col dmb-progress-table__labels">
+                    <h3 aria-hidden="true">Nascent</h3>
+                    <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="2.1" aria-label="Your Company is Emerging">
+                      <div class="dmb-progress-table__label">
+                        <span class="dmb-progress-table__company">Potato</span>
+                        <span class="dmb-progress-table__rating" aria-label="Your company rating">2.1</span>
+                      </div>
+                    </div>
+                    <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
+                      <div class="dmb-progress-table__label">
+                        <!-- icon -->
+                        Industry average
+                        <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
+                      </div>
+                    </div>
+                    <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
+                      <div class="dmb-progress-table__label">
+                        <!-- icon -->
+                        Industry best
+                        <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dmb-progress-table__col">
+                    <h3 aria-hidden="true">Emerging</h3>
+                  </div>
+                  <div class="dmb-progress-table__col">
+                    <h3 aria-hidden="true">Connected</h3>
+                  </div>
+                  <div class="dmb-progress-table__col">
+                    <h3 aria-hidden="true">Multi-Moment</h3>
+                  </div>
+                </progress-table>
 
-        <div class="h-u-text-right">
-          <button class="h-c-button h-c-button--secondary">Go to next dimension</button>
+                <div>
+                  <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
+                    <span class="dmb-report-page__headline-accent">You could be</span> <strong>Multi-moment</strong>
+                  </h3>
+                  <p class="h-c-headline h-c-headline--four h-u-mb-xl">Here's how you get there:</p>
+
+                  <ul class="dmb-report-page__recommendations h-u-mb-xl">
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Measure the true value of your marketing activities</h4>
+                      <p>Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.</p>
+                    </li>
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Build your teams’ skills in web analytics</h4>
+                      <p>Ask relevant people to take the advanced courses of the Analytics Academy.</p>
+                      <button class="h-c-button h-c-button--secondary">Find out more</button>
+                    </li>
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Capture marketing performance data comprehensively</h4>
+                      <p>Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.</p>
+                    </li>
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Expand your measurement capabilities</h4>
+                      <p>Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.</p>
+                    </li>
+                  </ul>
+
+                  <div class="h-u-text-right">
+                    <button class="h-c-button h-c-button--secondary">Go to next dimension</button>
+                  </div>
+                </div>
+
+              </div> <!-- .dmb-report-page__tab-content -->
+            </li>
+            <li glue-label="Opens tab 2" id="tab-2">
+              <h3 class="dmb-report-page__tab-heading">Assets & Ads</h3>
+
+              <div class="dmb-report-page__tab-content">
+                <div class="dmb-report-page__tab-header h-c-grid">
+                  <div class="h-c-grid__col h-c-grid__col--5">
+                    <h2 class="h-c-headline h-c-headline--one h-u-mb-std">Assets & Ads</h2>
+                    <p>Great assets means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.</p>
+                  </div>
+                  <div class="h-c-grid__col h-c-grid__col--7">
+                    <div class="h-c-grid">
+                      <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--4 h-u-text-center">
+                        <progress-circle class="dmb-progress-circle dmb-progress-circle--assets" data-progress="10">
+                          <svg class="dmb-progress-circle__prog-svg" width="121" height="121" viewBox="0 0 120 120">
+                            <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                            <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                          </svg>
+                          <div class="dmb-progress-circle__icon"></div>
+                        </progress-circle>
+                        <span class="dmb-progress-circle__result">0.4</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4.0</span>
+                        </span>
+                      </div>
+                      <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--8">
+                        <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
+                          <span class="dmb-report-page__headline-accent">You are</span> <strong>Connected</strong>
+                        </h3>
+                        <p>You use a variety of measurement methodologies as well as a custom assets model. Results from frequent
+                          A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities
+                          tends to be based on business outcomes.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <progress-table class="dmb-progress-table dmb-progress-table--assets dmb-h-mb--big">
+                  <div class="dmb-progress-table__col">
+                  </div>
+                  <div class="dmb-progress-table__col dmb-progress-table__labels">
+                    <h3 aria-hidden="true">Nascent</h3>
+                    <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="0.4" aria-label="Your Company is Emerging">
+                      <div class="dmb-progress-table__label">
+                        <span class="dmb-progress-table__company">Potato</span>
+                        <span class="dmb-progress-table__rating" aria-label="Your company rating">0.4</span>
+                      </div>
+                    </div>
+                    <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
+                      <div class="dmb-progress-table__label">
+                        <!-- icon -->
+                        Industry average
+                        <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
+                      </div>
+                    </div>
+                    <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
+                      <div class="dmb-progress-table__label">
+                        <!-- icon -->
+                        Industry best
+                        <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dmb-progress-table__col">
+                    <h3 aria-hidden="true">Emerging</h3>
+                  </div>
+                  <div class="dmb-progress-table__col">
+                    <h3 aria-hidden="true">Connected</h3>
+                  </div>
+                  <div class="dmb-progress-table__col">
+                    <h3 aria-hidden="true">Multi-Moment</h3>
+                  </div>
+                </progress-table>
+
+                <div>
+                  <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
+                    <span class="dmb-report-page__headline-accent">You could be</span> <strong>Multi-moment</strong>
+                  </h3>
+                  <p class="h-c-headline h-c-headline--four h-u-mb-xl">Here's how you get there:</p>
+
+                  <ul class="dmb-report-page__recommendations h-u-mb-xl">
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Measure the true value of your marketing activities</h4>
+                      <p>Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.</p>
+                    </li>
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Build your teams’ skills in web analytics</h4>
+                      <p>Ask relevant people to take the advanced courses of the Analytics Academy.</p>
+                      <button class="h-c-button h-c-button--secondary">Find out more</button>
+                    </li>
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Capture marketing performance data comprehensively</h4>
+                      <p>Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.</p>
+                    </li>
+                    <li>
+                      <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Expand your measurement capabilities</h4>
+                      <p>Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.</p>
+                    </li>
+                  </ul>
+
+                  <div class="h-u-text-right">
+                    <button class="h-c-button h-c-button--secondary">Go to next dimension</button>
+                  </div>
+                </div>
+              </div> <!-- .dmb-report-page__tab-content -->
+            </li>
+            <li glue-label="Opens tab 3" id="tab-3">
+              <h3 class="dmb-report-page__tab-heading">Audience</h3>
+              <div>Content 3</div>
+            </li>
+            <li glue-label="Opens tab 4" id="tab-4">
+              <h3 class="dmb-report-page__tab-heading">Access</h3>
+              <div>Content 4</div>
+            </li>
+            <li glue-label="Opens tab 5" id="tab-5">
+              <h3 class="dmb-report-page__tab-heading">Automation</h3>
+              <div>Content 5</div>
+            </li>
+            <li glue-label="Opens tab 6" id="tab-6">
+              <h3 class="dmb-report-page__tab-heading">Organization</h3>
+              <div>Content 6</div>
+            </li>
+          </ul>
         </div>
-      </div>
     </section>
   </main>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -104,6 +104,103 @@ $dmb-report-hero-padding-bottom: 37px;
     max-width: 41em;
   }
 
+  &__tabs-icons {
+    margin-bottom: 16px;
+  }
+
+  &__tabs-icons,
+  .glue-c-tabset__tablist {
+    display: flex;
+  }
+
+  .h-u-text-center,
+  .glue-c-tabset__tab {
+    flex-basis: calc(100% / 6);
+    // text-align: center;
+  }
+
+  .glue-c-tabset__button {
+    height: 100%;
+    width: 100%;
+  }
+
+  $dmb-tabs-border-thickness: 1px;
+  $dmb-tabs-border: $dmb-tabs-border-thickness solid $dmb-color-grey-suva;
+  $dmb-tabs-border-radius: 5px;
+  $dmb-tabs-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
+
+  &__tabs {
+    .glue-tabby {
+      width: 100%;
+    }
+
+    .glue-c-tabset {
+      &__tab {
+        bottom: -$dmb-tabs-border-thickness;
+        font-family: 'Google Sans';
+        margin: 0;
+        position: relative;
+
+        &.glue-is-active {
+          background: #fff;
+
+          .glue-c-tabset__button {
+            border: $dmb-tabs-border;
+            border-bottom: 0;
+            border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+            // box-shadow: $dmb-tabs-box-shadow;
+          }
+        }
+
+        &:not(.glue-is-active) {
+          .glue-c-tabset__button {
+            border: 0;
+            color: $dmb-color-grey-aluminium;
+          }
+        }
+      }
+
+      &__page {
+        border: $dmb-tabs-border;
+        border-radius: $dmb-tabs-border-radius;
+        // box-shadow: $dmb-tabs-box-shadow;
+        padding: 73px 66px 76px;
+
+        &:first-child {
+          border-top-left-radius: 0;
+        }
+
+        &:last-child {
+          border-top-right-radius: 0;
+        }
+      }
+
+      &__panel-container {
+        border: 0;
+        padding: 0;
+      }
+    }
+
+    progress-table {
+      margin-top: 66px;
+    }
+  }
+
+  &__tab-heading {
+    display: none;
+  }
+
+  &__tab-header {
+
+    // ONLY ON DESKTOP
+    & > .h-c-grid__col {
+      &:nth-of-type(1) {
+        border-right: 1px solid $dmb-color-grey-gainsboro;
+        padding: 0 50px 55px 0;
+      }
+    }
+  }
+
   &__recommendations {
     column-count: 2;
     column-gap: 27px;
@@ -117,8 +214,8 @@ $dmb-report-hero-padding-bottom: 37px;
     > li {
       background-color: #f8f9fa;
       display: inline-block;
-      padding: 32px;
       margin-bottom: 22px;
+      padding: 32px;
       width: 100%;
     }
   }
