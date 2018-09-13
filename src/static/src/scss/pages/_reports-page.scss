@@ -186,19 +186,32 @@ $dmb-report-hero-padding-bottom: 37px;
     }
   }
 
-  &__tab-heading {
-    display: none;
+  &__tabs-ul {
+    list-style-type: none;
+    margin: 0;
   }
 
-  &__tab-header {
-
-    // ONLY ON DESKTOP
-    & > .h-c-grid__col {
-      &:nth-of-type(1) {
-        border-right: 1px solid $dmb-color-grey-gainsboro;
-        padding: 0 50px 55px 0;
-      }
+  &__tab-heading {
+    @media (min-width: 601px) {
+      display: none;
     }
+  }
+
+  &__tab-static-col {
+    padding: 0 50px 47px 0;
+
+    @media (min-width: 601px) {
+      border-right: 1px solid $dmb-color-grey-gainsboro;
+    }
+  }
+
+  &__tab-dynamic-col {
+    display: flex;
+    padding-left: 40px;
+  }
+
+  &__tab-progress-circle {
+    margin-right: 50px; // ONLY ON DESKTOP
   }
 
   &__recommendations {
