@@ -27,7 +27,6 @@ def fetch_results(response_id=None, file_format='json'):
                         'Enter Embedded Data Field Name Here...': '',
                         'sponsor': '',
                         'company_name': 'new survey',
-                        'industry': 'A',
                         'dmb': '0.5',
                         'Q1_1_TEXT': '',
                         'Q1_2_TEXT': '',

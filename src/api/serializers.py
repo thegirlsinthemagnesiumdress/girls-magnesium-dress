@@ -1,5 +1,5 @@
 from core.models import Survey, SurveyResult
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, CharField
 
 
 class SurveySerializer(ModelSerializer):
@@ -22,6 +22,8 @@ class SurveyResultSerializer(ModelSerializer):
 
 class SurveyWithResultSerializer(ModelSerializer):
     last_survey_result = SurveyResultSerializer(read_only=True)
+    country_name = CharField(source='get_country_display')
+    industry_name = CharField(source='get_industry_display')
 
     class Meta:
         model = Survey
@@ -31,6 +33,7 @@ class SurveyWithResultSerializer(ModelSerializer):
             'link_sponsor',
             'engagement_lead',
             'industry',
-            'country',
+            'industry_name',
+            'country_name',
             'last_survey_result',
         )
