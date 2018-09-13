@@ -61,6 +61,7 @@ DIMENSIONS = {
         'Q125',
         'Q126',
         'Q127',
+        # 'Q128', This is a response with multiple responses and it's currently not supported.
         'Q129',
         'Q130',
         'Q131',
@@ -77,12 +78,12 @@ DIMENSIONS = {
     ],
     'attribution': [
         'Q139',
-        'Q140',
+        # 'Q140', This is a response with multiple responses and it's currently not supported.
         'Q141',
         'Q142',
-        'Q143',
+        # 'Q143', This is a response with multiple responses and it's currently not supported.
         'Q144',
-        'Q145',
+        # 'Q145', This is a response with multiple responses and it's currently not supported.
         'Q146',
         'Q147',
     ],
@@ -94,7 +95,7 @@ DIMENSIONS = {
         'Q152',
         'Q153',
         'Q154',
-        'Q155',
+        # 'Q155', This is a response with multiple responses and it's currently not supported.
     ],
 }
 
