@@ -12,9 +12,14 @@ def report_view(request, sid):
     except SurveyResult.DoesNotExist:
         raise Http404("Report does not exist.")
 
+    if s.industry:
+        industry = settings.INDUSTRIES[s.industry]
+    else:
+        industry = None
+
     return render(request, 'public/report.html', {
         'company_name': s.company_name,
-        'industry': settings.INDUSTRIES[s.industry],
+        'industry': industry,
         'country': s.country,
         'DMB': s_result.dmb,
         'DMBd': s_result.dmb_d,

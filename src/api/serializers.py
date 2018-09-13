@@ -18,3 +18,19 @@ class SurveyResultSerializer(ModelSerializer):
     class Meta:
         model = SurveyResult
         fields = ('response_id', 'dmb', 'dmb_d')
+
+
+class SurveyWithResultSerializer(ModelSerializer):
+    last_survey_result = SurveyResultSerializer(read_only=True)
+
+    class Meta:
+        model = Survey
+        fields = (
+            'company_name',
+            'link',
+            'link_sponsor',
+            'engagement_lead',
+            'industry',
+            'country',
+            'last_survey_result',
+        )
