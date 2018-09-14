@@ -17,7 +17,7 @@ class SurveyCompanyNameSerializer(ModelSerializer):
 class SurveyResultSerializer(ModelSerializer):
     class Meta:
         model = SurveyResult
-        fields = ('response_id', 'dmb', 'dmb_d')
+        fields = ('response_id', 'dmb', 'dmb_d', 'loaded_at')
 
 
 class SurveyWithResultSerializer(ModelSerializer):
