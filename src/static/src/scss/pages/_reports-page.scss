@@ -137,7 +137,7 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 
         &.glue-is-active {
           &::after {
-            background: #fff;
+            background: $h-white;
             bottom: -5px;
             content: '';
             display: block;
