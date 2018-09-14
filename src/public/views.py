@@ -7,12 +7,15 @@ from django.shortcuts import render
 
 def report_view(request, sid):
     try:
-        s_result = SurveyResult.objects.filter(survey_id=sid).latest('loaded_at')
+        s = Survey.objects.get(pk=sid)
+        s_result = s.last_survey_result
     except SurveyResult.DoesNotExist:
         raise Http404("Report does not exist.")
 
     return render(request, 'public/report.html', {
-        'company_name': s_result.survey.company_name,
+        'company_name': s.company_name,
+        'industry': settings.INDUSTRIES[s.industry],
+        'country': s.country,
         'DMB': s_result.dmb,
         'DMBd': s_result.dmb_d,
     })
