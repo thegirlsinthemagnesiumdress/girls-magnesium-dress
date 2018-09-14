@@ -35,6 +35,16 @@ class ReportController {
      */
     this.result = null;
 
+    this.dimensions = [
+      'attribution',
+      'ads',
+      'audience',
+      'access',
+      'automation',
+      'organization',
+    ];
+
+
     /**
      * Industry result object.
      * @type {object}

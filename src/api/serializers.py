@@ -1,5 +1,5 @@
 from core.models import Survey, SurveyResult
-from rest_framework.serializers import ModelSerializer, CharField
+from rest_framework.serializers import ModelSerializer, CharField, JSONField
 
 
 class SurveySerializer(ModelSerializer):
@@ -15,6 +15,7 @@ class SurveyCompanyNameSerializer(ModelSerializer):
 
 
 class SurveyResultSerializer(ModelSerializer):
+    dmb_d = JSONField()
     class Meta:
         model = SurveyResult
         fields = ('response_id', 'dmb', 'dmb_d', 'loaded_at')
