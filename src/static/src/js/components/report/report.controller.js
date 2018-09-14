@@ -19,15 +19,35 @@ class ReportController {
    */
   constructor($http, $location) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
-
     const surveyId = sidMatches ? sidMatches[1] : null;
+
+    /**
+     * Survey object.
+     * @type {object}
+     * @export
+     */
+    this.survey = null;
+
+    /**
+     * Survey result object.
+     * @type {object}
+     * @export
+     */
+    this.result = null;
+
+    /**
+     * Industry result object.
+     * @type {object}
+     * @export
+     */
+    this.industryResult = null;
 
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
       this.result = this.survey.last_survey_result;
-      this.companyDmb = this.result.dmb / 4 * 100;
+
       $http.get(`${industryEndpoint}${this.survey.industry}`).then((res) => {
-        this.industry = res.data;
+        this.industryResult = res.data;
       });
     });
   }

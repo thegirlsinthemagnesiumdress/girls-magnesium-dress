@@ -14,6 +14,7 @@ const registration = goog.require('dmb.components.registration');
 const scrollHandler = goog.require('dmb.components.scroll');
 const sidePanel = goog.require('dmb.components.sidePanel');
 const report = goog.require('dmb.components.report');
+const progressCircle = goog.require('dmb.components.progressCircle');
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -27,6 +28,7 @@ const module = angular.module('dmb', [
   scrollHandler.module.name,
   sidePanel.module.name,
   report.module.name,
+  progressCircle.module.name,
   smoothScroll.module.name,
   tableSort.module.name,
   'hercules_template_bundle',

@@ -12,7 +12,6 @@ function ReportDirective() {
     restrict: 'A',
     controller: reportCtrl.main,
     controllerAs: reportCtrl.CONTROLLER_AS_NAME,
-
   };
 }
 

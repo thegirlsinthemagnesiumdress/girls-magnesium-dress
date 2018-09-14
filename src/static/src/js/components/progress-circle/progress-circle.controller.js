@@ -1,49 +1,72 @@
-goog.module('dmb.components.report.controller');
-
-const surveyEndpoint = '/api/report/company/';
-const industryEndpoint = '/api/report/industry/';
-const locationSidRegex = /\/(\w+)[\/!?#$]/;
+goog.module('dmb.components.progressCircle.controller');
 
 
 /**
- * Report class controller
+ * DOM selectors used by component.
+ *
+ * @const
+ * @type {object}
  */
-class ReportController {
+const DOM_SELECTORS = {
+  progressBar: '.dmb-progress-circle__prog-bar',
+};
+
+
+/**
+ * ProgressCircle class controller.
+ */
+class ProgressCircleController {
+
   /**
-   * Report controller
+   * ProgressCircle controller
    *
-   * @param {!angular.$http} $http
-   * @param {!angular.$location} $location
+   * @param {!angular.$element} $element
+   * @param {!angular.$attrs} $attrs
+   * @param {!angular.$scope} $scope
+   * @param {!angular.$filter} $filter
    * @constructor
    * @ngInject
    */
-  constructor($http, $location) {
-    const sidMatches = $location.absUrl().match(locationSidRegex);
+  constructor($element, $attrs, $scope, $filter) {
+    /**
+     * @type {angular.$element}
+     * @private
+     */
+    this.$element_ = $element;
 
-    const surveyId = sidMatches ? sidMatches[1] : null;
+    /**
+     * @type {HTMLElement}
+     * @private
+     */
+    this.progressBar_ = $element[0].querySelector(DOM_SELECTORS.progressBar);
 
-    $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
-      this.survey = res.data;
-      this.result = this.survey.last_survey_result;
-      this.companyDmb = this.result.dmb / 4 * 100;
-      $http.get(`${industryEndpoint}${this.survey.industry}`).then((res) => {
-        this.industry = res.data;
-      });
+    $scope.$watch($attrs.dmbProgressCircle, (nVal) => {
+      const prog = $filter('dmbPercentageNumber')(nVal);
+      this.setProgressCircle(prog);
     });
+  }
+
+  /**
+   * Sets the circle progress by setting the strole-dashoffset.
+   * @param {!number} progress
+   */
+  setProgressCircle(progress) {
+    const dashOffset = 339.292 * (100 - progress) / 100;
+    this.progressBar_.setAttribute('style', `stroke-dashoffset: ${dashOffset};`);
   }
 }
 
 
 /** @const {string} */
-ReportController.CONTROLLER_NAME = 'ReportCtrl';
+ProgressCircleController.CONTROLLER_NAME = 'ProgressCircleCtrl';
 
 
 /** @const {string} */
-ReportController.CONTROLLER_AS_NAME = 'reportCtrl';
+ProgressCircleController.CONTROLLER_AS_NAME = 'progressCircleCtrl';
 
 
 exports = {
-  main: ReportController,
-  CONTROLLER_NAME: ReportController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ReportController.CONTROLLER_AS_NAME,
+  main: ProgressCircleController,
+  CONTROLLER_NAME: ProgressCircleController.CONTROLLER_NAME,
+  CONTROLLER_AS_NAME: ProgressCircleController.CONTROLLER_AS_NAME,
 };

@@ -19,7 +19,7 @@ module.directive(directive.DIRECTIVE_NAME, directive.main);
 //  * Returns level string
 //  * @param {*} dmb
 //  */
-// function dmbLevelNumberyText(dmb) {
+// function dmbRangeText(dmb) {
 //   return `${Math.floor(dmb)} - ${Math.ceil(dmb)}`;
 // }
 
@@ -60,13 +60,8 @@ module.filter('dmbLevelText', ()=> {
   };
 });
 
-// module.filter('dmbProgressText', ()=> {
-//   return (dmb) => {
-//     return angular.isDefined(dmb) ? `${dmb.toFixed(2)}/4.0` : '';
-//   };
-// });
 
-module.filter('dmbLevelNumberyText', ()=> {
+module.filter('dmbRangeText', ()=> {
   return (dmb) => {
     return angular.isDefined(dmb) ? `${Math.floor(dmb)} - ${Math.ceil(dmb)}` : '';
   };
@@ -83,3 +78,5 @@ module.filter('dmbPercentageNumber', ()=> {
  * @type {!angular.Module}
  */
 exports.module = module;
+
+
