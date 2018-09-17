@@ -24,7 +24,7 @@
                 <svg
                     dmb-progress-circle="reportCtrl.result.dmb"
                     class="dmb-progress-circle__prog-svg"
-                    width="214" height="214" viewBox="0 0 120 120">
+                    width="214" height="214" viewbox="0 0 120 120">
                   <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
                   <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
                 </svg>
@@ -158,6 +158,46 @@
 
         <div class="glue-tabby glue-zippy-style" data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
           <ul class="dmb-report-page__tabs-ul">
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[0]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[0] ]}"
+              id="tab-{[ reportCtrl.dimensions[0] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[1]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[1] ]}"
+              id="tab-{[ reportCtrl.dimensions[1] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[2]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[2] ]}"
+              id="tab-{[ reportCtrl.dimensions[2] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[3]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[3] ]}"
+              id="tab-{[ reportCtrl.dimensions[3] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[4]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[4] ]}"
+              id="tab-{[ reportCtrl.dimensions[4] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[5]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[5] ]}"
+              id="tab-{[ reportCtrl.dimensions[5] ]}">
+            </li>
+          </ul>
+
+          {% comment %}
+          <ul class="dmb-report-page__tabs-ul">
             <li glue-label="Opens tab 1" id="tab-1">
               <h3 class="dmb-report-page__tab-heading">Attribution</h3>
 
@@ -185,55 +225,54 @@
                     <span class="dmb-progress-circle__target--value">4.0</span>
                   </span>
                 </div>
-                    <div>
-                <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-                  <span class="dmb-report-page__headline-accent">You are</span> <strong>Connected</strong>
-                </h3>
-                      <p>
-                        You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activitiesc tends to be based on business outcomes.
-                      </p>
+                <div>
+                  <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
+                    <span class="dmb-report-page__headline-accent">You are</span> <strong>Connected</strong>
+                  </h3>
+                  <p>
+                    You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activitiesc tends to be based on business outcomes.
+                  </p>
               </div>
             </div>
           </div>
 
-      <progress-table class="dmb-progress-table dmb-progress-table--attribution dmb-h-mb--big">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="2.1" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">2.1</span>
+          <progress-table class="dmb-progress-table dmb-progress-table--attribution dmb-h-mb--big">
+            <div class="dmb-progress-table__col">
             </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
+            <div class="dmb-progress-table__col dmb-progress-table__labels">
+              <h3 aria-hidden="true">Nascent</h3>
+              <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="2.1" aria-label="Your Company is Emerging">
+                <div class="dmb-progress-table__label">
+                  <span class="dmb-progress-table__company">Potato</span>
+                  <span class="dmb-progress-table__rating" aria-label="Your company rating">2.1</span>
+                </div>
+              </div>
+              <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
+                <div class="dmb-progress-table__label">
+                  <!-- icon -->
+                  Industry average
+                  <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
+                </div>
+              </div>
+              <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
+                <div class="dmb-progress-table__label">
+                  <!-- icon -->
+                  Industry best
+                  <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
+            <div class="dmb-progress-table__col">
+              <h3 aria-hidden="true">Emerging</h3>
             </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-
-      <div>
+            <div class="dmb-progress-table__col">
+              <h3 aria-hidden="true">Connected</h3>
+            </div>
+            <div class="dmb-progress-table__col">
+              <h3 aria-hidden="true">Multi-Moment</h3>
+            </div>
+          </progress-table>
+        <div>
         <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
           <span class="dmb-report-page__headline-accent">You could be</span> <strong>Multi-moment</strong>
         </h3>
@@ -384,6 +423,7 @@
               <div>Content 6</div>
             </li>
           </ul>
+          {% endcomment %}
         </div>
       </section>
 

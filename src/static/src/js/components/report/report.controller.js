@@ -14,10 +14,11 @@ class ReportController {
    *
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
+   * @param {!object} reportService
    * @constructor
    * @ngInject
    */
-  constructor($http, $location) {
+  constructor($http, $location, reportService) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
 
@@ -52,12 +53,18 @@ class ReportController {
      */
     this.industryResult = null;
 
+    // We're saving the results in a service since it's not possible to
+    // directly pass them to the directive throught the bindings since
+    // the tab component messes up the scopes. We use a service instead.
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
       this.result = this.survey.last_survey_result;
 
+      reportService.dmb_d = this.result.dmb_d;
+
       $http.get(`${industryEndpoint}${this.survey.industry}`).then((res) => {
         this.industryResult = res.data;
+        reportService.industryDmb_d = this.industryResult.dmb_d;
       });
     });
   }

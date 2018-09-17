@@ -1,6 +1,7 @@
 goog.module('dmb.components.report');
 
 const directive = goog.require('dmb.components.report.directive');
+const service = goog.require('dmb.components.report.service');
 
 
 /** @const {string} */
@@ -14,38 +15,7 @@ const module = angular.module(MODULE_NAME, []);
 
 
 module.directive(directive.DIRECTIVE_NAME, directive.main);
-
-// /**
-//  * Returns level string
-//  * @param {*} dmb
-//  */
-// function dmbRangeText(dmb) {
-//   return `${Math.floor(dmb)} - ${Math.ceil(dmb)}`;
-// }
-
-// /**
-//  * Returns level string
-//  * @param {*} dmb
-//  */
-// function dmbLevelText(dmb) {
-//   const levels = {
-//     0: 'Nascent',
-//     1: 'Emerging',
-//     2: 'Connected',
-//     3: 'Multi-moment',
-//   };
-
-//   return levels[Math.floor(dmb)];
-// }
-
-
-// /**
-//  * Returns level string
-//  * @param {*} dmb
-//  */
-// function dmbProgressText(dmb) {
-//   return `${dmb.toFixed(2)}/4.0`;
-// }
+module.service(service.SERVICE_NAME, service.main);
 
 module.filter('dmbLevelText', ()=> {
   return (dmb) => {
@@ -60,10 +30,17 @@ module.filter('dmbLevelText', ()=> {
   };
 });
 
-
 module.filter('dmbRangeText', ()=> {
   return (dmb) => {
-    return angular.isDefined(dmb) ? `${Math.floor(dmb)} - ${Math.ceil(dmb)}` : '';
+    const floor = angular.isDefined(dmb) ? Math.min(Math.floor(dmb), 3) : null;
+    const ceil = angular.isDefined(dmb) ? Math.min(Math.ceil(dmb), 4) : null;
+    return angular.isDefined(dmb) ? `${floor} - ${ceil}` : '';
+  };
+});
+
+module.filter('dmbPercentageNumber', ()=> {
+  return (dmb) => {
+    return angular.isDefined(dmb) ? dmb / 4 * 100 : 0;
   };
 });
 

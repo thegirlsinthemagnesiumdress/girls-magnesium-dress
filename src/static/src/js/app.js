@@ -16,6 +16,7 @@ const scrollHandler = goog.require('dmb.components.scroll');
 const sidePanel = goog.require('dmb.components.sidePanel');
 const report = goog.require('dmb.components.report');
 const progressCircle = goog.require('dmb.components.progressCircle');
+const dimensionTab = goog.require('dmb.components.dimensionTab');
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -30,6 +31,7 @@ const module = angular.module('dmb', [
   sidePanel.module.name,
   report.module.name,
   progressCircle.module.name,
+  dimensionTab.module.name,
   smoothScroll.module.name,
   tabby.module.name,
   tableSort.module.name,
@@ -37,8 +39,8 @@ const module = angular.module('dmb', [
   'ngclipboard',
 ]);
 
-
-const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
+const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 module.constant('csrfToken', csrfToken);
 
 // Conditionally start the app if it's a supported browser.
