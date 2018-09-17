@@ -49,11 +49,6 @@ module.filter('dmbPercentageNumber', ()=> {
   };
 });
 
-module.filter('dmbPercentageNumber', ()=> {
-  return (dmb) => {
-    return angular.isDefined(dmb) ? dmb / 4 * 100 : 0;
-  };
-});
 
 /**
  * Report angular module.
