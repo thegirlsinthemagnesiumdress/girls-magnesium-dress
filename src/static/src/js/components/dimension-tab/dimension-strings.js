@@ -117,110 +117,129 @@ const dimensionLevelRecomendations = {
   },
   'ads': {
     0: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Make ads more relevant for different types of users',
+      'text': 'Segment your users into different audiences, for example, new users and existing customers. Create ads that align with their respective expectations.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Tailor the user experience of your assets',
+      'text': 'Tailor your website or app to the expectations of different audiences, for example, existing customer may benefit from more specific information whereas new users may need a broader picture.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Start using technology',
+      'text': 'Use web analytics tools and A/B testing tools to continually improve the performance of your assets.',
     }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Improve the speed of your mobile assets',
+      'text': 'Take the mobile speed test and get recommendations to implement right away.',
+    }, {
+      'header': 'Remove friction from the user experience of your mobile assets',
+      'text': 'Consider these best practices and implement them.',
+    }, {
+      'header': 'Connect different teams of your company',
+      'text': 'Foster collaboration between different marketing teams that are responsible for creating your creatives, for example, digital and non-digital teams, media and creative teams. Encourage them to work together and share best practices.',
     }],
     1: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Improve the relevance of your ads for different types of users',
+      'text': 'Refine the segmentation of your users into different audiences and create ads that match their characteristics.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Tailor the user experience of your assets',
+      'text': 'Expand tailoring your website beyond basic personalisation, for example, create tailored experiences for more of your audience segments or use real-time predictive modelling to suggest products.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your creative testing capabilities',
+      'text': 'Add more methods such as multivariate tests or consumer surveys to your testing suite.',
     }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Improve the speed of your mobile assets',
+      'text': 'Take the mobile speed test and get recommendations to implement right away.',
+    }, {
+      'header': 'Remove friction from the user experience of your mobile assets',
+      'text': 'Consider these best practices and implement those where you still have gaps.',
+    }, {
+      'header': 'Improve collaboration of teams that are responsible for creatives',
+      'text': 'Consider establishing timelines that are shared between media and creative teams. Explore using the same toolset, for example, for managing creative projects. Encourage best practice sharing across these teams.',
     }],
     2: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Improve the relevance of your ads for different types of users',
+      'text': 'Use additional data signals such as time of day or user location in your audience segmentation to create ads that are even more relevant.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Tailor the user experience of your assets',
+      'text': 'Expand tailoring your website to include data signals from internal systems like your CRM or loyalty programme.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Maximise the impact of your creative tests',
+      'text': 'Share the results of your tests widely, for example with non-digital teams. Establish a feedback loop so all teams can learn from each other.',
     }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Improve the speed of your mobile assets',
+      'text': 'Take the mobile speed test and get recommendations to implement right away.',
+    }, {
+      'header': 'Remove friction from the entire user experience',
+      'text': 'Consider these best practices and implement those where you still have gaps. Use current mobile techniques such as progressive web apps or single sign-on. Create links between your mobile assets and non-digital touchpoints, like stores or call centres.',
+    }, {
+      'header': 'Improve collaboration of teams that are responsible for creatives',
+      'text': 'Enable media and creative teams to work hand-in-hand and to use collaborative tools. Establish connections between digital and non-digital teams.',
     }],
     3: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Improve the relevance of your ads for different types of users',
+      'text': 'Keep up to date with the latest research and industry best practices to find new ways of increasing the relevance of your ads.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Tailor the user experience of your assets',
+      'text': 'Continue to invest in tailoring your website to the expectations of different audiences. Leverage new data signals as they become available, for example, from emerging device types or internal tools.as they become available',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Maximise the impact of your creative tests',
+      'text': 'Continue to share the results of your tests widely and build a robust data set of creative performance. Iterate feedback and sharing processes to ensure continued improvement off your creatives',
     }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Continue to invest in the speed of your mobile assets',
+      'text': 'Every fraction of a second counts. Take the mobile speed test regularly to identify areas of improvement.',
+    }, {
+      'header': 'Review the entire user experience to identify friction points',
+      'text': 'Keep up to date with emerging trends in UX and web technologies. Explore further possibilities to improve the user experience as people move between digital touchpoints and between digital and non-digital touchpoints.',
+    }, {
+      'header': 'Improve collaboration of teams that are responsible for creatives',
+      'text': 'Connect teams who are responsible for your creatives with newly hired specialists or teams.',
     }],
+
   },
   'audience': {
     0: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Use more signals to reach your audience',
+      'text': 'In addition to 3rd party data, use 1st party data (i.e. your own data) to decide which users you want to reach online. Segment users into different audiences and optimise this segmentation regularly.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Leverage insights across channels',
+      'text': 'Share insights you gain in 1 channel, for example search, to improve how you reach your audience in another channel, for example email.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Find additional opportunities to reach users',
+      'text': 'Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing.',
     }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Invest in technology',
+      'text': 'Build or buy tools that allow you to capture and analyse user insights, for example, a CRM or Data Management Platform.',
     }],
     1: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Use more signals to reach your audience',
+      'text': 'In addition to 3rd party data, use 1st party data across different digital channels to decide which users you want to reach online. Use that data to create additional audience segments and update this segmentation while campaigns are running.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Leverage insights across digital and non-digital channels',
+      'text': 'Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Find additional opportunities to reach users',
+      'text': 'Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing.as they become available.',
     }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Enhance segmentation capabilities',
+      'text': 'Extend your proficiency in using tools that allow you to capture and analyse user insights, for example, a CRM system or Data Management Platform.',
     }],
     2: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Use more signals to reach your audience',
+      'text': 'In addition to 3rd party data, use 1st party data across different digital and non-digital channels to build meaningful audience segments. Update these segments automatically, based on a set of rules that you actively maintain.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Leverage insights from the entire company',
+      'text': 'Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video. Consider feeding in other types of data, for example, sales data.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
-    }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Enhance segmentation capabilities',
+      'text': 'Extend your proficiency in using tools that allow you to capture and analyse user insights, for example a CRM system or Data Management Platform. Connect tools with each other. Leverage machine learning technology improve your audience segmentation.',
     }],
     3: [{
-      'header': 'Measure the true value of your marketing activities',
-      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Update the types of signals you use to reach your audience',
+      'text': 'Consider new signals as they become available to build your audience segments. Continue to update these segments based on the value they deliver to your business.',
     }, {
-      'header': 'Capture marketing performance data comprehensively',
-      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Leverage insights from the entire company',
+      'text': 'Assess if insights from new marketing channels, device types, ad formats and business systems can be used to improve how you reach users.',
     }, {
-      'header': 'Expand your measurement capabilities',
-      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
-    }, {
-      'header': 'Build your teams\' skills in web analytics',
-      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Enhance segmentation capabilities',
+      'text': 'Stay close to developments in the tool landscape and explore opportunities related to improving the actionability of insights. For example, check if insights gained in 1 tool, like your Data Management Platform, could be used in another tool, like the 1 where you build and run your campaigns. Leverage emerging machine learning technology to improve your audience segmentation.',
     }],
   },
   'access': {
