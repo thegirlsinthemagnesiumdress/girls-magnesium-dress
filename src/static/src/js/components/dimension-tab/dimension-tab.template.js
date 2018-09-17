@@ -16,7 +16,7 @@ const dimensionTabTemplate = `
 
     <div class="dmb-report-page__tab-dynamic-col h-c-grid__col h-c-grid__col--7">
       <div class="dmb-report-page__tab-progress-circle">
-        <div class="dmb-progress-circle dmb-progress-circle--attribution" data-progress="52.5">
+        <div class="dmb-progress-circle dmb-progress-circle--{[dmbDimensionTab]}" data-progress="52.5">
           <svg
               dmb-progress-circle="dimensionTabCtrl.dmb"
               class="dmb-progress-circle__prog-svg"
@@ -27,7 +27,7 @@ const dimensionTabTemplate = `
           <div class="dmb-progress-circle__icon"></div>
         </div>
         <div>
-          <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb ]}</span>
+          <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span>
           <span class="dmb-progress-circle__target">/
             <span class="dmb-progress-circle__target--value">4.0</span>
           </span>
@@ -37,7 +37,7 @@ const dimensionTabTemplate = `
         <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
           <span class="dmb-report-page__headline-accent">You are</span> <strong>{[ dimensionTabCtrl.dmb|dmbLevelText ]} </strong>
         </h3>
-        <p>
+      <p>
           {[ dimensionTabCtrl.dimensionLevelDescription[dmbDimensionTab][dimensionTabCtrl.floorDMB] ]}
         </p>
       </div>
