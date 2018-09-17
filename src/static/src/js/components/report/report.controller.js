@@ -15,8 +15,8 @@ class ReportController {
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
    * @param {!Object} reportService
-   * @param {!Object} floorDmbFactory
-   * @constructor
+   * @param {!Function} floorDmbFactory
+   *
    * @ngInject
    */
   constructor($http, $location, reportService, floorDmbFactory) {
@@ -25,21 +25,21 @@ class ReportController {
 
     /**
      * Survey object.
-     * @type {object}
+     * @type {Object}
      * @export
      */
     this.survey = null;
 
     /**
      * Survey result object.
-     * @type {object}
+     * @type {Object}
      * @export
      */
     this.result = null;
 
     /**
      * Floored dmb
-     * @type {number}
+     * @type {?number}
      * @export
      */
     this.floorDmb = null;
@@ -60,7 +60,7 @@ class ReportController {
 
     /**
      * Industry result object.
-     * @type {object}
+     * @type {Object}
      * @export
      */
     this.industryResult = null;

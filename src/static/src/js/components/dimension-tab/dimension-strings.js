@@ -3,21 +3,21 @@
 goog.module('dmb.components.dimensionTab.strings');
 
 const dimensionHeaders = {
-  attribution: 'Attribution',
-  ads: 'Assets and ads',
-  audience: 'Audience',
-  access: 'Access',
-  automation: 'Automation',
-  organization: 'Organization',
+  'attribution': 'Attribution',
+  'ads': 'Assets and ads',
+  'audience': 'Audience',
+  'access': 'Access',
+  'automation': 'Automation',
+  'organization': 'Organization',
 };
 
 const dimensionHeadersDescription = {
-  attribution: 'Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.',
-  ads: 'Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.',
-  audience: 'To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.',
-  access: 'Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control.',
-  automation: 'Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth.',
-  organization: 'Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed.',
+  'attribution': 'Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.',
+  'ads': 'Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.',
+  'audience': 'To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.',
+  'access': 'Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control.',
+  'automation': 'Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth.',
+  'organization': 'Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed.',
 };
 
 
@@ -61,328 +61,328 @@ const dimensionLevelDescription = {
 };
 
 const dimensionLevelRecomendations = {
-  attribution: {
+  'attribution': {
     0: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
     }],
     1: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
     }],
     2: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
     3: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
   },
-  ads: {
+  'ads': {
     0: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
     }],
     1: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
     }],
     2: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
     3: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
   },
-  audience: {
+  'audience': {
     0: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
     }],
     1: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
     }],
     2: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
     3: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
   },
-  access: {
+  'access': {
     0: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
     }],
     1: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
     }],
     2: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
     3: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
   },
-  automation: {
+  'automation': {
     0: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
     }],
     1: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
     }],
     2: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
     3: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
   },
-  organization: {
+  'organization': {
     0: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
     }],
     1: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
     }],
     2: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
     3: [{
-      header: 'Measure the true value of your marketing activities',
-      text: 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
+      'header': 'Measure the true value of your marketing activities',
+      'text': 'Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models.',
     }, {
-      header: 'Capture marketing performance data comprehensively',
-      text: 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
+      'header': 'Capture marketing performance data comprehensively',
+      'text': 'Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance.',
     }, {
-      header: 'Expand your measurement capabilities',
-      text: 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
+      'header': 'Expand your measurement capabilities',
+      'text': 'Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. ',
     }, {
-      header: 'Build your teams\' skills in web analytics',
-      text: 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'header': 'Build your teams\' skills in web analytics',
+      'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
     }],
   },
 };

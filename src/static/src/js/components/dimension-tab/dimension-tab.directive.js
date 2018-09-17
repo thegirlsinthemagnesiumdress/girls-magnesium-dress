@@ -12,8 +12,8 @@ function ReportDirective() {
   return {
     restrict: 'A',
     scope: {
-      dmbDimensionTab: '@',
-      companyName: '@',
+      'dmbDimensionTab': '@',
+      'companyName': '@',
     },
     template: dimensionTabtemplate,
     controller: dimensionTabCtrl.main,

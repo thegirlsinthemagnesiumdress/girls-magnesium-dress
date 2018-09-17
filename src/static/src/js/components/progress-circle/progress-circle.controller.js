@@ -5,7 +5,7 @@ goog.module('dmb.components.progressCircle.controller');
  * DOM selectors used by component.
  *
  * @const
- * @type {object}
+ * @type {Object}
  */
 const DOM_SELECTORS = {
   progressBar: '.dmb-progress-circle__prog-bar',
@@ -20,16 +20,16 @@ class ProgressCircleController {
   /**
    * ProgressCircle controller
    *
-   * @param {!angular.$element} $element
+   * @param {!angular.JQLite} $element
    * @param {!angular.Attributes} $attrs
    * @param {!angular.Scope} $scope
    * @param {!angular.$filter} $filter
-   * @constructor
+   *
    * @ngInject
    */
   constructor($element, $attrs, $scope, $filter) {
     /**
-     * @type {angular.$element}
+     * @type {angular.JQLite}
      * @private
      */
     this.$element_ = $element;
@@ -40,7 +40,7 @@ class ProgressCircleController {
      */
     this.progressBar_ = $element[0].querySelector(DOM_SELECTORS.progressBar);
 
-    $scope.$watch($attrs.dmbProgressCircle, (nVal) => {
+    $scope.$watch($attrs['dmbProgressCircle'], (nVal) => {
       const prog = $filter('dmbPercentageNumber')(nVal);
       this.setProgressCircle(prog);
     });

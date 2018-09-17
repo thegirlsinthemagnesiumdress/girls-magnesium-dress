@@ -17,16 +17,14 @@ class ReportService {
   constructor() {
     /**
      * @export
-     * @type{object}
-     * @public
+     * @type {Object}
      *
      */
     this.dmb_d = {};
 
     /**
-     * @type{object}
+     * @type {Object}
      * @export
-     * @public
      *
      */
     this.industryDmb_d = {};

@@ -14,18 +14,19 @@ const DOM_SELECTORS = {};
  * DimensionTab class controller.
  */
 class DimensionTabController {
+
   /**
    * DimensionTab controller
    *
    * @param {!angular.Scope} $scope
    * @param {!Object} reportService
-   * @param {!Object} floorDmbFactory
+   * @param {!Function} floorDmbFactory
    * @param {!Object} dimensionHeaders
    * @param {!Object} dimensionHeadersDescription
    * @param {!Object} dimensionLevelDescription
    * @param {!Object} dimensionLevelRecomendations
-   * @constructor
    *
+   * @constructor
    * @ngInject
    */
   constructor(
@@ -73,7 +74,7 @@ class DimensionTabController {
         this.floorDMB = null;
 
         $scope.$watch(() => (reportService.dmb_d), (nVal)=> {
-          this.dmb = nVal ? nVal[$scope.dmbDimensionTab] : null;
+          this.dmb = nVal ? nVal[$scope['dmbDimensionTab']] : null;
           this.floorDMB = floorDmbFactory(this.dmb);
         });
 
