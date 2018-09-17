@@ -192,10 +192,6 @@ $dmb-report-hero-padding-bottom: 37px;
 }
 
 #dmb-report-right-side-panel {
-  .dmb-side-panel__list-item + .dmb-side-panel__list-item {
-    border-top: 1px solid $dmb-color-white-gainsborough;
-  }
-
   .dmb-side-panel__inner {
     @include bp(s) {
       padding: 79px 114px;
@@ -204,24 +200,34 @@ $dmb-report-hero-padding-bottom: 37px;
 
   .dmb-side-panel {
     &__heading {
-      border-bottom: 1px solid $dmb-color-white-gainsborough;
+      border-bottom: 1px solid $dmb-color-grey-gainsborough;
       margin: 0 0 58px;
       padding-bottom: 16px;
     }
 
     &__list-container {
-      margin: 90px 0 114px;
+      margin: 90px 0 82px;
     }
 
     &__list {
       counter-reset: shields;
       list-style-type: none;
+      margin: 0;
     }
-
-
 
     &__list-item {
       display: flex;
+      padding-bottom: 16px;
+
+      h3,
+      p,
+      li {
+        margin-bottom: 16px;
+      }
+
+      sup {
+        color: $dmb-color-grey-aluminium;
+      }
     }
 
     &__list-item-bullet {
@@ -247,11 +253,87 @@ $dmb-report-hero-padding-bottom: 37px;
 
     &__list-item-content {
       ul {
-        list-style-type: disc;
+        list-style-image: url('/src/static/src/img/icons/side-panel-bullet.svg');
+        list-style-type: none;
       }
     }
 
+    &__advice {
+      background: $dmb-color-blue-solitude;
+      padding: 40px 48px 18px;
 
+      h3 {
+        margin-bottom: 32px;
+        max-width: 545px;
 
+        @include bp(s) {
+          margin-bottom: 62px;
+        }
+      }
+    }
+
+    &__advice-items {
+      @include bp(m) {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+    }
+
+    &__advice-item {
+      flex-basis: 33%;
+      flex-grow: 1;
+      margin-bottom: 32px;
+
+      h4 {
+        margin-bottom: 24px;
+      }
+    }
+
+    &__research {
+      border-bottom: 1px solid $dmb-color-grey-very-light;
+      padding: 82px 83px 90px;
+
+      p {
+        &:nth-of-type(1) {
+          margin-bottom: 24px;
+          max-width: 584px;
+        }
+
+        &:nth-of-type(2) {
+          max-width: 536px;
+        }
+      }
+    }
+
+    &__footnotes {
+      color: $dmb-color-grey-aluminium;
+      max-width: 775;
+      padding: 32px 83px 0;
+
+      p {
+        display: flex;
+        font-size: 10px;
+        line-height: 1.5em;
+        margin: 0 0 2px;
+
+        span {
+          &:nth-of-type(1) {
+            font-size: .6em;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
   } // .dmb-side-panel
+
+  .dmb-side-panel__advice-item + .dmb-side-panel__advice-item {
+    @include bp(s) {
+      margin-left: 54px;
+    }
+  }
+
+  .dmb-side-panel__list-item + .dmb-side-panel__list-item {
+    border-top: 1px solid $dmb-color-grey-gainsborough;
+    padding-top: 32px;
+  }
 } //#dmb-report-right-side-panel
