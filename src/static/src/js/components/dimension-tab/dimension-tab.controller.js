@@ -26,7 +26,6 @@ class DimensionTabController {
    * @param {!Object} dimensionLevelDescription
    * @param {!Object} dimensionLevelRecomendations
    *
-   * @constructor
    * @ngInject
    */
   constructor(
