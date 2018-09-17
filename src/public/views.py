@@ -5,27 +5,6 @@ from django.http import Http404
 from django.shortcuts import render
 
 
-def report_view(request, sid):
-    try:
-        s = Survey.objects.get(pk=sid)
-        s_result = s.last_survey_result
-    except SurveyResult.DoesNotExist:
-        raise Http404("Report does not exist.")
-
-    if s.industry:
-        industry = settings.INDUSTRIES[s.industry]
-    else:
-        industry = None
-
-    return render(request, 'public/report.html', {
-        'company_name': s.company_name,
-        'industry': industry,
-        'country': s.country,
-        'DMB': s_result.dmb,
-        'DMBd': s_result.dmb_d,
-    })
-
-
 def registration(request):
     return render(request, 'public/registration.html', {
         'industries': settings.INDUSTRIES,
