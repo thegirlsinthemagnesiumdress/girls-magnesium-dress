@@ -86,23 +86,9 @@
           </div>
           <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--9">
             <h3 class="dmb-report-page__headline h-c-headline h-c-headline--two dmb-h-mb--small">
-              <span class="dmb-report-page__headline-accent">Your maturity is </span>&nbsp;
-              <strong>Emerging
-              </strong>&nbsp;
-              <svg width="18px" height="18px" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" dmb-side-panel-trigger="#dmb-report-left-side-panel">
-                <defs>
-                  <circle id="a" cx="8.5" cy="8.5" r="8.5" />
-                </defs>
-                <g fill="none" fill-rule="evenodd">
-                  <mask id="b" fill="#fff">
-                    <use xlink:href="#a" />
-                  </mask>
-                  <use fill="#F1F3F4" fill-rule="nonzero" xlink:href="#a" /><text mask="url(#b)" font-family="GoogleSans-Medium, Google Sans"
-                    font-size="12" font-weight="400" letter-spacing="-.136" fill="#5F6368">
-                    <tspan x="5.454" y="13">?</tspan>
-                  </text>
-                </g>
-              </svg>
+              <span class="dmb-report-page__headline-accent">Your maturity is</span>&nbsp;<strong>Emerging</strong>&nbsp;<button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
+                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              </button>
             </h3>
             <p class="dmb-report-page__maturity-intro">
               This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
@@ -124,15 +110,17 @@
           </div>
           <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
             <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
+              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two">
+                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              </button>&nbsp;Industry average
               <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
             </div>
           </div>
           <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
             <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
+              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two">
+                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              </button>&nbsp;Industry best
               <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
             </div>
           </div>
@@ -149,9 +137,12 @@
       </progress-table>
 
       <div class="dmb-h-mb--big">
-        <h2 class="h-c-eyebrow h-u-mb-l">6 dimensions of digital marketing maturity</h2>
+        <h2 class="h-c-eyebrow h-u-mb-l">
+          <span>6 dimensions of digital marketing maturity</span>&nbsp;<button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
+            <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+          </button>
+        </h2>
         <p class="dmb-report-page__dimensions-intro dmb-h-mb--small">Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.</p>
-
         <button class="h-c-button h-c-button--secondary">Learn more about why these matter</button>
       </div>
     </section>
@@ -221,15 +212,17 @@
           </div>
           <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
             <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
+              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two">
+                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              </button>&nbsp;Industry average
               <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
             </div>
           </div>
           <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
             <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
+              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two">
+                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              </button>&nbsp;Industry best
               <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
             </div>
           </div>
@@ -738,22 +731,125 @@
     </script>
   </div>
 
-  <aside id="dmb-report-left-side-panel" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+  <aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <use xlink:href="#mi-close"></use>
         </svg>
       </span>
-      <span class="dmb-fab__text">Close</span>
     </button>
-
     <div class="dmb-side-panel__inner">
-      <h1 class="h-c-headline h-c-headline--two dmb-h-mb--medium">Why digital maturity matters</h1>
+      <h1 class="h-c-headline h-c-headline--three">
+        Levels of digital marketing maturity
+      </h1>
+      <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
+        Nascent
+      </h2>
+      <p>
+        Marketing campaigns use mainly external data and direct buys, with limited links to sales.
+      </p>
+      <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
+        Emerging
+      </h2>
+      <p>
+        Some use of owned data in automated buying with single-channel optimisation and testing.
+      </p>
+      <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
+        Connected
+      </h2>
+      <p>
+        Data integrated and activated across channels with demonstrated link to ROI or sales proxies.
+      </p>
+      <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
+        Multi-moment
+      </h2>
+      <p>
+        Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions
+      </p>
+    </div>
+  </aside>
 
-      [Side panel content goes here…]
+  <aside id="dmb-report-left-side-panel-two" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+      <span class="dmb-fab__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <use xlink:href="#mi-close"></use>
+        </svg>
+      </span>
+    </button>
+    <div class="dmb-side-panel__inner">
+      <h1 class="h-c-headline h-c-headline--three">
+        Benchmark calculations
+      </h1>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Industry Average
+      </h2>
+      <p>
+        How companies in your industry perform on average.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Industry Best
+      </h2>
+      <p>
+        How companies in the top 2% of marketing maturity within your industry perform.
+      </p>
+    </div>
+  </aside>
 
-
+  <aside id="dmb-report-left-side-panel-three" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+      <span class="dmb-fab__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <use xlink:href="#mi-close"></use>
+        </svg>
+      </span>
+    </button>
+    <div class="dmb-side-panel__inner">
+      <h1 class="h-c-headline h-c-headline--three">
+        6 dimensions of marketing maturity
+      </h1>
+      <p>
+        We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity.
+        The results showed these 6 capabilities are key to top performance and delivering what today's customers expect from
+        brands.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Attribution
+      </h2>
+      <p>
+        The capability to accurately measure and value customer touchpoints.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Assets and ads
+      </h2>
+      <p>
+        The capability to deliver attention-driving, intuitive experiences across digital touchpoints.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Audience
+      </h2>
+      <p>
+        The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Access
+      </h2>
+      <p>
+        The capability to reach and deliver across all inventory types and channels.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Automation
+      </h2>
+      <p>
+        The capability to optimise marketing operations to drive profitability and growth.
+      </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Organization
+      </h2>
+      <p>
+        The capability to improve decision-making and results by working collaboratively across teams and with specialised partners.
+      </p>
     </div>
   </aside>
 
@@ -764,11 +860,10 @@
           <use xlink:href="#mi-close"></use>
         </svg>
       </span>
-      <span class="dmb-fab__text">Close</span>
     </button>
 
     <div class="dmb-side-panel__inner">
-      <h1 class="dmb-side-panel__heading h-c-headline h-c-headline--two dmb-h-mb--medium">Why digital maturity matters</h1>
+      <h1 class="dmb-side-panel__heading h-c-headline h-c-headline--one h-u-font-weight-medium">Why digital maturity matters</h1>
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--5">
           <h2 class="h-c-headline h-c-headline--four">
@@ -798,7 +893,7 @@
           <ul class="dmb-side-panel__list">
             <li class="dmb-side-panel__list-item">
               <div class="dmb-side-panel__list-item-bullet">
-                <img src="/src/static/src/img/icons/shield.svg" />
+                <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
               </div>
               <div class="dmb-side-panel__list-item-content">
                 <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
@@ -819,7 +914,7 @@
             </li>
             <li class="dmb-side-panel__list-item">
               <div class="dmb-side-panel__list-item-bullet">
-                <img src="/src/static/src/img/icons/shield.svg" />
+                <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
               </div>
               <div class="dmb-side-panel__list-item-content">
                 <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
@@ -840,7 +935,7 @@
             </li>
             <li class="dmb-side-panel__list-item">
               <div class="dmb-side-panel__list-item-bullet">
-                <img src="/src/static/src/img/icons/shield.svg" />
+                <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
               </div>
               <div class="dmb-side-panel__list-item-content">
                 <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
