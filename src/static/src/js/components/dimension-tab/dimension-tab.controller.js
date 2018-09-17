@@ -20,6 +20,7 @@ class DimensionTabController {
    * @param {!angular.$element} $element
    * @param {!angular.$scope} $scope
    * @param {!object} reportService
+   * @param {!object} floorDmbFactory
    * @param {!object} dimensionHeaders
    * @param {!object} dimensionHeadersDescription
    * @param {!object} dimensionLevelDescription
@@ -31,6 +32,7 @@ class DimensionTabController {
       $element,
       $scope,
       reportService,
+      floorDmbFactory,
       dimensionHeaders,
       dimensionHeadersDescription,
       dimensionLevelDescription,
@@ -73,7 +75,7 @@ class DimensionTabController {
 
         $scope.$watch(() => (reportService.dmb_d), (nVal)=> {
           this.dmb = nVal ? nVal[$scope.dmbDimensionTab] : null;
-          this.floorDMB = Math.min(Math.floor(this.dmb), 3);
+          this.floorDMB = floorDmbFactory(this.dmb);
         });
 
         this.reportService = reportService;

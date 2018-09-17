@@ -15,10 +15,11 @@ class ReportController {
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
    * @param {!object} reportService
+   * @param {!object} floorDmbFactory
    * @constructor
    * @ngInject
    */
-  constructor($http, $location, reportService) {
+  constructor($http, $location, reportService, floorDmbFactory) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
 
@@ -36,6 +37,17 @@ class ReportController {
      */
     this.result = null;
 
+    /**
+     * Floored dmb
+     * @type {number}
+     * @export
+     */
+    this.floorDmb = null;
+
+    /**
+     * @export
+     * @type {Array.<string>}
+     */
     this.dimensions = [
       'attribution',
       'ads',
@@ -59,6 +71,7 @@ class ReportController {
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
       this.result = this.survey.last_survey_result;
+      this.floorDmb = floorDmbFactory(this.result.dmb);
 
       reportService.dmb_d = this.result.dmb_d;
 

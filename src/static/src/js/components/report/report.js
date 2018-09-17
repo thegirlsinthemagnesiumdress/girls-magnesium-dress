@@ -17,6 +17,11 @@ const module = angular.module(MODULE_NAME, []);
 module.directive(directive.DIRECTIVE_NAME, directive.main);
 module.service(service.SERVICE_NAME, service.main);
 
+module.factory('floorDmbFactory', () => {
+  return (dmb) =>
+    (angular.isDefined(dmb) ? Math.min(Math.floor(dmb), 3) : null);
+});
+
 module.filter('dmbLevelText', ()=> {
   return (dmb) => {
     const levels = {
@@ -30,13 +35,13 @@ module.filter('dmbLevelText', ()=> {
   };
 });
 
-module.filter('dmbRangeText', ()=> {
+module.filter('dmbRangeText', ['floorDmbFactory', (floorDmbFactory) => {
   return (dmb) => {
-    const floor = angular.isDefined(dmb) ? Math.min(Math.floor(dmb), 3) : null;
+    const floor = floorDmbFactory(dmb);
     const ceil = angular.isDefined(dmb) ? Math.min(Math.ceil(dmb), 4) : null;
     return angular.isDefined(dmb) ? `${floor} - ${ceil}` : '';
   };
-});
+}]);
 
 module.filter('dmbPercentageNumber', ()=> {
   return (dmb) => {

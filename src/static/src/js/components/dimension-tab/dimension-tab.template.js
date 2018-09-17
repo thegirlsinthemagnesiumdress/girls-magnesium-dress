@@ -26,10 +26,12 @@ const dimensionTabTemplate = `
           </svg>
           <div class="dmb-progress-circle__icon"></div>
         </div>
-        <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb ]}</span>
-        <span class="dmb-progress-circle__target">/
-          <span class="dmb-progress-circle__target--value">4.0</span>
-        </span>
+        <div>
+          <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb ]}</span>
+          <span class="dmb-progress-circle__target">/
+            <span class="dmb-progress-circle__target--value">4.0</span>
+          </span>
+        </div>
       </div>
       <div>
         <h3 class="h-c-headline h-c-headline--three h-u-mb-std">

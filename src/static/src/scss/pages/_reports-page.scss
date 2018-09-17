@@ -208,14 +208,16 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   &__tab-progress-circle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin-right: 50px;
+    min-width: 100px;
+
+    .dmb-progress-circle__result {
+      font-size: 1.5em;
+    }
   }
-
-
-
-
-
-
 
   &__recommendations {
     column-count: 2;
