@@ -21,8 +21,8 @@ class ProgressCircleController {
    * ProgressCircle controller
    *
    * @param {!angular.$element} $element
-   * @param {!angular.$attrs} $attrs
-   * @param {!angular.$scope} $scope
+   * @param {!angular.Attributes} $attrs
+   * @param {!angular.Scope} $scope
    * @param {!angular.$filter} $filter
    * @constructor
    * @ngInject

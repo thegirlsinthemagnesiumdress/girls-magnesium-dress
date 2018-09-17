@@ -5,7 +5,7 @@ goog.module('dmb.components.dimensionTab.controller');
  * DOM selectors used by component.
  *
  * @const
- * @type {object}
+ * @type {Object}
  */
 const DOM_SELECTORS = {};
 
@@ -17,19 +17,18 @@ class DimensionTabController {
   /**
    * DimensionTab controller
    *
-   * @param {!angular.$element} $element
-   * @param {!angular.$scope} $scope
-   * @param {!object} reportService
-   * @param {!object} floorDmbFactory
-   * @param {!object} dimensionHeaders
-   * @param {!object} dimensionHeadersDescription
-   * @param {!object} dimensionLevelDescription
-   * @param {!object} dimensionLevelRecomendations
+   * @param {!angular.Scope} $scope
+   * @param {!Object} reportService
+   * @param {!Object} floorDmbFactory
+   * @param {!Object} dimensionHeaders
+   * @param {!Object} dimensionHeadersDescription
+   * @param {!Object} dimensionLevelDescription
+   * @param {!Object} dimensionLevelRecomendations
    * @constructor
+   *
    * @ngInject
    */
   constructor(
-      $element,
       $scope,
       reportService,
       floorDmbFactory,
@@ -39,37 +38,37 @@ class DimensionTabController {
       dimensionLevelRecomendations) {
         /**
          * @export
-         * type {object}
+         * type {Object}
          */
         this.dimensionHeaders = dimensionHeaders;
 
         /**
          * @export
-         * type {object}
+         * type {Object}
          */
         this.dimensionHeadersDescription = dimensionHeadersDescription;
 
         /**
          * @export
-         * type {object}
+         * type {Object}
          */
         this.dimensionLevelDescription = dimensionLevelDescription;
 
         /**
          * @export
-         * type {object}
+         * type {Object}
          */
         this.dimensionLevelRecomendations = dimensionLevelRecomendations;
 
         /**
          * @export
-         * type {object}
+         * type {Object}
          */
         this.dmb = null;
 
         /**
          * @export
-         * type {object}
+         * type {Object}
          */
         this.floorDMB = null;
 

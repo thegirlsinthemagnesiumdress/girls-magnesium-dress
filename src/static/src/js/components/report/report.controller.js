@@ -14,8 +14,8 @@ class ReportController {
    *
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
-   * @param {!object} reportService
-   * @param {!object} floorDmbFactory
+   * @param {!Object} reportService
+   * @param {!Object} floorDmbFactory
    * @constructor
    * @ngInject
    */
@@ -70,14 +70,14 @@ class ReportController {
     // the tab component messes up the scopes. We use a service instead.
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
-      this.result = this.survey.last_survey_result;
-      this.floorDmb = floorDmbFactory(this.result.dmb);
+      this.result = this.survey['last_survey_result'];
+      this.floorDmb = floorDmbFactory(this.result['dmb']);
 
-      reportService.dmb_d = this.result.dmb_d;
+      reportService.dmb_d = this.result['dmb_d'];
 
-      $http.get(`${industryEndpoint}${this.survey.industry}`).then((res) => {
+      $http.get(`${industryEndpoint}${this.survey['industry']}`).then((res) => {
         this.industryResult = res.data;
-        reportService.industryDmb_d = this.industryResult.dmb_d;
+        reportService.industryDmb_d = this.industryResult['dmb_d'];
       });
     });
   }
