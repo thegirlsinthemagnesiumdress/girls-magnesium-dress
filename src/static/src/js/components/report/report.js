@@ -22,8 +22,9 @@ module.factory('floorDmbFactory', () => {
     (angular.isDefined(dmb) ? Math.min(Math.floor(dmb), 3) : null);
 });
 
-module.filter('dmbLevelText', ()=> {
+module.filter('dmbLevelText', ['floorDmbFactory', (floorDmbFactory)=> {
   return (dmb) => {
+
     const levels = {
       0: 'Nascent',
       1: 'Emerging',
@@ -31,15 +32,19 @@ module.filter('dmbLevelText', ()=> {
       3: 'Multi-moment',
     };
 
-    return angular.isDefined(dmb) ? levels[Math.floor(dmb)] : '';
+    return angular.isDefined(dmb) ? levels[floorDmbFactory(dmb)] : '';
   };
-});
+}]);
 
 module.filter('dmbRangeText', ['floorDmbFactory', (floorDmbFactory) => {
   return (dmb) => {
+    if (!angular.isDefined(dmb)) {
+      return '';
+    }
+
     const floor = floorDmbFactory(dmb);
-    const ceil = angular.isDefined(dmb) ? Math.min(Math.ceil(dmb), 4) : null;
-    return angular.isDefined(dmb) ? `${floor} - ${ceil}` : '';
+    const ceil = Math.min(Math.ceil(dmb), 4);
+    return `${floor} - ${ceil}`;
   };
 }]);
 
