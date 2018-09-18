@@ -12,10 +12,10 @@ function ReportDirective() {
   return {
     restrict: 'E',
     scope: {
-      companyName: '@',
-      industryAvg: '<',
-      industryBest: '<',
-      ratingMain: '<',
+      'companyName': '@',
+      'industryAvg': '<',
+      'industryBest': '<',
+      'ratingMain': '<',
     },
     controller: progTableCtrl.main,
     controllerAs: progTableCtrl.CONTROLLER_AS_NAME,

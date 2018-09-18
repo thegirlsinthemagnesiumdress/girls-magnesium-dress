@@ -4,21 +4,28 @@ goog.module('dmb.components.progressTable.controller');
  * ProgressTable class controller.
  */
 class ProgressTableController {
-
   /**
    * ProgressTable controller
+   *
+   * @param {Object} floorDmbFactory
    *
    * @constructor
    * @ngInject
    */
-  constructor($element, floorDmbFactory) {
+  constructor(floorDmbFactory) {
     /**
-     * @type {angular.$element}
+     * @type {Object}
      * @private
      */
     this.floorDmbFactory_ = floorDmbFactory;
   }
 
+  /**
+   *
+   * @param {?number} dmb
+   * @return {string}
+   * @export
+   */
   getClass(dmb) {
     const activeClassMap = {
       0: 'nascent',
@@ -29,6 +36,12 @@ class ProgressTableController {
     return activeClassMap[this.floorDmbFactory_(dmb)];
   }
 
+  /**
+   *
+   * @param {number} dmb
+   * @return {string}
+   * @export
+   */
   getProgressWidth(dmb) {
     const progWidth = dmb * 100;
     return `calc(${progWidth}% + ${this.floorDmbFactory_(dmb)}px)`;
