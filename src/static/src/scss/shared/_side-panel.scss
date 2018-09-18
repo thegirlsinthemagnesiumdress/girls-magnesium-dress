@@ -37,9 +37,15 @@
     @include bp(s) {
       padding: 56px 66px;
     }
+
+    @include print-styles {
+      padding: 26px $dmb-print-gutter !important;
+    }
   }
 
   &__fab {
+    @extend .dmb-h-hidden--print;
+
     position: absolute;
     right: 19px;
     top: 14px;

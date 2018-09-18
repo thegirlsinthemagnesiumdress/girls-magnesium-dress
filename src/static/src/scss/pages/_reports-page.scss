@@ -100,9 +100,14 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   &__content {
     padding: $dmb-margin-big 0;
     position: relative;
+
+    @include print-styles {
+      padding: $dmb-margin-small 0;
+    }
   }
 
   &__info {
+    @extend .dmb-h-hidden--print;
     background: none;
     border: 0;
     padding: 0;
@@ -128,6 +133,7 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 
   &__tabs-icons,
   .glue-c-tabset__tablist {
+    @extend .dmb-h-hidden--print;
     display: flex;
 
     & > div {
