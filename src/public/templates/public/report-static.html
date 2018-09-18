@@ -579,3 +579,9 @@
   </aside>
 </div>
 {% endblock %}
+
+{% block footer %}
+  {% with footerClass='dmb-h-hidden--print' %}
+    {% include 'public/inc/global/footer.html' %}
+  {% endwith %}
+{% endblock footer %}
