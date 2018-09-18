@@ -16,6 +16,7 @@ const scrollHandler = goog.require('dmb.components.scroll');
 const sidePanel = goog.require('dmb.components.sidePanel');
 const report = goog.require('dmb.components.report');
 const progressCircle = goog.require('dmb.components.progressCircle');
+const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
 
 /** @type {!angular.Module} */
@@ -31,6 +32,7 @@ const module = angular.module('dmb', [
   sidePanel.module.name,
   report.module.name,
   progressCircle.module.name,
+  progressTable.module.name,
   dimensionTab.module.name,
   smoothScroll.module.name,
   tabby.module.name,
