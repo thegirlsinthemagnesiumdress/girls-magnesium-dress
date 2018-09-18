@@ -35,7 +35,7 @@ const dimensionTabTemplate = `
       </div>
       <div>
         <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-          <span class="dmb-report-page__headline-accent">You are</span> <strong>{[ dimensionTabCtrl.dmb|dmbLevelText ]} </strong>
+          <span class="dmb-report-page__headline-accent">You are</span> <strong>{[ dimensionTabCtrl.floorDMB|dmbLevelText ]} </strong>
         </h3>
       <p>
           {[ dimensionTabCtrl.dimensionLevelDescription[dmbDimensionTab][dimensionTabCtrl.floorDMB] ]}
