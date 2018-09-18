@@ -32,12 +32,6 @@ $dmb-prog-table-row-height-mobile: 5px;
       &:nth-of-type(1) {
         display: none;
       }
-
-      &:not(&--active) {
-        h3 {
-          display: none;
-        }
-      }
     }
 
     &--nascent {
@@ -45,12 +39,14 @@ $dmb-prog-table-row-height-mobile: 5px;
     }
   }
 
-  h3 {
+  &__col-heading {
+    display: none;
     font-size: 10px;
     font-weight: 400;
     text-transform: uppercase;
 
     @media (min-width: 721px) {
+      display: block;
       font-size: 12px;
     }
   }
@@ -155,7 +151,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     .dmb-progress-table__col--nascent {
       background-color: $dmb-prog-table-active-bg-color;
 
-      h3 {
+      .dmb-progress-table__col-heading {
         display: block;
       }
     }
@@ -165,7 +161,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     .dmb-progress-table__col--emerging {
       background-color: $dmb-prog-table-active-bg-color;
 
-      h3 {
+      .dmb-progress-table__col-heading {
         display: block;
       }
     }
@@ -175,7 +171,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     .dmb-progress-table__col--connected {
       background-color: $dmb-prog-table-active-bg-color;
 
-      h3 {
+      .dmb-progress-table__col-heading {
         display: block;
       }
     }
@@ -185,9 +181,20 @@ $dmb-prog-table-row-height-mobile: 5px;
     .dmb-progress-table__col--multimoment {
       background-color: $dmb-prog-table-active-bg-color;
 
-      h3 {
+      .dmb-progress-table__col-heading {
         display: block;
       }
+    }
+  }
+
+  .dmb-report-page__info {
+    background-image: url('../img/icons/info.svg');
+    display: none;
+    height: 18px;
+    top: 3px;
+
+    @include bp(s) {
+      display: inline-block;
     }
   }
 }
