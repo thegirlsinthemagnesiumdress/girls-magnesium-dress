@@ -8,6 +8,18 @@
 
 .dmb-h-hidden {
   display: none !important;
+
+  @include print-styles {
+    &--print {
+      display: none !important;
+    }
+  }
+
+  @include screen-styles {
+    &--screen {
+      display: none !important;
+    }
+  }
 }
 
 .dmb-body--has-modal {
