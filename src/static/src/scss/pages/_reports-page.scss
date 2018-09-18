@@ -424,10 +424,10 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 
     &__list-item-bullet {
       counter-increment: shields;
+      left: -50px;
       margin-right: 32px;
       min-width: 20px;
       position: absolute;
-      left: -50px;
 
       &::after {
         bottom: 0;

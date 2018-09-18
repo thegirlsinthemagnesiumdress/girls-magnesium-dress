@@ -51,21 +51,21 @@ const dimensionTabTemplate = `
       <h3 aria-hidden="true">Nascent</h3>
       <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="{{dimensionTabCtrl.dmb}}" aria-label="Your Company is Emerging">
         <div class="dmb-progress-table__label">
-          <span class="dmb-progress-table__company">{[ companyName ]}</span>
+          <span class="dmb-progress-table__company">{[$root.reportCtrl.survey.company_name]}</span>
           <span class="dmb-progress-table__rating" aria-label="Your company rating">{{dimensionTabCtrl.dmb}}</span>
         </div>
       </div>
       <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
         <div class="dmb-progress-table__label">
           <!-- icon -->
-          Industry average
+          <span class="dmb-progress-table__company">Industry average</span>
           <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
         </div>
       </div>
       <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
         <div class="dmb-progress-table__label">
           <!-- icon -->
-          Industry best
+          <span class="dmb-progress-table__company">Industry best</span>
           <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
         </div>
       </div>

@@ -6,6 +6,7 @@ $dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
 $dmb-prog-table-active-bg-color: $dmb-color-blue-alice;
 $dmb-prog-table-active-color: $dmb-color-blue-navy;
 $dmb-prog-table-row-height-mobile: 5px;
+$dmb-prog-table-row-height-desktop: 1em;
 
 .dmb-progress-table {
   display: flex;
@@ -24,6 +25,11 @@ $dmb-prog-table-row-height-mobile: 5px;
 
     &--active {
       background-color: $dmb-prog-table-active-bg-color;
+
+      @include print-styles {
+        border-left: 1px solid rgba($dmb-prog-table-border-color, .5);
+        border-right: 1px solid rgba($dmb-prog-table-border-color, .5);
+      }
     }
 
     &:nth-of-type(1) {
@@ -58,6 +64,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     }
 
     @media (min-width: 721px) {
+      display: block;
       text-transform: uppercase;
     }
   }
@@ -66,32 +73,30 @@ $dmb-prog-table-row-height-mobile: 5px;
     margin-left: 6px;
 
     @media (min-width: 721px) {
-      display: none;
+      left: 100%;
+      margin-left: 10px;
+      position: absolute;
+      top: -$dmb-prog-table-row-height-desktop;
     }
   }
 
   &__row {
-    background: $dmb-prog-table-bar-color;
+    border-top: $dmb-prog-table-row-height-mobile solid $dmb-prog-table-bar-color;
     font-size: 12px;
-    height: $dmb-prog-table-row-height-mobile;
     line-height: 1em;
     position: relative;
     transition: width $dmb-trans-time $dmb-trans-fn;
     width: 1px;
 
-    @media (min-width: 721px) {
+    @include print-styles {
+      border-top-width: $dmb-prog-table-row-height-desktop;
       font-size: 16px;
-      height: 1em;
+      transition: none;
     }
 
-    &::after {
-      content: attr(data-rating);
-      left: calc(100% + 10px);
-      position: absolute;
-
-      @media (max-width: 720px) {
-        display: none;
-      }
+    @media (min-width: 721px) {
+      border-top-width: $dmb-prog-table-row-height-desktop;
+      font-size: 16px;
     }
 
     &:first-of-type {
@@ -116,10 +121,14 @@ $dmb-prog-table-row-height-mobile: 5px;
       @media (min-width: 721px) {
         margin-top: 20px;
       }
+
+      @include print-styles {
+        margin-top: 40px;
+      }
     }
 
     &--main {
-      background: $dmb-prog-table-main-bar-color;
+      border-top-color: $dmb-prog-table-main-bar-color;
 
       .progress-table__label {
         color: $dmb-prog-table-main-label-color;
@@ -137,8 +146,16 @@ $dmb-prog-table-row-height-mobile: 5px;
 
     @media (min-width: 721px) {
       font-size: 16px;
-      top: 0;
-      transform: translateX(calc(-100% - 27px));
+      position: static;
+    }
+  }
+
+  &__company {
+    @media (min-width: 721px) {
+      margin-right: 27px;
+      position: absolute;
+      right: 100%;
+      top: -$dmb-prog-table-row-height-desktop;
     }
   }
 }
