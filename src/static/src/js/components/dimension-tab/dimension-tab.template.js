@@ -16,7 +16,7 @@ const dimensionTabTemplate = `
 
     <div class="dmb-report-page__tab-dynamic-col h-c-grid__col h-c-grid__col--7">
       <div class="dmb-report-page__tab-progress-circle">
-        <div class="dmb-progress-circle dmb-progress-circle--{[dmbDimensionTab]}" data-progress="52.5">
+        <div class="dmb-progress-circle dmb-progress-circle--dimension-main dmb-progress-circle--{[dmbDimensionTab]}" data-progress="52.5">
           <svg
               dmb-progress-circle="dimensionTabCtrl.dmb"
               class="dmb-progress-circle__prog-svg"
@@ -27,9 +27,7 @@ const dimensionTabTemplate = `
           <div class="dmb-progress-circle__icon"></div>
         </div>
         <div>
-          <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span>
-          <span class="dmb-progress-circle__target">/
-            <span class="dmb-progress-circle__target--value">4.0</span>
+          <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4.0</span>
           </span>
         </div>
       </div>
@@ -93,7 +91,7 @@ const dimensionTabTemplate = `
         ng-if="dimensionTabCtrl.floorDMB >= 3"
         class="h-c-headline h-c-headline--four h-u-mb-xl">Here's how to get even better:</p>
 
-    <ul class="dmb-report-page__recommendations h-u-mb-xl">
+    <ul class="dmb-report-page__recommendations">
 
       <li ng-repeat="recomendation in dimensionTabCtrl.dimensionLevelRecomendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
         <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">{[ recomendation.header ]}</h4>

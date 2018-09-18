@@ -44,7 +44,7 @@ module.filter('dmbRangeText', ['floorDmbFactory', (floorDmbFactory) => {
 
     const floor = floorDmbFactory(dmb);
     const ceil = Math.min(Math.ceil(dmb), 4);
-    return `${floor} - ${ceil}`;
+    return `${floor}-${ceil}`;
   };
 }]);
 

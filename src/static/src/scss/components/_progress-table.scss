@@ -1,4 +1,4 @@
-$dmb-prog-table-border-color: $dmb-color-grey-chateau;
+$dmb-prog-table-border-color: #DDDFE1;
 $dmb-prog-table-label-color: $dmb-color-grey-shuttle;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
 $dmb-prog-table-main-label-color: $dmb-color-black-russian;
@@ -15,7 +15,8 @@ $dmb-prog-table-row-height-mobile: 5px;
 
   &__col {
     padding-top: 20px;
-    width: 17.5%;
+    flex-grow: 1;
+
 
     @media (min-width: 721px) {
       border-right: 1px solid $dmb-prog-table-border-color;
@@ -27,7 +28,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     }
 
     &:nth-of-type(1) {
-      width: 30%;
+      flex-grow: auto;
     }
 
     @media (max-width: 720px) {
@@ -68,6 +69,11 @@ $dmb-prog-table-row-height-mobile: 5px;
     @media (min-width: 721px) {
       display: none;
     }
+  }
+
+  &__company {
+    color: $h-font-color-darkest;
+    font-weight: $h-font-weight-medium;
   }
 
   &__row {
