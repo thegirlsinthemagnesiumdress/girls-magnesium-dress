@@ -249,10 +249,9 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   @each $name, $color in $report-page-color-map {
-
-    .dmb-progress-table.dmb-progress-table--#{$name} .dmb-progress-table {
-      &__row--main {
-        background-color: map-get($color, main);
+    [dmb-dimension-tab="#{$name}"] {
+      .dmb-progress-table__row--main {
+        background: map-get($color, main);
       }
     }
 
