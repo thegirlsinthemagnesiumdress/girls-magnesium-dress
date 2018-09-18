@@ -9,10 +9,17 @@
   right: 0;
   top: 0;
   transform: translateX(calc(100% + 6px));
-  transform: translate3d(calc(100% + 6px), 0, 0);
+  transform: translate3d(calc(100% + 6px), 0, 0); //sass-lint:disable-line no-duplicate-properties
   transition: transform .4s $dmb-easing--standard;
   width: 90%;
   z-index: $_h-header-bar-z-index + 2;
+
+  &--left {
+    left: 0;
+    right: auto;
+    transform: translateX(calc(-100% - 6px));
+    transform: translate3d(calc(-100% - 6px), 0, 0); //sass-lint:disable-line no-duplicate-properties
+  }
 
   &--active {
     transform: none;
@@ -46,6 +53,10 @@
 
   &:not(.dmb-h-hidden) {
     will-change: transform;
+  }
+
+  .h-c-headline {
+    max-width: 90%;
   }
 }
 

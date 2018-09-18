@@ -95,7 +95,7 @@ const dimensionTabTemplate = `
 
     <ul class="dmb-report-page__recommendations h-u-mb-xl">
 
-      <li ng-repeat="recomendation in dimensionTabCtrl.dimensionLevelRecomendations[dmbDimensionTab][dimensionTabCtrl.floorDMB - 1]">
+      <li ng-repeat="recomendation in dimensionTabCtrl.dimensionLevelRecomendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
         <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">{[ recomendation.header ]}</h4>
         <p>
           {[ recomendation.text ]}
