@@ -2,6 +2,7 @@ from api.serializers import (
     SurveyCompanyNameSerializer,
     SurveyResultSerializer,
     SurveySerializer,
+    SurveyWithResultSerializer,
 )
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark
@@ -80,6 +81,15 @@ class SurveyResultsDetail(ListAPIView):
             serializer = self.get_serializer(queryset.first())
             return Response(serializer.data)
         raise Http404
+
+
+class SurveyDetailView(RetrieveAPIView):
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
+    serializer_class = SurveyWithResultSerializer
+    queryset = Survey.objects.all()
+    lookup_field = 'sid'
+    lookup_url_kwarg = 'sid'
 
 
 class SurveyResultsIndustryDetail(APIView):
