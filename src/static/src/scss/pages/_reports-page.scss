@@ -52,9 +52,16 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       }
     }
 
-    .h-c-headline:not(.dmb-report-page__hero-accent) {
+    .h-c-headline {
       color: inherit;
     }
+  }
+
+  .h-c-eyebrow {
+    border-bottom: 5px solid $dmb-heading-border-color;
+    max-width: 100%;
+    padding-bottom: 8px;
+    width: max-content;
   }
 
   strong {
