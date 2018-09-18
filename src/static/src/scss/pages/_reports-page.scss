@@ -42,6 +42,17 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
     padding: #{$_h-header-height--full-size + 24px} 0 #{$dmb-margin-medium + $dmb-button-height + $dmb-report-hero-padding-bottom};
     position: relative;
 
+    @include print-styles {
+      background: transparent;
+      color: $dmb-text-color;
+      min-height: 0;
+
+      .glue-flexbox & .h-c-grid__col {
+        flex-basis: auto;
+        width: auto;
+      }
+    }
+
     .dmb-progress-circle {
       &__bg-bar {
         stroke: rgba($dmb-prog-circ-inverted-bar-color, .24);
@@ -81,8 +92,8 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   &__hero-accent {
-    color: rgba($dmb-light-text-color, .62);
     display: block;
+    opacity: .62;
   }
 
   &__hero-cta {
@@ -206,6 +217,11 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
         box-shadow: 0 2px 8px 0 $dmb-tabs-shadow-color;
         padding: 73px 66px 76px;
 
+        @include print-styles {
+          display: block;
+          margin-bottom: $dmb-margin-big;
+        }
+
         &:first-child {
           border-top-left-radius: 0;
         }
@@ -225,6 +241,10 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
     @media (min-width: 601px) {
       display: none;
     }
+
+    @include print-styles {
+      display: none;
+    }
   }
 
   &__tab-static-col {
@@ -238,6 +258,10 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   &__tab-dynamic-col {
     display: flex;
     padding-left: 40px;
+
+    @include print-styles {
+      page-break-inside: avoid;
+    }
   }
 
   &__tab-progress-circle {
@@ -253,14 +277,17 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   &__recommendations {
-    column-count: 2;
-    column-gap: 27px;
     display: block;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
     max-width: 900px;
-    page-break-inside: avoid;
+
+    @include bp(m) {
+      column-count: 2;
+      column-gap: 27px;
+      page-break-inside: avoid;
+    }
 
     > li {
       background-color: #f8f9fa;
@@ -268,6 +295,11 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       margin-bottom: 22px;
       padding: 32px;
       width: 100%;
+
+      @include print-styles {
+        margin-bottom: $dmb-margin-medium;
+        padding: 0 16px;
+      }
     }
   }
 
@@ -372,6 +404,10 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 
   .dmb-side-panel--narrow {
     max-width: 522px;
+
+    @include print-styles {
+      max-width: none;
+    }
   }
 }
 

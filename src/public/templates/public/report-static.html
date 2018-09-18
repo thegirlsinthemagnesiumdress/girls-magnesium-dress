@@ -75,7 +75,7 @@
 
       <div class="h-u-mb-xl">
         <div class="h-c-grid">
-          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--3">
+          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--5 h-c-grid__col-l--3 h-u-text-center">
             <div class="dmb-progress-circle">
               <svg
                   dmb-progress-circle="reportCtrl.result.dmb"
@@ -95,7 +95,7 @@
               </div>
             </div>
           </div>
-          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--9">
+          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--7 h-c-grid__col-l--9">
             <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
               <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
               <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
@@ -285,6 +285,13 @@
       }, 2000)
     });
   </script>
+
+  <div class="dmb-h-mb--medium dmb-h-hidden--screen">
+    <div class="h-c-page">
+      <h2 class="h-c-headline h-c-headline--three">Appendix</h2>
+    </div>
+  </div>
+
   <aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">

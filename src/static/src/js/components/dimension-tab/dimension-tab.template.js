@@ -93,7 +93,7 @@ const dimensionTabTemplate = `
         ng-if="dimensionTabCtrl.floorDMB >= 3"
         class="h-c-headline h-c-headline--four h-u-mb-xl">Here's how to get even better:</p>
 
-    <ul class="dmb-report-page__recommendations h-u-mb-xl">
+    <ul class="dmb-report-page__recommendations">
 
       <li ng-repeat="recomendation in dimensionTabCtrl.dimensionLevelRecomendations[dmbDimensionTab][dimensionTabCtrl.floorDMB - 1]">
         <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">{[ recomendation.header ]}</h4>
