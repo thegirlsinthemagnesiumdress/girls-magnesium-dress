@@ -77,13 +77,15 @@ def send_emails_for_new_reports(email_list):
                 'url': "http://{}{}".format(domain, link)
             }
 
-            mail.EmailMessage(
+            message = mail.EmailMessage(
                 subject=subject_template.render(context).split("\n")[0],
                 body=message_template.render(context),
                 from_email=settings.CONTACT_EMAIL,
                 to=[to],
                 bcc=bcc
-            ).send()
+            )
+            message.content_subtype = "html"
+            message.send()
 
             logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
 

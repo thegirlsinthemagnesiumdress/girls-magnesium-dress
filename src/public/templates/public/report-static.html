@@ -2,45 +2,53 @@
 {% load staticfiles %}
 
 {% block main %}
-<div class="dmb-report-page">
+<div class="dmb-report-page" dmb-report ng-cloak>
   <header class="dmb-report-page__hero">
     <div class="h-c-page">
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--6">
           <h1 class="dmb-report-page__hero-title h-c-headline h-c-headline--one h-u-mb-l">
-            <span class="dmb-report-page__hero-accent">Potato</span>
+            <span class="dmb-report-page__hero-accent">{[reportCtrl.survey.company_name]}</span>
             Your digital maturity benchmark
           </h1>
           <p class="h-c-headline h-c-headline--two dmb-report-page__hero-accent">
-            <time datetime="27/08/2018">August 2018</time>
+            <time datetime="27/08/2018">{[reportCtrl.result.loaded_at|date:'MMMM yyyy' ]}</time>
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--6">
           <div class="h-c-grid">
             <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--5">
-              <progress-circle class="dmb-progress-circle" data-progress="40">
-                <svg class="dmb-progress-circle__prog-svg" width="214" height="214" viewBox="0 0 120 120">
+              <div class="dmb-progress-circle" data-progress="reportCtrl.result.dmb">
+                <svg
+                    dmb-progress-circle="reportCtrl.result.dmb"
+                    class="dmb-progress-circle__prog-svg"
+                    width="214" height="214" viewbox="0 0 120 120">
                   <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
                   <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
                 </svg>
                 <div class="dmb-progress-circle__text">
-                  <p class="dmb-progress-circle__title">Emerging</p>
+                  <p class="dmb-progress-circle__title">{[ reportCtrl.result.dmb|dmbLevelText]}</p>
                   <div class="dmb-progress-circle__values">
-                    <span class="dmb-progress-circle__result">1 - 2</span>
+                    <span class="dmb-progress-circle__result">{[ reportCtrl.result.dmb|dmbRangeText]}</span>
                   </div>
                 </div>
-              </progress-circle>
+              </div>
             </div>
             <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--7">
               <h2 class="dmb-report-page__hero-sub-title h-c-headline h-c-headline--one">
                 <span class="dmb-report-page__hero-accent">You are</span>
-                Emerging
+                {[ reportCtrl.result.dmb|dmbLevelText]}
               </h2>
             </div>
           </div>
           <p class="h-u-mt-l">
+              This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>{[ reportCtrl.result.dmb|dmbLevelText]}</strong>
+          </p>
+          {% comment "We won't have any date for average and best-pracitce for the MVP" %}
+          <p class="h-u-mt-l">
             You are <strong>above average</strong> for your industry, and <strong>behind</strong> the industry best practice. This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>connected</strong>.
           </p>
+          {% endcomment %}
         </div>
       </div>
       <div class="dmb-report-page__hero-cta h-u-text-center">
@@ -49,35 +57,49 @@
   </div>
 </header>
 
-<main class="dmb-report-page__content" id="dmb-report-page-main">
-    <section class="h-c-page">
+  <div class="dmb-report-page__content" id="dmb-report-page-main">
+    <div class="h-c-page">
+
+      <section>
       <h2 class="h-c-eyebrow h-u-mb-l">Your overall digital maturity</h2>
 
       <div class="h-u-mb-xl">
         <div class="h-c-grid">
           <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--3">
-            <progress-circle class="dmb-progress-circle" data-progress="40">
-              <svg class="dmb-progress-circle__prog-svg" width="214" height="214" viewBox="0 0 120 120">
+            <div class="dmb-progress-circle">
+              <svg
+                  dmb-progress-circle="reportCtrl.result.dmb"
+                  class="dmb-progress-circle__prog-svg"
+                  width="214" height="214" viewbox="0 0 120 120">
                 <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
                 <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
               </svg>
               <div class="dmb-progress-circle__text">
-                <p class="dmb-progress-circle__title">Emerging</p>
+                <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
                 <div class="dmb-progress-circle__values">
-                  <span class="dmb-progress-circle__result">1.6</span>
+                  <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number : 2]}</span>
                   <span class="dmb-progress-circle__target">/
                     <span class="dmb-progress-circle__target--value">4</span>
                   </span>
                 </div>
               </div>
-            </progress-circle>
+            </div>
           </div>
           <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--9">
             <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
-              <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>Emerging</strong>
+              <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
             </h3>
-            <p class="dmb-report-page__maturity-intro">
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
+                This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
+            </p>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
               This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
+            </p>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
+              This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
+            </p>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
+              This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
             </p>
           </div>
         </div>
@@ -88,10 +110,10 @@
         </div>
         <div class="dmb-progress-table__col dmb-progress-table__labels">
           <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="1.6" aria-label="Your Company is Emerging">
+          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="{[reportCtrl.result.dmb]}" aria-label="Your Company is Emerging">
             <div class="dmb-progress-table__label">
               <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">1.6</span>
+              <span class="dmb-progress-table__rating" aria-label="Your company rating">{[reportCtrl.result.dmb]}</span>
             </div>
           </div>
           <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
@@ -128,603 +150,122 @@
       </div>
     </section>
 
-    <div class="dmb-h-mb--big">
-      <div class="h-c-page">
-        <div class="h-c-grid">
-          {% for dimension in "123456"|make_list %}
-            <div class="h-c-grid__col h-c-grid__col--2 h-u-text-center">
-              <progress-circle class="dmb-progress-circle dmb-progress-circle--{% cycle 'attribution' 'assets' 'audience' 'access' 'automation' 'organization' %}" data-progress="{% cycle 52.5 10 80 5 70 45 %}">
-                <svg class="dmb-progress-circle__prog-svg" width="80" height="80" viewBox="0 0 120 120">
-                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                </svg>
-                <div class="dmb-progress-circle__icon"></div>
-              </progress-circle>
-              <div>
-                <button class="h-c-button h-c-button--secondary">{% cycle 'Attribution' 'Assets & Ads' 'Audience' 'Access' 'Automation' 'Organization' %}</button>
-              </div>
+      <section class="dmb-report-page__tabs dmb-h-mb--big">
+        <div class="dmb-report-page__tabs-icons">
+          <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+            <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
+              <svg
+                  dmb-progress-circle="reportCtrl.result.dmb_d[dimension]"
+                  class="dmb-progress-circle__prog-svg"
+                  width="80" height="80" viewbox="0 0 120 120">
+                <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+              </svg>
+              <div class="dmb-progress-circle__icon"></div>
             </div>
-          {% endfor %}
+          </div>
         </div>
+
+        <div class="glue-tabby glue-zippy-style" data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
+          <ul class="dmb-report-page__tabs-ul">
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[0]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[0] ]}"
+              id="tab-{[ reportCtrl.dimensions[0] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[1]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[1] ]}"
+              id="tab-{[ reportCtrl.dimensions[1] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[2]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[2] ]}"
+              id="tab-{[ reportCtrl.dimensions[2] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[3]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[3] ]}"
+              id="tab-{[ reportCtrl.dimensions[3] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[4]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[4] ]}"
+              id="tab-{[ reportCtrl.dimensions[4] ]}">
+            </li>
+            <li
+              dmb-dimension-tab="{[reportCtrl.dimensions[5]]}"
+              company-name="{[ reportCtrl.survey.company_name ]}"
+              glue-label="{[ reportCtrl.dimensions[5] ]}"
+              id="tab-{[ reportCtrl.dimensions[5] ]}">
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="h-u-text-right">
+        <a href="#" class="h-c-link h-c-link--internal">
+          Go to next dimension
+          <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--arrow-forward">
+            <use xlink:href="#mi-arrow-forward"></use>
+          </svg>
+        </a>
       </div>
+
     </div>
-
-    <section class="h-c-page">
-      <div class="dmb-h-mb--big">
-        <div class="h-c-grid">
-          <div class="h-c-grid__col h-c-grid__col--6">
-            <h2 class="h-c-headline h-c-headline--one h-u-mb-std">Attribution</h2>
-            <p>Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.</p>
-          </div>
-          <div class="h-c-grid__col h-c-grid__col--6">
-            <div class="h-c-grid">
-              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--4 h-u-text-center">
-                <progress-circle class="dmb-progress-circle dmb-progress-circle--attribution" data-progress="52.5">
-                  <svg class="dmb-progress-circle__prog-svg" width="121" height="121" viewBox="0 0 120 120">
-                    <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                    <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                  </svg>
-                  <div class="dmb-progress-circle__icon"></div>
-                </progress-circle>
-                <span class="dmb-progress-circle__result">2.1</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4.0</span>
-          </span>
-              </div>
-              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--8">
-                <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-                  <span class="dmb-report-page__headline-accent">You are</span> <strong>Connected</strong>
-                </h3>
-                <p>You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <progress-table class="dmb-progress-table dmb-progress-table--attribution dmb-h-mb--big">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="2.1" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">2.1</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-
-      <div>
-        <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-          <span class="dmb-report-page__headline-accent">You could be</span> <strong>Multi-moment</strong>
-        </h3>
-        <p class="h-c-headline h-c-headline--four h-u-mb-xl">Here's how you get there:</p>
-
-        <ul class="dmb-report-page__recommendations h-u-mb-xl">
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Measure the true value of your marketing activities</h4>
-            <p>Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value.</p>
-          </li>
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Build your teams’ skills in web analytics</h4>
-            <p>Ask relevant people to take the advanced courses of the Analytics Academy.</p>
-            <button class="h-c-button h-c-button--secondary">Find out more</button>
-          </li>
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Capture marketing performance data comprehensively</h4>
-            <p>Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels.</p>
-          </li>
-          <li>
-            <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">Expand your measurement capabilities</h4>
-            <p>Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.</p>
-          </li>
-        </ul>
-
-        <div class="h-u-text-right">
-          <button class="h-c-button h-c-button--secondary">Go to next dimension</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="h-c-page dmb-h-hidden">
-    <h1>UI Kit</h1>
-
-    <input type="text" class="demo-input">
-    <button class="demo-button">Animate Progresses</button><br>
-
-    <progress-circle class="dmb-progress-circle" data-progress="40">
-      <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-        <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-      </svg>
-      <div class="dmb-progress-circle__text">
-        <p class="dmb-progress-circle__title">Emerging</p>
-        <div class="dmb-progress-circle__values">
-          <span class="dmb-progress-circle__result">1.6</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-          </span>
-        </div>
-      </div>
-    </progress-circle>
-
-    <div class="dmb-hero">
-      <h2>.hero</h2>
-      <br>
-      <progress-circle class="dmb-progress-circle" data-progress="72.5">
-        <svg class="dmb-progress-circle__prog-svg" width="215" height="215" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">1-2</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-    </div>
-
-    <progress-table class="dmb-progress-table">
-      <div class="dmb-progress-table__col">
-      </div>
-      <div class="dmb-progress-table__col dmb-progress-table__labels">
-        <h3 aria-hidden="true">Nascent</h3>
-        <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="1.1" aria-label="Your Company is Emerging">
-          <div class="dmb-progress-table__label">
-            <span class="dmb-progress-table__company">Potato</span>
-            <span class="dmb-progress-table__rating" aria-label="Your company rating">1.1</span>
-          </div>
-        </div>
-        <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-          <div class="dmb-progress-table__label">
-            <!-- icon -->
-            Industry average
-            <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-          </div>
-        </div>
-        <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-          <div class="dmb-progress-table__label">
-            <!-- icon -->
-            Industry best
-            <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-          </div>
-        </div>
-      </div>
-      <div class="dmb-progress-table__col">
-        <h3 aria-hidden="true">Emerging</h3>
-      </div>
-      <div class="dmb-progress-table__col">
-        <h3 aria-hidden="true">Connected</h3>
-      </div>
-      <div class="dmb-progress-table__col">
-        <h3 aria-hidden="true">Multi-Moment</h3>
-      </div>
-    </progress-table>
-
-
-    <section class="attribution">
-      <h2>.attribution</h2>
-      <progress-circle class="dmb-progress-circle" data-progress="20">
-        <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">1.5</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-      <progress-table class="dmb-progress-table">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="1.9" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">1.9</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-    </section>
-
-    <section class="assets">
-      <h2>.assets</h2>
-      <progress-circle class="dmb-progress-circle" data-progress="25">
-        <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">1.6</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-      <progress-table class="dmb-progress-table">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="0.6" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">0.6</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-    </section>
-
-    <section class="audience">
-      <h2>.audience</h2>
-      <progress-circle class="dmb-progress-circle" data-progress="15">
-        <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">2.6</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-      <progress-table class="dmb-progress-table">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="2.6" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">2.6</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-    </section>
-
-    <section class="access">
-      <h2>.access</h2>
-      <progress-circle class="dmb-progress-circle" data-progress="80">
-        <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">1.6</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-      <progress-table class="dmb-progress-table">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="3.7" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">3.7</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-    </section>
-
-    <section class="automation">
-      <h2>.automation</h2>
-      <progress-circle class="dmb-progress-circle" data-progress="30">
-        <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">1.6</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-      <progress-table class="dmb-progress-table">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="3.9" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">3.9</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-    </section>
-
-    <section class="organization">
-      <h2>.organization</h2>
-      <progress-circle class="dmb-progress-circle" data-progress="1">
-        <svg class="dmb-progress-circle__prog-svg" width="158" height="158" viewBox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-        </svg>
-        <div class="dmb-progress-circle__text">
-          <p class="dmb-progress-circle__title">Emerging</p>
-          <div class="dmb-progress-circle__values">
-            <span class="dmb-progress-circle__result">1.6</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4</span>
-            </span>
-          </div>
-        </div>
-      </progress-circle>
-      <progress-table class="dmb-progress-table">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="1.1" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">Potato</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">1.1</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry average
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              Industry best
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
-            </div>
-          </div>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
-    </section>
-
-
-    <script type="text/javascript">
-      const element = document.getElementsByClassName('demo-button')[0];
-      element.addEventListener('click', () => {
-        setProgressCircles(document.getElementsByClassName('demo-input')[0].value);
-        setProgressTables(document.getElementsByClassName('demo-input')[0].value);
-      });
-
-      function setProgressCircles(progress) {
-        const progressCircles = [...document.getElementsByClassName('dmb-progress-circle')];
-        const progressBars = document.getElementsByClassName('dmb-progress-circle__prog-bar');
-        let progresses = [];
-
-        progressCircles.forEach((elem, i) => {
-          progresses[i] = progress || parseInt(elem.getAttribute('data-progress'), 10);
-          progresses[i] = 339.292 * (100 - progresses[i]) / 100;
-          progressBars[i].setAttribute('style', `stroke-dashoffset: ${progresses[i]};`);
-        })
-      }
-
-      function setProgressTables(progress) {
-        const progressBars = [...document.getElementsByClassName('dmb-progress-table__row')];
-        let progresses = [];
-
-        progressBars.forEach((elem, i) => {
-          let borderOffset = 0;
-          progresses[i] = progress || parseFloat(elem.getAttribute('data-rating'));
-          progresses[i] = (progresses[i] * 100) / 4;
-          let mainBar = elem.classList.contains('dmb-progress-table__row--main');
-          let tableColumns = elem.closest('.dmb-progress-table').querySelectorAll('.dmb-progress-table__col');
-
-          // calculate border offset and active column for progres bars
-          if (progresses[i] <= 25) {
-            if (mainBar) {
-              tableColumns[1].classList.add('dmb-progress-table__col--active');
-            }
-            // add dmb-progress-table__col--active class to 'Nascent' column to highlight it
-          } else if (progresses[i] <= 50) {
-            if (mainBar) {
-              tableColumns[2].classList.add('dmb-progress-table__col--active');
-            }
-            // add dmb-progress-table__col--active class to 'Emerging' column to highlight it
-            borderOffset = 1;
-          } else if (progresses[i] <= 75) {
-            if (mainBar) {
-              tableColumns[3].classList.add('dmb-progress-table__col--active');
-            }
-            // add dmb-progress-table__col--active class to 'Connected' column to highlight it
-            borderOffset = 2;
-          } else {
-            if (mainBar) {
-              tableColumns[4].classList.add('dmb-progress-table__col--active');
-            }
-            // add dmb-progress-table__col--active class to 'Multimode' column to highlight it
-            borderOffset = 3;
-          }
-          elem.setAttribute('style', `width: calc((${progresses[i]}% * 4) + ${borderOffset}px);`);
-        })
-      }
-
-      window.addEventListener('load', function() {
-        setProgressCircles();
-        setProgressTables();
-      });
-    </script>
   </div>
+  <script type="text/javascript">
+    function setProgressTables(progress) {
+      const progressBars = [...document.getElementsByClassName('dmb-progress-table__row')];
+      let progresses = [];
+
+      progressBars.forEach((elem, i) => {
+        let borderOffset = 0;
+        progresses[i] = progress || parseFloat(elem.getAttribute('data-rating'));
+        progresses[i] = (progresses[i] * 100) / 4;
+        let mainBar = elem.classList.contains('dmb-progress-table__row--main');
+        let tableColumns = elem.closest('.dmb-progress-table').querySelectorAll('.dmb-progress-table__col');
+
+        // calculate border offset and active column for progres bars
+        if (progresses[i] <= 25) {
+          if (mainBar) {
+            tableColumns[1].classList.add('dmb-progress-table__col--active');
+          }
+          // add dmb-progress-table__col--active class to 'Nascent' column to highlight it
+        } else if (progresses[i] <= 50) {
+          if (mainBar) {
+            tableColumns[2].classList.add('dmb-progress-table__col--active');
+          }
+          // add dmb-progress-table__col--active class to 'Emerging' column to highlight it
+          borderOffset = 1;
+        } else if (progresses[i] <= 75) {
+          if (mainBar) {
+            tableColumns[3].classList.add('dmb-progress-table__col--active');
+          }
+          // add dmb-progress-table__col--active class to 'Connected' column to highlight it
+          borderOffset = 2;
+        } else {
+          if (mainBar) {
+            tableColumns[4].classList.add('dmb-progress-table__col--active');
+          }
+          // add dmb-progress-table__col--active class to 'Multimode' column to highlight it
+          borderOffset = 3;
+        }
+        elem.setAttribute('style', `width: calc((${progresses[i]}% * 4) + ${borderOffset}px);`);
+      })
+    }
+
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+
+        setProgressTables();
+      }, 2000)
+    });
+  </script>
 </div>
 {% endblock %}

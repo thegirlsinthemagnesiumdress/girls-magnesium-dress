@@ -3,7 +3,7 @@ $report-page-color-map: (
     main: $dmb-color-blue-cornflower,
     light: $dmb-color-blue-alice
   ),
-  assets: (
+  ads: (
     main: $dmb-color-red-cinnabar,
     light: $dmb-color-red-pale-pink
   ),
@@ -27,6 +27,8 @@ $report-page-color-map: (
 
 $dmb-button-height: 46px;
 $dmb-report-hero-padding-bottom: 37px;
+$dmb-tabs-border-radius: 5px;
+$dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 
 .dmb-report-page {
   &__hero {
@@ -104,6 +106,129 @@ $dmb-report-hero-padding-bottom: 37px;
     max-width: 41em;
   }
 
+
+  // Tabs
+
+  &__tabs-icons,
+  .glue-c-tabset__tablist {
+    display: flex;
+
+    & > div {
+      flex-basis: calc(100% / 6);
+    }
+  }
+
+  // Mobile
+  &__tabs-ul {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  &__tabs {
+    .glue-tabby {
+      margin-top: 16px;
+    }
+
+    .glue-c-tabset {
+      &__tab {
+        font-family: 'Google Sans';
+        margin: 0;
+        position: relative;
+
+        &.glue-is-active {
+          &::after {
+            background: $h-white;
+            bottom: -5px;
+            content: '';
+            display: block;
+            height: 10px;
+            left: 1px;
+            position: absolute;
+            right: 1px;
+          }
+
+          .glue-c-tabset__button {
+            box-shadow: 0 -1px 8px 0 $dmb-tabs-shadow-color;
+            color: $dmb-text-color;
+          }
+        }
+      }
+
+      &__button {
+        border: 0;
+        border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+        color: $dmb-color-grey-aluminium;
+        height: 100%;
+        width: 100%;
+
+        // Quick win to make icon on top of the tab clickable.
+        &::after {
+          bottom: 0;
+          content: '';
+          display: block;
+          height: 150px;
+          position: absolute;
+          width: 100%;
+        }
+      }
+
+      &__panel-container {
+        border: 0;
+        padding: 0;
+      }
+
+      &__page {
+        border: 0;
+        border-radius: $dmb-tabs-border-radius;
+        box-shadow: 0 2px 8px 0 $dmb-tabs-shadow-color;
+        padding: 73px 66px 76px;
+
+        &:first-child {
+          border-top-left-radius: 0;
+        }
+
+        &:last-child {
+          border-top-right-radius: 0;
+        }
+      }
+    }
+
+    progress-table {
+      margin-top: 66px;
+    }
+  }
+
+  &__tab-heading {
+    @media (min-width: 601px) {
+      display: none;
+    }
+  }
+
+  &__tab-static-col {
+    padding: 0 50px 47px 0;
+
+    @media (min-width: 601px) {
+      border-right: 1px solid $dmb-color-grey-gainsboro;
+    }
+  }
+
+  &__tab-dynamic-col {
+    display: flex;
+    padding-left: 40px;
+  }
+
+  &__tab-progress-circle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    min-width: 100px;
+
+    .dmb-progress-circle__result {
+      font-size: 1.5em;
+    }
+  }
+
   &__recommendations {
     column-count: 2;
     column-gap: 27px;
@@ -117,8 +242,8 @@ $dmb-report-hero-padding-bottom: 37px;
     > li {
       background-color: #f8f9fa;
       display: inline-block;
-      padding: 32px;
       margin-bottom: 22px;
+      padding: 32px;
       width: 100%;
     }
   }
