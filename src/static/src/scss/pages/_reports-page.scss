@@ -3,7 +3,7 @@ $report-page-color-map: (
     main: $dmb-color-blue-cornflower,
     light: $dmb-color-blue-alice
   ),
-  assets: (
+  ads: (
     main: $dmb-color-red-cinnabar,
     light: $dmb-color-red-pale-pink
   ),
@@ -160,6 +160,16 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
         color: $dmb-color-grey-aluminium;
         height: 100%;
         width: 100%;
+
+        // Quick win to make icon on top of the tab clickable.
+        &::after {
+          bottom: 0;
+          content: '';
+          display: block;
+          height: 150px;
+          position: absolute;
+          width: 100%;
+        }
       }
 
       &__panel-container {
@@ -208,14 +218,16 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   &__tab-progress-circle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin-right: 50px;
+    min-width: 100px;
+
+    .dmb-progress-circle__result {
+      font-size: 1.5em;
+    }
   }
-
-
-
-
-
-
 
   &__recommendations {
     column-count: 2;

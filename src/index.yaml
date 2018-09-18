@@ -33,6 +33,11 @@ indexes:
   - name: company_name
   - name: uid
 
+- kind: core_survey
+  properties:
+  - name: industry
+  - name: last_survey_result_id
+
 - kind: core_surveyresult
   properties:
   - name: survey_id
