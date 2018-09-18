@@ -401,11 +401,20 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       }
     }
 
+    &__list-item-heading {
+      position: relative;
+    }
+
+    &__left-block {
+      padding-left: 70px;
+    }
+
     &__list-item-bullet {
       counter-increment: shields;
       margin-right: 32px;
       min-width: 20px;
-      position: relative;
+      position: absolute;
+      left: -50px;
 
       &::after {
         bottom: 0;
@@ -418,7 +427,11 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
         position: absolute;
         right: 0;
         text-align: center;
-        top: 4px;
+        top: 3px;
+
+        @include bp(m) {
+          top: 7px;
+        }
       }
     }
 
