@@ -23,6 +23,7 @@
       "tabWidth": 2,
       "ignoreUrls": true,
       "ignorePattern": "^goog\\.(module|require)"
-    }]
+    }],
+    "no-useless-escape": "off"
   }
 }
