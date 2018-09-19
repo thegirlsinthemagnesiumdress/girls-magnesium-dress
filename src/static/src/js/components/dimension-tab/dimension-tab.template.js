@@ -1,12 +1,13 @@
 goog.module('dmb.components.dimensionTab.template');
 
+/* eslint-disable max-len */
 const dimensionTabTemplate = `
 
 <div class="dmb-report-page__tab-content">
 
   <div class="h-c-grid">
     <div class="dmb-report-page__tab-static-col h-c-grid__col h-c-grid__col--5">
-      <h2 class="h-c-headline h-c-headline--one h-u-mb-std">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h2>
+      <h2 class="dmb-print-page-header h-c-headline h-c-headline--one h-u-mb-std">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h2>
       <p>
       {[ dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab] ]}
       </p>
@@ -46,7 +47,7 @@ const dimensionTabTemplate = `
     data-industry-best="dimensionTabCtrl.industryDmb_bp"
     data-company-name="{[company_name]}">
   </dmb-progress-table>
-  <div>
+  <div class="dmb-report-page__recommendation-block">
     <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
       <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span>
       <strong ng-if="dimensionTabCtrl.floorDMB < 3">{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
@@ -79,6 +80,6 @@ const dimensionTabTemplate = `
 
 </div> <!-- .dmb-report-page__tab-content -->
 `;
-
+/* eslint-enable max-len */
 
 exports = dimensionTabTemplate;
