@@ -23,10 +23,11 @@ done
 
 if [ $PROD_FLAG ];
 then
-    appid = $appid_prod
+    appid=$appid_prod
 else
-    appid = $appid_staging
+    appid=$appid_staging
 fi
+
 
 usage(){
     echo "Usage:";
