@@ -29,6 +29,7 @@ $dmb-button-height: 46px;
 $dmb-report-hero-padding-bottom: 37px;
 $dmb-tabs-border-radius: 5px;
 $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
+$dmb-headline-accent-color: $dmb-color-blue-manatee;
 
 .dmb-report-page {
   &__hero {
@@ -294,10 +295,9 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   @each $name, $color in $report-page-color-map {
-
-    .dmb-progress-table.dmb-progress-table--#{$name} .dmb-progress-table {
-      &__row--main {
-        background-color: map-get($color, main);
+    [dmb-dimension-tab="#{$name}"] {
+      .dmb-progress-table__row--main {
+        background: map-get($color, main);
       }
     }
 

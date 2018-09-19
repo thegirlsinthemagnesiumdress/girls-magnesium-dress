@@ -3,7 +3,7 @@ $dmb-prog-table-label-color: $dmb-color-grey-shuttle;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
 $dmb-prog-table-main-label-color: $dmb-color-black-russian;
 $dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
-$dmb-prog-table-active-bg-color: $dmb-color-blue-alice;
+$dmb-prog-table-active-bg-color: rgba($dmb-color-blue-alice, .35);
 $dmb-prog-table-active-color: $dmb-color-blue-navy;
 $dmb-prog-table-row-height-mobile: 5px;
 
@@ -18,55 +18,44 @@ $dmb-prog-table-row-height-mobile: 5px;
     flex-grow: 1;
 
 
-    @media (min-width: 721px) {
+    @include bp(s) {
       border-right: 1px solid $dmb-prog-table-border-color;
       padding-top: 15px;
-    }
-
-    &--active {
-      background-color: $dmb-prog-table-active-bg-color;
     }
 
     &:nth-of-type(1) {
       flex-grow: auto;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 600px) {
       width: 25%;
-
-      &--active {
-        color: $dmb-prog-table-active-color;
-      }
 
       &:nth-of-type(1) {
         display: none;
       }
+    }
 
-      &:not(&--active) {
-        h3 {
-          display: none;
-        }
-      }
+    &--nascent {
+      position: relative;
     }
   }
 
-  h3 {
-    font-size: 12px;
+  &__col-heading {
+    display: none;
+    font-size: 10px;
     font-weight: 400;
-
-    @media (max-width: 720px) {
-      font-weight: 500;
-    }
+    text-transform: uppercase;
 
     @media (min-width: 721px) {
-      text-transform: uppercase;
+      display: block;
+      font-size: 12px;
     }
   }
 
   &__rating {
     margin-left: 6px;
 
-    @media (min-width: 721px) {
+    @include bp(s) {
       display: none;
     }
   }
@@ -85,7 +74,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     transition: width $dmb-trans-time $dmb-trans-fn;
     width: 1px;
 
-    @media (min-width: 721px) {
+    @include bp(s) {
       font-size: 16px;
       height: 1em;
     }
@@ -95,7 +84,7 @@ $dmb-prog-table-row-height-mobile: 5px;
       left: calc(100% + 10px);
       position: absolute;
 
-      @media (max-width: 720px) {
+      @media (max-width: 600px) {
         display: none;
       }
     }
@@ -103,15 +92,15 @@ $dmb-prog-table-row-height-mobile: 5px;
     &:first-of-type {
       margin-top: 40px;
 
-      @media (min-width: 721px) {
+      @include bp(s) {
         margin-top: 83px;
       }
     }
 
-    &:last-of-type {
+    &:nth-of-type(3) {
       margin-bottom: calc(1em + 21px);
 
-      @media (min-width: 721px) {
+      @include bp(s) {
         margin-bottom: 47px;
       }
     }
@@ -119,7 +108,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     & ~ & {
       margin-top: 30px;
 
-      @media (min-width: 721px) {
+      @include bp(s) {
         margin-top: 20px;
       }
     }
@@ -134,6 +123,22 @@ $dmb-prog-table-row-height-mobile: 5px;
     }
   }
 
+  &__banner {
+    background: rgba($dmb-color-grey-gainsboro, .85);
+    border-radius: 5px;
+    left: 0;
+    padding: 14px 32px;
+    position: absolute;
+    top: 100px;
+    width: calc(400%);
+
+    @include bp(s) {
+      left: 15px;
+      top: 150px;
+      width: calc(400% - 30px);
+    }
+  }
+
   &__label {
     color: $dmb-prog-table-label-color;
     left: 0;
@@ -141,10 +146,61 @@ $dmb-prog-table-row-height-mobile: 5px;
     top: calc(100% + 5px);
     white-space: nowrap;
 
-    @media (min-width: 721px) {
+    @include bp(s) {
       font-size: 16px;
       top: 0;
       transform: translateX(calc(-100% - 27px));
+    }
+  }
+
+  &--nascent {
+    .dmb-progress-table__col--nascent {
+      background-color: $dmb-prog-table-active-bg-color;
+
+      .dmb-progress-table__col-heading {
+        display: block;
+      }
+    }
+  }
+
+  &--emerging {
+    .dmb-progress-table__col--emerging {
+      background-color: $dmb-prog-table-active-bg-color;
+
+      .dmb-progress-table__col-heading {
+        display: block;
+      }
+    }
+  }
+
+  &--connected {
+    .dmb-progress-table__col--connected {
+      background-color: $dmb-prog-table-active-bg-color;
+
+      .dmb-progress-table__col-heading {
+        display: block;
+      }
+    }
+  }
+
+  &--multimoment {
+    .dmb-progress-table__col--multimoment {
+      background-color: $dmb-prog-table-active-bg-color;
+
+      .dmb-progress-table__col-heading {
+        display: block;
+      }
+    }
+  }
+
+  .dmb-report-page__info {
+    background-image: url('../img/icons/info.svg');
+    display: none;
+    height: 18px;
+    top: 3px;
+
+    @include bp(s) {
+      display: inline-block;
     }
   }
 }
