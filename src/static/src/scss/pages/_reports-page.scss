@@ -294,6 +294,14 @@ $recommendation-cta-bg-color: #fff;
         box-shadow: 0 2px 8px 0 $dmb-tabs-shadow-color;
         padding: 73px 66px 58px;
 
+        > h3 {
+          display: block;
+
+          @include bp(s) {
+            display: none;
+          }
+        }
+
         &:first-child {
           border-top-left-radius: 0;
         }
