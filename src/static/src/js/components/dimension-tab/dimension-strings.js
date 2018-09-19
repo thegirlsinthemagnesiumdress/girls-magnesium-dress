@@ -60,7 +60,7 @@ const dimensionLevelDescription = {
   },
 };
 
-const dimensionLevelRecomendations = {
+const dimensionLevelrecommendations = {
   'attribution': {
     0: [{
       'header': 'Measure the true value of your marketing activities',
@@ -372,5 +372,5 @@ exports = {
   dimensionHeaders,
   dimensionHeadersDescription,
   dimensionLevelDescription,
-  dimensionLevelRecomendations,
+  dimensionLevelrecommendations,
 };
