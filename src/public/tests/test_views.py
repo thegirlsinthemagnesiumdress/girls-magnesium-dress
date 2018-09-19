@@ -14,10 +14,14 @@ class ReportsAdminTestCase(TestCase):
 
         self.survey_1 = Survey.objects.create(
             company_name='test company',
+            industry="re",
+            country="it",
             engagement_lead='123'
         )
         self.survey_2 = Survey.objects.create(
             company_name='test company 2',
+            industry="re",
+            country="it",
             engagement_lead='456'
         )
 

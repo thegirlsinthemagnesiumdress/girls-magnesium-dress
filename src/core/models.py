@@ -23,7 +23,7 @@ class User(GaeAbstractDatastoreUser):
     @property
     def engagement_lead(self):
         """Returns MD5 of email field."""
-        m = hashlib.sha256()
+        m = hashlib.md5()
         m.update(self.email)
         return m.hexdigest()
 
@@ -39,8 +39,8 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, null=True)
-    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
-    country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems(), null=True)
+    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems())
+    country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -58,8 +58,8 @@ class Survey(models.Model):
     def link_sponsor(self):
         """
         We need to differenziate between sponsor (survey creators)
-        """
         amd participants. The way that is done is by setting sp=true.
+        """
         return '{}&sp=true'.format(self.link)
 
     def save(self, *args, **kwargs):

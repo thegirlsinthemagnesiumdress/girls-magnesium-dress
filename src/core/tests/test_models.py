@@ -14,7 +14,7 @@ class SurveyTest(TestCase):
 
     def test_uid_is_generated_on_save(self):
         """Test that the survey generates a sid on save."""
-        s = Survey(company_name="1")
+        s = Survey(company_name="1", industry="re", country="it")
         self.assertFalse(s.sid)
         s.save()
         self.assertTrue(s.sid)
@@ -47,7 +47,7 @@ class SurveyTest(TestCase):
     )
     def test_save_invalid_industry(self):
         """Saving an industry that is not in industry list, should set industry field to `None`."""
-        survey = Survey.objects.create(company_name='some company', industry='Not an industry')
+        survey = Survey.objects.create(company_name='some company', country="it", industry='Not an industry')
         self.assertIsNone(survey.industry)
 
     @override_settings(
@@ -57,5 +57,5 @@ class SurveyTest(TestCase):
     )
     def test_save_valid_industry(self):
         """Saving an industry that is in industry list, should set industry field to that industry."""
-        survey = Survey.objects.create(company_name='some company', industry='IT')
+        survey = Survey.objects.create(company_name='some company', country="it", industry='IT')
         self.assertEqual(survey.industry, 'IT')
