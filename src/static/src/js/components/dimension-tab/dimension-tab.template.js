@@ -3,8 +3,6 @@ goog.module('dmb.components.dimensionTab.template');
 /* eslint-disable max-len */
 const dimensionTabTemplate = `
 
-<h3 class="dmb-report-page__tab-heading">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h3>
-
 <div class="dmb-report-page__tab-content">
 
   <div class="h-c-grid">
@@ -45,43 +43,13 @@ const dimensionTabTemplate = `
     </div>
   </div>
 
-  <progress-table class="dmb-progress-table dmb-progress-table--attribution dmb-h-mb--big">
-    <div class="dmb-progress-table__col">
-    </div>
-    <div class="dmb-progress-table__col dmb-progress-table__labels">
-      <h3 aria-hidden="true">Nascent</h3>
-      <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="{{dimensionTabCtrl.dmb}}" aria-label="Your Company is Emerging">
-        <div class="dmb-progress-table__label">
-          <span class="dmb-progress-table__company">{[$root.reportCtrl.survey.company_name]}</span>
-          <span class="dmb-progress-table__rating" aria-label="Your company rating">{{dimensionTabCtrl.dmb}}</span>
-        </div>
-      </div>
-      <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.7">
-        <div class="dmb-progress-table__label">
-          <!-- icon -->
-          <span class="dmb-progress-table__company">Industry average</span>
-          <span class="dmb-progress-table__rating" aria-label="industry average rating">1.7</span>
-        </div>
-      </div>
-      <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.8">
-        <div class="dmb-progress-table__label">
-          <!-- icon -->
-          <span class="dmb-progress-table__company">Industry best</span>
-          <span class="dmb-progress-table__rating" aria-label="industry best rating">2.8</span>
-        </div>
-      </div>
-    </div>
-    <div class="dmb-progress-table__col">
-      <h3 aria-hidden="true">Emerging</h3>
-    </div>
-    <div class="dmb-progress-table__col">
-      <h3 aria-hidden="true">Connected</h3>
-    </div>
-    <div class="dmb-progress-table__col">
-      <h3 aria-hidden="true">Multi-Moment</h3>
-    </div>
-  </progress-table>
-  <div class="dmb-report-page__recommendation-block">
+  <dmb-progress-table
+    data-rating-main="dimensionTabCtrl.dmb"
+    data-industry-avg="dimensionTabCtrl.industryDmb"
+    data-industry-best="dimensionTabCtrl.industryDmb_bp"
+    data-company-name="{[company_name]}">
+  </dmb-progress-table>
+  <div>
     <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
       <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span> <strong>{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
       <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations, you're in the top 2% for marketing maturity</strong>

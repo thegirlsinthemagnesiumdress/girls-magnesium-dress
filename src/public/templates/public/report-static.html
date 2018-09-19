@@ -55,7 +55,7 @@
         <a href="#dmb-report-page-main" class="dmb-report-page__hero-button h-c-button h-c-button--secondary dmb-h-hidden--print" glue-smooth-scroll glue-smooth-scroll-hash="true">View your results</a>
       </div>
   </div>
-</header>
+  </header>
 
   <div class="dmb-report-page__content" id="dmb-report-page-main">
     <button class="dmb-right-panel-trigger dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
@@ -71,102 +71,71 @@
 
     <div class="h-c-page">
       <section>
-      <h2 class="h-c-eyebrow h-u-mb-l">Your overall digital maturity</h2>
-
-      <div class="h-u-mb-xl">
-        <div class="h-c-grid">
-          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--5 h-c-grid__col-l--3 h-u-text-center">
-            <div class="dmb-progress-circle">
-              <svg
-                  dmb-progress-circle="reportCtrl.result.dmb"
-                  class="dmb-progress-circle__prog-svg"
-                  width="214" height="214" viewbox="0 0 120 120">
-                <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-              </svg>
-              <div class="dmb-progress-circle__text">
-                <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
-                <div class="dmb-progress-circle__values">
-                  <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number : 2]}</span>
-                  <span class="dmb-progress-circle__target">/
-                    <span class="dmb-progress-circle__target--value">4</span>
-                  </span>
+        <h2 class="h-c-eyebrow h-u-mb-l">Your overall digital maturity</h2>
+        <div class="h-u-mb-xl">
+          <div class="h-c-grid">
+              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--5 h-c-grid__col-l--3 h-u-text-center">
+              <div class="dmb-progress-circle">
+                <svg
+                    dmb-progress-circle="reportCtrl.result.dmb"
+                    class="dmb-progress-circle__prog-svg"
+                    width="214" height="214" viewbox="0 0 120 120">
+                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                </svg>
+                <div class="dmb-progress-circle__text">
+                  <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
+                  <div class="dmb-progress-circle__values">
+                    <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span>
+                    <span class="dmb-progress-circle__target">/
+                      <span class="dmb-progress-circle__target--value">4</span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--7 h-c-grid__col-l--9">
-            <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
-              <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
-              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
-                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
-              </button>
-            </h3>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
-                This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
-            </p>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
-              This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
-            </p>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
-              This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
-            </p>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
-              This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <progress-table class="dmb-progress-table dmb-h-mb--big">
-        <div class="dmb-progress-table__col">
-        </div>
-        <div class="dmb-progress-table__col dmb-progress-table__labels">
-          <h3 aria-hidden="true">Nascent</h3>
-          <div class="dmb-progress-table__row dmb-progress-table__row--main" data-rating="{[reportCtrl.result.dmb]}" aria-label="Your Company is Emerging">
-            <div class="dmb-progress-table__label">
-              <span class="dmb-progress-table__company">{[reportCtrl.survey.company_name]}</span>
-              <span class="dmb-progress-table__rating" aria-label="Your company rating">{[reportCtrl.result.dmb]}</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-avg" data-rating="1.2">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              <span class="dmb-progress-table__company">Industry average</span>
-              <span class="dmb-progress-table__rating" aria-label="industry average rating">1.2</span>
-            </div>
-          </div>
-          <div class="dmb-progress-table__row dmb-progress-table__row--ind-best" data-rating="2.4">
-            <div class="dmb-progress-table__label">
-              <!-- icon -->
-              <span class="dmb-progress-table__company">Industry best</span>
-              <span class="dmb-progress-table__rating" aria-label="industry best rating">2.4</span>
+            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--7 h-c-grid__col-l--9">
+              <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
+                <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
+                <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
+                  <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+                </button>
+              </h3>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
+                  This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
+              </p>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
+                This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
+              </p>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
+                This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
+              </p>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
+                This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
+              </p>
             </div>
           </div>
         </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Emerging</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Connected</h3>
-        </div>
-        <div class="dmb-progress-table__col">
-          <h3 aria-hidden="true">Multi-Moment</h3>
-        </div>
-      </progress-table>
 
-      <div class="dmb-h-mb--big">
-        <h2 class="h-c-eyebrow h-u-mb-l">
-          6 dimensions of digital marketing maturity
-          <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
-            <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
-          </button>
-        </h2>
-        <p class="dmb-report-page__dimensions-intro dmb-h-mb--small">Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.</p>
+        <dmb-progress-table
+          data-rating-main="reportCtrl.result.dmb"
+          data-industry-avg="reportCtrl.industryResult.dmb"
+          data-industry-best="reportCtrl.industryResult.dmb_bp"
+          data-company-name="{[reportCtrl.survey.company_name]}">
+        </dmb-progress-table>
 
-        <button class="h-c-button h-c-button--secondary dmb-h-hidden--print">Learn more about why these matter</button>
-      </div>
-    </section>
+        <div class="dmb-h-mb--big">
+          <h2 class="h-c-eyebrow h-u-mb-l">
+            6 dimensions of digital marketing maturity
+            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
+              <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+            </button>
+          </h2>
+          <p class="dmb-report-page__dimensions-intro dmb-h-mb--small">Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.</p>
+
+          <button class="h-c-button h-c-button--secondary dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">Learn more about why these matter</button>
+        </div>
+      </section>
 
       <section class="dmb-report-page__tabs dmb-h-mb--big">
         <div class="dmb-report-page__tabs-icons">
@@ -187,40 +156,88 @@
         <div class="glue-tabby glue-zippy-style" data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
           <ul class="dmb-report-page__tabs-ul">
             <li
-              dmb-dimension-tab="{[reportCtrl.dimensions[0]]}"
-              company-name="{[ reportCtrl.survey.company_name ]}"
               glue-label="{[ reportCtrl.dimensions[0] ]}"
               id="tab-{[ reportCtrl.dimensions[0] ]}">
+
+              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[0]]]}</h3>
+              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
+              <div>
+                <div
+                    dmb-dimension-tab="{[reportCtrl.dimensions[0]]}"
+                    company-name="{[ reportCtrl.survey.company_name ]}">
+
+                </div>
+              </div>
             </li>
             <li
-              dmb-dimension-tab="{[reportCtrl.dimensions[1]]}"
-              company-name="{[ reportCtrl.survey.company_name ]}"
               glue-label="{[ reportCtrl.dimensions[1] ]}"
               id="tab-{[ reportCtrl.dimensions[1] ]}">
+
+              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[1]]]}</h3>
+              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
+              <div>
+                <div
+                    dmb-dimension-tab="{[reportCtrl.dimensions[1]]}"
+                    company-name="{[ reportCtrl.survey.company_name ]}">
+
+                </div>
+              </div>
             </li>
             <li
-              dmb-dimension-tab="{[reportCtrl.dimensions[2]]}"
-              company-name="{[ reportCtrl.survey.company_name ]}"
               glue-label="{[ reportCtrl.dimensions[2] ]}"
               id="tab-{[ reportCtrl.dimensions[2] ]}">
+
+              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[2]]]}</h3>
+              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
+              <div>
+                <div
+                    dmb-dimension-tab="{[reportCtrl.dimensions[2]]}"
+                    company-name="{[ reportCtrl.survey.company_name ]}">
+
+                </div>
+              </div>
             </li>
             <li
-              dmb-dimension-tab="{[reportCtrl.dimensions[3]]}"
-              company-name="{[ reportCtrl.survey.company_name ]}"
               glue-label="{[ reportCtrl.dimensions[3] ]}"
               id="tab-{[ reportCtrl.dimensions[3] ]}">
+
+              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[3]]]}</h3>
+              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
+              <div>
+                <div
+                    dmb-dimension-tab="{[reportCtrl.dimensions[3]]}"
+                    company-name="{[ reportCtrl.survey.company_name ]}">
+
+                </div>
+              </div>
             </li>
             <li
-              dmb-dimension-tab="{[reportCtrl.dimensions[4]]}"
-              company-name="{[ reportCtrl.survey.company_name ]}"
               glue-label="{[ reportCtrl.dimensions[4] ]}"
               id="tab-{[ reportCtrl.dimensions[4] ]}">
+
+              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[4]]]}</h3>
+              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
+              <div>
+                <div
+                    dmb-dimension-tab="{[reportCtrl.dimensions[4]]}"
+                    company-name="{[ reportCtrl.survey.company_name ]}">
+
+                </div>
+              </div>
             </li>
             <li
-              dmb-dimension-tab="{[reportCtrl.dimensions[5]]}"
-              company-name="{[ reportCtrl.survey.company_name ]}"
               glue-label="{[ reportCtrl.dimensions[5] ]}"
               id="tab-{[ reportCtrl.dimensions[5] ]}">
+
+              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[5]]]}</h3>
+              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
+              <div>
+                <div
+                    dmb-dimension-tab="{[reportCtrl.dimensions[5]]}"
+                    company-name="{[ reportCtrl.survey.company_name ]}">
+
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -234,57 +251,8 @@
           </svg>
         </a>
       </div>
-
-    </div>
-  </div>
-  <script type="text/javascript">
-    function setProgressTables(progress) {
-      const progressBars = [...document.getElementsByClassName('dmb-progress-table__row')];
-      let progresses = [];
-
-      progressBars.forEach((elem, i) => {
-        let borderOffset = 0;
-        progresses[i] = progress || parseFloat(elem.getAttribute('data-rating'));
-        progresses[i] = (progresses[i] * 100) / 4;
-        let mainBar = elem.classList.contains('dmb-progress-table__row--main');
-        let tableColumns = elem.closest('.dmb-progress-table').querySelectorAll('.dmb-progress-table__col');
-
-        // calculate border offset and active column for progres bars
-        if (progresses[i] <= 25) {
-          if (mainBar) {
-            tableColumns[1].classList.add('dmb-progress-table__col--active');
-          }
-          // add dmb-progress-table__col--active class to 'Nascent' column to highlight it
-        } else if (progresses[i] <= 50) {
-          if (mainBar) {
-            tableColumns[2].classList.add('dmb-progress-table__col--active');
-          }
-          // add dmb-progress-table__col--active class to 'Emerging' column to highlight it
-          borderOffset = 1;
-        } else if (progresses[i] <= 75) {
-          if (mainBar) {
-            tableColumns[3].classList.add('dmb-progress-table__col--active');
-          }
-          // add dmb-progress-table__col--active class to 'Connected' column to highlight it
-          borderOffset = 2;
-        } else {
-          if (mainBar) {
-            tableColumns[4].classList.add('dmb-progress-table__col--active');
-          }
-          // add dmb-progress-table__col--active class to 'Multimode' column to highlight it
-          borderOffset = 3;
-        }
-        elem.setAttribute('style', `width: calc((${progresses[i]}% * 4) + ${borderOffset}px);`);
-      })
-    }
-
-    window.addEventListener('load', function() {
-      setTimeout(() => {
-
-        setProgressTables();
-      }, 2000)
-    });
-  </script>
+    </div> <!-- h-c-page -->
+  </div> <!-- #dmb-report-page-main -->
 
   <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
     <div class="h-c-page">
@@ -292,7 +260,7 @@
     </div>
   </div>
 
-  <aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+  <aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -331,7 +299,7 @@
     </div>
   </aside>
 
-  <aside id="dmb-report-left-side-panel-two" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+  <aside id="dmb-report-left-side-panel-two" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -358,7 +326,7 @@
     </div>
   </aside>
 
-  <aside id="dmb-report-left-side-panel-three" class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--left" dmb-side-panel>
+  <aside id="dmb-report-left-side-panel-three" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -584,6 +552,7 @@
       </div>
     </div>
   </aside>
+
 </div>
 {% endblock %}
 

@@ -1,34 +1,21 @@
-$report-page-color-map: (
-  attribution: (
-    main: $dmb-color-blue-cornflower,
-    light: $dmb-color-blue-alice
-  ),
-  ads: (
-    main: $dmb-color-red-cinnabar,
-    light: $dmb-color-red-pale-pink
-  ),
-  audience: (
-    main: $dmb-color-yellow-selective,
-    light: $dmb-color-yellow-forget-me-not
-  ),
-  access: (
-    main: $dmb-color-green-ecalyptus,
-    light: $dmb-color-green-frosted-mint
-  ),
-  automation: (
-    main: $dmb-color-grey-chateau,
-    light: $dmb-color-blue-solitude
-  ),
-  organization: (
-    main: $dmb-color-blue-denim-2,
-    light: $dmb-color-blue-lavender
-  )
-);
+$report-page-color-map: (attribution: (main: $dmb-color-blue-cornflower,
+light: $dmb-color-blue-alice),
+ads: (main: $dmb-color-red-cinnabar,
+light: $dmb-color-red-pale-pink),
+audience: (main: $dmb-color-yellow-selective,
+light: $dmb-color-yellow-forget-me-not),
+access: (main: $dmb-color-green-ecalyptus,
+light: $dmb-color-green-frosted-mint),
+automation: (main: $dmb-color-grey-chateau,
+light: $dmb-color-blue-solitude),
+organization: (main: $dmb-color-blue-denim-2,
+light: $dmb-color-blue-lavender));
 
 $dmb-button-height: 46px;
 $dmb-report-hero-padding-bottom: 37px;
 $dmb-tabs-border-radius: 5px;
 $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
+$dmb-headline-accent-color: $dmb-color-blue-manatee;
 
 .dmb-report-page {
   &__hero {
@@ -169,8 +156,30 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
     @extend .dmb-h-hidden--print;
     display: flex;
 
-    & > div {
+    &>div,
+    .glue-c-tabset__tab {
       flex-basis: calc(100% / 6);
+    }
+
+  }
+
+  &__tabs-icons {
+    display: none;
+
+    @include bp(s) {
+      display: flex;
+    }
+  }
+
+  &__tab-content {
+    margin: 0 20px;
+    border-top: 1px solid $h-gm-grey-300;
+    padding-top: 24px;
+
+    @include bp(s) {
+      border: 0;
+      margin: 0;
+      padding: 0;
     }
   }
 
@@ -178,6 +187,42 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   &__tabs-ul {
     list-style-type: none;
     margin: 0;
+  }
+
+  .glue-zippy {
+    @include h-u-box-shadow-2();
+    margin-bottom: 16px;
+
+
+    h3 {
+      padding: 16px 20px;
+      vertical-align: middle;
+
+      &::before {
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        height: 39px;
+        vertical-align: middle;
+        margin-right: 20px;
+        vertical-align: middle;
+        width: 39px;
+      }
+    }
+
+    $i: 1;
+
+    @each $name,
+    $color in $report-page-color-map {
+      &:nth-of-type(#{$i}) {
+
+        h3::before {
+          background-image: url('../img/icons/#{$name}.svg');
+        }
+      }
+
+      $i: $i+1;
+    }
   }
 
   &__tabs {
@@ -324,7 +369,7 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       column-gap: 27px;
     }
 
-    > li {
+    >li {
       background-color: #f8f9fa;
       display: inline-block;
       margin-bottom: 22px;
@@ -348,11 +393,11 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
     }
   }
 
-  @each $name, $color in $report-page-color-map {
-
-    .dmb-progress-table.dmb-progress-table--#{$name} .dmb-progress-table {
-      &__row--main {
-        background-color: map-get($color, main);
+  @each $name,
+  $color in $report-page-color-map {
+    [dmb-dimension-tab="#{$name}"] {
+      .dmb-progress-table__row--main {
+        background: map-get($color, main);
       }
     }
 
@@ -442,7 +487,9 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       font-weight: 300;
       margin-bottom: 32px;
     }
-  } // .dmb-side-panel--left
+  }
+
+  // .dmb-side-panel--left
 
 
   .dmb-side-panel--narrow {
@@ -614,16 +661,20 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
         }
       }
     }
-  } // .dmb-side-panel
+  }
 
-  .dmb-side-panel__advice-item + .dmb-side-panel__advice-item {
+  // .dmb-side-panel
+
+  .dmb-side-panel__advice-item+.dmb-side-panel__advice-item {
     @include bp(s) {
       margin-left: 54px;
     }
   }
 
-  .dmb-side-panel__list-item + .dmb-side-panel__list-item {
+  .dmb-side-panel__list-item+.dmb-side-panel__list-item {
     border-top: 1px solid $dmb-color-grey-gainsborough;
     padding-top: 32px;
   }
-} //#dmb-report-right-side-panel
+}
+
+//#dmb-report-right-side-panel

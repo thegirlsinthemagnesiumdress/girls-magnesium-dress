@@ -1,0 +1,2 @@
+We've finished analyzing your survey responses to find out where you can improve your marketing strategy.
+Here's the link to access your report: {{url}}

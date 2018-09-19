@@ -28,6 +28,13 @@ class ReportService {
      *
      */
     this.industryDmb_d = {};
+
+    /**
+     * @type {Object}
+     * @export
+     *
+     */
+    this.industryDmb_bp = {};
   }
 }
 
