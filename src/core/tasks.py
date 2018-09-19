@@ -4,7 +4,8 @@ import os
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
 from django.conf import settings
-from django.core import mail
+
+from google.appengine.api import mail
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.shortcuts import reverse
@@ -71,21 +72,41 @@ def send_emails_for_new_reports(email_list):
 
     for email_data in email_list:
         to, bcc, sid = email_data
+
+        # Last minute change, we should refactor this and pass the object in
+        try:
+            s = Survey.objects.get(pk=sid)
+            company_name = s.company_name
+            industry = s.get_industry_display()
+            country = s.get_country_display()
+        except Survey.DoesNotExist:
+            company_name = ""
+            industry = ""
+            country = ""
+            logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
+
         if is_valid_email(to):
             link = reverse('report', kwargs={'sid': sid})
             bcc = [bcc] if is_valid_email(bcc) else None
             context = {
-                'url': "http://{}{}".format(domain, link)
+                'url': "http://{}{}".format(domain, link),
+                'company_name': company_name,
+                'industry': industry,
+                'country': country,
             }
 
-            message = mail.EmailMultiAlternatives(
-                subject=subject_template.render(context).split("\n")[0],
-                from_email=settings.CONTACT_EMAIL,
-                to=[to],
-                bcc=bcc
-            )
-            message.body = text_message_template
-            message.html = html_message_template
+            email_kwargs = {
+                'to': [to],
+                'subject': subject_template.render(context).split("\n")[0],
+                'sender': settings.CONTACT_EMAIL,
+                'body': text_message_template.render(context),
+                'html': html_message_template.render(context),
+            }
+
+            message = mail.EmailMessage(**email_kwargs)
+
+            if bcc:
+                message.bcc = bcc
 
             message.send()
 

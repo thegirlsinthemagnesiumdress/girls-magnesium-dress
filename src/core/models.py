@@ -7,7 +7,7 @@ from django.db import models
 from django.utils import timezone
 
 
-SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
+SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRICS_SURVEY_ID)
 
 
 class User(GaeAbstractDatastoreUser):

@@ -1,35 +1,26 @@
-$report-page-color-map: (
-  attribution: (
-    main: $dmb-color-blue-cornflower,
-    light: $dmb-color-blue-alice
-  ),
-  ads: (
-    main: $dmb-color-red-cinnabar,
-    light: $dmb-color-red-pale-pink
-  ),
-  audience: (
-    main: $dmb-color-yellow-selective,
-    light: $dmb-color-yellow-forget-me-not
-  ),
-  access: (
-    main: $dmb-color-green-ecalyptus,
-    light: $dmb-color-green-frosted-mint
-  ),
-  automation: (
-    main: $dmb-color-grey-chateau,
-    light: $dmb-color-blue-solitude
-  ),
-  organization: (
-    main: $dmb-color-blue-denim-2,
-    light: $dmb-color-blue-lavender
-  )
-);
+$report-page-color-map: (attribution: (main: $dmb-color-blue-cornflower,
+light: $dmb-color-blue-alice),
+ads: (main: $dmb-color-red-cinnabar,
+light: $dmb-color-red-pale-pink),
+audience: (main: $dmb-color-yellow-selective,
+light: $dmb-color-yellow-forget-me-not),
+access: (main: $dmb-color-green-ecalyptus,
+light: $dmb-color-green-frosted-mint),
+automation: (main: $dmb-color-grey-chateau,
+light: $dmb-color-blue-solitude),
+organization: (main: $dmb-color-blue-denim-2,
+light: $dmb-color-blue-lavender));
+
+$recommendation-classes: analytics, speed-test, ux-bp;
 
 $dmb-button-height: 46px;
 $dmb-report-hero-padding-bottom: 37px;
 $dmb-tabs-border-radius: 5px;
 $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 $dmb-headline-accent-color: $dmb-color-blue-manatee;
+$recommendation-cta-border-color: $dmb-color-grey-chateau;
+$recommendation-cta-color: $dmb-color-blue-royal;
+$recommendation-cta-bg-color: #fff;
 
 .dmb-report-page {
   &__hero {
@@ -58,8 +49,18 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
     }
   }
 
+  &__hero-content {
+    display: flex;
+  }
+
+  &__hero-subhead {
+    font-size: 20px;
+    font-weight: 200;
+    margin-top: 64px;
+  }
+
   strong {
-    font-weight: 500;
+    font-weight: $h-font-weight-medium;
   }
 
   &__hero-title {
@@ -77,6 +78,8 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
   &__hero-accent {
     color: rgba($dmb-light-text-color, .62);
     display: block;
+    font-weight: $h-font-weight-medium;
+    margin-bottom: 8px;
   }
 
   &__hero-cta {
@@ -88,12 +91,31 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
 
   &__hero-button {
     border-radius: 23px;
+    height: auto;
+    line-height: 30px;
     margin: auto 0 0;
+    padding: 9px 16px 9px 35px;
+    width: auto;
+    color: $h-gm-grey-700 !important;
+
+    .h-c-icon {
+      vertical-align: middle;
+      margin-left: 8px;
+    }
   }
 
   &__content {
     padding: $dmb-margin-big 0;
     position: relative;
+  }
+
+  &__company-dmb-content {
+    margin: 88px 0;
+    display: flex;
+
+    .dmb-progress-circle {
+      margin-right: 64px;
+    }
   }
 
   &__info {
@@ -117,15 +139,40 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
     max-width: 41em;
   }
 
-
   // Tabs
 
   &__tabs-icons,
   .glue-c-tabset__tablist {
     display: flex;
 
-    & > div {
+    &>div,
+    .glue-c-tabset__tab {
       flex-basis: calc(100% / 6);
+    }
+
+  }
+
+  &__tabs-icons {
+    display: none;
+
+    @include bp(s) {
+      display: flex;
+    }
+  }
+
+  &__tab-content {
+    border-top: 1px solid $h-gm-grey-300;
+    margin: 0 20px;
+    padding-top: 24px;
+
+    @include bp(s) {
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    > .h-c-grid {
+      margin-bottom: 92px;
     }
   }
 
@@ -133,6 +180,42 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
   &__tabs-ul {
     list-style-type: none;
     margin: 0;
+  }
+
+  .glue-zippy {
+    @include h-u-box-shadow-2();
+    margin-bottom: 16px;
+
+
+    h3 {
+      padding: 16px 20px;
+      vertical-align: middle;
+
+      &::before {
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        height: 39px;
+        vertical-align: middle;
+        margin-right: 20px;
+        vertical-align: middle;
+        width: 39px;
+      }
+    }
+
+    $i: 1;
+
+    @each $name,
+    $color in $report-page-color-map {
+      &:nth-of-type(#{$i}) {
+
+        h3::before {
+          background-image: url('../img/icons/#{$name}.svg');
+        }
+      }
+
+      $i: $i+1;
+    }
   }
 
   &__tabs {
@@ -161,6 +244,7 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
           .glue-c-tabset__button {
             box-shadow: 0 -1px 8px 0 $dmb-tabs-shadow-color;
             color: $dmb-text-color;
+            font-weight: $h-font-weight-medium;
           }
         }
       }
@@ -171,6 +255,22 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
         color: $dmb-color-grey-aluminium;
         height: 100%;
         width: 100%;
+
+        &:hover::before {
+          background: $dmb-color-blue-solitude;
+        }
+
+        &::before {
+          border-radius: 5px;
+          bottom: 7px;
+          content: '';
+          display: block;
+          left: 12px;
+          position: absolute;
+          right: 12px;
+          top: 7px;
+          z-index: -1;
+        }
 
         // Quick win to make icon on top of the tab clickable.
         &::after {
@@ -192,7 +292,15 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
         border: 0;
         border-radius: $dmb-tabs-border-radius;
         box-shadow: 0 2px 8px 0 $dmb-tabs-shadow-color;
-        padding: 73px 66px 76px;
+        padding: 73px 66px 58px;
+
+        > h3 {
+          display: block;
+
+          @include bp(s) {
+            display: none;
+          }
+        }
 
         &:first-child {
           border-top-left-radius: 0;
@@ -240,25 +348,6 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
     }
   }
 
-  &__recommendations {
-    column-count: 2;
-    column-gap: 27px;
-    display: block;
-    list-style: none;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 900px;
-    page-break-inside: avoid;
-
-    > li {
-      background-color: #f8f9fa;
-      display: inline-block;
-      margin-bottom: 22px;
-      padding: 32px;
-      width: 100%;
-    }
-  }
-
   @each $name, $color in $report-page-color-map {
     [dmb-dimension-tab="#{$name}"] {
       .dmb-progress-table__row--main {
@@ -277,6 +366,61 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
 
       &__icon {
         background-image: url('../img/icons/#{$name}.svg');
+      }
+    }
+  }
+
+  &__recommendations {
+    column-count: 2;
+    column-gap: 27px;
+    display: block;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+    page-break-inside: avoid;
+  }
+
+  &__recommendation {
+    background-color: #f8f9fa;
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 32px;
+    width: 100%;
+  }
+
+  &__recommendation-cta {
+    align-items: center;
+    background: $recommendation-cta-bg-color;
+    border: 1px solid $recommendation-cta-border-color;
+    border-radius: 22px;
+    color: $recommendation-cta-color;
+    display: inline-flex;
+    font-family: 'Google Sans';
+    font-size: 14px;
+    margin-top: 24px;
+    padding: 10px 20px;
+
+    &:hover {
+      background: darken($recommendation-cta-bg-color, .5);
+    }
+
+    @include bp(s) {
+      font-size: 16px;
+    }
+  }
+
+  &__recommendation-cta-icon {
+    background-repeat: no-repeat;
+    height: 22px;
+    margin-right: 15px;
+    width: 22px;
+  }
+
+  @each $class in $recommendation-classes {
+    &__recommendation {
+      &--#{$class} &-cta-icon {
+        background-image: url('../img/icons/#{$class}.svg');
       }
     }
   }
@@ -354,7 +498,9 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
       font-weight: 300;
       margin-bottom: 32px;
     }
-  } // .dmb-side-panel--left
+  }
+
+  // .dmb-side-panel--left
 
 
   .dmb-side-panel--narrow {
@@ -508,16 +654,20 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
         }
       }
     }
-  } // .dmb-side-panel
+  }
 
-  .dmb-side-panel__advice-item + .dmb-side-panel__advice-item {
+  // .dmb-side-panel
+
+  .dmb-side-panel__advice-item+.dmb-side-panel__advice-item {
     @include bp(s) {
       margin-left: 54px;
     }
   }
 
-  .dmb-side-panel__list-item + .dmb-side-panel__list-item {
+  .dmb-side-panel__list-item+.dmb-side-panel__list-item {
     border-top: 1px solid $dmb-color-grey-gainsborough;
     padding-top: 32px;
   }
-} //#dmb-report-right-side-panel
+}
+
+//#dmb-report-right-side-panel
