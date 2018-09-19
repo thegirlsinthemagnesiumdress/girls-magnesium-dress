@@ -24,7 +24,7 @@ class DimensionTabController {
    * @param {!Object} dimensionHeaders
    * @param {!Object} dimensionHeadersDescription
    * @param {!Object} dimensionLevelDescription
-   * @param {!Object} dimensionLevelRecomendations
+   * @param {!Object} dimensionLevelRecommendations
    *
    * @ngInject
    */
@@ -35,7 +35,7 @@ class DimensionTabController {
       dimensionHeaders,
       dimensionHeadersDescription,
       dimensionLevelDescription,
-      dimensionLevelRecomendations) {
+      dimensionLevelRecommendations) {
         /**
          * @export
          * type {Object}
@@ -58,7 +58,7 @@ class DimensionTabController {
          * @export
          * type {Object}
          */
-        this.dimensionLevelRecomendations = dimensionLevelRecomendations;
+        this.dimensionLevelRecommendations = dimensionLevelRecommendations;
 
         /**
          * @export
