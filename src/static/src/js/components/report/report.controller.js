@@ -78,6 +78,7 @@ class ReportController {
       $http.get(`${industryEndpoint}${this.survey['industry']}`).then((res) => {
         this.industryResult = res.data;
         reportService.industryDmb_d = this.industryResult['dmb_d'];
+        reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
       });
     });
   }

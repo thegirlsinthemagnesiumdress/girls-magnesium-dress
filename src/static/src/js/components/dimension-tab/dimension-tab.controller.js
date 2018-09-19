@@ -77,6 +77,15 @@ class DimensionTabController {
           this.floorDMB = floorDmbFactory(this.dmb);
         });
 
+        $scope.$watch(() => (reportService.industryDmb_d), (nVal)=> {
+          this.industryDmb = nVal ? nVal[$scope['dmbDimensionTab']] : null;
+        });
+
+        $scope.$watch(() => (reportService.industryDmb_d_bp), (nVal)=> {
+          this.industryDmb_bp = nVal ? nVal[$scope['dmbDimensionTab']] : null;
+        });
+
+
         this.reportService = reportService;
   }
 }
