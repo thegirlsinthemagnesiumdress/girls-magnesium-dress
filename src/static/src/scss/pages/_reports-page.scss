@@ -208,6 +208,22 @@ $recommendation-cta-bg-color: #fff;
         height: 100%;
         width: 100%;
 
+        &:hover::before {
+          background: $dmb-color-blue-solitude;
+        }
+
+        &::before {
+          border-radius: 5px;
+          bottom: 7px;
+          content: '';
+          display: block;
+          left: 12px;
+          position: absolute;
+          right: 12px;
+          top: 7px;
+          z-index: -1;
+        }
+
         // Quick win to make icon on top of the tab clickable.
         &::after {
           bottom: 0;
