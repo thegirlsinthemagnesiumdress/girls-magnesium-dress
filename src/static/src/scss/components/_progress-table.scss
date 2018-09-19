@@ -14,6 +14,10 @@ $dmb-prog-table-row-height-desktop: 1em;
   text-align: center;
   width: 100%;
 
+  @include print-styles {
+    page-break-inside: avoid;
+  }
+
   &__col {
     padding-top: 20px;
     width: 17.5%;
@@ -45,12 +49,6 @@ $dmb-prog-table-row-height-desktop: 1em;
 
       &:nth-of-type(1) {
         display: none;
-      }
-
-      &:not(&--active) {
-        h3 {
-          display: none;
-        }
       }
     }
   }

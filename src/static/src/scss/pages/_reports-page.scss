@@ -46,6 +46,9 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       background: transparent;
       color: $dmb-text-color;
       min-height: 0;
+      padding-bottom: $dmb-margin-big;
+      padding-top:  #{$_h-header-height--full-size + $dmb-margin-big};
+      page-break-after: always;
 
       .glue-flexbox & .h-c-grid__col {
         flex-basis: auto;
@@ -82,6 +85,25 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   &__hero-title {
     @include bp(m) {
       font-size: 96px !important;
+    }
+  }
+
+  @include print-styles {
+    &__hero-title {
+      font-size: 88px !important;
+    }
+
+    &__hero-title &__hero-accent {
+      font-weight: 500;
+    }
+
+    &__hero p {
+      font-size: 20px;
+      max-width: 31em;
+    }
+
+    &__hero-date {
+      font-size: 44px !important;
     }
   }
 
@@ -218,8 +240,10 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
         padding: 73px 66px 76px;
 
         @include print-styles {
+          box-shadow: none;
           display: block;
-          margin-bottom: $dmb-margin-big;
+          padding: 0;
+          page-break-before: always;
         }
 
         &:first-child {
@@ -271,8 +295,19 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
     margin-right: 50px;
     min-width: 100px;
 
+    @include print-styles {
+      page-break-inside: avoid;
+    }
+
     .dmb-progress-circle__result {
       font-size: 1.5em;
+    }
+  }
+
+  &__recommendation-block {
+    @include print-styles {
+      padding-top: 20px;
+      page-break-before: always;
     }
   }
 
@@ -281,12 +316,12 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
     list-style: none;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -24px;
     max-width: 900px;
 
     @include bp(m) {
       column-count: 2;
       column-gap: 27px;
-      page-break-inside: avoid;
     }
 
     > li {
@@ -296,10 +331,20 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       padding: 32px;
       width: 100%;
 
-      @include print-styles {
-        margin-bottom: $dmb-margin-medium;
-        padding: 0 16px;
+      @include screen-styles {
+        page-break-inside: avoid;
       }
+
+      @include print-styles {
+        margin-bottom: $dmb-margin-small;
+        padding: 16px;
+      }
+    }
+  }
+
+  &__tab-content {
+    .h-c-headline.h-c-headline--one {
+      margin-bottom: 32px;
     }
   }
 
@@ -361,7 +406,6 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
   }
 
   .dmb-side-panel--left {
-
     .dmb-side-panel__inner {
       @include bp(s) {
         padding-right: 125px;
@@ -374,10 +418,9 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       position: relative;
 
       &::after {
-        background: $dmb-color-grey-zircon;
+        border-bottom: 6px solid $dmb-color-grey-zircon;
         bottom: -20px;
         content: '';
-        height: 6px;
         left: 0;
         max-width: 180px;
         position: absolute;
@@ -409,9 +452,19 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
       max-width: none;
     }
   }
+
+  &__appendix {
+    @include print-styles {
+      page-break-before: always;
+    }
+  }
 }
 
 #dmb-report-right-side-panel {
+  @include print-styles {
+    page-break-before: always;
+  }
+
   .dmb-side-panel__inner {
     @include bp(s) {
       padding: 79px 114px;
@@ -427,6 +480,10 @@ $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 
     &__list-container {
       margin: 90px 0 82px;
+
+      @include print-styles {
+        margin-bottom: $dmb-margin-small;
+      }
     }
 
     &__list {

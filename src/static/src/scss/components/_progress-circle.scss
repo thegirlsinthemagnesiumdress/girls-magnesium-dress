@@ -9,14 +9,14 @@ $dmb-prog-circ-inverted-bar-color: #fff;
   max-width: 100%;
   position: relative;
 
+  @include print-styles {
+    page-break-inside: avoid;
+  }
+
   &__prog-svg {
     display: block;
     max-width: 100%;
     transform: rotate(-90deg);
-
-    @include print-styles {
-      page-break-inside: avoid;
-    }
   }
 
   &__bg-bar {

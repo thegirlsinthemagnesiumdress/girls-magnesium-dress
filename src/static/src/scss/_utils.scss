@@ -41,3 +41,10 @@
 .dmb-h-google-sans {
   font-family: 'Google Sans';
 }
+
+.dmb-print-page-header {
+  @include print-styles {
+    border-bottom: 1px solid $dmb-heading-border-color !important;
+    font-size: 40px !important;
+  }
+}

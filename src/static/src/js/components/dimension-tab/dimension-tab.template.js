@@ -1,5 +1,6 @@
 goog.module('dmb.components.dimensionTab.template');
 
+/* eslint-disable max-len */
 const dimensionTabTemplate = `
 
 <h3 class="dmb-report-page__tab-heading">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h3>
@@ -8,7 +9,7 @@ const dimensionTabTemplate = `
 
   <div class="h-c-grid">
     <div class="dmb-report-page__tab-static-col h-c-grid__col h-c-grid__col--5">
-      <h2 class="h-c-headline h-c-headline--one h-u-mb-std">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h2>
+      <h2 class="dmb-print-page-header h-c-headline h-c-headline--one h-u-mb-std">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h2>
       <p>
       {[ dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab] ]}
       </p>
@@ -80,7 +81,7 @@ const dimensionTabTemplate = `
       <h3 aria-hidden="true">Multi-Moment</h3>
     </div>
   </progress-table>
-  <div>
+  <div class="dmb-report-page__recommendation-block">
     <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
       <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span> <strong>{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
       <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations, you're in the top 2% for marketing maturity</strong>
@@ -96,7 +97,7 @@ const dimensionTabTemplate = `
     <ul class="dmb-report-page__recommendations">
 
       <li ng-repeat="recomendation in dimensionTabCtrl.dimensionLevelRecomendations[dmbDimensionTab][dimensionTabCtrl.floorDMB - 1]">
-        <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">{[ recomendation.header ]}</h4>
+        <h4 class="h-c-headline h-c-headline--five h-u-mb-std">{[ recomendation.header ]}</h4>
         <p>
           {[ recomendation.text ]}
         </p>
@@ -106,6 +107,6 @@ const dimensionTabTemplate = `
 
 </div> <!-- .dmb-report-page__tab-content -->
 `;
-
+/* eslint-enable max-len */
 
 exports = dimensionTabTemplate;

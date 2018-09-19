@@ -19,3 +19,15 @@
     padding-right: $dmb-print-gutter;
   }
 }
+
+.h-c-header {
+  @include print-styles {
+    &__bar {
+      box-shadow: none;
+    }
+
+    &.h-is-wholly-scrolled &__bar {
+      transform: none !important;
+    }
+  }
+}
