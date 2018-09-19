@@ -66,7 +66,8 @@ def send_emails_for_new_reports(email_list):
     """
     domain = os.environ['HTTP_HOST']
     subject_template = get_template("core/response_ready_email_subject.txt")
-    message_template = get_template("core/response_ready_email_body.html")
+    html_message_template = get_template("core/response_ready_email_body.html")
+    text_message_template = get_template("core/response_ready_email_body.txt")
 
     for email_data in email_list:
         to, bcc, sid = email_data
@@ -77,14 +78,15 @@ def send_emails_for_new_reports(email_list):
                 'url': "http://{}{}".format(domain, link)
             }
 
-            message = mail.EmailMessage(
+            message = mail.EmailMultiAlternatives(
                 subject=subject_template.render(context).split("\n")[0],
-                body=message_template.render(context),
                 from_email=settings.CONTACT_EMAIL,
                 to=[to],
                 bcc=bcc
             )
-            message.content_subtype = "html"
+            message.body = text_message_template
+            message.html = html_message_template
+
             message.send()
 
             logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
