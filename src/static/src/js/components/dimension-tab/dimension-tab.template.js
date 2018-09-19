@@ -48,8 +48,10 @@ const dimensionTabTemplate = `
   </dmb-progress-table>
   <div>
     <h3 class="h-c-headline h-c-headline--three h-u-mb-std">
-      <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span> <strong>{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
-      <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations, you're in the top 2% for marketing maturity</strong>
+      <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span>
+      <strong ng-if="dimensionTabCtrl.floorDMB < 3">{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
+      <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
+      <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top 2% for marketing maturity</strong>
     </h3>
 
     <p
