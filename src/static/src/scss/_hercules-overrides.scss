@@ -31,3 +31,14 @@
     }
   }
 }
+
+.h-c-button--print {
+  background: transparent;
+  border: 2px solid;
+  color: $h-button-primary-bg-color;
+
+  &:hover,
+  &:focus {
+    color: $h-button-primary-bg-color-hover;
+  }
+}

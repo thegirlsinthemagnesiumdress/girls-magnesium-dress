@@ -172,8 +172,8 @@ $dmb-headline-accent-color: $dmb-color-blue-manatee;
   }
 
   &__tab-content {
-    margin: 0 20px;
     border-top: 1px solid $h-gm-grey-300;
+    margin: 0 20px;
     padding-top: 24px;
 
     @include bp(s) {
