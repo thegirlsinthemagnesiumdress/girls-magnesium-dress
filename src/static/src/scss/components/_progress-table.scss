@@ -162,42 +162,20 @@ $dmb-prog-table-row-height-desktop: 1em;
     }
   }
 
-  &--nascent {
-    .dmb-progress-table__col--nascent {
-      background-color: $dmb-prog-table-active-bg-color;
+  $dimensions: nascent, emerging, connected, multimoment;
+  @each $dimension in $dimensions {
+    &--#{$dimension} {
+      .dmb-progress-table__col--#{$dimension} {
+        background-color: $dmb-prog-table-active-bg-color;
 
-      .dmb-progress-table__col-heading {
-        display: block;
-      }
-    }
-  }
+        @include print-styles {
+          border-left: 1px solid rgba($dmb-prog-table-border-color, .5);
+          border-right: 1px solid rgba($dmb-prog-table-border-color, .5);
+        }
 
-  &--emerging {
-    .dmb-progress-table__col--emerging {
-      background-color: $dmb-prog-table-active-bg-color;
-
-      .dmb-progress-table__col-heading {
-        display: block;
-      }
-    }
-  }
-
-  &--connected {
-    .dmb-progress-table__col--connected {
-      background-color: $dmb-prog-table-active-bg-color;
-
-      .dmb-progress-table__col-heading {
-        display: block;
-      }
-    }
-  }
-
-  &--multimoment {
-    .dmb-progress-table__col--multimoment {
-      background-color: $dmb-prog-table-active-bg-color;
-
-      .dmb-progress-table__col-heading {
-        display: block;
+        .dmb-progress-table__col-heading {
+          display: block;
+        }
       }
     }
   }
