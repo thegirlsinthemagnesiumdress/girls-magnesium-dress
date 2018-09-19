@@ -74,6 +74,11 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Build your teams\' skills in web analytics',
       'text': 'Ask relevant people to take the beginner and introductory courses of the Analytics Academy. ',
+      'cta': {
+        'text': 'Analytics Academy',
+        'link': 'https://analytics.google.com/analytics/academy/',
+        'class': 'analytics',
+      },
     }],
     1: [{
       'header': 'Measure the true value of your marketing activities',
@@ -87,6 +92,11 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Build your teams\' skills in web analytics',
       'text': 'Ask relevant people to take the beginner and advanced courses of the Analytics Academy.',
+      'cta': {
+        'text': 'Analytics Academy',
+        'link': 'https://analytics.google.com/analytics/academy/',
+        'class': 'analytics',
+      },
     }],
     2: [{
       'header': 'Measure the true value of your marketing activities',
@@ -100,6 +110,11 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Build your teams\' skills in web analytics',
       'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'cta': {
+        'text': 'Analytics Academy',
+        'link': 'https://analytics.google.com/analytics/academy/',
+        'class': 'analytics',
+      },
     }],
     3: [{
       'header': 'Measure the true value of your marketing activities',
@@ -113,6 +128,11 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Build your teams\' skills in web analytics',
       'text': 'Ask relevant people to take the advanced courses of the Analytics Academy.',
+      'cta': {
+        'text': 'Analytics Academy',
+        'link': 'https://analytics.google.com/analytics/academy/',
+        'class': 'analytics',
+      },
     }],
   },
   'ads': {
@@ -128,9 +148,19 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Improve the speed of your mobile assets',
       'text': 'Take the mobile speed test and get recommendations to implement right away.',
+      'cta': {
+        'text': 'Mobile speed test',
+        'link': 'https://testmysite.withgoogle.com/',
+        'class': 'speed-test',
+      },
     }, {
       'header': 'Remove friction from the user experience of your mobile assets',
       'text': 'Consider these best practices and implement them.',
+			'cta': {
+        'text': 'Mobile UX best practices',
+        'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
+        'class': 'ux-bp',
+      },
     }, {
       'header': 'Connect different teams of your company',
       'text': 'Foster collaboration between different marketing teams that are responsible for creating your creatives, for example, digital and non-digital teams, media and creative teams. Encourage them to work together and share best practices.',
@@ -147,9 +177,19 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Improve the speed of your mobile assets',
       'text': 'Take the mobile speed test and get recommendations to implement right away.',
+      'cta': {
+        'text': 'Mobile speed test',
+        'link': 'https://testmysite.withgoogle.com/',
+        'class': 'speed-test',
+      },
     }, {
       'header': 'Remove friction from the user experience of your mobile assets',
       'text': 'Consider these best practices and implement those where you still have gaps.',
+			'cta': {
+        'text': 'Mobile UX best practices',
+        'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
+        'class': 'ux-bp',
+      },
     }, {
       'header': 'Improve collaboration of teams that are responsible for creatives',
       'text': 'Consider establishing timelines that are shared between media and creative teams. Explore using the same toolset, for example, for managing creative projects. Encourage best practice sharing across these teams.',
@@ -166,9 +206,19 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Improve the speed of your mobile assets',
       'text': 'Take the mobile speed test and get recommendations to implement right away.',
+      'cta': {
+        'text': 'Mobile speed test',
+        'link': 'https://testmysite.withgoogle.com/',
+        'class': 'speed-test',
+      },
     }, {
       'header': 'Remove friction from the entire user experience',
       'text': 'Consider these best practices and implement those where you still have gaps. Use current mobile techniques such as progressive web apps or single sign-on. Create links between your mobile assets and non-digital touchpoints, like stores or call centres.',
+			'cta': {
+        'text': 'Mobile UX best practices',
+        'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
+        'class': 'ux-bp',
+      },
     }, {
       'header': 'Improve collaboration of teams that are responsible for creatives',
       'text': 'Enable media and creative teams to work hand-in-hand and to use collaborative tools. Establish connections between digital and non-digital teams.',
@@ -185,6 +235,11 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Continue to invest in the speed of your mobile assets',
       'text': 'Every fraction of a second counts. Take the mobile speed test regularly to identify areas of improvement.',
+      'cta': {
+        'text': 'Mobile speed test',
+        'link': 'https://testmysite.withgoogle.com/',
+        'class': 'speed-test',
+      },
     }, {
       'header': 'Review the entire user experience to identify friction points',
       'text': 'Keep up to date with emerging trends in UX and web technologies. Explore further possibilities to improve the user experience as people move between digital touchpoints and between digital and non-digital touchpoints.',

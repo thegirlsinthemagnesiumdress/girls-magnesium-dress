@@ -93,15 +93,16 @@ const dimensionTabTemplate = `
 
     <ul class="dmb-report-page__recommendations">
 
-      <li ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
-        <h4 class="h-c-headline h-c-headline--five dmb-h-mb--small">{[ recommendation.header ]}</h4>
+      <li class="dmb-report-page__recommendation dmb-report-page__recommendation--{[ recommendation.cta.class ]}"
+        ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
+        <h4 class="h-c-headline h-c-headline--five h-u-font-weight-medium dmb-h-mb--small">{[ recommendation.header ]}</h4>
         <p>
           {[ recommendation.text ]}
         </p>
-        <button class="dmb-report-page__recommendation-cta" ng-if="recommendation.cta">
-          {[ recommendation.cta.text ]}<br>
-          {[ recommendation.cta.link ]}
-        </button>
+        <a class="dmb-report-page__recommendation-cta" href="{[recommendation.cta.link]}" ng-if="recommendation.cta">
+          <div class="dmb-report-page__recommendation-cta-icon"></div>
+          <div class="dmb-report-page__recommendation-cta-text">{[ recommendation.cta.text ]}</div>
+        </a>
       </li>
     </ul>
   </div>
