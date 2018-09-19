@@ -5,7 +5,7 @@ const {
   dimensionHeaders,
   dimensionHeadersDescription,
   dimensionLevelDescription,
-  dimensionLevelrecommendations,
+  dimensionLevelRecommendations,
 } = goog.require('dmb.components.dimensionTab.strings');
 
 
@@ -23,7 +23,7 @@ module.directive(directive.DIRECTIVE_NAME, directive.main);
 module.factory('dimensionHeaders', () => dimensionHeaders);
 module.factory('dimensionHeadersDescription', () => dimensionHeadersDescription);
 module.factory('dimensionLevelDescription', () => dimensionLevelDescription);
-module.factory('dimensionLevelrecommendations', () => dimensionLevelrecommendations);
+module.factory('dimensionLevelRecommendations', () => dimensionLevelRecommendations);
 
 
 /**
