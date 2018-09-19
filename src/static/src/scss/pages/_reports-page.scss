@@ -1,15 +1,29 @@
-$report-page-color-map: (attribution: (main: $dmb-color-blue-cornflower,
-light: $dmb-color-blue-alice),
-ads: (main: $dmb-color-red-cinnabar,
-light: $dmb-color-red-pale-pink),
-audience: (main: $dmb-color-yellow-selective,
-light: $dmb-color-yellow-forget-me-not),
-access: (main: $dmb-color-green-ecalyptus,
-light: $dmb-color-green-frosted-mint),
-automation: (main: $dmb-color-grey-chateau,
-light: $dmb-color-blue-solitude),
-organization: (main: $dmb-color-blue-denim-2,
-light: $dmb-color-blue-lavender));
+$report-page-color-map: (
+  attribution: (
+    main: $dmb-color-blue-cornflower,
+    light: $dmb-color-blue-alice
+  ),
+  ads: (
+    main: $dmb-color-red-cinnabar,
+    light: $dmb-color-red-pale-pink
+  ),
+  audience: (
+    main: $dmb-color-yellow-selective,
+    light: $dmb-color-yellow-forget-me-not
+  ),
+  access: (
+    main: $dmb-color-green-ecalyptus,
+    light: $dmb-color-green-frosted-mint
+  ),
+  automation: (
+    main: $dmb-color-grey-chateau,
+    light: $dmb-color-blue-solitude
+  ),
+  organization: (
+    main: $dmb-color-blue-denim-2,
+    light: $dmb-color-blue-lavender
+  )
+);
 
 $recommendation-classes: analytics, speed-test, ux-bp;
 
@@ -131,16 +145,16 @@ $recommendation-cta-bg-color: #fff;
 
   &__hero-button {
     border-radius: 23px;
+    color: $h-gm-grey-700 !important;
     height: auto;
     line-height: 30px;
     margin: auto 0 0;
     padding: 9px 16px 9px 35px;
     width: auto;
-    color: $h-gm-grey-700 !important;
 
     .h-c-icon {
-      vertical-align: middle;
       margin-left: 8px;
+      vertical-align: middle;
     }
   }
 
@@ -154,8 +168,8 @@ $recommendation-cta-bg-color: #fff;
   }
 
   &__company-dmb-content {
-    margin: 88px 0;
     display: flex;
+    margin: 88px 0;
 
     .dmb-progress-circle {
       margin-right: 64px;
@@ -209,7 +223,7 @@ $recommendation-cta-bg-color: #fff;
   &__tab-content {
     margin: 0 20px;
     padding-top: 24px;
-    
+
     @include screen-styles {
       border-top: 1px solid $h-gm-grey-300;
     }
@@ -249,7 +263,6 @@ $recommendation-cta-bg-color: #fff;
         content: '';
         display: inline-block;
         height: 39px;
-        vertical-align: middle;
         margin-right: 20px;
         vertical-align: middle;
         width: 39px;
@@ -258,8 +271,7 @@ $recommendation-cta-bg-color: #fff;
 
     $i: 1;
 
-    @each $name,
-    $color in $report-page-color-map {
+    @each $name, $color in $report-page-color-map {
       &:nth-of-type(#{$i}) {
 
         h3::before {
@@ -267,7 +279,7 @@ $recommendation-cta-bg-color: #fff;
         }
       }
 
-      $i: $i+1;
+      $i: $i + 1;
     }
   }
 
@@ -425,7 +437,7 @@ $recommendation-cta-bg-color: #fff;
   }
 
   @each $name, $color in $report-page-color-map {
-    [dmb-dimension-tab="#{$name}"] {
+    [dmb-dimension-tab='#{$name}'] {
       .dmb-progress-table__row--main {
         background: map-get($color, main);
       }
