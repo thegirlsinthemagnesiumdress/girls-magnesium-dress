@@ -23,7 +23,7 @@ class User(GaeAbstractDatastoreUser):
     @property
     def engagement_lead(self):
         """Returns MD5 of email field."""
-        m = hashlib.md5()
+        m = hashlib.sha256()
         m.update(self.email)
         return m.hexdigest()
 
@@ -58,8 +58,8 @@ class Survey(models.Model):
     def link_sponsor(self):
         """
         We need to differenziate between sponsor (survey creators)
-        amd participants. The way that is done is by setting sp=true.
         """
+        amd participants. The way that is done is by setting sp=true.
         return '{}&sp=true'.format(self.link)
 
     def save(self, *args, **kwargs):
