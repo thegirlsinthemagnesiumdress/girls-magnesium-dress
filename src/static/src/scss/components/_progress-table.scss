@@ -1,4 +1,4 @@
-$dmb-prog-table-border-color: #DDDFE1;
+$dmb-prog-table-border-color: $dmb-color-grey-zircon;
 $dmb-prog-table-label-color: $dmb-color-grey-shuttle;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
 $dmb-prog-table-main-label-color: $dmb-color-black-russian;
@@ -15,7 +15,7 @@ $dmb-prog-table-row-height-mobile: 5px;
 
   &__col {
     padding-top: 20px;
-    flex-grow: 1;
+    width: 17.5%;
 
 
     @include bp(s) {
@@ -24,7 +24,7 @@ $dmb-prog-table-row-height-mobile: 5px;
     }
 
     &:nth-of-type(1) {
-      flex-grow: auto;
+      width: 30%;
     }
 
     @media (max-width: 600px) {
@@ -61,7 +61,7 @@ $dmb-prog-table-row-height-mobile: 5px;
   }
 
   &__company {
-    color: $h-font-color-darkest;
+    color: $dmb-text-color;
     font-weight: $h-font-weight-medium;
   }
 
