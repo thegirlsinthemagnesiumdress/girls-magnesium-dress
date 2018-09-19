@@ -2,8 +2,6 @@ goog.module('dmb.components.dimensionTab.template');
 
 const dimensionTabTemplate = `
 
-<h3 class="dmb-report-page__tab-heading">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h3>
-
 <div class="dmb-report-page__tab-content">
 
   <div class="h-c-grid">
