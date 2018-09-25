@@ -14,11 +14,23 @@
   width: 90%;
   z-index: $_h-header-bar-z-index + 2;
 
+  @include print-styles {
+    box-shadow: none;
+    display: block !important;
+    position: static;
+    transform: none;
+    width: auto;
+  }
+
   &--left {
     left: 0;
     right: auto;
     transform: translateX(calc(-100% - 6px));
     transform: translate3d(calc(-100% - 6px), 0, 0); //sass-lint:disable-line no-duplicate-properties
+
+    @include print-styles {
+      transform: none;
+    }
   }
 
   &--active {
@@ -27,6 +39,10 @@
 
   &--narrow {
     max-width: 678px;
+
+    @include print-styles {
+      max-width: none;
+    }
   }
 
   &__inner {
@@ -37,9 +53,15 @@
     @include bp(s) {
       padding: 56px 66px;
     }
+
+    @include print-styles {
+      padding: 26px $dmb-print-gutter !important;
+    }
   }
 
   &__fab {
+    @extend .dmb-h-hidden--print;
+
     position: absolute;
     right: 19px;
     top: 14px;

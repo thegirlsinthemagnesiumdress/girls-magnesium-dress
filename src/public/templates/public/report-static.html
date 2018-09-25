@@ -11,12 +11,12 @@
             <span class="dmb-report-page__hero-accent">{[reportCtrl.survey.company_name]}</span>
             Your digital maturity benchmark
           </h1>
-          <p class="h-c-headline h-c-headline--two dmb-report-page__hero-accent">
+          <p class="h-c-headline h-c-headline--two dmb-report-page__hero-accent dmb-report-page__hero-date">
             <time datetime="27/08/2018">{[reportCtrl.result.loaded_at|date:'MMMM yyyy' ]}</time>
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--6">
-          <div class="dmb-report-page__hero-content">
+          <div class="dmb-report-page__hero-content dmb-h-hidden--print">
             <div class="h-c-grid__col h-c-grid__col--align-middle">
               <div class="dmb-progress-circle dmb-progress-circle--hero" data-progress="reportCtrl.result.dmb">
                 <svg
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="dmb-report-page__hero-cta h-u-text-center">
-        <a href="#dmb-report-page-main" class="dmb-report-page__hero-button h-c-button h-c-button--secondary" glue-smooth-scroll glue-smooth-scroll-hash="true">
+        <a href="#dmb-report-page-main" class="dmb-report-page__hero-button h-c-button h-c-button--secondary dmb-h-hidden--print" glue-smooth-scroll glue-smooth-scroll-hash="true">
           View your results
           <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--18px">
             <use xlink:href="#mi-arrow-sort"></use>
@@ -63,7 +63,7 @@
   </header>
 
   <div class="dmb-report-page__content" id="dmb-report-page-main">
-    <button class="dmb-right-panel-trigger" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+    <button class="dmb-right-panel-trigger dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
       <div class="dmb-right-panel-trigger__icon">
         <svg role="img" class="h-c-icon">
           <use xlink:href="#mi-chevron"></use>
@@ -79,7 +79,7 @@
         <h2 class="h-c-eyebrow h-u-mb-l">Your overall digital maturity</h2>
         <div class="h-u-mb-xl">
           <div class="h-c-grid">
-            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--3">
+              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--5 h-c-grid__col-l--3 h-u-text-center">
               <div class="dmb-progress-circle">
                 <svg
                     dmb-progress-circle="reportCtrl.result.dmb"
@@ -99,7 +99,7 @@
                 </div>
               </div>
             </div>
-            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--9">
+            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--7 h-c-grid__col-l--9">
               <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
                 <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
                 <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
@@ -138,7 +138,7 @@
           </h2>
           <p class="dmb-report-page__dimensions-intro dmb-h-mb--small">Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.</p>
 
-          <button class="h-c-button h-c-button--secondary" dmb-side-panel-trigger="#dmb-report-right-side-panel">Learn more about why these matter</button>
+          <button class="h-c-button h-c-button--secondary dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">Learn more about why these matter</button>
         </div>
       </section>
 
@@ -250,7 +250,7 @@
 
       {% comment "Out of scope for now, we will enable this in the future" %}
       <div class="h-u-text-right">
-        <a href="#" class="h-c-link h-c-link--internal">
+        <a href="#" class="h-c-link h-c-link--internal dmb-h-hidden--print">
           Go to next dimension
           <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--arrow-forward">
             <use xlink:href="#mi-arrow-forward"></use>
@@ -260,6 +260,12 @@
       {% endcomment %}
     </div> <!-- h-c-page -->
   </div> <!-- #dmb-report-page-main -->
+
+  <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
+    <div class="h-c-page">
+      <h2 class="h-c-headline h-c-headline--three dmb-print-page-header">Appendix</h2>
+    </div>
+  </div>
 
   <aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
@@ -396,7 +402,7 @@
       <h1 class="dmb-side-panel__heading h-c-headline h-c-headline--one h-u-font-weight-medium">Why digital maturity matters</h1>
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--4">
-          <h2 class="h-c-headline h-c-headline--four">
+          <h2 class="h-c-headline h-c-headline--four h-u-mb-l">
             Consumer shift
           </h2>
         </div>
@@ -417,7 +423,7 @@
 
       <div class="dmb-side-panel__list-container h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--4">
-          <h2 class="h-c-headline h-c-headline--four">
+          <h2 class="h-c-headline h-c-headline--four h-u-mb-l">
             Today’s consumers are:
           </h2>
         </div>
@@ -556,3 +562,38 @@
 
 </div>
 {% endblock %}
+
+{% block footer %}
+  <footer class="h-c-footer h-c-footer--topmargin h-c-footer--simple dmb-h-hidden--print" id="footer-simple">
+    <section class="h-c-footer__global">
+      <div>
+        <p class="h-c-headline h-c-headline--subhead">Want this report in a printable format?</p>
+        <button class="h-c-button h-c-button--print" onclick="window.print();">Print report</button>
+      </div>
+    </section>
+
+    <section class="h-c-footer__global">
+      <div class="h-c-footer__logo">
+        <a href="https://www.google.com" title="Google">
+          <svg role="img" class="h-c-footer__logo-img">
+            <use xlink:href="#google-logo"></use>
+          </svg>
+        </a>
+      </div>
+      <ul class="h-c-footer__global-links h-no-bullet">
+        <li class="h-c-footer__global-links-list-item">
+          <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/privacy/">Privacy</a>
+        </li>
+        <li class="h-c-footer__global-links-list-item">
+          <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/terms/">Terms</a>
+        </li>
+        <li class="h-c-footer__global-links-list-item">
+          <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/">About Google</a>
+        </li>
+        <li class="h-c-footer__global-links-list-item">
+          <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/products/">Google Products</a>
+        </li>
+      </ul>
+    </section>
+  </footer>
+{% endblock footer %}

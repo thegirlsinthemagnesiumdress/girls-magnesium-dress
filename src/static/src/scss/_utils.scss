@@ -8,6 +8,18 @@
 
 .dmb-h-hidden {
   display: none !important;
+
+  @include print-styles {
+    &--print {
+      display: none !important;
+    }
+  }
+
+  @include screen-styles {
+    &--screen {
+      display: none !important;
+    }
+  }
 }
 
 .dmb-body--has-modal {
@@ -28,4 +40,11 @@
 
 .dmb-h-google-sans {
   font-family: 'Google Sans';
+}
+
+.dmb-print-page-header {
+  @include print-styles {
+    border-bottom: 1px solid $dmb-heading-border-color !important;
+    font-size: 40px !important;
+  }
 }

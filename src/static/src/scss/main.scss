@@ -39,11 +39,14 @@
 // Variables
 @import 'variables';
 
-// Variables
-@import 'utils';
-
 //Colors
 @import 'colors';
+
+// Mixins
+@import 'mixins';
+
+// Variables
+@import 'utils';
 
 // Hercules overrides
 @import 'hercules-overrides';

@@ -19,7 +19,8 @@
   }
 
   select {
-    height: 40px;
+    appearance: none;
+    padding: 15px 23px;
   }
 
   label {
@@ -31,7 +32,6 @@
   .dmb-input {
     display: block;
     width: 100%;
-
 
     @include bp(m) {
       width: 75%;
