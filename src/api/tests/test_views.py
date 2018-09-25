@@ -7,6 +7,7 @@ from django.test import override_settings
 import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
+from core.tests.mommy_recepies import make_survey
 
 
 User = get_user_model()
@@ -39,7 +40,7 @@ class SurveyTest(APITestCase):
 
     def test_survey_exists(self):
         """Should return the `company_name` related to `sid` provided."""
-        survey = Survey.objects.create(company_name='some company', industry="re", country="it")
+        survey = make_survey()
         response = self.client.get(self.url, {
             "sid": survey.sid
         })
@@ -53,7 +54,8 @@ class SurveyResultTest(APITestCase):
     user_email = 'test@example.com'
 
     def setUp(self):
-        self.survey = Survey.objects.create(company_name='test company', industry="re", country="it")
+        self.survey = make_survey(sid="92345123451234512345123451234512")
+
         self.survey_result = SurveyResult.objects.create(
             survey=self.survey,
             response_id='AAA',
@@ -151,7 +153,7 @@ class CreateSurveyTest(APITestCase):
         self.data = {
             'company_name': 'test company',
             'industry': 're',
-            'country': 'it',
+            'country': 'GB',
         }
 
         self.client.force_authenticate(user)
@@ -171,7 +173,7 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(post_response.get('company_name'), survey_db.company_name)
         self.assertEqual(post_response.get('industry'), survey_db.industry)
-        self.assertEqual(post_response.get('contry'), survey_db.contry)
+        self.assertEqual(post_response.get('country'), survey_db.country)
         self.assertEqual(post_response.get('link'), survey_db.link)
         self.assertEqual(post_response.get('link_sponsor'), survey_db.link_sponsor)
         self.assertEqual(post_response.get('engagement_lead'), survey_db.engagement_lead)
