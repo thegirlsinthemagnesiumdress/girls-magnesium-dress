@@ -62,7 +62,7 @@ function scrollAwareDirective(scrollService) {
         }
 
         cachedDimensions = {
-          elTop: nativeElement.offsetTop,
+          elTop: scrollService.getElementOffsetTop(nativeElement),
           elHeight: nativeElement.offsetHeight,
           screenHeight: window.innerHeight,
         };
