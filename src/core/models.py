@@ -76,7 +76,7 @@ class Survey(models.Model):
 class SurveyResult(models.Model):
     """Model to store a survey response benchmark."""
 
-    response_id = models.CharField(primary_key=True, max_length=50)
+    response_id = models.CharField(unique=True, max_length=50)
     survey = models.ForeignKey('Survey', null=True, related_name="survey_results")
     loaded_at = models.DateTimeField(auto_now_add=True)
     excluded_from_best_practice = models.BooleanField(default=False)
