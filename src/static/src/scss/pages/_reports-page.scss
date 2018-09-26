@@ -508,7 +508,7 @@ $recommendation-cta-bg-color: #fff;
     padding: 10px 20px;
 
     &:hover {
-      background: darken($recommendation-cta-bg-color, .5);
+      background: darken($recommendation-cta-bg-color, 10%);
     }
 
     @include bp(s) {
@@ -534,6 +534,25 @@ $recommendation-cta-bg-color: #fff;
     &__recommendation {
       &--#{$class} .dmb-report-page__cta-icon {
         background-image: url('../img/icons/#{$class}.svg');
+      }
+    }
+  }
+
+  &__panel-trigger {
+    z-index: 1;
+
+    .dmb-right-panel-trigger {
+      transition: transform .3s;
+    }
+
+    &.dmb-pinned {
+      position: fixed;
+      right: 0;
+      top: 0;
+      transition: transform .3s;
+
+      .dmb-right-panel-trigger {
+        transform: translateX(170px);
       }
     }
   }
@@ -569,6 +588,10 @@ $recommendation-cta-bg-color: #fff;
         transform: rotate(-90deg);
         width: 24px;
       }
+    }
+
+    &--sticky {
+      position: fixed;
     }
   }
 
