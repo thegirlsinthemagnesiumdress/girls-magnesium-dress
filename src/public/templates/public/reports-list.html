@@ -74,6 +74,16 @@
             title="Sort by report link"
             data-glue-table-sort-type="alpha"
           >Report link </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by industry"
+            data-glue-table-sort-type="alpha"
+          >Industry </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by country"
+            data-glue-table-sort-type="alpha"
+          >Country </th>
         </tr>
       </thead>
       <tbody>
@@ -81,7 +91,7 @@
         {% if survey.sid %}
             <tr role="row">
               <td role="rowheader">{{survey.company_name}}</td>
-              <td role="gridcell">{{survey.created_at|date:"SHORT_DATE_FORMAT"}}</td>
+              <td role="gridcell">{{survey.created_at|date:"m/d/yy H:i"}}</td>
               <td role="gridcell">{{ survey.survey_results.count }}</td>
               <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
               <td role="gridcell">
@@ -95,6 +105,8 @@
                   Report
                 </a>
               </td>
+              <td role="gridcell">{{survey.get_industry_display}}</td>
+              <td role="gridcell">{{survey.get_country_display}}</td>
             </tr>
           {% endif %}
         {% endfor %}
