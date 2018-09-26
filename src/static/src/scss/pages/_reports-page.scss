@@ -32,9 +32,9 @@ $dmb-report-hero-padding-bottom: 37px;
 $dmb-tabs-border-radius: 5px;
 $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 $dmb-headline-accent-color: $dmb-color-blue-manatee;
-$recommendation-cta-border-color: $dmb-color-grey-chateau;
-$recommendation-cta-color: $dmb-color-blue-royal;
-$recommendation-cta-bg-color: #fff;
+$cta-border-color: #CDD4DA;
+$cta-color: $dmb-color-blue-royal;
+$cta-bg-color-alt: $h-gm-grey-50;
 
 .dmb-report-page {
   &__hero {
@@ -479,7 +479,7 @@ $recommendation-cta-bg-color: #fff;
   }
 
   &__recommendation {
-    background-color: #f8f9fa;
+    background-color: $h-gm-grey-50;
     display: inline-block;
     margin-bottom: 22px;
     padding: 32px;
@@ -497,22 +497,30 @@ $recommendation-cta-bg-color: #fff;
 
   &__cta {
     align-items: center;
-    background: $recommendation-cta-bg-color;
-    border: 1px solid $recommendation-cta-border-color;
+    border: 1px solid $cta-border-color;
     border-radius: 22px;
-    color: $recommendation-cta-color;
+    color: $cta-color;
     display: inline-flex;
     font-family: 'Google Sans';
     font-size: 14px;
     margin-top: 24px;
     padding: 10px 20px;
+    transition: background .3s;
 
     &:hover {
-      background: darken($recommendation-cta-bg-color, 10%);
+      background: $h-white;
     }
 
     @include bp(s) {
       font-size: 16px;
+    }
+
+    &--alt {
+      background: $cta-bg-color-alt;
+
+      &:hover {
+        background: $h-white;
+      }
     }
   }
 
@@ -552,7 +560,7 @@ $recommendation-cta-bg-color: #fff;
       transition: transform .3s;
 
       .dmb-right-panel-trigger {
-        transform: translateX(170px);
+        transform: translateX(150px);
       }
     }
   }
@@ -570,12 +578,14 @@ $recommendation-cta-bg-color: #fff;
     color: $dmb-right-panel-trigger-color;
     display: inline-flex;
     font-family: 'Google Sans';
-    padding: 20px 20px 20px 30px;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 17px 17px 17px 30px;
     position: absolute;
     right: 0;
     text-align: left;
     top: $dmb-margin-big;
-    width: 250px;
+    width: 230px;
 
     &__icon {
       align-items: center;
