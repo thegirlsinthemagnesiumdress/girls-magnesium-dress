@@ -268,7 +268,7 @@ class SurveyIndustryResultTest(APITestCase):
         """
         survey_result_3 = SurveyResult.objects.create(
             survey=self.survey_2,
-            response_id='AAB',
+            response_id='AAC',
             dmb=2.0,
             dmb_d=json.dumps(self.survey_3_dmb_d)
         )

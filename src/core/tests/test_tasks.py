@@ -70,7 +70,7 @@ class GetResultsTestCase(TestCase):
         make_survey()
 
         # only survey result with response_id='AAB' has been downloaded
-        make_survey_result(survey=survey, response_id='AAB')
+        make_survey_result(survey=survey, response_id='D')
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
@@ -80,7 +80,7 @@ class GetResultsTestCase(TestCase):
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
         # mock is called with response_id
-        download_mock.assert_called_once_with(response_id='AAB')
+        download_mock.assert_called_once_with(response_id='D')
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
 
@@ -97,13 +97,13 @@ class GetResultsTestCase(TestCase):
         download_mock.side_effect = FetchResultException(exception_body)
 
         survey = make_survey()
-        make_survey_result(survey=survey, response_id='AAB')
+        make_survey_result(survey=survey, response_id='D')
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         with mock.patch('core.tasks._create_survey_result') as survey_result_mock:
             get_results()
             survey_result_mock.assert_not_called()
-            download_mock.assert_called_once_with(response_id='AAB')
+            download_mock.assert_called_once_with(response_id='D')
             self.assertEqual(Survey.objects.count(), 1)
             self.assertEqual(SurveyResult.objects.count(), 1)
 
