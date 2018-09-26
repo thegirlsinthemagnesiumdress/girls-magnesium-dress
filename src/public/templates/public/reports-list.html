@@ -10,6 +10,7 @@
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--offset-1">
+      {% comment 'Disable this feature for now' %}
       <form class="h-u-mb-l" name="referral" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
         <div class="input-wrp">
           <input class="dmb-input dmb-input--simple" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter organization name">
@@ -19,6 +20,7 @@
         </button>
         <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError" ng-cloak>Oops, something went wrong!</div>
       </form>
+      {% endcomment %}
 
       <div class="dmb-box dmb-box--alt">
         <h2 class="h-c-headline h-c-headline--five">Your survey referral link</h2>
