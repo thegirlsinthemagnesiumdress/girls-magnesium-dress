@@ -207,7 +207,7 @@ KEY_PREFIX = "%s-%s" % (application_id(), os.environ.get('CURRENT_VERSION_ID', "
 
 USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
 
-DJANGAE_CREATE_UNKNOWN_USER = False
+DJANGAE_CREATE_UNKNOWN_USER = True
 AUTH_USER_MODEL = "core.User"
 
 EMAIL_BACKEND = 'djangae.mail.AsyncEmailBackend'
