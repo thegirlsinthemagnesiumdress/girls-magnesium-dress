@@ -526,10 +526,9 @@ $cta-bg-color-alt: $h-gm-grey-50;
     }
 
     &--alt {
-      background: $cta-bg-color-alt;
 
       &:hover {
-        background: $h-white;
+        background: $cta-bg-color-alt;
       }
     }
   }
