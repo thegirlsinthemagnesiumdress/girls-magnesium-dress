@@ -4,6 +4,8 @@ const surveyEndpoint = '/api/report/company/';
 const industryEndpoint = '/api/report/industry/';
 const locationSidRegex = /\/(\w+)[^\/\!\?#]?[^\/]*$/;
 
+const PaginationModel = goog.require('glue.ng.pagination.Model');
+
 
 /**
  * Report class controller
@@ -20,7 +22,14 @@ class ReportController {
    *
    * @ngInject
    */
-  constructor($http, $location, reportService, floorDmbFactory, dimensionHeaders) {
+  constructor(
+      $http,
+      $location,
+      reportService,
+      floorDmbFactory,
+      dimensionHeaders,
+      glueState,
+      $timeout) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
 
@@ -51,6 +60,11 @@ class ReportController {
      * @export
      */
     this.dimensionHeaders = dimensionHeaders;
+
+    this.model = new PaginationModel();
+
+    /** @private {!angular.$timeout} */
+    this.ngTimeout_ = $timeout;
 
     /**
      * @export

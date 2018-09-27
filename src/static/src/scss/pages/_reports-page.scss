@@ -660,6 +660,62 @@ $cta-bg-color-alt: $h-gm-grey-50;
       page-break-before: always;
     }
   }
+
+  &__tabs-sticky-nav {
+    @include h-u-box-shadow-1();
+    background-color: $h-white;
+    opacity: 0;
+    font-family: $h-font-family-google-sans;
+    font-weight: $h-font-weight-regular;
+    height: $_h-header-height;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .3s, opacity 1ms .3s;
+    z-index: $_h-header-bar-z-index + 1;
+
+    @media (min-width: $h-header-breakpoint--full-size) {
+      height: $_h-header-height--full-size;
+    }
+
+    .h-c-page,
+    ul {
+      height: 100%;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    &.dmb-pinned {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform .3s;
+    }
+  }
+
+  &__tabs-sticky-nav-btn {
+    background: transparent;
+    border: 0;
+    color: $glue-tabset-tabs-text-color;
+    outline: 0;
+    padding: 8px 20px;
+
+    &.is-active {
+      background-color: $dmb-color-grey-aluminium;
+      border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+      background-color: #EEF2F4;
+      font-weight: $h-font-weight-medium;
+    };
+  }
 }
 
 #dmb-report-right-side-panel {
