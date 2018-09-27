@@ -61,8 +61,6 @@ class ReportController {
      */
     this.dimensionHeaders = dimensionHeaders;
 
-    this.model = new PaginationModel();
-
     /** @private {!angular.$timeout} */
     this.ngTimeout_ = $timeout;
 
@@ -78,6 +76,15 @@ class ReportController {
       'automation',
       'organization',
     ];
+
+    /**
+     * @type {glue.ng.pagination.Model}
+     * @export
+     */
+    this.model = new PaginationModel({
+      activeEl: this.dimensions[0],
+    });
+
 
 
     /**

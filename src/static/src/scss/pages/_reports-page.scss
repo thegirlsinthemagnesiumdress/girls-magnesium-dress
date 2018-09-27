@@ -37,6 +37,16 @@ $cta-color: $dmb-color-blue-royal;
 $cta-bg-color-alt: $h-gm-grey-50;
 
 .dmb-report-page {
+
+  .h-c-header__bar {
+    position: absolute !important;
+
+    &.h-is-wholly-scrolled {
+      transform: none !important;
+    }
+  }
+
+
   &__hero {
     background: $dmb-color-blue-denim;
     color: $dmb-light-text-color;
@@ -664,17 +674,22 @@ $cta-bg-color-alt: $h-gm-grey-50;
   &__tabs-sticky-nav {
     @include h-u-box-shadow-1();
     background-color: $h-white;
-    opacity: 0;
+    display: none;
     font-family: $h-font-family-google-sans;
     font-weight: $h-font-weight-regular;
     height: $_h-header-height;
     left: 0;
+    opacity: 0;
     position: fixed;
     right: 0;
     top: 0;
     transform: translateY(-100%);
     transition: transform .3s, opacity 1ms .3s;
     z-index: $_h-header-bar-z-index + 1;
+
+    @include bp(s) {
+      display: block;
+    }
 
     @media (min-width: $h-header-breakpoint--full-size) {
       height: $_h-header-height--full-size;

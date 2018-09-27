@@ -29,7 +29,7 @@
 
     <title>Digital Maturity Benchmark</title>
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
   {% csrf_token %}
 
   {% block header %}
