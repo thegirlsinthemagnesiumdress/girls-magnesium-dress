@@ -10,6 +10,7 @@
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--offset-1">
+      {% comment 'Disable this feature for now' %}
       <form class="h-u-mb-l" name="referral" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
         <div class="input-wrp">
           <input class="dmb-input dmb-input--simple" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter organization name">
@@ -19,6 +20,7 @@
         </button>
         <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError" ng-cloak>Oops, something went wrong!</div>
       </form>
+      {% endcomment %}
 
       <div class="dmb-box dmb-box--alt">
         <h2 class="h-c-headline h-c-headline--five">Your survey referral link</h2>
@@ -74,6 +76,16 @@
             title="Sort by report link"
             data-glue-table-sort-type="alpha"
           >Report link </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by industry"
+            data-glue-table-sort-type="alpha"
+          >Industry </th>
+          <th scope="col"
+            role="columnheader"
+            title="Sort by country"
+            data-glue-table-sort-type="alpha"
+          >Country </th>
         </tr>
       </thead>
       <tbody>
@@ -81,7 +93,7 @@
         {% if survey.sid %}
             <tr role="row">
               <td role="rowheader">{{survey.company_name}}</td>
-              <td role="gridcell">{{survey.created_at|date:"SHORT_DATE_FORMAT"}}</td>
+              <td role="gridcell">{{survey.created_at|date:"m/d/yy H:i"}}</td>
               <td role="gridcell">{{ survey.survey_results.count }}</td>
               <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
               <td role="gridcell">
@@ -95,6 +107,8 @@
                   Report
                 </a>
               </td>
+              <td role="gridcell">{{survey.get_industry_display}}</td>
+              <td role="gridcell">{{survey.get_country_display}}</td>
             </tr>
           {% endif %}
         {% endfor %}
