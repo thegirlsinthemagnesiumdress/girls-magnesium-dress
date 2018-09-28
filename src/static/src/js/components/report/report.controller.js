@@ -52,21 +52,21 @@ class ReportController {
     this.result = null;
 
     /**
-     * Floored dmb
+     * Floored dmb.
      * @type {?number}
      * @export
      */
     this.floorDmb = null;
 
     /**
-     *  Show dimensions tab ( instead of the zippy)
+     *  Show dimensions tab (instead of the zippy).
      * @type {!bool}
      * @export
      */
     this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
 
     /**
-     * Floored dmb
+     * Floored dmb.
      * @type {!object}
      * @export
      */
@@ -92,8 +92,6 @@ class ReportController {
     this.model = new PaginationModel({
       activeEl: this.dimensions[0],
     });
-
-
 
     /**
      * Industry result object.
@@ -123,9 +121,6 @@ class ReportController {
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
       });
     });
-
-
-
 
     $scope.$on(BreakpointService.service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
       this.showTabs= this.showTabs_(size);

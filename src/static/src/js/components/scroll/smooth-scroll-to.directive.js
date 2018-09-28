@@ -1,6 +1,6 @@
 /**
  * @fileoverview AngularJS directive that copies  glue smooth scroll component but makes
- * the hash change configurable. ( Hash disabled by default.)
+ * the hash change configurable. (Hash change is disabled by default).
  *
  * Example:
  *
@@ -15,11 +15,7 @@
  * <a href="##red-box" glue-smooth-scroll glue-smooth-scroll-duration="1000"
  * glue-smooth-scroll-easing="easeInSine">Link</a>
  *
- *  * 3) Use smooth scroll directive with configurations
- * <a href="##red-box" glue-smooth-scroll glue-smooth-scroll-duration="1000"
- * glue-smooth-scroll-easing="easeInSine">Link</a>
- *
- *  * 4) Use smooth scroll directive with configurations
+ *  4) Use smooth scroll directive with configurations
  * <a href="##red-box" glue-smooth-scroll glue-smooth-scroll-duration="1000"
  * glue-smooth-scroll-hash="false">Link</a>
  *

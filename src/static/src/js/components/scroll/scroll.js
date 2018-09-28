@@ -8,7 +8,6 @@ const config = goog.require('glue.ng.common.config');
 const service = goog.require('glue.ng.smoothScroll.service');
 
 
-
 /** @const {string} */
 const MODULE_NAME = 'scroll';
 

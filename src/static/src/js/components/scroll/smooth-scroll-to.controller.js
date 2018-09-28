@@ -2,11 +2,12 @@ goog.module('dmb.components.scroll.SmoothScrollCtrl');
 
 const EventType = goog.require('goog.events.EventType');
 const KeyCodes = goog.require('goog.events.KeyCodes');
-const service = goog.require('glue.ng.smoothScroll.service');
 
 /**
  * Directive controller for smooth scroll directive. Listens for clicks and
  * key press events on <a> elements and triggers animated scroll on the page.
+ *
+ * This is copied from glue.
  * @final
  */
 class SmoothScrollCtrl {
