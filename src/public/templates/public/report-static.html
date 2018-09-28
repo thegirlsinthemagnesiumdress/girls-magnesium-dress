@@ -323,9 +323,9 @@
         <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
           <div class="glue-zippy-set h-t-hercules" ng-cloak>
             <ul class="h-c-expansion-panels__list">
-              <li class="glue-zippy glue-a-zippy--v-smooth-expand" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
+              <li class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
                 <div class="glue-zippy-btn">
-                  <h4 class="h-c-expansion-panels__button-header">
+                  <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
                     {[ reportCtrl.dimensionHeaders[dimension] ]}
                   </h4>
                   <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">

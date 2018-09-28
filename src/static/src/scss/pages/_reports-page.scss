@@ -40,10 +40,11 @@ $cta-bg-color-alt: $h-gm-grey-50;
 
   .h-c-header__bar {
     position: absolute !important;
+  }
 
-    &.h-is-wholly-scrolled {
-      transform: none !important;
-    }
+
+  .glue-header.h-is-wholly-scrolled .h-c-header__bar  {
+    transform: none !important;
   }
 
 
@@ -262,35 +263,35 @@ $cta-bg-color-alt: $h-gm-grey-50;
   .glue-zippy {
     @include h-u-box-shadow-2();
     margin-bottom: 16px;
+  }
 
+  &__zippy-container {
+    padding: 16px 20px;
+  }
 
-    h3 {
-      padding: 16px 20px;
+  &__zippy-btn {
+    vertical-align: middle;
+
+    &::before {
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 39px;
+      margin-right: 20px;
       vertical-align: middle;
-
-      &::before {
-        background-size: contain;
-        content: '';
-        display: inline-block;
-        height: 39px;
-        margin-right: 20px;
-        vertical-align: middle;
-        width: 39px;
-      }
+      width: 39px;
     }
 
     $i: 1;
 
     @each $name, $color in $report-page-color-map {
-      &:nth-of-type(#{$i}) {
-
-        h3::before {
-          background-image: url('../img/icons/#{$name}.svg');
-        }
+      .glue-zippy:nth-of-type(#{$i}) &:before {
+        background-image: url('../img/icons/#{$name}.svg');
       }
 
       $i: $i + 1;
     }
+
   }
 
   &__tabs {
