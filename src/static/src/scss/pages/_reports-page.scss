@@ -293,20 +293,7 @@ $cta-bg-color-alt: $h-gm-grey-50;
     }
   }
 
-
-  &__dimension-zippy {
-    @include bp(m) {
-      display: none;
-    }
-  }
-
   &__tabs {
-    display: none;
-
-    @include bp(m) {
-      display: block;
-    }
-
     .glue-tabby {
       margin-top: 16px;
     }

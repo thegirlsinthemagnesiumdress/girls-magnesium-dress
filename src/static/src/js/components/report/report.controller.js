@@ -1,5 +1,7 @@
 goog.module('dmb.components.report.controller');
 
+const BreakpointService = goog.require('glue.ng.common.Breakpoint');
+
 const surveyEndpoint = '/api/report/company/';
 const industryEndpoint = '/api/report/industry/';
 const locationSidRegex = /reports\/(\w+)[#\/].*$/;
@@ -14,22 +16,24 @@ class ReportController {
   /**
    * Report controller
    *
+   * @param {!angular.Scope} $scope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
    * @param {!Object} reportService
    * @param {!Function} floorDmbFactory
    * @param {!Object} dimensionHeaders
+   * @param {!Object} glueBreakpoint
    *
    * @ngInject
    */
   constructor(
+      $scope,
       $http,
       $location,
       reportService,
       floorDmbFactory,
       dimensionHeaders,
-      glueState,
-      $timeout) {
+      glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
 
@@ -55,14 +59,18 @@ class ReportController {
     this.floorDmb = null;
 
     /**
+     *  Show dimensions tab ( instead of the zippy)
+     * @type {!bool}
+     * @export
+     */
+    this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
+
+    /**
      * Floored dmb
      * @type {!object}
      * @export
      */
     this.dimensionHeaders = dimensionHeaders;
-
-    /** @private {!angular.$timeout} */
-    this.ngTimeout_ = $timeout;
 
     /**
      * @export
@@ -115,6 +123,31 @@ class ReportController {
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
       });
     });
+
+
+
+
+    $scope.$on(BreakpointService.service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
+      this.showTabs= this.showTabs_(size);
+      $scope.$apply();
+    });
+  }
+
+  /**
+   *  @param {string} size
+   *  @return {bool}
+   *  @private
+   */
+  showTabs_(size) {
+    const bpTabsEnabled = [
+      'large',
+      'x-large',
+      'xx-large',
+      'medium-large',
+      'medium',
+    ];
+
+    return bpTabsEnabled.indexOf(size) > -1;
   }
 }
 

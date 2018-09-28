@@ -157,7 +157,7 @@
       </section>
 
       <section class="dmb-h-mb--big">
-        <div class="dmb-report-page__tabs">
+        <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
           <div class="dmb-report-page__tabs-icons">
             <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
               <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
@@ -320,7 +320,7 @@
         Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking ( unfortunately that is enabled by default when using
         2 way data binding)
         {% endcomment %}
-        <div class="dmb-report-page__dimension-zippy">
+        <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
           <div class="glue-zippy-set h-t-hercules" ng-cloak>
             <ul class="h-c-expansion-panels__list">
               <li class="glue-zippy glue-a-zippy--v-smooth-expand" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
