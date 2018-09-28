@@ -156,7 +156,7 @@
         </div>
       </section>
 
-      <section class="dmb-report-page__tabs dmb-h-mb--big">
+      <section class="dmb-h-mb--big">
         <div class="dmb-report-page__tabs">
           <div class="dmb-report-page__tabs-icons">
             <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
@@ -313,6 +313,13 @@
             </div>
           </div>
         </div>
+
+        {% comment %}
+        We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a bug where,
+        if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to the top ( probably # left at the end of the url).
+        Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking ( unfortunately that is enabled by default when using
+        2 way data binding)
+        {% endcomment %}
         <div class="dmb-report-page__dimension-zippy">
           <div class="glue-zippy-set h-t-hercules" ng-cloak>
             <ul class="h-c-expansion-panels__list">
