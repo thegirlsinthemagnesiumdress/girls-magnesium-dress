@@ -1,12 +1,11 @@
 goog.module('dmb.components.report.controller');
 
 const BreakpointService = goog.require('glue.ng.common.Breakpoint');
+const PaginationModel = goog.require('glue.ng.pagination.Model');
 
 const surveyEndpoint = '/api/report/company/';
 const industryEndpoint = '/api/report/industry/';
 const locationSidRegex = /reports\/(\w+)[#\/].*$/;
-
-const PaginationModel = goog.require('glue.ng.pagination.Model');
 
 
 /**
@@ -19,6 +18,8 @@ class ReportController {
    * @param {!angular.Scope} $scope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
+   * @param {!glue.ng.state.StateService} glueState
+   * @param {!angular.$timeout} $timeout
    * @param {!Object} reportService
    * @param {!Function} floorDmbFactory
    * @param {!Object} dimensionHeaders
@@ -30,12 +31,20 @@ class ReportController {
       $scope,
       $http,
       $location,
+      glueState,
+      $timeout,
       reportService,
       floorDmbFactory,
       dimensionHeaders,
       glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
+
+    /** @private {!glue.ng.state.StateService} */
+    this.glueState_ = glueState;
+
+    /** @private {!angular.$timeout} */
+    this.ngTimeout_ = $timeout;
 
     /**
      * Survey object.
@@ -85,12 +94,12 @@ class ReportController {
       'organization',
     ];
 
-    /**
+       /**
      * @type {glue.ng.pagination.Model}
      * @export
      */
     this.model = new PaginationModel({
-      activeEl: this.dimensions[0],
+      'activeEl': this.dimensions[0],
     });
 
     /**
@@ -143,6 +152,22 @@ class ReportController {
     ];
 
     return bpTabsEnabled.indexOf(size) > -1;
+  }
+
+    /**
+   * Opens a specific tab if state is enabled. This is expected to be used with
+   * something like ngClick.
+   *
+   * @param {string} tabsetId The unique state id for the tabset.
+   * @param {string} elementId The unique id of the tab to open.
+   * @export
+   */
+  selectTab(tabsetId, elementId) {
+    this.ngTimeout_(() => {
+      this.glueState_.setState(tabsetId, {
+        'activeEl': elementId,
+      });
+    }, 0, true);
   }
 }
 

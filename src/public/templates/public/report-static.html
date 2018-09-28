@@ -184,131 +184,31 @@
                     <button
                         class="dmb-report-page__tabs-sticky-nav-btn"
                         ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
-                        ng-click="reportCtrl.model.activeEl=dimension">
+                        ng-click="reportCtrl.selectTab('dimension-tabs', dimension)">
                       {[reportCtrl.dimensionHeaders[dimension]]}
                     </button>
                   </li>
                 </ul>
               </div>
             </div>
-            <div
-                class="glue-tabby h-t-hercules"
+            <div class="glue-tabset"
+                data-glue-tabset-state="['activeEl']"
                 data-glue-state-id="dimension-tabs"
-                data-glue-tabby-model="reportCtrl.model"
-                data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']"
+                data-glue-tabset-model="reportCtrl.model"
+                data-glue-tabset-enable-arrow-nav
                 ng-cloak>
-              <ul class="dmb-report-page__tabs-ul glue-zippy-set-single">
+              <ul>
                 <li
-                  class="glue-a-zippy--v-smooth-expand"
-                  glue-label="{[ reportCtrl.dimensions[0] ]}"
-                  id="{[ reportCtrl.dimensions[0] ]}">
-
-                  <h3 class="h-c-tabby__heading-container">
-                    <span class="h-c-tabby__heading h-u-font-weight-regular">
-                      {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[0]]]}
-                    </span>
+                    ng-repeat="dimension in reportCtrl.dimensions"
+                    data-glue-label="{[dimension]}"
+                    id="{[dimension]}">
+                  <h3>
+                    {[reportCtrl.dimensionHeaders[dimension]]}
                   </h3>
-                  {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-                  <div class="h-c-tabby__content">
+                  <div>
                     <div
-                        dmb-dimension-tab="{[reportCtrl.dimensions[0]]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
-
-                    </div>
-                  </div>
-                </li>
-                <li
-                  class="glue-a-zippy--v-smooth-expand"
-                  glue-label="{[ reportCtrl.dimensions[1] ]}"
-                  id="{[ reportCtrl.dimensions[1] ]}">
-
-                  <h3 class="h-c-tabby__heading-container">
-                    <span class="h-c-tabby__heading h-u-font-weight-regular">
-                      {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[1]]]}
-                    </span>
-                  </h3>
-                  {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-                  <div class="h-c-tabby__content">
-                    <div
-                        dmb-dimension-tab="{[reportCtrl.dimensions[1]]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
-
-                    </div>
-                  </div>
-                </li>
-                <li
-                  class="glue-a-zippy--v-smooth-expand"
-                  glue-label="{[ reportCtrl.dimensions[2] ]}"
-                  id="{[ reportCtrl.dimensions[2] ]}">
-
-                  <h3 class="h-c-tabby__heading-container">
-                    <span class="h-c-tabby__heading h-u-font-weight-regular">
-                      {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[2]]]}
-                    </span>
-                  </h3>
-                  {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-                  <div class="h-c-tabby__content">
-                    <div
-                        dmb-dimension-tab="{[reportCtrl.dimensions[2]]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
-
-                    </div>
-                  </div>
-                </li>
-                <li
-                  class="glue-a-zippy--v-smooth-expand"
-                  glue-label="{[ reportCtrl.dimensions[3] ]}"
-                  id="{[ reportCtrl.dimensions[3] ]}">
-
-                  <h3 class="h-c-tabby__heading-container">
-                    <span class="h-c-tabby__heading h-u-font-weight-regular">
-                      {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[3]]]}
-                    </span>
-                  </h3>
-                  {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-                  <div class="h-c-tabby__content">
-                    <div
-                        dmb-dimension-tab="{[reportCtrl.dimensions[3]]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
-
-                    </div>
-                  </div>
-                </li>
-                <li
-                  class="glue-a-zippy--v-smooth-expand"
-                  glue-label="{[ reportCtrl.dimensions[4] ]}"
-                  id="{[ reportCtrl.dimensions[4] ]}">
-
-                  <h3 class="h-c-tabby__heading-container">
-                    <span class="h-c-tabby__heading h-u-font-weight-regular">
-                      {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[4]]]}
-                    </span>
-                  </h3>
-                  {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-                  <div class="h-c-tabby__content">
-                    <div
-                        dmb-dimension-tab="{[reportCtrl.dimensions[4]]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
-
-                    </div>
-                  </div>
-                </li>
-                <li
-                  class="glue-a-zippy--v-smooth-expand"
-                  glue-label="{[ reportCtrl.dimensions[5] ]}"
-                  id="{[ reportCtrl.dimensions[5] ]}">
-
-                  <h3 class="h-c-tabby__heading-container">
-                    <span class="h-c-tabby__heading h-u-font-weight-regular">
-                      {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[5]]]}
-                    </span>
-                  </h3>
-                  {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-                  <div class="h-c-tabby__content">
-                    <div
-                        dmb-dimension-tab="{[reportCtrl.dimensions[5]]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
-
+                      dmb-dimension-tab="{[dimension]}"
+                      company-name="{[ reportCtrl.survey.company_name ]}">
                     </div>
                   </div>
                 </li>
