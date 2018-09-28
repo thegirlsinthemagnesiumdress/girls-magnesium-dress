@@ -2,7 +2,7 @@ goog.module('dmb.components.report.controller');
 
 const surveyEndpoint = '/api/report/company/';
 const industryEndpoint = '/api/report/industry/';
-const locationSidRegex = /\/(\w+)[^\/\!\?#]?[^\/]*$/;
+const locationSidRegex = /reports\/(\w+)[#\/].*$/;
 
 const PaginationModel = goog.require('glue.ng.pagination.Model');
 
