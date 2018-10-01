@@ -41,9 +41,14 @@
               </h2>
             </div>
           </div>
-          <p class="dmb-report-page__hero-subhead">
-              This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>{[ reportCtrl.result.dmb|dmbLevelText]}</strong>
+
+          <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb < 3">
+              This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>{[ (reportCtrl.result.dmb + 1) | dmbLevelText]}</strong>
           </p>
+          <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb > 2">
+            This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level.
+          </p>
+
           {% comment "We won't have any date for average and best-pracitce for the MVP" %}
           <p class="h-u-mt-l">
             You are <strong>above average</strong> for your industry, and <strong>behind</strong> the industry best practice. This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>connected</strong>.
@@ -63,16 +68,21 @@
   </header>
 
   <div class="dmb-report-page__content" id="dmb-report-page-main">
-    <button class="dmb-right-panel-trigger dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
-      <div class="dmb-right-panel-trigger__icon">
-        <svg role="img" class="h-c-icon">
-          <use xlink:href="#mi-chevron"></use>
-        </svg>
-      </div>
-      <div class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
-        Why digital maturity matters
-      </div>
-    </button>
+    <div class="dmb-report-page__panel-trigger" dmb-pin-top>
+      <button
+          class="dmb-right-panel-trigger dmb-h-hidden--print"
+          dmb-side-panel-trigger="#dmb-report-right-side-panel">
+        <div class="dmb-right-panel-trigger__icon">
+          <svg role="img" class="h-c-icon">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </div>
+        <div
+            class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
+          Why digital maturity matters
+        </div>
+      </button>
+    </div>
 
     <div class="h-c-page">
       <section>
@@ -137,8 +147,10 @@
             </button>
           </h2>
           <p class="dmb-report-page__dimensions-intro dmb-h-mb--small">Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.</p>
-
-          <button class="h-c-button h-c-button--secondary dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">Learn more about why these matter</button>
+          <a class="dmb-report-page__cta dmb-report-page__cta--alt dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+            <div class="dmb-report-page__cta-icon"></div>
+            <div class="dmb-report-page__cta-text">Learn more about why these matter</div>
+          </a>
         </div>
       </section>
 

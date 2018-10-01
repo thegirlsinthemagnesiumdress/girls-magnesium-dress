@@ -79,7 +79,12 @@ class ReportController {
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
       this.result = this.survey['last_survey_result'];
-      this.floorDmb = floorDmbFactory(this.result['dmb']);
+
+      // DRF returns decimal fields as strings. We should probably look into this
+      // on the BE but until we do let's fix this on the FE.
+      this.result.dmb = parseFloat(this.result['dmb']);
+
+      this.floorDmb = floorDmbFactory(this.result.dmb);
 
       reportService.dmb_d = this.result['dmb_d'];
 

@@ -32,9 +32,9 @@ $dmb-report-hero-padding-bottom: 37px;
 $dmb-tabs-border-radius: 5px;
 $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 $dmb-headline-accent-color: $dmb-color-blue-manatee;
-$recommendation-cta-border-color: $dmb-color-grey-chateau;
-$recommendation-cta-color: $dmb-color-blue-royal;
-$recommendation-cta-bg-color: #fff;
+$cta-border-color: #CDD4DA;
+$cta-color: $dmb-color-blue-royal;
+$cta-bg-color-alt: $h-gm-grey-50;
 
 .dmb-report-page {
   &__hero {
@@ -439,7 +439,7 @@ $recommendation-cta-bg-color: #fff;
   @each $name, $color in $report-page-color-map {
     [dmb-dimension-tab='#{$name}'] {
       .dmb-progress-table__row--main {
-        background: map-get($color, main);
+        border-top-color: map-get($color, main);
       }
     }
 
@@ -479,7 +479,7 @@ $recommendation-cta-bg-color: #fff;
   }
 
   &__recommendation {
-    background-color: #f8f9fa;
+    background-color: $h-gm-grey-50;
     display: inline-block;
     margin-bottom: 22px;
     padding: 32px;
@@ -495,38 +495,71 @@ $recommendation-cta-bg-color: #fff;
     }
   }
 
-  &__recommendation-cta {
+  &__cta {
     align-items: center;
-    background: $recommendation-cta-bg-color;
-    border: 1px solid $recommendation-cta-border-color;
+    border: 1px solid $cta-border-color;
     border-radius: 22px;
-    color: $recommendation-cta-color;
+    color: $cta-color;
     display: inline-flex;
     font-family: 'Google Sans';
     font-size: 14px;
     margin-top: 24px;
     padding: 10px 20px;
+    transition: background .3s;
 
     &:hover {
-      background: darken($recommendation-cta-bg-color, .5);
+      background: $h-white;
     }
 
     @include bp(s) {
       font-size: 16px;
     }
+
+    &--alt {
+
+      &:hover {
+        background: $cta-bg-color-alt;
+      }
+    }
   }
 
-  &__recommendation-cta-icon {
+  &__cta-icon {
+    background-image: url('../img/icons/learn-more.svg');
+    background-position: center;
+    background-size: contain;
     background-repeat: no-repeat;
     height: 22px;
     margin-right: 15px;
     width: 22px;
   }
 
+  &__cta-text {
+    line-height: 22px;
+  }
+
   @each $class in $recommendation-classes {
     &__recommendation {
-      &--#{$class} &-cta-icon {
+      &--#{$class} .dmb-report-page__cta-icon {
         background-image: url('../img/icons/#{$class}.svg');
+      }
+    }
+  }
+
+  &__panel-trigger {
+    z-index: 1;
+
+    .dmb-right-panel-trigger {
+      transition: transform .3s;
+    }
+
+    &.dmb-pinned {
+      position: fixed;
+      right: 0;
+      top: 0;
+      transition: transform .3s;
+
+      .dmb-right-panel-trigger {
+        transform: translateX(160px);
       }
     }
   }
@@ -544,12 +577,14 @@ $recommendation-cta-bg-color: #fff;
     color: $dmb-right-panel-trigger-color;
     display: inline-flex;
     font-family: 'Google Sans';
-    padding: 20px 20px 20px 30px;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 17px 17px 17px 30px;
     position: absolute;
     right: 0;
     text-align: left;
     top: $dmb-margin-big;
-    width: 250px;
+    width: 240px;
 
     &__icon {
       align-items: center;
@@ -562,6 +597,10 @@ $recommendation-cta-bg-color: #fff;
         transform: rotate(-90deg);
         width: 24px;
       }
+    }
+
+    &--sticky {
+      position: fixed;
     }
   }
 
