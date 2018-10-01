@@ -558,7 +558,7 @@ $cta-bg-color-alt: $h-gm-grey-50;
       top: 0;
       transition: transform .3s;
 
-      .dmb-right-panel-trigger {
+      .dmb-right-panel-trigger:not(:hover) {
         transform: translateX(160px);
       }
     }
