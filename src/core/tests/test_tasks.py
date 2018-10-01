@@ -16,9 +16,9 @@ class GetResultsTestCase(TestCase):
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
     def test_new_survey_first_time_download(self, download_mock):
         """We're assuming that all the Surveys have been created previously."""
-        make_survey(sid='1')
-        make_survey(sid='2')
-        make_survey(sid='3')
+        make_survey()
+        make_survey()
+        make_survey()
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -40,13 +40,13 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        make_survey(sid='1')
-        make_survey(sid='2')
-        make_survey(sid='3')
+        survey = make_survey(sid=1)
+        make_survey()
+        make_survey()
 
         get_results()
 
-        survey_1 = Survey.objects.get(pk='1')
+        survey_1 = Survey.objects.get(pk=survey.sid)
 
         # Last result is updated.
         self.assertIsNotNone(survey_1.last_survey_result)
@@ -65,12 +65,12 @@ class GetResultsTestCase(TestCase):
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results(response_id='AAB'))
     def test_partial_download_existing_survey(self, download_mock):
         # survey has been created on datastore
-        survey = make_survey(sid='1')
-        make_survey(sid='2')
-        make_survey(sid='3')
+        survey = make_survey()
+        make_survey()
+        make_survey()
 
         # only survey result with response_id='AAB' has been downloaded
-        make_survey_result(survey=survey, response_id='AAB')
+        make_survey_result(survey=survey, response_id='D')
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
@@ -80,7 +80,7 @@ class GetResultsTestCase(TestCase):
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
         # mock is called with response_id
-        download_mock.assert_called_once_with(response_id='AAB')
+        download_mock.assert_called_once_with(response_id='D')
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
 
@@ -96,14 +96,14 @@ class GetResultsTestCase(TestCase):
         }
         download_mock.side_effect = FetchResultException(exception_body)
 
-        survey = make_survey(sid='1')
-        make_survey_result(survey=survey, response_id='AAB')
+        survey = make_survey()
+        make_survey_result(survey=survey, response_id='D')
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         with mock.patch('core.tasks._create_survey_result') as survey_result_mock:
             get_results()
             survey_result_mock.assert_not_called()
-            download_mock.assert_called_once_with(response_id='AAB')
+            download_mock.assert_called_once_with(response_id='D')
             self.assertEqual(Survey.objects.count(), 1)
             self.assertEqual(SurveyResult.objects.count(), 1)
 
@@ -132,7 +132,7 @@ class CreateSurveyResultTestCase(TestCase):
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
-        make_survey(sid=1)
+        make_survey()
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
@@ -175,7 +175,7 @@ class SendEmailTestCase(TestCase):
         send_emails_for_new_reports(email_list)
         email_mock.assert_not_called()
 
-    @mock.patch('django.core.mail.EmailMessage.send')
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_is_correctly_sent_bcc_invalid(self, email_mock):
         """`SurveyResult` email is sent to `to` recipient, but not to `bbc` because `bcc` field is invalid."""
         email_list = [
@@ -183,9 +183,9 @@ class SendEmailTestCase(TestCase):
         ]
 
         send_emails_for_new_reports(email_list)
-        email_mock.assert_called()
+        self.assertEqual(email_mock.call_args_list, [mock.call()])
 
-    @mock.patch('django.core.mail.EmailMessage.send')
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_is_correctly_sent_with_bcc(self, email_mock):
         """`SurveyResult` email is sent correctly."""
         email_list = [
@@ -193,9 +193,9 @@ class SendEmailTestCase(TestCase):
         ]
 
         send_emails_for_new_reports(email_list)
-        email_mock.assert_called()
+        self.assertEqual(email_mock.call_args_list, [mock.call()])
 
-    @mock.patch('django.core.mail.EmailMessage.send')
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_is_correctly_sent_no_bcc(self, email_mock):
         """`SurveyResult` email is sent to `to` recipient, but not to `bbc` because `bcc` field is invalid."""
         email_list = [
@@ -203,9 +203,9 @@ class SendEmailTestCase(TestCase):
         ]
 
         send_emails_for_new_reports(email_list)
-        email_mock.assert_called()
+        self.assertEqual(email_mock.call_args_list, [mock.call()])
 
-    @mock.patch('django.core.mail.EmailMessage.send')
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_is_correctly_sent_multiple_emails(self, email_mock):
         """`SurveyResult` email is sent correctly, when email_list has more than one element."""
         email_list = [
@@ -214,5 +214,4 @@ class SendEmailTestCase(TestCase):
         ]
 
         send_emails_for_new_reports(email_list)
-        email_mock.assert_called()
         self.assertEqual(email_mock.call_count, 2)

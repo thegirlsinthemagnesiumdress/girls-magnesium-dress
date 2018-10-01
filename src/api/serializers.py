@@ -16,6 +16,7 @@ class SurveyCompanyNameSerializer(ModelSerializer):
 
 class SurveyResultSerializer(ModelSerializer):
     dmb_d = JSONField()
+
     class Meta:
         model = SurveyResult
         fields = ('response_id', 'dmb', 'dmb_d', 'loaded_at')
