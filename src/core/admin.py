@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import User, Survey
+from core.models import User, Survey, SurveyResult
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Survey)
+admin.site.register(SurveyResult)

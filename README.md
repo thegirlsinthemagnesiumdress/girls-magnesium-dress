@@ -7,8 +7,8 @@
 # Installation
 
 1. Clone the repository (you might have already done that!)
-2. Run ./bin/install_deps
-3. ./manage.py runserver
+2. Run `./bin/install_deps`. If you get errors try using a virtualenv `mkvirtualenv dmb && setvirtualenv`. To use this in future run `workon dmb`.
+3. Run `./manage.py runserver` to start the server and gulp
 
 # Frontend Setup
 
@@ -50,6 +50,9 @@ When building these files are build (as per gulpfile.js) and then output to:
  - `major`: it will generate a new major version number and deploy it;
  - `minor`: it will generate a new minor version number and deploy it;
  - `patch`: it will generate a new patch version number and deploy it.
+
+By default the script deploy to the staging instance `gweb-digitalmaturity-staging`, it's possibile to pass
+a `-p` flag to deploy to the production instance `gweb-digitalmaturity`.
 
 Please run the script from the root of the project, as shown above.
 ie.

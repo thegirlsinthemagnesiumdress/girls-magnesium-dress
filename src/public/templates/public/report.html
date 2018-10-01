@@ -1,30 +1,39 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
 
-{% block body %}
+{% block main %}
 <section class="tr-report wrapper container-fluid">
   <div class="row">
       <div class="col-xs-12">
-        <h1 class="tr-alpha">
+        <h1 class="h-c-headline h-c-headline--one">
           Report for {{ company_name }}
         </h1>
+
+        <h2 class="h-c-headline h-c-headline--two">Industry</h2>
+        <p>{{industry}}</p>
+
+        <h2 class="h-c-headline h-c-headline--two">Country</h2>
+        <p>{{country}}</p>
+
+        <h2 class="h-c-headline h-c-headline--two">Benchmarks</h2>
         <dl>
           <dt> DMB</dt>
           <dd> {{ DMB|floatformat:2 }} </dd>
-          <dt> DMB for ads</dt>
+          <dt> DMB for Assets&Ads</dt>
           <dd> {{ DMBd.ads|floatformat:2 }} </dd>
           <dt> DMB for access</dt>
           <dd> {{ DMBd.access|floatformat:2 }} </dd>
-          <dt> DMB for automation</dt>
-          <dd> {{ DMBd.automation|floatformat:2 }} </dd>
-          <dt> DMB for activation</dt>
-          <dd> {{ DMBd.activation|floatformat:2 }} </dd>
-          <dt> DMB for analysis</dt>
-          <dd> {{ DMBd.analysis|floatformat:2 }} </dd>
           <dt> DMB for audience</dt>
           <dd> {{ DMBd.audience|floatformat:2 }} </dd>
+          <dt> DMB for automation</dt>
+          <dd> {{ DMBd.automation|floatformat:2 }} </dd>
+          <dt> DMB for attribution</dt>
+          <dd> {{ DMBd.attribution|floatformat:2 }} </dd>
+          <dt> DMB for organization</dt>
+          <dd> {{ DMBd.organization|floatformat:2 }} </dd>
         </dl>
       </div>
   </div>
 </section>
+
 {% endblock %}

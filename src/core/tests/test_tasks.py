@@ -48,9 +48,6 @@ class GetResultsTestCase(TestCase):
 
         survey_1 = Survey.objects.get(pk='1')
 
-        # Industry is updated.
-        self.assertEqual(survey_1.industry, 'IT')
-
         # Last result is updated.
         self.assertIsNotNone(survey_1.last_survey_result)
 
@@ -160,7 +157,7 @@ class SendEmailTestCase(TestCase):
     def setUp(self):
         self.responses = get_mocked_results().get('responses')
 
-    @mock.patch('django.core.mail.EmailMessage.send')
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_not_send_to_invalid(self, email_mock):
         """`SurveyResult` email is not sent, because `to` field is invalid."""
         email_list = [

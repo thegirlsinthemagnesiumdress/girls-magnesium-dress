@@ -1,0 +1,201 @@
+$dmb-prog-table-border-color: $dmb-color-grey-zircon;
+$dmb-prog-table-label-color: $dmb-color-grey-shuttle;
+$dmb-prog-table-bar-color: $dmb-color-grey-light;
+$dmb-prog-table-main-label-color: $dmb-color-black-russian;
+$dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
+$dmb-prog-table-active-bg-color: rgba($dmb-color-blue-alice, .35);
+$dmb-prog-table-active-color: $dmb-color-blue-navy;
+$dmb-prog-table-row-height-mobile: 5px;
+$dmb-prog-table-row-height-desktop: 1em;
+
+.dmb-progress-table {
+  display: flex;
+  font-family: 'Google Sans';
+  text-align: center;
+  width: 100%;
+
+  @include print-styles {
+    page-break-inside: avoid;
+  }
+
+  &__col {
+    flex: 1 1 0;
+    padding-top: 20px;
+
+    @include bp(s) {
+      border-right: 1px solid $dmb-prog-table-border-color;
+      padding-top: 15px;
+    }
+
+    &:nth-of-type(1) {
+      flex: 0 0 175px;
+    }
+
+    @media (max-width: 600px) {
+      width: 25%;
+
+      &:nth-of-type(1) {
+        display: none;
+      }
+    }
+
+    &--nascent {
+      position: relative;
+    }
+  }
+
+  &__col-heading {
+    display: none;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    @include bp(s) {
+      display: block;
+    }
+
+    @media (min-width: 650px) {
+      font-size: 12px;
+    }
+  }
+
+  &__rating {
+    margin-left: 6px;
+
+    @include bp(s) {
+      left: 100%;
+      margin-left: 10px;
+      position: absolute;
+      top: -$dmb-prog-table-row-height-desktop;
+    }
+  }
+
+  &__company {
+    color: $dmb-text-color;
+    font-weight: $h-font-weight-medium;
+  }
+
+  &__row {
+    border-top: $dmb-prog-table-row-height-mobile solid $dmb-prog-table-bar-color;
+    font-size: 12px;
+    line-height: 1em;
+    position: relative;
+    transition: width $dmb-trans-time $dmb-trans-fn;
+    width: 1px;
+
+    @include print-styles {
+      border-top-width: $dmb-prog-table-row-height-desktop;
+      font-size: 16px;
+      transition: none;
+    }
+
+    @include bp(s) {
+      border-top-width: $dmb-prog-table-row-height-desktop;
+      font-size: 16px;
+    }
+
+    &:first-of-type {
+      margin-top: 40px;
+
+      @include bp(s) {
+        margin-top: 83px;
+      }
+    }
+
+    &:nth-of-type(3) {
+      margin-bottom: calc(1em + 21px);
+
+      @include bp(s) {
+        margin-bottom: 47px;
+      }
+    }
+
+    & ~ & {
+      margin-top: 30px;
+
+      @include bp(s) {
+        margin-top: 20px;
+      }
+
+      @include print-styles {
+        margin-top: 40px;
+      }
+    }
+
+    &--main {
+      border-top-color: $dmb-prog-table-main-bar-color;
+
+      .progress-table__label {
+        color: $dmb-prog-table-main-label-color;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__banner {
+    background: rgba($dmb-color-grey-gainsboro, .85);
+    border-radius: 5px;
+    left: 0;
+    padding: 14px 16px;
+    position: absolute;
+    top: 100px;
+    width: 400%;
+
+    @include bp(s) {
+      left: 15px;
+      top: 155px;
+      width: calc(400% - 30px);
+    }
+  }
+
+  &__label {
+    color: $dmb-prog-table-label-color;
+    left: 0;
+    position: absolute;
+    top: calc(100% + 5px);
+    white-space: nowrap;
+
+    @include bp(s) {
+      font-size: 16px;
+      position: static;
+    }
+  }
+
+  &__company {
+    @media (min-width: 721px) {
+      margin-right: 27px;
+      position: absolute;
+      right: 100%;
+      top: -$dmb-prog-table-row-height-desktop;
+    }
+  }
+
+  $dimensions: nascent, emerging, connected, multimoment;
+  @each $dimension in $dimensions {
+    &--#{$dimension} {
+      .dmb-progress-table__col--#{$dimension} {
+        background-color: $dmb-prog-table-active-bg-color;
+
+        @include print-styles {
+          border-left: 1px solid rgba($dmb-prog-table-border-color, .5);
+          border-right: 1px solid rgba($dmb-prog-table-border-color, .5);
+        }
+
+        .dmb-progress-table__col-heading {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .dmb-report-page__info {
+    background-image: url('../img/icons/info.svg');
+    display: none;
+    height: 18px;
+    top: 3px;
+
+    @include bp(s) {
+      display: inline-block;
+    }
+  }
+}

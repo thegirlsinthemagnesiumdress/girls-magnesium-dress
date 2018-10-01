@@ -1,3 +1,44 @@
 .h-c-headline {
   hyphens: none;
+  page-break-inside: avoid;
+}
+
+.glue-app-supported,
+.glue-app-ready {
+  .h-c-header__bar {
+    @include print-styles {
+      position: absolute;
+    }
+  }
+}
+
+.h-c-page {
+  @include print-styles {
+    max-width: none;
+    padding-left: $dmb-print-gutter;
+    padding-right: $dmb-print-gutter;
+  }
+}
+
+.h-c-header {
+  @include print-styles {
+    &__bar {
+      box-shadow: none;
+    }
+
+    &.h-is-wholly-scrolled &__bar {
+      transform: none !important;
+    }
+  }
+}
+
+.h-c-button--print {
+  background: transparent;
+  border: 2px solid;
+  color: $h-button-primary-bg-color;
+
+  &:hover,
+  &:focus {
+    color: $h-button-primary-bg-color-hover;
+  }
 }

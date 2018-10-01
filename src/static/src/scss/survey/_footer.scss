@@ -14,16 +14,16 @@
 }
 
 .Skin {
-  #Footer {
+  #Footer { // sass-lint:disable-line no-ids
     margin: $dmb-margin-medium auto $dmb-margin-small;
     padding: 0;
   }
 
-  #PushStickyFooter {
+  #PushStickyFooter { // sass-lint:disable-line no-ids
     display: none;
   }
 
-  #Plug {
+  #Plug { // sass-lint:disable-line no-ids
     @include element-invisible();
   }
 }

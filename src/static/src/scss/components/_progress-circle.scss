@@ -1,0 +1,144 @@
+
+$dmb-prog-circ-prog-bar-color: $dmb-color-blue-charade;
+$dmb-prog-circ-bg-bar-color: $dmb-color-grey-athens;
+$dmb-prog-circ-target-color: $dmb-color-grey-aluminium;
+$dmb-prog-circ-inverted-bar-color: #fff;
+
+.dmb-progress-circle {
+  $block: &;
+  display: inline-block;
+  font-family: $h-font-family-google-sans;
+  max-width: 100%;
+  position: relative;
+
+  @include print-styles {
+    page-break-inside: avoid;
+  }
+
+  &--hero {
+
+    svg {
+      height: 240px;
+      width: 240px;
+    }
+
+    #{$block}__result {
+      font-size: 49px;
+    }
+  }
+
+  &--company-dmb {
+
+    svg {
+      height: 170px;
+      width: 170px;
+    }
+
+    #{$block}__title {
+      font-size: 12px;
+      padding-top: 12px;
+    }
+
+    #{$block}__result {
+      font-family: $h-font-family-google-sans;
+      font-size: 36px;
+    }
+
+    #{$block}__target {
+      font-size: 18px;
+    }
+  }
+
+  &--dimension-main {
+
+    #{$block}__icon {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  &__prog-svg {
+    display: block;
+    max-width: 100%;
+    transform: rotate(-90deg);
+  }
+
+  &__bg-bar {
+    stroke: $dmb-prog-circ-bg-bar-color;
+  }
+
+  &__prog-bar {
+    stroke: $dmb-prog-circ-prog-bar-color;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    stroke-linecap: round;
+    transition: stroke-dashoffset $dmb-trans-time $dmb-trans-fn;
+
+    @include print-styles {
+      transition: none;
+    }
+  }
+
+  &__text,
+  &__icon {
+    left: 15%;
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__text {
+    font-size: 12px;
+    font-weight: $h-font-weight-medium;
+    letter-spacing: .96px;
+    text-align: center;
+  }
+
+  &__icon {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: block;
+    height: 32px;
+    margin: 0 auto;
+    max-width: 70%;
+    width: 32px;
+  }
+
+  &__title {
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__range-values {
+    font-weight: $h-font-weight-regular;
+  }
+
+  &__range-values {
+    font-weight: $h-font-weight-regular;
+  }
+
+  &__result {
+    font-size: 3em;
+    font-weight: $h-font-weight-regular;
+  }
+
+  &__target {
+    color: $dmb-prog-circ-target-color;
+    font-size: 1.5em;
+    font-weight: $h-font-weight-regular;
+  }
+
+  &__under-result {
+    font-size: 3em;
+    font-weight: $h-font-weight-regular;
+  }
+
+  &__under-target {
+    color: $dmb-prog-circ-target-color;
+    font-size: 1.5em;
+    font-weight: $h-font-weight-regular;
+  }
+
+}

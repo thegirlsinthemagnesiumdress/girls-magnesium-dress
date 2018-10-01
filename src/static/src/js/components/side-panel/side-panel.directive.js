@@ -32,7 +32,16 @@ exports = {
 
   EXAMPLE HTML:
 
-  <div id="some-id" class="dmb-side-panel dmb-side-panel--narrow" dmb-side-panel>
+  // Trigger element
+
+  <button class="dmb-survey-checklist-button" dmb-side-panel-trigger="#some-id">Trigger Element</button>
+
+  // Side panel
+
+  // default position is right side, for left side use `dmb-side-panel--left`
+  // default width is 90%, for narrow side panel use `dmb-side-panel--narrow`
+
+  <div id="some-id" class="dmb-side-panel" dmb-side-panel>
 
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">

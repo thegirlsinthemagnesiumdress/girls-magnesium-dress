@@ -37,3 +37,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ALLOWED_HOSTS = [
     '*',
 ]
+
+SUPER_USER = ['pchillari@google.com']

@@ -60,7 +60,7 @@ class SurveyResultTest(APITestCase):
             dmb=1.0,
             dmb_d='{}'
         )
-        self.url = reverse('survey_report', kwargs={'sid': self.survey.pk})
+        self.url = reverse('survey_result_report', kwargs={'sid': self.survey.pk})
 
     def test_survey_result_found(self):
         response = self.client.get(self.url)
@@ -79,6 +79,46 @@ class SurveyResultTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertAlmostEqual(float(response.data.get('dmb')), survey_result.dmb)
         self.assertEqual(response.data.get('response_id'), survey_result.response_id)
+
+    def test_survey_result_not_found(self):
+        url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_cors_not_supported(self):
+        url = reverse('survey_report', kwargs={'sid': self.survey.pk})
+        headers = {
+            'HTTP_ORIGIN': 'http://example.com',
+            'HTTP_ACCESS_CONTROL_REQUEST_METHOD': 'POST',
+            'HTTP_ACCESS_CONTROL_REQUEST_HEADERS': 'X-Requested-With',
+
+        }
+        response = self.client.get(url, **headers)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertFalse(response.has_header('access-control-allow-origin'))
+
+
+class SurveyDetailView(APITestCase):
+    """Tests for `api.views.SurveyResultsDetail` view."""
+    user_email = 'test@example.com'
+
+    def setUp(self):
+        self.survey = Survey.objects.create(company_name='test company')
+        self.survey_result = SurveyResult.objects.create(
+            survey=self.survey,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.survey.last_survey_result = self.survey_result
+        self.survey.save()
+        self.url = reverse('survey_report', kwargs={'sid': self.survey.pk})
+
+    def test_survey_result_found(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertAlmostEqual(float(response.data.get('last_survey_result').get('dmb')), self.survey_result.dmb)
+        self.assertEqual(response.data.get('last_survey_result').get('response_id'), self.survey_result.response_id)
 
     def test_survey_result_not_found(self):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})

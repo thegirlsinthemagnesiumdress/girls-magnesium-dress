@@ -7,7 +7,7 @@ from django.db import models
 from django.utils import timezone
 
 
-SURVEY_URL = 'https://google.qualtrics.com/jfe/form/SV_beH0HTFtnk4A5rD'
+SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRICS_SURVEY_ID)
 
 
 class User(GaeAbstractDatastoreUser):
@@ -40,6 +40,7 @@ class Survey(models.Model):
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, null=True)
     industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
+    country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems(), null=True)
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -75,7 +76,7 @@ class Survey(models.Model):
 class SurveyResult(models.Model):
     """Model to store a survey response benchmark."""
 
-    survey = models.ForeignKey('Survey', null=True)
+    survey = models.ForeignKey('Survey', null=True, related_name="survey_results")
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
     excluded_from_best_practice = models.BooleanField(default=False)

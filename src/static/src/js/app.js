@@ -6,12 +6,18 @@ const glueCommon = goog.require('glue.ng.common');
 const glueZippy = goog.require('glue.ng.zippy');
 const header = goog.require('glue.ng.ui.header');
 const smoothScroll = goog.require('glue.ng.smoothScroll');
+const tabby = goog.require('glue.ng.tabby');
+const tableSort = goog.require('glue.ng.tableSort');
 
 const focusControl = goog.require('dmb.components.focusControl');
 const headerFix = goog.require('dmb.components.headerFix');
 const registration = goog.require('dmb.components.registration');
 const scrollHandler = goog.require('dmb.components.scroll');
 const sidePanel = goog.require('dmb.components.sidePanel');
+const report = goog.require('dmb.components.report');
+const progressCircle = goog.require('dmb.components.progressCircle');
+const progressTable = goog.require('dmb.components.progressTable');
+const dimensionTab = goog.require('dmb.components.dimensionTab');
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -24,13 +30,19 @@ const module = angular.module('dmb', [
   registration.module.name,
   scrollHandler.module.name,
   sidePanel.module.name,
+  report.module.name,
+  progressCircle.module.name,
+  progressTable.module.name,
+  dimensionTab.module.name,
   smoothScroll.module.name,
+  tabby.module.name,
+  tableSort.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);
 
-
-const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
+const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 module.constant('csrfToken', csrfToken);
 
 // Conditionally start the app if it's a supported browser.

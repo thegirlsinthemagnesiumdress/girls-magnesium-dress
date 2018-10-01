@@ -1,5 +1,7 @@
 #!/bin/bash
-appid=gweb-digitalmaturity-staging
+appid_staging=gweb-digitalmaturity-staging
+
+appid_prod=gweb-digitalmaturity
 
 # fetch tags from remote
 git fetch --tags;
@@ -8,6 +10,23 @@ DEFAULT_TAG="0-0-1"
 HASH=$(git rev-parse --short=5 --dirty HEAD)
 LATEST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null)
 DEPLOYMENT_TYPE="$1";
+PROD_FLAG=''
+
+while getopts 'p' flag; do
+  case "${flag}" in
+    p) PROD_FLAG='true' ;;
+    *) echo 'Use -p flag to deploy to production'
+       exit 1 ;;
+  esac
+done
+
+
+if [ $PROD_FLAG ];
+then
+    appid=$appid_prod
+else
+    appid=$appid_staging
+fi
 
 
 usage(){

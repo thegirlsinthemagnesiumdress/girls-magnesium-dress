@@ -11,16 +11,35 @@
         <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
           Ready to start benchmarking your business’ digital maturity?
         </h1>
-        <p class="dmb-registration__subhead h-c-headline h-c-headline--subhead">
-          Enter your organisation name to create your assessment. Receive a personalised maturity report for your organisation.
+        <p class="dmb-registration__subhead h-c-headline h-c-headline--four">
+          Fill in these questions to start your assessment:
         </p>
         <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
           <div class="input-wrp">
-            <input name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Organisation">
+            <div class="dmb-input-wrp">
+              <label for="companyName">Organisation name:</label>
+              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required>
+            </div>
+            <div class="dmb-input-wrp">
+              <label for="industry">Industry:</label>
+              <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+                {% for i_key, i_text in industries.items %}
+                <option value="{{i_key}}">{{i_text}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="dmb-input-wrp">
+              <label for="country">Country:</label>
+              <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
+                {% for c_key, c_text in countries.items %}
+                <option value="{{c_key}}">{{c_text}}</option>
+                {% endfor %}
+              </select>
+            </div>
             <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
           </div>
           <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
-            Create Survey
+            Create assessment
           </button>
           <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">Oops, something went wrong!</div>
         </form>

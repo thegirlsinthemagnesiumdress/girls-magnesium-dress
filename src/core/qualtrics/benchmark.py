@@ -43,7 +43,8 @@ def calculate_response_benchmark(response_questions):
     questions_by_dimension = defaultdict(list)
 
     for question in response_questions:
-        questions_by_dimension[question[3]].append(question)
+        if question[3]:
+            questions_by_dimension[question[3]].append(question)
 
     # Create a dict where single response benchmarks aggregated by dimension.
     benchmark_by_dimension = {}
