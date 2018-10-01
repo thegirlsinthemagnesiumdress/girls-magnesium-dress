@@ -76,7 +76,10 @@ $dmb-prog-table-row-height-desktop: 1em;
   }
 
   &__row {
-    border-top: $dmb-prog-table-row-height-mobile solid $dmb-prog-table-bar-color;
+    border-top: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
+    border-bottom: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
+    border-top-right-radius: $$dmb-prog-table-row-height-mobile  / 2;
+    border-bottom-right-radius: $$dmb-prog-table-row-height-mobile  / 2;
     font-size: 12px;
     line-height: 1em;
     position: relative;
@@ -84,13 +87,19 @@ $dmb-prog-table-row-height-desktop: 1em;
     width: 1px;
 
     @include print-styles {
-      border-top-width: $dmb-prog-table-row-height-desktop;
+      border-top-width: $dmb-prog-table-row-height-desktop / 2;
+      border-bottom-width: $dmb-prog-table-row-height-desktop / 2;
+      border-top-right-radius: $dmb-prog-table-row-height-desktop / 2;
+      border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
       transition: none;
     }
 
     @include bp(s) {
-      border-top-width: $dmb-prog-table-row-height-desktop;
+      border-top-width: $dmb-prog-table-row-height-desktop / 2;
+      border-bottom-width: $dmb-prog-table-row-height-desktop / 2;
+      border-top-right-radius: $dmb-prog-table-row-height-desktop / 2;
+      border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
     }
 
