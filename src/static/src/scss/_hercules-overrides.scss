@@ -37,12 +37,12 @@
   @extend .h-c-button--reversed;
 
   background: transparent;
-  color: $h-button-primary-bg-color !important;
   border-color: $h-button-primary-bg-color !important;
+  color: $h-button-primary-bg-color !important;
 
   &:hover,
   &:focus {
-    color: $h-white !important;
     background-color: $h-button-primary-bg-color !important;
+    color: $h-white !important;
   }
 }
