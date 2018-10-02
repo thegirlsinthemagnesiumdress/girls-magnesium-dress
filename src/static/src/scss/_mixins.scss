@@ -11,3 +11,12 @@
     @content;
   }
 }
+
+
+@mixin dmb-responsive($type, $mobile, $desktop) {
+  #{$type}: #{$mobile}px;
+
+  @include bp(m) {
+    #{$type}: #{$desktop}px;
+  }
+}
