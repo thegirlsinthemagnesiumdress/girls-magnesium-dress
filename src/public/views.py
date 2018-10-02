@@ -1,8 +1,9 @@
-from core.models import Survey, SurveyResult
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.http import Http404
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+
+from core.auth import authorized_domains
+from core.models import Survey
 
 
 def registration(request):
@@ -13,6 +14,7 @@ def registration(request):
 
 
 @login_required
+@authorized_domains
 def reports_admin(request):
 
     if request.user.is_whitelisted:
