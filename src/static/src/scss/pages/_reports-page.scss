@@ -37,6 +37,17 @@ $cta-color: $dmb-color-blue-royal;
 $cta-bg-color-alt: $h-gm-grey-50;
 
 .dmb-report-page {
+
+  .h-c-header__bar {
+    position: absolute !important;
+  }
+
+
+  .glue-header.h-is-wholly-scrolled .h-c-header__bar  {
+    transform: none !important;
+  }
+
+
   &__hero {
     background: $dmb-color-blue-denim;
     color: $dmb-light-text-color;
@@ -252,35 +263,35 @@ $cta-bg-color-alt: $h-gm-grey-50;
   .glue-zippy {
     @include h-u-box-shadow-2();
     margin-bottom: 16px;
+  }
 
+  &__zippy-container {
+    padding: 16px 20px;
+  }
 
-    h3 {
-      padding: 16px 20px;
+  &__zippy-btn {
+    vertical-align: middle;
+
+    &::before {
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 39px;
+      margin-right: 20px;
       vertical-align: middle;
-
-      &::before {
-        background-size: contain;
-        content: '';
-        display: inline-block;
-        height: 39px;
-        margin-right: 20px;
-        vertical-align: middle;
-        width: 39px;
-      }
+      width: 39px;
     }
 
     $i: 1;
 
     @each $name, $color in $report-page-color-map {
-      &:nth-of-type(#{$i}) {
-
-        h3::before {
-          background-image: url('../img/icons/#{$name}.svg');
-        }
+      .glue-zippy:nth-of-type(#{$i}) &:before {
+        background-image: url('../img/icons/#{$name}.svg');
       }
 
       $i: $i + 1;
     }
+
   }
 
   &__tabs {
@@ -658,6 +669,67 @@ $cta-bg-color-alt: $h-gm-grey-50;
     @include print-styles {
       page-break-before: always;
     }
+  }
+
+  &__tabs-sticky-nav {
+    @include h-u-box-shadow-1();
+    background-color: $h-white;
+    display: none;
+    font-family: $h-font-family-google-sans;
+    font-weight: $h-font-weight-regular;
+    height: $_h-header-height;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .3s, opacity 1ms .3s;
+    z-index: $_h-header-bar-z-index + 1;
+
+    @include bp(s) {
+      display: block;
+    }
+
+    @media (min-width: $h-header-breakpoint--full-size) {
+      height: $_h-header-height--full-size;
+    }
+
+    .h-c-page,
+    ul {
+      height: 100%;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    &.dmb-pinned {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform .3s;
+    }
+  }
+
+  &__tabs-sticky-nav-btn {
+    background: transparent;
+    border: 0;
+    color: $glue-tabset-tabs-text-color;
+    outline: 0;
+    padding: 8px 20px;
+
+    &.is-active {
+      background-color: $dmb-color-grey-aluminium;
+      border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+      background-color: #EEF2F4;
+      font-weight: $h-font-weight-medium;
+    };
   }
 }
 

@@ -276,8 +276,11 @@ AUTHENTICATION_BACKENDS = (
     'djangae.contrib.gauth_datastore.backends.AppEngineUserAPIBackend',
 )
 
+APPEND_SLASH = True
+
 RESPONSE_EXPORT_BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format('google.co1')
 QUALTRICS_REQUEST_DEADLINE = 60
+
 
 from .constants import *
 
