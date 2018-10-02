@@ -11,6 +11,7 @@ $dmb-prog-table-row-height-desktop: 1em;
 .dmb-progress-table {
   display: flex;
   font-family: $dmb-alt-font-family;
+  margin: 0 auto;
   text-align: center;
   width: 100%;
 
@@ -65,11 +66,6 @@ $dmb-prog-table-row-height-desktop: 1em;
       position: absolute;
       top: -$dmb-prog-table-row-height-desktop;
     }
-  }
-
-  &__company {
-    color: $dmb-text-color;
-    font-weight: $h-font-weight-medium;
   }
 
   &__row {
@@ -131,7 +127,7 @@ $dmb-prog-table-row-height-desktop: 1em;
     &--main {
       border-color: $dmb-prog-table-main-bar-color;
 
-      .progress-table__label {
+      .dmb-progress-table__company {
         color: $dmb-prog-table-main-label-color;
         font-weight: 500;
       }
@@ -139,7 +135,7 @@ $dmb-prog-table-row-height-desktop: 1em;
   }
 
   &__banner {
-    background: rgba($dmb-color-grey-gainsboro, .85);
+    background: rgba($dmb-color-grey-gainsboro, .5);
     border-radius: 5px;
     left: 0;
     padding: 14px 16px;

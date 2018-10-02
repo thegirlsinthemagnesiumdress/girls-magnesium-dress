@@ -1,5 +1,6 @@
 .dmb-tab {
-  padding: 24px 20px;
+  border-top: 1px solid $dmb-color-grey-zircon;
+  padding-top: 24px;
 
   @include bp(m) {
     padding: 70px 66px;

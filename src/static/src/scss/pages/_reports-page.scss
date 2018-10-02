@@ -319,7 +319,100 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
   }
 
+  // ZIPPY //
+
+  &__dimension-zippy {
+    @media (max-width: 1023px) {
+      margin-top: 40px;
+    }
+  }
+
+  .glue-zippy-set {
+    .glue-zippy-btn {
+      align-items: center;
+      display: flex;
+      padding: 0;
+
+      h4 {
+        flex-grow: 1;
+      }
+
+      svg {
+        margin: 0;
+      }
+
+      &:focus {
+        border: 1px solid transparent;
+        padding-bottom: 0;
+      }
+    }
+
+    &.h-t-hercules {
+      .glue-c-zippy__content-container {
+        padding: 14px 0 0;
+      }
+
+      .h-c-expansion-panels__button-header,
+      .glue-zippy-btn:focus .h-c-expansion-panels__button-header {
+        color: $dmb-text-color;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .glue-is-expanded {
+        .glue-zippy-btn {
+          border: 1px solid transparent;
+        }
+      }
+    }
+  }
+
+  &__zippy-container {
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    @include h-u-box-shadow-2();
+  }
+
+  &__zippy-btn {
+    vertical-align: middle;
+
+    &::before {
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 39px;
+      margin-right: 20px;
+      vertical-align: middle;
+      width: 39px;
+    }
+
+    $i: 1;
+
+    @each $name, $color in $report-page-color-map {
+      .glue-zippy:nth-of-type(#{$i}) &::before {
+        background-image: url('../img/icons/#{$name}.svg');
+      }
+
+      $i: $i + 1;
+    }
+  }
+
   // TABS //
+  &__tab-content {
+    .dmb-progress-table {
+      max-width: 980px;
+
+      @include dmb-responsive(margin-top, 35, 90);
+      @include dmb-responsive(margin-bottom, 64, 90);
+      @include bp(s) {
+        padding-right: 40px;
+      }
+      @include bp(m) {
+        padding-right: 0;
+      }
+    }
+  }
+
   &__tabs {
     @include dmb-responsive(margin-top, 40, 64);
 
@@ -426,14 +519,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         }
       }
     }
-
-    .dmb-progress-table {
-      @include dmb-responsive(margin-top, 35, 90);
-      @include dmb-responsive(margin-bottom, 64, 90);
-      @include bp(s) {
-        padding-right: 20px;
-      }
-    }
   }
 
   &__tabs-icons,
@@ -441,60 +526,19 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     @extend .dmb-h-hidden--print;
     display: flex;
 
-    &>div,
+    > div,
     .glue-c-tabset__tab {
       flex-basis: calc(100% / 6);
     }
   }
 
   &__tabs-icons {
-    display: none;
+    display: flex;
+    margin-bottom: 16px;
 
     .dmb-progress-circle {
       height: 70px;
       width: 70px;
-    }
-
-    @include bp(s) {
-      display: flex;
-    }
-  }
-
-  &__tabs-ul {
-    list-style-type: none;
-    margin: 0;
-  }
-
-  .glue-zippy {
-    @include h-u-box-shadow-2();
-    margin-bottom: 16px;
-  }
-
-  &__zippy-container {
-    padding: 16px 20px;
-  }
-
-  &__zippy-btn {
-    vertical-align: middle;
-
-    &::before {
-      background-size: contain;
-      content: '';
-      display: inline-block;
-      height: 39px;
-      margin-right: 20px;
-      vertical-align: middle;
-      width: 39px;
-    }
-
-    $i: 1;
-
-    @each $name, $color in $report-page-color-map {
-      .glue-zippy:nth-of-type(#{$i}) &::before {
-        background-image: url('../img/icons/#{$name}.svg');
-      }
-
-      $i: $i + 1;
     }
   }
 
@@ -779,7 +823,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         }
 
         &__heading {
-          border-bottom: 1px solid $dmb-color-grey-gainsborough;
+          border-bottom: 1px solid $dmb-color-grey-gainsboro;
           margin: 0 0 58px;
           padding-bottom: 16px;
         }
@@ -930,7 +974,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       }
 
       #{$side-panel}__list-item + #{$side-panel}__list-item {
-        border-top: 1px solid $dmb-color-grey-gainsborough;
+        border-top: 1px solid $dmb-color-grey-gainsboro;
         padding-top: 32px;
       }
     }
