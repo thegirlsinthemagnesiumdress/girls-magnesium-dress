@@ -78,8 +78,8 @@ $dmb-prog-table-row-height-desktop: 1em;
   &__row {
     border-top: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
     border-bottom: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
-    border-top-right-radius: $$dmb-prog-table-row-height-mobile  / 2;
-    border-bottom-right-radius: $$dmb-prog-table-row-height-mobile  / 2;
+    border-top-right-radius: $dmb-prog-table-row-height-mobile  / 2;
+    border-bottom-right-radius: $dmb-prog-table-row-height-mobile  / 2;
     font-size: 12px;
     line-height: 1em;
     position: relative;
@@ -132,7 +132,7 @@ $dmb-prog-table-row-height-desktop: 1em;
     }
 
     &--main {
-      border-top-color: $dmb-prog-table-main-bar-color;
+      border-color: $dmb-prog-table-main-bar-color;
 
       .progress-table__label {
         color: $dmb-prog-table-main-label-color;
@@ -166,7 +166,8 @@ $dmb-prog-table-row-height-desktop: 1em;
 
     @include bp(s) {
       font-size: 16px;
-      position: static;
+      position: relative;
+      top: .5em;
     }
   }
 
