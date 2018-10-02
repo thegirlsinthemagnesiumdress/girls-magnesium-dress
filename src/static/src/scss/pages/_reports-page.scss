@@ -77,6 +77,14 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     opacity: .45;
   }
 
+  .h-c-header__bar {
+    position: absolute !important;
+  }
+
+  .glue-header.h-is-wholly-scrolled .h-c-header__bar  {
+    transform: none !important;
+  }
+
   &__hero {
     background: $dmb-color-blue-denim;
     color: $dmb-light-text-color;
@@ -262,8 +270,8 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__content-title {
-    margin-bottom: 24px;
     font-family: $dmb-alt-font-family;
+    margin-bottom: 24px;
     @include dmb-responsive(font-size, 32, 44);
 
     @media (max-width: 1023px) {
@@ -437,7 +445,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     .glue-c-tabset__tab {
       flex-basis: calc(100% / 6);
     }
-
   }
 
   &__tabs-icons {
@@ -461,42 +468,100 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   .glue-zippy {
     @include h-u-box-shadow-2();
     margin-bottom: 16px;
+  }
 
-    .glue-c-zippy__btn {
-      padding: 16px 20px;
+  &__zippy-container {
+    padding: 16px 20px;
+  }
+
+  &__zippy-btn {
+    vertical-align: middle;
+
+    &::before {
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 39px;
+      margin-right: 20px;
       vertical-align: middle;
-
-      &::before {
-        background-size: contain;
-        content: '';
-        display: inline-block;
-        height: 39px;
-        margin-right: 20px;
-        vertical-align: middle;
-        width: 39px;
-      }
+      width: 39px;
     }
 
     $i: 1;
 
     @each $name, $color in $report-page-color-map {
-      &:nth-of-type(#{$i}) {
-
-        h3::before {
-          background-image: url('../img/icons/#{$name}.svg');
-        }
+      .glue-zippy:nth-of-type(#{$i}) &::before {
+        background-image: url('../img/icons/#{$name}.svg');
       }
 
       $i: $i + 1;
     }
   }
 
-  // TABS //
+  &__tabs-sticky-nav {
+    @include h-u-box-shadow-1();
+    background-color: $h-white;
+    display: none;
+    font-family: $h-font-family-google-sans;
+    font-weight: $h-font-weight-regular;
+    height: $_h-header-height;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .3s, opacity 1ms .3s;
+    z-index: $_h-header-bar-z-index + 1;
+
+    @include bp(s) {
+      display: block;
+    }
+
+    @media (min-width: $h-header-breakpoint--full-size) {
+      height: $_h-header-height--full-size;
+    }
+
+    .h-c-page,
+    ul {
+      height: 100%;
+    }
+
+    ul {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    &.dmb-pinned {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform .3s;
+    }
+  }
+
+  &__tabs-sticky-nav-btn {
+    background: transparent;
+    border: 0;
+    color: $glue-tabset-tabs-text-color;
+    outline: 0;
+    padding: 8px 20px;
+
+    &.is-active {
+      background-color: $dmb-color-blue-solitude;
+      border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+      font-weight: $h-font-weight-medium;
+    }
+  }
 
   @each $name, $color in $report-page-color-map {
     [dmb-dimension-tab='#{$name}'] {
       .dmb-progress-table__row--main {
-        border-top-color: map-get($color, main);
+        border-color: map-get($color, main);
       }
     }
 
@@ -582,7 +647,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       top: 0;
       transition: transform .3s;
 
-      .dmb-right-panel-trigger {
+      .dmb-right-panel-trigger:not(:hover) {
         @include bp(m) {
           transform: translateX(175px);
         }
@@ -709,7 +774,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       #{$side-panel} {
         &__inner {
           @include bp(#{$resp-bp}) {
-            padding: 80px 115px;
+            padding: 79px 80px;
           }
         }
 
