@@ -7,6 +7,7 @@ from django.test import override_settings
 import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
+from core.tests.mommy_recepies import make_survey
 
 
 User = get_user_model()
@@ -39,7 +40,7 @@ class SurveyTest(APITestCase):
 
     def test_survey_exists(self):
         """Should return the `company_name` related to `sid` provided."""
-        survey = Survey.objects.create(company_name='some company')
+        survey = make_survey()
         response = self.client.get(self.url, {
             "sid": survey.sid
         })
@@ -53,7 +54,8 @@ class SurveyResultTest(APITestCase):
     user_email = 'test@example.com'
 
     def setUp(self):
-        self.survey = Survey.objects.create(company_name='test company')
+        self.survey = make_survey(sid="92345123451234512345123451234512")
+
         self.survey_result = SurveyResult.objects.create(
             survey=self.survey,
             response_id='AAA',
@@ -103,7 +105,7 @@ class SurveyDetailView(APITestCase):
     user_email = 'test@example.com'
 
     def setUp(self):
-        self.survey = Survey.objects.create(company_name='test company')
+        self.survey = Survey.objects.create(company_name='test company', industry="re", country="it")
         self.survey_result = SurveyResult.objects.create(
             survey=self.survey,
             response_id='AAA',
@@ -150,6 +152,8 @@ class CreateSurveyTest(APITestCase):
 
         self.data = {
             'company_name': 'test company',
+            'industry': 're',
+            'country': 'GB',
         }
 
         self.client.force_authenticate(user)
@@ -168,6 +172,8 @@ class CreateSurveyTest(APITestCase):
         survey_db = Survey.objects.get(company_name=self.data.get('company_name'))
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(post_response.get('company_name'), survey_db.company_name)
+        self.assertEqual(post_response.get('industry'), survey_db.industry)
+        self.assertEqual(post_response.get('country'), survey_db.country)
         self.assertEqual(post_response.get('link'), survey_db.link)
         self.assertEqual(post_response.get('link_sponsor'), survey_db.link_sponsor)
         self.assertEqual(post_response.get('engagement_lead'), survey_db.engagement_lead)
@@ -220,8 +226,8 @@ class SurveyIndustryResultTest(APITestCase):
             'dimension_C': 1.0,
         }
 
-        self.survey = Survey.objects.create(company_name='test company', industry='IT')
-        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='IT')
+        self.survey = Survey.objects.create(company_name='test company', industry='IT', country="it")
+        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='IT', country="it")
 
         survey_result = SurveyResult.objects.create(
             survey=self.survey,
@@ -262,7 +268,7 @@ class SurveyIndustryResultTest(APITestCase):
         """
         survey_result_3 = SurveyResult.objects.create(
             survey=self.survey_2,
-            response_id='AAB',
+            response_id='AAC',
             dmb=2.0,
             dmb_d=json.dumps(self.survey_3_dmb_d)
         )
@@ -320,7 +326,7 @@ class SurveyIndustryResultTest(APITestCase):
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
     def test_last_survey_result_is_excluded_if_null(self, mocked_benchmark):
         """When last_survey_result is None, element is excluded from dmb calculation."""
-        Survey.objects.create(company_name='test company 3', industry='IT', last_survey_result=None)
+        Survey.objects.create(company_name='test company 3', industry='IT', country="it", last_survey_result=None)
 
         url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
         response = self.client.get(url)

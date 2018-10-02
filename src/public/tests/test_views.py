@@ -5,6 +5,7 @@ from djangae.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
+from core.tests.mommy_recepies import make_survey
 
 
 class ReportsAdminTestCase(TestCase):
@@ -12,14 +13,8 @@ class ReportsAdminTestCase(TestCase):
     def setUp(self):
         self.url = reverse('reports')
 
-        self.survey_1 = Survey.objects.create(
-            company_name='test company',
-            engagement_lead='123'
-        )
-        self.survey_2 = Survey.objects.create(
-            company_name='test company 2',
-            engagement_lead='456'
-        )
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
 
         self.survey_result_1 = SurveyResult.objects.create(
             survey=self.survey_1,

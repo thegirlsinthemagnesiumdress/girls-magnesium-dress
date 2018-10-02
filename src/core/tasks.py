@@ -14,6 +14,10 @@ from djangae.db import transaction
 
 
 def get_results():
+    """Download survey results from Qualtrics.
+    The function will use the latest stored `response_id` if any, otherwise
+    download all the available results from Qualtrics.
+    """
     try:
         survey_result = SurveyResult.objects.latest('loaded_at')
         response_id = survey_result.response_id
@@ -45,9 +49,10 @@ def _create_survey_result(results_data):
         dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
         excluded_from_best_practice = question.discard_scores(data)
         with transaction.atomic(xg=True):
+            response_id = data['ResponseID']
             survey_result = SurveyResult.objects.create(
                 survey_id=data.get('sid'),
-                response_id=data.get('ResponseID'),
+                response_id=response_id,
                 excluded_from_best_practice=excluded_from_best_practice,
                 dmb=dmb,
                 dmb_d=dmb_d,
@@ -55,7 +60,7 @@ def _create_survey_result(results_data):
             try:
                 s = Survey.objects.get(pk=data.get('sid'))
                 s.last_survey_result = survey_result
-                s.save(update_fields=['last_survey_result'])
+                s.save()
             except Survey.DoesNotExist:
                 logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
 

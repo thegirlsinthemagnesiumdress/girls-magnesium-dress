@@ -537,10 +537,9 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
 
     &--alt {
-      background: $cta-bg-color-alt;
 
       &:hover {
-        background: $h-white;
+        background: $cta-bg-color-alt;
       }
     }
   }
