@@ -65,11 +65,13 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
   }
 
-  section {
-    padding: 40px 0 33px;
+  main {
+    section {
+      padding: 40px 0 33px;
 
-    @include bp(m) {
-      padding: 100px 0 54px;
+      @include bp(m) {
+        padding: 100px 0 54px;
+      }
     }
   }
 
