@@ -41,6 +41,7 @@ const module = angular.module('dmb', [
   'ngclipboard',
 ]);
 
+
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 module.constant('csrfToken', csrfToken);
