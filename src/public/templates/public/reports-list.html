@@ -36,14 +36,19 @@
             <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
           </button>
         </div>
-        <button
+        <div class="h-u-mt-std h-u-mb-std">
+          <h5 class="h-c-headline h-c-headline--five">
+            Or you can create a Survey directly for your client
+          </h5>
+          <button
             class="dmb-right-panel-trigger h-c-button h-c-button--primary"
             dmb-side-panel-trigger="#dmb-create-survey">
           Create Survey
         </button>
+        </div>
         <div
             dmb-side-panel
-            class="dmb-side-panel dmb-side-panel--right"
+            class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--right"
             id="dmb-create-survey">
           <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
             <span class="dmb-fab__icon">
@@ -57,8 +62,8 @@
               class="dmb-side-panel__inner"
               ng-controller="RegistrationCtrl as registrationCtrl">
             <div ng-if="!registrationCtrl.link">
-              <h2 class="dmb-registration__title h-c-headline h-c-headline--one">
-                Create a survey for a specific company:
+              <h2 class="h-c-headline h-c-headline--three">
+                Create a survey for a specific company.
               </h2>
               <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
                 <div class="input-wrp">
@@ -92,7 +97,7 @@
               </form>
             </div>
             <div ng-if="registrationCtrl.link">
-              <h2 class="dmb-registration__title h-c-headline h-c-headline--one">
+              <h2 class="h-c-headline h-c-headline--three">
                 Unique survey has now been created
               </h2>
               <div class="dmb-registration__link">
