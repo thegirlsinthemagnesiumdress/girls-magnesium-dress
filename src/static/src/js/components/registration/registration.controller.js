@@ -63,9 +63,10 @@ class RegistrationController {
       'company_name': this.companyName,
       'industry': this.industry,
       'country': this.country,
+      'engagement_lead': this.engagementLead,
     };
 
-    if (this.elId) {
+    if (this.elId && !data['engagement_lead']) {
       data['engagement_lead'] = this.elId;
     }
 
@@ -82,6 +83,18 @@ class RegistrationController {
     }, (res) => {
       this.serverError = true;
     });
+  }
+
+  /**
+   * Resets the form.
+   * @export
+   */
+  reset() {
+    this.companyName = '';
+    this.industry = '';
+    this.country = '';
+    this.link = '';
+    this.serverError = '';
   }
 }
 

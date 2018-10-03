@@ -36,6 +36,82 @@
             <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
           </button>
         </div>
+        <button
+            class="dmb-right-panel-trigger h-c-button h-c-button--primary"
+            dmb-side-panel-trigger="#dmb-create-survey">
+          Create Survey
+        </button>
+        <div
+            dmb-side-panel
+            class="dmb-side-panel dmb-side-panel--right"
+            id="dmb-create-survey">
+          <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+            <span class="dmb-fab__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#mi-close"></use>
+              </svg>
+            </span>
+          </button>
+
+          <div
+              class="dmb-side-panel__inner"
+              ng-controller="RegistrationCtrl as registrationCtrl">
+            <div ng-if="!registrationCtrl.link">
+              <h2 class="dmb-registration__title h-c-headline h-c-headline--one">
+                Create a survey for a specific company:
+              </h2>
+              <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
+                <div class="input-wrp">
+                  <div class="dmb-input-wrp">
+                    <label for="companyName">Organisation name:</label>
+                    <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required>
+                  </div>
+                  <div class="dmb-input-wrp">
+                    <label for="industry">Industry:</label>
+                    <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+                      {% for i_key, i_text in industries.items %}
+                      <option value="{{i_key}}">{{i_text}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="dmb-input-wrp">
+                    <label for="country">Country:</label>
+                    <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
+                      {% for c_key, c_text in countries.items %}
+                      <option value="{{c_key}}">{{c_text}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
+                </div>
+                <input type="hidden"  ng-model="registrationCtrl.engagement_lead" id="engagement_lead" name="engagement_lead" value="{{engagement_lead}}">
+                <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
+                  Create assessment
+                </button>
+                <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">Oops, something went wrong!</div>
+              </form>
+            </div>
+            <div ng-if="registrationCtrl.link">
+              <h2 class="dmb-registration__title h-c-headline h-c-headline--one">
+                Unique survey has now been created
+              </h2>
+              <div class="dmb-registration__link">
+                <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
+                  {[ registrationCtrl.link ]}
+                </a>
+                <button
+                    class="h-c-link"
+                    ngclipboard
+                    data-clipboard-target="#survey-link">
+                  Copy
+                </button>
+              </div>
+              <button class="h-c-button h-c-button--primary" ng-click="registrationCtrl.reset()">
+                Create another one
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
