@@ -40,6 +40,9 @@ class DomainRestrictionMiddleware(object):
 
         domain = request.user.email.split("@")[-1]
 
+        if request.user.is_staff:
+            return
+
         if domain not in ALLOWED_AUTH_DOMAINS and '*' not in ALLOWED_AUTH_DOMAINS:
             logging.info('User is not on a valid domain')
             return HttpResponseForbidden("Forbidden")
