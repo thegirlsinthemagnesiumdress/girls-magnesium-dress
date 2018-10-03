@@ -28,8 +28,8 @@ urlpatterns = [
 @override_settings(
     ROOT_URLCONF=__name__,
     MIDDLEWARE_CLASSES=MIDDLEWARE_CLASSES)
-class DomainRestrictionMiddlewareTests(TestCase):
-    """Test class for `core.middleware.DomainRestrictionMiddleware`."""
+class UsersRestrictionMiddlewareTests(TestCase):
+    """Test class for `core.middleware.UsersRestrictionMiddleware`."""
 
     def setUp(self):
         # A bounch of users are created in the backend
