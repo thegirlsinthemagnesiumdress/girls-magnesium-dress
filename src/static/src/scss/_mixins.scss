@@ -13,10 +13,10 @@
 }
 
 
-@mixin dmb-responsive($type, $mobile, $desktop) {
-  #{$type}: #{$mobile}px;
+@mixin dmb-responsive($property-name, $mobile-val, $desktop-val) {
+  #{$property-name}: #{$mobile-val}px;
 
   @include bp(m) {
-    #{$type}: #{$desktop}px;
+    #{$property-name}: #{$desktop-val}px;
   }
 }

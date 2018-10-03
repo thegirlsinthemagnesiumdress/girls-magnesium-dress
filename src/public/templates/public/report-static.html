@@ -8,7 +8,7 @@
   <header class="dmb-report-page__hero">
     <div class="h-c-page">
       <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6">
+        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--5">
           <h1 class="dmb-report-page__hero-title">
             <span class="dmb-report-page__hero-company dmb-report-page__hero-muted">{[reportCtrl.survey.company_name]}</span>
             Your digital maturity benchmark
@@ -17,9 +17,9 @@
             <time datetime="27/08/2018">{[reportCtrl.result.loaded_at|date:'MMMM yyyy' ]}</time>
           </p>
         </div>
-        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6">
-          <div class="dmb-report-page__hero-subgrid dmb-h-hidden--print">
-            <div class="dmb-report-page__hero-subgrid-col">
+        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6 h-c-grid__col-l--offset-1 h-c-grid__col--align-middle">
+          <div class="dmb-report-page__hero-benchmark-wrp dmb-h-hidden--print">
+            <div class="dmb-report-page__hero-circle-wrp">
               <div class="dmb-progress-circle dmb-progress-circle--hero" data-progress="reportCtrl.result.dmb">
                 <svg
                     dmb-progress-circle="reportCtrl.result.dmb"
@@ -36,12 +36,10 @@
                 </div>
               </div>
             </div>
-            <div class="dmb-report-page__hero-subgrid-col">
-              <h2 class="dmb-report-page__hero-sub-title">
-                <span class="dmb-report-page__hero-status dmb-report-page__hero-muted">You are</span>
-                <strong>{[ reportCtrl.result.dmb|dmbLevelText]}</strong>
-              </h2>
-            </div>
+            <h2 class="dmb-report-page__hero-sub-title">
+              <span class="dmb-report-page__hero-status dmb-report-page__hero-muted">You are</span>
+              <strong>{[ reportCtrl.result.dmb|dmbLevelText]}</strong>
+            </h2>
           </div>
 
           <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb < 3">
