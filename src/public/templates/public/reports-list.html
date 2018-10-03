@@ -169,7 +169,7 @@
         {% if survey.sid %}
             <tr role="row">
               <td role="rowheader">{{survey.company_name}}</td>
-              <td role="gridcell">{{survey.created_at|date:"m/d/yy H:i"}}</td>
+              <td role="gridcell">{{survey.created_at|date:"m/d/y H:i"}}</td>
               <td role="gridcell">{{ survey.survey_results.count }}</td>
               <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
               <td role="gridcell">
