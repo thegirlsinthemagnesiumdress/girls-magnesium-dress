@@ -16,7 +16,6 @@ const DOM_SELECTORS = {
  * ProgressCircle class controller.
  */
 class ProgressCircleController {
-
   /**
    * ProgressCircle controller
    *

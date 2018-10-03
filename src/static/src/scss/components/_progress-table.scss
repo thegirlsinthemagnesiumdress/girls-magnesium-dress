@@ -3,14 +3,15 @@ $dmb-prog-table-label-color: $dmb-color-grey-shuttle;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
 $dmb-prog-table-main-label-color: $dmb-color-black-russian;
 $dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
-$dmb-prog-table-active-bg-color: rgba($dmb-color-blue-alice, .35);
+$dmb-prog-table-active-bg-color: rgba($dmb-color-blue-alice, .36);
 $dmb-prog-table-active-color: $dmb-color-blue-navy;
-$dmb-prog-table-row-height-mobile: 5px;
-$dmb-prog-table-row-height-desktop: 1em;
+$dmb-prog-table-row-height-mobile: 10px;
+$dmb-prog-table-row-height-desktop: 12px;
 
 .dmb-progress-table {
   display: flex;
-  font-family: 'Google Sans';
+  font-family: $dmb-alt-font-family;
+  margin: 0 auto;
   text-align: center;
   width: 100%;
 
@@ -52,9 +53,6 @@ $dmb-prog-table-row-height-desktop: 1em;
 
     @include bp(s) {
       display: block;
-    }
-
-    @media (min-width: 650px) {
       font-size: 12px;
     }
   }
@@ -70,16 +68,11 @@ $dmb-prog-table-row-height-desktop: 1em;
     }
   }
 
-  &__company {
-    color: $dmb-text-color;
-    font-weight: $h-font-weight-medium;
-  }
-
   &__row {
-    border-top: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
     border-bottom: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
-    border-top-right-radius: $dmb-prog-table-row-height-mobile  / 2;
-    border-bottom-right-radius: $dmb-prog-table-row-height-mobile  / 2;
+    border-bottom-right-radius: $dmb-prog-table-row-height-mobile / 2;
+    border-top: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
+    border-top-right-radius: $dmb-prog-table-row-height-mobile / 2;
     font-size: 12px;
     line-height: 1em;
     position: relative;
@@ -87,19 +80,19 @@ $dmb-prog-table-row-height-desktop: 1em;
     width: 1px;
 
     @include print-styles {
-      border-top-width: $dmb-prog-table-row-height-desktop / 2;
+      border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
       border-bottom-width: $dmb-prog-table-row-height-desktop / 2;
       border-top-right-radius: $dmb-prog-table-row-height-desktop / 2;
-      border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
+      border-top-width: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
       transition: none;
     }
 
     @include bp(s) {
-      border-top-width: $dmb-prog-table-row-height-desktop / 2;
+      border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
       border-bottom-width: $dmb-prog-table-row-height-desktop / 2;
       border-top-right-radius: $dmb-prog-table-row-height-desktop / 2;
-      border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
+      border-top-width: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
     }
 
@@ -107,7 +100,7 @@ $dmb-prog-table-row-height-desktop: 1em;
       margin-top: 40px;
 
       @include bp(s) {
-        margin-top: 83px;
+        margin-top: 55px;
       }
     }
 
@@ -134,49 +127,57 @@ $dmb-prog-table-row-height-desktop: 1em;
     &--main {
       border-color: $dmb-prog-table-main-bar-color;
 
-      .progress-table__label {
+      .dmb-progress-table__company {
         color: $dmb-prog-table-main-label-color;
+        font-size: 16px;
         font-weight: 500;
       }
     }
   }
 
   &__banner {
+    align-items: center;
     background: rgba($dmb-color-grey-gainsboro, .85);
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
     left: 0;
+    min-height: 80px;
     padding: 14px 16px;
     position: absolute;
     top: 100px;
     width: 400%;
 
     @include bp(s) {
+      background: rgba($dmb-color-grey-gainsboro, .5);
       left: 15px;
-      top: 155px;
+      min-height: auto;
+      top: 112px;
       width: calc(400% - 30px);
     }
   }
 
   &__label {
     color: $dmb-prog-table-label-color;
+    font-size: 12px;
     left: 0;
     position: absolute;
-    top: calc(100% + 5px);
+    top: 8px;
     white-space: nowrap;
 
     @include bp(s) {
-      font-size: 16px;
+      bottom: -$dmb-prog-table-row-height-desktop / 2;
+      font-size: 14px;
       position: relative;
-      top: .5em;
     }
   }
 
   &__company {
-    @media (min-width: 721px) {
+    @include bp(s) {
+      bottom: 0;
       margin-right: 27px;
       position: absolute;
       right: 100%;
-      top: -$dmb-prog-table-row-height-desktop;
     }
   }
 
