@@ -302,7 +302,7 @@ MIN_ITEMS_INDUSTRY_THRESHOLD = 100
 
 CONTACT_EMAIL = "no-reply@{}.appspotmail.com".format(application_id())
 
-AUTHORIZED_DOMAINS = (
+SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
     '@google.com',
     '@potatolondon.com',
 )

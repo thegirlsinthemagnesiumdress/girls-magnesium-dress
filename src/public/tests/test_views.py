@@ -10,7 +10,7 @@ from core.tests.mommy_recepies import make_survey
 
 
 @override_settings(
-    AUTHORIZED_DOMAINS=(
+    SURVEY_ADMIN_AUTHORIZED_DOMAINS=(
         '@example.com',
         '@google.com',
         '@potatolondon.com',

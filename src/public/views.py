@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from core.auth import authorized_domains
+from core.auth import survey_admin_required
 from core.models import Survey
 
 
@@ -14,7 +14,7 @@ def registration(request):
 
 
 @login_required
-@authorized_domains
+@survey_admin_required
 def reports_admin(request):
 
     if request.user.is_whitelisted:
