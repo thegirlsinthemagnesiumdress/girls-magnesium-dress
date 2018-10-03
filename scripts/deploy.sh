@@ -1,5 +1,5 @@
 #!/bin/bash
-appid=gweb-digitalmaturity-staging
+appid_staging=gweb-digitalmaturity-staging
 
 appid_prod=gweb-digitalmaturity
 
