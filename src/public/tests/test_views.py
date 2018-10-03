@@ -10,7 +10,7 @@ from core.tests.mommy_recepies import make_survey
 
 
 @override_settings(
-    AUTHORIZED_DOMAINS=(
+    SURVEY_ADMIN_AUTHORIZED_DOMAINS=(
         '@example.com',
         '@google.com',
         '@potatolondon.com',
@@ -65,7 +65,7 @@ class ReportsAdminTestCase(TestCase):
         self.assertEqual(surveys[0].engagement_lead, self.survey_1.engagement_lead)
 
     @override_settings(
-        SUPER_USER=[
+        SUPER_USERS=[
             'superuser@example.com',
         ]
     )
