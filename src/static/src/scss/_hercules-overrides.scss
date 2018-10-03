@@ -33,12 +33,16 @@
 }
 
 .h-c-button--print {
+  @extend .h-c-button--primary;
+  @extend .h-c-button--reversed;
+
   background: transparent;
-  border: 2px solid;
-  color: $h-button-primary-bg-color;
+  color: $h-button-primary-bg-color !important;
+  border-color: $h-button-primary-bg-color !important;
 
   &:hover,
   &:focus {
-    color: $h-button-primary-bg-color-hover;
+    color: $h-white !important;
+    background-color: $h-button-primary-bg-color !important;
   }
 }
