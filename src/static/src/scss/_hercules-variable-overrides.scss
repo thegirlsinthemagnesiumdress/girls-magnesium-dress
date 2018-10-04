@@ -1,2 +1,8 @@
 $h-tile-header-icon-size: 41px;
+
+$h-screen-m: '(min-width: 1280px)';
+// This is actually something we customised and added, however strictly relates to hercules page styles.
+// You can see the customization in hercules-overrides.scss .
+$h-site-width-tablet: 800px;
+$h-site-width-sm: 1000px;
 $h-site-width-desktop: 1280px;

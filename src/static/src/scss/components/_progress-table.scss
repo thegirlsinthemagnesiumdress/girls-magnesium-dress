@@ -70,9 +70,12 @@ $dmb-prog-table-row-height-desktop: 12px;
 
   &__row {
     border-bottom: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
+    border-bottom-left-radius: $dmb-prog-table-row-height-mobile / 2;
     border-bottom-right-radius: $dmb-prog-table-row-height-mobile / 2;
     border-top: $dmb-prog-table-row-height-mobile / 2 solid $dmb-prog-table-bar-color;
+    border-top-left-radius: $dmb-prog-table-row-height-mobile / 2;
     border-top-right-radius: $dmb-prog-table-row-height-mobile / 2;
+
     font-size: 12px;
     line-height: 1em;
     position: relative;
@@ -89,8 +92,10 @@ $dmb-prog-table-row-height-desktop: 12px;
     }
 
     @include bp(s) {
+      border-bottom-left-radius: 0;
       border-bottom-right-radius: $dmb-prog-table-row-height-desktop / 2;
       border-bottom-width: $dmb-prog-table-row-height-desktop / 2;
+      border-top-left-radius: 0;
       border-top-right-radius: $dmb-prog-table-row-height-desktop / 2;
       border-top-width: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
@@ -113,7 +118,7 @@ $dmb-prog-table-row-height-desktop: 12px;
     }
 
     & ~ & {
-      margin-top: 30px;
+      margin-top: 32px;
 
       @include bp(s) {
         margin-top: 20px;
@@ -129,15 +134,19 @@ $dmb-prog-table-row-height-desktop: 12px;
 
       .dmb-progress-table__company {
         color: $dmb-prog-table-main-label-color;
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 500;
+
+        @include bp(s) {
+          font-size: 16px;
+        }
       }
     }
   }
 
   &__banner {
     align-items: center;
-    background: rgba($dmb-color-grey-gainsboro, .85);
+    background: rgba($h-gm-grey-100, 1);
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -149,7 +158,7 @@ $dmb-prog-table-row-height-desktop: 12px;
     width: 400%;
 
     @include bp(s) {
-      background: rgba($dmb-color-grey-gainsboro, .5);
+      background: rgba($h-gm-grey-100, .5);
       left: 15px;
       min-height: auto;
       top: 112px;
@@ -162,13 +171,14 @@ $dmb-prog-table-row-height-desktop: 12px;
     font-size: 12px;
     left: 0;
     position: absolute;
-    top: 8px;
+    top: 12px;
     white-space: nowrap;
 
     @include bp(s) {
       bottom: -$dmb-prog-table-row-height-desktop / 2;
       font-size: 14px;
       position: relative;
+      top: 8px;
     }
   }
 
