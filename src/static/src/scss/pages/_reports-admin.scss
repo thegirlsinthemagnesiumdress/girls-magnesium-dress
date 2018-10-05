@@ -1,4 +1,11 @@
 .dmb-reports-admin {
+  &__title {
+    margin-bottom: 48px;
+  }
+
+  &__subtitle {
+    margin-bottom: 16px;
+  }
 
   &__survey-creation-box {
     list-style: none;

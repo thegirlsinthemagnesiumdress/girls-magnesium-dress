@@ -3,12 +3,15 @@
 
 {% block main %}
 <div class="h-c-page h-u-mt-xl dmb-reports-admin">
-  <h1 class="h-c-headline h-c-headline--one h-u-mb-std">Digital Maturity Admin Dashboard</h1>
+  <div class="h-c-page">
+    <h1 class="dmb-reports-admin__title h-c-headline h-c-headline--one h-u-font-weight-medium">Digital Maturity Admin Dashboard</h1>
+    <h2 class="dmb-reports-admin__subtitle h-c-headline h-c-headline--four h-u-font-weight-medium">How to create new surveys:</h2>
+  </div>
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--10">
       <ul class="dmb-reports-admin__survey-creation-box dmb-box dmb-box--alt">
         <li>
-          <h3 class="h-c-headline h-c-headline--five">
+          <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
             1. Create a custom Survey
           </h3>
           <p class="dmb-reports-admin__survey-creation-text">
@@ -18,11 +21,11 @@
           <button
               class="dmb-right-panel-trigger h-c-button h-c-button--primary"
               dmb-side-panel-trigger="#dmb-create-survey">
-            Create Survey
+            Create new survey
           </button>
         </li>
         <li class="dmb-reports-admin__referral-wrp">
-          <h3 class="h-c-headline h-c-headline--five">
+          <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
             2. Send a referral link
           </h3>
           <p class="dmb-reports-admin__survey-creation-text">
@@ -70,7 +73,7 @@
           <div class="input-wrp">
             <div class="dmb-input-wrp">
               <label for="companyName">Organisation name:</label>
-              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required>
+              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
               <label for="industry">Industry:</label>
