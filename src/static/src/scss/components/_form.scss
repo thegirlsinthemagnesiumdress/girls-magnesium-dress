@@ -11,22 +11,41 @@
   margin-bottom: 24px;
 }
 
-select {
+.dmb-input {
+  border-radius: 6px;
+  border: 1px solid $h-gm-grey-500;
+  display: block;
+  max-width: 437px;
+  padding: 23px;
+  width: 100%;
+
+  @include bp(m) {
+    width: 75%;
+  }
+
+  &::placeholder {
+    color: $h-gm-grey-500;
+  }
+
+  &--simple {
+    border-radius: 0;
+    border-width: 0 0 1px;
+    padding: 9px;
+  }
+}
+
+
+select.dmb-input {
   appearance: none;
-  padding: 15px 23px;
+  line-height: normal;
+
+  &:invalid {
+    color: $h-gm-grey-500;
+  }
 }
 
 label {
   color: $h-gm-grey-700;
   display: block;
   margin-bottom: 8px;
-}
-
-.dmb-input {
-  display: block;
-  width: 100%;
-
-  @include bp(m) {
-    width: 75%;
-  }
 }

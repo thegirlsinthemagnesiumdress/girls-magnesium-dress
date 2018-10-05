@@ -23,6 +23,7 @@
             <div class="dmb-input-wrp">
               <label for="industry">Industry:</label>
               <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+                <option value="" disabled selected>Select an industry</option>
                 {% for i_key, i_text in industries.items %}
                 <option value="{{i_key}}">{{i_text}}</option>
                 {% endfor %}
@@ -31,6 +32,7 @@
             <div class="dmb-input-wrp">
               <label for="country">Country:</label>
               <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
+                <option value="" disabled selected>Select a country</option>
                 {% for c_key, c_text in countries.items %}
                 <option value="{{c_key}}">{{c_text}}</option>
                 {% endfor %}
