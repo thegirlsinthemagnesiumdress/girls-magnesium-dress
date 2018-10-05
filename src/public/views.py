@@ -17,7 +17,7 @@ def registration(request):
 @survey_admin_required
 def reports_admin(request):
 
-    if request.user.is_whitelisted:
+    if request.user.is_superuser:
         surveys = Survey.objects.all()
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
@@ -25,4 +25,6 @@ def reports_admin(request):
     return render(request, 'public/reports-list.html', {
         'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
+        'industries': settings.INDUSTRIES,
+        'countries': settings.COUNTRIES,
     })

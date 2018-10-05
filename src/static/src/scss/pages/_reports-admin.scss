@@ -1,0 +1,48 @@
+.dmb-reports-admin {
+  &__title {
+    margin-bottom: 48px;
+  }
+
+  &__subtitle {
+    margin-bottom: 16px;
+  }
+
+  &__survey-creation-box {
+    list-style: none;
+    margin-left: 0;
+
+    li {
+      @include bp(m) {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+    }
+
+    @include bp(m) {
+      display: flex;
+    }
+
+    .dmb-right-panel-trigger {
+      margin: 0;
+    }
+  }
+
+  &__survey-creation-text {
+    padding: 16px 0 24px;
+  }
+
+  &__referral-wrp {
+    margin-top: 32px;
+
+    @include bp(m) {
+      margin-left: 32px;
+      margin-top: 0;
+    }
+  }
+
+  #survey-link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
