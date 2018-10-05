@@ -104,6 +104,7 @@ def send_emails_for_new_reports(email_list):
                 'to': [to],
                 'subject': subject_template.render(context).split("\n")[0],
                 'sender': settings.CONTACT_EMAIL,
+                'reply_to': settings.REPLY_TO_EMAIL,
                 'body': text_message_template.render(context),
                 'html': html_message_template.render(context),
             }
