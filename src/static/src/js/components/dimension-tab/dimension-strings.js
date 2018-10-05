@@ -156,7 +156,7 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Remove friction from the user experience of your mobile assets',
       'text': 'Consider these best practices and implement them.',
-			'cta': {
+      'cta': {
         'text': 'Mobile UX best practices',
         'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
         'class': 'ux-bp',
@@ -185,7 +185,7 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Remove friction from the user experience of your mobile assets',
       'text': 'Consider these best practices and implement those where you still have gaps.',
-			'cta': {
+      'cta': {
         'text': 'Mobile UX best practices',
         'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
         'class': 'ux-bp',
@@ -214,7 +214,7 @@ const dimensionLevelRecommendations = {
     }, {
       'header': 'Remove friction from the entire user experience',
       'text': 'Consider these best practices and implement those where you still have gaps. Use current mobile techniques such as progressive web apps or single sign-on. Create links between your mobile assets and non-digital touchpoints, like stores or call centres.',
-			'cta': {
+      'cta': {
         'text': 'Mobile UX best practices',
         'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
         'class': 'ux-bp',

@@ -38,4 +38,4 @@ ALLOWED_HOSTS = [
     '*',
 ]
 
-SUPER_USER = ['pchillari@google.com']
+SUPER_USERS = ['pchillari@google.com']

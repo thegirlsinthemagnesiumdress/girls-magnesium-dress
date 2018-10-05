@@ -12,8 +12,10 @@ def is_login_url(request):
     return request.get_full_path().startswith(login_url)
 
 
-class DomainRestrictionMiddleware(object):
-    """Middleware to allow access to authenticated users in ALLOWED_AUTH_DOMAINS."""
+class UsersRestrictionMiddleware(object):
+    """Middleware to allow access to authenticated users in ALLOWED_AUTH_DOMAINS or appengine admin users.
+    The middleware is used to lock staging to a controlled group of users.
+    """
     def process_request(self, request):
         if environment.is_in_task() or environment.is_in_cron():
             # Tasks should be allowed through
@@ -39,6 +41,9 @@ class DomainRestrictionMiddleware(object):
         ALLOWED_AUTH_DOMAINS = getattr(settings, "ALLOWED_AUTH_DOMAINS", [])  # noqa
 
         domain = request.user.email.split("@")[-1]
+
+        if request.user.is_staff:
+            return
 
         if domain not in ALLOWED_AUTH_DOMAINS and '*' not in ALLOWED_AUTH_DOMAINS:
             logging.info('User is not on a valid domain')

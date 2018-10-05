@@ -11,3 +11,12 @@
     @content;
   }
 }
+
+
+@mixin dmb-responsive($property-name, $mobile-val, $desktop-val) {
+  #{$property-name}: #{$mobile-val}px;
+
+  @include bp(m) {
+    #{$property-name}: #{$desktop-val}px;
+  }
+}
