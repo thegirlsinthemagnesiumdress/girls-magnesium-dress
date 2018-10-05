@@ -24,7 +24,6 @@ module.factory('floorDmbFactory', () => {
 
 module.filter('dmbLevelText', ['floorDmbFactory', (floorDmbFactory)=> {
   return (dmb) => {
-
     const levels = {
       0: 'Nascent',
       1: 'Emerging',

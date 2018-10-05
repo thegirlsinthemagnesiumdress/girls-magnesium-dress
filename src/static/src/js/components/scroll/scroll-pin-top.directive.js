@@ -1,31 +1,37 @@
-goog.module('dmb.components.scroll.directive');
+
+goog.module('dmb.components.scroll.pinTopDirective');
+
 
 /**
+ * Sets a class when the element's parent gets to the top of the viewport.
+ * It remove the class when scrolling back up.
+ *
  * @param {!Object} scrollService
  * @return {Object}
  * @ngInject
  */
-function scrollAwareDirective(scrollService) {
+function pinTopDirective(scrollService) {
   return {
     restrict: 'A',
     /**
      * @param  {!angular.Scope} scope The scope of the directive
      * @param  {!angular.JQLite} element The element to be scroll aware
-     * @param  {{dmbScrollAwareEnterClass: string, dmbScrollAwareExitClass: string}} attrs The attributes on the html
+     * @param  {{dmbScrollAwarepinnedClass: string, dmbScrollAwareExitClass: string}} attrs The attributes on the html
      * @param  {!angular.ComponentController} ctrl The controller to bind to
      */
     link(scope, element, attrs, ctrl) {
       const nativeElement = element[0];
+      const parentElement = element[0].parentElement;
+      const pinnedClass = attrs.dmbPinnedClass || 'dmb-pinned';
       let cachedDimensions = null;
 
-      const enterClass = attrs['dmbScrollAwareEnterClass'];
-      const exitClass = attrs['dmbScrollAwareExitClass'];
 
       ctrl.cacheValid = false;
       ctrl.checkElementPosition = checkElementPosition;
       ctrl.getElementDimensions = getElementDimensions;
-      ctrl.isInView = isInView;
-      ctrl.isOutOfView = isOutOfView;
+      ctrl.pinned = false;
+      ctrl.isPinned = isPinned;
+      ctrl.isNotPinned = isNotPinned;
       ctrl.onDestroy = onDestroy;
       ctrl.onReady = onReady;
       ctrl.onResize = onResize;
@@ -41,14 +47,12 @@ function scrollAwareDirective(scrollService) {
        * @param  {number} screenTop How far down the page the top of the screen has scrolled
        */
       function checkElementPosition(screenTop) {
-        const {elTop, elHeight, screenHeight} = ctrl.getElementDimensions();
-        const elBottom = elTop + elHeight;
-        const screenBottom = screenTop + screenHeight;
+        const {parentTop} = ctrl.getElementDimensions();
 
-        if (screenBottom > elTop && screenTop < elBottom) {
-          ctrl.isInView();
+        if (parentTop < screenTop) {
+          ctrl.isPinned();
         } else {
-          ctrl.isOutOfView();
+          ctrl.isNotPinned();
         }
       }
 
@@ -62,8 +66,8 @@ function scrollAwareDirective(scrollService) {
         }
 
         cachedDimensions = {
-          elTop: scrollService.getElementOffsetTop(nativeElement),
-          elHeight: nativeElement.offsetHeight,
+          parentTop: scrollService.getElementOffsetTop(parentElement),
+          parentHeight: parentElement.offsetHeight,
           screenHeight: window.innerHeight,
         };
         ctrl.cacheValid = true;
@@ -74,29 +78,15 @@ function scrollAwareDirective(scrollService) {
       /**
        * Function called when the element enters the viewport
        */
-      function isInView() {
-        if (enterClass) {
-          nativeElement.classList.add(enterClass);
-
-          // If the classes have been added and there are no classes to remove, we're done
-          if (!exitClass) {
-            ctrl.onDestroy();
-          }
-        }
+      function isPinned() {
+        nativeElement.classList.add(pinnedClass);
       }
 
       /**
        * Function called when the element leaves the viewport
        */
-      function isOutOfView() {
-        if (exitClass) {
-          nativeElement.classList.remove(exitClass);
-
-          // If the classes have been removed and there are no classes to add, we're done
-          if (!enterClass) {
-            ctrl.onDestroy();
-          }
-        }
+      function isNotPinned() {
+        nativeElement.classList.remove(pinnedClass);
       }
 
       /**
@@ -126,6 +116,6 @@ function scrollAwareDirective(scrollService) {
 }
 
 exports = {
-  DIRECTIVE_NAME: 'dmbScrollAware',
-  main: scrollAwareDirective,
+  DIRECTIVE_NAME: 'dmbPinTop',
+  main: pinTopDirective,
 };

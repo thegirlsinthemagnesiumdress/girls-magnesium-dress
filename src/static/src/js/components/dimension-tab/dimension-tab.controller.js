@@ -1,20 +1,9 @@
 goog.module('dmb.components.dimensionTab.controller');
 
-
-/**
- * DOM selectors used by component.
- *
- * @const
- * @type {Object}
- */
-const DOM_SELECTORS = {};
-
-
 /**
  * DimensionTab class controller.
  */
 class DimensionTabController {
-
   /**
    * DimensionTab controller
    *
@@ -84,7 +73,6 @@ class DimensionTabController {
         $scope.$watch(() => (reportService.industryDmb_d_bp), (nVal)=> {
           this.industryDmb_bp = nVal ? nVal[$scope['dmbDimensionTab']] : null;
         });
-
 
         this.reportService = reportService;
   }

@@ -1,7 +1,7 @@
 goog.module('dmb.components.progressTable.template');
 
 const template = `
-<div class="dmb-progress-table dmb-h-mb--big dmb-progress-table--{[progressTableCtrl.getClass(ratingMain)]}">
+<div class="dmb-progress-table dmb-progress-table--{[progressTableCtrl.getClass(ratingMain)]}">
   <div class="dmb-progress-table__col"></div>
   <div class="dmb-progress-table__col dmb-progress-table__col--nascent">
     <h3 class="dmb-progress-table__col-heading" aria-hidden="true">Nascent</h3>
@@ -29,7 +29,7 @@ const template = `
       ng-style="{width: progressTableCtrl.getProgressWidth(industryBest)}"
       data-rating="{[industryBest|number:1]}">
       <div class="dmb-progress-table__label">
-        <span class="dmb-progress-table__company">  
+        <span class="dmb-progress-table__company">
           <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two">
           </button>&nbsp;Industry best
         </span>

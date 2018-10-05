@@ -1,28 +1,30 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
 
+{% block body_class %}dmb-report-page{% endblock %}
+
 {% block main %}
-<div class="dmb-report-page" dmb-report ng-cloak>
+<div dmb-report ng-cloak>
   <header class="dmb-report-page__hero">
     <div class="h-c-page">
       <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--6">
-          <h1 class="dmb-report-page__hero-title h-c-headline h-c-headline--one h-u-mb-l">
-            <span class="dmb-report-page__hero-accent">{[reportCtrl.survey.company_name]}</span>
+        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--5">
+          <h1 class="dmb-report-page__hero-title">
+            <span class="dmb-report-page__hero-company dmb-report-page__hero-muted">{[reportCtrl.survey.company_name]}</span>
             Your digital maturity benchmark
           </h1>
-          <p class="h-c-headline h-c-headline--two dmb-report-page__hero-accent dmb-report-page__hero-date">
+          <p class="h-c-headline h-c-headline--two dmb-report-page__hero-date dmb-report-page__hero-muted">
             <time datetime="27/08/2018">{[reportCtrl.result.loaded_at|date:'MMMM yyyy' ]}</time>
           </p>
         </div>
-        <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--6">
-          <div class="dmb-report-page__hero-content dmb-h-hidden--print">
-            <div class="h-c-grid__col h-c-grid__col--align-middle">
+        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6 h-c-grid__col-l--offset-1 h-c-grid__col--align-middle">
+          <div class="dmb-report-page__hero-benchmark-wrp dmb-h-hidden--print">
+            <div class="dmb-report-page__hero-circle-wrp">
               <div class="dmb-progress-circle dmb-progress-circle--hero" data-progress="reportCtrl.result.dmb">
                 <svg
                     dmb-progress-circle="reportCtrl.result.dmb"
                     class="dmb-progress-circle__prog-svg"
-                    width="214" height="214" viewbox="0 0 120 120">
+                    viewbox="0 0 120 120">
                   <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
                   <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
                 </svg>
@@ -34,16 +36,19 @@
                 </div>
               </div>
             </div>
-            <div class="h-c-grid__col h-c-grid__col--align-middle">
-              <h2 class="dmb-report-page__hero-sub-title h-c-headline h-c-headline--one">
-                <span class="dmb-report-page__hero-accent">You are</span>
-                {[ reportCtrl.result.dmb|dmbLevelText]}
-              </h2>
-            </div>
+            <h2 class="dmb-report-page__hero-sub-title">
+              <span class="dmb-report-page__hero-status dmb-report-page__hero-muted">You are</span>
+              <strong>{[ reportCtrl.result.dmb|dmbLevelText]}</strong>
+            </h2>
           </div>
-          <p class="dmb-report-page__hero-subhead">
-              This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>{[ reportCtrl.result.dmb|dmbLevelText]}</strong>
+
+          <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb < 3">
+              This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>{[ (reportCtrl.result.dmb + 1) | dmbLevelText]}</strong>.
           </p>
+          <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb > 2">
+            This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level.
+          </p>
+
           {% comment "We won't have any date for average and best-pracitce for the MVP" %}
           <p class="h-u-mt-l">
             You are <strong>above average</strong> for your industry, and <strong>behind</strong> the industry best practice. This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>connected</strong>.
@@ -52,214 +57,199 @@
         </div>
       </div>
       <div class="dmb-report-page__hero-cta h-u-text-center">
-        <a href="#dmb-report-page-main" class="dmb-report-page__hero-button h-c-button h-c-button--secondary dmb-h-hidden--print" glue-smooth-scroll glue-smooth-scroll-hash="true">
+        <a
+            href="#dmb-report-page-main"
+            class="dmb-report-page__hero-button h-c-button h-c-button--secondary dmb-h-hidden--print"
+            dmb-smooth-scroll>
           View your results
           <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--18px">
             <use xlink:href="#mi-arrow-sort"></use>
           </svg>
         </a>
       </div>
-  </div>
+    </div>
   </header>
 
-  <div class="dmb-report-page__content" id="dmb-report-page-main">
-    <button class="dmb-right-panel-trigger dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
-      <div class="dmb-right-panel-trigger__icon">
-        <svg role="img" class="h-c-icon">
-          <use xlink:href="#mi-chevron"></use>
-        </svg>
-      </div>
-      <div class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
-        Why digital maturity matters
-      </div>
-    </button>
+  <main class="dmb-report-page__content" id="dmb-report-page-main">
+    <div class="dmb-report-page__panel-trigger" dmb-pin-top>
+      <button
+          class="dmb-right-panel-trigger dmb-h-hidden--print"
+          dmb-side-panel-trigger="#dmb-report-right-side-panel">
+        <div class="dmb-right-panel-trigger__icon">
+          <svg role="img" class="h-c-icon">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </div>
+        <div
+          class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
+          Why digital maturity matters
+        </div>
+      </button>
+    </div>
 
     <div class="h-c-page">
-      <section>
-        <h2 class="h-c-eyebrow h-u-mb-l">Your overall digital maturity</h2>
-        <div class="h-u-mb-xl">
-          <div class="h-c-grid">
-              <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--5 h-c-grid__col-l--3 h-u-text-center">
-              <div class="dmb-progress-circle">
-                <svg
-                    dmb-progress-circle="reportCtrl.result.dmb"
-                    class="dmb-progress-circle__prog-svg"
-                    width="214" height="214" viewbox="0 0 120 120">
-                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                </svg>
-                <div class="dmb-progress-circle__text">
-                  <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
-                  <div class="dmb-progress-circle__values">
-                    <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span>
-                    <span class="dmb-progress-circle__target">/
-                      <span class="dmb-progress-circle__target--value">4</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col-s--2 h-c-grid__col--7 h-c-grid__col-l--9">
-              <h3 class="h-c-headline h-c-headline--two dmb-h-mb--small">
-                <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
-                <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
-                  <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
-                </button>
-              </h3>
-              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
-                  This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
-              </p>
-              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
-                This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
-              </p>
-              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
-                This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
-              </p>
-              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
-                This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
-              </p>
-            </div>
-          </div>
-        </div>
+      <section class="dmb-report-page__maturity"> <!-- Your overall digital maturity -->
+        <h2 class="h-c-eyebrow">Your overall digital maturity</h2>
 
-        <dmb-progress-table
-          data-rating-main="reportCtrl.result.dmb"
-          data-industry-avg="reportCtrl.industryResult.dmb"
-          data-industry-best="reportCtrl.industryResult.dmb_bp"
-          data-company-name="{[reportCtrl.survey.company_name]}">
-        </dmb-progress-table>
-
-        <div class="dmb-h-mb--big">
-          <h2 class="h-c-eyebrow h-u-mb-l">
-            6 dimensions of digital marketing maturity
-            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
-              <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
-            </button>
-          </h2>
-          <p class="dmb-report-page__dimensions-intro dmb-h-mb--small">Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.</p>
-
-          <button class="h-c-button h-c-button--secondary dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">Learn more about why these matter</button>
-        </div>
-      </section>
-
-      <section class="dmb-report-page__tabs dmb-h-mb--big">
-        <div class="dmb-report-page__tabs-icons">
-          <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
-            <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
+        <div class="h-c-grid">
+          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--2">
+            <div class="dmb-progress-circle">
               <svg
-                  dmb-progress-circle="reportCtrl.result.dmb_d[dimension]"
+                  dmb-progress-circle="reportCtrl.result.dmb"
                   class="dmb-progress-circle__prog-svg"
-                  width="80" height="80" viewbox="0 0 120 120">
+                  viewbox="0 0 120 120">
                 <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
                 <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
               </svg>
-              <div class="dmb-progress-circle__icon"></div>
+              <div class="dmb-progress-circle__text">
+                <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
+                <div class="dmb-progress-circle__values">
+                  <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span class="dmb-progress-circle__target">/<span
+                      class="dmb-progress-circle__target--value">4</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--9">
+            <h3 class="dmb-report-page__content-title">
+              <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
+              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
+                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              </button>
+            </h3>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
+              This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
+            </p>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
+              This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
+            </p>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
+              This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
+            </p>
+            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
+              This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
+            </p>
+          </div>
+        </div>
+
+        <dmb-progress-table data-rating-main="reportCtrl.result.dmb" data-industry-avg="reportCtrl.industryResult.dmb"
+          data-industry-best="reportCtrl.industryResult.dmb_bp" data-company-name="{[reportCtrl.survey.company_name]}">
+        </dmb-progress-table>
+
+      </section>
+
+      <section class="dmb-report-page__dimensions"> <!-- 6 dimensions -->
+        <h2 class="h-c-eyebrow h-c-eyebrow--wide">
+          6 dimensions of digital marketing maturity
+          <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
+            <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+          </button>
+        </h2>
+        <p class="dmb-report-page__dimensions-intro">
+          Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.
+        </p>
+        <a class="dmb-report-page__cta dmb-report-page__cta--alt dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+          <div class="dmb-report-page__cta-icon"></div>
+          <div class="dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
+        </a>
+
+        <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
+          <div class="dmb-report-page__tabs-icons">
+            <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+              <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
+                <svg dmb-progress-circle="reportCtrl.result.dmb_d[dimension]" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
+                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                </svg>
+                <div class="dmb-progress-circle__icon"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="dmb-report-page__tabs-sticky-nav" dmb-pin-top>
+              <div class="h-c-page">
+                <ul class="">
+                  <li ng-repeat="dimension in reportCtrl.dimensions">
+                    <button
+                        class="dmb-report-page__tabs-sticky-nav-btn"
+                        ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
+                        ng-click="reportCtrl.selectTab('dimension-tabs', dimension)">
+                      {[reportCtrl.dimensionHeaders[dimension]]}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="glue-tabset"
+                data-glue-tabset-state="['activeEl']"
+                data-glue-state-id="dimension-tabs"
+                data-glue-tabset-model="reportCtrl.model"
+                data-glue-tabset-enable-arrow-nav
+                ng-cloak>
+              <ul>
+                <li
+                    ng-repeat="dimension in reportCtrl.dimensions"
+                    data-glue-label="{[dimension]}"
+                    id="{[dimension]}">
+                  <h3>
+                    {[reportCtrl.dimensionHeaders[dimension]]}
+                  </h3>
+                  <div>
+                    <div
+                      dmb-dimension-tab="{[dimension]}"
+                      company-name="{[ reportCtrl.survey.company_name ]}">
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <div class="glue-tabby glue-zippy-style" data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
-          <ul class="dmb-report-page__tabs-ul">
-            <li
-              glue-label="{[ reportCtrl.dimensions[0] ]}"
-              id="tab-{[ reportCtrl.dimensions[0] ]}">
+        {% comment %}
+          We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a bug where,
+          if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to the top ( probably # left at the end of the url).
+          Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking ( unfortunately that is enabled by default when using
+          2 way data binding)
+        {% endcomment %}
 
-              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[0]]]}</h3>
-              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-              <div>
-                <div
-                    dmb-dimension-tab="{[reportCtrl.dimensions[0]]}"
-                    company-name="{[ reportCtrl.survey.company_name ]}">
-
+        <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
+          <div class="glue-zippy-set h-t-hercules" ng-cloak>
+            <ul class="h-c-expansion-panels__list">
+              <li class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
+                <div class="glue-zippy-btn">
+                  <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
+                    {[ reportCtrl.dimensionHeaders[dimension] ]}
+                  </h4>
+                  <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
+                    <use xlink:href="#mi-arrow-item"></use>
+                  </svg>
                 </div>
-              </div>
-            </li>
-            <li
-              glue-label="{[ reportCtrl.dimensions[1] ]}"
-              id="tab-{[ reportCtrl.dimensions[1] ]}">
-
-              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[1]]]}</h3>
-              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-              <div>
-                <div
-                    dmb-dimension-tab="{[reportCtrl.dimensions[1]]}"
-                    company-name="{[ reportCtrl.survey.company_name ]}">
-
+                <div class="glue-zippy-content">
+                  <div
+                      dmb-dimension-tab="{[dimension]}"
+                      company-name="{[ reportCtrl.survey.company_name ]}">
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li
-              glue-label="{[ reportCtrl.dimensions[2] ]}"
-              id="tab-{[ reportCtrl.dimensions[2] ]}">
-
-              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[2]]]}</h3>
-              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-              <div>
-                <div
-                    dmb-dimension-tab="{[reportCtrl.dimensions[2]]}"
-                    company-name="{[ reportCtrl.survey.company_name ]}">
-
-                </div>
-              </div>
-            </li>
-            <li
-              glue-label="{[ reportCtrl.dimensions[3] ]}"
-              id="tab-{[ reportCtrl.dimensions[3] ]}">
-
-              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[3]]]}</h3>
-              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-              <div>
-                <div
-                    dmb-dimension-tab="{[reportCtrl.dimensions[3]]}"
-                    company-name="{[ reportCtrl.survey.company_name ]}">
-
-                </div>
-              </div>
-            </li>
-            <li
-              glue-label="{[ reportCtrl.dimensions[4] ]}"
-              id="tab-{[ reportCtrl.dimensions[4] ]}">
-
-              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[4]]]}</h3>
-              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-              <div>
-                <div
-                    dmb-dimension-tab="{[reportCtrl.dimensions[4]]}"
-                    company-name="{[ reportCtrl.survey.company_name ]}">
-
-                </div>
-              </div>
-            </li>
-            <li
-              glue-label="{[ reportCtrl.dimensions[5] ]}"
-              id="tab-{[ reportCtrl.dimensions[5] ]}">
-
-              <h3> {[reportCtrl.dimensionHeaders[reportCtrl.dimensions[5]]]}</h3>
-              {# We need to nest the directive since glue on mobile requires a private scope on the first children. #}
-              <div>
-                <div
-                    dmb-dimension-tab="{[reportCtrl.dimensions[5]]}"
-                    company-name="{[ reportCtrl.survey.company_name ]}">
-
-                </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </section>
+      </section> <!-- 6 dimensions -->
 
       {% comment "Out of scope for now, we will enable this in the future" %}
-      <div class="h-u-text-right">
+      <!-- <div class="h-u-text-right">
         <a href="#" class="h-c-link h-c-link--internal dmb-h-hidden--print">
           Go to next dimension
           <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--arrow-forward">
             <use xlink:href="#mi-arrow-forward"></use>
           </svg>
         </a>
-      </div>
+      </div> -->
       {% endcomment %}
     </div> <!-- h-c-page -->
-  </div> <!-- #dmb-report-page-main -->
+  </main> <!-- #dmb-report-page-main -->
 
   <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
     <div class="h-c-page">
@@ -389,7 +379,7 @@
     </div>
   </aside>
 
-  <aside id="dmb-report-right-side-panel" class="dmb-side-panel" dmb-side-panel>
+  <aside id="dmb-report-right-side-panel" class="dmb-side-panel dmb-side-panel--right" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -421,86 +411,88 @@
         </div>
       </div>
 
-      <div class="dmb-side-panel__list-container h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--4">
-          <h2 class="h-c-headline h-c-headline--four h-u-mb-l">
-            Today’s consumers are:
-          </h2>
-        </div>
-        <div class="h-c-grid__col h-c-grid__col--8">
-          <ul class="dmb-side-panel__list">
-            <li class="dmb-side-panel__list-item dmb-side-panel__left-block">
+      <div class="dmb-side-panel__list-container">
+        <div class="h-c-grid">
+          <div class="h-c-grid__col h-c-grid__col--4">
+            <h2 class="h-c-headline h-c-headline--four h-u-mb-l">
+              Today’s consumers are:
+            </h2>
+          </div>
+          <div class="h-c-grid__col h-c-grid__col--8">
+            <ul class="dmb-side-panel__list">
+              <li class="dmb-side-panel__list-item dmb-side-panel__left-block">
 
-              <div class="dmb-side-panel__list-item-content">
-                <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
-                  <div class="dmb-side-panel__list-item-bullet">
-                    <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
-                  </div>
-                  Curious
-                </h3>
-                <p>
-                  They turn to Google Search more and more often looking for to get useful advice and answers - even for the small stuff - so every decision they make is an informed one.
-                </p>
-                <ul>
-                  <li>
-                    In the last 2 years, mobile searches have risen 239% for best travel accessories, 208% for best face powder and 156% for best wet weather gear.&nbsp;<sup>1</sup>
-                  </li>
-                  <li>
-                    Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180% in the last 2 years.&nbsp;<sup>2</sup>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="dmb-side-panel__list-item dmb-side-panel__left-block">
-              <div class="dmb-side-panel__list-item-content">
-                <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
-                  <div class="dmb-side-panel__list-item-bullet">
-                    <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
-                  </div>
-                  Demanding
-                </h3>
-                <p>
-                  They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment.
-                </p>
-                <ul>
-                  <li>
-                    "Near me" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;<sup>3</sup>
-                  </li>
-                  <li>
-                    89% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;<sup>4</sup>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="dmb-side-panel__list-item dmb-side-panel__left-block">
-              <div class="dmb-side-panel__list-item-content">
-                <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
-                  <div class="dmb-side-panel__list-item-bullet">
-                    <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
-                  </div>
-                  Impatient
-                </h3>
-                <p>
-                  People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly.
-                </p>
-                <ul>
-                  <li>
-                    1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;<sup>5</sup>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
+                <div class="dmb-side-panel__list-item-content">
+                  <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
+                    <div class="dmb-side-panel__list-item-bullet">
+                      <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
+                    </div>
+                    Curious
+                  </h3>
+                  <p>
+                    They turn to Google Search more and more often looking for to get useful advice and answers - even for the small stuff - so every decision they make is an informed one.
+                  </p>
+                  <ul>
+                    <li>
+                      In the last 2 years, mobile searches have risen 239% for best travel accessories, 208% for best face powder and 156% for best wet weather gear.&nbsp;<sup>1</sup>
+                    </li>
+                    <li>
+                      Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180% in the last 2 years.&nbsp;<sup>2</sup>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="dmb-side-panel__list-item dmb-side-panel__left-block">
+                <div class="dmb-side-panel__list-item-content">
+                  <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
+                    <div class="dmb-side-panel__list-item-bullet">
+                      <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
+                    </div>
+                    Demanding
+                  </h3>
+                  <p>
+                    They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment.
+                  </p>
+                  <ul>
+                    <li>
+                      "Near me" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;<sup>3</sup>
+                    </li>
+                    <li>
+                      89% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;<sup>4</sup>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="dmb-side-panel__list-item dmb-side-panel__left-block">
+                <div class="dmb-side-panel__list-item-content">
+                  <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
+                    <div class="dmb-side-panel__list-item-bullet">
+                      <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon"/>
+                    </div>
+                    Impatient
+                  </h3>
+                  <p>
+                    People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly.
+                  </p>
+                  <ul>
+                    <li>
+                      1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;<sup>5</sup>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div class="dmb-side-panel__advice">
-        <h3 class="h-c-headline h-c-headline--four dmb-h-google-sans">
+        <h3 class="h-c-headline h-c-headline--four">
           So, how can you be digitally mature and so anticipate the needs of your customers today?
         </h3>
         <div class="dmb-side-panel__advice-items">
           <div class="dmb-side-panel__advice-item">
-            <h4 class="h-c-headline h-c-headline--three dmb-h-google-sans">
+            <h4 class="h-c-headline h-c-headline--three">
               Be there
             </h4>
             <p class="h-u-font-weight-light">
@@ -508,7 +500,7 @@
             </p>
           </div>
           <div class="dmb-side-panel__advice-item">
-            <h4 class="h-c-headline h-c-headline--three dmb-h-google-sans">
+            <h4 class="h-c-headline h-c-headline--three">
               Be helpful
             </h4>
             <p class="h-u-font-weight-light">
@@ -516,7 +508,7 @@
             </p>
           </div>
           <div class="dmb-side-panel__advice-item">
-            <h4 class="h-c-headline h-c-headline--three dmb-h-google-sans">
+            <h4 class="h-c-headline h-c-headline--three">
               Be quick
             </h4>
             <p class="h-u-font-weight-light">
@@ -527,7 +519,7 @@
       </div>
 
       <div class="dmb-side-panel__research">
-        <p class="h-c-headline h-c-headline--subhead dmb-h-google-sans">
+        <p class="h-c-headline h-c-headline--subhead">
           <strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2% of brands are realising the full potential of data-driven marketing.
         </p>
         <p class="h-u-font-weight-light">

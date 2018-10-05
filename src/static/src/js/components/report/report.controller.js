@@ -1,8 +1,11 @@
 goog.module('dmb.components.report.controller');
 
+const BreakpointService = goog.require('glue.ng.common.Breakpoint');
+const PaginationModel = goog.require('glue.ng.pagination.Model');
+
 const surveyEndpoint = '/api/report/company/';
 const industryEndpoint = '/api/report/industry/';
-const locationSidRegex = /\/(\w+)[^\/\!\?#]?[^\/]*$/;
+const locationSidRegex = /reports\/(\w+)[#\/].*$/;
 
 
 /**
@@ -12,17 +15,36 @@ class ReportController {
   /**
    * Report controller
    *
+   * @param {!angular.Scope} $scope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
+   * @param {!glue.ng.state.StateService} glueState
+   * @param {!angular.$timeout} $timeout
    * @param {!Object} reportService
    * @param {!Function} floorDmbFactory
    * @param {!Object} dimensionHeaders
+   * @param {!Object} glueBreakpoint
    *
    * @ngInject
    */
-  constructor($http, $location, reportService, floorDmbFactory, dimensionHeaders) {
+  constructor(
+      $scope,
+      $http,
+      $location,
+      glueState,
+      $timeout,
+      reportService,
+      floorDmbFactory,
+      dimensionHeaders,
+      glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
+
+    /** @private {!glue.ng.state.StateService} */
+    this.glueState_ = glueState;
+
+    /** @private {!angular.$timeout} */
+    this.ngTimeout_ = $timeout;
 
     /**
      * Survey object.
@@ -39,14 +61,21 @@ class ReportController {
     this.result = null;
 
     /**
-     * Floored dmb
+     * Floored dmb.
      * @type {?number}
      * @export
      */
     this.floorDmb = null;
 
     /**
-     * Floored dmb
+     *  Show dimensions tab (instead of the zippy).
+     * @type {!bool}
+     * @export
+     */
+    this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
+
+    /**
+     * Floored dmb.
      * @type {!object}
      * @export
      */
@@ -65,6 +94,13 @@ class ReportController {
       'organization',
     ];
 
+       /**
+     * @type {glue.ng.pagination.Model}
+     * @export
+     */
+    this.model = new PaginationModel({
+      'activeEl': this.dimensions[0],
+    });
 
     /**
      * Industry result object.
@@ -79,7 +115,12 @@ class ReportController {
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
       this.result = this.survey['last_survey_result'];
-      this.floorDmb = floorDmbFactory(this.result['dmb']);
+
+      // DRF returns decimal fields as strings. We should probably look into this
+      // on the BE but until we do let's fix this on the FE.
+      this.result.dmb = parseFloat(this.result['dmb']);
+
+      this.floorDmb = floorDmbFactory(this.result.dmb);
 
       reportService.dmb_d = this.result['dmb_d'];
 
@@ -89,6 +130,44 @@ class ReportController {
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
       });
     });
+
+    $scope.$on(BreakpointService.service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
+      this.showTabs= this.showTabs_(size);
+      $scope.$apply();
+    });
+  }
+
+  /**
+   *  @param {string} size
+   *  @return {bool}
+   *  @private
+   */
+  showTabs_(size) {
+    const bpTabsEnabled = [
+      'large',
+      'x-large',
+      'xx-large',
+      'medium-large',
+      'medium',
+    ];
+
+    return bpTabsEnabled.indexOf(size) > -1;
+  }
+
+    /**
+   * Opens a specific tab if state is enabled. This is expected to be used with
+   * something like ngClick.
+   *
+   * @param {string} tabsetId The unique state id for the tabset.
+   * @param {string} elementId The unique id of the tab to open.
+   * @export
+   */
+  selectTab(tabsetId, elementId) {
+    this.ngTimeout_(() => {
+      this.glueState_.setState(tabsetId, {
+        'activeEl': elementId,
+      });
+    }, 0, true);
   }
 }
 

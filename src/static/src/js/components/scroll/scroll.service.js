@@ -12,6 +12,7 @@ function scrollService() {
   return {
     addListener,
     removeListener,
+    getElementOffsetTop,
   };
 
   /**
@@ -58,6 +59,22 @@ function scrollService() {
     const {scrollY} = window;
     listeners.forEach((listener) => listener(scrollY));
     frameHandled = false;
+  }
+
+    /**
+   *
+   * @param {HTNLElement} elem
+   * @return {number} distance from top of the document.
+   */
+  function getElementOffsetTop( elem ) {
+    let location = 0;
+    if (elem.offsetParent) {
+        do {
+            location += elem.offsetTop;
+            elem = elem.offsetParent;
+        } while (elem);
+    }
+    return location >= 0 ? location : 0;
   }
 }
 

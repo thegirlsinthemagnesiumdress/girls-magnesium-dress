@@ -107,10 +107,7 @@
   display: flex;
   font-size: 16px;
   padding: 23px 31px 23px 75px;
-  transition:
-    background-color $dmb-default-transition-duration $dmb-easing--standard,
-    border-color $dmb-default-transition-duration $dmb-easing--standard,
-    color $dmb-default-transition-duration $dmb-easing--standard;
+  transition: background-color $dmb-default-transition-duration $dmb-easing--standard, border-color $dmb-default-transition-duration $dmb-easing--standard, color $dmb-default-transition-duration $dmb-easing--standard;
   width: auto;
 
   @include bp(s) {

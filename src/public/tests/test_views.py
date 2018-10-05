@@ -1,25 +1,28 @@
 import os
 
-from core.models import Survey, SurveyResult
 from djangae.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
 
+from core.models import SurveyResult
+from core.tests.mommy_recepies import make_survey
 
+
+@override_settings(
+    SURVEY_ADMIN_AUTHORIZED_DOMAINS=(
+        '@example.com',
+        '@google.com',
+        '@potatolondon.com',
+    )
+)
 class ReportsAdminTestCase(TestCase):
     """Tests for `reports_admin` view."""
     def setUp(self):
         self.url = reverse('reports')
 
-        self.survey_1 = Survey.objects.create(
-            company_name='test company',
-            engagement_lead='123'
-        )
-        self.survey_2 = Survey.objects.create(
-            company_name='test company 2',
-            engagement_lead='456'
-        )
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
 
         self.survey_result_1 = SurveyResult.objects.create(
             survey=self.survey_1,
@@ -62,7 +65,7 @@ class ReportsAdminTestCase(TestCase):
         self.assertEqual(surveys[0].engagement_lead, self.survey_1.engagement_lead)
 
     @override_settings(
-        SUPER_USER=[
+        SUPER_USERS=[
             'superuser@example.com',
         ]
     )
@@ -84,3 +87,10 @@ class ReportsAdminTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(reverse('djangae_login_redirect') in response.get('Location'))
+
+    def test_user_logged_in_not_in_permission_domains(self):
+        """User could be logged in, but not having enough permissions to access to the resource."""
+        self.login(email='user@notenoughpermissions.com')
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 403)
