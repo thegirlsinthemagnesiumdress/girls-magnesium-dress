@@ -50,11 +50,11 @@
       }
 
       h3 {
+        line-height: 46px;
         @include dmb-responsive(font-size, 36, 32);
+        @include dmb-responsive(margin-bottom, 16, 20);
 
         @include bp(m) {
-          margin-bottom: 20px;
-
           br {
             display: none;
           }
