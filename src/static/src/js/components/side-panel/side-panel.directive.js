@@ -1,17 +1,20 @@
-goog.module('dmb.components.sidePanel.directive');
+ goog.module('dmb.components.sidePanel.directive');
 
 const SidePanel = goog.require('dmb.components.sidePanel.class');
 
 /**
  * Side panel directive.
+ * @param {Object} sidePanelService
+ *
  * @ngInject
  * @return {Object} Config for the directive
  */
-function SidePanelDirective() {
+function SidePanelDirective(sidePanelService) {
   return {
     restrict: 'A',
     link(scope, element, attrs) {
-      scope.class = new SidePanel(element[0]);
+      scope.class = new SidePanel(element[0], false);
+      sidePanelService.registerPanel(element[0].id, scope.class);
 
       scope.$on('$destroy', scope.class.destroy);
     },

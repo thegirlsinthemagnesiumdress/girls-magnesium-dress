@@ -22,9 +22,10 @@ const classes = {
 class SidePanel {
   /**
    * Constructor
-   * @param  {Element} element The panel element to set up
+   * @param  {Element} element The panel element to set up.
+   * @param  {bool} bindTriggers Whether events on the triggers or not.
    */
-  constructor(element) {
+  constructor(element, bindTriggers=true) {
     /**
      * @const
      * @type {Element}
@@ -101,6 +102,9 @@ class SidePanel {
      */
     this.focusTrapInstance = null;
 
+    if (bindTriggers) {
+      this.bindTriggers();
+    }
     this.bindEvents();
 
     this.el.setAttribute('aria-modal', 'true');
@@ -200,11 +204,16 @@ class SidePanel {
   /**
    * Binds the event listeners to all of the triggerEls
    */
-  bindEvents() {
+  bindTriggers() {
     this.triggerEls.forEach((trigger) => {
       trigger.addEventListener('click', this.onTriggerClick);
     });
+  }
 
+  /**
+   * Binds the event listeners to all of the triggerEls
+   */
+  bindEvents() {
     this.closeEls.forEach((close) => {
       close.addEventListener('click', this.onCloseClick);
     });

@@ -22,7 +22,8 @@
       "code": 120,
       "tabWidth": 2,
       "ignoreUrls": true,
-      "ignorePattern": "^goog\\.(module|require)"
+      "ignorePattern": "^goog\\.(module|require)",
+      "no-console": ["error", { "allow": ["warn", "error"]}]
     }],
     "no-useless-escape": "off"
   }
