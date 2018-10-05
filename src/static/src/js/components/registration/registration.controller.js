@@ -22,18 +22,27 @@ class RegistrationController {
 
     /**
      * @export
+     * @type{String}
      */
     this.companyName= '';
 
     /**
      * @export
+     * @type{String}
      */
     this.industry= '';
 
     /**
      * @export
+     * @type{String}
      */
     this.country= '';
+
+    /**
+     * @export
+     * @type{String}
+     */
+    this.engagementLead= '';
 
     /**
      * @export
