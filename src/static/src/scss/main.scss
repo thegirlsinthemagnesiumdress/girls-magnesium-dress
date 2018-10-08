@@ -1,10 +1,11 @@
+// If you have Sass variable overrides, include them here and uncomment.
+@import 'hercules-variable-overrides';
+
 // main.scss
 // Sass compiler knows the paths to glue Sass through the Gulp
 // compiler configuration.
 @import 'hercules/lib/global/scss/settings/all';
 
-// If you have Sass variable overrides, include them here and uncomment.
-@import 'hercules-variable-overrides';
 
 @import 'hercules/lib/global/scss/tools/all';
 @import 'hercules/lib/global/scss/generic/all';
@@ -58,6 +59,7 @@
 @import 'shared/side-panel';
 
 // DMB components
+@import 'components/form';
 @import 'components/admin';
 @import 'components/box';
 @import 'components/dimensions-tiles';
@@ -78,3 +80,4 @@
 
 //Page styles
 @import 'pages/reports-page';
+@import 'pages/reports-admin';

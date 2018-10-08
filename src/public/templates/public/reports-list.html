@@ -2,40 +2,130 @@
 {% load staticfiles %}
 
 {% block main %}
-<div class="h-c-page h-u-mt-xl">
+<div class="h-c-page h-u-mt-xl dmb-reports-admin">
+  <div class="h-c-page">
+    <h1 class="dmb-reports-admin__title h-c-headline h-c-headline--one h-u-font-weight-medium">Digital Maturity Admin Dashboard</h1>
+    <h2 class="dmb-reports-admin__subtitle h-c-headline h-c-headline--four h-u-font-weight-medium">How to create new surveys:</h2>
+  </div>
   <div class="h-c-grid">
-    <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5">
-      <h1 class="h-c-headline h-c-headline--one h-u-mb-std">Digital Maturity Admin Dashboard</h1>
-      <p class="h-u-mb-std">Use this page to manage your connected organizations and create new surveys.</p>
+    <div class="h-c-grid__col h-c-grid__col--10">
+      <ul class="dmb-reports-admin__survey-creation-box dmb-box dmb-box--alt">
+        <li>
+          <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
+            1. Create a custom Survey
+          </h3>
+          <p class="dmb-reports-admin__survey-creation-text">
+            Create a custom survey for your client using the button below.
+            You’ll be able to set the company name, industry and location.
+          </p>
+          <button
+              class="dmb-right-panel-trigger h-c-button h-c-button--primary"
+              dmb-side-panel-trigger="#dmb-create-survey">
+            Create new survey
+          </button>
+        </li>
+        <li class="dmb-reports-admin__referral-wrp">
+          <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
+            2. Send a referral link
+          </h3>
+          <p class="dmb-reports-admin__survey-creation-text">
+            Send your survey referral link to allow clients to create their own unique survey. Any surveys created with this link will be associated with your account.
+          </p>
+          <div class="dmb-referral-copy-row">
+            <a href="{% url 'registration' %}#el={{engagement_lead}}" target="_blank" id="reference-link">
+                {{ request.get_host }}{% url 'registration' %}#el={{engagement_lead}}
+            </a>
+            <button
+                class="h-c-button h-c-button--flat"
+                ngclipboard
+                data-clipboard-target="#reference-link"
+                aria-label="Copy to clipboard">
+              <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
+  <div
+      dmb-side-panel
+      class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--right"
+      id="dmb-create-survey">
+    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+      <span class="dmb-fab__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <use xlink:href="#mi-close"></use>
+        </svg>
+      </span>
+    </button>
 
-    <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--offset-1">
-      {% comment 'Disable this feature for now' %}
-      <form class="h-u-mb-l" name="referral" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
-        <div class="input-wrp">
-          <input class="dmb-input dmb-input--simple" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter organization name">
-        </div>
-        <button ng-disabled="referral.$invalid" disabled class="h-c-button h-c-button--primary">
-          Create new survey
-        </button>
-        <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError" ng-cloak>Oops, something went wrong!</div>
-      </form>
-      {% endcomment %}
-
-      <div class="dmb-box dmb-box--alt">
-        <h2 class="h-c-headline h-c-headline--five">Your survey referral link</h2>
-        <div class="dmb-referral-copy-row">
-          <a href="{% url 'registration' %}#el={{engagement_lead}}" target="_blank" id="survey-link">
-              {{ request.get_host }}{% url 'registration' %}#el={{engagement_lead}}
+    <div
+        class="dmb-side-panel__inner"
+        ng-controller="RegistrationCtrl as registrationCtrl">
+      <div ng-if="!registrationCtrl.link">
+        <h2 class="h-c-headline h-c-headline--three h-u-mt-xl h-u-mb-l">
+          Create a new survey
+        </h2>
+        <p>
+            Fill in these details to create a custom survey link for a specific company:
+        </p>
+        <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()" ng-init="registrationCtrl.engagementLead='{{engagement_lead}}'">
+          <div class="input-wrp">
+            <div class="dmb-input-wrp">
+              <label for="companyName">Organisation name:</label>
+              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
+            </div>
+            <div class="dmb-input-wrp">
+              <label for="industry">Industry:</label>
+              <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+                <option value="" disabled selected>Select an industry</option>
+                {% for i_key, i_text in industries.items %}
+                <option value="{{i_key}}">{{i_text}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="dmb-input-wrp">
+              <label for="country">Country:</label>
+              <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
+                <option value="" disabled selected>Select a country</option>
+                {% for c_key, c_text in countries.items %}
+                <option value="{{c_key}}">{{c_text}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
+          </div>
+          <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
+            Create assessment
+          </button>
+          <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">Oops, something went wrong!</div>
+        </form>
+      </div>
+      <div ng-if="registrationCtrl.link">
+        <h2 class="h-c-headline h-c-headline--three h-c-headline--three h-u-mt-xl h-u-mb-l">
+          Unique survey created
+        </h2>
+        <p>
+          Your custom survey link is below.
+          Send this link to your client so that they can get started.
+        </p>
+        <div class="dmb-registration__link">
+          <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
+            {[ registrationCtrl.link ]}
           </a>
           <button
-              class="h-c-button h-c-button--flat"
+              class="h-c-link"
               ngclipboard
-              data-clipboard-target="#survey-link"
-              aria-label="Copy to clipboard">
-            <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
+              data-clipboard-target="#survey-link">
+            Copy
           </button>
         </div>
+        <button class="h-c-button h-c-button--primary" ng-click="registrationCtrl.reset()">
+          Create another assessment
+        </button>
+        <p class="h-c-footnote">
+          Please reload the page to see the new survey in the list.
+        </p>
       </div>
     </div>
   </div>

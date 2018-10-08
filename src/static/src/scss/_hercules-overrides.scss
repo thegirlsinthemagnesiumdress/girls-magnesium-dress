@@ -46,3 +46,28 @@
     color: $h-white !important;
   }
 }
+
+
+.h-c-page {
+  // TODO (joshmarsh): This deviates from box-sizing across the rest of
+  // Hercules - why is this?
+  box-sizing: content-box;
+  margin: 0 auto;
+  max-width: $h-site-width-mobile - ($h-site-padding-mobile * 2);
+  padding: 0 $h-site-padding-mobile;
+  width: auto;
+
+  @include bp(s) {
+    max-width: $h-site-width-tablet - ($h-site-padding * 2);
+    padding: 0 $h-site-padding;
+  }
+
+  // Big tablet / small Desktop
+  @media #{$h-screen-sm} {
+    max-width: $h-site-width-sm - ($h-site-padding * 2);
+  }
+
+  @include bp(m) {
+    max-width: $h-site-width-desktop - ($h-site-padding * 2);
+  }
+}

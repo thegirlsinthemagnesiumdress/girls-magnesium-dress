@@ -9,20 +9,21 @@
     <div class="h-c-grid" ng-if="!registrationCtrl.link">
       <div class="h-c-grid__col h-c-grid__col--12">
         <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
-          Ready to start benchmarking your business’ digital maturity?
+          Ready to benchmark your company’s digital maturity?
         </h1>
         <p class="dmb-registration__subhead h-c-headline h-c-headline--four">
-          Fill in these questions to start your assessment:
+          Fill in these questions to start your assessment.
         </p>
         <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
           <div class="input-wrp">
             <div class="dmb-input-wrp">
               <label for="companyName">Organisation name:</label>
-              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required>
+              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
               <label for="industry">Industry:</label>
               <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+                <option value="" disabled selected>Select an industry</option>
                 {% for i_key, i_text in industries.items %}
                 <option value="{{i_key}}">{{i_text}}</option>
                 {% endfor %}
@@ -31,6 +32,7 @@
             <div class="dmb-input-wrp">
               <label for="country">Country:</label>
               <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
+                <option value="" disabled selected>Select a country</option>
                 {% for c_key, c_text in countries.items %}
                 <option value="{{c_key}}">{{c_text}}</option>
                 {% endfor %}
@@ -48,9 +50,9 @@
     <div class="h-c-grid" ng-if="registrationCtrl.link">
       <div class="h-c-grid__col h-c-grid__col--12">
         <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
-            Your unique survey has now been created
+          Your unique assessment has now been created
         </h1>
-        <h2 class="h-c-headline h-c-headline--four">Your personalised survey link</h2>
+        <h2 class="h-c-headline h-c-headline--four">Your personalised assessment link</h2>
         <div class="dmb-registration__link">
           <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
             {[ registrationCtrl.link ]}
@@ -63,10 +65,10 @@
           </button>
         </div>
         <p class="dmb-registration__share-copy">
-            Here is the link to your personalised digital marketing maturity assessment.<br><strong>Keep it safe in case you need to access it again.</strong>
+          Here is the link to your personalised digital marketing maturity assessment. Keep it safe in case you need to return to it again later, so you can pick up where you left off.
         </p>
         <a ng-href="{[ registrationCtrl.link ]}" class="h-c-button h-c-button--primary" target="_blank">
-          Take the survey now
+          Start the assessment now
         </a>
       </div>
     </div>

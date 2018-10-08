@@ -15,10 +15,10 @@ class User(GaeAbstractDatastoreUser):
     @property
     def is_whitelisted(self):
         """
-        Returns `True` if email is in `settings.SUPER_USERS` list,
+        Returns `True` if email is in `settings.WHITELISTED_USERS` list,
         `False` otherwise.
         """
-        return True if self.email in settings.SUPER_USERS else False
+        return True if self.email in settings.WHITELISTED_USERS else False
 
     @property
     def engagement_lead(self):
@@ -26,9 +26,6 @@ class User(GaeAbstractDatastoreUser):
         m = hashlib.md5()
         m.update(self.email)
         return m.hexdigest()
-
-
-
 
 
 class Survey(models.Model):
@@ -41,7 +38,7 @@ class Survey(models.Model):
 
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
-    engagement_lead = models.CharField(max_length=32, null=True)
+    engagement_lead = models.CharField(max_length=32, blank=True, null=True)
     industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems(), null=True)
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')

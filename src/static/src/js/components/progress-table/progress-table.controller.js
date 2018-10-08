@@ -44,7 +44,9 @@ class ProgressTableController {
    */
   getProgressWidth(dmb) {
     const progWidth = dmb * 100;
-    return `calc(${progWidth}% + ${this.floorDmbFactory_(dmb)}px)`;
+    // We add an offset to make sure it's clear the bar overlaps the right column.
+    const offset = dmb ? 5 : 0;
+    return `calc(${progWidth}% + ${offset}px)`;
   }
 }
 
