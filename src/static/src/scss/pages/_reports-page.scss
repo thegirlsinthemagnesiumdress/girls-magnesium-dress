@@ -112,13 +112,13 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
     .dmb-progress-circle {
       font-size: 13px;
-      height: 170px;
-      width: 170px;
+      height: 184px;
+      width: 184px;
 
-      @include bp(m) {
+      @include bp(s) {
         font-size: 16px;
-        height: 245px;
-        width: 245px;
+        height: 232px;
+        width: 232px;
       }
 
       &__bg-bar {
@@ -170,7 +170,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
 
     @include bp(m) {
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
   }
 
@@ -201,17 +201,12 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__hero-sub-title {
-    display: none;
-    font-size: 44px !important;
-    text-align: left;
+    font-size: 66px;
     margin-left: 40px;
+    text-align: left;
 
-    @include bp(s) {
-      display: block;
-    }
-
-    @include bp(m) {
-      font-size: 66px !important;
+    @media (max-width: 599px) {
+      display: none;
     }
   }
 
@@ -258,7 +253,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
 
     @include bp(m) {
-      margin-top: 0px;
+      margin-top: 0;
     }
   }
 

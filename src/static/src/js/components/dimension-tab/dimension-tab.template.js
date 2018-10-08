@@ -33,7 +33,7 @@ const dimensionTabTemplate = `
         </div>
 
         <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--8">
-          <h3 class="dmb-h-alt-font-family">
+          <h3 class="dmb-h-alt-font">
             <span class="dmb-report-page__headline-accent">You are </span><br><strong>{[ dimensionTabCtrl.floorDMB|dmbLevelText ]} </strong>
           </h3>
           <p>
