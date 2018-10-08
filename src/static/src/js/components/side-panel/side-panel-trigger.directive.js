@@ -1,6 +1,6 @@
 goog.module('dmb.components.sidePanel.triggerDirective');
 
-const SidePanel = goog.require('dmb.components.sidePanel.class');
+// const SidePanel = goog.require('dmb.components.sidePanel.class');
 
 
 /**

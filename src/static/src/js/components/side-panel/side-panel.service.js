@@ -4,7 +4,6 @@ goog.module('dmb.components.sidePanel.service');
  * Sidepanel service.
  */
 class SidePanelService {
-
   /**
    * Side panel service constructor.
    */
