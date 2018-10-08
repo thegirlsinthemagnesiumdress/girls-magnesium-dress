@@ -853,21 +853,20 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         }
 
         &__list-container {
-          margin: 50px 0 40px;
+          margin: 50px 0 8px;
+
+          @include bp(#{$resp-bp}) {
+            margin: 90px 0 16px;
+          }
+
+          @include print-styles {
+            margin-bottom: $dmb-margin-small;
+          }
 
           h2 {
             @media (max-width: 599px) {
               margin-bottom: 22px;
             }
-          }
-
-
-          @include bp(#{$resp-bp}) {
-            margin: 90px 0 82px;
-          }
-
-          @include print-styles {
-            margin-bottom: $dmb-margin-small;
           }
         }
 
@@ -879,7 +878,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
         &__list-item {
           display: flex;
-          padding-bottom: 16px;
+          padding-bottom: 32px;
 
           h3,
           p,
@@ -967,10 +966,8 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
           flex-basis: 33%;
           flex-grow: 1;
 
-          @media (max-width: 1023px) {
-            &:not(:last-of-type) {
-              margin-bottom: 32px;
-            }
+          &:not(:last-of-type) {
+            margin-bottom: 32px;
           }
 
           h4 {
