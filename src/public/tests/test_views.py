@@ -65,7 +65,7 @@ class ReportsAdminTestCase(TestCase):
         self.assertEqual(surveys[0].engagement_lead, self.survey_1.engagement_lead)
 
     @override_settings(
-        SUPER_USERS=[
+        WHITELISTED_USERS=[
             'superuser@example.com',
         ]
     )

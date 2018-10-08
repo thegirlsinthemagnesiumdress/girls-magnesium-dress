@@ -15,10 +15,10 @@ class User(GaeAbstractDatastoreUser):
     @property
     def is_whitelisted(self):
         """
-        Returns `True` if email is in `settings.SUPER_USERS` list,
+        Returns `True` if email is in `settings.WHITELISTED_USERS` list,
         `False` otherwise.
         """
-        return True if self.email in settings.SUPER_USERS else False
+        return True if self.email in settings.WHITELISTED_USERS else False
 
     @property
     def engagement_lead(self):

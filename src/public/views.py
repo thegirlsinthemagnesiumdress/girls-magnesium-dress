@@ -17,7 +17,7 @@ def registration(request):
 @survey_admin_required
 def reports_admin(request):
 
-    if request.user.is_superuser:
+    if request.user.is_whitelisted:
         surveys = Survey.objects.all()
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
