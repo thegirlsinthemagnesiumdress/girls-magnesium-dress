@@ -65,3 +65,15 @@ TEMPLATES = [{
 REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ('rest_framework.renderers.JSONRenderer',)
 
 QUALTRICS_SURVEY_ID = 'SV_ebQG3AGFIgVzCFT'
+
+# Lock prod for now.
+MIDDLEWARE_CLASSES = tuple(
+    list(MIDDLEWARE_CLASSES) +
+    [
+        'core.middleware.UsersRestrictionMiddleware',
+    ])
+
+ALLOWED_AUTH_DOMAINS = [
+    'google.com',
+    'potatolondon.com',
+]
