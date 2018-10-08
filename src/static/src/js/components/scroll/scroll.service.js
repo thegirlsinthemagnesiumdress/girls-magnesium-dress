@@ -63,7 +63,7 @@ function scrollService() {
 
     /**
    *
-   * @param {HTNLElement} elem
+   * @param {HTMLElement} elem
    * @return {number} distance from top of the document.
    */
   function getElementOffsetTop( elem ) {
