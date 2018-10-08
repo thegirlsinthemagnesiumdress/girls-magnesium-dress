@@ -24,7 +24,7 @@ $dmb-prog-table-row-height-desktop: 12px;
     padding-top: 20px;
 
     @include bp(s) {
-      box-shadow: 1px 1px 0 $dmb-prog-table-border-color;
+      box-shadow: 1px 0 0 $dmb-prog-table-border-color;
       padding-top: 15px;
     }
 
