@@ -28,9 +28,6 @@ class User(GaeAbstractDatastoreUser):
         return m.hexdigest()
 
 
-
-
-
 class Survey(models.Model):
     """
     DMB_overall_average_by_dimension:
@@ -41,7 +38,7 @@ class Survey(models.Model):
 
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
-    engagement_lead = models.CharField(max_length=32, null=True)
+    engagement_lead = models.CharField(max_length=32, blank=True, null=True)
     industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems(), null=True)
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
