@@ -3,7 +3,7 @@ $dmb-prog-table-label-color: $dmb-color-grey-shuttle;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
 $dmb-prog-table-main-label-color: $dmb-color-black-russian;
 $dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
-$dmb-prog-table-active-bg-color: rgba($dmb-color-blue-alice, .36);
+$dmb-prog-table-active-bg-color: #F7FAFF;
 $dmb-prog-table-active-color: $dmb-color-blue-navy;
 $dmb-prog-table-row-height-mobile: 10px;
 $dmb-prog-table-row-height-desktop: 12px;
@@ -24,7 +24,8 @@ $dmb-prog-table-row-height-desktop: 12px;
     padding-top: 20px;
 
     @include bp(s) {
-      border-right: 1px solid $dmb-prog-table-border-color;
+      // border-right: 1px solid $dmb-prog-table-border-color;
+      box-shadow: 1px 1px 0 $dmb-prog-table-border-color;
       padding-top: 15px;
     }
 
@@ -61,10 +62,57 @@ $dmb-prog-table-row-height-desktop: 12px;
     margin-left: 6px;
 
     @include bp(s) {
+      bottom: 0;
       left: 100%;
       margin-left: 10px;
       position: absolute;
-      top: -$dmb-prog-table-row-height-desktop;
+    }
+  }
+
+  &__row-wrp {
+    position: relative;
+
+    &::before {
+      background-color: $h-gm-grey-100;
+      content: '';
+      height: $dmb-prog-table-row-height-mobile;
+      border-radius: 5px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 400%;
+
+      @include bp(s) {
+        display: none;
+      }
+    }
+
+    &:first-of-type {
+      margin-top: 40px;
+
+      @include bp(s) {
+        margin-top: 55px;
+      }
+    }
+
+    &:nth-of-type(3) {
+      margin-bottom: calc(1em + 21px);
+
+      @include bp(s) {
+        margin-bottom: 47px;
+      }
+    }
+
+    & ~ & {
+      margin-top: 32px;
+
+      @include bp(s) {
+        margin-top: 20px;
+      }
+
+      @include print-styles {
+        margin-top: 40px;
+      }
     }
   }
 
@@ -99,40 +147,37 @@ $dmb-prog-table-row-height-desktop: 12px;
       border-top-right-radius: $dmb-prog-table-row-height-desktop / 2;
       border-top-width: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
-    }
+      // We add an offset to make sure it's clear the bar overlaps the right column.
+      margin-left: 5px;
+      max-width: calc(400% - 5px);
 
-    &:first-of-type {
-      margin-top: 40px;
-
-      @include bp(s) {
-        margin-top: 55px;
-      }
-    }
-
-    &:nth-of-type(3) {
-      margin-bottom: calc(1em + 21px);
-
-      @include bp(s) {
-        margin-bottom: 47px;
-      }
-    }
-
-    & ~ & {
-      margin-top: 32px;
-
-      @include bp(s) {
-        margin-top: 20px;
+      &:not(&--no-value)::before {
+        background-color: $dmb-prog-table-bar-color;
+        content: '';
+        height: $dmb-prog-table-row-height-desktop;
+        left: -5px;
+        position: absolute;
+        top: - $dmb-prog-table-row-height-desktop / 2;
+        width: 5px;
       }
 
-      @include print-styles {
-        margin-top: 40px;
+
+      &.dmb-progress-table__row--value-four::after {
+        background: linear-gradient(90deg, rgba($h-white, 0) 0%, rgba($dmb-prog-table-active-bg-color, 1) 100%);
+        content: '';
+        height: 12px;
+        position: absolute;
+        right: 0;
+        top: -6px;
+        width: 25%;
       }
     }
 
     &--main {
       border-color: $dmb-prog-table-main-bar-color;
 
-      .dmb-progress-table__company {
+      .dmb-progress-table__company,
+      .dmb-progress-table__rating {
         color: $dmb-prog-table-main-label-color;
         font-size: 12px;
         font-weight: 500;
@@ -141,6 +186,7 @@ $dmb-prog-table-row-height-desktop: 12px;
           font-size: 16px;
         }
       }
+
     }
   }
 

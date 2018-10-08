@@ -616,6 +616,10 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     [dmb-dimension-tab='#{$name}'] {
       .dmb-progress-table__row--main {
         border-color: map-get($color, main);
+
+        &::before {
+          background-color: map-get($color, main);
+        }
       }
     }
 

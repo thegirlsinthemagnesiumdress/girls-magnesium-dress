@@ -44,7 +44,7 @@ class ProgressTableController {
    */
   getProgressWidth(dmb) {
     const progWidth = dmb * 100;
-    return `calc(${progWidth}% + ${this.floorDmbFactory_(dmb)}px)`;
+    return `calc(${progWidth}%`;
   }
 }
 
