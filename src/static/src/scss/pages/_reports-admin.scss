@@ -1,6 +1,7 @@
 .dmb-reports-admin {
   &__title {
-    margin-bottom: 48px;
+    @include dmb-responsive(margin-top, 32, 66);
+    @include dmb-responsive(margin-bottom, 16, 48);
   }
 
   &__subtitle {

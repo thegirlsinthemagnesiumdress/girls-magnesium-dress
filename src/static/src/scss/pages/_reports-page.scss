@@ -46,7 +46,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
     @include dmb-responsive(margin-bottom, 33, 40);
 
-    @media (max-width: 1023px) {
+    @media (max-width: 1279px) {
       max-width: 135px;
 
       &--wide {
@@ -60,7 +60,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   .h-c-page {
-    @media (max-width: 1023px) {
+    @media (max-width: 1279px) {
       padding: 0 24px;
     }
   }
@@ -79,8 +79,10 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     opacity: .45;
   }
 
-  .h-c-header__bar {
-    position: absolute !important;
+  .h-c-header {
+    &__bar {
+      position: absolute !important;
+    }
   }
 
   .glue-header.h-is-wholly-scrolled .h-c-header__bar  {
@@ -90,20 +92,22 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   &__hero {
     background: $dmb-color-blue-denim;
     color: $dmb-light-text-color;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    margin-top: -$_h-header-height--full-size;
-    min-height: 100vh;
-    padding: #{$_h-header-height--full-size + 24px} 0 40px;
+    padding: 24px 0 48px;
     position: relative;
 
-    @include bp(s) {
-      padding-bottom: #{$dmb-margin-medium + $dmb-button-height + $dmb-report-hero-padding-bottom};
+    @include bp(m) {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      min-height: calc(100vh - 64px);
+      padding: 52px 0;
     }
 
-    .h-c-headline {
-      color: inherit;
+    .h-c-page {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
     }
 
     .dmb-progress-circle {
@@ -144,9 +148,12 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   &__hero-title {
     font-family: $dmb-alt-font-family;
     font-weight: $h-font-weight-regular;
-    line-height: 1.27em;
 
     @include dmb-responsive(font-size, 44, 88);
+
+    @include bp(s) {
+      font-size: 72px;
+    }
   }
 
   &__hero-company {
@@ -154,8 +161,17 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__hero-date {
-    @include dmb-responsive(margin-bottom, 42, 0);
+    color: inherit;
+    margin: 24px 0 50px;
     @include dmb-responsive(margin-top, 8, 32);
+
+    @include bp(s) {
+      margin: 32px 0  57px;
+    }
+
+    @include bp(m) {
+      margin-bottom: 0px;
+    }
   }
 
   &__hero-benchmark-wrp {
@@ -165,15 +181,14 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     flex-direction: column;
 
     @include bp(s) {
+      flex-direction: row;
       width: 108%;
     }
 
     @include bp(m) {
-      flex-direction: row;
       margin-left: -8%;
     }
   }
-
 
   &__hero-circle-wrp,
   &__hero-sub-title {
@@ -187,25 +202,27 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
   &__hero-sub-title {
     display: none;
-    font-size: 40px !important;
+    font-size: 44px !important;
+    text-align: left;
+    margin-left: 40px;
 
     @include bp(s) {
       display: block;
     }
 
     @include bp(m) {
-      padding-left: 48px;
-    }
-
-    @include bp(l) {
       font-size: 66px !important;
     }
   }
 
   &__hero-subhead {
+    font-size: 14px;
     font-weight: 200;
-    @include dmb-responsive(font-size, 14, 20);
     @include dmb-responsive(margin-top, 40, 52);
+
+    @include bp(s) {
+      font-size: 20px;
+    }
 
     @include bp(m) {
       margin-left: -8%;
@@ -233,16 +250,16 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__hero-cta {
-    bottom: $dmb-report-hero-padding-bottom;
     display: none;
-    left: 0;
-    position: absolute;
-    right: 0;
 
     @include bp(s) {
       display: block;
+      margin-top: 55px;
     }
 
+    @include bp(m) {
+      margin-top: 0px;
+    }
   }
 
   &__hero-button {
@@ -282,7 +299,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     margin-bottom: 24px;
     @include dmb-responsive(font-size, 32, 44);
 
-    @media (max-width: 1023px) {
+    @media (max-width: 1279px) {
       margin-top: 43px;
     }
 
@@ -322,7 +339,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__maturity-intro {
-    @media (max-width: 1023px) {
+    @media (max-width: 1279px) {
       margin-bottom: 20px;
     }
   }
@@ -330,7 +347,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   // ZIPPY //
 
   &__dimension-zippy {
-    @media (max-width: 1023px) {
+    @media (max-width: 1279px) {
       margin-top: 40px;
     }
   }
@@ -743,7 +760,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       }
     }
 
-    @media (max-width: 1023px) {
+    @media (max-width: 599px) {
       &__label {
         display: none;
       }
