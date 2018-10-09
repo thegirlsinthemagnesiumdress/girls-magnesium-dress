@@ -95,6 +95,10 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     padding: 24px 0 48px;
     position: relative;
 
+    @include bp(s) {
+      padding: 48px 0;
+    }
+
     @include bp(m) {
       display: flex;
       flex-direction: column;
