@@ -339,8 +339,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
   }
 
-  // ZIPPY //
-
   &__dimension-zippy {
     @media (max-width: 1279px) {
       margin-top: 40px;
@@ -419,7 +417,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
   }
 
-  // TABS //
   &__tab-content {
     .dmb-progress-table {
       max-width: 980px;
@@ -836,24 +833,52 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         page-break-before: always;
       }
 
+      [dmb-side-panel-close] {
+        @media (max-width: 599px) {
+          right: 30px;
+          top: 40px;
+          width: 40px;
+        }
+      }
+
       #{$side-panel} {
         &__inner {
           @include bp(#{$resp-bp}) {
-            padding: 79px 80px;
+            padding: 79px 80px 97px;
           }
         }
 
         &__heading {
-          border-bottom: 1px solid $dmb-color-grey-gainsboro;
-          margin: 0 0 58px;
-          padding-bottom: 16px;
+          margin: 0 0 40px;
+
+          @include bp(#{$resp-bp}) {
+            border-bottom: 1px solid $dmb-color-grey-gainsboro;
+            margin-bottom: 58px;
+            padding-bottom: 16px;
+          }
+        }
+
+        &__left-block {
+          @include bp(#{$resp-bp}) {
+            padding-left: 70px;
+          }
         }
 
         &__list-container {
-          margin: 90px 0 82px;
+          margin: 50px 0 8px;
+
+          @include bp(#{$resp-bp}) {
+            margin: 90px 0 16px;
+          }
 
           @include print-styles {
             margin-bottom: $dmb-margin-small;
+          }
+
+          h2 {
+            @media (max-width: 599px) {
+              margin-bottom: 22px;
+            }
           }
         }
 
@@ -865,7 +890,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
         &__list-item {
           display: flex;
-          padding-bottom: 16px;
+          padding-bottom: 32px;
 
           h3,
           p,
@@ -880,18 +905,22 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
         &__list-item-heading {
           position: relative;
-        }
 
-        &__left-block {
-          padding-left: 70px;
+          @media (max-width: 599px) {
+            padding-left: 34px;
+          }
         }
 
         &__list-item-bullet {
           counter-increment: shields;
-          left: -50px;
+          left: 0;
           margin-right: 32px;
           min-width: 20px;
           position: absolute;
+
+          @include bp(#{$resp-bp}) {
+            left: -50px;
+          }
 
           &::after {
             bottom: 0;
@@ -921,7 +950,11 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
         &__advice {
           background: $dmb-color-blue-solitude;
-          padding: 40px 48px 18px;
+          padding: 24px;
+
+          @include bp(#{resp-bp}) {
+            padding: 40px 48px 18px;
+          }
 
           h3 {
             margin-bottom: 32px;
@@ -944,16 +977,27 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
           $advice-item: &;
           flex-basis: 33%;
           flex-grow: 1;
-          margin-bottom: 32px;
+
+          &:not(:last-of-type) {
+            margin-bottom: 32px;
+          }
 
           h4 {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
+
+            @include bp(#{resp-bp}) {
+              margin-bottom: 24px;
+            }
           }
         }
 
         &__research {
           border-bottom: 1px solid $dmb-color-grey-very-light;
-          padding: 82px 83px 90px;
+          padding: 48px 0 24px;
+
+          @include bp(#{resp-bp}) {
+            padding: 80px 80px 90px;
+          }
 
           p {
             &:nth-of-type(1) {
@@ -969,8 +1013,12 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
         &__footnotes {
           color: $dmb-color-grey-aluminium;
-          max-width: 775;
-          padding: 32px 83px 0;
+          max-width: 775px;
+          padding-top: 24px;
+
+          @include bp(#{resp-bp}) {
+            padding: 32px 83px 0;
+          }
 
           p {
             display: flex;
