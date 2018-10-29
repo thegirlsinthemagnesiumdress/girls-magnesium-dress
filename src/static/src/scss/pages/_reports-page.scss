@@ -44,7 +44,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     display: inline-block;
     padding-bottom: 8px;
 
-    @include dmb-responsive(margin-bottom, 33, 40);
+    @include dmb-responsive(margin-bottom, 35, 40);
 
     @media (max-width: 1279px) {
       max-width: 135px;
