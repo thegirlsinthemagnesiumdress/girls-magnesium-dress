@@ -3,6 +3,7 @@ import json
 import zipfile
 from exceptions import FetchResultException
 import random
+from datetime import datetime, timedelta
 
 from google.appengine.api import urlfetch
 
@@ -53,7 +54,9 @@ def fetch_results(response_id=None, file_format='json'):
     data_export_payload = {
         'format': file_format,
         'surveyId': settings.QUALTRICS_SURVEY_ID,
-        'seenUnansweredRecode': str(random.randint(1, 1000))
+        # 'seenUnansweredRecode': str(random.randint(1, 1000)),
+        'seenUnansweredRecode': '0',
+        'endDate': (datetime.now() + timedelta(days=random.randint(1, 1000))).strftime('%Y-%m-%dT%H:%M:%SZ'),
     }
 
     if response_id:
@@ -66,10 +69,10 @@ def fetch_results(response_id=None, file_format='json'):
         payload=json.dumps(data_export_payload),
         headers=headers
     )
-
     try:
         export_generation_response = json.loads(download_request_response.content)
         progress_id = export_generation_response['result']['id']
+        print('=======', progress_id, data_export_payload['endDate'])
     except KeyError:
         raise FetchResultException(export_generation_response)
 

@@ -99,6 +99,14 @@ DIMENSIONS = {
     ],
 }
 
+MULTI_ANSWER_QUESTION = [
+    'Q128',
+    'Q140',
+    'Q143',
+    'Q145',
+    'Q155',
+]
+
 INDUSTRIES = OrderedDict([
     ('afs', 'Accommodation and food service'),
     ('aer', 'Arts, entertainment & recreation'),

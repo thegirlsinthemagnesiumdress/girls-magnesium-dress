@@ -1,7 +1,10 @@
 from core.qualtrics import question
 from djangae.test import TestCase
 from django.test import override_settings
+import logging
+import mock
 
+logger = logging.getLogger(__name__)
 
 @override_settings(
     WEIGHTS={
@@ -10,8 +13,9 @@ from django.test import override_settings
     },
     DIMENSIONS={
         'activation': ['Q3', 'Q4'],
-        'audience': ['Q2'],
-    }
+        'audience': ['Q2', 'Q13'],
+    },
+    MULTI_ANSWER_QUESTION=['Q13'],
 )
 class DataToQuestionTest(TestCase):
     """Test case for `core.qualtrics.question.data_to_questions` function."""
@@ -33,7 +37,6 @@ class DataToQuestionTest(TestCase):
 
         'Q3': '1',
         'Q4': '1',
-        'Q5_1': '1',
 
         'Q5_2': '0',
         'Q5_3': '2',
@@ -44,11 +47,17 @@ class DataToQuestionTest(TestCase):
         'Q10': '0',
         'Q11': '1',
         'Q12': '4',
+        'Q13_--1.33-1': '1',
+        'Q13_--1-2-': '1',
+        'Q13_--1.5-3': '0',
+        'Q13_--2.33-4': '1',
+
     }
 
     def setUp(self):
         questions = question.data_to_questions(self.survey_result)
         self.question_dict = {item[0]: item for item in questions}
+        print ('dict', self.question_dict)
 
     def test_question_tuple_correctly_generated(self):
         """When weight and category are found, should be set."""
@@ -83,6 +92,62 @@ class DataToQuestionTest(TestCase):
     def test_question_tuple_skipped_if_not_found_by_regex(self):
         """When a question does not match the regex is not return by questions property."""
         self.assertIsNone(self.question_dict.get('Q1_1_TEXT'))
+
+    def test_multiple_answer_question_tuple(self):
+        question, answer, weight, category = self.question_dict.get('Q13')
+        expected_answer = [1.33, 1.5, 2.33]
+
+        self.assertCountEqual(answer, expected_answer)
+
+        for value in expected_answer:
+            self.assertIn(value, answer)
+
+    # @override_settings(
+    #     MULTI_ANSWER_QUESTION=[''],
+    # )
+    # @mock.patch('core.qualtrics.question.logging')
+    # def test_multiple_answer_question_missing_in_settings(self, logging):
+    #     self.assertTrue(logging.error.called)
+
+
+    def test_reg_ex(self):
+        matches = [
+            ('Q1', {
+                'question_id': 'Q1',
+                'multi_answer_value': None,
+            }),
+            ('Q2_1', {
+                'question_id': 'Q2_1',
+                'multi_answer_value': None,
+            }),
+            ('Q3_--1.33', {
+                'question_id': None,
+                'multi_answer_value': None,
+            }),
+            ('Q4_--1.33-1', {
+                'question_id': 'Q4',
+                'multi_answer_value': '1.33',
+            }),
+            ('Q5_1_TEXT', {
+                'question_id': None,
+                'multi_answer_value': None,
+            }),
+            ('sid', {
+                'question_id': None,
+                'multi_answer_value': None,
+            }),
+            ('Q6_1_--1.33-12', {
+                'question_id': 'Q6_1',
+                'multi_answer_value': '1.33',
+            }),
+        ]
+
+        for m in matches:
+            key, exp_match = m
+            match = question.match_question_key(key)
+            self.assertDictEqual(match, exp_match)
+
+    # def beautify_survey_data(self):
 
 
 class WeightedQuestionAverageTest(TestCase):
@@ -188,3 +253,4 @@ class DataReliableTest(TestCase):
         self.survey_result['EndDate'] = '2018-07-31 15:18:56'
         exclude_score = question.discard_scores(self.survey_result)
         self.assertFalse(exclude_score)
+
