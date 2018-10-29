@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'svg',
     'rest_framework',
     'rest_framework.authtoken',
+    'angular',
 
     # Application
     'core',
@@ -71,7 +72,7 @@ MIDDLEWARE_CLASSES = (
     'djangae.contrib.security.middleware.AppEngineSecurityMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
-    'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware'
+    'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware',
 )
 
 
@@ -85,6 +86,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dev')
 
 THIRD_PARTY = os.path.join(os.path.dirname(BASE_DIR), "third_party")
 NODE_PREFIX = os.path.join(BASE_DIR, "..")
+
+NG_OPENING_TAG = '{['
+NG_CLOSING_TAG = ']}'
 
 
 def check_session_csrf_enabled():
