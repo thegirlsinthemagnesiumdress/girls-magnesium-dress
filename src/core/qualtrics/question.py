@@ -2,6 +2,7 @@ import re
 import logging
 from datetime import datetime, timedelta
 from collections import defaultdict
+from exceptions import InvalidResponseData
 
 import numpy
 from django.conf import settings
@@ -37,7 +38,7 @@ def match_question_key(key):
 
 def clean_survey_data(data):
     """A single response object is a dict with a lot of data we don't need.
-    This function filters the dict keys to be only the questions and transforms the untuitive structure
+    This function filters the dict keys to be only the questions set in settings.DIMENSION and transforms the untuitive structure
     of the multi select answers.
 
     Multi select answers have a key that looks like {question_id}_--{question_answer_value}-{answer_index}
@@ -49,6 +50,10 @@ def clean_survey_data(data):
     """
     single_answer_questions_dict = defaultdict(list)
     multi_answer_questions_dict = defaultdict(list)
+    configured_question_ids = []
+
+    for k, v in settings.DIMENSIONS.iteritems():
+        configured_question_ids += v
 
     for k, v in data.iteritems():
         match = match_question_key(k)
@@ -64,6 +69,9 @@ def clean_survey_data(data):
             else:
                 multi_answer_questions_dict[match['question_id']].append('0')
 
+    questions_dict = single_answer_questions_dict.copy()
+    questions_dict.update(multi_answer_questions_dict)
+
     multi_missing_in_settings = set(multi_answer_questions_dict.keys()).difference(set(settings.MULTI_ANSWER_QUESTIONS))
     multi_missing_in_qualtrics = set(settings.MULTI_ANSWER_QUESTIONS).difference(set(multi_answer_questions_dict.keys()))
 
@@ -74,22 +82,20 @@ def clean_survey_data(data):
     if multi_missing_in_qualtrics:
         logging.warn("Some multi answer questions are defined in settings.MULTI_ANSWER_QUESTIONS but they haven't been properly defined in QUALTRICS. Here's the set of questions ids: {}".format(', '.join(multi_missing_in_qualtrics)))
 
-    questions_dict = single_answer_questions_dict.copy()
-    questions_dict.update(multi_answer_questions_dict)
-
-    configured_question_ids = []
-
-    for k, v in settings.DIMENSIONS.iteritems():
-        configured_question_ids += v
-
     missing_in_settings = set(questions_dict.keys()).difference(set(configured_question_ids))
-    missing_in_qualtrics = set(configured_question_ids).difference(set(questions_dict.keys()))
+
+    # Either not defined questions or unanswered questions.
+    ids_not_in_qualtrics = set(configured_question_ids).difference(set(questions_dict.keys()))
 
     if missing_in_settings:
         logging.warn("Some questions are defined in qualtrics but they haven't been added to settings.DIMENSIONS. Here's the set of questions ids: {}".format(', '.join(missing_in_settings)))
 
-    if missing_in_qualtrics:
-        logging.warn("Some questions are defined in settings.DIMENSIONS but they haven't been properly defined in QUALTRICS. Here's the set of questions ids: {}".format(', '.join(missing_in_qualtrics)))
+    if ids_not_in_qualtrics:
+        raise InvalidResponseData("Some questions are defined in settings.DIMENSIONS but they haven't been properly defined in QUALTRICS or (required) questions not been answered. Here's the set of questions ids: {}".format(', '.join(ids_not_in_qualtrics)))
+
+    # We ignore all the questions that are not configured in settings.DIMENSIONS
+    for id in missing_in_settings:
+        del questions_dict[id]
 
     return questions_dict
 

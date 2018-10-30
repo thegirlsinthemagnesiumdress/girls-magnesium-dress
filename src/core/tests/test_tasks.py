@@ -3,12 +3,14 @@ import mock
 from core.models import Survey, SurveyResult
 from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_result
 from djangae.test import TestCase
-from mocks import get_mocked_results
+from mocks import get_mocked_results, MOCKED_DIMENSIONS
 from mommy_recepies import make_survey, make_survey_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
 
-
+@override_settings(
+    DIMENSIONS=MOCKED_DIMENSIONS
+)
 class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
 
@@ -124,6 +126,9 @@ class EmailValidatorTestCase(TestCase):
         self.assertTrue(is_valid_email('email123@example.com'))
 
 
+@override_settings(
+    DIMENSIONS=MOCKED_DIMENSIONS
+)
 class CreateSurveyResultTestCase(TestCase):
     """Tests for send_mail_report function."""
     def setUp(self):

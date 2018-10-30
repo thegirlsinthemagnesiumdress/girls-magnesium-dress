@@ -1,4 +1,5 @@
 from core.qualtrics import question
+from core.qualtrics.exceptions import InvalidResponseData
 from djangae.test import TestCase
 from django.test import override_settings
 import mock
@@ -10,8 +11,8 @@ import mock
         'Q3': 3,
     },
     DIMENSIONS={
-        'activation': ['Q3', 'Q4'],
-        'audience': ['Q2', 'Q13'],
+        'activation': ['Q3', 'Q12'],
+        'audience': ['Q13'],
     },
     MULTI_ANSWER_QUESTION=['Q13'],
 )
@@ -34,16 +35,6 @@ class DataToQuestionTest(TestCase):
         'Q2_2_TEXT': '',
 
         'Q3': '1',
-        'Q4': '1',
-
-        'Q5_2': '0',
-        'Q5_3': '2',
-        'Q6': '0',
-        'Q7': '1',
-
-        'Q8': '0',
-        'Q10': '0',
-        'Q11': '1',
         'Q12': '4',
         'Q13_--1.33-1': '1',
         'Q13_--1-2': '1',
@@ -67,15 +58,6 @@ class DataToQuestionTest(TestCase):
         # category should be applied to Q_3
         self.assertEqual(category, 'activation')
 
-    def test_question_tuple_empty_category_is_none(self):
-        """When a category is not found should be set to None."""
-        question, answer, weight, category = self.question_dict.get('Q10')
-
-        self.assertEqual(question, 'Q10')
-        self.assertItemsEqual(answer, [0.0])
-        self.assertEqual(weight, 1)
-        self.assertIsNone(category)
-
     def test_question_tuple_use_default_weight(self):
         """When a weight is not found should be set to the default one."""
         question, answer, weight, category = self.question_dict.get('Q12')
@@ -83,7 +65,7 @@ class DataToQuestionTest(TestCase):
         self.assertEqual(question, 'Q12')
         self.assertItemsEqual(answer, [4.0])
         self.assertEqual(weight, 1)
-        self.assertIsNone(category)
+        self.assertEqual(category, 'activation')
 
     def test_question_tuple_skipped_if_not_found_by_regex(self):
         """When a question does not match the regex is not return by questions property."""
@@ -141,8 +123,6 @@ class DataToQuestionTest(TestCase):
             match = question.match_question_key(key)
             self.assertDictEqual(match, exp_match)
 
-    # def beautify_survey_data(self):
-
 
 class WeightedQuestionAverageTest(TestCase):
     """Test class for `core.qualtrics.question.weighted_questions_average` function."""
@@ -192,12 +172,6 @@ class GetQuestionDimensionTest(TestCase):
         dimension = question.get_question_dimension('Q3')
 
         self.assertEqual(dimension, 'activation')
-
-    def test_no_dimension_found_for_question(self):
-        """When a dimension cannot be found for a question it should return `None`."""
-        dimension = question.get_question_dimension('Q1')
-
-        self.assertIsNone(dimension)
 
 
 class DataReliableTest(TestCase):
@@ -254,9 +228,20 @@ class DataReliableTest(TestCase):
 class CleanDataTest(TestCase):
     """Test `core.qualtrics.question.clean_survey_data` function."""
 
-
+    @override_settings(
+        WEIGHTS={
+            'Q1': 2,
+            'Q3': 3,
+        },
+        DIMENSIONS={
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q5_1', 'Q13'],
+        },
+        MULTI_ANSWER_QUESTION=['Q13'],
+    )
     def test_survey_clean(self):
-        """When the survey has been filled up in less than 5 minutes, it should be excluded from best practice."""
+        """Should return the expected cleaned dictionary"""
+
         survey_result = {
             'Organization-sum': '0.0',
             'Organization-weightedAvg': '0.0',
@@ -298,7 +283,7 @@ class CleanDataTest(TestCase):
             self.assertListEqual(sorted(v), sorted(data[k]))
 
     def test_survey_clean_empty_q_answer(self):
-        """When the survey has been filled up in less than 5 minutes, it should be excluded from best practice."""
+        """Should throw an exeption"""
 
         survey_result = {
             'Organization-sum': '0.0',
@@ -327,15 +312,6 @@ class CleanDataTest(TestCase):
             'Q13_--2.33-4': '1',
 
         }
-        expected_clean_data = {
-            'Q4': ['1'],
-            'Q5_1': ['1'],
-            'Q13': ['1.33', '1', '0', '2.33'],
 
-        }
-
-        data = question.clean_survey_data(survey_result)
-        self.assertCountEqual(expected_clean_data.keys(), data.keys())
-        for k, v in expected_clean_data.items():
-            self.assertListEqual(sorted(v), sorted(data[k]))
+        self.assertRaises(InvalidResponseData, question.clean_survey_data, survey_result)
 

@@ -1,6 +1,30 @@
 from core.models import Survey
 
-
+MOCKED_DIMENSIONS = {
+    'ads': [
+        'Q3',
+        'Q8',
+    ],
+    'access': [
+        'Q4',
+        'Q10',
+    ],
+    'audience': [
+        'Q5_1',
+        'Q11',
+    ],
+    'automation': [
+        'Q5_2'
+    ],
+    'attribution': [
+        'Q5_3',
+        'Q12',
+    ],
+    'organization': [
+        'Q6',
+        'Q7',
+    ],
+}
 qualtrics_export = {
     'responses': [
         {
@@ -96,7 +120,7 @@ qualtrics_export = {
             'Q11': '1',
             'Q12': '4',
         }
-    ]
+    ],
 }
 
 
@@ -123,3 +147,4 @@ def get_mocked_results(response_id=None):
                 index = idx
                 break
         return {'responses': qualtrics_data[index:]}
+

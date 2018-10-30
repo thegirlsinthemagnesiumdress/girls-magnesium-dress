@@ -46,24 +46,27 @@ def _create_survey_result(results_data):
     """
 
     for data in results_data:
-        questions = question.data_to_questions(data)
-        dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
-        excluded_from_best_practice = question.discard_scores(data)
-        with transaction.atomic(xg=True):
-            response_id = data['ResponseID']
-            survey_result = SurveyResult.objects.create(
-                survey_id=data.get('sid'),
-                response_id=response_id,
-                excluded_from_best_practice=excluded_from_best_practice,
-                dmb=dmb,
-                dmb_d=dmb_d,
-            )
-            try:
-                s = Survey.objects.get(pk=data.get('sid'))
-                s.last_survey_result = survey_result
-                s.save()
-            except Survey.DoesNotExist:
-                logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+        try:
+            questions = question.data_to_questions(data)
+            dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
+            excluded_from_best_practice = question.discard_scores(data)
+            with transaction.atomic(xg=True):
+                response_id = data['ResponseID']
+                survey_result = SurveyResult.objects.create(
+                    survey_id=data.get('sid'),
+                    response_id=response_id,
+                    excluded_from_best_practice=excluded_from_best_practice,
+                    dmb=dmb,
+                    dmb_d=dmb_d,
+                )
+                try:
+                    s = Survey.objects.get(pk=data.get('sid'))
+                    s.last_survey_result = survey_result
+                    s.save()
+                except Survey.DoesNotExist:
+                    logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+        except exceptions.InvalidResponseData as e:
+            logging.error(e)
 
 
 def send_emails_for_new_reports(email_list):
