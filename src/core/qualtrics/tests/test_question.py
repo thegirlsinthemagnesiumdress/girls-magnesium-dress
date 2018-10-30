@@ -46,10 +46,9 @@ class DataToQuestionTest(TestCase):
         'Q11': '1',
         'Q12': '4',
         'Q13_--1.33-1': '1',
-        'Q13_--1-2-': '1',
+        'Q13_--1-2': '1',
         'Q13_--1.5-3': '0',
         'Q13_--2.33-4': '1',
-
     }
 
     def setUp(self):
@@ -92,12 +91,10 @@ class DataToQuestionTest(TestCase):
 
     def test_multiple_answer_question_tuple(self):
         question, answer, weight, category = self.question_dict.get('Q13')
-        expected_answer = [1.33, 1.5, 2.33]
-
+        expected_answer = [1.33, 1, 0, 2.33]
         self.assertCountEqual(answer, expected_answer)
 
-        for value in expected_answer:
-            self.assertIn(value, answer)
+        self.assertEqual(set(expected_answer), set(answer))
 
     @override_settings(
         MULTI_ANSWER_QUESTIONS=[],

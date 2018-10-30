@@ -23,8 +23,6 @@ def weighted_questions_average(questions_array):
     values = map(lambda x: sum(x[1]), questions_array)
     weights = map(lambda x: x[2], questions_array)
 
-
-
     return numpy.average(values, weights=weights)
 
 
@@ -55,29 +53,26 @@ def clean_survey_data(data):
     for k, v in data.iteritems():
         match = match_question_key(k)
 
-        # filter out questions without a response.
-        if v:
-            # is a single answer question
-            if match['question_id'] and not match['multi_answer_value']:
+        # is a single answer question
+        if match['question_id'] and not match['multi_answer_value']:
+            if v:
                 single_answer_questions_dict[match['question_id']].append(v)
-            # is a multi answer question
-            elif match['question_id'] and match['multi_answer_value']:
-                if match['multi_answer_value'] != '0':
-                    multi_answer_questions_dict[match['question_id']].append(match['multi_answer_value'])
-
+        # is a multi answer question
+        elif match['question_id'] and match['multi_answer_value']:
+            if v != '0':
+                multi_answer_questions_dict[match['question_id']].append(match['multi_answer_value'])
+            else:
+                multi_answer_questions_dict[match['question_id']].append(0)
 
     multi_missing_in_settings = set(multi_answer_questions_dict.keys()).difference(set(settings.MULTI_ANSWER_QUESTIONS))
     multi_missing_in_qualtrics = set(settings.MULTI_ANSWER_QUESTIONS).difference(set(multi_answer_questions_dict.keys()))
-    print single_answer_questions_dict
 
+    # Will need some rethinking if we have not required questions.
     if multi_missing_in_settings:
-        for id in multi_missing_in_settings:
-            print('dio')
-            logging.warn("Multi answer question with id {} is defined in qualtrics but is missing from settings.MULTI_ANSWER_QUESTIONS.".format(id))
+        logging.warn("Some multi answer questions are defined in qualtrics but they haven't been added to settings.MULTI_ANSWER_QUESTIONS. Here's the set of questions ids: {}".format(', '.join(multi_missing_in_settings)))
 
     if multi_missing_in_qualtrics:
-        for id in multi_missing_in_qualtrics:
-            logging.warn("Multi answer question with id {} is defined in settings.MULTI_ANSWER_QUESTIONS but it's not properly defined in QUALTRICS.".format(id))
+        logging.warn("Some multi answer questions are defined in settings.MULTI_ANSWER_QUESTIONS but they haven't been properly defined in QUALTRICS. Here's the set of questions ids: {}".format(', '.join(multi_missing_in_qualtrics)))
 
     questions_dict = single_answer_questions_dict.copy()
     questions_dict.update(multi_answer_questions_dict)
@@ -91,12 +86,10 @@ def clean_survey_data(data):
     missing_in_qualtrics = set(configured_question_ids).difference(set(questions_dict.keys()))
 
     if missing_in_settings:
-        for id in missing_in_settings:
-            logging.warn("Questions with id {} is defined in qualtrics but is missing from settings.DIMENSIONS.".format(id))
+        logging.warn("Some questions are defined in qualtrics but they haven't been added to settings.DIMENSIONS. Here's the set of questions ids: {}".format(', '.join(missing_in_settings)))
 
     if missing_in_qualtrics:
-        for id in missing_in_qualtrics:
-            logging.warn("Question with id {} is defined in settings.DIMENSIONS but it's not properly defined in QUALTRICS.".format(id))
+        logging.warn("Some questions are defined in settings.DIMENSIONS but they haven't been properly defined in QUALTRICS. Here's the set of questions ids: {}".format(', '.join(missing_in_qualtrics)))
 
     return questions_dict
 
@@ -119,9 +112,9 @@ def data_to_questions(survey_data):
             get_question_dimension(question_key)
         )
 
-    questions_key_value = map(lambda x: create_tuple(x, data), data)
+    questions = map(lambda x: create_tuple(x, data), data)
 
-    return questions_key_value
+    return questions
 
 
 def get_question_dimension(question_id):
