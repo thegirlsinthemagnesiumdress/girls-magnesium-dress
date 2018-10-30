@@ -44,6 +44,7 @@ def _create_survey_result(results_data):
     :param results_data: dictionary containing the downloaded response
         from Qualtrics API.
     """
+
     for data in results_data:
         questions = question.data_to_questions(data)
         dmb, dmb_d = benchmark.calculate_response_benchmark(questions)

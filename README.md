@@ -64,3 +64,46 @@ ie.
 When asked, you will probably want to override the existing static files, `yes`.
 
 Authentication will most likely be your @potatolondon.com account
+
+# Qualtrics
+We have two different surveys, one for the `production` environment and the other one used for `development` and `staging`
+
+* [Production](https://google.co1.qualtrics.com/ControlPanel/?ClientAction=EditSurvey&Section=SV_ebQG3AGFIgVzCFT&SubSection=&SubSubSection=&PageActionOptions=&TransactionID=2&Repeatable=0)
+* [Staging/Development](https://google.co1.qualtrics.com/ControlPanel/?ClientAction=EditSurvey&Section=SV_beH0HTFtnk4A5rD&SubSection=&SubSubSection=&PageActionOptions=&TransactionID=4&Repeatable=0)
+
+Unfortunately they're not linked, that means every change has to manually done in both.
+
+## Add(modify) a question
+
+* Create question in Qualtrics (remember that we have 2 different surveys for development and production)
+* Assign a score to each question - Check the Scoring section for more detail
+* Every question is assigned to a dimension (a category). Unfortunately we can't set a dimension in Qualtrics. In `src/core/settings/constants.py`, the `QuestionId` (visible in Qualtrics) needs to be added
+to the `DIMENSIONS` dictionary.
+**IMPORTANT**: If a questions is not added to the `DIMENSIONS` object the question won't be used to calculate the final benchmark
+* If the question is supposed to have a `weight` different from 1 it needs to be added to the `WEIGHTS` constant in `src/core/settings/constants.py`
+* If the question is multi answer it needs to be added to the `MULTI_ANSWER_QUESTION` constant in `src/core/settings/constants.py`
+
+
+## Scoring
+In order to calculate the benchmark out of the survey, we assign values to the questions answers.
+This can be done through the Survey Control Panel, using the [Recode Values](https://www.qualtrics.com/support/survey-platform/survey-module/question-options/recode-values/) functionality.
+
+Unfortunately the way qualtrics exports multiple answer data is buggy, if 2 answers have the same value some data gets losts.
+
+We decided to assign values values to the multiple answers following the following convention:
+```
+--{score}-{answer_index}
+```
+
+for instance these are valid values:
+```
+--1--1
+--1.33-2
+--0.5-1
+```
+for the sake of the benchmark this map to:
+```
+score = 1.0
+score = 1.33
+score = 0.5
+```

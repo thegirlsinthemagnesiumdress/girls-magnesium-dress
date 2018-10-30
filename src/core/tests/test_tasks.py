@@ -6,7 +6,6 @@ from djangae.test import TestCase
 from mocks import get_mocked_results
 from mommy_recepies import make_survey, make_survey_result
 from core.qualtrics.exceptions import FetchResultException
-from django.shortcuts import reverse
 from django.test import override_settings
 
 

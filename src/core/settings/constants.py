@@ -28,6 +28,7 @@ WEIGHTS = {
     'Q155': 2,
 }
 
+# If a question ID is not added to this list the question won't be considered for the final score
 DIMENSIONS = {
     'ads': [
         'Q102',
@@ -99,11 +100,11 @@ DIMENSIONS = {
     ],
 }
 
-MULTI_ANSWER_QUESTION = [
+MULTI_ANSWER_QUESTIONS = [
     'Q128',
     'Q140',
     'Q143',
-    'Q145',
+    'Q145_1',
     'Q155',
 ]
 
@@ -120,12 +121,10 @@ INDUSTRIES = OrderedDict([
     ('fi-i', 'Financial and Insurance - Insurance'),
     ('fi-o', 'Financial and Insurance - Other'),
     ('hh&sw', 'Human health & social work'),
-    ('ic-bnpj',
-    'Information and Communication - Books, news, periodicals, journals'),
+    ('ic-bnpj', 'Information and Communication - Books, news, periodicals, journals'),
     ('ic-o', 'Information and Communication - Other'),
     ('ic-s', 'Information and Communication - Software'),
-    ('ic-trmvm',
-    'Information and Communication - TV, radio, movies, video, music'),
+    ('ic-trmvm', 'Information and Communication - TV, radio, movies, video, music'),
     ('ic-t', 'Information and Communication - Telecommunications'),
     ('ma-c', 'Manufacturing - Chemicals'),
     ('ma-ctd', 'Manufacturing - Cosmetics, toiletries, detergents'),

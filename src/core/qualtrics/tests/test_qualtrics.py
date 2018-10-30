@@ -10,9 +10,9 @@ class CalculateResponseBenchmarkTest(TestCase):
     def test_calculate_response_benchmark_single_dimension(self):
         """Test for a single dimension."""
         responses = [
-            ('Q1', 1.0, 1, 'dimension_A'),
-            ('Q2', 3.0, 1, 'dimension_A'),
-            ('Q3', 2.0, 2, 'dimension_A'),
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
         ]
 
         dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses)
@@ -25,11 +25,11 @@ class CalculateResponseBenchmarkTest(TestCase):
     def test_calculate_response_benchmark_multi_dimensions(self):
         """Test for a multiple dimension."""
         responses = [
-            ('Q1', 1.0, 1, 'dimension_A'),
-            ('Q2', 3.0, 1, 'dimension_A'),
-            ('Q3', 2.0, 2, 'dimension_A'),
-            ('Q4', 1.0, 4, 'dimension_B'),
-            ('Q5', 1.0, 2, 'dimension_B'),
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+            ('Q4', [1.0], 3, 'dimension_B'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_B'),
         ]
 
         dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses)
@@ -39,8 +39,8 @@ class CalculateResponseBenchmarkTest(TestCase):
         self.assertTrue('dimension_A' in dmb_d_dictionary)
         self.assertTrue('dimension_B' in dmb_d_dictionary)
         self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
-        self.assertEqual(dmb_d_dictionary.get('dimension_B'), 1)
-        self.assertEqual(dmb, 1.5)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
+        self.assertEqual(dmb, 1.75)
 
 
 @override_settings(
@@ -58,9 +58,9 @@ class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
         """Test for a single reponse."""
         responses = [
             [
-                ('Q1', 1.0, 1, 'dimension_A'),
-                ('Q2', 3.0, 1, 'dimension_A'),
-                ('Q3', 2.0, 2, 'dimension_B'),
+                ('Q1', [1.0], 1, 'dimension_A'),
+                ('Q2', [3.0], 1, 'dimension_A'),
+                ('Q3', [2.0], 2, 'dimension_B'),
             ]
         ]
 
@@ -105,14 +105,14 @@ class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
         """Test for a multiple responses."""
         responses = [
             [
-                ('Q1', 1.0, 1, 'dimension_A'),
-                ('Q2', 3.0, 1, 'dimension_A'),
-                ('Q3', 2.0, 2, 'dimension_B'),
+                ('Q1', [1.0], 1, 'dimension_A'),
+                ('Q2', [3.0], 1, 'dimension_A'),
+                ('Q3', [2.0], 2, 'dimension_B'),
             ],
             [
-                ('Q1', 1.0, 1, 'dimension_C'),
-                ('Q2', 3.0, 1, 'dimension_C'),
-                ('Q3', 2.0, 2, 'dimension_A'),
+                ('Q1', [1.0], 1, 'dimension_C'),
+                ('Q2', [3.0], 1, 'dimension_C'),
+                ('Q3', [2.0], 2, 'dimension_A'),
             ]
         ]
 

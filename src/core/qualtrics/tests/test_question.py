@@ -1,10 +1,8 @@
 from core.qualtrics import question
 from djangae.test import TestCase
 from django.test import override_settings
-import logging
 import mock
 
-logger = logging.getLogger(__name__)
 
 @override_settings(
     WEIGHTS={
@@ -64,7 +62,7 @@ class DataToQuestionTest(TestCase):
         question, answer, weight, category = self.question_dict.get('Q3')
 
         self.assertEqual(question, 'Q3')
-        self.assertEqual(answer, 1.0)
+        self.assertItemsEqual(answer, [1.0])
 
         # weight should be applied to Q_3
         self.assertEqual(weight, 3)
@@ -76,7 +74,7 @@ class DataToQuestionTest(TestCase):
         question, answer, weight, category = self.question_dict.get('Q10')
 
         self.assertEqual(question, 'Q10')
-        self.assertEqual(answer, 0.0)
+        self.assertItemsEqual(answer, [0.0])
         self.assertEqual(weight, 1)
         self.assertIsNone(category)
 
@@ -85,7 +83,7 @@ class DataToQuestionTest(TestCase):
         question, answer, weight, category = self.question_dict.get('Q12')
 
         self.assertEqual(question, 'Q12')
-        self.assertEqual(answer, 4.0)
+        self.assertItemsEqual(answer, [4.0])
         self.assertEqual(weight, 1)
         self.assertIsNone(category)
 
@@ -102,13 +100,12 @@ class DataToQuestionTest(TestCase):
         for value in expected_answer:
             self.assertIn(value, answer)
 
-    # @override_settings(
-    #     MULTI_ANSWER_QUESTION=[''],
-    # )
-    # @mock.patch('core.qualtrics.question.logging')
-    # def test_multiple_answer_question_missing_in_settings(self, logging):
-    #     self.assertTrue(logging.error.called)
-
+    @override_settings(
+        MULTI_ANSWER_QUESTIONS=[],
+    )
+    @mock.patch('core.qualtrics.question.logging')
+    def test_multiple_answer_question_missing_in_settings(self, logging):
+        self.assertTrue(logging.warn.called)
 
     def test_reg_ex(self):
         matches = [
@@ -156,28 +153,29 @@ class WeightedQuestionAverageTest(TestCase):
     def test_weighted_questions_average(self):
         """Test the right benchmark is calculated given an array of responses."""
         responses = [
-            ('Q1', 1.0, 1, 'dimension_A'),
-            ('Q2', 3.0, 1, 'dimension_A'),
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q2', [1.0, 2.0], 1, 'dimension_A'),
         ]
 
         weighted_average = question.weighted_questions_average(responses)
-        self.assertEqual(weighted_average, 2)
+        self.assertAlmostEqual(weighted_average, 2.33, places=2)
 
     def test_weighted_questions_average_complex(self):
         """Test that given an array of questions the right weighted average is calculated."""
         weighted_average = 1.907407407
         responses = [
-            ('Q3', 2.0, 2, 'dimension_A'),
-            ('Q4', 0.0, 0.5, 'dimension_A'),
-            ('Q5_1', 2.0, 1, 'dimension_A'),
-            ('Q5_2', 0.0, 1, 'dimension_A'),
-            ('Q5_3', 3.0, 1, 'dimension_B'),
-            ('Q6', 4.0, 1, 'dimension_B'),
-            ('Q7', 2.0, 0.3, 'dimension_B'),
-            ('Q8', 4.0, 1, 'dimension_C'),
-            ('Q10', 0.0, 1, 'dimension_C'),
-            ('Q11', 1.0, 1, 'dimension_C'),
-            ('Q12', 2.0, 1, 'dimension_C'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+            ('Q4', [0.0], 0.5, 'dimension_A'),
+            ('Q5_1', [2.0], 1, 'dimension_A'),
+            ('Q5_2', [0.0], 1, 'dimension_A'),
+            ('Q5_3', [3.0], 1, 'dimension_B'),
+            ('Q6', [4.0], 1, 'dimension_B'),
+            ('Q7', [2.0], 0.3, 'dimension_B'),
+            ('Q8', [4.0], 1, 'dimension_C'),
+            ('Q10', [0.0], 1, 'dimension_C'),
+            ('Q11', [1.0], 1, 'dimension_C'),
+            ('Q12', [2.0], 1, 'dimension_C'),
         ]
         average = question.weighted_questions_average(responses)
         self.assertAlmostEqual(average, weighted_average, places=4)
