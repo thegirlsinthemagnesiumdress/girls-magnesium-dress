@@ -249,3 +249,93 @@ class DataReliableTest(TestCase):
         exclude_score = question.discard_scores(self.survey_result)
         self.assertFalse(exclude_score)
 
+
+
+class CleanDataTest(TestCase):
+    """Test `core.qualtrics.question.clean_survey_data` function."""
+
+
+    def test_survey_clean(self):
+        """When the survey has been filled up in less than 5 minutes, it should be excluded from best practice."""
+        survey_result = {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAC',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 14:18:56',
+
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': '1',
+            'Q4': '1',
+            'Q5_1': '1',
+            'Q13_--1.33-1': '1',
+            'Q13_--1-2': '1',
+            'Q13_--1.5-3': '0',
+            'Q13_--2.33-4': '1',
+
+        }
+        expected_clean_data = {
+            'Q3': ['1'],
+            'Q4': ['1'],
+            'Q5_1': ['1'],
+            'Q13': ['1.33', '1', '0', '2.33'],
+
+        }
+
+        data = question.clean_survey_data(survey_result)
+        self.assertCountEqual(expected_clean_data.keys(), data.keys())
+        for k, v in expected_clean_data.items():
+            self.assertListEqual(sorted(v), sorted(data[k]))
+
+    def test_survey_clean_empty_q_answer(self):
+        """When the survey has been filled up in less than 5 minutes, it should be excluded from best practice."""
+
+        survey_result = {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAC',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 14:18:56',
+
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': '',
+            'Q4': '1',
+            'Q5_1': '1',
+            'Q13_--1.33-1': '1',
+            'Q13_--1-2': '1',
+            'Q13_--1.5-3': '0',
+            'Q13_--2.33-4': '1',
+
+        }
+        expected_clean_data = {
+            'Q4': ['1'],
+            'Q5_1': ['1'],
+            'Q13': ['1.33', '1', '0', '2.33'],
+
+        }
+
+        data = question.clean_survey_data(survey_result)
+        self.assertCountEqual(expected_clean_data.keys(), data.keys())
+        for k, v in expected_clean_data.items():
+            self.assertListEqual(sorted(v), sorted(data[k]))
+

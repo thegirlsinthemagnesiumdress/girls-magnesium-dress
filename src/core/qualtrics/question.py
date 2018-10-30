@@ -59,10 +59,10 @@ def clean_survey_data(data):
                 single_answer_questions_dict[match['question_id']].append(v)
         # is a multi answer question
         elif match['question_id'] and match['multi_answer_value']:
-            if v != '0':
+            if v == '1':
                 multi_answer_questions_dict[match['question_id']].append(match['multi_answer_value'])
             else:
-                multi_answer_questions_dict[match['question_id']].append(0)
+                multi_answer_questions_dict[match['question_id']].append('0')
 
     multi_missing_in_settings = set(multi_answer_questions_dict.keys()).difference(set(settings.MULTI_ANSWER_QUESTIONS))
     multi_missing_in_qualtrics = set(settings.MULTI_ANSWER_QUESTIONS).difference(set(multi_answer_questions_dict.keys()))
