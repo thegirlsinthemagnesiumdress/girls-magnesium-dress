@@ -55,7 +55,6 @@ class DataToQuestionTest(TestCase):
     def setUp(self):
         questions = question.data_to_questions(self.survey_result)
         self.question_dict = {item[0]: item for item in questions}
-        print ('dict', self.question_dict)
 
     def test_question_tuple_correctly_generated(self):
         """When weight and category are found, should be set."""
@@ -104,8 +103,9 @@ class DataToQuestionTest(TestCase):
         MULTI_ANSWER_QUESTIONS=[],
     )
     @mock.patch('core.qualtrics.question.logging')
-    def test_multiple_answer_question_missing_in_settings(self, logging):
-        self.assertTrue(logging.warn.called)
+    def test_multiple_answer_question_missing_in_settings(self, logging_mock):
+        question.data_to_questions(self.survey_result)
+        self.assertTrue(logging_mock.warn.called)
 
     def test_reg_ex(self):
         matches = [

@@ -23,6 +23,8 @@ def weighted_questions_average(questions_array):
     values = map(lambda x: sum(x[1]), questions_array)
     weights = map(lambda x: x[2], questions_array)
 
+
+
     return numpy.average(values, weights=weights)
 
 
@@ -53,16 +55,29 @@ def clean_survey_data(data):
     for k, v in data.iteritems():
         match = match_question_key(k)
 
-        # is a single answer question
-        if match['question_id'] and not match['multi_answer_value']:
-            single_answer_questions_dict[match['question_id']].append(v)
-        # is a multi answer question
-        elif match['question_id'] and match['multi_answer_value']:
-            if match['multi_answer_value'] != '0':
-                multi_answer_questions_dict[match['question_id']].append(match['multi_answer_value'])
+        # filter out questions without a response.
+        if v:
+            # is a single answer question
+            if match['question_id'] and not match['multi_answer_value']:
+                single_answer_questions_dict[match['question_id']].append(v)
+            # is a multi answer question
+            elif match['question_id'] and match['multi_answer_value']:
+                if match['multi_answer_value'] != '0':
+                    multi_answer_questions_dict[match['question_id']].append(match['multi_answer_value'])
 
-    if set(multi_answer_questions_dict.keys()) != set(settings.MULTI_ANSWER_QUESTIONS):
-        logging.warn("Multi answer questions mismatch. It's either we're missing some question in settings or some of the questions are not properly configured on qualtrics")
+
+    multi_missing_in_settings = set(multi_answer_questions_dict.keys()).difference(set(settings.MULTI_ANSWER_QUESTIONS))
+    multi_missing_in_qualtrics = set(settings.MULTI_ANSWER_QUESTIONS).difference(set(multi_answer_questions_dict.keys()))
+    print single_answer_questions_dict
+
+    if multi_missing_in_settings:
+        for id in multi_missing_in_settings:
+            print('dio')
+            logging.warn("Multi answer question with id {} is defined in qualtrics but is missing from settings.MULTI_ANSWER_QUESTIONS.".format(id))
+
+    if multi_missing_in_qualtrics:
+        for id in multi_missing_in_qualtrics:
+            logging.warn("Multi answer question with id {} is defined in settings.MULTI_ANSWER_QUESTIONS but it's not properly defined in QUALTRICS.".format(id))
 
     questions_dict = single_answer_questions_dict.copy()
     questions_dict.update(multi_answer_questions_dict)
@@ -72,17 +87,22 @@ def clean_survey_data(data):
     for k, v in settings.DIMENSIONS.iteritems():
         configured_question_ids += v
 
-    if set(questions_dict.keys()) != set(configured_question_ids):
-        logging.warn("Some questions ids might be missing from settings.DIMENSIONS")
+    missing_in_settings = set(questions_dict.keys()).difference(set(configured_question_ids))
+    missing_in_qualtrics = set(configured_question_ids).difference(set(questions_dict.keys()))
+
+    if missing_in_settings:
+        for id in missing_in_settings:
+            logging.warn("Questions with id {} is defined in qualtrics but is missing from settings.DIMENSIONS.".format(id))
+
+    if missing_in_qualtrics:
+        for id in missing_in_qualtrics:
+            logging.warn("Question with id {} is defined in settings.DIMENSIONS but it's not properly defined in QUALTRICS.".format(id))
 
     return questions_dict
 
 
 def data_to_questions(survey_data):
     data = clean_survey_data(survey_data)
-
-    # filter out questions without a response.
-    question_keys_with_value = filter(lambda key: data.get(key), data)
 
     def create_tuple(question_key, data):
         question_value = 0
@@ -92,9 +112,6 @@ def data_to_questions(survey_data):
         except ValueError:
             pass
 
-        if not get_question_dimension(question_key):
-            logging.warn("Question with id {} is missing  settings.DIMENSIONS".format())
-
         return (
             question_key,
             question_value,
@@ -102,7 +119,7 @@ def data_to_questions(survey_data):
             get_question_dimension(question_key)
         )
 
-    questions_key_value = map(lambda x: create_tuple(x, data), question_keys_with_value)
+    questions_key_value = map(lambda x: create_tuple(x, data), data)
 
     return questions_key_value
 
