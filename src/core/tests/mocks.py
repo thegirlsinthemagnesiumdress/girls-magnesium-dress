@@ -33,6 +33,7 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '2',
+            'Finished': '1',
         },
         {
             'Organization-sum': '0.0',
@@ -64,6 +65,7 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '0',
+            'Finished': '0',
         },
         {
             'Organization-sum': '0.0',
@@ -95,6 +97,39 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '4',
+            'Finished': '1',
+        },
+        {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAC',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey test 4',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': '1',
+            'Q4': '1',
+            'Q5_1': '1',
+
+            'Q5_2': '0',
+            'Q5_3': '2',
+            'Q6': '0',
+            'Q7': '1',
+
+            'Q8': '0',
+            'Q10': '0',
+            'Q11': '1',
+            'Q12': '4',
+            'Finished': '1',
         }
     ]
 }
@@ -123,3 +158,9 @@ def get_mocked_results(response_id=None):
                 index = idx
                 break
         return {'responses': qualtrics_data[index:]}
+
+
+def get_mocked_results_unfished(response_id=None):
+    unfinished_res = [result for result in get_mocked_results(response_id=response_id)['responses']
+                      if result['Finished'] == '0']
+    return {'responses': unfinished_res}
