@@ -75,7 +75,6 @@ MIDDLEWARE_CLASSES = (
     'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware',
 )
 
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -89,6 +88,7 @@ NODE_PREFIX = os.path.join(BASE_DIR, "..")
 
 NG_OPENING_TAG = '{['
 NG_CLOSING_TAG = ']}'
+NG_APP_MARKER = 'angular-app'
 
 
 def check_session_csrf_enabled():
