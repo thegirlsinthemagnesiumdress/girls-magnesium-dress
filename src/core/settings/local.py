@@ -6,7 +6,8 @@ INSTALLED_APPS = tuple(list(INSTALLED_APPS) + [
 ])
 
 MIDDLEWARE_CLASSES = tuple([
-    'debug_toolbar.middleware.DebugToolbarMiddleware'
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'angular.middleware.EnsureAngularProtectionMiddleware',
 ] + list(MIDDLEWARE_CLASSES))
 
 INTERNAL_IPS = [
