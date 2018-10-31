@@ -12,6 +12,19 @@ DEFAULT_WEIGHT = 1
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
+_MULTI_MISSING_IN_SETTINGS = ("Some multi answer questions are defined in qualtrics but they haven't "
+                              "been added to settings.MULTI_ANSWER_QUESTIONS. Questions ids: {}")
+
+_MULTI_MISSING_IN_QUALTRICS = ("Some multi answer questions are defined in settings.MULTI_ANSWER_QUESTIONS but they "
+                               "haven't been properly defined in QUALTRICS. Questions ids: {}")
+
+_MISSING_IN_SETTINGS = ("Some questions are defined in qualtrics but they haven't been added to settings.DIMENSIONS."
+                        "Questions ids: {}")
+
+_IDS_NOT_IN_QUALTRICS = ("Some questions are defined in settings.DIMENSIONS but they haven't been properly "
+                         "defined in QUALTRICS or (required) questions not been answered. Questions ids: {}")
+
+
 def weighted_questions_average(questions_array):
     """[summary]
 
@@ -38,8 +51,9 @@ def match_question_key(key):
 
 def clean_survey_data(data):
     """A single response object is a dict with a lot of data we don't need.
-    This function filters the dict keys to be only the questions set in settings.DIMENSION and transforms the untuitive structure
-    of the multi select answers.
+
+    This function filters the dict keys to be only the questions set in settings.DIMENSION and transforms the untuitive
+    structure of the multi select answers.
 
     Multi select answers have a key that looks like {question_id}_--{question_answer_value}-{answer_index}
     and value '1' or '0' [whether they are selected or not]
@@ -48,56 +62,65 @@ def clean_survey_data(data):
     Returns:
         Dict
     """
-    single_answer_questions_dict = defaultdict(list)
-    multi_answer_questions_dict = defaultdict(list)
-    configured_question_ids = []
+    single_answer_questions_dict, multi_answer_questions_dict = _get_questions_by_type(data)
 
-    for k, v in settings.DIMENSIONS.iteritems():
-        configured_question_ids += v
+    configured_multi_answer = set(settings.MULTI_ANSWER_QUESTIONS)
+    multi_answer_from_survey = set(multi_answer_questions_dict.keys())
+    # multi answer that are in data received but not in configured settings
+    multi_missing_in_settings = multi_answer_from_survey - configured_multi_answer
+    # multi answer that are in configured settings but not in data received
+    multi_missing_in_qualtrics = configured_multi_answer - multi_answer_from_survey
 
-    for k, v in data.iteritems():
-        match = match_question_key(k)
+    # Will need some rethinking if we have not required questions.
+    if multi_missing_in_settings:
+        logging.warn(_MULTI_MISSING_IN_SETTINGS.format(', '.join(multi_missing_in_settings)))
 
-        # is a single answer question
-        if match['question_id'] and not match['multi_answer_value']:
-            if v:
-                single_answer_questions_dict[match['question_id']].append(v)
-        # is a multi answer question
-        elif match['question_id'] and match['multi_answer_value']:
-            if v == '1':
-                multi_answer_questions_dict[match['question_id']].append(match['multi_answer_value'])
-            else:
-                multi_answer_questions_dict[match['question_id']].append('0')
+    if multi_missing_in_qualtrics:
+        logging.warn(_MULTI_MISSING_IN_QUALTRICS.format(', '.join(multi_missing_in_qualtrics)))
 
     questions_dict = single_answer_questions_dict.copy()
     questions_dict.update(multi_answer_questions_dict)
 
-    multi_missing_in_settings = set(multi_answer_questions_dict.keys()).difference(set(settings.MULTI_ANSWER_QUESTIONS))
-    multi_missing_in_qualtrics = set(settings.MULTI_ANSWER_QUESTIONS).difference(set(multi_answer_questions_dict.keys()))
-
-    # Will need some rethinking if we have not required questions.
-    if multi_missing_in_settings:
-        logging.warn("Some multi answer questions are defined in qualtrics but they haven't been added to settings.MULTI_ANSWER_QUESTIONS. Here's the set of questions ids: {}".format(', '.join(multi_missing_in_settings)))
-
-    if multi_missing_in_qualtrics:
-        logging.warn("Some multi answer questions are defined in settings.MULTI_ANSWER_QUESTIONS but they haven't been properly defined in QUALTRICS. Here's the set of questions ids: {}".format(', '.join(multi_missing_in_qualtrics)))
-
-    missing_in_settings = set(questions_dict.keys()).difference(set(configured_question_ids))
-
-    # Either not defined questions or unanswered questions.
-    ids_not_in_qualtrics = set(configured_question_ids).difference(set(questions_dict.keys()))
+    questions_from_survey = set(questions_dict.keys())
+    # set of questions that are configured in settings.DIMENSIONS
+    configured_questions = set([item for questions in settings.DIMENSIONS.values() for item in questions])
+    # questions that are in survey data but not in configured settings
+    missing_in_settings = questions_from_survey - configured_questions
+    # questions that are in configured settings but are not in survey data or doesn't have an answer
+    ids_not_in_qualtrics = configured_questions - questions_from_survey
 
     if missing_in_settings:
-        logging.warn("Some questions are defined in qualtrics but they haven't been added to settings.DIMENSIONS. Here's the set of questions ids: {}".format(', '.join(missing_in_settings)))
+        logging.warn(_MISSING_IN_SETTINGS.format(', '.join(missing_in_settings)))
 
     if ids_not_in_qualtrics:
-        raise InvalidResponseData("Some questions are defined in settings.DIMENSIONS but they haven't been properly defined in QUALTRICS or (required) questions not been answered. Here's the set of questions ids: {}".format(', '.join(ids_not_in_qualtrics)))
+        raise InvalidResponseData(_IDS_NOT_IN_QUALTRICS.format(', '.join(ids_not_in_qualtrics)))
 
     # We ignore all the questions that are not configured in settings.DIMENSIONS
     for id in missing_in_settings:
         del questions_dict[id]
 
     return questions_dict
+
+
+def _get_questions_by_type(data):
+    single_answer = defaultdict(list)
+    multi_answer = defaultdict(list)
+
+    for question_key, question_value in data.iteritems():
+        match = match_question_key(question_key)
+
+        # is a single answer question
+        if match['question_id'] and not match['multi_answer_value']:
+            if question_value:
+                single_answer[match['question_id']].append(question_value)
+        # is a multi answer question
+        elif match['question_id'] and match['multi_answer_value']:
+            if question_value == '1':
+                multi_answer[match['question_id']].append(match['multi_answer_value'])
+            else:
+                multi_answer[match['question_id']].append('0')
+
+    return single_answer, multi_answer
 
 
 def data_to_questions(survey_data):

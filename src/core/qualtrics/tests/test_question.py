@@ -218,11 +218,9 @@ class DataReliableTest(TestCase):
 
     def test_survey_valid_time_check(self):
         """When the survey has been filled up in more than 5 minutes, it should be included in best practice."""
-
         self.survey_result['EndDate'] = '2018-07-31 15:18:56'
         exclude_score = question.discard_scores(self.survey_result)
         self.assertFalse(exclude_score)
-
 
 
 class CleanDataTest(TestCase):
@@ -241,7 +239,6 @@ class CleanDataTest(TestCase):
     )
     def test_survey_clean(self):
         """Should return the expected cleaned dictionary"""
-
         survey_result = {
             'Organization-sum': '0.0',
             'Organization-weightedAvg': '0.0',
@@ -284,7 +281,6 @@ class CleanDataTest(TestCase):
 
     def test_survey_clean_empty_q_answer(self):
         """Should throw an exeption"""
-
         survey_result = {
             'Organization-sum': '0.0',
             'Organization-weightedAvg': '0.0',
@@ -314,4 +310,3 @@ class CleanDataTest(TestCase):
         }
 
         self.assertRaises(InvalidResponseData, question.clean_survey_data, survey_result)
-
