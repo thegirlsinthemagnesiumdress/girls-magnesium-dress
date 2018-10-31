@@ -13,6 +13,7 @@
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-115330216-1', 'auto');
+      ga('set', 'referrer', document.referrer.split('?')[0]);
       ga('send', 'pageview');
     </script>
     <!-- End Google Analytics -->
@@ -40,7 +41,7 @@
 
     <title>Digital Maturity Benchmark</title>
 </head>
-<body class="{% block body_class %}{% endblock %}">
+<body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
 
   {% block header %}
