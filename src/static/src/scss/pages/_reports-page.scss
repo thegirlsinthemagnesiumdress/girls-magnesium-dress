@@ -36,6 +36,7 @@ $cta-border-color: $dmb-color-grey-link-water;
 $cta-color: $dmb-color-blue-royal;
 $cta-bg-color-alt: $h-gm-grey-50;
 $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
+$dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
 
 .dmb-report-page {
@@ -391,10 +392,9 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
   &__zippy-container {
     border-radius: 3px;
-    box-shadow: 0 2px 8px 0 $dmb-tabs-shadow-color;
+    box-shadow: $dmb-box-shadow;
     margin-bottom: 16px;
     padding: 16px 20px;
-
   }
 
   &__zippy-btn {
@@ -511,7 +511,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       &__page {
         border: 0;
         border-radius: $dmb-tabs-border-radius;
-        box-shadow: 0 2px 8px 0 $dmb-tabs-shadow-color;
+        box-shadow: $dmb-box-shadow;
 
 
         > h3 {
@@ -731,7 +731,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     background: $dmb-right-panel-trigger-bg-color;
     border: 0;
     border-radius: 50px 0 0 50px;
-    box-shadow: 0 2px 5px 0 rgba($dmb-right-panel-trigger-shadow-color, .5);
+    box-shadow: $dmb-box-shadow;
     color: $dmb-right-panel-trigger-color;
     display: inline-flex;
     font-family: $dmb-alt-font-family;
@@ -1056,6 +1056,64 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   &__appendix {
     @include print-styles {
       page-break-before: always;
+    }
+  }
+
+  &__print-button-container {
+    margin-top: 36.5px;
+
+    @media (max-width: 721px) {
+      display: none;
+    }
+  }
+
+  &__print-button {
+    border-radius: 50%;
+    bottom: 24px;
+    box-shadow: $dmb-box-shadow;
+    height: 70px;
+    padding: 20px;
+    position: fixed;
+    right: 33px;
+    width: 70px;
+    z-index: 10;
+
+    img {
+      width: 30px;
+    }
+
+    &::before {
+      background-color: rgba(#000, .07);
+      border-radius: 24.5px;
+      color: $dmb-light-text-color;
+      content: 'This page is designed to be printable';
+      font-family: $dmb-alt-font-family;
+      opacity: 0;
+      padding: 10px 20px;
+      position: absolute;
+      right: calc(100% + 14px);
+      top: 50%;
+      transform: translateY(-50%);
+      transition: visibility 0s, opacity .3s linear;
+      visibility: hidden;
+      white-space: nowrap;
+
+      @include dmb-responsive(font-size, 16, 18);
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &--dark-print-button-text {
+    .dmb-report-page__print-button {
+      &::before {
+        color: $dmb-color-blue-charade;
+      }
     }
   }
 }

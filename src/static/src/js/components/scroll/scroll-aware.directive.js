@@ -2,10 +2,11 @@ goog.module('dmb.components.scroll.directive');
 
 /**
  * @param {!Object} scrollService
+ * @param {!angular.$timeout} $timeout
  * @return {Object}
  * @ngInject
  */
-function scrollAwareDirective(scrollService) {
+function scrollAwareDirective(scrollService, $timeout) {
   return {
     restrict: 'A',
     /**
@@ -34,7 +35,11 @@ function scrollAwareDirective(scrollService) {
       window.addEventListener('resize', ctrl.onResize);
       scope.$on('$destroy', onDestroy);
 
-      ctrl.onReady();
+      // $timeout added to make sure all elements are initialise before scroll positions are calculated
+      $timeout(() => {
+        ctrl.onReady();
+      }, 0);
+
 
       /**
        * Checks if the element is on screen or not
