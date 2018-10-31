@@ -20,6 +20,10 @@ def report_static(request, sid):
     return render(request, 'public/report-static.html', {})
 
 
+def index_static(request):
+    return render(request, 'public/index.html', {})
+
+
 @login_required
 @survey_admin_required
 def reports_admin(request):
