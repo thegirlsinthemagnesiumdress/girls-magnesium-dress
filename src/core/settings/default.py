@@ -185,7 +185,6 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://www.google-analytics.com",
     "ajax.googleapis.com",
-    "'sha256-Zk5IgZ4b9G375sPeV/3uici3CrQ4you2YI5DwtVjrQs='",  # Analytics snippet.
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://www.google-analytics.com")
 CSP_MEDIA_SRC = ("'self'",)
