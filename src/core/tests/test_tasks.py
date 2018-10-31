@@ -33,8 +33,10 @@ class GetResultsTestCase(TestCase):
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
-
         self.assertTrue(send_email_mock.called)
+
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
 
     @override_settings(
         INDUSTRIES={
@@ -62,6 +64,8 @@ class GetResultsTestCase(TestCase):
 
         # send_emails_for_new_reports is called
         self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
@@ -77,6 +81,8 @@ class GetResultsTestCase(TestCase):
 
         # send_emails_for_new_reports is called
         self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results(response_id='AAB'))
@@ -103,6 +109,9 @@ class GetResultsTestCase(TestCase):
 
         # send_emails_for_new_reports is called
         self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        print args[0]
+        self.assertEqual(len(args[0]), 2)
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results')
