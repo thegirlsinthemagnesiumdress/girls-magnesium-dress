@@ -1,15 +1,18 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from angular.shortcuts import render
 
 from core.auth import survey_admin_required
 from core.models import Survey
 
+INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
+COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
+
 
 def registration(request):
     return render(request, 'public/registration.html', {
-        'industries': settings.INDUSTRIES,
-        'countries': settings.COUNTRIES,
+        'industries': INDUSTRIES_TUPLE,
+        'countries': COUNTRIES_TUPLE,
     })
 
 
@@ -25,6 +28,6 @@ def reports_admin(request):
     return render(request, 'public/reports-list.html', {
         'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
-        'industries': settings.INDUSTRIES,
-        'countries': settings.COUNTRIES,
+        'industries': INDUSTRIES_TUPLE,
+        'countries': COUNTRIES_TUPLE,
     })
