@@ -31,8 +31,10 @@ def get_results():
         responses = results.get('responses')
         _create_survey_result(responses)
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
-        email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses]
-        send_emails_for_new_reports(email_list)
+        email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses
+                      if _survey_completed(item.get('Finished'))]
+        if email_list:
+            send_emails_for_new_reports(email_list)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
 
@@ -44,27 +46,29 @@ def _create_survey_result(results_data):
     :param results_data: dictionary containing the downloaded response
         from Qualtrics API.
     """
-
     for data in results_data:
         try:
-            questions = question.data_to_questions(data)
-            dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
-            excluded_from_best_practice = question.discard_scores(data)
-            with transaction.atomic(xg=True):
-                response_id = data['ResponseID']
-                survey_result = SurveyResult.objects.create(
-                    survey_id=data.get('sid'),
-                    response_id=response_id,
-                    excluded_from_best_practice=excluded_from_best_practice,
-                    dmb=dmb,
-                    dmb_d=dmb_d,
-                )
-                try:
-                    s = Survey.objects.get(pk=data.get('sid'))
-                    s.last_survey_result = survey_result
-                    s.save()
-                except Survey.DoesNotExist:
-                    logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+            if _survey_completed(data.get('Finished')):
+                questions = question.data_to_questions(data)
+                dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
+                excluded_from_best_practice = question.discard_scores(data)
+                with transaction.atomic(xg=True):
+                    response_id = data['ResponseID']
+                    survey_result = SurveyResult.objects.create(
+                        survey_id=data.get('sid'),
+                        response_id=response_id,
+                        excluded_from_best_practice=excluded_from_best_practice,
+                        dmb=dmb,
+                        dmb_d=dmb_d,
+                    )
+                    try:
+                        s = Survey.objects.get(pk=data.get('sid'))
+                        s.last_survey_result = survey_result
+                        s.save()
+                    except Survey.DoesNotExist:
+                        logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+            else:
+                logging.warning('Found unfinshed survey {}: SKIP'.format(data.get('sid')))
         except exceptions.InvalidResponseData as e:
             logging.error(e)
 
@@ -130,3 +134,8 @@ def is_valid_email(email):
     except ValidationError:
         return False
     return True
+
+
+def _survey_completed(is_finished):
+    is_finished = int(is_finished)
+    return bool(is_finished)

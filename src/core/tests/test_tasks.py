@@ -3,10 +3,11 @@ import mock
 from core.models import Survey, SurveyResult
 from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_result
 from djangae.test import TestCase
-from mocks import get_mocked_results, MOCKED_DIMENSIONS
+from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished
 from mommy_recepies import make_survey, make_survey_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
+
 
 @override_settings(
     DIMENSIONS=MOCKED_DIMENSIONS
@@ -14,9 +15,15 @@ from django.test import override_settings
 class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
 
+    @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
-    def test_new_survey_first_time_download(self, download_mock):
-        """We're assuming that all the Surveys have been created previously."""
+    def test_new_survey_first_time_download(self, download_mock, send_email_mock):
+        """Test surveys are downloaded for the first time.
+
+        We're assuming that all the Surveys have been created previously and
+        SurveyResults are created only if the survey has been completed (`Finished`
+        flag set to `1`).
+        """
         make_survey()
         make_survey()
         make_survey()
@@ -28,6 +35,10 @@ class GetResultsTestCase(TestCase):
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
+        self.assertTrue(send_email_mock.called)
+
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
 
     @override_settings(
         INDUSTRIES={
@@ -35,9 +46,10 @@ class GetResultsTestCase(TestCase):
             'B': 'B',
         }
     )
+    @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
-    def test_surveys_results_and_survey_updated(self, download_mock):
-        """Survey results are saved anyway, regardless Survey's related object exists."""
+    def test_surveys_results_and_survey_updated(self, download_mock, send_email_mock):
+        """Survey results are saved anyway (if survey has been completed), regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
@@ -52,9 +64,15 @@ class GetResultsTestCase(TestCase):
         # Last result is updated.
         self.assertIsNotNone(survey_1.last_survey_result)
 
+        # send_emails_for_new_reports is called
+        self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
+
+    @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
-    def test_surveys_results_are_always_saved(self, download_mock):
-        """Survey results are saved anyway, regardless Survey's related object exists."""
+    def test_surveys_results_are_always_saved(self, download_mock, send_email_mock):
+        """Survey results are saved anyway (if survey has been completed), regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
@@ -63,8 +81,14 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
+        # send_emails_for_new_reports is called
+        self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
+
+    @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results(response_id='AAB'))
-    def test_partial_download_existing_survey(self, download_mock):
+    def test_partial_download_existing_survey(self, download_mock, send_email_mock):
         # survey has been created on datastore
         survey = make_survey()
         make_survey()
@@ -85,8 +109,15 @@ class GetResultsTestCase(TestCase):
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
 
+        # send_emails_for_new_reports is called
+        self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        print args[0]
+        self.assertEqual(len(args[0]), 2)
+
+    @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch('core.qualtrics.download.fetch_results')
-    def test_fetch_results_fails(self, download_mock):
+    def test_fetch_results_fails(self, download_mock, send_email_mock):
         exception_body = {
             'meta': {
                 'httpStatus': 400,
@@ -107,6 +138,32 @@ class GetResultsTestCase(TestCase):
             download_mock.assert_called_once_with(response_id='D')
             self.assertEqual(Survey.objects.count(), 1)
             self.assertEqual(SurveyResult.objects.count(), 1)
+
+            # send_emails_for_new_reports is not called
+            self.assertFalse(send_email_mock.called)
+
+    @mock.patch('core.tasks.send_emails_for_new_reports')
+    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results_unfished())
+    def test_unfinished_surveys_download(self, download_mock, send_email_mock):
+        """Test surveys downloaded are unfinished.
+
+        Unfinished surveys should not be saved as Survey, and the email sending
+        should not be triggered.
+        """
+        make_survey()
+        make_survey()
+        make_survey()
+
+        self.assertEqual(Survey.objects.count(), 3)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        get_results()
+
+        self.assertEqual(Survey.objects.count(), 3)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        # send_emails_for_new_reports is not called
+        self.assertFalse(send_email_mock.called)
 
 
 class EmailValidatorTestCase(TestCase):
@@ -130,7 +187,7 @@ class EmailValidatorTestCase(TestCase):
     DIMENSIONS=MOCKED_DIMENSIONS
 )
 class CreateSurveyResultTestCase(TestCase):
-    """Tests for send_mail_report function."""
+    """Tests for _create_survey_result function, when survey has been completed."""
     def setUp(self):
         self.responses = get_mocked_results().get('responses')
 
@@ -154,6 +211,46 @@ class CreateSurveyResultTestCase(TestCase):
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 1)
+
+
+class CreateSurveyResultUnfinishedTestCase(TestCase):
+    """Tests for _create_survey_result function, when survey has not been completed."""
+    def setUp(self):
+        self.responses = get_mocked_results_unfished().get('responses')
+
+    def test_survey_result_created(self):
+        """`SurveyResult` is always created."""
+        make_survey()
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        _create_survey_result(self.responses[:1])
+
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+    def test_survey_result_created_no_survey_found(self):
+        """When a Survey is not found, `SurveyResult` is created anyway."""
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        _create_survey_result(self.responses[:1])
+
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+    def test_survey_result_not_created_for_not_finished_survey(self):
+        """When a Survey is not completed, `SurveyResult` is not created."""
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        # Asserting we're logging a message if survey is not completed
+        with mock.patch('logging.warning') as logging_mock:
+            _create_survey_result(self.responses)
+            self.assertTrue(logging_mock.called)
+
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 0)
 
 
 class SendEmailTestCase(TestCase):
