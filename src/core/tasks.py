@@ -14,6 +14,7 @@ from djangae.db import transaction
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
 
+
 def get_results():
     """Download survey results from Qualtrics.
     The function will use the latest stored `response_id` if any, otherwise

@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
 
-from core.models import SurveyResult
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
 

@@ -1,6 +1,6 @@
 import json
 
-from core.models import Survey, SurveyResult
+from core.models import Survey
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import override_settings
@@ -8,6 +8,8 @@ import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result
+from django.utils.dateparse import parse_datetime
+from datetime import timedelta
 
 
 User = get_user_model()
@@ -69,6 +71,8 @@ class SurveyResultTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertAlmostEqual(float(response.data.get('dmb')), self.survey_result.dmb)
         self.assertEqual(response.data.get('response_id'), self.survey_result.response_id)
+        time_diff = abs(parse_datetime(response.data.get('started_at')) - self.survey_result.started_at)
+        self.assertTrue(time_diff < timedelta(seconds=1))
 
     def test_return_last_survey_result(self):
         survey_result = make_survey_result(
@@ -81,6 +85,9 @@ class SurveyResultTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertAlmostEqual(float(response.data.get('dmb')), survey_result.dmb)
         self.assertEqual(response.data.get('response_id'), survey_result.response_id)
+
+        time_diff = abs(parse_datetime(response.data.get('started_at')) - self.survey_result.started_at)
+        self.assertTrue(time_diff < timedelta(seconds=1))
 
     def test_survey_result_not_found(self):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
