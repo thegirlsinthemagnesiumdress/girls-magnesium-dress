@@ -1117,6 +1117,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
   &--dark-print-button-text {
     .dmb-report-page__print-button {
       &::before {
+        background-color: #f1f3f4;
         color: $dmb-color-blue-charade;
       }
     }
