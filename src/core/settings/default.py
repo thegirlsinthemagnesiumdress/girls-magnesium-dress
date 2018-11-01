@@ -177,28 +177,18 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = (
     "'self'",
     "https://fonts.googleapis.com",
-    "'unsafe-inline'",
-    # "'sha256-D9XwZtGGJx3RA4mBPaZHnGk4TtubENucxpnSadzYKrU='",
-    # "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
+    "'unsafe-inline'",  # Required by use angular ng-style.
 )
 CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com")
 CSP_CHILD_SRC = ("'self'",)
 CSP_SCRIPT_SRC = (
     "'self'",
     "https://www.google-analytics.com",
-    'ajax.googleapis.com',
+    "ajax.googleapis.com",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://www.google-analytics.com")
 CSP_MEDIA_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
-
-if DEBUG:
-    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
-    CSP_SCRIPT_SRC += (
-        "http://127.0.0.1:35729/livereload.js",
-        "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
-        "'unsafe-inline'",  # we need this because of Google Closure Library.
-    )
 
 
 # Djangae-specific settings
@@ -211,7 +201,6 @@ KEY_PREFIX = "%s-%s" % (application_id(), os.environ.get('CURRENT_VERSION_ID', "
 
 USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
 
-DJANGAE_CREATE_UNKNOWN_USER = False
 AUTH_USER_MODEL = "core.User"
 
 EMAIL_BACKEND = 'djangae.mail.AsyncEmailBackend'
