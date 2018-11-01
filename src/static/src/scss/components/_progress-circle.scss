@@ -10,15 +10,14 @@ $dmb-prog-circ-inverted-bar-color: #fff;
   font-family: $h-font-family-google-sans;
   font-size: 9px;
   height: 120px;
-  letter-spacing: .96px;
   max-width: 100%;
   position: relative;
   width: 120px;
 
   @include bp(m) {
     font-size: 12px;
-    height: 160px;
-    width: 160px;
+    height: 175px;
+    width: 175px;
   }
 
   @include print-styles {
@@ -54,6 +53,7 @@ $dmb-prog-circ-inverted-bar-color: #fff;
 
   &__text {
     left: 15%;
+    letter-spacing: 1px;
     position: absolute;
     right: 15%;
     text-align: center;
@@ -64,6 +64,7 @@ $dmb-prog-circ-inverted-bar-color: #fff;
   &__title {
     font-size: 1em;
     font-weight: $h-font-weight-medium;
+    letter-spacing: 1px;
     text-transform: uppercase;
   }
 

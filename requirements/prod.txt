@@ -11,3 +11,4 @@ GoogleAppEngineCloudStorageClient==1.9.22.1
 djangorestframework==3.7.7
 urllib3==1.23
 numpy==1.14.5
+git+https://github.com/marcoazza/django-angular-protect.git@2ceef613d8cc8dd81550cb116187b27bffc7e30d

@@ -1,5 +1,6 @@
 {% extends "./base.html" %}
 {% load staticfiles %}
+{% load angular %}
 
 {% block main %}
 <div class="dmb-reports-admin">
@@ -15,15 +16,13 @@
   <ul class="dmb-reports-admin__create-survey">
     <li>
       <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
-        Create a custom survey
+        Create a custom Survey
       </h3>
       <div class="dmb-reports-admin__survey-creation-text">
         Create a custom survey for your client using the button below.<br>
         You’ll be able to set the company name, industry and location.
       </div>
-      <button
-          class="dmb-right-panel-trigger h-c-button h-c-button--primary"
-          dmb-side-panel-trigger="#dmb-create-survey">
+      <button class="dmb-right-panel-trigger h-c-button h-c-button--primary" dmb-side-panel-trigger="#dmb-create-survey">
         Create new survey
       </button>
     </li>
@@ -32,19 +31,21 @@
         Send a referral link
       </h3>
       <p class="dmb-reports-admin__survey-creation-text">
-        Send your survey referral link to allow clients to create their own unique survey.<br>
-        Any surveys created with this link will be associated with your account.
+        Send your survey referral link to allow clients to create their own unique survey. Any surveys created with
+        this link will be associated with your account.
       </p>
       <div class="dmb-referral-copy-row">
-        <a href="{% url 'registration' %}#el={{engagement_lead}}" target="_blank" id="reference-link">
-            {{ request.get_host }}{% url 'registration' %}#el={{engagement_lead}}
+        <a href="{% url 'registration' %}#el={{engagement_lead|ng_mark_safe}}" target="_blank" id="reference-link">
+          {% url 'registration' %}#el={{engagement_lead|ng_mark_safe}}
         </a>
-        <button
-            class="h-c-button h-c-button--flat"
-            ngclipboard
-            data-clipboard-target="#reference-link"
-            aria-label="Copy to clipboard">
-          <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
+        <button class="h-c-button h-c-button--flat" ngclipboard data-clipboard-target="#reference-link" aria-label="Copy to clipboard">
+          <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fill-rule="evenodd">
+              <path d="M-2-1h24v24H-2z" />
+              <path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z"
+                fill="currentColor" fill-rule="nonzero" />
+            </g>
+          </svg>
         </button>
       </div>
     </li>
@@ -52,77 +53,47 @@
 
   <div class="dmb-reports-admin__table h-c-table__overflowcontainer">
     <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows glue-table-sort"
-      data-glue-table-sort-ascending-text="ascending"
-      data-glue-table-sort-descending-text="descending"
-      data-glue-table-sort-unsorted-text="unsorted"
-      role="table"
-      summary="A sample data table of countries, cities, and numbers"
-      width="100%"
-    >
+      data-glue-table-sort-ascending-text="ascending" data-glue-table-sort-descending-text="descending"
+      data-glue-table-sort-unsorted-text="unsorted" role="table" summary="A sample data table of countries, cities, and numbers"
+      width="100%">
       <thead>
         <tr role="row">
-          <th scope="col"
-            role="columnheader"
-            title="Sort by organisation name alphabetically"
-            data-glue-table-sort-type="alpha"
-          >Organisation name </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by date created chronologically"
-            data-glue-table-sort-type="datetime"
-          >Date created </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by survey completions numerically"
-            data-glue-table-sort-type="numeric"
-          >Survey completions </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by survey link"
-            data-glue-table-sort-type="alpha"
-          >Survey link </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by report link"
-            data-glue-table-sort-type="alpha"
-          >Report link </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by industry"
-            data-glue-table-sort-type="alpha"
-          >Industry </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by country"
-            data-glue-table-sort-type="alpha"
-          >Country </th>
+          <th scope="col" role="columnheader" title="Sort by organization name alphabetically"
+            data-glue-table-sort-type="alpha">Organization name </th>
+          <th scope="col" role="columnheader" title="Sort by date created chronologically" data-glue-table-sort-type="datetime">Date
+            created </th>
+          <th scope="col" role="columnheader" title="Sort by survey completions numerically" data-glue-table-sort-type="numeric">Survey
+            completions </th>
+          <th scope="col" role="columnheader" title="Sort by survey link" data-glue-table-sort-type="alpha">Survey link
+          </th>
+          <th scope="col" role="columnheader" title="Sort by report link" data-glue-table-sort-type="alpha">Report link
+          </th>
+          <th scope="col" role="columnheader" title="Sort by industry" data-glue-table-sort-type="alpha">Industry </th>
+          <th scope="col" role="columnheader" title="Sort by country" data-glue-table-sort-type="alpha">Country </th>
         </tr>
       </thead>
+      {% djangoblock %}
       <tbody>
         {% for survey in surveys %}
         {% if survey.sid %}
-            <tr role="row">
-              <td role="rowheader">{{survey.company_name}}</td>
-              <td role="gridcell" class="dmb-reports-admin__table-small-text">{{survey.created_at|date:"d/m/y H:i"}}</td>
-              <td role="gridcell" class="dmb-reports-admin__table-small-text">{{ survey.survey_results.count }}</td>
-              <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
-              <td role="gridcell">
-                <a  class="h-c-button h-c-button--flat"
-                    {% if survey.survey_results.count == 0 %}
-                      disabled
-                    {% else %}
-                      href="{% url 'report' survey.sid %}"
-                      target="_blank"
-                    {% endif %}>
-                  Report
-                </a>
-              </td>
-              <td role="gridcell">{{survey.get_industry_display}}</td>
-              <td role="gridcell">{{survey.get_country_display}}</td>
-            </tr>
-          {% endif %}
+        <tr role="row">
+          <td role="rowheader">{{survey.company_name}}</td>
+          <td role="gridcell">{{survey.created_at|date:"d/m/y H:i"}}</td>
+          <td role="gridcell">{{ survey.survey_results.count }}</td>
+          <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell">
+            <a class="h-c-button h-c-button--flat" {% if survey.survey_results.count==0 %} disabled {% else %} href="{% url 'report' survey.sid %}"
+              target="_blank" {% endif %}>
+              Report
+            </a>
+          </td>
+          <td role="gridcell">{{survey.get_industry_display}}</td>
+          <td role="gridcell">{{survey.get_country_display}}</td>
+        </tr>
+        {% endif %}
         {% endfor %}
       </tbody>
+      {% enddjangoblock %}
     </table>
     <div class="glue-js-table__caption"></div>
   </div>
@@ -144,7 +115,7 @@
         <p>
           Fill in these details to create a custom survey link for a specific company:
         </p>
-        <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()" ng-init="registrationCtrl.engagementLead='{{engagement_lead}}'">
+        <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()" ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'">
           <div class="input-wrp">
             <div class="dmb-input-wrp">
               <label for="companyName">Organisation name:</label>
@@ -155,8 +126,8 @@
               <label for="industry">Industry:</label>
               <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
                 <option value="" disabled selected>Select an industry</option>
-                {% for i_key, i_text in industries.items %}
-                <option value="{{i_key}}">{{i_text}}</option>
+                {% for i_key, i_text in industries %}
+                <option value="{{i_key|ng_mark_safe}}">{{i_text|ng_mark_safe}}</option>
                 {% endfor %}
               </select>
             </div>
@@ -164,8 +135,8 @@
               <label for="country">Country:</label>
               <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
                 <option value="" disabled selected>Select a country</option>
-                {% for c_key, c_text in countries.items %}
-                <option value="{{c_key}}">{{c_text}}</option>
+                {% for c_key, c_text in countries %}
+                <option value="{{c_key|ng_mark_safe}}">{{c_text|ng_mark_safe}}</option>
                 {% endfor %}
               </select>
             </div>
