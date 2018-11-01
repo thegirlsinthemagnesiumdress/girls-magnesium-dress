@@ -163,6 +163,10 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
   &__hero-company {
     display: block;
+
+    &:empty:before {
+      content: '\200b'; // unicode zero width space character
+    }
   }
 
   &__hero-date {
