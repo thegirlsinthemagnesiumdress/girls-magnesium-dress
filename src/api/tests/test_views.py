@@ -7,7 +7,7 @@ from django.test import override_settings
 import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
-from core.tests.mommy_recepies import make_survey
+from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
 User = get_user_model()
@@ -56,7 +56,7 @@ class SurveyResultTest(APITestCase):
     def setUp(self):
         self.survey = make_survey(sid="92345123451234512345123451234512")
 
-        self.survey_result = SurveyResult.objects.create(
+        self.survey_result = make_survey_result(
             survey=self.survey,
             response_id='AAA',
             dmb=1.0,
@@ -71,7 +71,7 @@ class SurveyResultTest(APITestCase):
         self.assertEqual(response.data.get('response_id'), self.survey_result.response_id)
 
     def test_return_last_survey_result(self):
-        survey_result = SurveyResult.objects.create(
+        survey_result = make_survey_result(
             survey=self.survey,
             response_id='BBB',
             dmb=2.0,
@@ -106,7 +106,7 @@ class SurveyDetailView(APITestCase):
 
     def setUp(self):
         self.survey = Survey.objects.create(company_name='test company', industry="re", country="it")
-        self.survey_result = SurveyResult.objects.create(
+        self.survey_result = make_survey_result(
             survey=self.survey,
             response_id='AAA',
             dmb=1.0,
@@ -229,14 +229,14 @@ class SurveyIndustryResultTest(APITestCase):
         self.survey = Survey.objects.create(company_name='test company', industry='IT', country="it")
         self.survey_2 = Survey.objects.create(company_name='test company 2', industry='IT', country="it")
 
-        survey_result = SurveyResult.objects.create(
+        survey_result = make_survey_result(
             survey=self.survey,
             response_id='AAA',
             dmb=1.0,
             dmb_d=json.dumps(self.survey_1_dmb_d)
         )
 
-        survey_result_2 = SurveyResult.objects.create(
+        survey_result_2 = make_survey_result(
             survey=self.survey_2,
             response_id='AAB',
             dmb=2.0,
@@ -266,7 +266,7 @@ class SurveyIndustryResultTest(APITestCase):
         When a survey has multiple results, only the last one should be use
         to calculate the aggregated benchmarks.
         """
-        survey_result_3 = SurveyResult.objects.create(
+        survey_result_3 = make_survey_result(
             survey=self.survey_2,
             response_id='AAC',
             dmb=2.0,

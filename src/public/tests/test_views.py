@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 from django.test import override_settings
 
 from core.models import SurveyResult
-from core.tests.mommy_recepies import make_survey
+from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
 @override_settings(
@@ -24,14 +24,14 @@ class ReportsAdminTestCase(TestCase):
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()
 
-        self.survey_result_1 = SurveyResult.objects.create(
+        self.survey_result_1 = make_survey_result(
             survey=self.survey_1,
             response_id='AAA',
             dmb=1.0,
             dmb_d='{}'
         )
 
-        self.survey_result_2 = SurveyResult.objects.create(
+        self.survey_result_2 = make_survey_result(
             survey=self.survey_2,
             response_id='BBB',
             dmb=1.0,
