@@ -33,6 +33,12 @@ function scrollAwareDirective(scrollService, $timeout) {
 
       scrollService.addListener(ctrl.checkElementPosition);
       window.addEventListener('resize', ctrl.onResize);
+
+      scope.$on('content-updated', () => {
+        ctrl.cacheValid = false;
+        ctrl.onReady();
+      });
+
       scope.$on('$destroy', onDestroy);
 
       // $timeout added to make sure all elements are initialise before scroll positions are calculated
