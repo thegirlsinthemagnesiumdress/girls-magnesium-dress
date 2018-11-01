@@ -1,4 +1,4 @@
-goog.module('dmb.components.reportList.directive');
+goog.module('dmb.components.reportAdmin.directive');
 
 /**
  * Report List directive.

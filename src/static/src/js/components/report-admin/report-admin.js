@@ -1,9 +1,9 @@
-goog.module('dmb.components.reportList');
+goog.module('dmb.components.reportAdmin');
 
-const directive = goog.require('dmb.components.reportList.directive');
+const directive = goog.require('dmb.components.reportAdmin.directive');
 
 /** @const {string} */
-const MODULE_NAME = 'reportList';
+const MODULE_NAME = 'reportAdmin';
 
 
 /**
