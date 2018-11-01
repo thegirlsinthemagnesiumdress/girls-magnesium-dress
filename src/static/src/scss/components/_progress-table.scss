@@ -169,7 +169,7 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
       .dmb-progress-table__rating {
         color: $dmb-prog-table-main-label-color;
         font-size: 12px;
-        font-weight: 500;
+        font-weight: $h-font-weight-medium;
 
         @include bp(s) {
           font-size: 16px;
@@ -219,6 +219,8 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
   }
 
   &__company {
+    font-weight: $h-font-weight-regular;
+
     @include bp(s) {
       bottom: 0;
       margin-right: 27px;

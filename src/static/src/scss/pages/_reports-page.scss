@@ -338,6 +338,8 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__maturity-intro {
+    max-width: 400px;
+
     @media (max-width: 1279px) {
       margin-bottom: 20px;
     }
