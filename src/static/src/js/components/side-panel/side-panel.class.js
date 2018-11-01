@@ -142,7 +142,9 @@ class SidePanel {
     document.addEventListener('keydown', this.onEscapeKey);
     this.focusTrapInstance = new FocusTrap(this.el);
 
-    this.el.focus();
+    window.setTimeout(() => {
+      this.el.focus();
+    });
   }
 
 
