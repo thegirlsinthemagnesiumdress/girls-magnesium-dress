@@ -79,6 +79,7 @@ class SurveyResult(models.Model):
     survey = models.ForeignKey('Survey', null=True, related_name="survey_results")
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
+    started_at = models.DateTimeField()
     excluded_from_best_practice = models.BooleanField(default=False)
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)
