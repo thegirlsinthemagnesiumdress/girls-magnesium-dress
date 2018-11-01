@@ -38,4 +38,5 @@ def reports_admin(request):
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
+        'host': request.get_host(),
     })

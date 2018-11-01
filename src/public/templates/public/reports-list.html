@@ -37,8 +37,8 @@
         Any surveys created with this link will be associated with your account.
       </p>
       <div class="dmb-referral-copy-row">
-        <a href="{% url 'registration' %}#el={{engagement_lead|ng_mark_safe}}" target="_blank" id="reference-link">
-            {% url 'registration' %}#el={{engagement_lead|ng_mark_safe}}
+        <a href="{{host|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}" target="_blank" id="reference-link">
+            {{host|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}
         </a>
         <button
             class="h-c-button h-c-button--flat"
