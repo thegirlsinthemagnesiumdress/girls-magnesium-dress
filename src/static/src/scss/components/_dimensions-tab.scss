@@ -64,13 +64,13 @@
   }
 
   .dmb-progress-circle {
-    font-family: $dmb-alt-font-family;
-    width: 96px;
+    width: 106px;
 
     &__results {
+      font-family: $dmb-alt-font-family;
       margin-top: -16px;
       text-align: center;
-      width: 96px;
+      width: 106px;
     }
 
     &__result {

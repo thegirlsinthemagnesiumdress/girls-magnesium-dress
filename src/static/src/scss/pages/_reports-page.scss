@@ -44,7 +44,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     display: inline-block;
     padding-bottom: 8px;
 
-    @include dmb-responsive(margin-bottom, 33, 40);
+    @include dmb-responsive(margin-bottom, 35, 40);
 
     @media (max-width: 1279px) {
       max-width: 135px;
@@ -281,7 +281,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     margin: 88px 0;
 
     .dmb-progress-circle {
-      margin-right: 64px;
+      margin-right: 640px;
     }
   }
 
@@ -338,6 +338,8 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__maturity-intro {
+    max-width: 400px;
+
     @media (max-width: 1279px) {
       margin-bottom: 20px;
     }
@@ -474,6 +476,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
         color: $dmb-color-grey-aluminium;
         height: 100%;
+        padding: 14px 10px;
         width: 100%;
 
         &:hover::before {
@@ -482,13 +485,15 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
         &::before {
           border-radius: 5px;
-          bottom: 7px;
           content: '';
           display: block;
-          left: 12px;
+          height: 43px;
+          left: 50%;
+          min-width: 140px;
           position: absolute;
-          right: 12px;
-          top: 7px;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          width: 80%;
           z-index: -1;
         }
 

@@ -3,51 +3,54 @@
 {% load angular %}
 
 {% block main %}
-<div class="h-c-page h-u-mt-xl dmb-reports-admin">
-  <div class="h-c-page">
-    <h1 class="dmb-reports-admin__title h-c-headline h-c-headline--one h-u-font-weight-medium">Digital Maturity Admin Dashboard</h1>
-    <h2 class="dmb-reports-admin__subtitle h-c-headline h-c-headline--four h-u-font-weight-medium">How to create new surveys:</h2>
+<div class="dmb-reports-admin" dmb-reports-admin" dmb-reports-admin>
+  <div class="dmb-reports-admin__intro">
+    <h1 class="dmb-reports-admin__title h-c-headline h-c-headline--one h-u-font-weight-medium">
+      Digital Maturity Admin Dashboard
+    </h1>
+    <h2 class="dmb-reports-admin__subtitle h-c-headline h-c-headline--four h-u-font-weight-medium">
+      You can create a new survey in two ways:
+    </h2>
   </div>
-  <div class="h-c-grid">
-    <div class="h-c-grid__col h-c-grid__col--10">
-      <ul class="dmb-reports-admin__survey-creation-box dmb-box dmb-box--alt">
-        <li>
-          <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
-            1. Create a custom Survey
-          </h3>
-          <p class="dmb-reports-admin__survey-creation-text">
-            Create a custom survey for your client using the button below.
-            You’ll be able to set the company name, industry and location.
-          </p>
-          <button
-              class="dmb-right-panel-trigger h-c-button h-c-button--primary"
-              dmb-side-panel-trigger="#dmb-create-survey">
-            Create new survey
-          </button>
-        </li>
-        <li class="dmb-reports-admin__referral-wrp">
-          <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
-            2. Send a referral link
-          </h3>
-          <p class="dmb-reports-admin__survey-creation-text">
-            Send your survey referral link to allow clients to create their own unique survey. Any surveys created with this link will be associated with your account.
-          </p>
-          <div class="dmb-referral-copy-row">
-            <a href="{% url 'registration' %}#el={{engagement_lead|ng_mark_safe}}" target="_blank" id="reference-link">
-                {% url 'registration' %}#el={{engagement_lead|ng_mark_safe}}
-            </a>
-            <button
-                class="h-c-button h-c-button--flat"
-                ngclipboard
-                data-clipboard-target="#reference-link"
-                aria-label="Copy to clipboard">
-              <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
-            </button>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+
+  <ul class="dmb-reports-admin__create-survey">
+    <li>
+      <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
+        Create a custom Survey
+      </h3>
+      <p class="dmb-reports-admin__survey-creation-text">
+        Create a custom survey for your client using the button below.<br>
+        You’ll be able to set the company name, industry and location.
+      </p>
+      <button
+          class="dmb-right-panel-trigger h-c-button h-c-button--primary"
+          dmb-side-panel-trigger="#dmb-create-survey">
+        Create new survey
+      </button>
+    </li>
+    <li class="dmb-reports-admin__referral-wrp">
+      <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
+        Send a referral link
+      </h3>
+      <p class="dmb-reports-admin__survey-creation-text">
+        Send your survey referral link to allow clients to create their own unique survey.<br>
+        Any surveys created with this link will be associated with your account.
+      </p>
+      <div class="dmb-referral-copy-row">
+        <a href="{{host|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}" target="_blank" id="reference-link">
+            {{host|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}
+        </a>
+        <button
+            class="h-c-button h-c-button--flat"
+            ngclipboard
+            data-clipboard-target="#reference-link"
+            aria-label="Copy to clipboard">
+          <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
+        </button>
+      </div>
+    </li>
+  </ul>
+
   <div
       dmb-side-panel
       class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--right"
@@ -131,7 +134,7 @@
     </div>
   </div>
 
-  <div class="h-c-table__overflowcontainer h-u-mt-l">
+  <div class="dmb-reports-admin__table h-c-table__overflowcontainer">
     <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows glue-table-sort"
       data-glue-table-sort-ascending-text="ascending"
       data-glue-table-sort-descending-text="descending"
@@ -144,9 +147,9 @@
         <tr role="row">
           <th scope="col"
             role="columnheader"
-            title="Sort by organization name alphabetically"
+            title="Sort by organisation name alphabetically"
             data-glue-table-sort-type="alpha"
-          >Organization name </th>
+          >Organisation name </th>
           <th scope="col"
             role="columnheader"
             title="Sort by date created chronologically"
@@ -210,5 +213,4 @@
     <div class="glue-js-table__caption"></div>
   </div>
 </div>
-
 {% endblock %}

@@ -1,4 +1,18 @@
 .dmb-reports-admin {
+  margin: 0 16px;
+
+  @include bp(m) {
+    margin: 0 50px;
+  }
+
+  @include bp(l) {
+    margin: 0 100px;
+  }
+
+  &__intro {
+    padding: 0 24px;
+  }
+
   &__title {
     @include dmb-responsive(margin-top, 32, 66);
     @include dmb-responsive(margin-bottom, 16, 48);
@@ -8,9 +22,12 @@
     margin-bottom: 16px;
   }
 
-  &__survey-creation-box {
+  &__create-survey {
+    background: $dmb-color-blue-solitude;
     list-style: none;
-    margin-left: 0;
+    margin: 0 0 64px;
+    max-width: 1280px;
+    padding: 24px;
 
     li {
       @include bp(m) {
@@ -41,9 +58,47 @@
     }
   }
 
-  #survey-link {
+  #survey-link {  // sass-lint:disable-line no-ids
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  &__table {
+    background: none;
+
+    th[data-glue-table-sort-type]::after,
+    th[glue-table-sort-type]::after {
+      display: block;
+      margin-left: 0;
+    }
+
+    .h-c-table--datatable-altrows {
+      tr {
+        &:nth-of-type(even) {
+          background-color: $dmb-color-blue-solitude;
+        }
+      }
+    }
+
+    .dmb-reports-admin__table-small-text {
+      font-size: 14px;
+    }
+  }
+
+  .glue-js-table__caption {
+    display: none !important;
+  }
+
+  .h-c-table {
+    th[data-glue-table-sort-type],
+    th[glue-table-sort-type] {
+      &:hover,
+      &:focus {
+        &::after {
+          will-change: unset; //to remove stange resizing on mouseout of table header cells
+        }
+      }
+    }
   }
 }

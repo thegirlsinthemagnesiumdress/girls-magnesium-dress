@@ -1,12 +1,14 @@
+$dmb-prog-table-row-height-mobile: 10px;
+$dmb-prog-table-row-height-desktop: 12px;
+
 $dmb-prog-table-border-color: $dmb-color-grey-zircon;
-$dmb-prog-table-label-color: $dmb-color-grey-shuttle;
+$dmb-prog-table-label-color: $dmb-color-blue-charade;
 $dmb-prog-table-bar-color: $dmb-color-grey-light;
 $dmb-prog-table-main-label-color: $dmb-color-black-russian;
 $dmb-prog-table-main-bar-color: $dmb-color-blue-charade;
-$dmb-prog-table-active-bg-color: $dmb-color-blue-alice2;
+$dmb-prog-table-active-bg-color: $dmb-color-blue-alice;
 $dmb-prog-table-active-color: $dmb-color-blue-navy;
-$dmb-prog-table-row-height-mobile: 10px;
-$dmb-prog-table-row-height-desktop: 12px;
+$dmb-prog-table-banner-color:  $dmb-color-blue-charade;
 
 .dmb-progress-table {
   display: flex;
@@ -46,6 +48,7 @@ $dmb-prog-table-row-height-desktop: 12px;
   }
 
   &__col-heading {
+    color: $dmb-color-grey-charcoal;
     display: none;
     font-size: 10px;
     font-weight: 400;
@@ -166,7 +169,7 @@ $dmb-prog-table-row-height-desktop: 12px;
       .dmb-progress-table__rating {
         color: $dmb-prog-table-main-label-color;
         font-size: 12px;
-        font-weight: 500;
+        font-weight: $h-font-weight-medium;
 
         @include bp(s) {
           font-size: 16px;
@@ -180,6 +183,7 @@ $dmb-prog-table-row-height-desktop: 12px;
     align-items: center;
     background: rgba($h-gm-grey-100, 1);
     border-radius: 5px;
+    color: $dmb-prog-table-banner-color;
     display: flex;
     justify-content: center;
     left: 0;
@@ -215,6 +219,8 @@ $dmb-prog-table-row-height-desktop: 12px;
   }
 
   &__company {
+    font-weight: $h-font-weight-regular;
+
     @include bp(s) {
       bottom: 0;
       margin-right: 27px;
