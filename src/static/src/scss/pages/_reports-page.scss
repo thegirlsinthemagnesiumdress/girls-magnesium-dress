@@ -1091,7 +1091,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
       background-color: rgba(#000, .07);
       border-radius: 24.5px;
       color: $dmb-light-text-color;
-      content: 'This page is designed to be printable';
+      content: attr(data-tooltip-text);
       font-family: $dmb-alt-font-family;
       opacity: 0;
       padding: 10px 20px;
