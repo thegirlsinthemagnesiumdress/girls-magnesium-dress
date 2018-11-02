@@ -1,5 +1,6 @@
 import logging
 import os
+import pytz
 
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
@@ -10,6 +11,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.shortcuts import reverse
 from django.template.loader import get_template
+from django.db import IntegrityError
 from djangae.db import transaction
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
@@ -57,20 +59,23 @@ def _create_survey_result(results_data):
                 excluded_from_best_practice = question.discard_scores(data)
                 with transaction.atomic(xg=True):
                     response_id = data['ResponseID']
-                    survey_result = SurveyResult.objects.create(
-                        survey_id=data.get('sid'),
-                        response_id=response_id,
-                        started_at=make_aware(parse_datetime(data.get('StartDate'))),
-                        excluded_from_best_practice=excluded_from_best_practice,
-                        dmb=dmb,
-                        dmb_d=dmb_d,
-                    )
                     try:
-                        s = Survey.objects.get(pk=data.get('sid'))
-                        s.last_survey_result = survey_result
-                        s.save()
-                    except Survey.DoesNotExist:
-                        logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+                        survey_result = SurveyResult.objects.create(
+                            survey_id=data.get('sid'),
+                            response_id=response_id,
+                            started_at=make_aware(parse_datetime(data.get('StartDate')), pytz.timezone('US/Mountain')),
+                            excluded_from_best_practice=excluded_from_best_practice,
+                            dmb=dmb,
+                            dmb_d=dmb_d,
+                        )
+                        try:
+                            s = Survey.objects.get(pk=data.get('sid'))
+                            s.last_survey_result = survey_result
+                            s.save()
+                        except Survey.DoesNotExist:
+                            logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+                    except IntegrityError as e:
+                        logging.warn("Integrity error for result with id={}, start={} and survey_id={}".format(response_id, data.get('StartDate'), data.get('sid')))
             else:
                 logging.warning('Found unfinshed survey {}: SKIP'.format(data.get('sid')))
         except exceptions.InvalidResponseData as e:

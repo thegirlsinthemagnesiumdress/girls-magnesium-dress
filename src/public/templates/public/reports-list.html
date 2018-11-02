@@ -236,34 +236,6 @@
           <td role="gridcell">{[survey.country_name]}</td>
         </tr>
       </tbody>
-
-      {% djangoblock %}
-      <tbody>
-        {% for survey in surveys %}
-        {% if survey.sid %}
-            <tr role="row">
-              <td role="rowheader">{{survey.company_name}}</td>
-              <td role="gridcell">{{survey.created_at|date:"d/m/y H:i"}}</td>
-              <td role="gridcell">{{ survey.survey_results.count }}</td>
-              <td role="gridcell"><a href="{{survey.link}}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
-              <td role="gridcell">
-                <a  class="h-c-button h-c-button--flat"
-                    {% if survey.survey_results.count == 0 %}
-                      disabled
-                    {% else %}
-                      href="{% url 'report' survey.sid %}"
-                      target="_blank"
-                    {% endif %}>
-                  Report
-                </a>
-              </td>
-              <td role="gridcell">{{survey.get_industry_display}}</td>
-              <td role="gridcell">{{survey.get_country_display}}</td>
-            </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-      {% enddjangoblock %}
     </table>
     <div class="glue-js-table__caption"></div>
   </div>
