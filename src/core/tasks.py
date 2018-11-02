@@ -11,6 +11,8 @@ from django.core.validators import EmailValidator
 from django.shortcuts import reverse
 from django.template.loader import get_template
 from djangae.db import transaction
+from django.utils.timezone import make_aware
+from django.utils.dateparse import parse_datetime
 
 
 def get_results():
@@ -19,7 +21,7 @@ def get_results():
     download all the available results from Qualtrics.
     """
     try:
-        survey_result = SurveyResult.objects.latest('loaded_at')
+        survey_result = SurveyResult.objects.latest('started_at')
         response_id = survey_result.response_id
         logging.info('Some Survey results has already been downloaded, partially download new results.')
     except SurveyResult.DoesNotExist:
@@ -55,6 +57,7 @@ def _create_survey_result(results_data):
                 response_id = data['ResponseID']
                 survey_result = SurveyResult.objects.create(
                     survey_id=data.get('sid'),
+                    started_at=make_aware(parse_datetime(data.get('StartDate'))),
                     response_id=response_id,
                     excluded_from_best_practice=excluded_from_best_practice,
                     dmb=dmb,

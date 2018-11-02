@@ -69,7 +69,7 @@ class SurveyResultsDetail(ListAPIView):
     filter_backends = (OrderingFilter,)
     lookup_field = 'survey_id'
     lookup_url_kwarg = 'sid'
-    ordering = ('-loaded_at')
+    ordering = ('-started_at')
 
     def get_queryset(self):
         lookup_url_kwarg = self.kwargs.get(self.lookup_url_kwarg)

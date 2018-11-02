@@ -7,7 +7,6 @@ from mocks import get_mocked_results, get_mocked_results_unfished
 from mommy_recepies import make_survey, make_survey_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
-import logging
 
 
 class GetResultsTestCase(TestCase):

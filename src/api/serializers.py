@@ -19,7 +19,7 @@ class SurveyResultSerializer(ModelSerializer):
 
     class Meta:
         model = SurveyResult
-        fields = ('response_id', 'dmb', 'dmb_d', 'loaded_at')
+        fields = ('response_id', 'dmb', 'dmb_d', 'started_at')
 
 
 class SurveyWithResultSerializer(ModelSerializer):
