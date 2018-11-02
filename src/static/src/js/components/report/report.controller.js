@@ -16,6 +16,7 @@ class ReportController {
    * Report controller
    *
    * @param {!angular.Scope} $scope
+   * @param {!angular.Scope} $rootScope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
    * @param {!glue.ng.state.StateService} glueState
@@ -29,6 +30,7 @@ class ReportController {
    */
   constructor(
       $scope,
+      $rootScope,
       $http,
       $location,
       glueState,
@@ -128,6 +130,7 @@ class ReportController {
         this.industryResult = res.data;
         reportService.industryDmb_d = this.industryResult['dmb_d'];
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
+        $rootScope.$broadcast('content-updated');
       });
     });
 

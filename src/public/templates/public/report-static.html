@@ -70,7 +70,15 @@
     </div>
   </header>
 
+  <div class="dmb-report-page__print-button-container" dmb-scroll-aware dmb-scroll-aware-enter-class="dmb-report-page--dark-print-button-text" dmb-scroll-aware-exit-class="dmb-report-page--dark-print-button-text">
+    <button class="dmb-report-page__print-button" aria-label="Print report button" onclick="window.print();" data-tooltip-text="This page is designed to be printable">
+      <img src="{% static 'img/icons/print.svg' %}" alt="print icon">
+    </button>
+  </div>
+
   <main class="dmb-report-page__content" id="dmb-report-page-main">
+
+
     <div class="dmb-report-page__panel-trigger" dmb-pin-top>
       <button
           class="dmb-right-panel-trigger dmb-h-hidden--print"
@@ -98,8 +106,8 @@
                   dmb-progress-circle="reportCtrl.result.dmb"
                   class="dmb-progress-circle__prog-svg"
                   viewbox="0 0 120 120">
-                <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
-                <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
+              <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
+              <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
               </svg>
               <div class="dmb-progress-circle__text">
                 <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
@@ -556,14 +564,7 @@
 {% endblock %}
 
 {% block footer %}
-  <footer class="h-c-footer h-c-footer--topmargin h-c-footer--simple dmb-h-hidden--print" id="footer-simple">
-    <section class="h-c-footer__global">
-      <div>
-        <p class="h-c-headline h-c-headline--subhead">Want this report in a printable format?</p>
-        <button class="h-c-button h-c-button--print" onclick="window.print();">Print report</button>
-      </div>
-    </section>
-
+  <footer class="h-c-footer h-c-footer--topmargin h-c-footer--simple dmb-h-hidden--print" id="footer-simple" ng-cloak>
     <section class="h-c-footer__global">
       <div class="h-c-footer__logo">
         <a href="https://www.google.com" title="Google">
