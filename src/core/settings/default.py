@@ -294,7 +294,6 @@ WHITELISTED_USERS = [
 MIN_ITEMS_INDUSTRY_THRESHOLD = 100
 
 CONTACT_EMAIL = "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id())
-REPLY_TO_EMAIL = "Digital Maturity Benchmark <team-dmb@google.com>"
 
 SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
     '@google.com',
