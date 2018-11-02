@@ -3,6 +3,7 @@
 {% load angular %}
 
 
+{# Marking this safe because is not not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
 {% block bootstrap_data %}{{bootstrap_data|ng_mark_safe}}{% endblock %}
 
 {% block main %}

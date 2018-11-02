@@ -1,6 +1,5 @@
 from core.models import Survey, SurveyResult
 from rest_framework.serializers import ModelSerializer, CharField, JSONField, IntegerField
-from django.urls import reverse
 
 
 class SurveySerializer(ModelSerializer):
