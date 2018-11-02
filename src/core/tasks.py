@@ -22,14 +22,14 @@ def get_results():
     """
     try:
         survey_result = SurveyResult.objects.latest('started_at')
-        response_id = survey_result.response_id
+        started_after = survey_result.started_at
         logging.info('Some Survey results has already been downloaded, partially download new results.')
     except SurveyResult.DoesNotExist:
-        response_id = None
+        started_after = None
         logging.info('No Survey results has already been downloaded so far, download all the results.')
 
     try:
-        results = download.fetch_results(response_id=response_id)
+        results = download.fetch_results(started_after=started_after)
         responses = results.get('responses')
         _create_survey_result(responses)
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC

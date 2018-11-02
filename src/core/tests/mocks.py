@@ -1,4 +1,5 @@
 from core.models import Survey
+from django.utils import dateparse
 
 
 qualtrics_export = {
@@ -147,20 +148,20 @@ def generate_surveys():
     return surveys
 
 
-def get_mocked_results(response_id=None):
-    if not response_id:
+def get_mocked_results(started_after=None):
+    if not started_after:
         return qualtrics_export
     else:
         index = len(qualtrics_export)
         qualtrics_data = qualtrics_export.get('responses')
         for idx, item in enumerate(qualtrics_data):
-            if item.get('ResponseID') == response_id:
+            if dateparse.parse_datetime(item.get('StartDate')) > started_after:
                 index = idx
                 break
         return {'responses': qualtrics_data[index:]}
 
 
-def get_mocked_results_unfished(response_id=None):
-    unfinished_res = [result for result in get_mocked_results(response_id=response_id)['responses']
+def get_mocked_results_unfished(started_after=None):
+    unfinished_res = [result for result in get_mocked_results(started_after=started_after)['responses']
                       if result['Finished'] == '0']
     return {'responses': unfinished_res}
