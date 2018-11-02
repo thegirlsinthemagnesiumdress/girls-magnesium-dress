@@ -1,5 +1,7 @@
 goog.module('dmb.components.reportAdmin.directive');
 
+const reportAdminCtrl = goog.require('dmb.components.reportAdmin.controller');
+
 /**
  * Report List directive.
  * @param {!angular.$location} $location
@@ -12,6 +14,8 @@ goog.module('dmb.components.reportAdmin.directive');
 function ReportListDirective($location, $timeout, sidePanelService) {
   return {
     restrict: 'A',
+    controller: reportAdminCtrl.main,
+    controllerAs: reportAdminCtrl.CONTROLLER_AS_NAME,
     link() {
       $timeout(() => {
         if ($location.hash().includes('create-survey')) {
@@ -19,7 +23,6 @@ function ReportListDirective($location, $timeout, sidePanelService) {
         }
       }, 0);
     },
-    controller() {},
   };
 }
 

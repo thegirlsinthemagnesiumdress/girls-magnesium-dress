@@ -44,5 +44,7 @@ def reports_admin(request):
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
         'host': request.get_host(),
-        'bootstrap_data': JSONRenderer().render(serialized_data.data)
+        'bootstrap_data': JSONRenderer().render({
+            'surveys': serialized_data.data
+        })
     })

@@ -43,6 +43,15 @@ const module = angular.module('dmb', [
   'ngclipboard',
 ]);
 
+try {
+  const bootstrapDatString = document.querySelector('[data-bootstrap-data]').dataset.bootstrapData;
+  const bootstrapData = bootstrapDatString ? JSON.parse(bootstrapDatString) : {};
+
+  module.constant('bootstrapData', bootstrapData);
+
+} catch (e) {
+  console.warn('Not valid json');
+}
 
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
