@@ -8,6 +8,9 @@ import mock
 from core.qualtrics import download, exceptions
 from core.tests.mocks import qualtrics_export
 from djangae.test import TestCase
+from django.conf import settings
+from datetime import datetime
+from django.utils import dateparse
 
 
 export_generation_response = {
@@ -77,14 +80,95 @@ class FetchResultsTest(TestCase):
         ]
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
-    def test_fetch_results_correctly(self, mock_request):
-        """When export is generated correctly."""
+    def test_fetch_results_correctly_all_results(self, mock_request):
+        """fetch_results collects results correctly, and 'startDate' parameter is not in the request payload.
+
+        Export is generated correctly."""
         mock_request.side_effect = self.mocks
 
         download.fetch_results()
 
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 3)
+
+        progress_id = export_generation_response['result']['id']
+        # assert the correct URLs are called
+        calls = [
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                payload=mock.ANY,
+                url=settings.RESPONSE_EXPORT_BASE_URL),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))),
+        ]
+        mock_request.assert_has_calls(calls)
+
+        # check 'startDate' is not in the payload in the first call
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertFalse('startDate' in kwargs.get('payload'))
+
+    @mock.patch('google.appengine.api.urlfetch.fetch')
+    def test_fetch_results_correctly_after_start_date(self, mock_request):
+        """fetch_results collects results correctly, and 'startDate' parameter is in the request payload.
+
+        Export is generated correctly."""
+        mock_request.side_effect = self.mocks
+
+        download.fetch_results(started_after=dateparse.parse_datetime('2018-07-31 14:16:06'))
+
+        mock_request.assert_called()
+        self.assertEqual(mock_request.call_count, 3)
+
+        progress_id = export_generation_response['result']['id']
+        # assert the correct URLs are called
+        calls = [
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                payload=mock.ANY,
+                url=settings.RESPONSE_EXPORT_BASE_URL),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))),
+        ]
+        mock_request.assert_has_calls(calls)
+
+        # check 'startDate' is not in the payload in the first call
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertTrue('startDate' in kwargs.get('payload'))
+
+    @mock.patch('google.appengine.api.urlfetch.fetch')
+    def test_fetch_results_fails_started_after_wrong_format(self, mock_request):
+        """fetch_results will fail if started_after is not in isoformat."""
+        mock_request.side_effect = self.mocks
+        self.mocks[0] = MockResponse(error_response)
+        mock_request.side_effect = self.mocks
+
+        self.assertRaises(exceptions.FetchResultException, download.fetch_results, started_after=datetime.now())
+        mock_request.assert_called()
+        self.assertEqual(mock_request.call_count, 1)
+
+        # check 'startDate' is not in the payload in the first call
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertTrue('startDate' in kwargs.get('payload'))
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_generate_export_fails(self, mock_request):
