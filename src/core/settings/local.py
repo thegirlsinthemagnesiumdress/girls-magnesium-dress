@@ -6,7 +6,8 @@ INSTALLED_APPS = tuple(list(INSTALLED_APPS) + [
 ])
 
 MIDDLEWARE_CLASSES = tuple([
-    'debug_toolbar.middleware.DebugToolbarMiddleware'
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'angular.middleware.EnsureAngularProtectionMiddleware',
 ] + list(MIDDLEWARE_CLASSES))
 
 INTERNAL_IPS = [
@@ -22,7 +23,7 @@ CACHES = {
 
 # This is just to allow the inline styles on Django error pages when DEBUG = True
 # this settings file won't be used on production only during local development
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com")  + ("localhost:8000",)
+CSP_STYLE_SRC += ("localhost:8000",)
 
 # Enable this for Hot Module Replacement on development only
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("'unsafe-eval'", "localhost:8000",)
@@ -39,3 +40,11 @@ ALLOWED_HOSTS = [
 ]
 
 WHITELISTED_USERS = ['pchillari@google.com']
+
+
+CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
+CSP_SCRIPT_SRC += (
+    "http://127.0.0.1:35729/livereload.js",
+    "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
+    "'unsafe-inline'",  # we need this because of Google Closure Library.
+)

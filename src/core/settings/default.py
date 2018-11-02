@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'svg',
     'rest_framework',
     'rest_framework.authtoken',
+    'angular',
 
     # Application
     'core',
@@ -71,9 +72,8 @@ MIDDLEWARE_CLASSES = (
     'djangae.contrib.security.middleware.AppEngineSecurityMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
-    'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware'
+    'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware',
 )
-
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -85,6 +85,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dev')
 
 THIRD_PARTY = os.path.join(os.path.dirname(BASE_DIR), "third_party")
 NODE_PREFIX = os.path.join(BASE_DIR, "..")
+
+NG_OPENING_TAG = '{['
+NG_CLOSING_TAG = ']}'
+NG_APP_MARKER = 'angular-app'
 
 
 def check_session_csrf_enabled():
@@ -173,28 +177,18 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = (
     "'self'",
     "https://fonts.googleapis.com",
-    "'unsafe-inline'",
-    # "'sha256-D9XwZtGGJx3RA4mBPaZHnGk4TtubENucxpnSadzYKrU='",
-    # "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
+    "'unsafe-inline'",  # Required by use angular ng-style.
 )
 CSP_FONT_SRC = ("'self'", "data:", "https://fonts.gstatic.com")
 CSP_CHILD_SRC = ("'self'",)
 CSP_SCRIPT_SRC = (
     "'self'",
     "https://www.google-analytics.com",
-    'ajax.googleapis.com',
+    "ajax.googleapis.com",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://www.google-analytics.com")
 CSP_MEDIA_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
-
-if DEBUG:
-    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
-    CSP_SCRIPT_SRC += (
-        "http://127.0.0.1:35729/livereload.js",
-        "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
-        "'unsafe-inline'",  # we need this because of Google Closure Library.
-    )
 
 
 # Djangae-specific settings
@@ -207,7 +201,6 @@ KEY_PREFIX = "%s-%s" % (application_id(), os.environ.get('CURRENT_VERSION_ID', "
 
 USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
 
-DJANGAE_CREATE_UNKNOWN_USER = False
 AUTH_USER_MODEL = "core.User"
 
 EMAIL_BACKEND = 'djangae.mail.AsyncEmailBackend'
@@ -301,7 +294,6 @@ WHITELISTED_USERS = [
 MIN_ITEMS_INDUSTRY_THRESHOLD = 100
 
 CONTACT_EMAIL = "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id())
-REPLY_TO_EMAIL = "Digital Maturity Benchmark <team-dmb@google.com>"
 
 SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
     '@google.com',

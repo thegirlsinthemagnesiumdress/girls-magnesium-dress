@@ -15,6 +15,7 @@ const registration = goog.require('dmb.components.registration');
 const scrollHandler = goog.require('dmb.components.scroll');
 const sidePanel = goog.require('dmb.components.sidePanel');
 const report = goog.require('dmb.components.report');
+const reportList = goog.require('dmb.components.reportAdmin');
 const progressCircle = goog.require('dmb.components.progressCircle');
 const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
@@ -31,6 +32,7 @@ const module = angular.module('dmb', [
   scrollHandler.module.name,
   sidePanel.module.name,
   report.module.name,
+  reportList.module.name,
   progressCircle.module.name,
   progressTable.module.name,
   dimensionTab.module.name,
@@ -41,6 +43,15 @@ const module = angular.module('dmb', [
   'ngclipboard',
 ]);
 
+try {
+  const bootstrapDatString = document.querySelector('[data-bootstrap-data]').dataset.bootstrapData;
+  const bootstrapData = bootstrapDatString ? JSON.parse(bootstrapDatString) : {};
+
+  module.constant('bootstrapData', bootstrapData);
+
+} catch (e) {
+  console.warn('Not valid json');
+}
 
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';

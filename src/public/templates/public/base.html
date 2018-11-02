@@ -41,7 +41,7 @@
 
     <title>Digital Maturity Benchmark</title>
 </head>
-<body class="{% block body_class %}{% endblock %}">
+<body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
 
   {% block header %}
@@ -55,7 +55,8 @@
 {% include 'public/inc/global/footer.html' %}
 {% endblock footer %}
 
-  {% include "core/inc/_svg.inc.html" %}
+{% include "core/inc/_svg.inc.html" %}
+<div class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}"></div>
 
 {% if debug %}
 

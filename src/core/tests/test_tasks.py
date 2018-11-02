@@ -7,6 +7,8 @@ from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfi
 from mommy_recepies import make_survey, make_survey_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
+from django.utils import dateparse
+from django.utils.timezone import make_aware
 
 
 @override_settings(
@@ -87,15 +89,19 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(len(args[0]), 3)
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
-    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results(response_id='AAB'))
+    @mock.patch(
+        'core.qualtrics.download.fetch_results',
+        return_value=get_mocked_results(started_after=dateparse.parse_datetime('2018-07-31 14:16:06'))
+    )
     def test_partial_download_existing_survey(self, download_mock, send_email_mock):
         # survey has been created on datastore
         survey = make_survey()
         make_survey()
         make_survey()
 
-        # only survey result with response_id='AAB' has been downloaded
-        make_survey_result(survey=survey, response_id='D')
+        # only survey result with date after 2018-07-31 14:16:06 has been downloaded
+        survey_started_at = make_aware(dateparse.parse_datetime('2018-07-31 14:16:06'))
+        make_survey_result(survey=survey, started_at=survey_started_at)
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
@@ -104,15 +110,14 @@ class GetResultsTestCase(TestCase):
 
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
-        # mock is called with response_id
-        download_mock.assert_called_once_with(response_id='D')
+        # mock is called with started_after parameter
+        download_mock.assert_called_once_with(started_after=survey_started_at)
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
 
         # send_emails_for_new_reports is called
         self.assertTrue(send_email_mock.called)
         args, kwargs = send_email_mock.call_args
-        print args[0]
         self.assertEqual(len(args[0]), 2)
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
@@ -128,14 +133,15 @@ class GetResultsTestCase(TestCase):
         }
         download_mock.side_effect = FetchResultException(exception_body)
 
+        survey_started_at = make_aware(dateparse.parse_datetime('2018-07-31 14:16:06'))
         survey = make_survey()
-        make_survey_result(survey=survey, response_id='D')
+        make_survey_result(survey=survey, started_at=survey_started_at)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         with mock.patch('core.tasks._create_survey_result') as survey_result_mock:
             get_results()
             survey_result_mock.assert_not_called()
-            download_mock.assert_called_once_with(response_id='D')
+            download_mock.assert_called_once_with(started_after=survey_started_at)
             self.assertEqual(Survey.objects.count(), 1)
             self.assertEqual(SurveyResult.objects.count(), 1)
 

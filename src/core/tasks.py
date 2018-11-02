@@ -11,6 +11,8 @@ from django.core.validators import EmailValidator
 from django.shortcuts import reverse
 from django.template.loader import get_template
 from djangae.db import transaction
+from django.utils.timezone import make_aware
+from django.utils.dateparse import parse_datetime
 
 
 def get_results():
@@ -19,15 +21,15 @@ def get_results():
     download all the available results from Qualtrics.
     """
     try:
-        survey_result = SurveyResult.objects.latest('loaded_at')
-        response_id = survey_result.response_id
+        survey_result = SurveyResult.objects.latest('started_at')
+        started_after = survey_result.started_at
         logging.info('Some Survey results has already been downloaded, partially download new results.')
     except SurveyResult.DoesNotExist:
-        response_id = None
+        started_after = None
         logging.info('No Survey results has already been downloaded so far, download all the results.')
 
     try:
-        results = download.fetch_results(response_id=response_id)
+        results = download.fetch_results(started_after=started_after)
         responses = results.get('responses')
         _create_survey_result(responses)
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
@@ -47,6 +49,7 @@ def _create_survey_result(results_data):
         from Qualtrics API.
     """
     for data in results_data:
+
         try:
             if _survey_completed(data.get('Finished')):
                 questions = question.data_to_questions(data)
@@ -57,6 +60,7 @@ def _create_survey_result(results_data):
                     survey_result = SurveyResult.objects.create(
                         survey_id=data.get('sid'),
                         response_id=response_id,
+                        started_at=make_aware(parse_datetime(data.get('StartDate'))),
                         excluded_from_best_practice=excluded_from_best_practice,
                         dmb=dmb,
                         dmb_d=dmb_d,
@@ -112,10 +116,12 @@ def send_emails_for_new_reports(email_list):
                 'to': [to],
                 'subject': subject_template.render(context).split("\n")[0],
                 'sender': settings.CONTACT_EMAIL,
-                'reply_to': settings.REPLY_TO_EMAIL,
                 'body': text_message_template.render(context),
                 'html': html_message_template.render(context),
             }
+
+            if getattr(settings, 'REPLY_TO_EMAIL', None):
+                email_kwargs['reply_to'] = settings.REPLY_TO_EMAIL
 
             message = mail.EmailMessage(**email_kwargs)
 

@@ -4,6 +4,7 @@ from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
 from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -39,8 +40,8 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, blank=True, null=True)
-    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems(), null=True)
-    country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems(), null=True)
+    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems())
+    country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -62,6 +63,10 @@ class Survey(models.Model):
         """
         return '{}&sp=true'.format(self.link)
 
+    @property
+    def last_survey_result_link(self):
+        return reverse('report', kwargs={'sid': self.sid}) if self.last_survey_result else None
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.created_at = timezone.now()
@@ -79,6 +84,7 @@ class SurveyResult(models.Model):
     survey = models.ForeignKey('Survey', null=True, related_name="survey_results")
     response_id = models.CharField(max_length=50)
     loaded_at = models.DateTimeField(auto_now_add=True)
+    started_at = models.DateTimeField()
     excluded_from_best_practice = models.BooleanField(default=False)
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)

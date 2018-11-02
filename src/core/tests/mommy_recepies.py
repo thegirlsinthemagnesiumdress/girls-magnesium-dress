@@ -1,6 +1,8 @@
 """Recipies for the Survey models."""
 from model_mommy import mommy
 from django.conf import settings
+from datetime import datetime, timedelta
+from django.utils.timezone import make_aware
 
 
 def make_survey(**kwargs):
@@ -20,4 +22,6 @@ def make_survey(**kwargs):
 
 
 def make_survey_result(**kwargs):
+    if not kwargs.get('started_at'):
+        kwargs.update(started_at=make_aware(datetime.now() - timedelta(days=1)))
     return mommy.make('core.SurveyResult', **kwargs)

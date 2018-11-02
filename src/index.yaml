@@ -31,6 +31,15 @@ indexes:
 - kind: core_survey
   properties:
   - name: company_name
+  - name: country
+  - name: created_at
+  - name: engagement_lead
+  - name: industry
+  - name: last_survey_result_id
+
+- kind: core_survey
+  properties:
+  - name: company_name
   - name: uid
 
 - kind: core_survey

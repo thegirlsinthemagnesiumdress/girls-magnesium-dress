@@ -10,7 +10,7 @@ from google.appengine.api import urlfetch
 from django.conf import settings
 
 
-def fetch_results(response_id=None, file_format='json'):
+def fetch_results(file_format='json', started_after=None):
     """Fetch results from Quatrics API.
 
         :raises: `core.qualtrics.exceptions.FetchResultException` if
@@ -58,8 +58,8 @@ def fetch_results(response_id=None, file_format='json'):
         'endDate': (datetime.now() + timedelta(days=random.randint(1, 1000))).strftime('%Y-%m-%dT%H:%M:%SZ'),
     }
 
-    if response_id:
-        data_export_payload['lastResponseId'] = response_id
+    if started_after:
+        data_export_payload['startDate'] = started_after.isoformat()
 
     download_request_response = urlfetch.fetch(
         method=urlfetch.POST,
