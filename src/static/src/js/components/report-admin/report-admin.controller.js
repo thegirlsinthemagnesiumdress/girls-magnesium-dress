@@ -14,7 +14,7 @@ class ReportAdminController {
    */
   constructor(bootstrapData) {
     /**
-     * @type {Object}
+     * @type {Array.<Object>}
      * @export
      */
     this.surveys = bootstrapData.surveys;
