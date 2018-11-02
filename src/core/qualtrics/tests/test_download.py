@@ -151,7 +151,7 @@ class FetchResultsTest(TestCase):
         ]
         mock_request.assert_has_calls(calls)
 
-        # check 'startDate' is not in the payload in the first call
+        # check 'startDate' is in the payload in the first call
         args, kwargs = mock_request.call_args_list[0]
         self.assertTrue('startDate' in kwargs.get('payload'))
 
