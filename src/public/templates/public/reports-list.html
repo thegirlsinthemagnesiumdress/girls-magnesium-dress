@@ -6,7 +6,7 @@
 {% block bootstrap_data %}{{bootstrap_data|ng_mark_safe}}{% endblock %}
 
 {% block main %}
-<div class="dmb-reports-admin" dmb-reports-admin>
+<div class="dmb-reports-admin" dmb-reports-admin ng-cloak>
   <div class="dmb-reports-admin__intro">
     <h1 class="dmb-reports-admin__title h-c-headline h-c-headline--one h-u-font-weight-medium">
       Digital Maturity Admin Dashboard
@@ -148,43 +148,94 @@
     >
       <thead>
         <tr role="row">
-          <th scope="col"
-            role="columnheader"
-            title="Sort by organisation name alphabetically"
-            data-glue-table-sort-type="alpha"
-          >Organisation name </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by date created chronologically"
-            data-glue-table-sort-type="datetime"
-          >Date created </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by survey completions numerically"
-            data-glue-table-sort-type="numeric"
-          >Survey completions </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by survey link"
-            data-glue-table-sort-type="alpha"
-          >Survey link </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by report link"
-            data-glue-table-sort-type="alpha"
-          >Report link </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by industry"
-            data-glue-table-sort-type="alpha"
-          >Industry </th>
-          <th scope="col"
-            role="columnheader"
-            title="Sort by country"
-            data-glue-table-sort-type="alpha"
-          >Country </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by organisation name alphabetically"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Organisation name
+            </span>
+         </th>
+            <th
+              scope="col"
+              role="columnheader"
+              title="Sort by date created chronologically">
+            <span>
+              Date created
+            </span>
+         </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by survey link"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Survey link
+            </span>
+         </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by survey completions numerically"
+              data-glue-table-sort-type="numeric">
+            <span>
+              Survey completions
+            </span>
+         </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by report link"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Report link
+            </span>
+         </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by industry"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Industry
+            </span>
+         </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by country"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Country
+            </span>
+         </th>
         </tr>
       </thead>
+      <tbody>
+        <tr role="row" ng-repeat="survey in reportAdminCtrl.surveys">
+          <td role="rowheader">{[survey.company_name]}</td>
+          <td role="gridcell">{[survey.created_at|date:"d/M/yyyy hh:mm"]}</td>
+          <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
+          <td role="gridcell">{[ survey.survey_results_count ]}</td>
+          <td role="gridcell">
+            <a
+                ng-if="survey.survey_results_count > 0"
+                class="h-c-button h-c-button--flat"
+                ng-href="{[survey.last_survey_result_link]}"
+                target="_blank">
+              Report
+            </a>
+            <span
+                ng-if="survey.survey_results_count == 0">
+              -
+            </span>
+          </td>
+          <td role="gridcell">{[survey.industry_name]}</td>
+          <td role="gridcell">{[survey.country_name]}</td>
+        </tr>
+      </tbody>
+
       {% djangoblock %}
       <tbody>
         {% for survey in surveys %}

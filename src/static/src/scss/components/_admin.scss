@@ -16,18 +16,23 @@
 .h-c-table th[glue-table-sort-type] {
   user-select: none;
 
-  &::after {
-    content: url('../img/icons/filter.svg');
-    display: inline-block;
-    margin-left: 8px;
-    transform-origin: 50% 50%;
-    transition: transform .2s ease-in-out;
-    width: 12px;
-  }
+  span {
+    display: flex;
+    justify-content: space-between;
 
-  &:hover::after,
-  &:focus::after {
-    will-change: transform;
+    &::after {
+      content: url('../img/icons/filter.svg');
+      display: inline-block;
+      margin-left: 8px;
+      transform-origin: 50% 50%;
+      transition: transform .2s ease-in-out;
+      width: 12px;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      will-change: transform;
+    }
   }
 }
 

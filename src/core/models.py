@@ -4,6 +4,7 @@ from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
 from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -61,6 +62,10 @@ class Survey(models.Model):
         amd participants. The way that is done is by setting sp=true.
         """
         return '{}&sp=true'.format(self.link)
+
+    @property
+    def last_survey_result_link(self):
+        return reverse('report', kwargs={'sid': self.sid}) if self.last_survey_result else None
 
     def save(self, *args, **kwargs):
         if not self.pk:

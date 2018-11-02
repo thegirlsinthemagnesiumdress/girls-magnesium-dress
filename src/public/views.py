@@ -46,5 +46,5 @@ def reports_admin(request):
         'host': request.get_host(),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
-        })
+        }),
     })
