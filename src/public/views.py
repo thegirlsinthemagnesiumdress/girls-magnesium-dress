@@ -1,9 +1,12 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from angular.shortcuts import render
+from api.serializers import SurveyWithResultSerializer
 
 from core.auth import survey_admin_required
 from core.models import Survey
+from rest_framework.renderers import JSONRenderer
+
 
 INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
@@ -33,10 +36,13 @@ def reports_admin(request):
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
+    serialized_data = SurveyWithResultSerializer(surveys, many=True)
+
     return render(request, 'public/reports-list.html', {
         'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
         'host': request.get_host(),
+        'bootstrap_data': JSONRenderer().render(serialized_data.data)
     })
