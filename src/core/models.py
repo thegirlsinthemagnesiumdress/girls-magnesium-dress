@@ -82,7 +82,7 @@ class SurveyResult(models.Model):
     """Model to store a survey response benchmark."""
 
     survey = models.ForeignKey('Survey', null=True, related_name="survey_results")
-    response_id = models.CharField(max_length=50)
+    response_id = models.CharField(max_length=50, unique=True)
     loaded_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField()
     excluded_from_best_practice = models.BooleanField(default=False)

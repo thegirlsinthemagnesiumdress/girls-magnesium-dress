@@ -1,5 +1,6 @@
 import logging
 import os
+import pytz
 
 from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark, download, exceptions, question
@@ -10,6 +11,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.shortcuts import reverse
 from django.template.loader import get_template
+from django.db import IntegrityError
 from djangae.db import transaction
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
@@ -31,50 +33,71 @@ def get_results():
     try:
         results = download.fetch_results(started_after=started_after)
         responses = results.get('responses')
-        _create_survey_result(responses)
+        new_response_ids = _create_survey_results(responses)
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
         email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses
-                      if _survey_completed(item.get('Finished'))]
+                      if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
             send_emails_for_new_reports(email_list)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
 
 
-def _create_survey_result(results_data):
+def _create_survey_results(results_data):
     """Create `SurveyResult` given a list of `result_data`.
 
-    :param survey: `core.SurveyResult` which `results_data` refers to
-    :param results_data: dictionary containing the downloaded response
+    :param results_data: dictionary containing the downloaded responses
         from Qualtrics API.
-    """
-    for data in results_data:
 
+    :returns: list of `response_id` for each `core.SurveyResult` created.
+    """
+    response_ids = []
+    for data in results_data:
         try:
-            if _survey_completed(data.get('Finished')):
-                questions = question.data_to_questions(data)
-                dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
-                excluded_from_best_practice = question.discard_scores(data)
-                with transaction.atomic(xg=True):
-                    response_id = data['ResponseID']
-                    survey_result = SurveyResult.objects.create(
-                        survey_id=data.get('sid'),
-                        response_id=response_id,
-                        started_at=make_aware(parse_datetime(data.get('StartDate'))),
-                        excluded_from_best_practice=excluded_from_best_practice,
-                        dmb=dmb,
-                        dmb_d=dmb_d,
-                    )
-                    try:
-                        s = Survey.objects.get(pk=data.get('sid'))
-                        s.last_survey_result = survey_result
-                        s.save()
-                    except Survey.DoesNotExist:
-                        logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
-            else:
-                logging.warning('Found unfinshed survey {}: SKIP'.format(data.get('sid')))
+            new_survey_result = _create_survey_result(data)
+            if new_survey_result:
+                response_ids.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
             logging.error(e)
+    return response_ids
+
+
+def _create_survey_result(data):
+    """Create `SurveyResult` given a single `result_data`.
+
+    :param data: dictionary of data downloaded from Qualtrics
+    :returns: `response_id` if a `core.SurveyResult` is created, None
+        otherwise.
+    """
+    if not _survey_completed(data.get('Finished')):
+        logging.warning('Found unfinshed survey {}: SKIP'.format(data.get('sid')))
+        return
+
+    response_id = data['ResponseID']
+    new_survey_result = None
+    try:
+        with transaction.atomic(xg=True):
+            questions = question.data_to_questions(data)
+            dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
+            excluded_from_best_practice = question.discard_scores(data)
+            survey_result = SurveyResult.objects.create(
+                survey_id=data.get('sid'),
+                response_id=response_id,
+                started_at=make_aware(parse_datetime(data.get('StartDate')), pytz.timezone('US/Mountain')),
+                excluded_from_best_practice=excluded_from_best_practice,
+                dmb=dmb,
+                dmb_d=dmb_d,
+            )
+            new_survey_result = response_id
+            try:
+                s = Survey.objects.get(pk=data.get('sid'))
+                s.last_survey_result = survey_result
+                s.save()
+            except Survey.DoesNotExist:
+                logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+    except IntegrityError:
+        logging.info('SruveryResult with response_id: {} has already been saved.'.format(response_id))
+    return new_survey_result
 
 
 def send_emails_for_new_reports(email_list):

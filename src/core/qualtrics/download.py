@@ -1,4 +1,5 @@
 import io
+import logging
 import json
 import zipfile
 from exceptions import FetchResultException
@@ -61,6 +62,7 @@ def fetch_results(file_format='json', started_after=None):
     if started_after:
         data_export_payload['startDate'] = started_after.isoformat()
 
+    logging.info("Sending request to Qualtrics Export API with payload {}".format(data_export_payload))
     download_request_response = urlfetch.fetch(
         method=urlfetch.POST,
         url=settings.RESPONSE_EXPORT_BASE_URL,
@@ -68,6 +70,7 @@ def fetch_results(file_format='json', started_after=None):
         payload=json.dumps(data_export_payload),
         headers=headers
     )
+
     try:
         export_generation_response = json.loads(download_request_response.content)
         progress_id = export_generation_response['result']['id']
