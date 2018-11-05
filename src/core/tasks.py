@@ -96,7 +96,7 @@ def _create_survey_result(data):
             except Survey.DoesNotExist:
                 logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
     except IntegrityError:
-        logging.info('SruveryResult with response_id: {} has already been saved.'.format(response_id))
+        logging.info('SurveyResult with response_id: {} has already been saved.'.format(response_id))
     return new_survey_result
 
 
