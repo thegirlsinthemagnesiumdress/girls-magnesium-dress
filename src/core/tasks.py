@@ -76,7 +76,7 @@ def _create_survey_result(data):
     response_id = data['ResponseID']
     new_survey_result = None
     try:
-        with transaction.atomic(xxg=True):
+        with transaction.atomic(xg=True):
             questions = question.data_to_questions(data)
             dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
             excluded_from_best_practice = question.discard_scores(data)
