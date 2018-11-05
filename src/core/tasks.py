@@ -33,7 +33,7 @@ def get_results():
     try:
         results = download.fetch_results(started_after=started_after)
         responses = results.get('responses')
-        _create_survey_result(responses)
+        new_response_ids = _create_survey_results(responses)
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
         email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished'))]
@@ -43,7 +43,7 @@ def get_results():
         logging.error('Fetching results failed with: {}'.format(fe))
 
 
-def _create_survey_result(results_data):
+def _create_survey_results(results_data):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param survey: `core.SurveyResult` which `results_data` refers to

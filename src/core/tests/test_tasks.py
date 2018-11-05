@@ -1,7 +1,7 @@
 import mock
 
 from core.models import Survey, SurveyResult
-from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_result
+from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results
 from djangae.test import TestCase
 from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished
 from mommy_recepies import make_survey, make_survey_result
@@ -138,7 +138,7 @@ class GetResultsTestCase(TestCase):
         make_survey_result(survey=survey, started_at=survey_started_at)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
-        with mock.patch('core.tasks._create_survey_result') as survey_result_mock:
+        with mock.patch('core.tasks._create_survey_results') as survey_result_mock:
             get_results()
             survey_result_mock.assert_not_called()
             download_mock.assert_called_once_with(started_after=survey_started_at)
@@ -193,7 +193,7 @@ class EmailValidatorTestCase(TestCase):
     DIMENSIONS=MOCKED_DIMENSIONS
 )
 class CreateSurveyResultTestCase(TestCase):
-    """Tests for _create_survey_result function, when survey has been completed."""
+    """Tests for _create_survey_results function, when survey has been completed."""
     def setUp(self):
         self.responses = get_mocked_results().get('responses')
 
@@ -203,7 +203,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_result(self.responses[:1])
+        _create_survey_results(self.responses[:1])
 
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 1)
@@ -213,14 +213,14 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_result(self.responses[:1])
+        _create_survey_results(self.responses[:1])
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
 
 class CreateSurveyResultUnfinishedTestCase(TestCase):
-    """Tests for _create_survey_result function, when survey has not been completed."""
+    """Tests for _create_survey_results function, when survey has not been completed."""
     def setUp(self):
         self.responses = get_mocked_results_unfished().get('responses')
 
@@ -230,7 +230,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_result(self.responses[:1])
+        _create_survey_results(self.responses[:1])
 
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -240,7 +240,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_result(self.responses[:1])
+        _create_survey_results(self.responses[:1])
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -252,7 +252,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 
         # Asserting we're logging a message if survey is not completed
         with mock.patch('logging.warning') as logging_mock:
-            _create_survey_result(self.responses)
+            _create_survey_results(self.responses)
             self.assertTrue(logging_mock.called)
 
         self.assertEqual(Survey.objects.count(), 0)
