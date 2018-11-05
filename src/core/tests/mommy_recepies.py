@@ -3,6 +3,8 @@ from model_mommy import mommy
 from django.conf import settings
 from datetime import datetime, timedelta
 from django.utils.timezone import make_aware
+import pytz
+from django.utils.dateparse import parse_datetime
 
 
 def make_survey(**kwargs):
@@ -23,5 +25,10 @@ def make_survey(**kwargs):
 
 def make_survey_result(**kwargs):
     if not kwargs.get('started_at'):
-        kwargs.update(started_at=make_aware(datetime.now() - timedelta(days=1)))
+        started_at = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        started_at = kwargs.get('started_at')
+    kwargs.update(
+        started_at=make_aware(parse_datetime(started_at), pytz.timezone('US/Mountain'))
+    )
     return mommy.make('core.SurveyResult', **kwargs)
