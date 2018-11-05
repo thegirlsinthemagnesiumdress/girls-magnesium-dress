@@ -17,7 +17,7 @@ class ReportAdminController {
      * @type {Array.<Object>}
      * @export
      */
-    this.surveys = bootstrapData.surveys;
+    this.surveys = bootstrapData['surveys'];
   }
 }
 
