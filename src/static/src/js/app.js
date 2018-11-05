@@ -44,7 +44,7 @@ const module = angular.module('dmb', [
 ]);
 
 try {
-  const bootstrapDatString = document.querySelector('[data-bootstrap-data]').dataset.bootstrapData;
+  const bootstrapDatString = document.querySelector('[data-bootstrap-data]').dataset['bootstrapData'];
   const bootstrapData = bootstrapDatString ? JSON.parse(bootstrapDatString) : {};
 
   module.constant('bootstrapData', bootstrapData);
