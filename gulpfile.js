@@ -54,6 +54,7 @@ gulp.task('js', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
       .pipe(hercules.js.prod({
         entry_point: 'dmb.app',
+        hide_warnings_for: 'node_modules/glue/',
       }))
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
       .pipe(gap.prependFile('node_modules/ngclipboard/dist/ngclipboard.min.js'))
@@ -72,7 +73,10 @@ gulp.task('js-detect', function() {
 gulp.task('js-survey', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
       // Note that entry_point matches the namespace defined in survey.js
-      .pipe(hercules.js.prod({entry_point: 'dmb.survey'}))
+      .pipe(hercules.js.prod({
+        entry_point: 'dmb.survey',
+        hide_warnings_for: 'node_modules/glue/',
+      }))
       .pipe(rename('survey.min.js'))
       .pipe(gulp.dest(PATHS.dist.js));
 });
