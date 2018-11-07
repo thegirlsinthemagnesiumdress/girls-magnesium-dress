@@ -33,4 +33,16 @@
       max-width: 460px;
     }
   }
+
+  .dmb-icon-button {
+    bottom: 40px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    svg {
+      margin-top: 3px;
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+  }
 }
