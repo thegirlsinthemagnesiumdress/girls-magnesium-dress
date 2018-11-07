@@ -1,13 +1,14 @@
 // Can be added to an anchor tag or a button
 .dmb-icon-button {
+  align-items: center;
   background: #fff;
   border-radius: 50%;
   border-width: 0;
   box-shadow: $dmb-box-shadow;
   color: $dmb-color-grey-shuttle;
-  display: block;
+  display: flex;
   height: 56px;
-  position: relative;
+  justify-content: center;
   width: 56px;
 
   &:focus,
@@ -17,10 +18,6 @@
 
   svg {
     fill: currentColor;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
     width: 22px;
   }
 }
