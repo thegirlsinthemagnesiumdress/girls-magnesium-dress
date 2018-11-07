@@ -74,194 +74,192 @@
     <button class="dmb-report-page__print-button" aria-label="Print report button" onclick="window.print();" data-tooltip-text="This page is designed to be printable">
       <img src="{% static 'img/icons/print.svg' %}" alt="print icon">
     </button>
-  </div>
 
-  <main class="dmb-report-page__content" id="dmb-report-page-main">
+    <main class="dmb-report-page__content" id="dmb-report-page-main">
+      <div class="dmb-report-page__panel-trigger" dmb-pin-top>
+        <button
+            class="dmb-right-panel-trigger dmb-h-hidden--print"
+            dmb-side-panel-trigger="#dmb-report-right-side-panel">
+          <div class="dmb-right-panel-trigger__icon">
+            <svg role="img" class="h-c-icon">
+              <use xlink:href="#mi-chevron"></use>
+            </svg>
+          </div>
+          <div
+            class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
+            Why digital maturity matters
+          </div>
+        </button>
+      </div>
 
+      <div class="h-c-page">
+        <section class="dmb-report-page__maturity"> <!-- Your overall digital maturity -->
+          <h2 class="h-c-eyebrow">Your overall digital maturity</h2>
 
-    <div class="dmb-report-page__panel-trigger" dmb-pin-top>
-      <button
-          class="dmb-right-panel-trigger dmb-h-hidden--print"
-          dmb-side-panel-trigger="#dmb-report-right-side-panel">
-        <div class="dmb-right-panel-trigger__icon">
-          <svg role="img" class="h-c-icon">
-            <use xlink:href="#mi-chevron"></use>
-          </svg>
-        </div>
-        <div
-          class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
-          Why digital maturity matters
-        </div>
-      </button>
-    </div>
-
-    <div class="h-c-page">
-      <section class="dmb-report-page__maturity"> <!-- Your overall digital maturity -->
-        <h2 class="h-c-eyebrow">Your overall digital maturity</h2>
-
-        <div class="h-c-grid">
-          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--2">
-            <div class="dmb-progress-circle">
-              <svg
-                  dmb-progress-circle="reportCtrl.result.dmb"
-                  class="dmb-progress-circle__prog-svg"
-                  viewbox="0 0 120 120">
-              <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
-              <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
-              </svg>
-              <div class="dmb-progress-circle__text">
-                <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
-                <div class="dmb-progress-circle__values">
-                  <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span class="dmb-progress-circle__target">/<span
-                      class="dmb-progress-circle__target--value">4</span>
-                  </span>
+          <div class="h-c-grid">
+            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--2">
+              <div class="dmb-progress-circle">
+                <svg
+                    dmb-progress-circle="reportCtrl.result.dmb"
+                    class="dmb-progress-circle__prog-svg"
+                    viewbox="0 0 120 120">
+                <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
+                <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="10" />
+                </svg>
+                <div class="dmb-progress-circle__text">
+                  <p class="dmb-progress-circle__title">{[reportCtrl.result.dmb|dmbLevelText]}</p>
+                  <div class="dmb-progress-circle__values">
+                    <span class="dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span class="dmb-progress-circle__target">/<span
+                        class="dmb-progress-circle__target--value">4</span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--9">
-            <h3 class="dmb-report-page__content-title">
-              <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
-              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
-                <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
-              </button>
-            </h3>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
-              This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
-            </p>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
-              This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
-            </p>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
-              This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
-            </p>
-            <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
-              This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
-            </p>
-          </div>
-        </div>
-
-        <dmb-progress-table data-rating-main="reportCtrl.result.dmb" data-industry-avg="reportCtrl.industryResult.dmb"
-          data-industry-best="reportCtrl.industryResult.dmb_bp" data-company-name="{[reportCtrl.survey.company_name]}">
-        </dmb-progress-table>
-
-      </section>
-
-      <section class="dmb-report-page__dimensions"> <!-- 6 dimensions -->
-        <h2 class="h-c-eyebrow h-c-eyebrow--wide">
-          6 dimensions of digital marketing maturity
-          <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
-            <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
-          </button>
-        </h2>
-        <p class="dmb-report-page__dimensions-intro">
-          Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.
-        </p>
-        <a class="dmb-report-page__cta dmb-report-page__cta--alt dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
-          <div class="dmb-report-page__cta-icon"></div>
-          <div class="dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
-        </a>
-
-        <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
-          <div class="dmb-report-page__tabs-icons">
-            <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
-              <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
-                <svg dmb-progress-circle="reportCtrl.result.dmb_d[dimension]" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
-                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                </svg>
-                <div class="dmb-progress-circle__icon"></div>
-              </div>
+            <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--9">
+              <h3 class="dmb-report-page__content-title">
+                <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
+                <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
+                  <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+                </button>
+              </h3>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
+                This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.
+              </p>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
+                This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.
+              </p>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
+                This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.
+              </p>
+              <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
+                This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.
+              </p>
             </div>
           </div>
-          <div>
-            <div class="dmb-report-page__tabs-sticky-nav" dmb-pin-top>
-              <div class="h-c-page">
-                <ul class="">
-                  <li ng-repeat="dimension in reportCtrl.dimensions">
-                    <button
-                        class="dmb-report-page__tabs-sticky-nav-btn"
-                        ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
-                        ng-click="reportCtrl.selectTab('dimension-tabs', dimension)">
+
+          <dmb-progress-table data-rating-main="reportCtrl.result.dmb" data-industry-avg="reportCtrl.industryResult.dmb"
+            data-industry-best="reportCtrl.industryResult.dmb_bp" data-company-name="{[reportCtrl.survey.company_name]}">
+          </dmb-progress-table>
+
+        </section>
+
+        <section class="dmb-report-page__dimensions"> <!-- 6 dimensions -->
+          <h2 class="h-c-eyebrow h-c-eyebrow--wide">
+            6 dimensions of digital marketing maturity
+            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
+              <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+            </button>
+          </h2>
+          <p class="dmb-report-page__dimensions-intro">
+            Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.
+          </p>
+          <a class="dmb-report-page__cta dmb-report-page__cta--alt dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+            <div class="dmb-report-page__cta-icon"></div>
+            <div class="dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
+          </a>
+
+          <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
+            <div class="dmb-report-page__tabs-icons">
+              <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+                <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
+                  <svg dmb-progress-circle="reportCtrl.result.dmb_d[dimension]" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
+                    <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                    <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                  </svg>
+                  <div class="dmb-progress-circle__icon"></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="dmb-report-page__tabs-sticky-nav" dmb-pin-top>
+                <div class="h-c-page">
+                  <ul class="">
+                    <li ng-repeat="dimension in reportCtrl.dimensions">
+                      <button
+                          class="dmb-report-page__tabs-sticky-nav-btn"
+                          ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
+                          ng-click="reportCtrl.selectTab('dimension-tabs', dimension)">
+                        {[reportCtrl.dimensionHeaders[dimension]]}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="glue-tabset"
+                  data-glue-tabset-state="['activeEl']"
+                  data-glue-state-id="dimension-tabs"
+                  data-glue-tabset-model="reportCtrl.model"
+                  data-glue-tabset-enable-arrow-nav
+                  ng-cloak>
+                <ul>
+                  <li
+                      ng-repeat="dimension in reportCtrl.dimensions"
+                      data-glue-label="{[dimension]}"
+                      id="{[dimension]}">
+                    <h3>
                       {[reportCtrl.dimensionHeaders[dimension]]}
-                    </button>
+                    </h3>
+                    <div>
+                      <div
+                        dmb-dimension-tab="{[dimension]}"
+                        company-name="{[ reportCtrl.survey.company_name ]}">
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="glue-tabset"
-                data-glue-tabset-state="['activeEl']"
-                data-glue-state-id="dimension-tabs"
-                data-glue-tabset-model="reportCtrl.model"
-                data-glue-tabset-enable-arrow-nav
-                ng-cloak>
-              <ul>
-                <li
-                    ng-repeat="dimension in reportCtrl.dimensions"
-                    data-glue-label="{[dimension]}"
-                    id="{[dimension]}">
-                  <h3>
-                    {[reportCtrl.dimensionHeaders[dimension]]}
-                  </h3>
-                  <div>
+          </div>
+
+          {% comment %}
+            We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a bug where,
+            if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to the top ( probably # left at the end of the url).
+            Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking ( unfortunately that is enabled by default when using
+            2 way data binding)
+          {% endcomment %}
+
+          <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
+            <div class="glue-zippy-set h-t-hercules" ng-cloak>
+              <ul class="h-c-expansion-panels__list">
+                <li class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
+                  <div class="glue-zippy-btn">
+                    <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
+                      {[ reportCtrl.dimensionHeaders[dimension] ]}
+                    </h4>
+                    <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
+                      <use xlink:href="#mi-arrow-item"></use>
+                    </svg>
+                  </div>
+                  <div class="glue-zippy-content">
                     <div
-                      dmb-dimension-tab="{[dimension]}"
-                      company-name="{[ reportCtrl.survey.company_name ]}">
+                        dmb-dimension-tab="{[dimension]}"
+                        company-name="{[ reportCtrl.survey.company_name ]}">
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-        </div>
+        </section> <!-- 6 dimensions -->
 
-        {% comment %}
-          We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a bug where,
-          if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to the top ( probably # left at the end of the url).
-          Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking ( unfortunately that is enabled by default when using
-          2 way data binding)
+        {% comment "Out of scope for now, we will enable this in the future" %}
+        <!-- <div class="h-u-text-right">
+          <a href="#" class="h-c-link h-c-link--internal dmb-h-hidden--print">
+            Go to next dimension
+            <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--arrow-forward">
+              <use xlink:href="#mi-arrow-forward"></use>
+            </svg>
+          </a>
+        </div> -->
         {% endcomment %}
+      </div> <!-- h-c-page -->
+    </main> <!-- #dmb-report-page-main -->
 
-        <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
-          <div class="glue-zippy-set h-t-hercules" ng-cloak>
-            <ul class="h-c-expansion-panels__list">
-              <li class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
-                <div class="glue-zippy-btn">
-                  <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
-                    {[ reportCtrl.dimensionHeaders[dimension] ]}
-                  </h4>
-                  <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
-                    <use xlink:href="#mi-arrow-item"></use>
-                  </svg>
-                </div>
-                <div class="glue-zippy-content">
-                  <div
-                      dmb-dimension-tab="{[dimension]}"
-                      company-name="{[ reportCtrl.survey.company_name ]}">
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section> <!-- 6 dimensions -->
-
-      {% comment "Out of scope for now, we will enable this in the future" %}
-      <!-- <div class="h-u-text-right">
-        <a href="#" class="h-c-link h-c-link--internal dmb-h-hidden--print">
-          Go to next dimension
-          <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--arrow-forward">
-            <use xlink:href="#mi-arrow-forward"></use>
-          </svg>
-        </a>
-      </div> -->
-      {% endcomment %}
-    </div> <!-- h-c-page -->
-  </main> <!-- #dmb-report-page-main -->
-
-  <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
-    <div class="h-c-page">
-      <h2 class="h-c-headline h-c-headline--three dmb-print-page-header">Appendix</h2>
+    <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
+      <div class="h-c-page">
+        <h2 class="h-c-headline h-c-headline--three dmb-print-page-header">Appendix</h2>
+      </div>
     </div>
   </div>
 
