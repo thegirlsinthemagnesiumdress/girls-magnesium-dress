@@ -71,7 +71,7 @@
   </header>
 
   <div class="dmb-report-page__print-button-container" dmb-scroll-aware dmb-scroll-aware-enter-class="dmb-report-page--dark-print-button-text" dmb-scroll-aware-exit-class="dmb-report-page--dark-print-button-text">
-    <button class="dmb-report-page__print-button" aria-label="Print report button" onclick="window.print();" data-tooltip-text="This page is designed to be printable">
+    <button class="dmb-report-page__print-button" aria-label="Print report button" ng-click ="reportCtrl.print()" data-tooltip-text="This page is designed to be printable">
       <img src="{% static 'img/icons/print.svg' %}" alt="print icon">
     </button>
   </div>
