@@ -57,15 +57,15 @@
         </div>
       </div>
     </div>
-    <div class="dmb-report-page__hero-cta h-u-text-center">
+    <div class="dmb-report-page__hero-button-container h-u-text-center">
       <a
           href="#dmb-report-page-main"
-          class="dmb-report-page__hero-button h-c-button h-c-button--secondary dmb-h-hidden--print"
+          class="dmb-report-page__hero-button dmb-button dmb-button--tertiary dmb-h-hidden--print"
           dmb-smooth-scroll>
-        View your results
-        <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--18px">
-          <use xlink:href="#mi-arrow-sort"></use>
-        </svg>
+          <span class="dmb-button__text">View your results</span>
+          <svg role="img" class="dmb-button__cta h-c-icon h-c-icon--link h-c-icon--18px">
+            <use xlink:href="#mi-arrow-sort"></use>
+          </svg>
       </a>
     </div>
   </header>
@@ -159,9 +159,9 @@
         <p class="dmb-report-page__dimensions-intro">
           Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.
         </p>
-        <a class="dmb-report-page__cta dmb-report-page__cta--alt dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
-          <div class="dmb-report-page__cta-icon"></div>
-          <div class="dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
+        <a class="dmb-report-page__cta dmb-button dmb-button--secondary dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+          <div class="dmb-button__icon dmb-report-page__cta-icon"></div>
+          <div class="dmb-button__text dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
         </a>
 
         <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">

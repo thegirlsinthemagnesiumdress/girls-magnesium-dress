@@ -32,9 +32,6 @@ $dmb-report-hero-padding-bottom: 37px;
 $dmb-tabs-border-radius: 5px;
 $dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
 $dmb-headline-accent-color: $dmb-color-blue-manatee;
-$cta-border-color: $dmb-color-grey-link-water;
-$cta-color: $dmb-color-blue-royal;
-$cta-bg-color-alt: $h-gm-grey-50;
 $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
 
@@ -252,7 +249,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
   }
 
-  &__hero-cta {
+  &__hero-button-container {
     display: none;
 
     @include bp(s) {
@@ -262,21 +259,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
     @include bp(m) {
       margin-top: 0;
-    }
-  }
-
-  &__hero-button {
-    border-radius: 23px;
-    color: $h-gm-grey-700 !important;
-    height: auto;
-    line-height: 30px;
-    margin: auto 0 0;
-    padding: 9px 16px 9px 35px;
-    width: auto;
-
-    .h-c-icon {
-      margin-left: 8px;
-      vertical-align: middle;
     }
   }
 
@@ -655,35 +637,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     }
   }
 
-  &__cta {
-    align-items: center;
-    border: 1px solid $cta-border-color;
-    border-radius: 22px;
-    color: $cta-color;
-    display: inline-flex;
-    font-family: $dmb-alt-font-family;
-    font-size: 14px;
-    margin-top: 24px;
-    padding: 10px 16px;
-    transition: background .3s;
-
-    &:hover {
-      background: $h-white;
-    }
-
-    @include bp(m) {
-      font-size: 16px;
-      padding: 10px 20px;
-    }
-
-    &--alt {
-
-      &:hover {
-        background: $cta-bg-color-alt;
-      }
-    }
-  }
-
   &__cta-icon {
     background-image: url('../img/icons/learn-more.svg');
     background-position: center;
@@ -692,7 +645,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
     @include dmb-responsive(width, 18, 22);
     @include dmb-responsive(height, 18, 22);
-    @include dmb-responsive(margin-right, 12, 15);
   }
 
   &__cta-extra-text {

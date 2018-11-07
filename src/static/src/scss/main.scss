@@ -62,13 +62,13 @@
 // DMB components
 @import 'components/form';
 @import 'components/admin';
+@import 'components/buttons';
 @import 'components/box';
 @import 'components/dimensions-tiles';
 @import 'components/dimensions-tab';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/hiw';
-@import 'components/icon-button';
 @import 'components/infographic';
 @import 'components/input';
 @import 'components/mobile-overflow-wrapper';
@@ -81,5 +81,6 @@
 @import 'components/section-with-media';
 
 //Page styles
+@import 'pages/landing';
 @import 'pages/reports-page';
 @import 'pages/reports-admin';
