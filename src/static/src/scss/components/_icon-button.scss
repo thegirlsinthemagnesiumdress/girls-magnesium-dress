@@ -1,0 +1,26 @@
+// Can be added to an anchor tag or a button
+.dmb-icon-button {
+  background: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  box-shadow: $dmb-box-shadow;
+  color: $dmb-color-grey-shuttle;
+  display: block;
+  height: 56px;
+  position: relative;
+  width: 56px;
+
+  &:focus,
+  &:hover {
+    color: $dmb-color-blue-charade;
+  }
+
+  svg {
+    fill: currentColor;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+  }
+}

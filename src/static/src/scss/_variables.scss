@@ -31,3 +31,5 @@ $dmb-alt-font-family: $h-font-family-google-sans;
 // Small Desktop breakpoint, not available within the mixins.
 // Used to adjust h-c-page max-width.
 $h-screen-sm: '(min-width: 1024px)';
+
+$dmb-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .29);

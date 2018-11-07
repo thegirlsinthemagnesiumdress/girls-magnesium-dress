@@ -38,11 +38,12 @@
 
 @import 'hercules/lib/global/scss/trumps/all';
 
-// Variables
-@import 'variables';
 
 //Colors
 @import 'colors';
+
+// Variables
+@import 'variables';
 
 // Mixins
 @import 'mixins';
@@ -67,6 +68,7 @@
 @import 'components/header';
 @import 'components/hero';
 @import 'components/hiw';
+@import 'components/icon-button';
 @import 'components/infographic';
 @import 'components/input';
 @import 'components/mobile-overflow-wrapper';
