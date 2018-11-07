@@ -20,11 +20,6 @@
       background: #fff;
     }
 
-    &:focus {
-      // Outline is already indicated by the background-color change
-      outline: none;
-    }
-
     &__icon {
       fill: currentColor;
       margin-right: 11px;

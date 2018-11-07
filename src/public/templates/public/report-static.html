@@ -14,7 +14,7 @@
             Your digital maturity benchmark
           </h1>
           <p class="h-c-headline h-c-headline--two dmb-report-page__hero-date dmb-report-page__hero-muted">
-            <time datetime="27/08/2018">{[reportCtrl.result.loaded_at|date:'MMMM yyyy' ]}</time>
+            <time datetime="27/08/2018">{[reportCtrl.result.started_at|date:'MMMM yyyy' ]}</time>
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6 h-c-grid__col-l--offset-1 h-c-grid__col--align-middle">
@@ -122,7 +122,7 @@
           <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--9">
             <h3 class="dmb-report-page__content-title">
               <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
-              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
+              <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one" aria-label="Get more informations about what your maturity represents">
                 <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
               </button>
             </h3>
@@ -150,7 +150,7 @@
       <section class="dmb-report-page__dimensions"> <!-- 6 dimensions -->
         <h2 class="h-c-eyebrow h-c-eyebrow--wide">
           6 dimensions of digital marketing maturity
-          <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
+          <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three" aria-label="Get more informations about the 6 dimensions">
             <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
           </button>
         </h2>
@@ -175,7 +175,7 @@
             </div>
           </div>
           <div>
-            <div class="dmb-report-page__tabs-sticky-nav" dmb-pin-top>
+            <div class="dmb-report-page__tabs-sticky-nav" aria-hidden="true" dmb-pin-top>
               <div class="h-c-page">
                 <ul class="">
                   <li ng-repeat="dimension in reportCtrl.dimensions">

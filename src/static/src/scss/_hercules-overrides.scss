@@ -32,6 +32,16 @@
   }
 }
 
+.h-c-button:focus,
+a:focus {
+  @include default-focus-outline;
+}
+
+.glue-zippy-set.h-t-hercules .glue-zippy-btn:focus {
+  @include default-focus-outline;
+
+}
+
 .h-c-button--print {
   @extend .h-c-button--primary;
   @extend .h-c-button--reversed;
