@@ -4,13 +4,11 @@
   $block: &;
 
   &__title {
-    @extend %dmb-section__title;
+    margin-bottom: 32px;
   }
 
   &__body {
-    @include bp(s) {
-      width: 75%;
-    }
+    max-width: 385px;
   }
 
   &__col-content {
@@ -22,11 +20,12 @@
 
     @include bp(s) {
       padding-bottom: 0;
+      padding-left: 40px;
     }
 
     #{$block}--benchmark-your-business & {
       order: 2;
-      padding-bottom: 0;
+      padding: 0;
 
       @include bp(m) {
         order: initial;

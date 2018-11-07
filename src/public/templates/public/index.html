@@ -8,16 +8,18 @@
 {% endblock %}
 
 {% block main %}
+  <div class="dmb-landing">
+
   {% include 'public/inc/home/hero.html' %}
   <div id="content" class="dmb-section-with-media dmb-section-with-media--desktop-content-right">
     <div class="h-c-page">
       <div class="h-c-grid">
-        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1">
+        <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--6">
           <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--three">
             Everyday there are hundreds of chances to engage with customers digitally
           </h2>
           <p class="dmb-section-with-media__body">
-            Only 2% of businesses make the most of these opportunities, using their insights and technology to create useful, personalised experiences at multiple moments across the purchase journey.
+            Only 2%<sup>*</sup> of businesses make the most of these opportunities, using their insights and technology to create useful, relevant experiences at multiple moments across the purchase journey.
           </p>
         </div>
         <div class="dmb-section-with-media__col-media h-c-grid__col h-c-grid__col--6">
@@ -40,8 +42,15 @@
             These businesses have a sustainable competitive advantage
           </h2>
           <p class="dmb-section-with-media__body">
-            Companies leading the way in multi-moment marketing see 30% cost efficiency savings and a 20% increase in revenue.
+            Companies leading the way in multi-moment marketing see 30%<sup>*</sup> cost efficiency savings and a 20%<sup>*</sup> increase in revenue.
           </p>
+          <a class="dmb-find-out-more-cta dmb-button dmb-button--secondary"
+                dmb-side-panel-trigger="#dmb-home-side-panel" aria-label="Find out more">
+            <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--18px">
+              <use xlink:href="#mi-arrow-sort"></use>
+            </svg>
+            <span class="dmb-button__text">Find out more</span>
+          </a>
         </div>
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col--offset-1">
           <img src="{% static 'img/home/competitive-advantage.jpg' %}" alt="">
@@ -62,12 +71,12 @@
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4 h-c-grid__col-l--offset-2">
           <p>
-            The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed by Google and Boston Consulting Group, based on a study to identify what drives data-driven marketing maturity.
+            The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed by Google and Boston Consulting Group based on a study to identify the success factors and best practices that drive businesses up the maturity scale.
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4">
           <p>
-            It analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised interactive report to help you level up.
+            First, it analyses where your business currently sits on a path to full data-driven marketing and attribution. Then, it generates a personalised report to help you level up and grow.
           </p>
         </div>
       </div>
@@ -81,7 +90,7 @@
         <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
         <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
           <div class="dmb-hiw-section__title-text">
-            Find out where your organisation is on the digital maturity scale
+            Benchmark which stage your organisation is at on our digital maturity scale.
           </div>
         </h3>
       </div>
@@ -90,19 +99,19 @@
           <ol class="dmb-infographic__inner">
             <li class="dmb-infographic__step dmb-infographic__step--first">
               <h4 class="dmb-infographic__step-t">Nascent</h4>
-              <p class="dmb-infographic__step-d">Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales</p>
+              <p class="dmb-infographic__step-d">Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales.</p>
             </li>
             <li class="dmb-infographic__step">
               <h4 class="dmb-infographic__step-t">Emerging</h4>
-              <p class="dmb-infographic__step-d">In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing</p>
+              <p class="dmb-infographic__step-d">In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing.</p>
             </li>
             <li class="dmb-infographic__step">
               <h4 class="dmb-infographic__step-t">Connected</h4>
-              <p class="dmb-infographic__step-d">By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies</p>
+              <p class="dmb-infographic__step-d">By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.</p>
             </li>
             <li class="dmb-infographic__step">
               <h4 class="dmb-infographic__step-t">Multi-moment</h4>
-              <p class="dmb-infographic__step-d">At this stage, businesses have dynamic execution optimised towards a single-customer view across channels</p>
+              <p class="dmb-infographic__step-d">At this stage, businesses have dynamic execution optimised towards a single-customer view across channels.</p>
             </li>
             <li class="dmb-infographic__roundel"></li>
           </ol>
@@ -117,7 +126,7 @@
         <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
         <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
           <div class="dmb-hiw-section__title-text">
-            Dig deeper into how your organisation performs across 6 marketing dimensions
+            Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability.
           </div>
         </h3>
       </div>
@@ -188,7 +197,7 @@
                     Access
                   </h4>
                   <p class="h-c-tile__description">
-                    Reach and deliver across all inventory types and channels
+                    Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control
                   </p>
                 </div>
               </div>
@@ -216,20 +225,22 @@
 
   <div class="dmb-hiw-section dmb-bg-light-grey">
     <div class="h-c-page">
-      <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--7">
-          <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
-          <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
-            <div class="dmb-hiw-section__title-text">
-              Use these insights to identify where you need to develop to drive your organisation to the next level.
-            </div>
-          </h3>
+
+      <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
+      <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
+        <div class="dmb-hiw-section__title-text">
+          Use these insights to identify where you need to develop to drive your organisation to the next level.
         </div>
+      </h3>
+
+      <div class="h-c-grid dmb-landing__devices-grid">
         <div class="h-c-grid__col h-c-grid__col--4">
-          <img class="dmb-hiw-section__phone" src="{% static 'img/home/phone-2.png' %}" alt="">
+          {% include 'public/inc/global/partnership-with-bcg.html' %}
+        </div>
+        <div class="h-c-grid__col h-c-grid__col--8">
+          <img class="dmb-hiw-section__phone" src="{% static 'img/home/devices.png' %}" alt="photo of devices">
         </div>
       </div>
-      {% include 'public/inc/global/partnership-with-bcg.html' %}
     </div>
   </div>
 
@@ -237,26 +248,33 @@
     <div class="h-c-page">
       <div class="h-c-grid">
         <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col-l--5">
-          <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--three">
+          <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--two">
             Benchmark your business now
           </h2>
           <div class="dmb-section-with-media__body">
-            <p class="h-u-mb-std">
-              The assessment takes around 30-minutes to complete.
-            </p>
-            <p class="h-u-mb-l h-c-headline--subhead h-u-font-weight-medium">
+            <p class="h-u-mb-std h-c-headline--subhead h-u-font-weight-medium">
               Discover how your marketing maturity measures up, plan your progress, reach more customers.
+            </p>
+            <p class="h-u-mb-l">
+              This in-depth assessment takes around 30-minutes to complete.
             </p>
           </div>
           <a href="{% url 'registration' %}" class="h-c-button h-c-button--primary">
             Start the assessment now
           </a>
         </div>
-        <div class="dmb-section-with-media__col-media h-c-grid__col h-c-grid__col-l--6 h-c-grid__col-l--offset-1">
+
+        <div class="h-c-grid__col h-c-grid__col-l--6 h-c-grid__col--offset-1">
           <img src="{% static 'img/home/benchmark.jpg' %}" alt="">
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="dmb-landing__footnote h-c-page">
+    <sup>*</sup> Source: https://www.bcg.com/publications/2018/mastering-digital-marketing-maturity.aspx
+  </div>
+
   </div>
 {% endblock main %}
 

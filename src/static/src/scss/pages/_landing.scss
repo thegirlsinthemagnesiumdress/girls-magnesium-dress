@@ -1,0 +1,43 @@
+.dmb-landing {
+  .dmb-find-out-more-cta {
+    position: relative;
+
+    .dmb-button__icon {
+      left: 16px;
+      position: absolute;
+      transform: rotate(90deg);
+      transition: margin-left .2s;
+
+      @include bp(s) {
+        left: 21px;
+      }
+    }
+
+    .dmb-button__text {
+      margin-left: 30px;
+    }
+
+    &:hover {
+      .dmb-button__icon {
+        margin-left: -2px;
+      }
+    }
+  }
+
+  .h-c-tile {
+    &.h-c-tile--small-height {
+      @include bp(m) {
+        min-height: 0
+      }
+    }
+  }
+
+  &__devices-grid {
+    align-items: flex-end;
+  }
+
+  &__footnote {
+    color: $dmb-color-grey-shuttle;
+    font-size: 14px;
+  }
+}
