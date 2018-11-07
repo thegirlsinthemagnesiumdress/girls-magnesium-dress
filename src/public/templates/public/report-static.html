@@ -71,8 +71,10 @@
   </header>
 
   <div class="dmb-report-page__print-button-container" dmb-scroll-aware dmb-scroll-aware-enter-class="dmb-report-page--dark-print-button-text" dmb-scroll-aware-exit-class="dmb-report-page--dark-print-button-text">
-    <button class="dmb-report-page__print-button" aria-label="Print report button" onclick="window.print();" data-tooltip-text="This page is designed to be printable">
-      <img src="{% static 'img/icons/print.svg' %}" alt="print icon">
+    <button class="dmb-icon-button dmb-report-page__print-button" aria-label="Print report button" onclick="window.print();" data-tooltip-text="This page is designed to be printable">
+      <svg viewBox="0 0 30 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M25.5 8h-21A4.504 4.504 0 0 0 0       12.5v9h6v6h18v-6h6v-9c0-2.482-2.017-4.5-4.5-4.5zM21 24.5H9V17h12v7.5zM25.5 14c-.832 0-1.5-.668-1.5-1.5s.668-1.5 1.5-1.5 1.5.668 1.5 1.5-.668 1.5-1.5 1.5zM24 .5H6v6h18v-6z" fill-rule="nonzero" />
+      </svg>
     </button>
   </div>
 

@@ -36,7 +36,6 @@ $cta-border-color: $dmb-color-grey-link-water;
 $cta-color: $dmb-color-blue-royal;
 $cta-bg-color-alt: $h-gm-grey-50;
 $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
-$dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
 
 .dmb-report-page {
@@ -164,7 +163,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
   &__hero-company {
     display: block;
 
-    &:empty:before {
+    &:empty::before {
       content: '\200b'; // unicode zero width space character
     }
   }
@@ -496,7 +495,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
           min-width: 140px;
           position: absolute;
           top: 50%;
-          transform: translate(-50%,-50%);
+          transform: translate(-50%, -50%);
           width: 80%;
           z-index: -1;
         }
@@ -1077,17 +1076,14 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
   }
 
   &__print-button {
-    border-radius: 50%;
     bottom: 24px;
-    box-shadow: $dmb-box-shadow;
     height: 70px;
-    padding: 20px;
     position: fixed;
     right: 33px;
     width: 70px;
     z-index: 10;
 
-    img {
+    svg {
       width: 30px;
     }
 
@@ -1121,7 +1117,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
   &--dark-print-button-text {
     .dmb-report-page__print-button {
       &::before {
-        background-color: #f1f3f4;
+        background-color: $dmb-color-blue-solitude;
         color: $dmb-color-blue-charade;
       }
     }
