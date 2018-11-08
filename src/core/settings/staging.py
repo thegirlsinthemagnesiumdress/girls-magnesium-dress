@@ -1,4 +1,5 @@
 from core.settings.live import *  # noqa
+import os
 
 MIDDLEWARE_CLASSES = tuple(
     list(MIDDLEWARE_CLASSES) +
@@ -14,3 +15,8 @@ ALLOWED_AUTH_DOMAINS = [
 QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
 
 DJANGAE_CREATE_UNKNOWN_USER = True
+
+WHITELISTED_QUALTRICS_RESOURCES = (
+    os.path.join(STATIC_URL, 'css/survey.css'),
+    os.path.join(STATIC_URL, 'js/survey.min.js'),
+)

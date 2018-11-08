@@ -1,14 +1,16 @@
 
 from core.settings.default import *
+import os
+
 
 INSTALLED_APPS = tuple(list(INSTALLED_APPS) + [
     'debug_toolbar',
 ])
 
-MIDDLEWARE_CLASSES = tuple([
+MIDDLEWARE_CLASSES = tuple(list(MIDDLEWARE_CLASSES) + [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'angular.middleware.EnsureAngularProtectionMiddleware',
-] + list(MIDDLEWARE_CLASSES))
+])
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -47,4 +49,9 @@ CSP_SCRIPT_SRC += (
     "http://127.0.0.1:35729/livereload.js",
     "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
     "'unsafe-inline'",  # we need this because of Google Closure Library.
+)
+
+WHITELISTED_QUALTRICS_RESOURCES = (
+    os.path.join(STATIC_URL, 'css/survey.css'),
+    os.path.join(STATIC_URL, 'js/survey.min.js'),
 )
