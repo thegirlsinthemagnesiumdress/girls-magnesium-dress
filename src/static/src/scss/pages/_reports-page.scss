@@ -963,6 +963,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
         &__advice {
           background: $h-gm-grey-50;
+          border-radius: 5px;
           padding: 24px;
 
           @include bp($resp-bp) {
