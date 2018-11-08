@@ -15,7 +15,7 @@ class SmoothScrollCtrl {
    * @param {!angular.Scope} $scope
    * @param {!angular.Attributes} $attrs
    * @param {!angular.JQLite} $element
-   * @param {!service.SmoothScrollService} glueSmoothScrollService
+   * @param {!Object} glueSmoothScrollService
    * @ngInject
    */
   constructor($scope, $attrs, $element, glueSmoothScrollService) {
@@ -28,7 +28,7 @@ class SmoothScrollCtrl {
     /** @private {!angular.JQLite} */
     this.ngElement_ = $element;
 
-    /** @private {!service.SmoothScrollService} */
+    /** @private {!Object} */
     this.glueSmoothScrollService_ = glueSmoothScrollService;
 
     /** @private {string} */
@@ -39,7 +39,7 @@ class SmoothScrollCtrl {
 
   /**
    * Calls scrollTo method in glue smooth scroll service
-   * @param {!object} e
+   * @param {Object=} e
    * @private
    */
   scroll_(e) {

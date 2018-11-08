@@ -23,7 +23,7 @@ class SidePanel {
   /**
    * Constructor
    * @param  {Element} element The panel element to set up.
-   * @param  {bool} bindTriggers Whether events on the triggers or not.
+   * @param  {boolean} bindTriggers Whether events on the triggers or not.
    */
   constructor(element, bindTriggers=true) {
     /**

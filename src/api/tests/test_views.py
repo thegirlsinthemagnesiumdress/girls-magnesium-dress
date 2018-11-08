@@ -64,30 +64,6 @@ class SurveyResultTest(APITestCase):
             dmb=1.0,
             dmb_d='{}'
         )
-        self.url = reverse('survey_result_report', kwargs={'sid': self.survey.pk})
-
-    def test_survey_result_found(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertAlmostEqual(float(response.data.get('dmb')), self.survey_result.dmb)
-        self.assertEqual(response.data.get('response_id'), self.survey_result.response_id)
-        time_diff = abs(parse_datetime(response.data.get('started_at')) - self.survey_result.started_at)
-        self.assertTrue(time_diff < timedelta(seconds=1))
-
-    def test_return_last_survey_result(self):
-        survey_result = make_survey_result(
-            survey=self.survey,
-            response_id='BBB',
-            dmb=2.0,
-            dmb_d='{}'
-        )
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertAlmostEqual(float(response.data.get('dmb')), survey_result.dmb)
-        self.assertEqual(response.data.get('response_id'), survey_result.response_id)
-
-        time_diff = abs(parse_datetime(response.data.get('started_at')) - self.survey_result.started_at)
-        self.assertTrue(time_diff < timedelta(seconds=1))
 
     def test_survey_result_not_found(self):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
