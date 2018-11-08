@@ -299,5 +299,3 @@ SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
     '@google.com',
     '@potatolondon.com',
 )
-
-WHITELISTED_QUALTRICS_RESOURCES = ()

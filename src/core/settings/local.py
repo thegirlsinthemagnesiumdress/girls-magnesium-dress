@@ -50,8 +50,3 @@ CSP_SCRIPT_SRC += (
     "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
     "'unsafe-inline'",  # we need this because of Google Closure Library.
 )
-
-WHITELISTED_QUALTRICS_RESOURCES = (
-    os.path.join(STATIC_URL, 'css/survey.css'),
-    os.path.join(STATIC_URL, 'js/survey.min.js'),
-)

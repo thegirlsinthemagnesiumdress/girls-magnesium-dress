@@ -27,15 +27,13 @@ class UsersRestrictionMiddleware(object):
         # Set on class based views `_bypass_domain_restriction` to bypass authentication
         # this is for allowing APIs used by Qualtrics to get information without the
         # need of being authenticated (used in staging).
-        # `settings.WHITELISTED_QUALTRICS_RESOURCES` is a list of ccs/js whitelisted tp
-        # skip authentication
         _bypass_domain_restriction = False
         try:
             _bypass_domain_restriction = view.func.cls._bypass_domain_restriction
         except AttributeError:
             pass
 
-        if _bypass_domain_restriction or request.path in settings.WHITELISTED_QUALTRICS_RESOURCES:
+        if _bypass_domain_restriction:
             logging.info("Bypassing restrictions for: {}".format(request.path))
             return
 
