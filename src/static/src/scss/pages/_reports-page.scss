@@ -804,7 +804,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
     &--left {
       #{$side-panel}__inner {
-        @include bp(#{$resp-bp}) {
+        @include bp($resp-bp) {
           padding-right: 125px;
         }
       }
@@ -856,7 +856,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
       #{$side-panel} {
         &__inner {
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             padding: 79px 80px 97px;
           }
         }
@@ -864,7 +864,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
         &__heading {
           margin: 0 0 40px;
 
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             border-bottom: 1px solid $dmb-color-grey-gainsboro;
             margin-bottom: 58px;
             padding-bottom: 16px;
@@ -872,7 +872,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
         }
 
         &__left-block {
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             padding-left: 70px;
           }
         }
@@ -880,7 +880,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
         &__list-container {
           margin: 50px 0 8px;
 
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             margin: 90px 0 16px;
           }
 
@@ -931,7 +931,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
           min-width: 20px;
           position: absolute;
 
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             left: -50px;
           }
 
@@ -962,10 +962,10 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
         }
 
         &__advice {
-          background: $dmb-color-blue-solitude;
+          background: $h-gm-grey-50;
           padding: 24px;
 
-          @include bp(#{resp-bp}) {
+          @include bp($resp-bp) {
             padding: 40px 48px 18px;
           }
 
@@ -973,7 +973,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
             margin-bottom: 32px;
             max-width: 545px;
 
-            @include bp(#{resp-bp}) {
+            @include bp($resp-bp) {
               margin-bottom: 62px;
             }
           }
@@ -998,7 +998,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
           h4 {
             margin-bottom: 16px;
 
-            @include bp(#{resp-bp}) {
+            @include bp($resp-bp) {
               margin-bottom: 24px;
             }
           }
@@ -1008,7 +1008,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
           border-bottom: 1px solid $dmb-color-grey-very-light;
           padding: 48px 0 24px;
 
-          @include bp(#{resp-bp}) {
+          @include bp($resp-bp) {
             padding: 80px 80px 90px;
           }
 
@@ -1029,7 +1029,7 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
           max-width: 775px;
           padding-top: 24px;
 
-          @include bp(#{resp-bp}) {
+          @include bp($resp-bp) {
             padding: 32px 83px 0;
           }
 
