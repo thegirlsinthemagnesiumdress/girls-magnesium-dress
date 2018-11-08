@@ -171,6 +171,13 @@ class ReportController {
       });
     }, 0, true);
   }
+
+  /**
+   * @export
+   */
+  print() {
+    window['print']();
+  }
 }
 
 
