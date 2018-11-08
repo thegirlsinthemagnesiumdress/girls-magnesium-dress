@@ -118,7 +118,11 @@ $roundel-size: 22px;
   }
 
   &__step {
-    width: 25%;
+    width: 23%;
+
+    @include bp(m) {
+      width: 25%;
+    }
   }
 
   &__step-t,
