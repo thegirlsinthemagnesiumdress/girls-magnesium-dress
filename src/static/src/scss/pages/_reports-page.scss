@@ -1072,10 +1072,6 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
 
   &__print-button-container {
     margin-top: 36.5px;
-
-    @media (max-width: 721px) {
-      display: none;
-    }
   }
 
   &__print-button {
@@ -1088,6 +1084,12 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
     right: 33px;
     width: 70px;
     z-index: 10;
+    display: none;
+
+
+    @include bp(m) {
+      display: block;
+    }
 
     img {
       width: 30px;
