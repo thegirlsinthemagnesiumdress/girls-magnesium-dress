@@ -211,7 +211,7 @@ def generate_csv_export(created_at=None):
                 'company_name': survey.company_name,
                 'industry': survey.industry,
                 'country': survey.country,
-                'dmb': survey.last_survey_result.dmb_d if survey.last_survey_result else None,
+                'dmb': survey.last_survey_result.dmb if survey.last_survey_result else None,
                 'access': None,
                 'audience': None,
                 'attribution': None,
