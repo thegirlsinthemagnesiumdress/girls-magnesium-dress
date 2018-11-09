@@ -15,6 +15,10 @@ from django.db import IntegrityError
 from djangae.db import transaction
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
+import cloudstorage
+from google.appengine.api import app_identity
+import csv
+from datetime import datetime
 
 
 def get_results():
@@ -168,3 +172,26 @@ def is_valid_email(email):
 def _survey_completed(is_finished):
     is_finished = int(is_finished)
     return bool(is_finished)
+
+
+def generate_csv_export(created_at=None):
+    surveys = Survey.objects.all()
+    if created_at:
+        surveys = Survey.objects.all()
+    else:
+        # surveys = Survey.objects.filter(created_at__gte=datetime)
+        pass
+
+    bucket_name = os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
+    bucket = '/' + bucket_name
+    filename = os.path.join(bucket, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
+
+    logging.info("Creating export in {}".format(filename))
+
+    write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
+    with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
+        writer = csv.writer(gcs_file, delimiter='\t')
+        writer.writerow(['company_name', 'industry'])
+        for survey in surveys:
+            writer.writerow([survey.company_name, survey.industry])
+    logging.info("Export completed")
