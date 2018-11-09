@@ -1023,10 +1023,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
   &__print-button-container {
     margin-top: 36.5px;
-
-    @media (max-width: 721px) {
-      display: none;
-    }
   }
 
   &__print-button {
@@ -1036,6 +1032,12 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     right: 33px;
     width: 70px;
     z-index: 10;
+    display: none;
+
+
+    @include bp(m) {
+      display: block;
+    }
 
     svg {
       width: 30px;
