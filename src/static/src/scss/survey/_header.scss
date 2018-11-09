@@ -19,12 +19,19 @@
 
   &__description {
     font-family: $h-body-font-family;
-    margin-bottom: $dmb-margin-small;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: $h-font-weight-regular;
     max-width: 524px;
 
     @include bp(s) {
       width: 75%;
     }
+  }
+
+  .dmb-find-out-more-cta {
+    display: block;
+    margin: 40px 0;
   }
 }
 

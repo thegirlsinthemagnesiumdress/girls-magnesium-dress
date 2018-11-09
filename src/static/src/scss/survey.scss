@@ -24,6 +24,7 @@
 @import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
 @import 'hercules/lib/components/type/type';
+@import 'hercules/lib/components/icons/icons';
 
 // Variables
 @import 'variables';
@@ -41,6 +42,7 @@
 @import 'shared/fab';
 @import 'shared/hero';
 @import 'shared/side-panel';
+@import 'shared/partnership-with-bcg';
 
 // Components
 @import 'survey/buttons';
@@ -53,6 +55,9 @@
 @import 'survey/radio-buttons';
 @import 'survey/side-panel';
 @import 'survey/styled-list';
+@import 'survey/privacy-question';
+@import 'survey/dimension-header';
+@import 'survey/dimension-header';
 
 // Hercules part that needs to come last
 @import 'hercules/lib/global/scss/trumps/all';
