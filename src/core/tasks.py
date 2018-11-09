@@ -209,8 +209,8 @@ def generate_csv_export(created_at=None):
             try:
                 survey_data = {
                     'company_name': survey.company_name,
-                    'industry': survey.industry,
-                    'country': survey.country,
+                    'industry': settings.INDUSTRIES.get(survey.industry),
+                    'country': settings.COUNTRIES.get(survey.country),
                     'dmb': survey.last_survey_result.dmb if survey.last_survey_result else None,
                     'access': None,
                     'audience': None,
