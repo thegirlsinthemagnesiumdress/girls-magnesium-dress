@@ -22,25 +22,25 @@ class RegistrationController {
 
     /**
      * @export
-     * @type{String}
+     * @type{string}
      */
     this.companyName= '';
 
     /**
      * @export
-     * @type{String}
+     * @type{string}
      */
     this.industry= '';
 
     /**
      * @export
-     * @type{String}
+     * @type{string}
      */
     this.country= '';
 
     /**
      * @export
-     * @type{String}
+     * @type{string}
      */
     this.engagementLead= '';
 
@@ -103,7 +103,7 @@ class RegistrationController {
     this.industry = '';
     this.country = '';
     this.link = '';
-    this.serverError = '';
+    this.serverError = false;
   }
 }
 

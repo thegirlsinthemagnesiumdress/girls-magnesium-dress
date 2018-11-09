@@ -47,9 +47,10 @@
   {% block header %}
     {% include 'public/inc/global/header.html' %}
   {% endblock header %}
-
-  {% block main %}
-  {% endblock main %}
+  <div id="jump-content">
+    {% block main %}
+    {% endblock main %}
+  </div>
 
 {% block footer %}
 {% include 'public/inc/global/footer.html' %}

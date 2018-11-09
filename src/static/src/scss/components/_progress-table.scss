@@ -162,6 +162,12 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
       }
     }
 
+    &--no-value {
+      .dmb-progress-table__rating {
+        display: none;
+      }
+    }
+
     &--main {
       border-color: $dmb-prog-table-main-bar-color;
 

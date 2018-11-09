@@ -7,14 +7,13 @@ class ProgressTableController {
   /**
    * ProgressTable controller
    *
-   * @param {Object} floorDmbFactory
+   * @param {function (*): number|null} floorDmbFactory
    *
-   * @constructor
    * @ngInject
    */
   constructor(floorDmbFactory) {
     /**
-     * @type {Object}
+     * @type {function (*): number|null}
      * @private
      */
     this.floorDmbFactory_ = floorDmbFactory;
@@ -33,6 +32,7 @@ class ProgressTableController {
       2: 'connected',
       3: 'multimoment',
     };
+
     return activeClassMap[this.floorDmbFactory_(dmb)];
   }
 

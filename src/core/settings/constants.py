@@ -6,9 +6,9 @@ WEIGHTS = {
     'Q107': 0.25,
     'Q109': 0.3,
     'Q110': 0.3,
-    'Q111': 0.3,
     'Q112': 0.3,
     'Q113': 0.3,
+    'Q114': 0.3,
     'Q122': 0.5,
     'Q123': 0.5,
     'Q124': 0.5,
@@ -18,7 +18,6 @@ WEIGHTS = {
     'Q136': 1.25,
     'Q137': 1.25,
     'Q138': 1.25,
-    'Q163': 1.25,
     'Q144': 0.5,
     'Q145': 1.16,
     'Q148': 0.5,
@@ -26,6 +25,7 @@ WEIGHTS = {
     'Q150': 0.75,
     'Q153': 0.5,
     'Q155': 2,
+    'Q163': 1.25,
 }
 
 # If a question ID is not added to this list the question won't be considered for the final score

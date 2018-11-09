@@ -73,7 +73,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__hero-muted {
-    opacity: .45;
+    opacity: .62;
   }
 
   .h-c-header {
@@ -159,6 +159,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
   &__hero-company {
     display: block;
+    font-weight: $h-font-weight-medium;
 
     &:empty::before {
       content: '\200b'; // unicode zero width space character
@@ -450,7 +451,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
           .glue-c-tabset__button {
             box-shadow: 0 -1px 8px 0 $dmb-tabs-shadow-color;
-            color: $dmb-text-color;
+            color: $dmb-color-grey-accessible-grey;
             font-weight: $h-font-weight-medium;
           }
         }
@@ -459,7 +460,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       &__button {
         border: 0;
         border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
-        color: $dmb-color-grey-aluminium;
+        color: $dmb-color-grey-accessible-grey;
         height: 100%;
         padding: 14px 10px;
         width: 100%;
@@ -604,7 +605,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   &__tabs-sticky-nav-btn {
     background: transparent;
     border: 0;
-    color: $glue-tabset-tabs-text-color;
+    color: $dmb-color-grey-accessible-grey;
     outline: 0;
     padding: 8px 20px;
 
@@ -755,7 +756,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
     &--left {
       #{$side-panel}__inner {
-        @include bp(#{$resp-bp}) {
+        @include bp($resp-bp) {
           padding-right: 125px;
         }
       }
@@ -807,7 +808,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
       #{$side-panel} {
         &__inner {
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             padding: 79px 80px 97px;
           }
         }
@@ -815,7 +816,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         &__heading {
           margin: 0 0 40px;
 
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             border-bottom: 1px solid $dmb-color-grey-gainsboro;
             margin-bottom: 58px;
             padding-bottom: 16px;
@@ -823,7 +824,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         }
 
         &__left-block {
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             padding-left: 70px;
           }
         }
@@ -831,7 +832,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         &__list-container {
           margin: 50px 0 8px;
 
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             margin: 90px 0 16px;
           }
 
@@ -882,7 +883,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
           min-width: 20px;
           position: absolute;
 
-          @include bp(#{$resp-bp}) {
+          @include bp($resp-bp) {
             left: -50px;
           }
 
@@ -913,10 +914,11 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
         }
 
         &__advice {
-          background: $dmb-color-blue-solitude;
+          background: $h-gm-grey-50;
+          border-radius: 5px;
           padding: 24px;
 
-          @include bp(#{resp-bp}) {
+          @include bp($resp-bp) {
             padding: 40px 48px 18px;
           }
 
@@ -924,7 +926,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
             margin-bottom: 32px;
             max-width: 545px;
 
-            @include bp(#{resp-bp}) {
+            @include bp($resp-bp) {
               margin-bottom: 62px;
             }
           }
@@ -949,7 +951,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
           h4 {
             margin-bottom: 16px;
 
-            @include bp(#{resp-bp}) {
+            @include bp($resp-bp) {
               margin-bottom: 24px;
             }
           }
@@ -959,7 +961,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
           border-bottom: 1px solid $dmb-color-grey-very-light;
           padding: 48px 0 24px;
 
-          @include bp(#{resp-bp}) {
+          @include bp($resp-bp) {
             padding: 80px 80px 90px;
           }
 
@@ -980,7 +982,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
           max-width: 775px;
           padding-top: 24px;
 
-          @include bp(#{resp-bp}) {
+          @include bp($resp-bp) {
             padding: 32px 83px 0;
           }
 

@@ -1,7 +1,7 @@
 $infographic-default: $h-google-blue-400;
 
 $step-colors: $h-google-blue-100, $h-google-blue-500, $h-google-blue-700, $h-google-blue-900;
-$step-text-colors: $h-google-blue-500, $h-google-blue-600, $h-google-blue-800, $h-google-blue-900;
+$step-text-colors: $h-gm-blue-700, $h-gm-blue-700, $h-google-blue-800, $h-google-blue-900;
 $step-bar-height: 8px;
 $step-header-height: 64px;
 $roundel-size: 22px;
@@ -144,7 +144,7 @@ $roundel-size: 22px;
   &__step-t {
     font-family: $h-font-family-google-sans;
     font-size: 18px;
-    font-weight: $h-font-weight-regular;
+    font-weight: $h-font-weight-medium;
     height: $step-header-height;
     line-height: 24px;
     padding-bottom: 20px;
@@ -182,9 +182,8 @@ $roundel-size: 22px;
     }
   }
 
-
-  @each $color in $step-text-colors {
-    $i: index($step-text-colors, $color);
+  @for $i from 1 through length($step-text-colors) {
+    $color:  nth($step-text-colors, $i);
 
     &__step:nth-of-type(#{$i}) &__step-t {
       color: $color;

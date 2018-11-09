@@ -43,7 +43,7 @@ const DIRECTIVE_NAME = 'dmbSmoothScroll';
  * of the target element, the easing function and URL hash.
  * Generally Glue scroll directive is preferred for links, but Glue SmoothScroll
  * directive is preferred for animated scroll.
- * @param {!service.SmoothScrollService} glueSmoothScrollService Glue smooth
+ * @param {!Object} glueSmoothScrollService Glue smooth
  *     scroll service.
  * @param {!angular.$location} $location Angular location service.
  * @return {!angular.Directive} Smooth scroll directive definition object.
