@@ -9,7 +9,7 @@ class SidePanelService {
    */
   constructor() {
     /**
-     * @type {object}
+     * @type {Object}
      */
     this.sidePanelMap = {};
   }

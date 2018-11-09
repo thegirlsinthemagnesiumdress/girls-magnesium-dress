@@ -71,14 +71,13 @@ class ReportController {
 
     /**
      *  Show dimensions tab (instead of the zippy).
-     * @type {!bool}
+     * @type {!boolean}
      * @export
      */
     this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
 
     /**
-     * Floored dmb.
-     * @type {!object}
+     * @type {!Object}
      * @export
      */
     this.dimensionHeaders = dimensionHeaders;
@@ -142,7 +141,7 @@ class ReportController {
 
   /**
    *  @param {string} size
-   *  @return {bool}
+   *  @return {boolean}
    *  @private
    */
   showTabs_(size) {
@@ -171,6 +170,13 @@ class ReportController {
         'activeEl': elementId,
       });
     }, 0, true);
+  }
+
+  /**
+   * @export
+   */
+  print() {
+    window['print']();
   }
 }
 

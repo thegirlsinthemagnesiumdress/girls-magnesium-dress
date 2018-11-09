@@ -57,33 +57,6 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
         return Response(serializer.data)
 
 
-class SurveyResultsDetail(ListAPIView):
-    """
-    Retrieve `SurveyResults` instance.
-    By spec we assume we should have a single SurveyResult per Survey and in case we have
-    more than one we just take the latest. That's why we are using survey_id as lookup field
-    instead of the pk.
-    """
-    authentication_classes = ()
-    permission_classes = (AllowAny,)
-    serializer_class = SurveyResultSerializer
-    filter_backends = (OrderingFilter,)
-    lookup_field = 'survey_id'
-    lookup_url_kwarg = 'sid'
-    ordering = ('-started_at')
-
-    def get_queryset(self):
-        lookup_url_kwarg = self.kwargs.get(self.lookup_url_kwarg)
-        return SurveyResult.objects.filter(**{self.lookup_field: lookup_url_kwarg})
-
-    def get(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        if queryset:
-            serializer = self.get_serializer(queryset.first())
-            return Response(serializer.data)
-        raise Http404
-
-
 class SurveyDetailView(RetrieveAPIView):
     authentication_classes = ()
     permission_classes = (AllowAny,)

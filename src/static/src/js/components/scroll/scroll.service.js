@@ -63,11 +63,13 @@ function scrollService() {
 
     /**
    *
-   * @param {HTMLElement} elem
+   * @param {HTMLElement} e
    * @return {number} distance from top of the document.
    */
-  function getElementOffsetTop( elem ) {
+  function getElementOffsetTop(e) {
     let location = 0;
+    let elem = e;
+
     if (elem.offsetParent) {
         do {
             location += elem.offsetTop;

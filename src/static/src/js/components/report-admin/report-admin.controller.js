@@ -9,7 +9,6 @@ class ReportAdminController {
    *
    * @param {Object} bootstrapData
    *
-   * @constructor
    * @ngInject
    */
   constructor(bootstrapData) {
