@@ -41,10 +41,7 @@ function scrollAwareDirective(scrollService, $timeout) {
 
       scope.$on('$destroy', onDestroy);
 
-      // $timeout added to make sure all elements are initialise before scroll positions are calculated
-      $timeout(() => {
-        ctrl.onReady();
-      }, 0);
+      ctrl.onReady();
 
 
       /**
@@ -121,7 +118,10 @@ function scrollAwareDirective(scrollService, $timeout) {
        *
        */
       function onReady() {
-        ctrl.checkElementPosition(window.scrollY);
+        // $timeout added to make sure all elements are initialise before scroll positions are calculated
+        $timeout(() => {
+          ctrl.checkElementPosition(window.scrollY);
+        }, 0);
       }
 
       /**

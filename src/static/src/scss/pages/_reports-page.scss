@@ -165,15 +165,15 @@ $dmb-box-shadow: 0 2px 8px 0 rgba($dmb-color-grey-suva, .5);
     display: block;
     font-weight: $h-font-weight-medium;
 
-    &:empty:before {
+    &:empty::before {
       content: '\200b'; // unicode zero width space character
     }
   }
 
   &__hero-date {
+    @include dmb-responsive(margin-top, 8, 32);
     color: inherit;
     margin: 24px 0 50px;
-    @include dmb-responsive(margin-top, 8, 32);
 
     @include bp(s) {
       margin: 32px 0  57px;
