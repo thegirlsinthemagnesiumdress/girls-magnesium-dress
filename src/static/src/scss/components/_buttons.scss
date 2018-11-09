@@ -16,8 +16,13 @@
     padding: 10px 21px;
   }
 
+  &:visited {
+    color: inherit;
+  }
+
   &__icon {
     margin-top: -1px;
+
   }
 
   &__text + &__icon,
@@ -58,7 +63,8 @@
   width: 56px;
 
   &:focus,
-  &:hover {
+  &:hover,
+  &:visited {
     color: $dmb-color-blue-charade;
   }
 
