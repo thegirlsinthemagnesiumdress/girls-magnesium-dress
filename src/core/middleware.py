@@ -24,10 +24,17 @@ class UsersRestrictionMiddleware(object):
 
         view = resolve(request.path)
 
-        # Allow decorators on views to bypass this to do their own
-        # handling (this is mainly for allowing API access to inbound App Engine
-        # Apps)
-        if getattr(view.func, "_bypass_domain_restriction", False):
+        # Set on class based views `_bypass_domain_restriction` to bypass authentication
+        # this is for allowing APIs used by Qualtrics to get information without the
+        # need of being authenticated (used in staging).
+        _bypass_domain_restriction = False
+        try:
+            _bypass_domain_restriction = view.func.cls._bypass_domain_restriction
+        except AttributeError:
+            pass
+
+        if _bypass_domain_restriction:
+            logging.info("Bypassing restrictions for: {}".format(request.path))
             return
 
         if not request.user.is_authenticated():

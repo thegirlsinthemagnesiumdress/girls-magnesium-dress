@@ -1,14 +1,16 @@
 
 from core.settings.default import *
+import os
+
 
 INSTALLED_APPS = tuple(list(INSTALLED_APPS) + [
     'debug_toolbar',
 ])
 
-MIDDLEWARE_CLASSES = tuple([
+MIDDLEWARE_CLASSES = tuple(list(MIDDLEWARE_CLASSES) + [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'angular.middleware.EnsureAngularProtectionMiddleware',
-] + list(MIDDLEWARE_CLASSES))
+])
 
 INTERNAL_IPS = [
     '127.0.0.1',
