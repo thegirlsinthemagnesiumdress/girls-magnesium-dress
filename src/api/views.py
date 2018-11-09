@@ -46,6 +46,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     queryset = Survey.objects.all()
     lookup_field = 'sid'
     lookup_url_kwarg = 'sid'
+    _bypass_domain_restriction = True
 
     def retrieve(self, request, *args, **kwargs):
         """
