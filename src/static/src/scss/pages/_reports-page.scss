@@ -1027,13 +1027,12 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
   &__print-button {
     bottom: 24px;
+    display: none;
     height: 70px;
     position: fixed;
     right: 33px;
     width: 70px;
     z-index: 10;
-    display: none;
-
 
     @include bp(m) {
       display: block;
@@ -1058,7 +1057,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       transition: visibility 0s, opacity .3s linear;
       visibility: hidden;
       white-space: nowrap;
-
       @include dmb-responsive(font-size, 16, 18);
     }
 

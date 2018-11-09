@@ -41,9 +41,9 @@
       order: 1;
 
       @media (max-width: 1280px) {
-        padding: $dmb-margin-medium;
         justify-content: center;
         margin: 0;
+        padding: $dmb-margin-medium;
       }
 
       > img {

@@ -24,8 +24,8 @@
     }
   }
 
-  .h-c-tile {
-    &.h-c-tile--small-height {
+  &__tile {
+    &.h-c-tile {
       @include bp(m) {
         min-height: 0;
       }
@@ -34,9 +34,10 @@
 
   &__devices-grid {
     align-items: flex-end;
+    padding: 0 24px;
 
-    @media (max-width: 1280px) {
-      padding: 0 24px;
+    @include bp(l) {
+      padding: 0;
     }
   }
 
