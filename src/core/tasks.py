@@ -174,14 +174,9 @@ def _survey_completed(is_finished):
     return bool(is_finished)
 
 
-def generate_csv_export(created_at=None):
-    surveys = Survey.objects.none()
-    if created_at:
-        # surveys = Survey.objects.filter(created_at__gte=datetime)
-        pass
-    else:
-        surveys = Survey.objects.all()
+def generate_csv_export():
 
+    surveys = Survey.objects.all()
     bucket_name = os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
     filename = os.path.join('/', bucket_name, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
 
@@ -211,7 +206,7 @@ def generate_csv_export(created_at=None):
                     'company_name': survey.company_name,
                     'industry': settings.INDUSTRIES.get(survey.industry),
                     'country': settings.COUNTRIES.get(survey.country),
-                    'dmb': survey.last_survey_result.dmb if survey.last_survey_result else None,
+                    'dmb': None,
                     'access': None,
                     'audience': None,
                     'attribution': None,
@@ -220,6 +215,7 @@ def generate_csv_export(created_at=None):
                     'automation': None,
                 }
                 if survey.last_survey_result:
+                    survey_data['dmb'] = survey.last_survey_result.dmb if survey.last_survey_result else None
                     survey_data.update(survey.last_survey_result.dmb_d)
             except SurveyResult.DoesNotExist:
                 # In case we have a survey, but has not been completed yet
