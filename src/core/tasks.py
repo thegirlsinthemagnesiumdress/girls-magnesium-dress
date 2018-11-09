@@ -19,6 +19,7 @@ import cloudstorage
 from google.appengine.api import app_identity
 import csv
 from datetime import datetime
+import json
 
 
 def get_results():
@@ -175,7 +176,7 @@ def _survey_completed(is_finished):
 
 
 def generate_csv_export(created_at=None):
-    surveys = Survey.objects.all()
+    surveys = Survey.objects.none()
     if created_at:
         surveys = Survey.objects.all()
     else:
@@ -190,8 +191,37 @@ def generate_csv_export(created_at=None):
 
     write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
     with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
-        writer = csv.writer(gcs_file, delimiter='\t')
-        writer.writerow(['company_name', 'industry'])
+        fieldnames = [
+            'company_name',
+            'industry',
+            'dmb_d',
+            'access',
+            'audience',
+            'attribution',
+            'ads',
+            'organization',
+            'automation',
+        ]
+        writer = csv.writer(gcs_file, delimiter=',')
+        writer = csv.DictWriter(gcs_file, fieldnames=fieldnames)
+        writer.writeheader()
+
         for survey in surveys:
-            writer.writerow([survey.company_name, survey.industry])
+            survey_data = {
+                'company_name': survey.company_name,
+                'industry': survey.industry,
+                'country': survey.country,
+                'dmb': survey.last_survey_result.dmb_d if survey.last_survey_result else None,
+                'access': None,
+                'audience': None,
+                'attribution': None,
+                'ads': None,
+                'organization': None,
+                'automation': None,
+            }
+
+            if survey.last_survey_result_data:
+                survey_data.update(json.loads(survey.last_survey_result_data.dmb_d))
+
+            writer.writerow(survey_data)
     logging.info("Export completed")
