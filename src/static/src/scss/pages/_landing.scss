@@ -1,4 +1,27 @@
 .dmb-landing {
+  &__trigger-container {
+    padding-top: 0;
+    position: relative;
+
+    .h-c-page {
+      margin-top: 56px;
+
+      @include bp(m) {
+        margin-top: 176px;
+      }
+    }
+  }
+
+  .dmb-panel-trigger {
+    &__button {
+      @include dmb-responsive(top, 10, 56);
+    }
+
+    @include bp(m) {
+      @include dmb-pannel-trigger-wide;
+    }
+  }
+
   .dmb-find-out-more-cta {
     position: relative;
 
