@@ -342,7 +342,7 @@ const dimensionLevelRecommendations = {
       'text': 'Use tools that make setting up and managing campaigns more efficient, for example, using an ad server for your creatives and a Demand SIde Platform (DSP) for your media buys. Check if the tools you are already using provide an API to reduce the number of manual tasks.',
     }, {
       'header': 'Automate high volume tasks',
-      'text': 'Move to automated bid adjustments for search and display campaigns. Gain experience with campaign management features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines).',
+      'text': 'Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a first step, move to automated bid adjustments for search and display campaigns. Gain experience with campaign management features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines).',
     }, {
       'header': 'Automate asset optimisation',
       'text': 'Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user\'s location or the user\'s keyword. Aim to automate at least half of your creative optimisation decisions.',
@@ -352,7 +352,7 @@ const dimensionLevelRecommendations = {
       'text': 'Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server for an increased percentage of your ads, use your Demand Side Platform (DSP) for more of your media buys and increase your use of media platform APIs.',
     }, {
       'header': 'Automate high volume tasks',
-      'text': 'Add more signals to your automated bid adjustments across search and display campaigns. Expand your use of automated campaign features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines).',
+      'text': 'Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a next step, add more signals to your automated bid adjustments across search and display campaigns. Expand your use of automated campaign features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines).',
     }, {
       'header': 'Automate asset optimisation',
       'text': 'Use dynamic feeds and behavioural signals to automatically find the best-performing variation of your creative. Automate the optimisation of your creatives across several digital channels.',
