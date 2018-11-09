@@ -19,7 +19,6 @@ import cloudstorage
 from google.appengine.api import app_identity
 import csv
 from datetime import datetime
-import json
 
 
 def get_results():
@@ -178,14 +177,13 @@ def _survey_completed(is_finished):
 def generate_csv_export(created_at=None):
     surveys = Survey.objects.none()
     if created_at:
-        surveys = Survey.objects.all()
-    else:
         # surveys = Survey.objects.filter(created_at__gte=datetime)
         pass
+    else:
+        surveys = Survey.objects.all()
 
     bucket_name = os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
-    bucket = '/' + bucket_name
-    filename = os.path.join(bucket, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
+    filename = os.path.join('/', bucket_name, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
 
     logging.info("Creating export in {}".format(filename))
 
@@ -194,7 +192,8 @@ def generate_csv_export(created_at=None):
         fieldnames = [
             'company_name',
             'industry',
-            'dmb_d',
+            'country',
+            'dmb',
             'access',
             'audience',
             'attribution',
@@ -207,21 +206,23 @@ def generate_csv_export(created_at=None):
         writer.writeheader()
 
         for survey in surveys:
-            survey_data = {
-                'company_name': survey.company_name,
-                'industry': survey.industry,
-                'country': survey.country,
-                'dmb': survey.last_survey_result.dmb if survey.last_survey_result else None,
-                'access': None,
-                'audience': None,
-                'attribution': None,
-                'ads': None,
-                'organization': None,
-                'automation': None,
-            }
-
-            if survey.last_survey_result_data:
-                survey_data.update(json.loads(survey.last_survey_result_data.dmb_d))
-
+            try:
+                survey_data = {
+                    'company_name': survey.company_name,
+                    'industry': survey.industry,
+                    'country': survey.country,
+                    'dmb': survey.last_survey_result.dmb if survey.last_survey_result else None,
+                    'access': None,
+                    'audience': None,
+                    'attribution': None,
+                    'ads': None,
+                    'organization': None,
+                    'automation': None,
+                }
+                if survey.last_survey_result:
+                    survey_data.update(survey.last_survey_result.dmb_d)
+            except SurveyResult.DoesNotExist:
+                # In case we have a survey, but has not been completed yet
+                pass
             writer.writerow(survey_data)
     logging.info("Export completed")
