@@ -7,6 +7,7 @@ from api.serializers import SurveyWithResultSerializer
 from core.auth import survey_admin_required
 from core.models import Survey
 from rest_framework.renderers import JSONRenderer
+import logging
 
 
 INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
@@ -44,7 +45,7 @@ def reports_admin(request):
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
-        'host': request.build_absolute_uri(reverse('registration')),
+        'create_survey_url': request.build_absolute_uri(reverse('registration')),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
         }),
