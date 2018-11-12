@@ -35,6 +35,31 @@
     }
   }
 
+  .dmb-find-out-more-cta {
+    position: relative;
+
+    .dmb-button__icon {
+      left: 16px;
+      position: absolute;
+      transform: rotate(90deg);
+      transition: margin-left .2s;
+
+      @include bp(s) {
+        left: 21px;
+      }
+    }
+
+    .dmb-button__text {
+      margin-left: 30px;
+    }
+
+    &:hover {
+      .dmb-button__icon {
+        margin-left: -2px;
+      }
+    }
+  }
+
   &__tile {
     &.h-c-tile {
       @include bp(m) {
