@@ -15,6 +15,7 @@ const rename = require('gulp-rename');
 const notify = require('gulp-notify');
 const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
+const rev = require('gulp-rev');
 
 
 const STATIC_DIR = './src/static';
@@ -35,6 +36,7 @@ const PATHS = {
     js: path.join(DIST_DIR, 'js'),
     scss: path.join(DIST_DIR, 'css'),
   },
+  manifest: path.join(STATIC_DIR, 'rev-manifest.json'),
 }
 
 
@@ -59,7 +61,13 @@ gulp.task('js', function() {
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
       .pipe(gap.prependFile('node_modules/ngclipboard/dist/ngclipboard.min.js'))
       .pipe(gap.prependFile('node_modules/clipboard/dist/clipboard.min.js'))
-      .pipe(gulp.dest(PATHS.dist.js));
+      .pipe(gulp.dest(PATHS.dist.js))
+      .pipe(rev())
+      .pipe(gulp.dest(PATHS.dist.js))
+      .pipe(rev.manifest(PATHS.manifest, {
+        merge: true,
+      }))
+      .pipe(gulp.dest('./'));
 });
 
 gulp.task('js-detect', function() {
@@ -146,6 +154,12 @@ gulp.task('sass', function() {
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(gap.prependFile('node_modules/angular/angular-csp.css'))
       .pipe(gulp.dest(PATHS.dist.scss))
+      .pipe(rev())
+      .pipe(gulp.dest(PATHS.dist.scss))
+      .pipe(rev.manifest(PATHS.manifest, {
+        merge: true,
+      }))
+      .pipe(gulp.dest('./'))
       .pipe(notify({
         message: 'Sass compilation complete.',
       }));
