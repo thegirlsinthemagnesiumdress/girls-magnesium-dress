@@ -57,13 +57,14 @@ gulp.task('js', function() {
       .pipe(hercules.js.prod({
         entry_point: 'dmb.app',
         hide_warnings_for: 'node_modules/glue/',
+        js_output_file: 'js/main.min.js',
       }))
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
       .pipe(gap.prependFile('node_modules/ngclipboard/dist/ngclipboard.min.js'))
       .pipe(gap.prependFile('node_modules/clipboard/dist/clipboard.min.js'))
-      .pipe(gulp.dest(PATHS.dist.js))
+      .pipe(gulp.dest(DIST_DIR))
       .pipe(rev())
-      .pipe(gulp.dest(PATHS.dist.js))
+      .pipe(gulp.dest(DIST_DIR))
       .pipe(rev.manifest(PATHS.manifest, {
         merge: true,
       }))
@@ -73,9 +74,18 @@ gulp.task('js', function() {
 gulp.task('js-detect', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
       // Note that entry_point matches the namespace defined in detect.js
-      .pipe(hercules.js.prod({entry_point: 'dmb.detect'}))
-      .pipe(rename('detect.min.js'))
-      .pipe(gulp.dest(PATHS.dist.js));
+      .pipe(hercules.js.prod({
+        entry_point: 'dmb.detect',
+        js_output_file: 'js/detect.min.js',
+
+      }))
+      .pipe(gulp.dest(DIST_DIR))
+      .pipe(rev())
+      .pipe(gulp.dest(DIST_DIR))
+      .pipe(rev.manifest(PATHS.manifest, {
+        merge: true,
+      }))
+      .pipe(gulp.dest('./'));
 });
 
 gulp.task('js-survey', function() {
@@ -84,9 +94,15 @@ gulp.task('js-survey', function() {
       .pipe(hercules.js.prod({
         entry_point: 'dmb.survey',
         hide_warnings_for: 'node_modules/glue/',
+        js_output_file: 'js/survey.min.js',
       }))
-      .pipe(rename('survey.min.js'))
-      .pipe(gulp.dest(PATHS.dist.js));
+      .pipe(gulp.dest(DIST_DIR))
+      .pipe(rev())
+      .pipe(gulp.dest(DIST_DIR))
+      .pipe(rev.manifest(PATHS.manifest, {
+        merge: true,
+      }))
+      .pipe(gulp.dest('./'));
 });
 
 gulp.task('js-templates', function() {
@@ -129,6 +145,7 @@ gulp.task('clean-dist', function() {
   return del([
     path.join(PATHS.dist.js, '**/*'),
     path.join(PATHS.dist.scss, '**/*'),
+    PATHS.manifest,
   ]);
 });
 
@@ -153,9 +170,12 @@ gulp.task('sass', function() {
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(gap.prependFile('node_modules/angular/angular-csp.css'))
-      .pipe(gulp.dest(PATHS.dist.scss))
+      .pipe(rename({
+        dirname: 'css',
+      }))
+      .pipe(gulp.dest(DIST_DIR))
       .pipe(rev())
-      .pipe(gulp.dest(PATHS.dist.scss))
+      .pipe(gulp.dest(DIST_DIR))
       .pipe(rev.manifest(PATHS.manifest, {
         merge: true,
       }))
