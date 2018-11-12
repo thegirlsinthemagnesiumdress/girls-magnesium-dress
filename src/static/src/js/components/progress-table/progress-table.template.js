@@ -20,7 +20,8 @@ const template = `
         </div>
       </div>
     </div>
-    <div class="dmb-progress-table__row-wrp" aria-label="{[industryAvg ? '' : 'Industry average is not available yet, sorry!' ]}">
+    <div class="dmb-progress-table__row-wrp"
+        aria-label="{[industryAvg ? '' : 'Industry average is not available yet, sorry!' ]}">
       <div
         class="dmb-progress-table__row dmb-progress-table__row--ind-avg"
           ng-class="{
@@ -31,14 +32,16 @@ const template = `
           data-rating="{[industryAvg|number:1]}">
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
-            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two" aria-label="Get more informations about the industry average">
+            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
+                aria-label="Get more informations about the industry average">
             </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">Industry average</span>
           </span>
           <span class="dmb-progress-table__rating" aria-label="industry average rating">{[industryAvg|number:1]}</span>
         </div>
       </div>
     </div>
-    <div class="dmb-progress-table__row-wrp" aria-label="{[industryAvg ? '' : 'Industry best is not available yet, sorry!' ]}">
+    <div class="dmb-progress-table__row-wrp"
+        aria-label="{[industryAvg ? '' : 'Industry best is not available yet, sorry!' ]}">
       <div class="dmb-progress-table__row dmb-progress-table__row--ind-best"
           ng-class="{
             'dmb-progress-table__row--no-value': industryBest == null,
@@ -48,7 +51,8 @@ const template = `
           data-rating="{[industryBest|number:1]}">
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
-            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two" aria-label="Get more informations about the Industry best">
+            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
+                aria-label="Get more informations about the Industry best">
             </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">Industry best</span>
           </span>
           <span class="dmb-progress-table__rating" aria-label="industry best rating">{[industryBest|number:1]}</span>

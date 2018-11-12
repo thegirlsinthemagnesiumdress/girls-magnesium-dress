@@ -26,9 +26,8 @@
   outline-style: solid;
   outline-width: 5px;
 
-  @media (-webkit-min-device-pixel-ratio:0) {
+  @media (-webkit-min-device-pixel-ratio: 0) {
     outline-color: -webkit-focus-ring-color;
     outline-style: auto;
   }
-
 }
