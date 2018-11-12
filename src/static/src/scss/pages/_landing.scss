@@ -4,17 +4,17 @@
     position: relative;
 
     .h-c-page {
-      margin-top: 56px;
+      padding-top: 56px;
 
       @include bp(m) {
-        margin-top: 176px;
+        padding-top: 176px;
       }
     }
   }
 
   .dmb-panel-trigger {
     &__button {
-      @include dmb-responsive(top, 10, 56);
+      @include dmb-responsive(top, 10, 66);
     }
 
     @include bp(s) {
