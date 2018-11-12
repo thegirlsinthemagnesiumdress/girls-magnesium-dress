@@ -7,7 +7,6 @@ from api.serializers import SurveyWithResultSerializer
 from core.auth import survey_admin_required
 from core.models import Survey
 from rest_framework.renderers import JSONRenderer
-import logging
 
 
 INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
