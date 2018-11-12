@@ -42,6 +42,13 @@
           <p class="dmb-section-with-media__body">
             Companies leading the way in multi-moment marketing see 30% cost efficiency savings and a 20% increase in revenue.
           </p>
+          <a class="dmb-button--find-out-more dmb-button dmb-button--secondary"
+                dmb-side-panel-trigger="#dmb-home-side-panel" aria-label="Find out more">
+            <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--18px">
+              <use xlink:href="#mi-arrow-sort"></use>
+            </svg>
+            <span class="dmb-button__text">Find out more</span>
+          </a>
         </div>
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col--offset-1">
           <img src="{% static 'img/home/competitive-advantage.jpg' %}" alt="">
@@ -222,8 +229,12 @@
           <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
             <div class="dmb-hiw-section__title-text">
               Use these insights to identify where you need to develop to drive your organisation to the next level.
+        </div>
             </div>
+
+      <div class="h-c-grid dmb-landing__devices-grid">
           </h3>
+          {% include 'public/inc/global/partnership-with-bcg.html' %}
         </div>
         <div class="h-c-grid__col h-c-grid__col--4">
           <img class="dmb-hiw-section__phone" src="{% static 'img/home/phone-2.png' %}" alt="">

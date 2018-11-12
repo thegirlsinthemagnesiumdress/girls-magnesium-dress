@@ -1,0 +1,67 @@
+.dmb-landing {
+  &__trigger-container {
+    padding-top: 0;
+    position: relative;
+
+    .h-c-page {
+      padding-top: 56px;
+
+      @include bp(m) {
+        padding-top: 176px;
+      }
+    }
+  }
+
+  .dmb-panel-trigger {
+    &__button {
+      @include dmb-responsive(top, 10, 66);
+    }
+
+    @include bp(m) {
+      @include dmb-pannel-trigger-wide;
+    }
+
+    &.dmb-pinned {
+
+      .dmb-panel-trigger__button:not(:hover) {
+        @include bp(s) {
+          transform: translateX(0);
+        }
+
+        @include bp(m) {
+          transform: translateX(175px);
+        }
+      }
+    }
+  }
+
+  &__tile {
+    &.h-c-tile {
+      @include bp(m) {
+        min-height: 0;
+      }
+    }
+  }
+
+  &__devices-grid {
+    align-items: flex-end;
+    padding: 0 24px;
+
+    @include bp(l) {
+      padding: 0;
+    }
+  }
+
+  &__logo-col {
+    padding: 32px 0;
+
+    @media (max-width: 1280px) {
+      order: 2;
+    }
+  }
+
+  &__footnote {
+    color: $dmb-color-grey-shuttle;
+    font-size: 14px;
+  }
+}
