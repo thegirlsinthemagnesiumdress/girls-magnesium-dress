@@ -17,8 +17,19 @@
       @include dmb-responsive(top, 10, 56);
     }
 
+    @include bp(s) {
+
+      .dmb-panel-trigger__button:not(:hover) {
+        transform: translateX(0);
+      }
+    }
+
     @include bp(m) {
       @include dmb-pannel-trigger-wide;
+
+      .dmb-panel-trigger__button:not(:hover) {
+        transform: translateX(175px);
+      }
     }
   }
 
