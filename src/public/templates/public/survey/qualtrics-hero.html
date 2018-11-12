@@ -1,39 +1,63 @@
 {% comment %}
-This file is not actually used by the application. It's a template used to generate the hero for the survey on qualtrics.
+This file is not actually used by the application. It's a template used to generate the hero for the survey on
+qualtrics.
 We're keeping a copy here since we don't have any version control on qualtrics
 {% endcomment %}
 
 <div class="h-c-page dmb-hero">
-    <div class="h-c-grid">
+  <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col-l--7 dmb-hero__content">
-    <p class="dmb-hero__pre-title h-c-headline h-c-headline--four">Welcome to the</p>
+      <p class="dmb-hero__pre-title h-c-headline h-c-headline--four">Welcome to the</p>
 
-    <h1 class="dmb-hero__title h-c-headline h-c-headline--one">${e://Field/company_name} marketing maturity assessment</h1>
+      <h1 class="dmb-hero__title h-c-headline h-c-headline--one">${e://Field/company_name} marketing maturity
+        assessment</h1>
 
-    <p class="dmb-hero__description">This is an in-depth assessment made up of around 50 questions which cover the 6 different dimensions of data-driven marketing.<br />
-    It can be filled in by a group or an individual with a good overview of all aspects of your organisation&#39;s marketing.</p>
-    <a class="dmb-button--find-out-more dmb-button dmb-button--secondary" dmb-side-panel-trigger="#checklist"> <svg class="dmb-button__icon h-c-icon h-c-icon--18px" role="img" viewbox="0 0 24 24"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path></svg> <span class="dmb-button__text">Take a look at what the assessment covers</span> </a> <!--<button class="dmb-survey-checklist-button" dmb-side-panel-trigger="#checklist"><svg class="dmb-survey-checklist-button__icon" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0h24v24H0z" fill="none"></path> <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path> </svg> <span>Take a look at what the assessment covers</span></button> -->
+      <p class="dmb-hero__description">This is an in-depth assessment made up of around 50 questions which cover the 6
+        different dimensions of data-driven marketing.<br />
+        It can be filled in by a group or an individual with a good overview of all aspects of your organisation&#39;s
+        marketing.</p>
+      <a class="dmb-button--find-out-more dmb-button dmb-button--secondary" dmb-side-panel-trigger="#checklist"> <svg
+          class="dmb-button__icon h-c-icon h-c-icon--18px" role="img" viewbox="0 0 24 24">
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </svg> <span class="dmb-button__text">Take a look at what the assessment covers</span> </a>
+      <!--<button class="dmb-survey-checklist-button" dmb-side-panel-trigger="#checklist"><svg class="dmb-survey-checklist-button__icon" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0h24v24H0z" fill="none"></path> <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path> </svg> <span>Take a look at what the assessment covers</span></button> -->
 
-    <p class="dmb-hero__description">Your answers are saved as you go. If you need to pause, or ask around for a particular answer, use this link to return immediately to where you left off. Just be sure to finish up and submit within 30 days of starting.</p>
-    <a class="h-c-button h-c-button--primary" href="#Questions">I&#39;m ready</a></div>
+      <p class="dmb-hero__description">Your answers are saved as you go. If you need to pause, or ask around for a
+        particular answer, use this link to return immediately to where you left off. Just be sure to finish up and
+        submit within 30 days of starting.</p>
     </div>
+  </div>
 
-    <div class="dmb-partnership-with-bcg">
+  <div class="dmb-partnership-with-bcg">
     <p>In partnership with</p>
-    <img alt="BCG - The Boston Consulting Group" height="44" src="https://0-0-10-0fb97-dot-gweb-digitalmaturity-staging.appspot.com/static/img/bcg-logo.png" width="140" /></div>
-    </div>
+    <img alt="BCG - The Boston Consulting Group" height="44" src="https://0-0-10-0fb97-dot-gweb-digitalmaturity-staging.appspot.com/static/img/bcg-logo.png"
+      width="140" />
+  </div>
+  <a href="#Questions" glue-smooth-scroll glue-smooth-scroll-hash="false" class="dmb-icon-button dmb-hero__scroll-content" aria-hidden="true">
+    <svg role="img" class="h-c-icon" viewBox="0 0 12 8">
+      <path d="M10.6,8L6,3.4L1.4,8L0,6.6l6-6l6,6L10.6,8z"></path>
+    </svg>
+  </a>
+</div>
 
-    <div class="dmb-side-panel dmb-side-panel--narrow" dmb-side-panel="" id="checklist"><button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close=""><span class="dmb-fab__icon"><svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path> <path d="M0 0h24v24H0z" fill="none"></path> </svg> </span></button>
+<div class="dmb-side-panel dmb-side-panel--narrow" dmb-side-panel="" id="checklist"><button class="dmb-side-panel__fab dmb-fab"
+    dmb-side-panel-close=""><span class="dmb-fab__icon"><svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg> </span></button>
 
-    <div class="dmb-side-panel__inner">
+  <div class="dmb-side-panel__inner">
     <h1 class="h-c-headline h-c-headline--two dmb-h-mb--medium">Assessment checklist</h1>
 
-    <p>The assessment will ask you questions about the following aspects of your organisation&rsquo;s marketing strategy:</p>
+    <p>The assessment will ask you questions about the following aspects of your organisation&rsquo;s marketing
+      strategy:</p>
 
     <ul class="dmb-styled-list">
-      <li class="dmb-styled-list__item">How your marketing team is set up, how it works with other teams (such as media buying) and with external partners</li>
+      <li class="dmb-styled-list__item">How your marketing team is set up, how it works with other teams (such as media
+        buying) and with external partners</li>
       <li class="dmb-styled-list__item">How tailored messaging is for each of the channels you use</li>
-      <li class="dmb-styled-list__item">What technology platforms you use for marketing purposes (data analysis, content management, insights generation, ad delivery, measurement)</li>
+      <li class="dmb-styled-list__item">What technology platforms you use for marketing purposes (data analysis,
+        content management, insights generation, ad delivery, measurement)</li>
       <li class="dmb-styled-list__item">How you use data to create campaigns, ads and websites</li>
       <li class="dmb-styled-list__item">How you monitor the quality and success of your marketing campaigns</li>
       <li class="dmb-styled-list__item">How often you run marketing experiments or campaign audits</li>
@@ -41,12 +65,16 @@ We're keeping a copy here since we don't have any version control on qualtrics
       <li class="dmb-styled-list__item">The loading speed and usability of your primary owned channels</li>
       <li class="dmb-styled-list__item">How you build your audiences</li>
     </ul>
-    </div>
-    </div>
+  </div>
+</div>
 
-    <div class="dmb-side-panel dmb-side-panel--narrow" dmb-side-panel="" id="privacy-statement"><button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close=""><span class="dmb-fab__icon"><svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path> <path d="M0 0h24v24H0z" fill="none"></path> </svg> </span></button>
+<div class="dmb-side-panel dmb-side-panel--narrow" dmb-side-panel="" id="privacy-statement"><button class="dmb-side-panel__fab dmb-fab"
+    dmb-side-panel-close=""><span class="dmb-fab__icon"><svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg> </span></button>
 
-    <div class="dmb-side-panel__inner">
+  <div class="dmb-side-panel__inner">
     <h1 class="h-c-headline h-c-headline--two dmb-h-mb--medium">Privacy Statement</h1>
 
     <p>At Google we care about your privacy.</p>
@@ -54,7 +82,9 @@ We're keeping a copy here since we don't have any version control on qualtrics
     <p>Emails are never used and not shared with anyone, other than the tool for sending the link to the report.</p>
 
     <p>Raw survey answers are not shared with anyone.<br />
-    The resulting scores (without emails or personal names) are made available to Googlers to help customers build a learning path, and shared with BCG to allow them to continue their research and benchmarking work.</p>
-    </div>
-    </div>
-    <link href="https://0-0-10-0fb97-dot-gweb-digitalmaturity-staging.appspot.com/static/img/icons/check.svg" rel="prefetch" /><script src="https://0-0-10-0fb97-dot-gweb-digitalmaturity-staging.appspot.com/static/js/survey.min.js"></script>
+      The resulting scores (without emails or personal names) are made available to Googlers to help customers build a
+      learning path, and shared with BCG to allow them to continue their research and benchmarking work.</p>
+  </div>
+</div>
+<link href="https://0-0-10-0fb97-dot-gweb-digitalmaturity-staging.appspot.com/static/img/icons/check.svg" rel="prefetch" />
+<script src="https://0-0-10-0fb97-dot-gweb-digitalmaturity-staging.appspot.com/static/js/survey.min.js"></script>
