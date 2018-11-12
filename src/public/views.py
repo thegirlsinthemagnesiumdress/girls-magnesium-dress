@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from angular.shortcuts import render
 from api.serializers import SurveyWithResultSerializer
 
@@ -43,7 +44,7 @@ def reports_admin(request):
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
-        'host': request.get_host(),
+        'create_survey_url': request.build_absolute_uri(reverse('registration')),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
         }),
