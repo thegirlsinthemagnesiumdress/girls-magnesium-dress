@@ -53,7 +53,9 @@ gulp.task('js-dev', function() {
 });
 
 gulp.task('js', function() {
-  return gulp.src(`${PATHS.src.js}/**/*.js`)
+  return gulp.src(`${PATHS.src.js}/**/*.js`, {
+    base: SRC_STATIC_DIR,
+  })
       .pipe(hercules.js.prod({
         entry_point: 'dmb.app',
         hide_warnings_for: 'node_modules/glue/',
@@ -61,7 +63,10 @@ gulp.task('js', function() {
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
       .pipe(gap.prependFile('node_modules/ngclipboard/dist/ngclipboard.min.js'))
       .pipe(gap.prependFile('node_modules/clipboard/dist/clipboard.min.js'))
-      .pipe(gulp.dest(PATHS.dist.js))
+      .pipe(rename({
+        dirname: 'js',
+      }))
+      .pipe(gulp.dest(DIST_DIR))
       .pipe(rev())
       .pipe(gulp.dest(PATHS.dist.js))
       .pipe(rev.manifest(PATHS.manifest, {
@@ -149,13 +154,15 @@ gulp.task('sass-dev', function() {
 
 gulp.task('sass', function() {
   // Fill out the line below with the path to your main Sass file.
-  return gulp.src(`${PATHS.src.scss}/**/*.scss`)
+  return gulp.src(`${PATHS.src.scss}/**/*.scss`, {
+    base: SRC_STATIC_DIR,
+  })
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(gap.prependFile('node_modules/angular/angular-csp.css'))
       .pipe(gulp.dest(PATHS.dist.scss))
       .pipe(rev())
-      .pipe(gulp.dest(PATHS.dist.scss))
+      .pipe(gulp.dest(DIST_DIR))
       .pipe(rev.manifest(PATHS.manifest, {
         merge: true,
       }))
