@@ -227,4 +227,8 @@ def generate_csv_export():
                 # In case we have a survey, but has not been completed yet
                 pass
             writer.writerow(survey_data)
+
+    latest = os.path.join('/', bucket_name, 'latest.csv')
+    logging.info("Copying {} as {}".format(filename, latest))
+    cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
     logging.info("Export completed")
