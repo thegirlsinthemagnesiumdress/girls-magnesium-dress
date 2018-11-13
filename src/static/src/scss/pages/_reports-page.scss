@@ -167,9 +167,9 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__hero-date {
+    @include dmb-responsive(margin-top, 8, 32);
     color: inherit;
     margin: 24px 0 50px;
-    @include dmb-responsive(margin-top, 8, 32);
 
     @include bp(s) {
       margin: 32px 0  57px;
