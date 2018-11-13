@@ -1,6 +1,5 @@
 // sass-lint:disable no-ids
 .dmb-hero {
-
   @include bp(m) {
     padding-bottom: 147px;
   }
@@ -25,8 +24,8 @@
   &__description {
     font-family: $h-body-font-family;
     font-size: 16px;
-    line-height: 26px;
     font-weight: $h-font-weight-regular;
+    line-height: 26px;
     max-width: 524px;
 
     @include bp(s) {
