@@ -62,38 +62,27 @@
         <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
           Your personalised assessment is ready to be completed
         </h1>
-        <h2 class="h-c-headline h-c-headline--four">Your personalised assessment link</h2>
+
         <div class="dmb-registration__result-box">
-          <h3>Before you begin</h3>
+          <h3 class="dmb-registration__result-box-title">Before you begin</h3>
           <p>
             You may want to share this assessment with other members of your team so you can collaborate on answering the questions.
           </p>
           <p>
             Copy your unique assessment link using the button below now, and keep it somewhere safe.
           </p>
-          <button
-              class="h-c-link"
+          <a
+              class="dmb-button dmb-button--secondary dmb-button--copy-clipboard"
               ngclipboard
               ngclipboard-success="registrationCtrl.linkCopied=true"
               data-clipboard-text="{[ registrationCtrl.link ]}">
-            Copy
-          </button>
-          <span ng-if="registrationCtrl.linkCopied"> Link copied to clipboard! </span>
-        </div>
-        <div class="dmb-registration__link">
-          <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
-            {[ registrationCtrl.link ]}
+            <div class="dmb-button__text">
+              Copy assessment link
+            </div>
+            <span class="dmb-button__icon"></span>
           </a>
-          <button
-              class="h-c-link"
-              ngclipboard
-              data-clipboard-target="#survey-link">
-            Copy
-          </button>
+          <span class="dmb-registration__copied-text" ng-if="registrationCtrl.linkCopied"> Link copied to clipboard! </span>
         </div>
-        <p class="dmb-registration__share-copy">
-          Here is the link to your personalised digital marketing maturity assessment. Keep it safe in case you need to return to it again later, so you can pick up where you left off.
-        </p>
         <a ng-href="{[ registrationCtrl.link ]}" class="h-c-button h-c-button--primary" target="_blank">
           Start my assessment now
         </a>

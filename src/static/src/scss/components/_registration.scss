@@ -84,4 +84,31 @@
     margin-bottom: $dmb-margin-medium;
     max-width: 700px;
   }
+
+  &__result-box {
+    background-color: #F8F9FA;
+    margin-bottom: 56px;
+    max-width: 812px;
+    padding: 24px 32px;
+
+    p {
+      margin-bottom: 24px;
+    }
+
+    .dmb-button {
+      margin-top: 16px;
+    }
+  }
+
+  &__result-box-title {
+    font-size: 18px;
+    font-weight: $h-font-weight-regular;
+    margin-bottom: 16px;
+  }
+
+  &__copied-text {
+    @extend %h-c-copy--one;
+    color: $h-gm-grey-600;
+    padding-left: 24px;
+  }
 }

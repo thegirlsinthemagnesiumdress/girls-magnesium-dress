@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="20px" viewBox="0 0 18 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="New" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Link" transform="translate(-417.000000, -589.000000)" fill="#1967D2" fill-rule="nonzero">
+            <g id="Link-box" transform="translate(164.000000, 362.000000)">
+                <g id="Button" transform="translate(36.000000, 214.000000)">
+                    <g id="Group-3">
+                        <path d="M233,15 L228.82,15 C228.4,13.84 227.3,13 226,13 C224.7,13 223.6,13.84 223.18,15 L219,15 C217.9,15 217,15.9 217,17 L217,31 C217,32.1 217.9,33 219,33 L233,33 C234.1,33 235,32.1 235,31 L235,17 C235,15.9 234.1,15 233,15 Z M226,15 C226.55,15 227,15.45 227,16 C227,16.55 226.55,17 226,17 C225.45,17 225,16.55 225,16 C225,15.45 225.45,15 226,15 Z M228,29 L221,29 L221,27 L228,27 L228,29 Z M231,25 L221,25 L221,23 L231,23 L231,25 Z M231,21 L221,21 L221,19 L231,19 L231,21 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
