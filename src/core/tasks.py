@@ -185,9 +185,12 @@ def generate_csv_export():
     write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
     with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
         fieldnames = [
+            'id'
             'company_name',
             'industry',
             'country',
+            'created_at',
+            'engagement_lead',
             'dmb',
             'access',
             'audience',
@@ -203,9 +206,12 @@ def generate_csv_export():
         for survey in surveys:
             try:
                 survey_data = {
+                    'id': survey.pk,
                     'company_name': survey.company_name,
                     'industry': settings.INDUSTRIES.get(survey.industry),
                     'country': settings.COUNTRIES.get(survey.country),
+                    'created_at': survey.created_at,
+                    'engagement_lead': survey.engagement_lead,
                     'dmb': None,
                     'access': None,
                     'audience': None,
