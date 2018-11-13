@@ -36,8 +36,8 @@ const PATHS = {
     js: path.join(DIST_DIR, 'js'),
     scss: path.join(DIST_DIR, 'css'),
   },
-  manifest: path.join(STATIC_DIR, 'rev-manifest.json'),
-}
+  manifest: path.join('src', 'rev-manifest.json'),
+};
 
 
 const TEMPLATE_SRC = [
