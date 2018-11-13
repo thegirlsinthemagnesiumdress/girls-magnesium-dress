@@ -1,5 +1,4 @@
 .dmb-button {
-  $block: &;
   align-items: center;
   border-radius: 30px;
   display: inline-flex;
@@ -51,7 +50,7 @@
   &--find-out-more {
     position: relative;
 
-    #{$block}__icon {
+    .dmb-button__icon {
       left: 16px;
       position: absolute;
       transform: rotate(90deg);
@@ -62,24 +61,14 @@
       }
     }
 
-    #{$block}__icon + #{$block}__text {
+    .dmb-button__text {
       margin-left: 30px;
     }
 
     &:hover {
-      #{$block}__icon {
+      .dmb-button__icon {
         transform: translateX(-2px) rotate(90deg);
       }
-    }
-  }
-
-  &--copy-clipboard {
-    #{$block}__icon {
-      background-image: url('../img/icons/clipboard.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 18px;
-      width: 18px;
     }
   }
 }
