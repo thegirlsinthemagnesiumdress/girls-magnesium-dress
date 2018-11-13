@@ -75,8 +75,8 @@ class SmoothScrollCtrl {
     const key = e.which || e.keyCode;
     if (key === KeyCodes.ENTER) {
       this.scroll_();
+      e.preventDefault();
     }
-    e.preventDefault();
   }
 
   /**

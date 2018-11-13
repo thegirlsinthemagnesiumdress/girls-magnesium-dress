@@ -14,7 +14,7 @@
             Your digital maturity benchmark
           </h1>
           <p class="h-c-headline h-c-headline--two dmb-report-page__hero-date dmb-report-page__hero-muted">
-            <time datetime="27/08/2018">{[reportCtrl.result.loaded_at|date:'MMMM yyyy' ]}</time>
+            <time datetime="27/08/2018">{[reportCtrl.result.started_at|date:'MMMM yyyy' ]}</time>
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6 h-c-grid__col-l--offset-1 h-c-grid__col--align-middle">
@@ -57,36 +57,40 @@
         </div>
       </div>
     </div>
-    <div class="dmb-report-page__hero-cta h-u-text-center">
+    <div class="dmb-report-page__hero-button-container h-u-text-center">
       <a
           href="#dmb-report-page-main"
-          class="dmb-report-page__hero-button h-c-button h-c-button--secondary dmb-h-hidden--print"
+          class="dmb-report-page__hero-button dmb-button dmb-button--tertiary dmb-h-hidden--print"
           dmb-smooth-scroll>
-        View your results
-        <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--18px">
-          <use xlink:href="#mi-arrow-sort"></use>
-        </svg>
+          <span class="dmb-button__text">View your results</span>
+          <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--link h-c-icon--18px">
+            <use xlink:href="#mi-arrow-sort"></use>
+          </svg>
       </a>
     </div>
   </header>
 
   <div class="dmb-report-page__print-button-container" dmb-scroll-aware dmb-scroll-aware-enter-class="dmb-report-page--dark-print-button-text" dmb-scroll-aware-exit-class="dmb-report-page--dark-print-button-text">
-    <button class="dmb-report-page__print-button" aria-label="Print report button" ng-click ="reportCtrl.print()" data-tooltip-text="This page is designed to be printable">
-      <img src="{% static 'img/icons/print.svg' %}" alt="print icon">
+    <button class="dmb-icon-button dmb-report-page__print-button dmb-report-page__print-button" aria-label="Print report button" ng-click ="reportCtrl.print()" data-tooltip-text="This page is designed to be printable">
+      <svg viewBox="0 0 30 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M25.5 8h-21A4.504 4.504 0 0 0 0       12.5v9h6v6h18v-6h6v-9c0-2.482-2.017-4.5-4.5-4.5zM21 24.5H9V17h12v7.5zM25.5 14c-.832 0-1.5-.668-1.5-1.5s.668-1.5 1.5-1.5 1.5.668 1.5 1.5-.668 1.5-1.5 1.5zM24 .5H6v6h18v-6z"
+          fill-rule="nonzero" />
+      </svg>
     </button>
 
     <main class="dmb-report-page__content" id="dmb-report-page-main">
-      <div class="dmb-report-page__panel-trigger" dmb-pin-top>
+
+      <div class="dmb-panel-trigger" dmb-pin-top>
         <button
-            class="dmb-right-panel-trigger dmb-h-hidden--print"
+            class="dmb-panel-trigger__button dmb-h-hidden--print"
             dmb-side-panel-trigger="#dmb-report-right-side-panel">
-          <div class="dmb-right-panel-trigger__icon">
+          <div class="dmb-panel-trigger__icon">
             <svg role="img" class="h-c-icon">
               <use xlink:href="#mi-chevron"></use>
             </svg>
           </div>
           <div
-            class="dmb-right-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
+              class="dmb-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
             Why digital maturity matters
           </div>
         </button>
@@ -119,7 +123,7 @@
             <div class="h-c-grid__col h-c-grid__col--align-middle h-c-grid__col--12 h-c-grid__col-l--9">
               <h3 class="dmb-report-page__content-title">
                 <span class="dmb-report-page__headline-accent">Your maturity is</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
-                <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one">
+                <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one" aria-label="Get more informations about what your maturity represents">
                   <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
                 </button>
               </h3>
@@ -147,16 +151,16 @@
         <section class="dmb-report-page__dimensions"> <!-- 6 dimensions -->
           <h2 class="h-c-eyebrow h-c-eyebrow--wide">
             6 dimensions of digital marketing maturity
-            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three">
+            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three" aria-label="Get more informations about the 6 dimensions">
               <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
             </button>
           </h2>
           <p class="dmb-report-page__dimensions-intro">
             Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each.
           </p>
-          <a class="dmb-report-page__cta dmb-report-page__cta--alt dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
-            <div class="dmb-report-page__cta-icon"></div>
-            <div class="dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
+          <a class="dmb-report-page__cta dmb-button dmb-button--secondary dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-report-right-side-panel">
+            <div class="dmb-button__icon dmb-report-page__cta-icon"></div>
+            <div class="dmb-button__text dmb-report-page__cta-text">Learn more<span class="dmb-report-page__cta-extra-text"> about why these matter</span></div>
           </a>
 
           <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
@@ -172,7 +176,7 @@
               </div>
             </div>
             <div>
-              <div class="dmb-report-page__tabs-sticky-nav" dmb-pin-top>
+              <div class="dmb-report-page__tabs-sticky-nav" aria-hidden="true" dmb-pin-top>
                 <div class="h-c-page">
                   <ul class="">
                     <li ng-repeat="dimension in reportCtrl.dimensions">

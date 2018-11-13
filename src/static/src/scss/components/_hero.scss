@@ -8,7 +8,7 @@
   }
 
   @include bp(m) {
-    padding: 193px 0 58px;
+    padding: 112px 0 228px;
   }
 
   // To make sure sits on top of the gradient.
@@ -27,10 +27,21 @@
 
   &__description {
     margin-bottom: $dmb-margin-small;
-    max-width: 300px;
 
     @include bp(l) {
       max-width: 460px;
+    }
+  }
+
+  .dmb-icon-button {
+    bottom: 40px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    svg {
+      margin-top: 3px;
+      transform: rotate(180deg);
     }
   }
 }

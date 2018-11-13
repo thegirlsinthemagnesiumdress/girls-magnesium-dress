@@ -4,12 +4,12 @@
   background-size: cover;
 
   @include bp(s) {
-    background-position: 50%;
+    background-position: 50% top;
   }
 
   @include bp(m) {
     background-image: url('../img/hero/hero_l.jpg');
-    background-position: left;
+    background-position: left top;
   }
 }
 

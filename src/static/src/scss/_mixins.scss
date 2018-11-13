@@ -20,3 +20,14 @@
     #{$property-name}: #{$desktop-val}px;
   }
 }
+
+@mixin default-focus-outline {
+  outline-color: Highlight;
+  outline-style: solid;
+  outline-width: 5px;
+
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    outline-color: -webkit-focus-ring-color;
+    outline-style: auto;
+  }
+}

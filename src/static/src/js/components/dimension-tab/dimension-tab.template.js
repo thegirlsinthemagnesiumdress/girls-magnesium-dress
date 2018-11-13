@@ -74,9 +74,9 @@ const dimensionTabTemplate = `
         <p>
           {[ recommendation.text ]}
         </p>
-        <a class="dmb-report-page__cta" target="_blank" href="{[recommendation.cta.link]}" ng-if="recommendation.cta">
-          <div class="dmb-report-page__cta-icon"></div>
-          <div class="dmb-report-page__cta-text">{[ recommendation.cta.text ]}</div>
+        <a class="dmb-button dmb-button--secondary dmb-report-page__cta" target="_blank" href="{[recommendation.cta.link]}" ng-if="recommendation.cta">
+          <div class="dmb-button__icon dmb-report-page__cta-icon"></div>
+          <div class="dmb-button__text dmb-report-page__cta-text">{[ recommendation.cta.text ]}</div>
         </a>
       </li>
     </ul>
