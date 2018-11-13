@@ -72,14 +72,17 @@
             Copy your unique assessment link using the button below now, and keep it somewhere safe.
           </p>
           <a
-              class="dmb-button dmb-button--secondary dmb-button--copy-clipboard"
+              class="dmb-button dmb-button--secondary"
               ngclipboard
               ngclipboard-success="registrationCtrl.linkCopied=true"
               data-clipboard-text="{[ registrationCtrl.link ]}">
             <div class="dmb-button__text">
-              Copy assessment link
+              Copy my assessment link
             </div>
-            <span class="dmb-button__icon"></span>
+            <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg" class="dmb-button__icon">
+              <path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z"
+                fill-rule="nonzero" />
+            </svg>
           </a>
           <span class="dmb-registration__copied-text" ng-if="registrationCtrl.linkCopied"> Link copied to clipboard! </span>
         </div>
