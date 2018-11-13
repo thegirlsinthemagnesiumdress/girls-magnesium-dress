@@ -185,7 +185,7 @@ def generate_csv_export():
     write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
     with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
         fieldnames = [
-            'id'
+            'id',
             'company_name',
             'industry',
             'country',
