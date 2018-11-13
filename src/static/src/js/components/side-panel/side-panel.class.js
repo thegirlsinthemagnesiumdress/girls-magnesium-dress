@@ -1,5 +1,7 @@
 goog.module('dmb.components.sidePanel.class');
 
+const forceReflow = goog.require('dmb.components.forceReflow.util');
+
 const FocusTrap = goog.require('dmb.components.sidePanel.focusTrap');
 
 /**
@@ -131,6 +133,8 @@ class SidePanel {
     this.el.classList.remove(classes.HIDDEN);
     this.backdropEl.classList.remove(classes.HIDDEN);
     document.body.classList.add(classes.BODY_HAS_MODAL);
+    // Force a reflow to avoid issue where side-panel doesn't animate.
+    forceReflow(this.el);
     rafPromise()
       .then(() => {
         this.el.classList.add(classes.ACTIVE);
