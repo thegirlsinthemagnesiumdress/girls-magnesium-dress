@@ -2,6 +2,7 @@
 
 third_party/*
 src/static/dev/*
+src/rev-manifest.json
 
 src/static/dist
 src/.storage/*

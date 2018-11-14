@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'', include(public.urls)),
     url(r'^api/', include(api.urls)),
     url(r'^cron/pull_qualtrics_results/$', views.sync_qualtrics_results, name="pull-qualtrics-results"),
+    url(r'^cron/generate_export/$', views.generate_export, name="export-datastore-data"),
 ]
 
 # Only enable static serving locally, on prod we use app.yaml

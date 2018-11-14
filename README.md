@@ -65,6 +65,8 @@ When asked, you will probably want to override the existing static files, `yes`.
 
 Authentication will most likely be your @potatolondon.com account
 
+We're versioning js and css files, that's automatically handled by static_rev template tag. However we're generaring survey-{hash-of-content}.min.js and survey-{hash-of-content}.min.css that are fed to the Qualtrics Survey page. Please make sure to update the references there if there are any changes to those files ( through Qualtrics Look&Feel panel).
+
 # Qualtrics
 We have two different surveys, one for the `production` environment and the other one used for `development` and `staging`
 
