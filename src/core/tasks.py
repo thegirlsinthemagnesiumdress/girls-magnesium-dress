@@ -221,7 +221,7 @@ def generate_csv_export():
                     'automation': None,
                 }
                 if survey.last_survey_result:
-                    survey_data['dmb'] = survey.last_survey_result.dmb if survey.last_survey_result else None
+                    survey_data['dmb'] = survey.last_survey_result.dmb
                     survey_data.update(survey.last_survey_result.dmb_d)
             except SurveyResult.DoesNotExist:
                 # In case we have a survey, but has not been completed yet
