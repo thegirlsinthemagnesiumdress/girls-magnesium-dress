@@ -88,7 +88,8 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      this.link = res.data.link;
+      this.link = res['data']['link'];
+      this.companyName = res['data']['company_name'];
     }, (res) => {
       this.serverError = true;
     });

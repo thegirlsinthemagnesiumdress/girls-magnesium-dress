@@ -85,6 +85,14 @@
   .h-c-headline {
     max-width: 90%;
   }
+
+  &__headline-underlined {
+    border-bottom: 6px solid $dmb-heading-border-color;
+    max-width: 90%;
+    padding-bottom: 15px;
+    width: max-content;
+  }
+
 }
 
 .dmb-backdrop {

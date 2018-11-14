@@ -14,7 +14,7 @@
 
   .dmb-panel-trigger {
     &__button {
-      @include dmb-responsive(top, 10, 66);
+      @include dmb-responsive(top, 60, 66);
     }
 
     @include bp(m) {
@@ -32,6 +32,19 @@
           transform: translateX(175px);
         }
       }
+    }
+  }
+
+  // Make sure title text doesn't overlap dmb-panel-trigger
+  .dmb-section-with-media__title {
+    padding-right: 50px;
+
+    @include bp(s) {
+      padding-right: 25px;
+    }
+
+    @include bp(m) {
+      padding-right: 0;
     }
   }
 

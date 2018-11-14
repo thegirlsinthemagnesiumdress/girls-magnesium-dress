@@ -15,6 +15,10 @@ from django.db import IntegrityError
 from djangae.db import transaction
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
+import cloudstorage
+from google.appengine.api import app_identity
+import csv
+from datetime import datetime
 
 
 def get_results():
@@ -168,3 +172,63 @@ def is_valid_email(email):
 def _survey_completed(is_finished):
     is_finished = int(is_finished)
     return bool(is_finished)
+
+
+def generate_csv_export():
+
+    surveys = Survey.objects.all()
+    bucket_name = os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
+    filename = os.path.join('/', bucket_name, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
+
+    logging.info("Creating export in {}".format(filename))
+
+    write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
+    with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
+        fieldnames = [
+            'id',
+            'company_name',
+            'industry',
+            'country',
+            'created_at',
+            'engagement_lead',
+            'dmb',
+            'access',
+            'audience',
+            'attribution',
+            'ads',
+            'organization',
+            'automation',
+        ]
+        writer = csv.writer(gcs_file, delimiter=',')
+        writer = csv.DictWriter(gcs_file, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for survey in surveys:
+            try:
+                survey_data = {
+                    'id': survey.pk,
+                    'company_name': survey.company_name,
+                    'industry': settings.INDUSTRIES.get(survey.industry),
+                    'country': settings.COUNTRIES.get(survey.country),
+                    'created_at': survey.created_at,
+                    'engagement_lead': survey.engagement_lead,
+                    'dmb': None,
+                    'access': None,
+                    'audience': None,
+                    'attribution': None,
+                    'ads': None,
+                    'organization': None,
+                    'automation': None,
+                }
+                if survey.last_survey_result:
+                    survey_data['dmb'] = survey.last_survey_result.dmb
+                    survey_data.update(survey.last_survey_result.dmb_d)
+            except SurveyResult.DoesNotExist:
+                # In case we have a survey, but has not been completed yet
+                pass
+            writer.writerow(survey_data)
+
+    latest = os.path.join('/', bucket_name, 'latest.csv')
+    logging.info("Copying {} as {}".format(filename, latest))
+    cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
+    logging.info("Export completed")
