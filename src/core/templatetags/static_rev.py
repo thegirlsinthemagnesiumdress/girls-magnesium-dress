@@ -11,7 +11,7 @@ register = template.Library()
 
 
 def _get_manifest():
-    if not getattr(_get_manifest, "_MANIFEST", None):
+    if not getattr(_get_manifest, "MANIFEST", None):
         with open(join(settings.BASE_DIR, "rev-manifest.json")) as f:
             _get_manifest.MANIFEST = json.loads(f.read())
     return _get_manifest.MANIFEST
