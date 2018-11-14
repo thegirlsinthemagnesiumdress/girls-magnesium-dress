@@ -71,15 +71,45 @@
 
   &__title {
     margin-bottom: $dmb-margin-medium;
+    margin-top: 16px;
     max-width: 800px;
   }
 
   &__subhead {
+    font-size: 18px;
+    font-weight: $h-font-weight-regular;
     max-width: 589px;
   }
 
   &__share-copy {
     margin-bottom: $dmb-margin-medium;
     max-width: 700px;
+  }
+
+  &__result-box {
+    background-color: $h-gm-grey-50;
+    margin-bottom: 56px;
+    max-width: 812px;
+    padding: 24px 32px;
+
+    p {
+      margin-bottom: 24px;
+    }
+
+    .dmb-button {
+      margin-top: 16px;
+    }
+  }
+
+  &__result-box-title {
+    font-size: 18px;
+    font-weight: $h-font-weight-regular;
+    margin-bottom: 16px;
+  }
+
+  &__copied-text {
+    @extend %h-c-copy--one;
+    color: $h-gm-grey-600;
+    padding-left: 24px;
   }
 }
