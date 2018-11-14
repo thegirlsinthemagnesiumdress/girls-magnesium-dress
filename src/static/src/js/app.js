@@ -19,6 +19,7 @@ const reportList = goog.require('dmb.components.reportAdmin');
 const progressCircle = goog.require('dmb.components.progressCircle');
 const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
+const forceReflow = goog.require('dmb.components.forceReflow');
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -39,6 +40,7 @@ const module = angular.module('dmb', [
   smoothScroll.module.name,
   tabby.module.name,
   tableSort.module.name,
+  forceReflow.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);
