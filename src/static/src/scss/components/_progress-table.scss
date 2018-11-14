@@ -255,8 +255,10 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
 
   .dmb-report-page__info {
     background-image: url('../img/icons/info.svg');
+    background-repeat: no-repeat;
     display: none;
     height: 18px;
+    margin-right: 5px;
     top: 3px;
 
     @include bp(s) {

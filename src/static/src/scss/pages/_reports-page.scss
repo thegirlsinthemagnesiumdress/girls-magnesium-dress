@@ -298,10 +298,11 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     @extend .dmb-h-hidden--print;
     background: none;
     border: 0;
+    height: 20px;
     padding: 0;
     position: relative;
-    top: -1px;
-    width: 18px;
+    top: -3px;
+    width: 20px;
   }
 
   &__headline-accent {
