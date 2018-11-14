@@ -2,3 +2,6 @@ cron:
 - description: Pull new survey results from Qualtrics
   url: /cron/pull_qualtrics_results/
   schedule: every 10 mins
+- description: "surveys daily export"
+  url: /cron/generate_export/
+  schedule: every 24 hours
