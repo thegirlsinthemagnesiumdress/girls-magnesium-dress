@@ -50,14 +50,14 @@ $roundel-size: 22px;
     padding-left: $h-site-padding-mobile;
     padding-right: $h-site-padding-mobile;
     position: relative;
-    width: 400%;
-    width: calc(400% - #{$h-site-padding-mobile * 6}); // sass-lint:disable-line no-duplicate-properties
+    width: 350%;
+    width: calc(350% - #{$h-site-padding-mobile * 6}); // sass-lint:disable-line no-duplicate-properties
 
     @include bp(s) {
       padding-left: $h-site-padding;
       padding-right: $h-site-padding;
-      width: 200%;
-      width: calc(200% - #{$h-site-padding * 2}); // sass-lint:disable-line no-duplicate-properties
+      width: 175%;
+      width: calc(175% - #{$h-site-padding * 2}); // sass-lint:disable-line no-duplicate-properties
     }
 
     @include bp(m) {
@@ -118,11 +118,7 @@ $roundel-size: 22px;
   }
 
   &__step {
-    width: 23%;
-
-    @include bp(m) {
-      width: 25%;
-    }
+    width: 25%;
   }
 
   &__step-t,

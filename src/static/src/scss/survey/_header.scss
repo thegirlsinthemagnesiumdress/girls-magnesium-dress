@@ -1,5 +1,9 @@
 // sass-lint:disable no-ids
 .dmb-hero {
+  @include bp(m) {
+    padding-bottom: 147px;
+  }
+
   &__content {
     padding-bottom: 50px;
   }
@@ -19,11 +23,29 @@
 
   &__description {
     font-family: $h-body-font-family;
-    margin-bottom: $dmb-margin-small;
+    font-size: 16px;
+    font-weight: $h-font-weight-regular;
+    line-height: 26px;
     max-width: 524px;
 
     @include bp(s) {
       width: 75%;
+    }
+  }
+
+  .dmb-button--find-out-more {
+    margin: 40px 0;
+  }
+
+  &__scroll-content {
+    bottom: 0;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    svg {
+      margin-top: 3px;
+      transform: rotate(180deg);
     }
   }
 }
