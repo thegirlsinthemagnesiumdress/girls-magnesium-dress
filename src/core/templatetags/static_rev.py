@@ -22,6 +22,9 @@ _get_manifest.MANIFEST = None
 
 @register.simple_tag
 def static_rev(path):
+    if not settings.REVISIONED_STATIC:
+        return urljoin(settings.STATIC_URL, path)
+
     try:
         manifest = _get_manifest()
     except IOError:
@@ -33,3 +36,4 @@ def static_rev(path):
         return urljoin(settings.STATIC_URL, path)
 
     return urljoin(settings.STATIC_URL, manifest[path])
+

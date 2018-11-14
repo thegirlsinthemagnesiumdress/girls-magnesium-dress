@@ -299,3 +299,5 @@ SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
     '@google.com',
     '@potatolondon.com',
 )
+
+REVISIONED_STATIC = False
