@@ -7,10 +7,11 @@ goog.module('dmb.components.scroll.pinTopDirective');
  * It remove the class when scrolling back up.
  *
  * @param {!Object} scrollService
+ * @param {!angular.$timeout} $timeout
  * @return {Object}
  * @ngInject
  */
-function pinTopDirective(scrollService) {
+function pinTopDirective(scrollService, $timeout) {
   return {
     restrict: 'A',
     /**
@@ -39,6 +40,11 @@ function pinTopDirective(scrollService) {
       scrollService.addListener(ctrl.checkElementPosition);
       window.addEventListener('resize', ctrl.onResize);
       scope.$on('$destroy', onDestroy);
+
+      scope.$on('content-updated', () => {
+        ctrl.cacheValid = false;
+        ctrl.onReady();
+      });
 
       ctrl.onReady();
 
@@ -100,7 +106,10 @@ function pinTopDirective(scrollService) {
        *
        */
       function onReady() {
-        ctrl.checkElementPosition(window.scrollY);
+        // $timeout added to make sure all elements are initialise before scroll positions are calculated
+        $timeout(() => {
+          ctrl.checkElementPosition(window.scrollY);
+        }, 0);
       }
 
       /**

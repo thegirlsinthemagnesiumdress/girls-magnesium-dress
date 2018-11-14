@@ -2,6 +2,7 @@
   list-style: none;
   margin-bottom: $dmb-margin-medium;
   margin-left: 36px;
+  margin-top: 36px;
 
   @include bp(s) {
     margin-left: 58px;
@@ -13,7 +14,7 @@
     position: relative;
 
     &::before {
-      background-color: $h-button-primary-bg-color;
+      background-color: $h-google-blue-500;
       border-radius: 6px;
       content: '';
       display: block;
