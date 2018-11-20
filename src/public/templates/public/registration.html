@@ -16,13 +16,15 @@
           Let’s start with some details about your organisation:
         </p>
         <a
-            class="dmb-button dmb-button--secondary dmb-button--find-out-more"
-            dmb-side-panel-trigger="#privacy-statement">
-            <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--18px">
-              <use xlink:href="#mi-arrow-sort"></use>
-            </svg>
-            <span class="dmb-button__text">How we keep your information safe</span>
-          </a>
+            class="dmb-button dmb-button--secondary dmb-button--external"
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            >
+          <span class="dmb-button__text">How we keep your information safe</span>
+          <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--18px">
+            <use xlink:href="#mi-arrow-sort"></use>
+          </svg>
+        </a>
         <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
           <div class="input-wrp">
             <div class="dmb-input-wrp">
@@ -49,7 +51,7 @@
             </div>
             <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
           </div>
-          <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
+          <button ng-disabled="!registration.$valid" class="h-c-button h-c-bu tton--primary">
             Progress to my assessment
           </button>
           <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">Oops, something went wrong!</div>
@@ -91,26 +93,6 @@
         </a>
       </div>
     </div>
-  </div>
-
-  <div class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--privacy" dmb-side-panel="" id="privacy-statement">
-    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
-      <span class="dmb-fab__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <use xlink:href="#mi-close"></use>
-        </svg>
-      </span>
-    </button>
-
-    <div class="dmb-side-panel__inner">
-    <h1 class="h-c-headline h-c-headline--two dmb-h-mb--medium dmb-side-panel__headline-underlined">Privacy Statement</h1>
-
-    <p>At Google we care about your privacy.</p>
-
-    <p>Emails are never used and not shared with anyone, other than the tool for sending the link to the report.</p>
-
-    <p>Raw survey answers are not shared with anyone.<br />
-    The resulting scores (without emails or personal names) are made available to Googlers to help customers build a learning path, and shared with BCG to allow them to continue their research and benchmarking work.</p>
   </div>
 </div>
 

@@ -47,6 +47,31 @@
     }
   }
 
+  &--external {
+    position: relative;
+
+    .dmb-button__icon {
+      position: absolute;
+      right: 16px;
+      transform: rotate(-135deg);
+      transition: transform .2s;
+
+      @include bp(s) {
+        right: 21px;
+      }
+    }
+
+    .dmb-button__text {
+      margin-right: 30px;
+    }
+
+    &:hover {
+      .dmb-button__icon {
+        transform: rotate(-135deg) translateY(2px);
+      }
+    }
+  }
+
   &--find-out-more {
     position: relative;
 
