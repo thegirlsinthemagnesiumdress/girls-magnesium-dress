@@ -100,10 +100,12 @@
   .ValidationError {
     border-bottom: 2px solid $h-gm-red-500;
     color: $h-gm-red-500;
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 18px;
     padding-bottom: 4px;
     text-align: left;
+    font-family: $dmb-alt-font-family;
+    font-weight: 400;
 
     &.Sub {
       border-bottom: 0 none;
