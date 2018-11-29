@@ -221,6 +221,10 @@
           padding: 80px 80px 90px;
         }
 
+        strong {
+          font-weight: 500;
+        }
+
         p {
           &:nth-of-type(1) {
             margin-bottom: 24px;
