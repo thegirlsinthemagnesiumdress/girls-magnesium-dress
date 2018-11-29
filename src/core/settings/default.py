@@ -23,6 +23,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '.appspot.com',
+    '.withgoogle.com',
 ]
 
 # Application definition
