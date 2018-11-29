@@ -36,10 +36,10 @@ class DataToQuestionTest(TestCase):
 
         'Q3': '1',
         'Q12': '4',
-        'Q13_--1.33-1': '1',
-        'Q13_--1-2': '1',
-        'Q13_--1.5-3': '0',
-        'Q13_--2.33-4': '1',
+        'Q13_133.1': '1',
+        'Q13_100.2': '1',
+        'Q13_150.3': '0',
+        'Q13_233.4': '1',
     }
 
     def setUp(self):
@@ -96,13 +96,13 @@ class DataToQuestionTest(TestCase):
                 'question_id': 'Q2_1',
                 'multi_answer_value': None,
             }),
-            ('Q3_--1.33', {
+            ('Q3_1.33', {
                 'question_id': None,
                 'multi_answer_value': None,
             }),
-            ('Q4_--1.33-1', {
+            ('Q4_133.1', {
                 'question_id': 'Q4',
-                'multi_answer_value': '1.33',
+                'multi_answer_value': '133',
             }),
             ('Q5_1_TEXT', {
                 'question_id': None,
@@ -112,9 +112,9 @@ class DataToQuestionTest(TestCase):
                 'question_id': None,
                 'multi_answer_value': None,
             }),
-            ('Q6_1_--1.33-12', {
+            ('Q6_1_133.12', {
                 'question_id': 'Q6_1',
-                'multi_answer_value': '1.33',
+                'multi_answer_value': '133',
             }),
         ]
 
@@ -260,17 +260,17 @@ class CleanDataTest(TestCase):
             'Q3': '1',
             'Q4': '1',
             'Q5_1': '1',
-            'Q13_--1.33-1': '1',
-            'Q13_--1-2': '1',
-            'Q13_--1.5-3': '0',
-            'Q13_--2.33-4': '1',
+            'Q13_133.1': '1',
+            'Q13_100.2': '1',
+            'Q13_150.3': '0',
+            'Q13_233.4': '1',
 
         }
         expected_clean_data = {
             'Q3': ['1'],
             'Q4': ['1'],
             'Q5_1': ['1'],
-            'Q13': ['1.33', '1', '0', '2.33'],
+            'Q13': ['1.33', '1.0', '0', '2.33'],
 
         }
 
@@ -302,10 +302,10 @@ class CleanDataTest(TestCase):
             'Q3': '',
             'Q4': '1',
             'Q5_1': '1',
-            'Q13_--1.33-1': '1',
-            'Q13_--1-2': '1',
-            'Q13_--1.5-3': '0',
-            'Q13_--2.33-4': '1',
+            'Q13_133.1': '1',
+            'Q13_100.2': '1',
+            'Q13_150.3': '0',
+            'Q13_233.4': '1',
 
         }
 

@@ -7,7 +7,7 @@ from exceptions import InvalidResponseData
 import numpy
 from django.conf import settings
 
-_question_key_regex = re.compile(r'^(?P<question_id>Q\d+(_\d+)*)(_--(?P<multi_answer_value>[.\d]+)-\d+)?$')
+_question_key_regex = re.compile(r'^(?P<question_id>Q\d+(_\d+)*)(_(?P<multi_answer_value>\d+)\.\d+)?$')
 DEFAULT_WEIGHT = 1
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -115,8 +115,13 @@ def _get_questions_by_type(data):
                 single_answer[match['question_id']].append(question_value)
         # is a multi answer question
         elif match['question_id'] and match['multi_answer_value']:
+            # As mentioned in the readme we had to hack the multiple answer values
+            # to avoid having qualtrics not exporting the data correctly.
+            # The values are set in qualtrics following the following convention:
+            # --{score*100}.{choice_index}.
             if question_value == '1':
-                multi_answer[match['question_id']].append(match['multi_answer_value'])
+                float_value = float(match['multi_answer_value']) / 100
+                multi_answer[match['question_id']].append(str(float_value))
             else:
                 multi_answer[match['question_id']].append('0')
 

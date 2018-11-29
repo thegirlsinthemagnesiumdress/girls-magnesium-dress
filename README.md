@@ -92,16 +92,17 @@ This can be done through the Survey Control Panel, using the [Recode Values](htt
 
 Unfortunately the way qualtrics exports multiple answer data is buggy, if 2 answers have the same value some data gets losts.
 
-We decided to assign values values to the multiple answers following the following convention:
+We decided to assign values to the multiple answers following the following convention:
 ```
---{score}-{answer_index}
+--{score*100}.{choice_index}
 ```
+The score * 100 has to be a 3 digit number.
 
 for instance these are valid values:
 ```
---1--1
---1.33-2
---0.5-1
+100.1
+133.2
+050.3
 ```
 for the sake of the benchmark this map to:
 ```
