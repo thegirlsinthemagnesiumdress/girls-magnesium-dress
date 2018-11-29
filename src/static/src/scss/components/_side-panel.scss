@@ -44,7 +44,6 @@
     }
 
     p {
-      font-weight: 200;
       margin-bottom: 32px;
     }
   }
@@ -164,7 +163,7 @@
 
       &__list-item-content {
         ul {
-          list-style-image: url('/src/static/src/img/icons/side-panel-bullet.svg');
+          list-style-image: url('../img/icons/side-panel-bullet.svg');
           list-style-type: none;
         }
       }
@@ -219,6 +218,10 @@
 
         @include bp($resp-bp) {
           padding: 80px 80px 90px;
+        }
+
+        strong {
+          font-weight: 500;
         }
 
         p {
