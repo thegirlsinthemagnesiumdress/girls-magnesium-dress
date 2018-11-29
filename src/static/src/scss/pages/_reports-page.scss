@@ -218,7 +218,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
 
   &__hero-subhead {
     font-size: 14px;
-    font-weight: 200;
     @include dmb-responsive(margin-top, 40, 52);
 
     @include bp(s) {
