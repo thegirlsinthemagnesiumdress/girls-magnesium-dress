@@ -86,6 +86,13 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     transform: none !important;
   }
 
+  &__hero-h-c-page {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
   &__hero {
     background: $dmb-color-blue-denim;
     color: $dmb-light-text-color;
@@ -104,12 +111,8 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       padding: 52px 0;
     }
 
-    > .h-c-page {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: center;
-    }
+
+
 
     .dmb-progress-circle {
       font-size: 13px;
