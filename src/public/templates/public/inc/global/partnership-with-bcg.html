@@ -1,6 +1,10 @@
 {% load staticfiles %}
 
-<div class="dmb-partnership-with-bcg">
+<div class="dmb-partnership-with-bcg{% if invert %} dmb-partnership-with-bcg--invert{% endif %}">
   <p>In partnership with</p>
-  <img src="{% static 'img/bcg-logo.png' %}" alt="In partnership with The Boston Consulting Group">
+  {% if invert %}
+    <img src="{% static 'img/bcg-logo-white.png' %}" alt="In partnership with The Boston Consulting Group">
+  {% else %}
+    <img src="{% static 'img/bcg-logo.png' %}" alt="In partnership with The Boston Consulting Group">
+  {% endif %}
 </div>
