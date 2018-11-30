@@ -253,15 +253,18 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   }
 
   &__hero-footer {
-    margin-top: 55px;
     position: relative;
+
+    .h-c-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      max-width: 1216px;
+      min-height: 130px;
+    }
 
     @include bp(s) {
       display: block;
-    }
-
-    @include bp(m) {
-      margin-top: 0;
     }
   }
 
@@ -273,7 +276,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     transform: translateX(-20%);
 
     @include bp(s) {
-      display: block;
+      display: inline-flex;
     }
   }
 
