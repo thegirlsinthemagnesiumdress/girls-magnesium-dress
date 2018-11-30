@@ -32,7 +32,7 @@ handlers:
   static_dir: static/dist/admin
   secure: always
 
-- url: /.*\.(css|js)$
+- url: /static/.*\.(?:css|js)$
   static_dir: static/dist
   secure: always
   login: optional
