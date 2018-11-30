@@ -59,21 +59,23 @@
     </div>
     <div class="dmb-report-page__hero-footer">
       <div class="h-c-page">
-        <div class="dmb-h-hidden--print">
-          {% include 'public/inc/global/partnership-with-bcg.html' with invert=True %}
+        <div class="dmb-report-page__hero-footer-wrp">
+          <div class="dmb-h-hidden--print">
+            {% include 'public/inc/global/partnership-with-bcg.html' with invert=True %}
+          </div>
+          <div class="dmb-h-show--print-only">
+            {% include 'public/inc/global/partnership-with-bcg.html' %}
+          </div>
+          <a
+              href="#dmb-report-page-main"
+              class="dmb-report-page__hero-button dmb-button dmb-button--tertiary dmb-h-hidden--print"
+              dmb-smooth-scroll>
+            <span class="dmb-button__text">View your results</span>
+            <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--link h-c-icon--18px">
+              <use xlink:href="#mi-arrow-sort"></use>
+            </svg>
+          </a>
         </div>
-        <div class="dmb-h-show--print-only">
-          {% include 'public/inc/global/partnership-with-bcg.html' %}
-        </div>
-        <a
-            href="#dmb-report-page-main"
-            class="dmb-report-page__hero-button dmb-button dmb-button--tertiary dmb-h-hidden--print"
-            dmb-smooth-scroll>
-          <span class="dmb-button__text">View your results</span>
-          <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--link h-c-icon--18px">
-            <use xlink:href="#mi-arrow-sort"></use>
-          </svg>
-        </a>
       </div>
     </div>
   </header>

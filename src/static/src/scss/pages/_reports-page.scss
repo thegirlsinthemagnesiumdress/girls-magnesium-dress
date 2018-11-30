@@ -255,7 +255,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   &__hero-footer {
     position: relative;
 
-    .h-c-page {
+    .dmb-report-page__hero-footer-wrp {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
