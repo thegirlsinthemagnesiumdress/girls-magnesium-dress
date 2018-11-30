@@ -232,7 +232,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
   @include print-styles {
     &__hero-title {
       font-size: 88px !important;
-      line-height: 1.27em;
+      line-height: 1em;
     }
 
     &__hero-title &__hero-accent {
