@@ -7,7 +7,7 @@ from exceptions import InvalidResponseData
 import numpy
 from django.conf import settings
 
-_question_key_regex = re.compile(r'^(?P<question_id>Q\d+(_\d+)*)(_(?P<multi_answer_value>\d+)\.\d+)?$')
+_question_key_regex = re.compile(r'^(?P<question_id>Q\d+(_\d+)*)(_(?P<multi_answer_value>\d{3})\.\d+)?$')
 DEFAULT_WEIGHT = 1
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
