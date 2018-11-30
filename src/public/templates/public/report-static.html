@@ -59,21 +59,23 @@
     </div>
     <div class="dmb-report-page__hero-footer">
       <div class="h-c-page">
-        <div class="dmb-h-hidden--print">
-          {% include 'public/inc/global/partnership-with-bcg.html' with invert=True %}
+        <div class="dmb-report-page__hero-footer-wrp">
+          <div class="dmb-h-hidden--print">
+            {% include 'public/inc/global/partnership-with-bcg.html' with invert=True %}
+          </div>
+          <div class="dmb-h-show--print-only">
+            {% include 'public/inc/global/partnership-with-bcg.html' %}
+          </div>
+          <a
+              href="#dmb-report-page-main"
+              class="dmb-report-page__hero-button dmb-button dmb-button--tertiary dmb-h-hidden--print"
+              dmb-smooth-scroll>
+            <span class="dmb-button__text">View your results</span>
+            <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--link h-c-icon--18px">
+              <use xlink:href="#mi-arrow-sort"></use>
+            </svg>
+          </a>
         </div>
-        <div class="dmb-h-show--print-only">
-          {% include 'public/inc/global/partnership-with-bcg.html' %}
-        </div>
-        <a
-            href="#dmb-report-page-main"
-            class="dmb-report-page__hero-button dmb-button dmb-button--tertiary dmb-h-hidden--print"
-            dmb-smooth-scroll>
-          <span class="dmb-button__text">View your results</span>
-          <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--link h-c-icon--18px">
-            <use xlink:href="#mi-arrow-sort"></use>
-          </svg>
-        </a>
       </div>
     </div>
   </header>
@@ -574,29 +576,5 @@
 {% endblock %}
 
 {% block footer %}
-  <footer class="h-c-footer h-c-footer--topmargin h-c-footer--simple dmb-h-hidden--print" id="footer-simple" ng-cloak>
-    <section class="h-c-footer__global">
-      <div class="h-c-footer__logo">
-        <a href="https://www.google.com" title="Google">
-          <svg role="img" class="h-c-footer__logo-img">
-            <use xlink:href="#google-logo"></use>
-          </svg>
-        </a>
-      </div>
-      <ul class="h-c-footer__global-links h-no-bullet">
-        <li class="h-c-footer__global-links-list-item">
-          <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/privacy/">Privacy</a>
-        </li>
-        <li class="h-c-footer__global-links-list-item">
-          <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/terms/">Terms</a>
-        </li>
-        <li class="h-c-footer__global-links-list-item">
-          <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/">About Google</a>
-        </li>
-        <li class="h-c-footer__global-links-list-item">
-          <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/products/">Google Products</a>
-        </li>
-      </ul>
-    </section>
-  </footer>
+  {% include 'public/inc/global/footer.html' with footerClass="dmb-h-hidden--print" footerAttribute="ng-cloak" %}
 {% endblock footer %}

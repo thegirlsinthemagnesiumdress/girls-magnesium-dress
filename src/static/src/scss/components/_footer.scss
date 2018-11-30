@@ -1,0 +1,27 @@
+.dmb-footer {
+  &__feedback-link {
+    align-items: center;
+    display: flex;
+    font-weight: 400;
+
+    &,
+    &:focus,
+    &:active,
+    &:visited {
+      color: $dmb-color-grey-shuttle;
+    }
+
+    svg {
+      fill: $dmb-color-grey-shuttle;
+      margin-right: 10px;
+    }
+
+    &:hover {
+      color: $dmb-text-color;
+
+      svg {
+        fill: $dmb-text-color;
+      }
+    }
+  }
+}
