@@ -136,16 +136,12 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
       color: $dmb-text-color;
       min-height: 0;
       padding-bottom: 0;
-      padding-top:  #{$_h-header-height--full-size + $dmb-margin-big};
+      padding-top:  #{$_h-header-height--full-size + 10px};
       page-break-after: always;
 
       .glue-flexbox & .h-c-grid__col {
         flex-basis: auto;
         width: auto;
-      }
-
-      .dmb-partnership-with-bcg {
-        margin-left: 56px;
       }
     }
   }
