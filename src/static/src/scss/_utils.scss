@@ -22,6 +22,14 @@
   }
 }
 
+.dmb-h-show--print-only {
+  display: none;
+
+  @include print-styles {
+    display: block;
+  }
+}
+
 .dmb-body--has-modal {
   overflow: hidden;
 }
