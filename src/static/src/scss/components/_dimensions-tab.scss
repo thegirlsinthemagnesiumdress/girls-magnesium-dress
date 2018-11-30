@@ -36,12 +36,23 @@
           page-break-inside: avoid;
         }
       }
+
+      @include print-styles {
+        margin: 0;
+        padding: 0;
+      }
     }
   }
 
   &__subgrid {
     &.h-c-grid {
       margin: 0;
+    }
+
+    > .h-c-grid__col {
+      @include print-styles {
+        margin: 0;
+      }
     }
 
     > .h-c-grid__col:nth-of-type(2) {
@@ -105,6 +116,10 @@
       column-count: 2;
       column-gap: 27px;
     }
+
+    @include print-styles {
+      margin: 0;
+    }
   }
 
   &__recommendation {
@@ -120,7 +135,7 @@
 
     @include print-styles {
       margin-bottom: $dmb-margin-small;
-      padding: 16px;
+      padding: 16px 0;
     }
   }
 }

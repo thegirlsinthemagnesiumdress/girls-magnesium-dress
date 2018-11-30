@@ -272,4 +272,9 @@
       padding-top: 32px;
     }
   }
+
+
+  @include print-styles {
+    margin: 0 60px;
+  }
 }

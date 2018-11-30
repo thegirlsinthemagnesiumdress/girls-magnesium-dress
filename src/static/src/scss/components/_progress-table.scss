@@ -166,6 +166,10 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
       .dmb-progress-table__rating {
         display: none;
       }
+
+      @include print-styles {
+        display: none;
+      }
     }
 
     &--main {
