@@ -8,7 +8,7 @@ const dimensionHeaders = {
   'audience': 'Audience',
   'access': 'Access',
   'automation': 'Automation',
-  'organization': 'Organization',
+  'organization': 'Organisation',
 };
 
 const dimensionHeadersDescription = {
