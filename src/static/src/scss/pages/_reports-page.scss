@@ -270,7 +270,7 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon;
     display: none;
     left: 50%;
     position: absolute;
-    transform: translateX(-20%);
+    transform: translateX(-50%);
 
     @include bp(s) {
       display: inline-flex;
