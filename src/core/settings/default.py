@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = (
     'archivable',
     'gulpify',
-    'djangae', # Djangae should be before Django core/contrib things
+    'djangae',  # Djangae should be before Django core/contrib things
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -68,6 +68,11 @@ handlers:
   secure: always
   login: admin
 
+- url: /cron
+  script: core.wsgi.application
+  secure: always
+  login: admin
+
 - url: /favicon\.png
   static_files: static/dist/img/favicon.png
   upload: static/dist/img/favicon\.png
