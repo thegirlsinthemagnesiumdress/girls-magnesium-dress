@@ -34,10 +34,15 @@
   }
 
   .dmb-icon-button {
-    bottom: 40px;
+    bottom: 10px;
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
+
+    // Avoide logo to overlap with scroll-down btn.
+    @media (min-width: 400px) {
+      bottom: 40px;
+    }
 
     svg {
       margin-top: 3px;
