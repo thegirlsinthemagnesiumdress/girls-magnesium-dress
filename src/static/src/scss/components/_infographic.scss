@@ -32,12 +32,12 @@ $roundel-size: 22px;
   }
 
   &::before {
-    background-image: linear-gradient(to right, $dmb-background-grey-color 0%, transparent 100%);
+    background-image: linear-gradient(to right, rgba($dmb-background-grey-color, 1) 0%, rgba($dmb-background-grey-color, 0) 100%);
     right: 100%;
   }
 
   &::after {
-    background-image: linear-gradient(to right, transparent 0%, $dmb-background-grey-color 100%);
+    background-image: linear-gradient(to right,  rgba($dmb-background-grey-color, 0) 0%, rgba($dmb-background-grey-color, 1) 100%);
     left: 100%;
   }
 
