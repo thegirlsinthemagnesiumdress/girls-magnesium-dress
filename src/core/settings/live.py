@@ -68,10 +68,8 @@ QUALTRICS_SURVEY_ID = 'SV_bPdoqhAPJnqMZwh'
 
 # Lock prod for now.
 MIDDLEWARE_CLASSES = tuple(
-    list(MIDDLEWARE_CLASSES) +
-    [
-        'core.middleware.UsersRestrictionMiddleware',
-    ])
+    list(MIDDLEWARE_CLASSES)
+)
 
 ALLOWED_AUTH_DOMAINS = [
     'google.com',
