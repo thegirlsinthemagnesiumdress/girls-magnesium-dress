@@ -5,7 +5,6 @@ from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
 from uuid import uuid4
 
 
