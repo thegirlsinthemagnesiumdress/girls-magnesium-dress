@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 from core.models import Survey
@@ -49,3 +50,12 @@ class SurveyTest(TestCase):
         """Saving an industry that is in industry list, should set industry field to that industry."""
         survey = Survey.objects.create(industry='IT')
         self.assertEqual(survey.industry, 'IT')
+
+    def test_company_name_unicode(self):
+        """Test that company name can have unicode characters."""
+        unicode_company_name = u"Company name unicode Æ"
+        s = Survey(company_name=unicode_company_name, country="IT", industry="re")
+        s.save()
+        self.assertTrue(s.sid)
+        survey = Survey.objects.get(sid=s.sid)
+        self.assertEqual(unicode_company_name, survey.company_name)

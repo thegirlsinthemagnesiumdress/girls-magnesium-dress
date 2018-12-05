@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from uuid import uuid4
 
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRICS_SURVEY_ID)
@@ -69,10 +70,7 @@ class Survey(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.created_at = timezone.now()
-            m = hashlib.md5()
-            m.update(self.company_name + self.created_at.isoformat())
-            self.sid = m.hexdigest()
+            self.sid = uuid4().hex
 
         self.industry = self.industry if self.industry in settings.INDUSTRIES.keys() else None
         super(Survey, self).save(*args, **kwargs)
