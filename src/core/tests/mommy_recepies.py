@@ -32,3 +32,7 @@ def make_survey_result(**kwargs):
         started_at=make_aware(parse_datetime(started_at), pytz.timezone('US/Mountain'))
     )
     return mommy.make('core.SurveyResult', **kwargs)
+
+
+def make_user(**kwargs):
+    return mommy.make('core.User', **kwargs)
