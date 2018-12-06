@@ -1,0 +1,32 @@
+.dmb-error-page {
+  height: 700px;
+  display: flex;
+  align-items: center;
+
+  > .h-c-page {
+    width: 100%;
+  }
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  &__subtitle {
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    @include dmb-responsive(margin-bottom, 16, 56);
+  }
+
+  &__img-col {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      margin: 64px 0;
+      @include dmb-responsive(width, 140, 280);
+    }
+  }
+}
