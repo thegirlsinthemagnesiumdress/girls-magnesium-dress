@@ -1,7 +1,8 @@
+# encoding=utf-8
 import mock
 
 from core.models import Survey, SurveyResult
-from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results
+from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export
 from djangae.test import TestCase
 from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished
 from mommy_recepies import make_survey, make_survey_result
@@ -10,6 +11,7 @@ from django.test import override_settings
 from django.utils import dateparse
 from django.utils.timezone import make_aware
 import pytz
+from collections import OrderedDict
 
 
 @override_settings(
@@ -356,3 +358,61 @@ class SendEmailTestCase(TestCase):
 
         send_emails_for_new_reports(email_list)
         self.assertEqual(email_mock.call_count, 2)
+
+
+class GenerateExportTestCase(TestCase):
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_empty(self, cloud_mock, copy_mock):
+        generate_csv_export()
+        # check mock called the write for writing headers
+        handle = cloud_mock()
+        handle.write.assert_called_once_with(
+            'id,company_name,industry,country,created_at,engagement_lead,dmb,access,audience,attribution,ads,organization,automation\n'
+        )
+
+        # check a copy is made
+        copy_mock.assert_called_once()
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_one_survey(self, cloud_mock, copy_mock):
+        make_survey()
+        generate_csv_export()
+        handle = cloud_mock()
+
+        # called once for headers and once for survey
+        self.assertEqual(handle.write.call_count, 2)
+
+        # check a copy is made
+        copy_mock.assert_called_once()
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_multi_survey(self, cloud_mock, copy_mock):
+        make_survey()
+        make_survey()
+        generate_csv_export()
+        handle = cloud_mock()
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 3)
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    @override_settings(
+        COUNTRIES=OrderedDict([
+            ('AX', 'Åland Islands'),
+        ])
+    )
+    def test_generate_export_survey_unicode(self, cloud_mock, copy_mock):
+        make_survey(company_name=u'ññññññññ')
+        make_survey(country='AX')  # unicode country
+        generate_csv_export()
+        handle = cloud_mock()
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 3)
+        # check a copy is made
+        copy_mock.assert_called_once()
