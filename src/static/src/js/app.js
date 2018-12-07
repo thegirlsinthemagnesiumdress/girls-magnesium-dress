@@ -21,6 +21,9 @@ const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
 const forceReflow = goog.require('dmb.components.forceReflow');
 
+const configureAdditionalSortTypes = goog.require('dmb.tableCustomSort');
+tableSort.module.config(configureAdditionalSortTypes);
+
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
   focusControl.module.name,

@@ -84,6 +84,12 @@
     .dmb-reports-admin__table-small-text {
       font-size: 14px;
     }
+
+    &-date {
+      left: -1000px;
+      position: absolute;
+      visibility: hidden;
+    }
   }
 
   .glue-js-table__caption {
