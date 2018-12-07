@@ -200,7 +200,7 @@ FLUENT_EXTRA_IGNORE_PATTERNS = ['*/sitepackages/*', '*/third_party/*']
 
 KEY_PREFIX = "%s-%s" % (application_id(), os.environ.get('CURRENT_VERSION_ID', ""))
 
-USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
+# USER_SPECIFIC_URL_SECRET = get_app_config().user_specific_url_secret
 
 AUTH_USER_MODEL = "core.User"
 
@@ -280,7 +280,8 @@ QUALTRICS_REQUEST_DEADLINE = 60
 from .constants import *
 
 
-QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
+QUALTRICS_API_TOKEN = get_app_config().qualtrics_api_token
+
 QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
 QUALTRICS_EMAIL_TO = 'Q97_4_TEXT'
 QUALTRICS_EMAIL_BCC = 'Q97_5_TEXT'

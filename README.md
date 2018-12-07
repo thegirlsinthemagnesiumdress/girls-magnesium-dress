@@ -10,6 +10,13 @@
 2. Run `./bin/install_deps`. If you get errors try using a virtualenv `mkvirtualenv dmb && setvirtualenv`. To use this in future run `workon dmb`.
 3. Run `./manage.py runserver` to start the server and gulp
 
+# Configuration
+
+In order for the backend to be able to call Qualtrics APIs, a valid token needs to be configured, this can be done adding it as part of the `Config`
+object on the datastore. This step needs to be done manually.
+Not on local development: The token can be added manually accessing to [Config kind](http://localhost:8014/datastore?kind=Config) and adding a value to `qualtrics_api_token`.
+
+
 # Frontend Setup
 
 The frontend uses gulp for building assets, however it is linked to Django via management commands which pass additional information (e.g. STATIC_ROOT, DEBUG) down to Gulp.
