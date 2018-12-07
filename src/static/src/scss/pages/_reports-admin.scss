@@ -86,9 +86,7 @@
     }
 
     &-date {
-      left: -1000px;
-      position: absolute;
-      visibility: hidden;
+      display: none;
     }
   }
 
