@@ -17,7 +17,7 @@ from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
 import cloudstorage
 from google.appengine.api import app_identity
-import csv
+import unicodecsv as csv
 from datetime import datetime
 
 
@@ -199,8 +199,7 @@ def generate_csv_export():
             'organization',
             'automation',
         ]
-        writer = csv.writer(gcs_file, delimiter=',')
-        writer = csv.DictWriter(gcs_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(gcs_file, fieldnames=fieldnames, lineterminator='\n')
         writer.writeheader()
 
         for survey in surveys:
