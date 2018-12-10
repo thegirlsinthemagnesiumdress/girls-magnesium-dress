@@ -108,6 +108,8 @@ class ReportDetailTestCase(TestCase):
             dmb=1.0,
             dmb_d='{}'
         )
+        self.survey_1.last_survey_result = self.survey_result_1
+        self.survey_1.save()
 
     def test_survey_has_survey_result(self):
         """If a a`Survey` exists and it has a result, it should return 200."""
