@@ -20,8 +20,9 @@ const progressCircle = goog.require('dmb.components.progressCircle');
 const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
 const forceReflow = goog.require('dmb.components.forceReflow');
-
 const configureAdditionalSortTypes = goog.require('dmb.tableCustomSort');
+
+// Custom tablesort date configuration.
 tableSort.module.config(configureAdditionalSortTypes);
 
 /** @type {!angular.Module} */
