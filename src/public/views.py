@@ -53,17 +53,17 @@ def reports_admin(request):
 
 def handler404(request):
     return render(request, 'public/error.html', {
-        'error_title': '404',
-        'error_subtitle': "Woops.. that page doesn't seem to exist, or the link is broken.",
-        'error_text': 'Try returning to the homepage.',
-        'error_cta': 'Return to homepage',
+        'title': '404',
+        'subtitle': "Woops.. that page doesn't seem to exist, or the link is broken.",
+        'text': 'Try returning to the homepage.',
+        'cta': 'Return to homepage',
     }, status=404)
 
 
 def handler500(request):
     return render(request, 'public/error.html', {
-        'error_title': '500',
-        'error_subtitle': 'Woops.. there was an internal server error.',
-        'error_text': 'Try returning to the homepage.',
-        'error_cta': 'Return to homepage',
+        'title': '500',
+        'subtitle': 'Woops.. there was an internal server error.',
+        'text': 'Try returning to the homepage.',
+        'cta': 'Return to homepage',
     }, status=500)

@@ -24,6 +24,10 @@ urlpatterns = [
     url(r'^cron/generate_export/$', views.generate_export, name="export-datastore-data"),
 ]
 
+
+handler404 = 'public.views.handler404'
+handler500 = 'public.views.handler500'
+
 # Only enable static serving locally, on prod we use app.yaml
 if not is_production_environment():
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
