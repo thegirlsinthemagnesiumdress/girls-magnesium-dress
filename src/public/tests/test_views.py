@@ -93,3 +93,38 @@ class ReportsAdminTestCase(TestCase):
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 403)
+
+
+class ReportDetailTestCase(TestCase):
+    """Tests for `report_static` view."""
+    def setUp(self):
+
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
+
+        self.survey_result_1 = make_survey_result(
+            survey=self.survey_1,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.survey_1.last_survey_result = self.survey_result_1
+        self.survey_1.save()
+
+    def test_survey_has_survey_result(self):
+        """If a a`Survey` exists and it has a result, it should return 200."""
+        url = reverse('report', kwargs={'sid': self.survey_1.sid})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_survey_does_not_exist(self):
+        """If a a`Survey` does not exists it should raise 404."""
+        url = reverse('report', kwargs={'sid': '12345678890'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+    def test_survey_does_not_have_a_result(self):
+        """If a a`Survey` exists, but doesn't have a result, it should raise 404."""
+        url = reverse('report', kwargs={'sid': self.survey_2.sid})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)

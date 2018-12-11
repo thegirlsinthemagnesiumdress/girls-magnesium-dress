@@ -1,6 +1,4 @@
-from django.conf import settings
 from django.conf.urls import url
-from django.views.generic import TemplateView
 from public.views import reports_admin, registration, report_static, index_static
 
 urlpatterns = [

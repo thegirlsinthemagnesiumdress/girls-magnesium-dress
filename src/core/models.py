@@ -25,7 +25,7 @@ class User(GaeAbstractDatastoreUser):
     def engagement_lead(self):
         """Returns MD5 of email field."""
         m = hashlib.md5()
-        m.update(self.email)
+        m.update(self.email.encode('utf-8'))
         return m.hexdigest()
 
 
