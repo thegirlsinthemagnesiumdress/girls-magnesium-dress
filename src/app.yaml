@@ -32,6 +32,15 @@ handlers:
   static_dir: static/dist/admin
   secure: always
 
+- url: /static/(.*/qualtrics-survey\.(css|js))$
+  static_files: static/dist/\1
+  upload: static/dist/(.*/qualtrics-survey\.(css|js))$
+  secure: always
+  login: optional
+  expiration: 1s
+  http_headers:
+    Access-Control-Allow-Origin: https://google.qualtrics.com
+
 - url: /static/(.*\.(css|js))$
   static_files: static/dist/\1
   upload: static/dist/.*\.(css|js)$

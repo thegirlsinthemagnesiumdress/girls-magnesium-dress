@@ -146,6 +146,7 @@ INDUSTRIES = OrderedDict([
     ('pa-r', 'Professional activities - Research'),
     ('papo', 'Public administration & political organisations'),
     ('re', 'Real estate'),
+    ('r-mc', 'Retail - Multi-category'),
     ('rt-bmv', 'Retail trade - Books, music, video'),
     ('rt-c', 'Retail trade - Chemicals'),
     ('rt-ctd', 'Retail trade - Cosmetics, toiletries, detergents'),

@@ -94,7 +94,7 @@ gulp.task('js-survey', function() {
       .pipe(hercules.js.prod({
         entry_point: 'dmb.survey',
         hide_warnings_for: 'node_modules/glue/',
-        js_output_file: 'js/survey.min.js',
+        js_output_file: 'js/qualtrics-survey.min.js',
       }))
       .pipe(gulp.dest(DIST_DIR))
       .pipe(rev())

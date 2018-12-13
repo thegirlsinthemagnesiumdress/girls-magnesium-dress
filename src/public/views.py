@@ -7,6 +7,8 @@ from api.serializers import SurveyWithResultSerializer
 from core.auth import survey_admin_required
 from core.models import Survey
 from rest_framework.renderers import JSONRenderer
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 
 INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
@@ -21,6 +23,10 @@ def registration(request):
 
 
 def report_static(request, sid):
+    survey = get_object_or_404(Survey, sid=sid)
+    if not survey.last_survey_result:
+        raise Http404
+
     return render(request, 'public/report-static.html', {})
 
 

@@ -36,18 +36,6 @@
   }
 }
 
-
-.h-c-table th[data-glue-table-sort-type='datetime'],
-.h-c-table th[glue-table-sort-type='datetime'] {
-  pointer-events: none;
-
-  span {
-    &::after {
-      display: none;
-    }
-  }
-}
-
 .h-c-table th.goog-tablesorter-sorted-reverse {
   &::after {
     transform: rotateX(-180deg);

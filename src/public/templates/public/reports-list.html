@@ -144,7 +144,7 @@
       data-glue-table-sort-descending-text="descending"
       data-glue-table-sort-unsorted-text="unsorted"
       role="table"
-      summary="A sample data table of countries, cities, and numbers"
+      summary="List of reports"
       width="100%"
     >
       <thead>
@@ -162,7 +162,7 @@
               scope="col"
               role="columnheader"
               title="Sort by date created chronologically"
-              data-glue-table-sort-type="datetime">
+              data-glue-table-sort-type="datetime-custom">
             <span>
               Date created
             </span>
@@ -217,7 +217,7 @@
       <tbody>
         <tr role="row" ng-repeat="survey in reportAdminCtrl.surveys">
           <td role="rowheader">{[survey.company_name]}</td>
-          <td role="gridcell">{[survey.created_at|date:"d/M/yyyy hh:mm"]}</td>
+          <td class="" role="gridcell">{[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span></td>
           <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
           <td role="gridcell">{[ survey.survey_results_count ]}</td>
           <td role="gridcell">
