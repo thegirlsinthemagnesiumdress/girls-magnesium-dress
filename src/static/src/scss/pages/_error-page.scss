@@ -1,7 +1,8 @@
 .dmb-error-page {
   align-items: center;
   display: flex;
-  height: 83vh;
+  min-height: calc(100vh - 56px - 160px);
+  padding: 60px 0;
 
   > .h-c-page {
     width: 100%;
@@ -18,6 +19,7 @@
   &__text {
     @include dmb-responsive(margin-bottom, 16, 56);
   }
+
 
   &__img-col {
     align-items: center;
