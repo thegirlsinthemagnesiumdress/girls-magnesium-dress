@@ -258,7 +258,14 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
-DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['^third_party$', 'sitepackages$', '^node_modules$', '^tests$']
+DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += [
+    r"^third_party$",
+    r"^sitepackages$",
+    r"^sitepackages_local$",
+    r"^node_modules$",
+    r"^tests$",
+    r"^static$"
+]
 
 DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
     r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
