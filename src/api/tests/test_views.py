@@ -10,7 +10,8 @@ from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
-
+from collections import OrderedDict
+from core.tests.mocks import INDUSTRIES
 
 User = get_user_model()
 
@@ -123,6 +124,9 @@ class SurveyDetailView(APITestCase):
         self.assertFalse(response.has_header('access-control-allow-origin'))
 
 
+@override_settings(
+    INDUSTRIES=INDUSTRIES
+)
 class CreateSurveyTest(APITestCase):
     """Tests for `api.views.CreateSurveyView` view."""
 
@@ -135,7 +139,7 @@ class CreateSurveyTest(APITestCase):
 
         self.data = {
             'company_name': 'test company',
-            'industry': 're',
+            'industry': 'ic',
             'country': 'GB',
         }
 
@@ -166,6 +170,12 @@ class CreateSurveyTest(APITestCase):
         response = self.client.post(self.url, {'randomkey': 'randomvalue'})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_industry_not_valid(self):
+        """Posting data not matching required parameters should fail."""
+        self.data['industry'] = 'invalid'
+        response = self.client.post(self.url, self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
 
 @override_settings(
     DIMENSIONS={
@@ -173,10 +183,7 @@ class CreateSurveyTest(APITestCase):
         'dimension_B': ['Q3'],
         'dimension_C': ['Q2'],
     },
-    INDUSTRIES={
-        'IT': 'IT',
-        'B': 'B',
-    },
+    INDUSTRIES=INDUSTRIES,
     MIN_ITEMS_INDUSTRY_THRESHOLD=1
 )
 class SurveyIndustryResultTest(APITestCase):
@@ -209,8 +216,8 @@ class SurveyIndustryResultTest(APITestCase):
             'dimension_C': 1.0,
         }
 
-        self.survey = Survey.objects.create(company_name='test company', industry='IT', country="it")
-        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='IT', country="it")
+        self.survey = Survey.objects.create(company_name='test company', industry='ic', country="it")
+        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='ic', country="it")
 
         survey_result = make_survey_result(
             survey=self.survey,
@@ -235,7 +242,7 @@ class SurveyIndustryResultTest(APITestCase):
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back.
         """
-        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        url = reverse('survey_industry', kwargs={'industry_name': 'ic'})
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -258,7 +265,7 @@ class SurveyIndustryResultTest(APITestCase):
         self.survey_2.last_survey_result = survey_result_3
         self.survey_2.save()
 
-        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        url = reverse('survey_industry', kwargs={'industry_name': 'ic'})
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -290,7 +297,7 @@ class SurveyIndustryResultTest(APITestCase):
         When the is no industry with that specific name and there are not enough
         results, we expect no results back.
         """
-        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        url = reverse('survey_industry', kwargs={'industry_name': 'ic'})
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -309,9 +316,9 @@ class SurveyIndustryResultTest(APITestCase):
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
     def test_last_survey_result_is_excluded_if_null(self, mocked_benchmark):
         """When last_survey_result is None, element is excluded from dmb calculation."""
-        Survey.objects.create(company_name='test company 3', industry='IT', country="it", last_survey_result=None)
+        Survey.objects.create(company_name='test company 3', industry='ic', country="it", last_survey_result=None)
 
-        url = reverse('survey_industry', kwargs={'industry_name': 'IT'})
+        url = reverse('survey_industry', kwargs={'industry_name': 'ic'})
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)

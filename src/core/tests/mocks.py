@@ -1,5 +1,8 @@
 from core.models import Survey
 from django.utils import dateparse
+from collections import OrderedDict
+from core.conf.utils import flatten_industries
+
 
 MOCKED_DIMENSIONS = {
     'ads': [
@@ -158,6 +161,20 @@ qualtrics_export = {
         }
     ],
 }
+
+
+_INDUSTRIES = OrderedDict([
+    ('ic', ('Information and Communication', OrderedDict([
+        ('ic-bnpj', ('Books, news, periodicals, journals', None)),
+        ('ic-o', ('Other', None)),
+        ('ic-s', ('Software', None)),
+        ('ic-trmvm', ('TV, radio, movies, video, music', None)),
+        ('ic-t', ('Telecommunications', None)),
+    ]))),
+    ('co', ('Construction', None)),
+])
+
+INDUSTRIES = flatten_industries(_INDUSTRIES, None, {})
 
 
 def generate_surveys():
