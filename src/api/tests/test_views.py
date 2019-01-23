@@ -216,8 +216,8 @@ class SurveyIndustryResultTest(APITestCase):
             'dimension_C': 1.0,
         }
 
-        self.survey = Survey.objects.create(company_name='test company', industry='ic', country="it")
-        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='ic', country="it")
+        self.survey = Survey.objects.create(company_name='test company', industry='ic-o', country="it")
+        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='ic-o', country="it")
 
         survey_result = make_survey_result(
             survey=self.survey,
