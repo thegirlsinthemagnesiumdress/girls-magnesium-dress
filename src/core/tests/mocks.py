@@ -172,6 +172,12 @@ _INDUSTRIES = OrderedDict([
         ('ic-t', ('Telecommunications', None)),
     ]))),
     ('co', ('Construction', None)),
+    ('edu', ('Education', OrderedDict([
+        ('edu-fe', ('Further education', None)),
+        ('edu-o', ('Other', None)),
+        ('edu-pe', ('Primary education', None)),
+        ('edu-se', ('Secondary education', None)),
+    ]))),
 ])
 
 INDUSTRIES = flatten_industries(_INDUSTRIES, None, {})
