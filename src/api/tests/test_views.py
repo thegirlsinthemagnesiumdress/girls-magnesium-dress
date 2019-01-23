@@ -184,7 +184,8 @@ class CreateSurveyTest(APITestCase):
         'dimension_C': ['Q2'],
     },
     INDUSTRIES=INDUSTRIES,
-    MIN_ITEMS_INDUSTRY_THRESHOLD=1
+    MIN_ITEMS_INDUSTRY_THRESHOLD=1,
+    MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2
 )
 class SurveyIndustryResultTest(APITestCase):
     """Tests for `api.views.SurveyResultsIndustryDetail` view."""
@@ -251,7 +252,8 @@ class SurveyIndustryResultTest(APITestCase):
             self.assertIsNotNone(key in response_data_keys)
 
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
-    def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_benchmark):
+    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
+    def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_best_practice, mocked_benchmark):
         """
         When a survey has multiple results, only the last one should be use
         to calculate the aggregated benchmarks.
@@ -273,15 +275,24 @@ class SurveyIndustryResultTest(APITestCase):
         for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
             self.assertIsNotNone(key in response_data_keys)
 
+        # check mocked_benchmark is called with correct parameters
         mocked_benchmark.assert_called()
-
         args, _ = mocked_benchmark.call_args_list[0]
         dmb_d_list_arg = args[0]
-
         self.assertEqual(len(dmb_d_list_arg), 2)
         self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
         self.assertTrue(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
         self.assertFalse(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
+
+        # check mocked_best_practice is called with correct parameters
+        mocked_best_practice.assert_called()
+        args, _ = mocked_best_practice.call_args_list[0]
+        dmb_d_list_arg = args[0]
+        self.assertEqual(len(dmb_d_list_arg), 2)
+        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
+        self.assertTrue(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
+        self.assertFalse(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
+
 
     def test_industry_without_results_no_industry_name(self):
         """When the is no industry with that specific name, we expect no results back."""
@@ -336,3 +347,54 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
         self.assertTrue(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
         self.assertFalse(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
+
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=10,
+        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2
+    )
+    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
+    def test_industry_not_enough_results_group_benchmark(self, mocked_best_practice, mocked_benchmark):
+        """When there are not enough results, it will return the global industry calculation."""
+        Survey.objects.create(company_name='test company 3', industry='ic', country="it", last_survey_result=None)
+
+        url = reverse('survey_industry', kwargs={'industry_name': 'ic'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertIsNotNone(key in response_data_keys)
+
+        mocked_benchmark.assert_not_called()
+        mocked_best_practice.assert_called()
+
+        call = mocked_best_practice.call_args_list[0]
+        args, _ = call
+
+        dmb_d_list_arg = args[0]
+        self.assertEqual(len(dmb_d_list_arg), 2)
+        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
+        self.assertTrue(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
+        self.assertFalse(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
+
+    @override_settings(
+        MIN_ITEMS_INDUSTRY_THRESHOLD=10,
+        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=5
+    )
+    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
+    def test_industry_not_enough_results_no_best_practice(self, mocked_best_practice, mocked_benchmark):
+        """When there are not enough results, it will return the global industry calculation."""
+        Survey.objects.create(company_name='test company 3', industry='ic', country="it", last_survey_result=None)
+
+        url = reverse('survey_industry', kwargs={'industry_name': 'ic'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
+            self.assertIsNotNone(key in response_data_keys)
+
+        mocked_benchmark.assert_not_called()
+        mocked_best_practice.assert_not_called()

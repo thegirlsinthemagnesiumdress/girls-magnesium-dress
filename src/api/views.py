@@ -73,23 +73,21 @@ class SurveyResultsIndustryDetail(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, industry_name, *args, **kwargs):
-        dmb = None
-        dmb_d = None
-        dmb_bp = None
-        dmb_d_bp = None
+        cached = cache.get(industry_name)
+        if cached:
+            return Response(cached)
 
         try:
             surveys, industry = get_surveys_by_industry(industry_name)
         except ValueError:
             raise Http404
 
-        cached = cache.get(industry)
-        if cached:
-            return Response(cached)
-
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
-        if dmb_d_list and len(dmb_d_list) > settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
+        dmb, dmb_d = None, None
+        dmb_bp, dmb_d_bp = None, None
+        if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+        if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
             dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
 
         data = {
@@ -99,5 +97,5 @@ class SurveyResultsIndustryDetail(APIView):
             'dmb_bp': dmb_bp,
             'dmb_d_bp': dmb_d_bp,
         }
-        cache.set(industry, data)
+        cache.set(industry_name, data)
         return Response(data)
