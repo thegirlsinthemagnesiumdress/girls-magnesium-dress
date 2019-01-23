@@ -109,7 +109,7 @@ MULTI_ANSWER_QUESTIONS = [
     'Q155',
 ]
 
-_INDUSTRIES = OrderedDict([
+HIERARCHICAL_INDUSTRIES = OrderedDict([
     ('afs', ('Accommodation and food service', None)),
     ('aer', ('Arts, entertainment & recreation', None)),
     ('co', ('Construction', None)),
@@ -196,7 +196,7 @@ _INDUSTRIES = OrderedDict([
 
 from core.conf.utils import flatten_industries
 
-INDUSTRIES = flatten_industries(_INDUSTRIES, None, {})
+INDUSTRIES = flatten_industries(HIERARCHICAL_INDUSTRIES, None, {})
 
 COUNTRIES = OrderedDict([
     ('AF', 'Afghanistan'),
