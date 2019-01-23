@@ -292,7 +292,8 @@ WHITELISTED_USERS = [
     'pchillari@google.com',
 ]
 
-MIN_ITEMS_INDUSTRY_THRESHOLD = 100
+MIN_ITEMS_INDUSTRY_THRESHOLD = 25
+MIN_ITEMS_BEST_PRACTICE_THRESHOLD = 5
 
 CONTACT_EMAIL = "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id())
 
