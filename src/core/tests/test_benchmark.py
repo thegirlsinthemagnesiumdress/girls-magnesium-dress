@@ -2,7 +2,8 @@ from core.tests.mocks import INDUSTRIES
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_survey, make_survey_result
-from core.benchmark import get_surveys_by_industry
+from core import benchmark
+from django.conf import settings
 
 
 @override_settings(
@@ -27,7 +28,7 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough element for that industry,
         it will fall back to parent industry."""
 
-        surveys, industry = get_surveys_by_industry(initial_industry='ic-o')
+        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='ic-o')
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, 'ic')
 
@@ -38,7 +39,7 @@ class SurveyDMBListTest(TestCase):
         self._make_survey_with_result(industry='ic-s')
         self._make_survey_with_result(industry='ic-s')
 
-        surveys, industry = get_surveys_by_industry(initial_industry='ic-s')
+        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='ic-s')
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, 'ic-s')
 
@@ -46,7 +47,7 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = get_surveys_by_industry(initial_industry='edu-fe')
+        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='edu-fe')
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, None)
 
@@ -54,7 +55,7 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = get_surveys_by_industry(initial_industry='edu')
+        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='edu')
         self.assertEqual(len(surveys), 3)
         self.assertIsNone(industry)
 
@@ -65,10 +66,57 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = get_surveys_by_industry(initial_industry='edu')
+        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='edu')
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, None)
 
     def test_get_surveys_by_industry_invalid_industry(self):
         """Test if initial industry is not valid it should raise an `Exception`"""
-        self.assertRaises(ValueError, get_surveys_by_industry, 'invalid')
+        self.assertRaises(ValueError, benchmark.get_surveys_by_industry, 'invalid')
+
+
+@override_settings(
+    INDUSTRIES={
+        'co': ('Construction', None),
+        'edu': ('Education', None),
+        'edu-fe': ('Further education', 'edu'),
+        'edu-o': ('Other', 'edu'),
+        'edu-pe': ('Primary education', 'edu'),
+        'edu-se': ('Secondary education', 'edu'),
+        'egsw': ('Electricity, gas, steam, water', None),
+        'fi': ('Financial and Insurance', None),
+        'fi-b': ('Banking', 'fi'),
+        'fi-i': ('Insurance', 'fi'),
+        'fi-o': ('Other', 'fi'),
+    }
+)
+class GetPathTest(TestCase):
+    """Test class for `core.benchmark._get_path` function."""
+
+    def test_get_path_leaf_element(self):
+        path = benchmark._get_path('co', settings.INDUSTRIES)
+        self.assertIsInstance(path, list)
+        self.assertEqual(len(path), 2)
+        self.assertIn('co', path)
+        self.assertIn(None, path)
+
+    def test_get_path_nested_leaf_element(self):
+        path = benchmark._get_path('fi-i', settings.INDUSTRIES)
+        self.assertIsInstance(path, list)
+        self.assertEqual(len(path), 3)
+        self.assertIn('fi-i', path)
+        self.assertIn('fi', path)
+        self.assertIn(None, path)
+
+    def test_get_path_intermediate_element(self):
+        path = benchmark._get_path('fi', settings.INDUSTRIES)
+        self.assertIsInstance(path, list)
+        self.assertEqual(len(path), 2)
+        self.assertIn('fi', path)
+        self.assertIn(None, path)
+
+    def test_get_path_root_element(self):
+        path = benchmark._get_path(None, settings.INDUSTRIES)
+        self.assertIsInstance(path, list)
+        self.assertEqual(len(path), 1)
+        self.assertIn(None, path)
