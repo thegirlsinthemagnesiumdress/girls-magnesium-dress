@@ -42,14 +42,14 @@ def _get_path(element, elements):
     return path
 
 
-def get_surveys_by_industry(initial_industry):
+def get_surveys_by_industry(initial_industry, threshold):
     if initial_industry not in settings.INDUSTRIES:
         raise ValueError("`{}` is not in `settings.INDUSTRIES`".format(initial_industry))
 
     for industry in _get_path(initial_industry, settings.INDUSTRIES):
         current_industries = descendant(industry, settings.INDUSTRIES, [])
         surveys = Survey.objects.filter(industry__in=current_industries).exclude(last_survey_result__isnull=True)
-        if len(surveys) > settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
+        if len(surveys) > threshold:
             break
 
     return surveys, industry

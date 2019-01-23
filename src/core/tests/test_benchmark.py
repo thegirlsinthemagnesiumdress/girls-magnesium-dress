@@ -28,7 +28,7 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough element for that industry,
         it will fall back to parent industry."""
 
-        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='ic-o')
+        surveys, industry = benchmark.get_surveys_by_industry('ic-o', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, 'ic')
 
@@ -39,7 +39,7 @@ class SurveyDMBListTest(TestCase):
         self._make_survey_with_result(industry='ic-s')
         self._make_survey_with_result(industry='ic-s')
 
-        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='ic-s')
+        surveys, industry = benchmark.get_surveys_by_industry('ic-s', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, 'ic-s')
 
@@ -47,7 +47,7 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='edu-fe')
+        surveys, industry = benchmark.get_surveys_by_industry('edu-fe', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, None)
 
@@ -55,7 +55,7 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='edu')
+        surveys, industry = benchmark.get_surveys_by_industry('edu', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         self.assertEqual(len(surveys), 3)
         self.assertIsNone(industry)
 
@@ -66,13 +66,18 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = benchmark.get_surveys_by_industry(initial_industry='edu')
+        surveys, industry = benchmark.get_surveys_by_industry('edu', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         self.assertEqual(len(surveys), 3)
         self.assertEqual(industry, None)
 
     def test_get_surveys_by_industry_invalid_industry(self):
         """Test if initial industry is not valid it should raise an `Exception`"""
-        self.assertRaises(ValueError, benchmark.get_surveys_by_industry, 'invalid')
+        self.assertRaises(
+            ValueError,
+            benchmark.get_surveys_by_industry,
+            'invalid',
+            settings.MIN_ITEMS_INDUSTRY_THRESHOLD
+        )
 
 
 @override_settings(

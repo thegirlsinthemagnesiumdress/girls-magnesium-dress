@@ -8,9 +8,6 @@ import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result
-from django.utils.dateparse import parse_datetime
-from datetime import timedelta
-from collections import OrderedDict
 from core.tests.mocks import INDUSTRIES
 
 User = get_user_model()
@@ -292,7 +289,6 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
         self.assertTrue(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
         self.assertFalse(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
-
 
     def test_industry_without_results_no_industry_name(self):
         """When the is no industry with that specific name, we expect no results back."""

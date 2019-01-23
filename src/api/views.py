@@ -19,7 +19,6 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core.benchmark import get_surveys_by_industry
-from django.core.cache import cache
 
 
 class CreateSurveyView(CreateAPIView):
@@ -72,21 +71,21 @@ class SurveyResultsIndustryDetail(APIView):
     authentication_classes = ()
     permission_classes = (AllowAny,)
 
+    @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request, industry_name, *args, **kwargs):
-        cached = cache.get(industry_name)
-        if cached:
-            return Response(cached)
 
-        try:
-            surveys, industry = get_surveys_by_industry(industry_name)
-        except ValueError:
+        if industry_name not in settings.INDUSTRIES:
             raise Http404
 
+        surveys, industry = get_surveys_by_industry(industry_name, settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
         dmb, dmb_d = None, None
-        dmb_bp, dmb_d_bp = None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+
+        surveys, industry = get_surveys_by_industry(industry_name, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
+        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
+        dmb_bp, dmb_d_bp = None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
             dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
 
@@ -97,5 +96,4 @@ class SurveyResultsIndustryDetail(APIView):
             'dmb_bp': dmb_bp,
             'dmb_d_bp': dmb_d_bp,
         }
-        cache.set(industry_name, data)
         return Response(data)
