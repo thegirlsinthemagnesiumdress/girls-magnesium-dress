@@ -41,8 +41,6 @@ ALLOWED_HOSTS = [
     '*',
 ]
 
-WHITELISTED_USERS = ['pchillari@google.com']
-
 
 CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 CSP_SCRIPT_SRC += (

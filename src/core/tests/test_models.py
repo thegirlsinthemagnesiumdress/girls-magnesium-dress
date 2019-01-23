@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import re
+import mock
 
 from core.models import Survey, User
 from core.tests.mocks import generate_surveys
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_user
+from core.test import with_appengine_admin, with_appengine_anon, with_appengine_user
 
 
 class SurveyTest(TestCase):
@@ -87,28 +89,33 @@ class UserTest(TestCase):
 
         self.assertEqual(stored_user.engagement_lead, email_hashed)
         self.assertEqual(stored_user.email, unicode_email)
-        self.assertFalse(stored_user.is_whitelisted)
 
-    @override_settings(
-        WHITELISTED_USERS=[
-            'whitelisted@gmail.com',
-        ]
-    )
-    def test_regular_user_whiltelisted(self):
-        email = "user@gmail.com"
-        whitelisted_email = "whitelisted@gmail.com"
-        email_hashed = "cba1f2d695a5ca39ee6f343297a761a4"
-        make_user(email=email)
-        make_user(email=whitelisted_email)
+    @with_appengine_anon
+    def test_standard_user_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
 
-        self.assertEqual(User.objects.count(), 2)
+    @with_appengine_user('standard@asd.com')
+    def test_standard_user_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
 
-        stored_user = User.objects.get(email=email)
-        stored_user_whitelisted = User.objects.get(email=whitelisted_email)
+    @with_appengine_user('standard@google.com')
+    def test_standard_google_user_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
 
-        self.assertEqual(stored_user.engagement_lead, email_hashed)
-        self.assertEqual(stored_user.email, email)
-        self.assertFalse(stored_user.is_whitelisted)
+    @with_appengine_admin('standard@gmail.com')
+    def test_superuser_not_google_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
 
-        self.assertEqual(stored_user_whitelisted.email, whitelisted_email)
-        self.assertTrue(stored_user_whitelisted.is_whitelisted)
+    @with_appengine_admin('standard@google.com')
+    def test_superuser_google_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertTrue(user.is_super_admin)
