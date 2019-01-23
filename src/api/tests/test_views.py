@@ -297,7 +297,8 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=100
+        MIN_ITEMS_INDUSTRY_THRESHOLD=100,
+        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=100
     )
     def test_industry_without_results_not_enough_results(self):
         """
@@ -314,7 +315,8 @@ class SurveyIndustryResultTest(APITestCase):
         for key in ['industry_name', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
             self.assertTrue(key in response_data_keys)
 
-        self.assertIsNotNone(response.data.get('industry_name'))
+        # industry_name will be `None` because of the default value in root
+        self.assertIsNone(response.data.get('industry_name'))
         self.assertIsNone(response.data.get('dmb'))
         self.assertIsNone(response.data.get('dmb_d'))
         self.assertIsNone(response.data.get('dmb_bp'))
