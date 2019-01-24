@@ -163,7 +163,7 @@ qualtrics_export = {
 }
 
 
-_INDUSTRIES = OrderedDict([
+HIERARCHICAL_INDUSTRIES = OrderedDict([
     ('ic', ('Information and Communication', OrderedDict([
         ('ic-bnpj', ('Books, news, periodicals, journals', None)),
         ('ic-o', ('Other', None)),
@@ -180,7 +180,7 @@ _INDUSTRIES = OrderedDict([
     ]))),
 ])
 
-INDUSTRIES = flatten_industries(_INDUSTRIES, None, {})
+INDUSTRIES = flatten_industries(HIERARCHICAL_INDUSTRIES, None, {})
 
 
 def generate_surveys():
