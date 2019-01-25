@@ -292,13 +292,6 @@ QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
 QUALTRICS_EMAIL_TO = 'Q97_4_TEXT'
 QUALTRICS_EMAIL_BCC = 'Q97_5_TEXT'
 
-WHITELISTED_USERS = [
-    'alfredb@google.com',
-    'patricks@google.com',
-    'bbelcastro@google.com',
-    'pchillari@google.com',
-]
-
 MIN_ITEMS_INDUSTRY_THRESHOLD = 100
 
 CONTACT_EMAIL = "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id())
