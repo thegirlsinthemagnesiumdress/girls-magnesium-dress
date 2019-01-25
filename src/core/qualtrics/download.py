@@ -11,7 +11,7 @@ from google.appengine.api import urlfetch
 from django.conf import settings
 
 
-def fetch_results(file_format='json', started_after=None):
+def fetch_results(file_format='json', started_after=None, text=False):
     """Fetch results from Quatrics API.
 
         :raises: `core.qualtrics.exceptions.FetchResultException` if
@@ -61,6 +61,9 @@ def fetch_results(file_format='json', started_after=None):
 
     if started_after:
         data_export_payload['startDate'] = started_after.isoformat()
+
+    if text:
+        data_export_payload['useLabels'] = True
 
     logging.info("Sending request to Qualtrics Export API with payload {}".format(data_export_payload))
     download_request_response = urlfetch.fetch(

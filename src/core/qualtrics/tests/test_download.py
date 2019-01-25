@@ -156,6 +156,44 @@ class FetchResultsTest(TestCase):
         self.assertTrue('startDate' in kwargs.get('payload'))
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
+    def test_fetch_results_correctly_questions_text(self, mock_request):
+        """fetch_results collects results correctly, and 'useLabels' parameter is in the request payload.
+
+        Export is generated correctly."""
+        mock_request.side_effect = self.mocks
+
+        download.fetch_results(text=True)
+
+        mock_request.assert_called()
+        self.assertEqual(mock_request.call_count, 3)
+
+        progress_id = export_generation_response['result']['id']
+        # assert the correct URLs are called
+        calls = [
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                payload=mock.ANY,
+                url=settings.RESPONSE_EXPORT_BASE_URL),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))),
+        ]
+        mock_request.assert_has_calls(calls)
+
+        # check 'useLabels' is in the payload in the first call
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertTrue('useLabels' in kwargs.get('payload'))
+
+    @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_fails_started_after_wrong_format(self, mock_request):
         """fetch_results will fail if started_after is not in isoformat."""
         mock_request.side_effect = self.mocks
