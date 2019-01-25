@@ -1,7 +1,6 @@
 import hashlib
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
-from djangae.environment import is_development_environment
 from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models

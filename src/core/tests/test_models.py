@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import re
-import mock
 
 from core.models import Survey, User
 from core.tests.mocks import generate_surveys
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_user
-from core.test import with_appengine_admin, with_appengine_anon, with_appengine_user
+from core.test import with_appengine_admin, with_appengine_user
 
 
 class SurveyTest(TestCase):
