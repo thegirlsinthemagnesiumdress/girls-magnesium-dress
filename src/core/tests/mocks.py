@@ -160,6 +160,113 @@ qualtrics_export = {
 }
 
 
+qualtrics_text_export = {
+    'responses': [
+        {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '1',
+            'ResponseID': 'AAA',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q3': 'Some text for answer Q3',
+            'Q4': 'Some text for answer Q4',
+            'Q5_1': 'Some text for answer Q5_1',
+            'Q5_2': 'Some text for answer Q5_2',
+            'Q5_3': 'Some text for answer Q5_3',
+            'Q6': 'Some text for answer Q6',
+            'Q7': 'Some text for answer Q7',
+            'Q8': 'Some text for answer Q8',
+            'Q10': 'Some text for answer Q10',
+            'Q11': 'Some text for answer Q11',
+            'Q12': 'Some text for answer Q12',
+            'Finished': '1',
+        },
+        {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '3',
+            'ResponseID': 'AAB',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:07',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q3': 'Some text for answer Q3',
+            'Q4': 'Some text for answer Q4',
+            'Q5_1': 'Some text for answer Q5_1',
+            'Q5_2': 'Some text for answer Q5_2',
+            'Q5_3': 'Some text for answer Q5_3',
+            'Q6': 'Some text for answer Q6',
+            'Q7': 'Some text for answer Q7',
+            'Q8': 'Some text for answer Q8',
+            'Q10': 'Some text for answer Q10',
+            'Q11': 'Some text for answer Q11',
+            'Q12': 'Some text for answer Q12',
+            'Finished': '0',
+        },
+        {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAC',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:08',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q3': 'Some text for answer Q3',
+            'Q4': 'Some text for answer Q4',
+            'Q5_1': 'Some text for answer Q5_1',
+            'Q5_2': 'Some text for answer Q5_2',
+            'Q5_3': 'Some text for answer Q5_3',
+            'Q6': 'Some text for answer Q6',
+            'Q7': 'Some text for answer Q7',
+            'Q8': 'Some text for answer Q8',
+            'Q10': 'Some text for answer Q10',
+            'Q11': 'Some text for answer Q11',
+            'Q12': 'Some text for answer Q12',
+            'Finished': '1',
+        },
+        {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAD',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey test 4',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:09',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q3': 'Some text for answer Q3',
+            'Q4': 'Some text for answer Q4',
+            'Q5_1': 'Some text for answer Q5_1',
+            'Q5_2': 'Some text for answer Q5_2',
+            'Q5_3': 'Some text for answer Q5_3',
+            'Q6': 'Some text for answer Q6',
+            'Q7': 'Some text for answer Q7',
+            'Q8': 'Some text for answer Q8',
+            'Q10': 'Some text for answer Q10',
+            'Q11': 'Some text for answer Q11',
+            'Q12': 'Some text for answer Q12',
+            'Finished': '1',
+        }
+
+    ],
+}
+
+
 def generate_surveys():
     companies_name = ['1', '2', '3']
     surveys = []
@@ -172,12 +279,16 @@ def generate_surveys():
     return surveys
 
 
-def get_mocked_results(started_after=None):
+def get_mocked_results(started_after=None, text=False):
+    export = qualtrics_export
+    if text:
+        export = qualtrics_text_export
+
     if not started_after:
-        return qualtrics_export
+        return export
     else:
-        index = len(qualtrics_export)
-        qualtrics_data = qualtrics_export.get('responses')
+        index = len(export)
+        qualtrics_data = export.get('responses')
         for idx, item in enumerate(qualtrics_data):
             if dateparse.parse_datetime(item.get('StartDate')) > started_after:
                 index = idx
