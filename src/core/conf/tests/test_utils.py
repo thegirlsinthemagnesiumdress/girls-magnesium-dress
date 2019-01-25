@@ -1,4 +1,4 @@
-from core.conf.utils import map_industries
+from core.conf.utils import map_industries, flatten
 
 from djangae.test import TestCase
 from collections import OrderedDict
@@ -82,3 +82,53 @@ class MapIndustriesTest(TestCase):
         self.assertIsNotNone(parent_cat)
         self.assertEqual(parent_cat, parent_prefix)
         self.assertEqual(label, 'Accommodation and food service')
+
+
+class FlatIndustriesTest(TestCase):
+    """Test case for `core.conf.utils.flat` function."""
+
+    def test_dictionary_flattened_correctly_single(self):
+        industries = OrderedDict([
+            ('afs', ('Accommodation and food service', None)),
+        ])
+
+        flattened_repr = flatten(industries)
+
+        self.assertEqual(len(flattened_repr), 1)
+
+    def test_dictionary_flattened_correctly_single_nested(self):
+        industries = OrderedDict([
+            ('edu', ('Education', OrderedDict([
+                ('edu-o', ('Other', None)),
+                ('edu-pe', ('Primary education', None)),
+                ('edu-se', ('Secondary education', None)),
+            ]))),
+        ])
+
+        flattened_repr = flatten(industries)
+
+        self.assertEqual(len(flattened_repr), 3)
+        for el in flattened_repr:
+            key, label = el
+            self.assertIn('Education', label)
+
+    def test_dictionary_flattened_correctly_multiple(self):
+        industries = OrderedDict([
+            ('afs', ('Accommodation and food service', None)),
+            ('edu', ('Education', OrderedDict([
+                ('edu-o', ('Other', None)),
+                ('edu-pe', ('Primary education', None)),
+                ('edu-se', ('Secondary education', None)),
+            ]))),
+        ])
+
+        flattened_repr = flatten(industries)
+
+        self.assertEqual(len(flattened_repr), 4)
+
+    def test_dictionary_flattened_correctly_empty(self):
+        industries = OrderedDict()
+
+        flattened_repr = flatten(industries)
+
+        self.assertEqual(len(flattened_repr), 0)

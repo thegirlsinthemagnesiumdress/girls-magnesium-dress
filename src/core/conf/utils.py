@@ -47,16 +47,16 @@ def map_industries(categories, parent, result):
     return result
 
 
-def flat(industries, parent_label):
+def flatten(industries, parent_label=''):
     result = []
     for key, val in industries.items():
         label, children = val
         if children:
-            children_flat = flat(children, label)
+            children_flat = flatten(children, label)
             result.extend(children_flat)
         else:
             if parent_label:
-                result.append(' - '.join((parent_label, label)))
+                result.append((key, ' - '.join((parent_label, label))))
             else:
-                result.append(label)
+                result.append((key, label))
     return result

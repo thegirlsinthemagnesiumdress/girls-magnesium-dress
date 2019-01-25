@@ -1,7 +1,7 @@
 from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
-from core.conf.utils import map_industries
+from core.conf.utils import map_industries, flatten
 
 
 MOCKED_DIMENSIONS = {
