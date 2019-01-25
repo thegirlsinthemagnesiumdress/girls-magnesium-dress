@@ -1,5 +1,5 @@
 
-def flatten_industries(categories, parent, result):
+def map_industries(categories, parent, result):
     """Given a dictionary of nested categories, it returns a
     flatten representation of it.
 
@@ -24,10 +24,10 @@ def flatten_industries(categories, parent, result):
         ]))),
     ])
 
-    FLATTEN_REPR = flatten_industries(CATEGORIES, None, {})
+    MAPPED_REPR = map_industries(CATEGORIES, None, {})
 
-    FLATTEN_REPR is the graph representation of CATEGORIES:
-    FLATTEN_REPR = {
+    MAPPED_REPR is the graph representation of CATEGORIES:
+    MAPPED_REPR = {
         'aer': ('Arts, entertainment & recreation', None),
         'afs': ('Accommodation and food service', None),
         'co': ('Construction', None),
@@ -43,5 +43,20 @@ def flatten_industries(categories, parent, result):
     for cat, data in categories.items():
         label, subcat = data
         result[cat] = (label, parent)
-        flatten_industries(subcat, cat, result)
+        map_industries(subcat, cat, result)
+    return result
+
+
+def flat(industries, parent_label):
+    result = []
+    for key, val in industries.items():
+        label, children = val
+        if children:
+            children_flat = flat(children, label)
+            result.extend(children_flat)
+        else:
+            if parent_label:
+                result.append(' - '.join((parent_label, label)))
+            else:
+                result.append(label)
     return result

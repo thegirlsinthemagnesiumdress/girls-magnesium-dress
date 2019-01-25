@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 from django.http import Http404
 
 
-INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
+INDUSTRIES_TUPLE = [(k, v[0])for k, v in settings.INDUSTRIES.items()]
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 

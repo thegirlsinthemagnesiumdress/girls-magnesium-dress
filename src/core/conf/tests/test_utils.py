@@ -1,11 +1,11 @@
-from core.conf.utils import flatten_industries
+from core.conf.utils import map_industries
 
 from djangae.test import TestCase
 from collections import OrderedDict
 
 
-class FlattenIndustriesTest(TestCase):
-    """Test case for `core.conf.utils.flatten_industries` function."""
+class MapIndustriesTest(TestCase):
+    """Test case for `core.conf.utils.map_industries` function."""
 
     def test_dictionary_flattened_correctly_single(self):
 
@@ -13,10 +13,10 @@ class FlattenIndustriesTest(TestCase):
             ('afs', ('Accommodation and food service', None)),
         ])
 
-        flatten_repr = flatten_industries(categories, None, {})
+        mapped_repr = map_industries(categories, None, {})
 
-        self.assertEquals(len(flatten_repr), 1)
-        label, parent_cat = flatten_repr.get('afs')
+        self.assertEquals(len(mapped_repr), 1)
+        label, parent_cat = mapped_repr.get('afs')
         self.assertIsNone(parent_cat)
         self.assertEqual(label, 'Accommodation and food service')
 
@@ -30,17 +30,17 @@ class FlattenIndustriesTest(TestCase):
             ]))),
         ])
 
-        flatten_repr = flatten_industries(categories, None, {})
+        mapped_repr = map_industries(categories, None, {})
 
-        self.assertEquals(len(flatten_repr), 4)
+        self.assertEquals(len(mapped_repr), 4)
         # all children of Education have Education as parent
         for category in ['edu-o', 'edu-pe', 'edu-se']:
-            label, parent_cat = flatten_repr.get(category)
+            label, parent_cat = mapped_repr.get(category)
             self.assertIsNotNone(parent_cat)
             self.assertEqual(parent_cat, 'edu')
 
         # root element does not have parent category
-        label, cat = flatten_repr.get('edu')
+        label, cat = mapped_repr.get('edu')
         self.assertEqual(label, 'Education')
         self.assertEqual(cat, None)
 
@@ -56,10 +56,10 @@ class FlattenIndustriesTest(TestCase):
             ]))),
         ])
 
-        flatten_repr = flatten_industries(categories, None, {})
+        mapped_repr = map_industries(categories, None, {})
 
-        self.assertEquals(len(flatten_repr), 6)
-        label, parent_cat = flatten_repr.get('afs')
+        self.assertEquals(len(mapped_repr), 6)
+        label, parent_cat = mapped_repr.get('afs')
         self.assertIsNone(parent_cat)
         self.assertEqual(label, 'Accommodation and food service')
 
@@ -75,10 +75,10 @@ class FlattenIndustriesTest(TestCase):
         ])
         parent_prefix = 'root'
 
-        flatten_repr = flatten_industries(categories, parent_prefix, {})
+        mapped_repr = map_industries(categories, parent_prefix, {})
 
-        self.assertEquals(len(flatten_repr), 6)
-        label, parent_cat = flatten_repr.get('afs')
+        self.assertEquals(len(mapped_repr), 6)
+        label, parent_cat = mapped_repr.get('afs')
         self.assertIsNotNone(parent_cat)
         self.assertEqual(parent_cat, parent_prefix)
         self.assertEqual(label, 'Accommodation and food service')

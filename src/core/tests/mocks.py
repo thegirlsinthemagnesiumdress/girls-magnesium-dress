@@ -1,7 +1,7 @@
 from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
-from core.conf.utils import flatten_industries
+from core.conf.utils import map_industries
 
 
 MOCKED_DIMENSIONS = {
@@ -180,7 +180,7 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
     ]))),
 ])
 
-INDUSTRIES = flatten_industries(HIERARCHICAL_INDUSTRIES, None, {})
+INDUSTRIES = map_industries(HIERARCHICAL_INDUSTRIES, None, {})
 
 
 def generate_surveys():

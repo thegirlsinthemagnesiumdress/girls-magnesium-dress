@@ -194,9 +194,9 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
     ]))),
 ])
 
-from core.conf.utils import flatten_industries
+from core.conf.utils import map_industries
 
-INDUSTRIES = flatten_industries(HIERARCHICAL_INDUSTRIES, None, {})
+INDUSTRIES = map_industries(HIERARCHICAL_INDUSTRIES, None, {})
 
 COUNTRIES = OrderedDict([
     ('AF', 'Afghanistan'),
