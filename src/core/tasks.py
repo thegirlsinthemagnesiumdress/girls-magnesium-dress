@@ -37,7 +37,12 @@ def get_results():
     try:
         results = download.fetch_results(started_after=started_after)
         responses = results.get('responses')
-        new_response_ids = _create_survey_results(responses)
+        results_text = download.fetch_results(started_after=started_after, text=True)
+        responses_text = results_text.get('responses')
+
+        merged_responses = _update_responses_with_text(responses, responses_text)
+
+        new_response_ids = _create_survey_results(merged_responses.values())
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
         email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
@@ -45,6 +50,21 @@ def get_results():
             send_emails_for_new_reports(email_list)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
+
+
+def _update_responses_with_text(responses, text_responses):
+    responses_by_id = {k['ResponseID']: k for k in responses}
+    response_text_by_id = {k['ResponseID']: k for k in text_responses}
+
+    merged_responses = {}
+
+    for key, val in responses_by_id.items():
+        merged_responses[key] = {
+            'value': val,
+            'text': response_text_by_id.get(key)
+        }
+
+    return merged_responses
 
 
 def _create_survey_results(results_data):
@@ -66,39 +86,45 @@ def _create_survey_results(results_data):
     return response_ids
 
 
-def _create_survey_result(data):
+def _create_survey_result(survey_data):
     """Create `SurveyResult` given a single `result_data`.
 
     :param data: dictionary of data downloaded from Qualtrics
     :returns: `response_id` if a `core.SurveyResult` is created, None
         otherwise.
     """
-    if not _survey_completed(data.get('Finished')):
-        logging.warning('Found unfinshed survey {}: SKIP'.format(data.get('sid')))
+    response_data, response_text = survey_data['value'], survey_data['text']
+    if not _survey_completed(response_data.get('Finished')):
+        logging.warning('Found unfinshed survey {}: SKIP'.format(response_data.get('sid')))
         return
 
-    response_id = data['ResponseID']
+    response_id = response_data['ResponseID']
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
-            questions = question.data_to_questions(data)
+
+            questions = question.data_to_questions(response_data)
+            questions_text = question.data_to_questions_text(response_text)
+
+            raw_data = question.to_raw(questions, questions_text)
             dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
-            excluded_from_best_practice = question.discard_scores(data)
+            excluded_from_best_practice = question.discard_scores(response_data)
             survey_result = SurveyResult.objects.create(
-                survey_id=data.get('sid'),
+                survey_id=response_data.get('sid'),
                 response_id=response_id,
-                started_at=make_aware(parse_datetime(data.get('StartDate')), pytz.timezone('US/Mountain')),
+                started_at=make_aware(parse_datetime(response_data.get('StartDate')), pytz.timezone('US/Mountain')),
                 excluded_from_best_practice=excluded_from_best_practice,
                 dmb=dmb,
                 dmb_d=dmb_d,
+                raw=raw_data
             )
             new_survey_result = response_id
             try:
-                s = Survey.objects.get(pk=data.get('sid'))
+                s = Survey.objects.get(pk=response_data.get('sid'))
                 s.last_survey_result = survey_result
                 s.save()
             except Survey.DoesNotExist:
-                logging.warning('Could not update Survey with sid {}'.format(data.get('sid')))
+                logging.warning('Could not update Survey with sid {}'.format(response_data.get('sid')))
     except IntegrityError:
         logging.info('SurveyResult with response_id: {} has already been saved.'.format(response_id))
     return new_survey_result
