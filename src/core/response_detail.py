@@ -41,9 +41,9 @@ class SurveyDefinition(object):
 
     @classmethod
     def get_question_definition(cls, q_definition):
-
+        q_type = SurveyDefinition.map_question_type(q_definition['questionType'])
         choices_map = {
-            choice['choiceText']: cls.get_choice_definition(id, choice)
+            choice['choiceText']: cls.get_choice_definition(id, choice, q_type)
             for id, choice in q_definition['choices'].items()
         }
 
@@ -53,7 +53,7 @@ class SurveyDefinition(object):
 
         return {
             "id": q_definition['questionName'],
-            "type": SurveyDefinition.map_question_type(q_definition['questionType']),
+            "type": q_type,
             "text": cls.remove_dimension_header(q_definition['questionText']).lstrip(),
             "choices_map": choices_map,
             "choices": [c['text'] for c in ordered_choices],
@@ -64,11 +64,16 @@ class SurveyDefinition(object):
         return re.sub('^<h2 class="dmb-dimension-header">.*</h2>', '', text)
 
     @classmethod
-    def get_choice_definition(cls, choice_id, choice_definition):
+    def get_choice_definition(cls, choice_id, choice_definition, question_type):
+        value = float(choice_definition.get('recode', 0))
+        if question_type == 'checkbox':
+            value = value / 100
+
+        value = round(value, 2)
         return {
             "id": choice_id,
             "text": choice_definition['choiceText'],
-            "value": choice_definition.get('recode', None),
+            "value": value,
         }
 
     @classmethod
@@ -83,7 +88,6 @@ class SurveyDefinition(object):
             return None
 
         return type_map.get(question_type['selector'], None)
-
 
 def get_response_detail(definition, response_data):
     survey_definition = SurveyDefinition(definition)

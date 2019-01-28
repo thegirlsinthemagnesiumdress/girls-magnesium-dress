@@ -513,8 +513,8 @@ def result_detail(request, response_id):
             "choices_text": [
             "",
             "",
-            "",
-            ""
+            "We share marketing best practices, (e.g. between campaigns or across regions).",
+            "We co-locate as part of cross-functional teams, (e.g. we sit together on one floor)."
             ],
             "value": [
             0.0,

@@ -76,12 +76,37 @@ class SurveyDefinitionTestCase(TestCase):
             ]
         }
 
-        choice_def = SurveyDefinition.get_choice_definition(choice_id, input_choice)
+        choice_def = SurveyDefinition.get_choice_definition(choice_id, input_choice, 'radio')
 
         self.assertEqual(choice_def, {
             'id': choice_id,
             'text': input_choice['choiceText'],
-            'value': input_choice['recode'],
+            'value': 4,
+        })
+
+    def test_get_choice_definition_checkbox(self):
+        choice_id = 1
+        input_choice = {
+            "recode": "050.1",
+            "description": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",
+            "choiceText": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",
+            "imageDescription": None,
+            "variableName": None,
+            "analyze": True,
+            "scoring": [
+                {
+                    "category": "SC_577ByjK0PVdnw69",
+                    "value": "4"
+                }
+            ]
+        }
+
+        choice_def = SurveyDefinition.get_choice_definition(choice_id, input_choice, 'checkbox')
+
+        self.assertEqual(choice_def, {
+            'id': choice_id,
+            'text': input_choice['choiceText'],
+            'value': 0.50,
         })
 
     def test_get_question_definition(self):
@@ -100,12 +125,12 @@ class SurveyDefinitionTestCase(TestCase):
                 choice_1_text: {
                     'id': '1',
                     'text': choice_1_text,
-                    'value': '0',
+                    'value': 0,
                 },
                 choice_2_text: {
                     'id': '2',
                     'text': choice_2_text,
-                    'value': '1',
+                    'value': 1,
                 },
 
             },
