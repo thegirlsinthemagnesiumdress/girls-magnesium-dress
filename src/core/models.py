@@ -87,3 +87,4 @@ class SurveyResult(models.Model):
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)
     dmb_d = JSONField()
+    raw = JSONField()
