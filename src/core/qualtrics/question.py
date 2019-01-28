@@ -151,6 +151,39 @@ def data_to_questions(survey_data):
     return questions
 
 
+def data_to_questions_text(survey_data):
+    data = clean_survey_data(survey_data)
+
+    def create_tuple(question_key, data):
+        question_value = ''
+        try:
+            question_value = map(lambda x: '' if x == '0' else x, data.get(question_key))
+
+        except ValueError:
+            pass
+
+        return (
+            question_key,
+            question_value
+        )
+
+    questions = map(lambda x: create_tuple(x, data), data)
+
+    return questions
+
+
+def to_raw(questions, questions_text):
+
+    question_text_dict = defaultdict(list, questions_text)
+    return {
+        question[0]: {
+            'value': question[1],
+            'choice_text': question_text_dict.get(question[0])
+        }
+        for question in questions
+    }
+
+
 def get_question_dimension(question_id):
     for dimension_key, dimension_value in settings.DIMENSIONS.iteritems():
         if question_id in dimension_value:
