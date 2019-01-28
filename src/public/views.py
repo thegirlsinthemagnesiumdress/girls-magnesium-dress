@@ -39,7 +39,7 @@ def index_static(request):
 @survey_admin_required
 def reports_admin(request):
 
-    if request.user.is_whitelisted:
+    if request.user.is_super_admin:
         surveys = Survey.objects.all()
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)

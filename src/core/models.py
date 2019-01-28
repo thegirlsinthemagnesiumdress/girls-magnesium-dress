@@ -14,12 +14,13 @@ SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRIC
 class User(GaeAbstractDatastoreUser):
 
     @property
-    def is_whitelisted(self):
+    def is_super_admin(self):
         """
-        Returns `True` if email is in `settings.WHITELISTED_USERS` list,
+        Returns `True` if the user is set in the admin console and is a googler
         `False` otherwise.
         """
-        return True if self.email in settings.WHITELISTED_USERS else False
+        domain = self.email.split("@")[-1]
+        return True if self.is_superuser and domain == "google.com" else False
 
     @property
     def engagement_lead(self):

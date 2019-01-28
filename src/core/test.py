@@ -31,15 +31,17 @@ def _user_wrapper(func, email, admin, uid):
     return wrapped
 
 
-def with_appengine_admin(func):
-    wrapped = _user_wrapper(
-        func,
-        "admin@example.com",
-        "1",
-        "".join(["9"] * 21)
-    )
+def with_appengine_admin(email):
+    def with_appengine_dec(func):
+        wrapped = _user_wrapper(
+            func,
+            email,
+            "1",
+            "".join(["9"] * 21)
+        )
 
-    return wrapped
+        return wrapped
+    return with_appengine_dec
 
 
 def with_appengine_user(email):

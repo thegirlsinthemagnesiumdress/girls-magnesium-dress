@@ -258,7 +258,14 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
-DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['^third_party$', 'sitepackages$', '^node_modules$', '^tests$']
+DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += [
+    r"^third_party$",
+    r"^sitepackages$",
+    r"^sitepackages_local$",
+    r"^node_modules$",
+    r"^tests$",
+    r"^static$"
+]
 
 DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
     r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
@@ -284,13 +291,6 @@ QUALTRICS_API_TOKEN = 'bvoXoFk5XgJEM1BubkTFQKnXbl1vX6YycmZ5ecUe'
 QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
 QUALTRICS_EMAIL_TO = 'Q97_4_TEXT'
 QUALTRICS_EMAIL_BCC = 'Q97_5_TEXT'
-
-WHITELISTED_USERS = [
-    'alfredb@google.com',
-    'patricks@google.com',
-    'bbelcastro@google.com',
-    'pchillari@google.com',
-]
 
 MIN_ITEMS_INDUSTRY_THRESHOLD = 25
 MIN_ITEMS_BEST_PRACTICE_THRESHOLD = 5
