@@ -280,23 +280,23 @@ def generate_surveys():
 
 
 def get_mocked_results(started_after=None, text=False):
-    export = qualtrics_export
+    qualtrics_data = qualtrics_export.get('responses')
+    copied = [el for el in qualtrics_data]
     if text:
-        export = qualtrics_text_export
+        copied = [el for el in qualtrics_text_export.get('responses')]
 
-    if not started_after:
-        return export
-    else:
-        index = len(export)
-        qualtrics_data = export.get('responses')
+    if started_after:
+        index = len(qualtrics_data)
         for idx, item in enumerate(qualtrics_data):
             if dateparse.parse_datetime(item.get('StartDate')) > started_after:
                 index = idx
                 break
-        return {'responses': qualtrics_data[index:]}
+        copied = [el for el in qualtrics_data[index:]]
+
+    return {'responses': copied}
 
 
-def get_mocked_results_unfished(started_after=None):
-    unfinished_res = [result for result in get_mocked_results(started_after=started_after)['responses']
+def get_mocked_results_unfished(started_after=None, text=False):
+    unfinished_res = [result for result in get_mocked_results(started_after=started_after, text=text)['responses']
                       if result['Finished'] == '0']
     return {'responses': unfinished_res}

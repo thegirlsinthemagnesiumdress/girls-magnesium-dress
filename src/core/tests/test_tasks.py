@@ -2,7 +2,7 @@
 import mock
 
 from core.models import Survey, SurveyResult
-from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export
+from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text
 from djangae.test import TestCase
 from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished
 from mommy_recepies import make_survey, make_survey_result
@@ -21,7 +21,10 @@ class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
-    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
+    @mock.patch(
+        'core.qualtrics.download.fetch_results',
+        side_effect=[get_mocked_results(), get_mocked_results(text=True)]
+    )
     def test_new_survey_first_time_download(self, download_mock, send_email_mock):
         """Test surveys are downloaded for the first time.
 
@@ -40,8 +43,19 @@ class GetResultsTestCase(TestCase):
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
-        self.assertTrue(send_email_mock.called)
 
+        self.assertTrue(download_mock.called)
+        self.assertEqual(download_mock.call_count, 2)
+        all_calls = download_mock.call_args_list
+        # first call to get all results it should have started_after = None
+        args, kwargs = all_calls[0]
+        self.assertIsNone(kwargs.get('started_after'))
+        # second call to get all text results it should have started_after = None and text `True`
+        args, kwargs = all_calls[1]
+        self.assertIsNone(kwargs.get('started_after'))
+        self.assertEqual(kwargs.get('text'), True)
+
+        self.assertTrue(send_email_mock.called)
         args, kwargs = send_email_mock.call_args
         self.assertEqual(len(args[0]), 3)
 
@@ -52,7 +66,10 @@ class GetResultsTestCase(TestCase):
         }
     )
     @mock.patch('core.tasks.send_emails_for_new_reports')
-    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
+    @mock.patch(
+        'core.qualtrics.download.fetch_results',
+        side_effect=[get_mocked_results(), get_mocked_results(text=True)]
+    )
     def test_surveys_results_and_survey_updated(self, download_mock, send_email_mock):
         """Survey results are saved anyway (if survey has been completed), regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)
@@ -69,13 +86,27 @@ class GetResultsTestCase(TestCase):
         # Last result is updated.
         self.assertIsNotNone(survey_1.last_survey_result)
 
+        self.assertTrue(download_mock.called)
+        self.assertEqual(download_mock.call_count, 2)
+        all_calls = download_mock.call_args_list
+        # first call to get all results it should have started_after = None
+        args, kwargs = all_calls[0]
+        self.assertIsNone(kwargs.get('started_after'))
+        # second call to get all text results it should have started_after = None and text `True`
+        args, kwargs = all_calls[1]
+        self.assertIsNone(kwargs.get('started_after'))
+        self.assertEqual(kwargs.get('text'), True)
+
         # send_emails_for_new_reports is called
         self.assertTrue(send_email_mock.called)
         args, kwargs = send_email_mock.call_args
         self.assertEqual(len(args[0]), 3)
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
-    @mock.patch('core.qualtrics.download.fetch_results', return_value=get_mocked_results())
+    @mock.patch(
+        'core.qualtrics.download.fetch_results',
+        side_effect=[get_mocked_results(), get_mocked_results(text=True)]
+    )
     def test_surveys_results_are_always_saved(self, download_mock, send_email_mock):
         """Survey results are saved anyway (if survey has been completed), regardless Survey's related object exists."""
         self.assertEqual(Survey.objects.count(), 0)
@@ -94,7 +125,9 @@ class GetResultsTestCase(TestCase):
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
         'core.qualtrics.download.fetch_results',
-        return_value=get_mocked_results(started_after=dateparse.parse_datetime('2018-07-31 14:16:06'))
+        side_effect=[
+            get_mocked_results(started_after=dateparse.parse_datetime('2018-07-31 14:16:06')),
+            get_mocked_results(started_after=dateparse.parse_datetime('2018-07-31 14:16:06'), text=True)]
     )
     def test_partial_download_existing_survey(self, download_mock, send_email_mock):
         # survey has been created on datastore
@@ -114,8 +147,19 @@ class GetResultsTestCase(TestCase):
 
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
-        # mock is called with started_after parameter
-        download_mock.assert_called_once_with(started_after=survey_started_at)
+
+        self.assertEqual(download_mock.call_count, 2)
+        all_calls = download_mock.call_args_list
+        # first call to get all results it should have started_after = None
+        args, kwargs = all_calls[0]
+        self.assertIsNotNone(kwargs.get('started_after'))
+        self.assertEqual(kwargs.get('started_after'), survey_started_at)
+        # second call to get all text results it should have started_after = None and text `True`
+        args, kwargs = all_calls[1]
+        self.assertIsNotNone(kwargs.get('started_after'))
+        self.assertEqual(kwargs.get('started_after'), survey_started_at)
+        self.assertEqual(kwargs.get('text'), True)
+
         # only two new items will be created
         self.assertEqual(SurveyResult.objects.count(), 3)
 
@@ -200,9 +244,11 @@ class EmailValidatorTestCase(TestCase):
 class CreateSurveyResultTestCase(TestCase):
     """Tests for _create_survey_results function, when survey has been completed."""
     def setUp(self):
-        self.responses = get_mocked_results().get('responses')
-        self.response_ids = [response.get('ResponseID') for response in self.responses
-                             if response.get('Finished') == '1']
+        responses_values = get_mocked_results().get('responses')
+        responses_text = get_mocked_results(text=True).get('responses')
+        self.responses = _update_responses_with_text(responses_values, responses_text).values()
+        self.response_ids = [response['value'].get('ResponseID') for response in self.responses
+                             if response['value'].get('Finished') == '1']
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -238,10 +284,11 @@ class CreateSurveyResultTestCase(TestCase):
         """When a SurveyResult with a specific response_id already exists, it won't be created again."""
         # presave finished surveys
         for response in self.responses:
-            if response.get('Finished') == '1':
+            response_value = response['value']
+            if response_value.get('Finished') == '1':
                 make_survey_result(
-                    started_at=response.get('StartDate'),
-                    response_id=response.get('ResponseID'))
+                    started_at=response_value.get('StartDate'),
+                    response_id=response_value.get('ResponseID'))
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -258,7 +305,9 @@ class CreateSurveyResultTestCase(TestCase):
 class CreateSurveyResultUnfinishedTestCase(TestCase):
     """Tests for _create_survey_results function, when survey has not been completed."""
     def setUp(self):
-        self.responses = get_mocked_results_unfished().get('responses')
+        responses_values = get_mocked_results_unfished().get('responses')
+        responses_text = get_mocked_results_unfished(text=True).get('responses')
+        self.responses = _update_responses_with_text(responses_values, responses_text).values()
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -416,3 +465,134 @@ class GenerateExportTestCase(TestCase):
         self.assertEqual(handle.write.call_count, 3)
         # check a copy is made
         copy_mock.assert_called_once()
+
+
+class UpdateResponsesWithTextTestCase(TestCase):
+    """Tests for _update_responses_with_text function."""
+
+    def test_update_responses_with_text_values_and_text_match(self):
+        """When values and text match, all items are merged in the result."""
+
+        responses_values = get_mocked_results().get('responses')
+        responses_text = get_mocked_results(text=True).get('responses')
+
+        responses_values_ids = [response.get('ResponseID') for response in responses_values
+                                if response.get('Finished') == '1']
+
+        responses_text_ids = [response.get('ResponseID') for response in responses_text
+                              if response.get('Finished') == '1']
+
+        responses = _update_responses_with_text(responses_values, responses_text)
+
+        # print(responses)
+
+        self.assertEqual(len(responses), len(responses_values))
+        for val in responses_values_ids:
+            self.assertIn(val, responses.keys())
+
+        self.assertEqual(len(responses), len(responses_text))
+
+        for val in responses_text_ids:
+            self.assertIn(val, responses)
+
+    def test_update_responses_with_text_more_values_than_text(self):
+        """When values has more items than text, result is updated were possible."""
+
+        responses_values = get_mocked_results().get('responses')
+        responses_text = get_mocked_results(text=True).get('responses')
+
+        responses_values.append({
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '1',
+            'ResponseID': 'BBB',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': '2',
+            'Q4': '0',
+            'Q5_1': '2',
+
+            'Q5_2': '0',
+            'Q5_3': '3',
+            'Q6': '4',
+            'Q7': '2',
+
+            'Q8': '4',
+            'Q10': '0',
+            'Q11': '1',
+            'Q12': '2',
+            'Finished': '1',
+        })
+
+        responses_values_ids = [response.get('ResponseID') for response in responses_values
+                                if response.get('Finished') == '1']
+
+        responses_text_ids = [response.get('ResponseID') for response in responses_text
+                              if response.get('Finished') == '1']
+
+        responses = _update_responses_with_text(responses_values, responses_text)
+
+        self.assertEqual(len(responses), len(responses_values))
+        for val in responses_values_ids:
+            self.assertIn(val, responses.keys())
+
+        self.assertNotIn('BBB', responses_text_ids)
+
+    def test_update_responses_with_text_more_text_than_values(self):
+        """When text has more items than values, text elements not in values should be skipped."""
+
+        responses_values = get_mocked_results().get('responses')
+        responses_text = get_mocked_results(text=True).get('responses')
+
+        responses_text.append({
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '1',
+            'ResponseID': 'BBB',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 15:18:56',
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': 'Some text for answer Q3',
+            'Q4': 'Some text for answer Q4',
+            'Q5_1': 'Some text for answer Q5_1',
+            'Q5_2': 'Some text for answer Q5_2',
+            'Q5_3': 'Some text for answer Q5_3',
+            'Q6': 'Some text for answer Q6',
+            'Q7': 'Some text for answer Q7',
+            'Q8': 'Some text for answer Q8',
+            'Q10': 'Some text for answer Q10',
+            'Q11': 'Some text for answer Q11',
+            'Q12': 'Some text for answer Q12',
+            'Finished': '1',
+        })
+
+        responses_values_ids = [response.get('ResponseID') for response in responses_values
+                                if response.get('Finished') == '1']
+
+        responses = _update_responses_with_text(responses_values, responses_text)
+
+        self.assertEqual(len(responses), len(responses_values))
+        for val in responses_values_ids:
+            self.assertIn(val, responses.keys())
+
+        self.assertNotIn('BBB', responses.keys())
+        self.assertNotIn('BBB', responses_values_ids)
