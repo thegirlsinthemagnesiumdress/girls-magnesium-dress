@@ -119,9 +119,12 @@ def _get_questions_by_type(data):
             # to avoid having qualtrics not exporting the data correctly.
             # The values are set in qualtrics following the following convention:
             # --{score*100}.{choice_index}.
+
             if question_value == '1':
                 float_value = float(match['multi_answer_value']) / 100
                 multi_answer[match['question_id']].append(str(float_value))
+            elif len(question_value) > 1 and not question_value.startswith('0'):
+                multi_answer[match['question_id']].append(question_value)
             else:
                 multi_answer[match['question_id']].append('0')
 

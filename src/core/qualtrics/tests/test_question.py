@@ -310,3 +310,119 @@ class CleanDataTest(TestCase):
         }
 
         self.assertRaises(InvalidResponseData, question.clean_survey_data, survey_result)
+
+    @override_settings(
+        WEIGHTS={
+            'Q1': 2,
+            'Q3': 3,
+        },
+        DIMENSIONS={
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q5_1', 'Q13'],
+        },
+        MULTI_ANSWER_QUESTION=['Q13'],
+    )
+    def test_survey_clean_text(self):
+        """Should return the expected cleaned dictionary"""
+        survey_result = {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAC',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 14:18:56',
+
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': 'Some answer for Q3',
+            'Q4': 'Some answer for Q4',
+            'Q5_1': 'Some answer for Q5_1',
+            'Q13_133.1': 'Some answer for Q13_133',
+            'Q13_100.2': '0',
+            'Q13_150.3': 'Some answer for Q13_150',
+            'Q13_233.4': 'Some answer for Q13_233',
+
+        }
+        expected_clean_data = {
+            'Q3': ['Some answer for Q3'],
+            'Q4': ['Some answer for Q4'],
+            'Q5_1': ['Some answer for Q5_1'],
+            'Q13': ['Some answer for Q13_133', '0', 'Some answer for Q13_150', 'Some answer for Q13_233'],
+
+        }
+
+        data = question.clean_survey_data(survey_result)
+        self.assertCountEqual(expected_clean_data.keys(), data.keys())
+        for k, v in expected_clean_data.items():
+            self.assertListEqual(sorted(v), sorted(data[k]))
+
+
+@override_settings(
+    WEIGHTS={
+        'Q1': 2,
+        'Q3': 3,
+    },
+    DIMENSIONS={
+        'activation': ['Q3', 'Q12'],
+        'audience': ['Q13'],
+    },
+    MULTI_ANSWER_QUESTION=['Q13'],
+)
+class DataToQuestionTextTest(TestCase):
+    """Test case for `core.qualtrics.question.data_to_questions_text` function."""
+
+    survey_result = {
+        'Organization-sum': '0.0',
+        'Organization-weightedAvg': '0.0',
+        'Organization-weightedStdDev': '0.0',
+        'sid': '2',
+        'ResponseID': 'AAC',
+        'Enter Embedded Data Field Name Here...': '',
+        'sponsor': '',
+        'company_name': 'new survey',
+        'dmb': '0.5',
+        'Q1_1_TEXT': '',
+        'Q1_2_TEXT': '',
+        'Q2_1_TEXT': '',
+        'Q2_2_TEXT': '',
+
+        'Q3': 'Some answer for Q3',
+        'Q4': 'Some answer for Q4',
+        'Q12': 'Some answer for Q12',
+        'Q13_133.1': 'Some answer for Q13_133',
+        'Q13_100.2': '0',
+        'Q13_150.3': 'Some answer for Q13_150',
+        'Q13_233.4': 'Some answer for Q13_233',
+    }
+
+    def setUp(self):
+        questions = question.data_to_questions_text(self.survey_result)
+        self.question_dict = {item[0]: item for item in questions}
+
+    def test_question_tuple_correctly_generated(self):
+        """When weight and category are found, should be set."""
+        question, answers = self.question_dict.get('Q3')
+
+        self.assertEqual(question, 'Q3')
+        self.assertItemsEqual(answers, ['Some answer for Q3'])
+
+    def test_question_tuple_skipped_if_not_found_by_regex(self):
+        """When a question does not match the regex is not return by questions property."""
+        self.assertIsNone(self.question_dict.get('Q1_1_TEXT'))
+
+    def test_multiple_answer_question_tuple(self):
+        """When an element is not selected on multiselect text, it should be set to empty string."""
+        question, answers = self.question_dict.get('Q13')
+        expected_answers = ['Some answer for Q13_133', '', 'Some answer for Q13_150', 'Some answer for Q13_233']
+        self.assertItemsEqual(answers, expected_answers)
+        self.assertCountEqual(answers, expected_answers)
+
+        self.assertEqual(set(expected_answers), set(answers))
