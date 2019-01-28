@@ -241,14 +241,6 @@ def result_detail(request, response_id):
             1.33
             ]
         },
-        "Q125": {
-            "choices_text": [
-            "We use 3rd party data and 1st party data, creating a comprehensive source of insights that cover both online and offline behaviour."
-            ],
-            "value": [
-            4.0
-            ]
-        },
         "Q126": {
             "choices_text": [
             "A number of segments, based on socio-demographic data or spend data."
