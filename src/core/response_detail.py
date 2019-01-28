@@ -1,8 +1,8 @@
 import copy
-import json
-from django.conf import settings
+import re
 from collections import defaultdict
 from core.qualtrics.question import get_question_dimension
+from django.conf import settings
 
 
 class SurveyDefinition(object):
@@ -16,7 +16,7 @@ class SurveyDefinition(object):
             "dimensions": [],
         }
 
-        for block_id, block in self.definition['blocks'].iteritems():
+        for block_id, block in self.definition['blocks'].items():
             for element in block['elements']:
                 def_q_id = element['questionId']
                 q_definition = self._get_question(def_q_id)
@@ -27,8 +27,12 @@ class SurveyDefinition(object):
                     questions['definitions'][q_id] = q_definition
                     questions['questions_by_dimension'][q_dimension].append(q_id)
 
-                    if q_dimension not in questions['dimensions']:
-                        questions['dimensions'].append(q_dimension)
+                    dimension_obj = {
+                        'id': q_dimension,
+                        'title': settings.DIMENSION_TITLES.get(q_dimension),
+                    }
+                    if dimension_obj not in questions['dimensions']:
+                        questions['dimensions'].append(dimension_obj)
         return questions
 
     def _get_question(self, q_id):
@@ -38,18 +42,26 @@ class SurveyDefinition(object):
     @classmethod
     def get_question_definition(cls, q_definition):
 
-        choices_map = {choice['choiceText']: SurveyDefinition.get_choice_definition(id, choice) for id, choice in q_definition['choices'].iteritems()}
+        choices_map = {
+            choice['choiceText']: cls.get_choice_definition(id, choice)
+            for id, choice in q_definition['choices'].items()
+        }
+
         # Since we don't get an array for choices but a map, we assume the indexes are ordered.
-        ordered_choices = [choice for id, choice in choices_map.iteritems()]
+        ordered_choices = [choice for id, choice in choices_map.items()]
         ordered_choices.sort(key=lambda choice: float(choice['id']))
 
         return {
             "id": q_definition['questionName'],
             "type": SurveyDefinition.map_question_type(q_definition['questionType']),
-            "text": q_definition['questionText'],
+            "text": cls.remove_dimension_header(q_definition['questionText']).lstrip(),
             "choices_map": choices_map,
             "choices": [c['text'] for c in ordered_choices],
         }
+
+    @classmethod
+    def remove_dimension_header(cls, text):
+        return re.sub('^<h2 class="dmb-dimension-header">.*</h2>', '', text)
 
     @classmethod
     def get_choice_definition(cls, choice_id, choice_definition):
@@ -63,8 +75,8 @@ class SurveyDefinition(object):
     def map_question_type(cls, question_type):
         # It's not a singly choice or multichoce question
         type_map = {
-            "SAVR": "SC",  # single choice question type
-            "MAVR": "MC",  # multiple choice question type
+            "SAVR": "radio",  # single choice question type
+            "MAVR": "checkbox",  # multiple choice question type
         }
 
         if question_type['type'] != "MC":
@@ -79,7 +91,7 @@ def get_response_detail(definition, response_data):
 
     response_detail = copy.deepcopy(questions)
 
-    for q_id, q_definition in response_detail['definitions'].iteritems():
+    for q_id, q_definition in response_detail['definitions'].items():
         # Array containing a list of choice texts that are not anymore in the schema.
         q_definition['not_in_schema_text'] = []
 
@@ -91,7 +103,7 @@ def get_response_detail(definition, response_data):
                 choice_map = q_definition['choices_map'].get(choice_text, False)
                 if choice_map:
                     q_definition['choices_map'][choice_text]['selected'] = True
-                else:
+                elif choice_text:
                     q_definition['not_in_schema_text'].append(choice_text)
 
     return response_detail

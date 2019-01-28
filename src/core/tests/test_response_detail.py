@@ -39,7 +39,7 @@ class SurveyDefinitionTestCase(TestCase):
 
         self.assertIsNone(t)
 
-    def test_map_question_type_is_MC(self):
+    def test_map_question_type_is_checkbox(self):
         input_type = {
             "type": "MC",
             "selector": "MAVR",
@@ -47,9 +47,9 @@ class SurveyDefinitionTestCase(TestCase):
         }
         t = SurveyDefinition.map_question_type(input_type)
 
-        self.assertEqual(t, 'MC')
+        self.assertEqual(t, 'checkbox')
 
-    def test_map_question_type_is_SC(self):
+    def test_map_question_type_is_radio(self):
         input_type = {
             "type": "MC",
             "selector": "SAVR",
@@ -57,7 +57,7 @@ class SurveyDefinitionTestCase(TestCase):
         }
         t = SurveyDefinition.map_question_type(input_type)
 
-        self.assertEqual(t, 'SC')
+        self.assertEqual(t, 'radio')
 
     def test_get_choice_definition(self):
         choice_id = 1
@@ -94,8 +94,8 @@ class SurveyDefinitionTestCase(TestCase):
 
         self.assertEqual(choice_def, {
             "id": "Q102",
-            "type": 'SC',
-            "text": input_q_def['questionText'],
+            "type": 'radio',
+            "text": 'Which of the following best describes the extent to which your organisation uses data to inform creative development?',
             "choices_map": {
                 choice_1_text: {
                     'id': '1',
@@ -125,7 +125,13 @@ class SurveyDefinitionTestCase(TestCase):
 
     def test_get_question_definition_sets_the_right_dimensions(self):
         questions = self.survey_definition.get_questions()
-        self.assertEqual(questions['dimensions'], ['ads', 'audience'])
+        self.assertEqual(questions['dimensions'], [{
+            'id': 'ads',
+            'title': 'Assets and ads',
+        }, {
+            'id': 'audience',
+            'title': 'Audience',
+        }])
 
     def test_get_question_definition_sets_the_right_questions_for_dimensions(self):
         questions = self.survey_definition.get_questions()

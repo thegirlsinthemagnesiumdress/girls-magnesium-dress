@@ -28,6 +28,15 @@ WEIGHTS = {
     'Q163': 1.25,
 }
 
+DIMENSION_TITLES = {
+    'ads': 'Assets and ads',
+    'access': 'Access',
+    'audience': 'Audience',
+    'audience': 'Audience',
+    'automation': 'Automation',
+    'organization': 'Organization',
+}
+
 # If a question ID is not added to this list the question won't be considered for the final score
 DIMENSIONS = {
     'ads': [
