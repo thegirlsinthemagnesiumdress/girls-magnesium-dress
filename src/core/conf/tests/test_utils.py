@@ -9,20 +9,20 @@ class MapIndustriesTest(TestCase):
 
     def test_dictionary_flattened_correctly_single(self):
 
-        categories = OrderedDict([
+        industries = OrderedDict([
             ('afs', ('Accommodation and food service', None)),
         ])
 
-        mapped_repr = map_industries(categories, None, {})
+        mapped_repr = map_industries(industries, None, {})
 
         self.assertEquals(len(mapped_repr), 1)
-        label, parent_cat = mapped_repr.get('afs')
-        self.assertIsNone(parent_cat)
+        label, parent_industry = mapped_repr.get('afs')
+        self.assertIsNone(parent_industry)
         self.assertEqual(label, 'Accommodation and food service')
 
     def test_dictionary_flattened_correctly_nested(self):
 
-        categories = OrderedDict([
+        industries = OrderedDict([
             ('edu', ('Education', OrderedDict([
                 ('edu-o', ('Other', None)),
                 ('edu-pe', ('Primary education', None)),
@@ -30,14 +30,13 @@ class MapIndustriesTest(TestCase):
             ]))),
         ])
 
-        mapped_repr = map_industries(categories, None, {})
+        mapped_repr = map_industries(industries, None, {})
 
         self.assertEquals(len(mapped_repr), 4)
         # all children of Education have Education as parent
         for category in ['edu-o', 'edu-pe', 'edu-se']:
-            label, parent_cat = mapped_repr.get(category)
-            self.assertIsNotNone(parent_cat)
-            self.assertEqual(parent_cat, 'edu')
+            label, parent_industry = mapped_repr.get(category)
+            self.assertEqual(parent_industry, 'edu')
 
         # root element does not have parent category
         label, cat = mapped_repr.get('edu')
@@ -46,7 +45,7 @@ class MapIndustriesTest(TestCase):
 
     def test_dictionary_flattened_correctly_multiple(self):
 
-        categories = OrderedDict([
+        industries = OrderedDict([
             ('afs', ('Accommodation and food service', None)),
             ('co', ('Construction', None)),
             ('edu', ('Education', OrderedDict([
@@ -56,15 +55,15 @@ class MapIndustriesTest(TestCase):
             ]))),
         ])
 
-        mapped_repr = map_industries(categories, None, {})
+        mapped_repr = map_industries(industries, None, {})
 
         self.assertEquals(len(mapped_repr), 6)
-        label, parent_cat = mapped_repr.get('afs')
-        self.assertIsNone(parent_cat)
+        label, parent_industry = mapped_repr.get('afs')
+        self.assertIsNone(parent_industry)
         self.assertEqual(label, 'Accommodation and food service')
 
     def test_prefix(self):
-        categories = OrderedDict([
+        industries = OrderedDict([
             ('afs', ('Accommodation and food service', None)),
             ('co', ('Construction', None)),
             ('edu', ('Education', OrderedDict([
@@ -75,12 +74,12 @@ class MapIndustriesTest(TestCase):
         ])
         parent_prefix = 'root'
 
-        mapped_repr = map_industries(categories, parent_prefix, {})
+        mapped_repr = map_industries(industries, parent_prefix, {})
 
         self.assertEquals(len(mapped_repr), 6)
-        label, parent_cat = mapped_repr.get('afs')
-        self.assertIsNotNone(parent_cat)
-        self.assertEqual(parent_cat, parent_prefix)
+        label, parent_industry = mapped_repr.get('afs')
+        self.assertIsNotNone(parent_industry)
+        self.assertEqual(parent_industry, parent_prefix)
         self.assertEqual(label, 'Accommodation and food service')
 
 
@@ -110,7 +109,7 @@ class FlatIndustriesTest(TestCase):
         self.assertEqual(len(flattened_repr), 3)
         for el in flattened_repr:
             key, label = el
-            self.assertIn('Education', label)
+            self.assertIn('Education -', label)
 
     def test_dictionary_flattened_correctly_multiple(self):
         industries = OrderedDict([
