@@ -1,5 +1,7 @@
 from core.models import Survey
 from django.utils import dateparse
+from collections import OrderedDict
+
 
 MOCKED_DIMENSIONS = {
     'ads': [
@@ -157,6 +159,38 @@ qualtrics_export = {
             'Finished': '1',
         }
     ],
+}
+
+HIERARCHICAL_INDUSTRIES = OrderedDict([
+    ('ic', ('Information and Communication', OrderedDict([
+        ('ic-bnpj', ('Books, news, periodicals, journals', None)),
+        ('ic-o', ('Other', None)),
+        ('ic-s', ('Software', None)),
+        ('ic-trmvm', ('TV, radio, movies, video, music', None)),
+        ('ic-t', ('Telecommunications', None)),
+    ]))),
+    ('co', ('Construction', None)),
+    ('edu', ('Education', OrderedDict([
+        ('edu-fe', ('Further education', None)),
+        ('edu-o', ('Other', None)),
+        ('edu-pe', ('Primary education', None)),
+        ('edu-se', ('Secondary education', None)),
+    ]))),
+])
+
+INDUSTRIES = {
+    'co': ('Construction', None),
+    'edu': ('Education', None),
+    'edu-fe': ('Further education', 'edu'),
+    'edu-o': ('Other', 'edu'),
+    'edu-pe': ('Primary education', 'edu'),
+    'edu-se': ('Secondary education', 'edu'),
+    'ic': ('Information and Communication', None),
+    'ic-bnpj': ('Books, news, periodicals, journals', 'ic'),
+    'ic-o': ('Other', 'ic'),
+    'ic-s': ('Software', 'ic'),
+    'ic-t': ('Telecommunications', 'ic'),
+    'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
 }
 
 
