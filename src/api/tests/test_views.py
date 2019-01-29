@@ -9,7 +9,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result
 from core.tests.mocks import INDUSTRIES
-from core.benchmark import get_surveys_by_industry
+from core.aggregate import get_surveys_by_industry
 
 User = get_user_model()
 original_get_surveys_by_industry = get_surveys_by_industry

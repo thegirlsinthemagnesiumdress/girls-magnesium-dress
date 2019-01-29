@@ -18,7 +18,7 @@ from rest_framework.generics import (
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from core.benchmark import get_surveys_by_industry
+from core.aggregate import get_surveys_by_industry
 
 
 class CreateSurveyView(CreateAPIView):
