@@ -27,6 +27,7 @@ def sync_results():
 
 
 def _get_definition():
+    """Download survey definition from Qualtrics."""
     try:
         survey_definition = download.fetch_survey()
         last_survey_definition = SurveyDefinition.objects.latest('last_modified')
@@ -47,11 +48,10 @@ def _get_definition():
 
 
 def _get_results(survey_definition):
-    """Download survey results and survey definition from Qualtrics.
+    """Download survey results from Qualtrics.
     The function will use the latest stored `response_id` if any, otherwise
     download all the available results from Qualtrics.
     """
-
     try:
         survey_result = SurveyResult.objects.latest('started_at')
         started_after = survey_result.started_at
