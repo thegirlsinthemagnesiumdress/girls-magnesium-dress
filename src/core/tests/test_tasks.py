@@ -1,11 +1,11 @@
 # encoding=utf-8
 import mock
 
-from core.models import Survey, SurveyResult
-from core.tasks import get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text
+from core.models import Survey, SurveyResult, SurveyDefinition
+from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition
 from djangae.test import TestCase
-from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished
-from mommy_recepies import make_survey, make_survey_result
+from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished, get_survey_definition
+from mommy_recepies import make_survey, make_survey_result, make_survey_definition
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
 from django.utils import dateparse
@@ -39,7 +39,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        get_results()
+        _get_results(make_survey_definition())
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -79,7 +79,7 @@ class GetResultsTestCase(TestCase):
         make_survey()
         make_survey()
 
-        get_results()
+        _get_results(make_survey_definition())
 
         survey_1 = Survey.objects.get(pk=survey.sid)
 
@@ -112,7 +112,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        get_results()
+        _get_results(make_survey_definition())
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -143,7 +143,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
-        get_results()
+        _get_results(make_survey_definition())
 
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
@@ -188,7 +188,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         with mock.patch('core.tasks._create_survey_results') as survey_result_mock:
-            get_results()
+            _get_results(make_survey_definition())
             survey_result_mock.assert_not_called()
             download_mock.assert_called_once_with(started_after=survey_started_at)
             self.assertEqual(Survey.objects.count(), 1)
@@ -212,7 +212,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        get_results()
+        _get_results(make_survey_definition())
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -249,6 +249,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.responses = _update_responses_with_text(responses_values, responses_text).values()
         self.response_ids = [response['value'].get('ResponseID') for response in self.responses
                              if response['value'].get('Finished') == '1']
+        self.survey_definition = make_survey_definition()
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -256,7 +257,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_ids = _create_survey_results(self.responses)
+        got_ids = _create_survey_results(self.responses, self.survey_definition)
 
         self.assertEqual(Survey.objects.count(), 1)
         # mocked data contains 3 finished survey results
@@ -271,7 +272,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_ids = _create_survey_results(self.responses)
+        got_ids = _create_survey_results(self.responses, self.survey_definition)
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -293,7 +294,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-        got_ids = _create_survey_results(self.responses)
+        got_ids = _create_survey_results(self.responses, self.survey_definition)
 
         self.assertEqual(Survey.objects.count(), 0)
         # no new results are created
@@ -308,6 +309,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         responses_values = get_mocked_results_unfished().get('responses')
         responses_text = get_mocked_results_unfished(text=True).get('responses')
         self.responses = _update_responses_with_text(responses_values, responses_text).values()
+        self.survey_definition = make_survey_definition()
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -315,7 +317,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses)
+        _create_survey_results(self.responses, self.survey_definition)
 
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -325,7 +327,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses)
+        _create_survey_results(self.responses, self.survey_definition)
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -337,7 +339,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 
         # Asserting we're logging a message if survey is not completed
         with mock.patch('logging.warning') as logging_mock:
-            _create_survey_results(self.responses)
+            _create_survey_results(self.responses, self.survey_definition)
             self.assertTrue(logging_mock.called)
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -596,3 +598,55 @@ class UpdateResponsesWithTextTestCase(TestCase):
 
         self.assertNotIn('BBB', responses.keys())
         self.assertNotIn('BBB', responses_values_ids)
+
+
+class GetDefinitionTestCase(TestCase):
+    """Tests for _get_definition function"""
+
+    @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
+    def test_new_definition_firts_time(self, download_mock):
+        """When there are not survey definition, the first downloaded needs to be stored."""
+        self.assertEqual(SurveyDefinition.objects.count(), 0)
+        _get_definition()
+        self.assertEqual(SurveyDefinition.objects.count(), 1)
+
+    @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
+    def test_new_definition_found(self, download_mock):
+        """
+        When the new downloaded survey definition last modified date is grater than the last stored one,
+        it should be saved.
+        """
+
+        # create a survey definition way in the past respect to the mock we have
+        make_survey_definition(last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
+        self.assertEqual(SurveyDefinition.objects.count(), 1)
+        _get_definition()
+        # a new definition should be downloaded
+        self.assertEqual(SurveyDefinition.objects.count(), 2)
+
+    @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
+    def test_new_definition_dont_need_update(self, download_mock):
+        """
+        When the new downloaded survey definition last modified date is not grater than the last stored one,
+        it should not be saved.
+        """
+        make_survey_definition(last_modified=dateparse.parse_datetime('2019-01-28T16:04:23Z'))
+        self.assertEqual(SurveyDefinition.objects.count(), 1)
+        _get_definition()
+        # a new definition should not be downloaded
+        self.assertEqual(SurveyDefinition.objects.count(), 1)
+
+    @mock.patch('core.qualtrics.download.fetch_survey')
+    def test_definition_download_fails(self, download_mock):
+        exception_body = {
+            'meta': {
+                'httpStatus': 400,
+                'error': {
+                    'errorMesasge': 'some error'
+                }
+            }
+        }
+        download_mock.side_effect = FetchResultException(exception_body)
+        with mock.patch('logging.error') as logging_mock:
+            _get_definition()
+            self.assertTrue(logging_mock.called)

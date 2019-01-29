@@ -126,3 +126,26 @@ def _unpack_zip(in_memory_buffer):
         for zipinfo in thezip.infolist():
             with thezip.open(zipinfo) as thefile:
                 yield thefile.read()
+
+
+def fetch_survey():
+    """Fetch survey definition from Quatrics API."""
+    headers = {
+        'content-type': 'application/json',
+        'x-api-token': settings.QUALTRICS_API_TOKEN,
+    }
+
+    survey_definition_url = ''.join((settings.QUALTRICS_SURVEY_BASE_URL, settings.QUALTRICS_SURVEY_ID))
+    try:
+        request_check_response = urlfetch.fetch(
+            method=urlfetch.GET,
+            url=survey_definition_url,
+            deadline=settings.QUALTRICS_REQUEST_DEADLINE,
+            headers=headers
+        )
+        survey_definiton = json.loads(request_check_response.content)
+        survey_definiton_content = survey_definiton['result']
+    except KeyError:
+        raise FetchResultException(survey_definiton)
+
+    return survey_definiton_content

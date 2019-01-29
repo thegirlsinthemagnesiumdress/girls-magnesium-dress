@@ -2,7 +2,7 @@ import logging
 import os
 import pytz
 
-from core.models import Survey, SurveyResult
+from core.models import Survey, SurveyResult, SurveyDefinition
 from core.qualtrics import benchmark, download, exceptions, question
 from django.conf import settings
 
@@ -21,11 +21,37 @@ import unicodecsv as csv
 from datetime import datetime
 
 
-def get_results():
-    """Download survey results from Qualtrics.
+def sync_results():
+    survey_definition = _get_definition()
+    _get_results(survey_definition)
+
+
+def _get_definition():
+    try:
+        survey_definition = download.fetch_survey()
+        last_survey_definition = SurveyDefinition.objects.latest('last_modified')
+        downloaded_survey_last_modified = parse_datetime(survey_definition['lastModifiedDate'])
+        if downloaded_survey_last_modified > last_survey_definition.last_modified:
+            SurveyDefinition.objects.create(
+                last_modified=downloaded_survey_last_modified,
+                content=survey_definition
+            )
+    except SurveyDefinition.DoesNotExist:
+        last_survey_definition = SurveyDefinition.objects.create(
+            last_modified=survey_definition['lastModifiedDate'],
+            content=survey_definition
+        )
+    except exceptions.FetchResultException as fe:
+        logging.error('Fetching survey definition failed with: {}'.format(fe))
+        return
+
+
+def _get_results(survey_definition):
+    """Download survey results and survey definition from Qualtrics.
     The function will use the latest stored `response_id` if any, otherwise
     download all the available results from Qualtrics.
     """
+
     try:
         survey_result = SurveyResult.objects.latest('started_at')
         started_after = survey_result.started_at
@@ -42,7 +68,7 @@ def get_results():
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_response_ids = _create_survey_results(merged_responses.values())
+        new_response_ids = _create_survey_results(merged_responses.values(), survey_definition)
         to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
         email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
@@ -67,7 +93,7 @@ def _update_responses_with_text(responses, text_responses):
     return merged_responses
 
 
-def _create_survey_results(results_data):
+def _create_survey_results(results_data, last_survey_definition):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param results_data: dictionary containing the downloaded responses
@@ -78,7 +104,7 @@ def _create_survey_results(results_data):
     response_ids = []
     for data in results_data:
         try:
-            new_survey_result = _create_survey_result(data)
+            new_survey_result = _create_survey_result(data, last_survey_definition)
             if new_survey_result:
                 response_ids.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
@@ -86,7 +112,7 @@ def _create_survey_results(results_data):
     return response_ids
 
 
-def _create_survey_result(survey_data):
+def _create_survey_result(survey_data, last_survey_definition):
     """Create `SurveyResult` given a single `result_data`.
 
     :param data: dictionary of data downloaded from Qualtrics
