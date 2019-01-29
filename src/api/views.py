@@ -72,25 +72,31 @@ class SurveyResultsIndustryDetail(APIView):
     permission_classes = (AllowAny,)
 
     @method_decorator(cache_page(60 * 60 * 2))
-    def get(self, request, industry_name, *args, **kwargs):
-
-        if industry_name not in settings.INDUSTRIES:
+    def get(self, request, industry, *args, **kwargs):
+        if industry not in settings.INDUSTRIES:
             raise Http404
 
-        surveys, industry = get_surveys_by_industry(industry_name, settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
-        dmb, dmb_d = None, None
-        if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
-            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+        global_id, _ = settings.GLOBAL_INDUSTRY
 
-        surveys, industry = get_surveys_by_industry(industry_name, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
+        surveys, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
-        dmb_bp, dmb_d_bp = None, None
+        dmb, dmb_d, dmb_industry = None, None, None
+        if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
+            print dmb_d_list
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+            dmb_industry = current_industry if current_industry else global_id
+
+        surveys, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
+        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
+        dmb_bp, dmb_d_bp, dmb_bp_industry = None, None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
             dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
+            dmb_bp_industry = current_industry if current_industry else global_id
 
         data = {
-            'industry_name': industry,
+            'industry': industry,
+            'dmb_industry': dmb_industry,
+            'dmb_bp_industry': dmb_bp_industry,
             'dmb': dmb,
             'dmb_d': dmb_d,
             'dmb_bp': dmb_bp,

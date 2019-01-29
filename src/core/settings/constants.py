@@ -109,6 +109,8 @@ MULTI_ANSWER_QUESTIONS = [
     'Q155',
 ]
 
+GLOBAL_INDUSTRY = ('global', 'Global')
+
 HIERARCHICAL_INDUSTRIES = OrderedDict([
     ('afs', ('Accommodation and food service', None)),
     ('aer', ('Arts, entertainment & recreation', None)),

@@ -1,7 +1,6 @@
 from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
-from core.conf.utils import map_industries, flatten
 
 
 MOCKED_DIMENSIONS = {
@@ -162,7 +161,6 @@ qualtrics_export = {
     ],
 }
 
-
 HIERARCHICAL_INDUSTRIES = OrderedDict([
     ('ic', ('Information and Communication', OrderedDict([
         ('ic-bnpj', ('Books, news, periodicals, journals', None)),
@@ -180,7 +178,20 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
     ]))),
 ])
 
-INDUSTRIES = map_industries(HIERARCHICAL_INDUSTRIES, None, {})
+INDUSTRIES = {
+    'co': ('Construction', None),
+    'edu': ('Education', None),
+    'edu-fe': ('Further education', 'edu'),
+    'edu-o': ('Other', 'edu'),
+    'edu-pe': ('Primary education', 'edu'),
+    'edu-se': ('Secondary education', 'edu'),
+    'ic': ('Information and Communication', None),
+    'ic-bnpj': ('Books, news, periodicals, journals', 'ic'),
+    'ic-o': ('Other', 'ic'),
+    'ic-s': ('Software', 'ic'),
+    'ic-t': ('Telecommunications', 'ic'),
+    'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
+}
 
 
 def generate_surveys():
