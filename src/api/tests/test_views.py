@@ -137,7 +137,7 @@ class CreateSurveyTest(APITestCase):
 
         self.data = {
             'company_name': 'test company',
-            'industry': 'ic',
+            'industry': 'ic-o',
             'country': 'GB',
         }
 
