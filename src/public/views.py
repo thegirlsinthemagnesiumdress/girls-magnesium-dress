@@ -12,10 +12,10 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
+from core.conf.utils import flatten
 
 
-
-INDUSTRIES_TUPLE = [(k, v)for k, v in settings.INDUSTRIES.items()]
+INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 

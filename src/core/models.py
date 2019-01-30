@@ -75,6 +75,9 @@ class Survey(models.Model):
         self.industry = self.industry if self.industry in settings.INDUSTRIES.keys() else None
         super(Survey, self).save(*args, **kwargs)
 
+    def get_industry_display(self):
+        return settings.INDUSTRIES.get(self.industry)[0]
+
 
 class SurveyResult(models.Model):
     """Model to store a survey response benchmark."""
