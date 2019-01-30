@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from core.tasks import sync_results, generate_csv_export
+from core.tasks import sync_qualtrics, generate_csv_export
 from djangae import deferred
 import logging
 from djangae.environment import task_or_admin_only
@@ -12,7 +12,7 @@ def sync_qualtrics_results(request):
     logging.info(msg)
 
     deferred.defer(
-        sync_results,
+        sync_qualtrics,
         _queue='default',
     )
 

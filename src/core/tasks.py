@@ -21,7 +21,7 @@ import unicodecsv as csv
 from datetime import datetime
 
 
-def sync_results():
+def sync_qualtrics():
     survey_definition = _get_definition()
     _get_results(survey_definition)
 

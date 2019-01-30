@@ -1,6 +1,6 @@
 import mock
 
-from core.tasks import sync_results
+from core.tasks import sync_qualtrics
 from djangae.test import TestCase
 from django.shortcuts import reverse
 import os
@@ -29,7 +29,7 @@ class SyncQualtricsTestCase(TestCase):
 
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once_with(
-            sync_results,
+            sync_qualtrics,
             _queue='default'
         )
 
