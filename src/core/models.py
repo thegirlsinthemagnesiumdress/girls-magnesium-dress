@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from uuid import uuid4
+from core.conf.utils import flatten
 
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRICS_SURVEY_ID)
@@ -41,7 +42,7 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, blank=True, null=True)
-    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems())
+    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
