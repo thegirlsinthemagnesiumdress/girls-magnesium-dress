@@ -27,13 +27,19 @@ def sync_qualtrics():
 
 
 def _get_definition():
-    """Download survey definition from Qualtrics."""
+    """Download survey definition from Qualtrics and store it in `core.SurveyDefinition`.
+
+    If a new survey definition is found, it's then saved as `core.SurveyDefinition` and returned,
+    the latest `core.SurveyDefinition` is returned otherwise.
+
+    :returns: `core.SurveyDefinition` stored.
+    """
     try:
         survey_definition = download.fetch_survey()
         last_survey_definition = SurveyDefinition.objects.latest('last_modified')
         downloaded_survey_last_modified = parse_datetime(survey_definition['lastModifiedDate'])
         if downloaded_survey_last_modified > last_survey_definition.last_modified:
-            SurveyDefinition.objects.create(
+            last_survey_definition = SurveyDefinition.objects.create(
                 last_modified=downloaded_survey_last_modified,
                 content=survey_definition
             )
@@ -46,9 +52,15 @@ def _get_definition():
         logging.error('Fetching survey definition failed with: {}'.format(fe))
         return
 
+    return last_survey_definition
+
 
 def _get_results(survey_definition):
     """Download survey results from Qualtrics.
+
+    :param survey_definition: `core.SurveyDefinition` object.
+
+
     The function will use the latest stored `response_id` if any, otherwise
     download all the available results from Qualtrics.
     """
@@ -98,6 +110,8 @@ def _create_survey_results(results_data, last_survey_definition):
 
     :param results_data: dictionary containing the downloaded responses
         from Qualtrics API.
+    :param last_survey_definition: `core.SurveyDefinition` object,
+        reprensenting the last definition stored in the model.
 
     :returns: list of `response_id` for each `core.SurveyResult` created.
     """
@@ -116,6 +130,9 @@ def _create_survey_result(survey_data, last_survey_definition):
     """Create `SurveyResult` given a single `result_data`.
 
     :param data: dictionary of data downloaded from Qualtrics
+    :param last_survey_definition: `core.SurveyDefinition` object,
+        reprensenting the last definition stored in the model.
+
     :returns: `response_id` if a `core.SurveyResult` is created, None
         otherwise.
     """

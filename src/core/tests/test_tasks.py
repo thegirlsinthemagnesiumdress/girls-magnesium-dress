@@ -607,8 +607,11 @@ class GetDefinitionTestCase(TestCase):
     def test_new_definition_firts_time(self, download_mock):
         """When there are not survey definition, the first downloaded needs to be stored."""
         self.assertEqual(SurveyDefinition.objects.count(), 0)
-        _get_definition()
+        last_definition = _get_definition()
         self.assertEqual(SurveyDefinition.objects.count(), 1)
+        last_stored = SurveyDefinition.objects.latest('last_modified')
+        self.assertIsNotNone(last_definition)
+        self.assertEqual(last_definition.pk, last_stored.pk)
 
     @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
     def test_new_definition_found(self, download_mock):
@@ -620,9 +623,12 @@ class GetDefinitionTestCase(TestCase):
         # create a survey definition way in the past respect to the mock we have
         make_survey_definition(last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
         self.assertEqual(SurveyDefinition.objects.count(), 1)
-        _get_definition()
+        last_definition = _get_definition()
         # a new definition should be downloaded
         self.assertEqual(SurveyDefinition.objects.count(), 2)
+        last_stored = SurveyDefinition.objects.latest('last_modified')
+        self.assertIsNotNone(last_definition)
+        self.assertEqual(last_definition.pk, last_stored.pk)
 
     @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
     def test_new_definition_dont_need_update(self, download_mock):
@@ -632,9 +638,12 @@ class GetDefinitionTestCase(TestCase):
         """
         make_survey_definition(last_modified=dateparse.parse_datetime('2019-01-28T16:04:23Z'))
         self.assertEqual(SurveyDefinition.objects.count(), 1)
-        _get_definition()
+        last_definition = _get_definition()
         # a new definition should not be downloaded
         self.assertEqual(SurveyDefinition.objects.count(), 1)
+        last_stored = SurveyDefinition.objects.latest('last_modified')
+        self.assertIsNotNone(last_definition)
+        self.assertEqual(last_definition.pk, last_stored.pk)
 
     @mock.patch('core.qualtrics.download.fetch_survey')
     def test_definition_download_fails(self, download_mock):
@@ -648,5 +657,6 @@ class GetDefinitionTestCase(TestCase):
         }
         download_mock.side_effect = FetchResultException(exception_body)
         with mock.patch('logging.error') as logging_mock:
-            _get_definition()
+            last_definition = _get_definition()
+            self.assertIsNone(last_definition)
             self.assertTrue(logging_mock.called)
