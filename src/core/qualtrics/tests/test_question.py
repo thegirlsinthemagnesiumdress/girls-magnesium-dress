@@ -67,10 +67,6 @@ class DataToQuestionTest(TestCase):
         self.assertEqual(weight, 1)
         self.assertEqual(category, 'activation')
 
-    def test_question_tuple_skipped_if_not_found_by_regex(self):
-        """When a question does not match the regex is not return by questions property."""
-        self.assertIsNone(self.question_dict.get('Q1_1_TEXT'))
-
     def test_multiple_answer_question_tuple(self):
         question, answer, weight, category = self.question_dict.get('Q13')
         expected_answer = [1.33, 1, 0, 2.33]
@@ -364,6 +360,50 @@ class CleanDataTest(TestCase):
         for k, v in expected_clean_data.items():
             self.assertListEqual(sorted(v), sorted(data[k]))
 
+    @override_settings(
+        WEIGHTS={
+            'Q1': 2,
+            'Q3': 3,
+        },
+        DIMENSIONS={
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q5_1', 'Q13'],
+        },
+        MULTI_ANSWER_QUESTION=['Q13'],
+    )
+    def test_question_tuple_skipped_if_not_found_by_regex(self):
+        """When a question does not match the regex is not return by questions property."""
+        survey_result = {
+            'Organization-sum': '0.0',
+            'Organization-weightedAvg': '0.0',
+            'Organization-weightedStdDev': '0.0',
+            'sid': '2',
+            'ResponseID': 'AAC',
+            'Enter Embedded Data Field Name Here...': '',
+            'sponsor': '',
+            'company_name': 'new survey',
+            'dmb': '0.5',
+            'StartDate': '2018-07-31 14:16:06',
+            'EndDate': '2018-07-31 14:18:56',
+
+            'Q1_1_TEXT': '',
+            'Q1_2_TEXT': '',
+            'Q2_1_TEXT': '',
+            'Q2_2_TEXT': '',
+
+            'Q3': '1',
+            'Q4': '1',
+            'Q5_1': '1',
+            'Q13_133.1': '1',
+            'Q13_100.2': '1',
+            'Q13_150.3': '0',
+            'Q13_233.4': '1',
+
+        }
+
+        data = question.clean_survey_data(survey_result)
+        self.assertIsNone(data.get('Q1_1_TEXT'))
+
 
 @override_settings(
     WEIGHTS={
@@ -413,10 +453,6 @@ class DataToQuestionTextTest(TestCase):
 
         self.assertEqual(question, 'Q3')
         self.assertItemsEqual(answers, ['Some answer for Q3'])
-
-    def test_question_tuple_skipped_if_not_found_by_regex(self):
-        """When a question does not match the regex is not return by questions property."""
-        self.assertIsNone(self.question_dict.get('Q1_1_TEXT'))
 
     def test_multiple_answer_question_tuple(self):
         """When an element is not selected on multiselect text, it should be set to empty string."""
