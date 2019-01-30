@@ -1,0 +1,69 @@
+{% extends "./base.html" %}
+{% load staticfiles %}
+{% load get %}
+{% load angular %}
+{% block main %}
+<div class="h-c-page">
+  {% djangoblock %}
+    <h1 class="h-c-headline h-c-headline--two h-u-mb-l">
+      {{survey.company_name}}
+    </h1>
+
+  {% for d in result_detail.dimensions %}
+    <h2 class="h-c-headline h-c-headline--two h-u-mt-l">
+      {{d.title}} - {{survey_result.dmb_d|get_item:d.id}}
+    </h2>
+    {% with result_detail.questions_by_dimension|get_item:d.id as dimension_questions %}
+      {% for q in dimension_questions %}
+        {% with result_detail.definitions|get_item:q as question %}
+          <h3 class="h-c-headline h-c-headline--three h-u-mt-std">
+            {{question.id}} - {{question.text|safe}}
+          </h3>
+          {% if question.available %}
+            {% for c in question.choices %}
+              {% with question.choices_map|get_item:c as choice %}
+              <label>
+                <input
+                    type="{{question.type}}"
+                    name="{{question.id}}"
+                    value="{{choice.text}}"
+                    {% if choice.selected %}
+                      checked
+                    {% else%}
+                      disabled
+                    {% endif %}
+                    >
+                  {{choice.text}}
+                  ({{choice.value}})
+                </label>
+              {% endwith %}
+            {% endfor %}
+            {% if question.not_in_schema_text %}
+              The definition has probably changed and we could not match user response with the definition.
+              Here's the user answer(s).
+              {% for not_in_schema_c in question.not_in_schema_text %}
+                <label>
+                  <input
+                      type="{{question.type}}"
+                      name="{{question.id}}"
+                      value="{{not_in_schema_c}}"
+                      {% if choice.selected %}
+                        checked
+                      {% else%}
+                        disabled
+                      {% endif %}
+                      >
+                    {{not_in_schema_c}}
+                  </label>
+              {% endfor %}
+            {% endif %}
+          {% else %}
+            The definition has probably changed and we could not find any answer for this question.
+          {% endif %}
+        {% endwith %}
+      {% endfor %}
+    {% endwith %}
+  {% endfor %}
+  {% enddjangoblock %}
+</div>
+{% endblock %}
