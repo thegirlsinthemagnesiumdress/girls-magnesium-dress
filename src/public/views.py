@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from angular.shortcuts import render
-from api.serializers import SurveyWithResultAdminSerializer
+from public.serializers import AdminSurveyResultsSerializer
 
 from core.auth import survey_admin_required
 from core.models import Survey, SurveyResult
@@ -47,7 +47,7 @@ def reports_admin(request):
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
-    serialized_data = SurveyWithResultAdminSerializer(surveys, many=True)
+    serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
 
     return render(request, 'public/reports-list.html', {
         'surveys': surveys,
