@@ -212,14 +212,50 @@
               Country
             </span>
          </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by details"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Details
+            </span>
+         </th>
         </tr>
       </thead>
       <tbody>
-        <tr role="row" ng-repeat="survey in reportAdminCtrl.surveys">
+        <tr
+            role="row"
+            ng-repeat="survey in reportAdminCtrl.surveys"
+        >
           <td role="rowheader">{[survey.company_name]}</td>
-          <td class="" role="gridcell">{[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span></td>
+          <td role="gridcell">
+              {[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
+
+                      <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
+                        {[survey.created_at|date:"d/M/yyyy hh:mm"]}
+                      </div>
+                      <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
+                        {[survey.created_at|date:"d/M/yyyy hh:mm"]}
+                      </div>
+            <!-- <div
+                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses"
+                ng-repeat="response in survey.historical_responses">
+              {[response.created_at|date:"d/M/yyyy hh:mm"]}
+            </div> -->
+          </td>
+          <td role="gridcell">
+            {[ survey.survey_results_count ]}
+            <button
+                class="dmb-reports-admin__table-history-btn"
+                ng-if="!survey.historical_responses">
+              View history
+              <svg role="img" class="h-c-icon">
+                <use xlink:href="#mi-chevron"></use>
+              </svg>
+            </button>
+          </td>
           <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell">{[ survey.survey_results_count ]}</td>
           <td role="gridcell">
             <a
                 ng-if="survey.survey_results_count > 0"
@@ -232,9 +268,25 @@
                 ng-if="survey.survey_results_count == 0">
               -
             </span>
+                        <div class="dmb-reports-admin__table-subcell"><a class="h-c-button h-c-button--flat">Report</a></div>
+                        <div class="dmb-reports-admin__table-subcell"><a class="h-c-button h-c-button--flat">Report</a></div>
+
+
+            <div
+                class="dmb-reports-admin__table-subcell"
+                ng-repeat="response in survey.historical_responses">
+              <a
+                  class="h-c-button h-c-button--flat"
+                  ng-href="{[response.link]}"
+                  target="_blank">
+                Report
+              </a>
+            </div>
+
           </td>
           <td role="gridcell">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
+          <td role="gridcell">{[survey.details]}</td>
         </tr>
       </tbody>
     </table>

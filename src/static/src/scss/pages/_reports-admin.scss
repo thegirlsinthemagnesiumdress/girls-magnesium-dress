@@ -67,10 +67,18 @@
   &__table {
     background: none;
 
+    td {
+      white-space: nowrap;
+    }
+
     th[data-glue-table-sort-type]::after,
     th[glue-table-sort-type]::after {
       display: block;
       margin-left: 0;
+    }
+
+    .h-c-table {
+      overflow: hidden;
     }
 
     .h-c-table--datatable-altrows {
@@ -87,6 +95,40 @@
 
     &-date {
       display: none;
+    }
+
+    &-history-btn {
+      background: transparent;
+      border: none;
+      white-space: nowrap;
+
+      svg {
+        height: 12px;
+        margin-left: 10px;
+        width: 12px;
+      }
+    }
+
+    &-subcell {
+      padding-bottom: 22px;
+      padding-top: 22px;
+
+      &:nth-of-type(1) {
+        margin-top: 22px;
+      }
+
+      &--first {
+        position: relative;
+
+        &::before {
+          content: '';
+          border-top: 1px solid $dmb-color-grey-light;
+          position: absolute;
+          top: -1px;
+          left: 0;
+          width: 100vw;
+        }
+      }
     }
   }
 
