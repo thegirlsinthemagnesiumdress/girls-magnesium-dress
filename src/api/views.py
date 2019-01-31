@@ -116,7 +116,6 @@ class SurveyResultsIndustryDetail(APIView):
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
         dmb, dmb_d, dmb_industry = None, None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
-            print dmb_d_list
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
             dmb_industry = industry_map[current_industry] if current_industry else global_id
 
