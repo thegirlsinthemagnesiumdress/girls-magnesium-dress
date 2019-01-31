@@ -329,16 +329,35 @@
         Benchmark calculations
       </h1>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Industry Average
+        Industry average & industry best
       </h2>
       <p>
-        How companies in your industry perform on average.
+        These two metrics show how your company compares to the average and top performers in your industry globally.
       </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Industry Best
-      </h2>
       <p>
-        How companies in the top 2% of marketing maturity within your industry perform.
+        If your specific industry (e.g. “Retail trade - Household goods”) doesn’t yet have enough responses to form a reliable average, you will be shown an average based on the wider industry (e.g. “Retail trade”).
+      </p>
+      <p>
+        If there aren’t enough responses in the wider industry either, you will be shown results across all industries globally instead.
+      </p>
+      <p ng-if="reportCtrl.industryAvgSource" class="dmb-side-panel__benchmark-footnote">
+        Your “Industry average” is currently based on global
+        <span ng-if="reportCtrl.industryAvgSource!=='all'">
+          top performers in the “{[reportCtrl.industryAvgSource]}” category
+        </span>
+        <span ng-if="reportCtrl.industryAvgSource=='all'">
+          responses from all industries
+        </span>
+      </p>
+
+      <p ng-if="reportCtrl.industryBestSource" class="dmb-side-panel__benchmark-footnote">
+        Your “Industry best” is currently based on global
+        <span ng-if="reportCtrl.industryBestSource!=='all'">
+          top performers in the “{[reportCtrl.industryBestSource]}” category
+        </span>
+        <span ng-if="reportCtrl.industryBestSource=='all'">
+          responses from all industries
+        </span>
       </p>
     </div>
   </aside>
