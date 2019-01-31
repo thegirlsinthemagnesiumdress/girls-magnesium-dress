@@ -2,7 +2,7 @@
 import mock
 
 from core.models import Survey, SurveyResult, SurveyDefinition
-from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition
+from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition, sync_qualtrics
 from djangae.test import TestCase
 from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished, get_survey_definition
 from mommy_recepies import make_survey, make_survey_result, make_survey_definition
@@ -12,6 +12,29 @@ from django.utils import dateparse
 from django.utils.timezone import make_aware
 import pytz
 from collections import OrderedDict
+
+
+@override_settings(
+    DIMENSIONS=MOCKED_DIMENSIONS
+)
+class sync_qualtricsTestCase(TestCase):
+    """
+    Returns `True` if the user is set in the admin console and is a googler
+    `False` otherwise.
+    """
+    @mock.patch('core.tasks._get_definition', return_value='something')
+    @mock.patch('core.tasks._get_results', return_value='something')
+    def test_syncs_def_and_results(self, get_result_mock, get_survey_definition_mock):
+        sync_qualtrics()
+        self.assertEqual(get_survey_definition_mock.call_count, 1)
+        self.assertEqual(get_result_mock.call_count, 1)
+
+    @mock.patch('core.tasks._get_definition', return_value=None)
+    @mock.patch('core.tasks._get_results', return_value='something')
+    def test_syncs_def_fails(self, get_result_mock, get_survey_definition_mock):
+        sync_qualtrics()
+        self.assertEqual(get_survey_definition_mock.call_count, 1)
+        self.assertEqual(get_result_mock.call_count, 0)
 
 
 @override_settings(
