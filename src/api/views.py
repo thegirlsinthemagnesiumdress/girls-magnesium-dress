@@ -89,6 +89,8 @@ class SurveyResultDetailView(RetrieveAPIView):
         """
         survey_result_instance = get_object_or_404(self.queryset, **{self.lookup_field: response_id})
         survey_instance = survey_result_instance.survey
+        if not survey_instance:
+            raise Http404
         survey_instance.survey_result = survey_result_instance
         serializer = self.get_serializer(survey_instance)
         return Response(serializer.data)

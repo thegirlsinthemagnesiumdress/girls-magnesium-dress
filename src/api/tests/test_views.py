@@ -539,3 +539,14 @@ class SurveyResultDetailView(APITestCase):
             'survey_result',
             'created_at',
         })
+
+    def test_survey_result_no_survey_attached(self):
+        survey_result = make_survey_result(
+            response_id='R_22222',
+            dmb=2.0,
+            dmb_d='{}'
+        )
+
+        url = reverse('survey_result_report', kwargs={'response_id': survey_result.response_id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
