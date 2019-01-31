@@ -241,7 +241,7 @@
             <!-- <div
                 class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses"
                 ng-repeat="response in survey.historical_responses">
-              {[response.created_at|date:"d/M/yyyy hh:mm"]}
+              {[response.started_at|date:"d/M/yyyy hh:mm"]}
             </div> -->
           </td>
           <td role="gridcell">
@@ -277,7 +277,7 @@
                 ng-repeat="response in survey.historical_responses">
               <a
                   class="h-c-button h-c-button--flat"
-                  ng-href="{[response.link]}"
+                  ng-href="{[response.report_link]}"
                   target="_blank">
                 Report
               </a>
