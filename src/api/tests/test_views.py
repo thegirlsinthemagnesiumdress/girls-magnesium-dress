@@ -12,7 +12,7 @@ from core.tests.mocks import INDUSTRIES
 from core.aggregate import get_surveys_by_industry
 
 User = get_user_model()
-original_get_surveys_by_industry = get_surveys_by_industry
+
 
 class SurveyTest(APITestCase):
     """Tests for `api.views.SurveyCompanyNameFromUIDView` view."""
@@ -101,8 +101,8 @@ class SurveyDetailView(APITestCase):
     def test_survey_result_found(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertAlmostEqual(float(response.data.get('last_survey_result').get('dmb')), self.survey_result.dmb)
-        self.assertEqual(response.data.get('last_survey_result').get('response_id'), self.survey_result.response_id)
+        self.assertAlmostEqual(float(response.data.get('survey_result').get('dmb')), self.survey_result.dmb)
+        self.assertEqual(response.data.get('survey_result').get('response_id'), self.survey_result.response_id)
 
     def test_survey_result_not_found(self):
         url = reverse('survey_report', kwargs={'sid': '12345123451234512345123451234512'})
@@ -120,6 +120,30 @@ class SurveyDetailView(APITestCase):
         response = self.client.get(url, **headers)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertFalse(response.has_header('access-control-allow-origin'))
+
+    def test_survey_result_get_last(self):
+        survey_result = make_survey_result(
+            survey=self.survey,
+            response_id='BBB',
+            dmb=2.0,
+            dmb_d='{}'
+        )
+        self.survey.last_survey_result = survey_result
+        self.survey.save()
+
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertAlmostEqual(float(response.data.get('survey_result').get('dmb')), 2.0)
+        self.assertEqual(response.data.get('survey_result').get('response_id'), 'BBB')
+
+    def test_survey_does_not_have_last_result(self):
+        survey = Survey.objects.create(company_name='test company no last result', industry="ic-o", country="it")
+        url = reverse('survey_report', kwargs={'sid': survey.pk})
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIsNone(response.data.get('survey_result'))
+        self.assertEqual(response.data.get('company_name'), 'test company no last result')
 
 
 @override_settings(
@@ -445,7 +469,7 @@ class SurveyIndustryResultTest(APITestCase):
         MIN_ITEMS_INDUSTRY_THRESHOLD=2,
         MIN_ITEMS_BEST_PRACTICE_THRESHOLD=3
     )
-    @mock.patch('api.views.get_surveys_by_industry', autospec=True, return_value=original_get_surveys_by_industry('ic-o', 2))
+    @mock.patch('api.views.get_surveys_by_industry', autospec=True, return_value=get_surveys_by_industry('ic-o', 2))
     def test_industry_fallbacks_average(self, get_surveys_by_industry_mock):
         """Views use get_survey_by_industry to get the fallbacked industry and related surveys"""
 
@@ -457,4 +481,42 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertEqual(get_surveys_by_industry_mock.call_args_list, [mock.call('ic-o', 2), mock.call('ic-o', 3)])
 
 
+class SurveyResultDetailView(APITestCase):
+    """Tests for `api.views.SurveyResultDetailView` view."""
+    user_email = 'test@example.com'
 
+    def setUp(self):
+        self.survey = Survey.objects.create(company_name='test company', industry="re", country="it")
+        self.survey_result = make_survey_result(
+            survey=self.survey,
+            response_id='R_3ozFIv81JgJ5zok',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.survey.last_survey_result = self.survey_result
+        self.survey.save()
+
+    def test_survey_result_found(self):
+
+        url = reverse('survey_result_report', kwargs={'response_id': self.survey_result.response_id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_survey_result_not_found(self):
+        url = reverse('survey_result_report', kwargs={'response_id': 'AAA'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_survey_result_found_multi_result(self):
+        survey_result = make_survey_result(
+            survey=self.survey,
+            response_id='R_22222',
+            dmb=2.0,
+            dmb_d='{}'
+        )
+
+        url = reverse('survey_result_report', kwargs={'response_id': survey_result.response_id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data.get('company_name'), 'test company')
+        self.assertAlmostEqual(float(response.data.get('survey_result').get('dmb')), 2.0)

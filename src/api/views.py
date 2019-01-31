@@ -4,7 +4,7 @@ from api.serializers import (
     SurveySerializer,
     SurveyWithResultSerializer,
 )
-from core.models import Survey
+from core.models import Survey, SurveyResult
 from core.qualtrics import benchmark
 from django.conf import settings
 from django.http import Http404
@@ -64,6 +64,34 @@ class SurveyDetailView(RetrieveAPIView):
     queryset = Survey.objects.all()
     lookup_field = 'sid'
     lookup_url_kwarg = 'sid'
+
+    def retrieve(self, request, sid, *args, **kwargs):
+        """
+        Overridden RetrieveAPIView retrieve() to get instance via GET param instead of URL keyword arg.
+        """
+        survey_instance = get_object_or_404(self.queryset, **{self.lookup_field: sid})
+        survey_instance.survey_result = survey_instance.last_survey_result
+        serializer = self.get_serializer(survey_instance)
+        return Response(serializer.data)
+
+
+class SurveyResultDetailView(RetrieveAPIView):
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
+    serializer_class = SurveyWithResultSerializer
+    queryset = SurveyResult.objects.all()
+    lookup_field = 'response_id'
+    lookup_url_kwarg = 'response_id'
+
+    def retrieve(self, request, response_id, *args, **kwargs):
+        """
+        Overridden RetrieveAPIView retrieve() to get instance via GET param instead of URL keyword arg.
+        """
+        survey_result_instance = get_object_or_404(self.queryset, **{self.lookup_field: response_id})
+        survey_instance = survey_result_instance.survey
+        survey_instance.survey_result = survey_result_instance
+        serializer = self.get_serializer(survey_instance)
+        return Response(serializer.data)
 
 
 class SurveyResultsIndustryDetail(APIView):
