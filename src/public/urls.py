@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^createsurvey/$', registration, name="registration"),
     url(r'^reports/$', reports_admin, name="reports"),
     url(r'^reports/(?P<sid>[\w]+)/$', report_static, name="report"),
-    url(r'^result-detail/(?P<response_id>[\w]+)/$', result_detail, name="response-detail"),
+    url(r'^result-detail/(?P<response_id>[\w]+)/$', result_detail, name="result-detail"),
 ]

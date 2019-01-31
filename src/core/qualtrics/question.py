@@ -181,7 +181,7 @@ def to_raw(questions, questions_text):
     return {
         question[0]: {
             'value': question[1],
-            'choice_text': question_text_dict.get(question[0])
+            'choices_text': question_text_dict.get(question[0])
         }
         for question in questions
     }
