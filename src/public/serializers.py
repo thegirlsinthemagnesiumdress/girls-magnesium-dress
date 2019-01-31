@@ -6,7 +6,7 @@ class AdminSurveyResultSerializer(ModelSerializer):
 
     class Meta:
         model = SurveyResult
-        fields = ('response_id', 'report_link', 'started_at')
+        fields = ('response_id', 'detail_link', 'report_link', 'started_at')
 
 
 class AdminSurveyResultsSerializer(ModelSerializer):

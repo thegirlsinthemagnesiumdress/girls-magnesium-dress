@@ -95,6 +95,12 @@ class SurveyResult(models.Model):
     def report_link(self):
         return reverse('report_result', kwargs={'response_id': self.response_id})
 
+    @property
+    def detail_link(self):
+        return reverse(
+            'result-detail',
+            kwargs={'response_id': self.response_id}) if self.raw and self.survey_definition else None
+
 
 class SurveyDefinition(models.Model):
     last_modified = models.DateTimeField()

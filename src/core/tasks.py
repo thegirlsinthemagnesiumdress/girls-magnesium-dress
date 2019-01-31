@@ -23,7 +23,11 @@ from datetime import datetime
 
 def sync_qualtrics():
     survey_definition = _get_definition()
-    _get_results(survey_definition)
+
+    if survey_definition:
+        _get_results(survey_definition)
+    else:
+        logging.error('Fetching survey definition failed, not fetching results')
 
 
 def _get_definition():
@@ -159,7 +163,8 @@ def _create_survey_result(survey_data, last_survey_definition):
                 excluded_from_best_practice=excluded_from_best_practice,
                 dmb=dmb,
                 dmb_d=dmb_d,
-                raw=raw_data
+                raw=raw_data,
+                survey_definition=last_survey_definition,
             )
             new_survey_result = response_id
             try:

@@ -33,7 +33,7 @@ DIMENSION_TITLES = {
     'ads': 'Assets and ads',
     'access': 'Access',
     'audience': 'Audience',
-    'audience': 'Audience',
+    'attribution': 'Attribution',
     'automation': 'Automation',
     'organization': 'Organization',
 }

@@ -212,6 +212,15 @@
               Country
             </span>
          </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by country"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Detail
+            </span>
+         </th>
         </tr>
       </thead>
       <tbody>
@@ -245,6 +254,19 @@
           </td>
           <td role="gridcell">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
+          <td role="gridcell">
+            <a
+                ng-if="survey.last_survey_result.detail_link"
+                class="h-c-button h-c-button--flat"
+                ng-href="{[survey.last_survey_result.detail_link]}"
+                target="_blank">
+              Detail
+            </a>
+            <span
+                ng-if="!survey.last_survey_result.detail_link">
+              -
+            </span>
+           </td>
         </tr>
       </tbody>
     </table>
