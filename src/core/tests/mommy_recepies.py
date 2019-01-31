@@ -36,3 +36,7 @@ def make_survey_result(**kwargs):
 
 def make_user(**kwargs):
     return mommy.make('core.User', **kwargs)
+
+
+def make_survey_definition(**kwargs):
+    return mommy.make('core.SurveyDefinition', **kwargs)

@@ -1,5 +1,6 @@
 # coding=utf-8
 from collections import OrderedDict
+from core.conf.utils import map_industries
 
 WEIGHTS = {
     'Q106': 0.25,
@@ -26,6 +27,15 @@ WEIGHTS = {
     'Q153': 0.5,
     'Q155': 2,
     'Q163': 1.25,
+}
+
+DIMENSION_TITLES = {
+    'ads': 'Assets and ads',
+    'access': 'Access',
+    'audience': 'Audience',
+    'audience': 'Audience',
+    'automation': 'Automation',
+    'organization': 'Organization',
 }
 
 # If a question ID is not added to this list the question won't be considered for the final score
@@ -109,7 +119,7 @@ MULTI_ANSWER_QUESTIONS = [
     'Q155',
 ]
 
-GLOBAL_INDUSTRY = ('global', 'Global')
+ALL_INDUSTRIES = ('all', 'all')
 
 HIERARCHICAL_INDUSTRIES = OrderedDict([
     ('afs', ('Accommodation and food service', None)),
@@ -195,8 +205,6 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
         ('wt-v', ('Vehicles', None)),
     ]))),
 ])
-
-from core.conf.utils import map_industries
 
 INDUSTRIES = map_industries(HIERARCHICAL_INDUSTRIES, None, {})
 

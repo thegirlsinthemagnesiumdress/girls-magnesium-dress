@@ -281,6 +281,7 @@ DJANGAE_CREATE_UNKNOWN_USER = True
 APPEND_SLASH = True
 
 RESPONSE_EXPORT_BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format('google.co1')
+QUALTRICS_SURVEY_BASE_URL = 'https://{0}.qualtrics.com/API/v3/surveys/'.format('google.co1')
 QUALTRICS_REQUEST_DEADLINE = 60
 
 

@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from api.serializers import (
     SurveyCompanyNameSerializer,
     SurveySerializer,
@@ -19,6 +20,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core.aggregate import get_surveys_by_industry
+from core.conf.utils import flatten
 
 
 class CreateSurveyView(CreateAPIView):
@@ -73,10 +75,12 @@ class SurveyResultsIndustryDetail(APIView):
 
     @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request, industry, *args, **kwargs):
-        if industry not in settings.INDUSTRIES:
+        industry_map = OrderedDict(flatten(settings.HIERARCHICAL_INDUSTRIES, leaf_only=False))
+
+        if industry not in settings.INDUSTRIES.keys():
             raise Http404
 
-        global_id, _ = settings.GLOBAL_INDUSTRY
+        global_id, _ = settings.ALL_INDUSTRIES
 
         surveys, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
@@ -84,17 +88,17 @@ class SurveyResultsIndustryDetail(APIView):
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             print dmb_d_list
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
-            dmb_industry = current_industry if current_industry else global_id
+            dmb_industry = industry_map[current_industry] if current_industry else global_id
 
         surveys, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
         dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
         dmb_bp, dmb_d_bp, dmb_bp_industry = None, None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
             dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
-            dmb_bp_industry = current_industry if current_industry else global_id
+            dmb_bp_industry = industry_map[current_industry] if current_industry else global_id
 
         data = {
-            'industry': industry,
+            'industry': industry_map[industry],
             'dmb_industry': dmb_industry,
             'dmb_bp_industry': dmb_bp_industry,
             'dmb': dmb,

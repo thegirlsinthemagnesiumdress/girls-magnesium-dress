@@ -76,9 +76,6 @@ class Survey(models.Model):
         self.industry = self.industry if self.industry in settings.INDUSTRIES.keys() else None
         super(Survey, self).save(*args, **kwargs)
 
-    def get_industry_display(self):
-        return settings.INDUSTRIES.get(self.industry)[0]
-
 
 class SurveyResult(models.Model):
     """Model to store a survey response benchmark."""
@@ -91,3 +88,10 @@ class SurveyResult(models.Model):
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)
     dmb_d = JSONField()
+    raw = JSONField()
+    survey_definition = models.ForeignKey('SurveyDefinition', null=True, related_name="survey_definition")
+
+
+class SurveyDefinition(models.Model):
+    last_modified = models.DateTimeField()
+    content = JSONField()

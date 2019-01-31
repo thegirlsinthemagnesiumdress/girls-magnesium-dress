@@ -119,9 +119,12 @@ def _get_questions_by_type(data):
             # to avoid having qualtrics not exporting the data correctly.
             # The values are set in qualtrics following the following convention:
             # --{score*100}.{choice_index}.
+
             if question_value == '1':
                 float_value = float(match['multi_answer_value']) / 100
                 multi_answer[match['question_id']].append(str(float_value))
+            elif len(question_value) > 1 and not question_value.startswith('0'):
+                multi_answer[match['question_id']].append(question_value)
             else:
                 multi_answer[match['question_id']].append('0')
 
@@ -149,6 +152,39 @@ def data_to_questions(survey_data):
     questions = map(lambda x: create_tuple(x, data), data)
 
     return questions
+
+
+def data_to_questions_text(survey_data):
+    data = clean_survey_data(survey_data)
+
+    def create_tuple(question_key, data):
+        question_value = ''
+        try:
+            question_value = map(lambda x: '' if x == '0' else x, data.get(question_key))
+
+        except ValueError:
+            pass
+
+        return (
+            question_key,
+            question_value
+        )
+
+    questions = map(lambda x: create_tuple(x, data), data)
+
+    return questions
+
+
+def to_raw(questions, questions_text):
+
+    question_text_dict = defaultdict(list, questions_text)
+    return {
+        question[0]: {
+            'value': question[1],
+            'choice_text': question_text_dict.get(question[0])
+        }
+        for question in questions
+    }
 
 
 def get_question_dimension(question_id):

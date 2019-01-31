@@ -47,7 +47,7 @@ def map_industries(industries, parent, result):
     return result
 
 
-def flatten(industries, parent_label=''):
+def flatten(industries, parent_label='', leaf_only=True):
     """Given a dictionary of nested industries, it returns a list of strings
     that combines nested industries in one label.
 
@@ -88,11 +88,13 @@ def flatten(industries, parent_label=''):
     for key, val in industries.items():
         label, children = val
         if children:
-            children_flat = flatten(children, label)
+            children_flat = flatten(children, label, leaf_only=leaf_only)
             result.extend(children_flat)
-        else:
+
+        if not leaf_only or not children:
             if parent_label:
                 result.append((key, ' - '.join((parent_label, label))))
             else:
                 result.append((key, label))
+
     return result
