@@ -91,6 +91,10 @@ class SurveyResult(models.Model):
     raw = JSONField()
     survey_definition = models.ForeignKey('SurveyDefinition', null=True, related_name="survey_definition")
 
+    @property
+    def report_link(self):
+        return reverse('report_result', kwargs={'response_id': self.response_id})
+
 
 class SurveyDefinition(models.Model):
     last_modified = models.DateTimeField()

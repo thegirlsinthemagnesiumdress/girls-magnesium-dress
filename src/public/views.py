@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from angular.shortcuts import render
-from api.serializers import SurveyWithResultSerializer
+from public.serializers import AdminSurveyResultsSerializer
 
 from core.auth import survey_admin_required
 from core.models import Survey, SurveyResult
@@ -34,6 +34,11 @@ def report_static(request, sid):
     return render(request, 'public/report-static.html', {})
 
 
+def report_result_static(request, response_id):
+    get_object_or_404(SurveyResult, response_id=response_id)
+    return render(request, 'public/report-static.html', {})
+
+
 def index_static(request):
     return render(request, 'public/index.html', {})
 
@@ -47,7 +52,7 @@ def reports_admin(request):
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
-    serialized_data = SurveyWithResultSerializer(surveys, many=True)
+    serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
 
     return render(request, 'public/reports-list.html', {
         'surveys': surveys,
