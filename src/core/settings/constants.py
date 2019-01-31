@@ -1,5 +1,6 @@
 # coding=utf-8
 from collections import OrderedDict
+from core.conf.utils import map_industries
 
 WEIGHTS = {
     'Q106': 0.25,
@@ -118,7 +119,7 @@ MULTI_ANSWER_QUESTIONS = [
     'Q155',
 ]
 
-GLOBAL_INDUSTRY = ('global', 'Global')
+ALL_INDUSTRIES = ('all', 'all')
 
 HIERARCHICAL_INDUSTRIES = OrderedDict([
     ('afs', ('Accommodation and food service', None)),
@@ -204,8 +205,6 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
         ('wt-v', ('Vehicles', None)),
     ]))),
 ])
-
-from core.conf.utils import map_industries
 
 INDUSTRIES = map_industries(HIERARCHICAL_INDUSTRIES, None, {})
 

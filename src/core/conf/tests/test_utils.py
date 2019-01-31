@@ -121,9 +121,16 @@ class FlatIndustriesTest(TestCase):
             ]))),
         ])
 
+        flattened_expected = [
+            ('afs', 'Accommodation and food service'),
+            ('edu-o', 'Education - Other'),
+            ('edu-pe', 'Education - Primary education'),
+            ('edu-se', 'Education - Secondary education'),
+        ]
+
         flattened_repr = flatten(industries)
 
-        self.assertEqual(len(flattened_repr), 4)
+        self.assertEqual(flattened_repr, flattened_expected)
 
     def test_dictionary_flattened_correctly_empty(self):
         industries = OrderedDict()
@@ -131,3 +138,24 @@ class FlatIndustriesTest(TestCase):
         flattened_repr = flatten(industries)
 
         self.assertEqual(len(flattened_repr), 0)
+
+    def test_dictionary_flattened_correctly_leaf_only_false(self):
+        industries = OrderedDict([
+            ('afs', ('Accommodation and food service', None)),
+            ('edu', ('Education', OrderedDict([
+                ('edu-o', ('Other', None)),
+                ('edu-pe', ('Primary education', None)),
+                ('edu-se', ('Secondary education', None)),
+            ]))),
+        ])
+
+        flattened_repr = flatten(industries, leaf_only=False)
+
+        flattened_expected = [
+            ('afs', 'Accommodation and food service'),
+            ('edu-o', 'Education - Other'),
+            ('edu-pe', 'Education - Primary education'),
+            ('edu-se', 'Education - Secondary education'),
+            ('edu', 'Education'),
+        ]
+        self.assertEqual(flattened_repr, flattened_expected)
