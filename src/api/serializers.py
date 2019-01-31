@@ -1,5 +1,5 @@
 from core.models import Survey, SurveyResult
-from rest_framework.serializers import ModelSerializer, CharField, JSONField, IntegerField
+from rest_framework.serializers import ModelSerializer, CharField, JSONField
 
 
 class SurveySerializer(ModelSerializer):
@@ -26,10 +26,6 @@ class SurveyWithResultSerializer(ModelSerializer):
     survey_result = SurveyResultSerializer(read_only=True)
     country_name = CharField(source='get_country_display')
     industry_name = CharField(source='get_industry_display')
-    survey_results_count = IntegerField(
-        source='survey_results.count',
-        read_only=True
-    )
 
     class Meta:
         model = Survey

@@ -500,7 +500,16 @@ class SurveyResultDetailView(APITestCase):
 
         url = reverse('survey_result_report', kwargs={'response_id': self.survey_result.response_id})
         response = self.client.get(url)
+        response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(set(response_data_keys), {
+            'company_name',
+            'industry',
+            'industry_name',
+            'country_name',
+            'survey_result',
+            'created_at',
+        })
 
     def test_survey_result_not_found(self):
         url = reverse('survey_result_report', kwargs={'response_id': 'AAA'})
@@ -517,6 +526,16 @@ class SurveyResultDetailView(APITestCase):
 
         url = reverse('survey_result_report', kwargs={'response_id': survey_result.response_id})
         response = self.client.get(url)
+        response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('company_name'), 'test company')
         self.assertAlmostEqual(float(response.data.get('survey_result').get('dmb')), 2.0)
+
+        self.assertEqual(set(response_data_keys), {
+            'company_name',
+            'industry',
+            'industry_name',
+            'country_name',
+            'survey_result',
+            'created_at',
+        })
