@@ -115,7 +115,7 @@ class ReportController {
     // the tab component messes up the scopes. We use a service instead.
     $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
       this.survey = res.data;
-      this.result = this.survey['last_survey_result'];
+      this.result = this.survey['survey_result'];
 
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE.
