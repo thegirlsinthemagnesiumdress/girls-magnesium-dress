@@ -29,7 +29,6 @@ class AdminSurveyResultsSerializer(ModelSerializer):
             'country_name',
             'last_survey_result',
             'created_at',
-
             'survey_results_count',
             'last_survey_result_link',
             'survey_results',
