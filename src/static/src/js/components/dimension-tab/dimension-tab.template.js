@@ -48,7 +48,9 @@ const dimensionTabTemplate = `
     data-rating-main="dimensionTabCtrl.dmb"
     data-industry-avg="dimensionTabCtrl.industryDmb"
     data-industry-best="dimensionTabCtrl.industryDmb_bp"
-    data-company-name="{[company_name]}">
+    data-company-name="{[company_name]}"
+    data-industry-ready="!!dimensionTabCtrl.industryResult"
+    >
   </dmb-progress-table>
 
   <div class="dmb-report-page__recommendation-block dmb-tab__recommendation-block">

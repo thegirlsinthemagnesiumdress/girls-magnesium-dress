@@ -74,6 +74,12 @@ class DimensionTabController {
         this.industryDmb_bp = null;
 
         /**
+         * @export
+         * type {Object}
+         */
+        this.industryResult = null;
+
+        /**
         * type {!Object}
          */
         this.reportService = reportService;
@@ -89,6 +95,10 @@ class DimensionTabController {
 
         $scope.$watch(() => (reportService.industryDmb_d_bp), (nVal)=> {
           this.industryDmb_bp = nVal ? nVal[$scope['dmbDimensionTab']] : null;
+        });
+
+        $scope.$watch(() => (reportService.industryResult), (nVal)=> {
+          this.industryResult = nVal;
         });
   }
 }

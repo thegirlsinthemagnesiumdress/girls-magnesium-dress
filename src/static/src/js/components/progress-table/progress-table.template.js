@@ -20,9 +20,8 @@ const template = `
         </div>
       </div>
     </div>
-    <div class="dmb-progress-table__row-wrp"
-        aria-label="{[industryAvg ? '' : 'Industry average is not available yet, sorry!' ]}">
-      <div ng-if="!industryAvg" class="dmb-progress-table__banner">
+    <div class="dmb-progress-table__row-wrp">
+      <div ng-if="industryReady && !industryAvg" class="dmb-progress-table__banner">
         Industry average is not available yet, sorry!
       </div>
       <div
@@ -44,7 +43,7 @@ const template = `
       </div>
     </div>
     <div class="dmb-progress-table__row-wrp">
-      <div ng-if="!industryBest" class="dmb-progress-table__banner">
+      <div ng-if="industryReady && !industryBest" class="dmb-progress-table__banner">
         Industry best is not available yet, sorry!
       </div>
       <div class="dmb-progress-table__row dmb-progress-table__row--ind-best"

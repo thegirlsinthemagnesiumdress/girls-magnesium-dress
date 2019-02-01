@@ -150,6 +150,7 @@ class ReportController {
         this.industryResult = res.data;
         this.industryAvgSource = this.industryResult['dmb_industry'];
         this.industryBestSource = this.industryResult['dmb_bp_industry'];
+        reportService.industryResult = this.industryResult;
         reportService.industryDmb_d = this.industryResult['dmb_d'];
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
         $rootScope.$broadcast('content-updated');

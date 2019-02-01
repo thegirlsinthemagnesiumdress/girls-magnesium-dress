@@ -16,6 +16,7 @@ function ReportDirective() {
       'industryAvg': '<',
       'industryBest': '<',
       'ratingMain': '<',
+      'industryReady': '<',
     },
     controller: progTableCtrl.main,
     controllerAs: progTableCtrl.CONTROLLER_AS_NAME,
