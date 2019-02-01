@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import re
 
-from core.models import Survey
+from core.models import Survey, User
 from core.tests.mocks import generate_surveys
 from djangae.test import TestCase
 from django.test import override_settings
+from core.tests.mommy_recepies import make_user
+from core.test import with_appengine_admin, with_appengine_user
 
 
 class SurveyTest(TestCase):
@@ -59,3 +61,54 @@ class SurveyTest(TestCase):
         self.assertTrue(s.sid)
         survey = Survey.objects.get(sid=s.sid)
         self.assertEqual(unicode_company_name, survey.company_name)
+
+
+class UserTest(TestCase):
+
+    def test_user_unicode(self):
+        unicode_email = u"MÆrk@gmail.com"
+        email_hashed = "7f0a491dd059f5b0432c5485f639b645"
+        make_user(email=unicode_email)
+
+        self.assertEqual(User.objects.count(), 1)
+
+        stored_user = User.objects.get(email=unicode_email)
+
+        self.assertEqual(stored_user.engagement_lead, email_hashed)
+        self.assertEqual(stored_user.email, unicode_email)
+
+    def test_regular_user(self):
+        unicode_email = "user@gmail.com"
+        email_hashed = "cba1f2d695a5ca39ee6f343297a761a4"
+        make_user(email=unicode_email)
+
+        self.assertEqual(User.objects.count(), 1)
+
+        stored_user = User.objects.get(email=unicode_email)
+
+        self.assertEqual(stored_user.engagement_lead, email_hashed)
+        self.assertEqual(stored_user.email, unicode_email)
+
+    @with_appengine_user('standard@asd.com')
+    def test_standard_user_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
+
+    @with_appengine_user('standard@google.com')
+    def test_standard_google_user_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
+
+    @with_appengine_admin('standard@gmail.com')
+    def test_superuser_not_google_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertFalse(user.is_super_admin)
+
+    @with_appengine_admin('standard@google.com')
+    def test_superuser_google_not_super_admin(self):
+        response = self.client.get('/')
+        user = response.wsgi_request.user
+        self.assertTrue(user.is_super_admin)

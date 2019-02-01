@@ -258,7 +258,14 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
-DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += ['^third_party$', 'sitepackages$', '^node_modules$', '^tests$']
+DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += [
+    r"^third_party$",
+    r"^sitepackages$",
+    r"^sitepackages_local$",
+    r"^node_modules$",
+    r"^tests$",
+    r"^static$"
+]
 
 DJANGAE_RUNSERVER_IGNORED_FILES_REGEXES += [
     r".+\.(?!py)[a-z]+$",  # Anything with an extension that does not START with .py
@@ -274,6 +281,7 @@ DJANGAE_CREATE_UNKNOWN_USER = True
 APPEND_SLASH = True
 
 RESPONSE_EXPORT_BASE_URL = 'https://{0}.qualtrics.com/API/v3/responseexports/'.format('google.co1')
+QUALTRICS_SURVEY_BASE_URL = 'https://{0}.qualtrics.com/API/v3/surveys/'.format('google.co1')
 QUALTRICS_REQUEST_DEADLINE = 60
 
 
@@ -286,14 +294,8 @@ QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
 QUALTRICS_EMAIL_TO = 'Q97_4_TEXT'
 QUALTRICS_EMAIL_BCC = 'Q97_5_TEXT'
 
-WHITELISTED_USERS = [
-    'alfredb@google.com',
-    'patricks@google.com',
-    'bbelcastro@google.com',
-    'pchillari@google.com',
-]
-
-MIN_ITEMS_INDUSTRY_THRESHOLD = 100
+MIN_ITEMS_INDUSTRY_THRESHOLD = 25
+MIN_ITEMS_BEST_PRACTICE_THRESHOLD = 5
 
 CONTACT_EMAIL = "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id())
 

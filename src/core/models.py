@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from uuid import uuid4
+from core.conf.utils import flatten
 
 
 SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRICS_SURVEY_ID)
@@ -14,18 +15,19 @@ SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRIC
 class User(GaeAbstractDatastoreUser):
 
     @property
-    def is_whitelisted(self):
+    def is_super_admin(self):
         """
-        Returns `True` if email is in `settings.WHITELISTED_USERS` list,
+        Returns `True` if the user is set in the admin console and is a googler
         `False` otherwise.
         """
-        return True if self.email in settings.WHITELISTED_USERS else False
+        domain = self.email.split("@")[-1]
+        return True if self.is_superuser and domain == "google.com" else False
 
     @property
     def engagement_lead(self):
         """Returns MD5 of email field."""
         m = hashlib.md5()
-        m.update(self.email)
+        m.update(self.email.encode('utf-8'))
         return m.hexdigest()
 
 
@@ -40,7 +42,7 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, blank=True, null=True)
-    industry = models.CharField(max_length=128, choices=settings.INDUSTRIES.iteritems())
+    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -86,3 +88,16 @@ class SurveyResult(models.Model):
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)
     dmb_d = JSONField()
+    raw = JSONField()
+    survey_definition = models.ForeignKey('SurveyDefinition', null=True, related_name="survey_definition")
+
+    @property
+    def detail_link(self):
+        return reverse(
+            'result-detail',
+            kwargs={'response_id': self.response_id}) if self.raw and self.survey_definition else None
+
+
+class SurveyDefinition(models.Model):
+    last_modified = models.DateTimeField()
+    content = JSONField()

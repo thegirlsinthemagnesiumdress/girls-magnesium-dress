@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
 
+from core.test import with_appengine_admin, with_appengine_anon, with_appengine_user
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
@@ -19,7 +20,6 @@ class ReportsAdminTestCase(TestCase):
     """Tests for `reports_admin` view."""
     def setUp(self):
         self.url = reverse('reports')
-
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()
 
@@ -37,19 +37,11 @@ class ReportsAdminTestCase(TestCase):
             dmb_d='{}'
         )
 
-    def login(self, admin=False, email='member@google.com'):
-        self.user = get_user_model().objects.create(email=email)
-        self._appengine_login(self.user, is_admin=admin)
-        self.client.force_login(self.user)
-
-    def _appengine_login(self, user, is_admin=False):
-        os.environ["USER_IS_ADMIN"] = '1' if is_admin else '0'
-        os.environ["USER_EMAIL"] = user.email
-        os.environ["USER_ID"] = str(user.id)
-
+    @with_appengine_user('test@google.com')
     def test_standard_user_logged_in(self):
         """Standard user can retrieve reports belonging to its engagement_lead."""
-        self.login()
+
+        self.user = get_user_model().objects.create(email='test@google.com')
 
         # set a survey to belong to logged user
         self.survey_1.engagement_lead = self.user.engagement_lead
@@ -63,14 +55,9 @@ class ReportsAdminTestCase(TestCase):
         self.assertEqual(len(surveys), 1)
         self.assertEqual(surveys[0].engagement_lead, self.survey_1.engagement_lead)
 
-    @override_settings(
-        WHITELISTED_USERS=[
-            'superuser@example.com',
-        ]
-    )
+    @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in(self):
         """Whitelisted user can retrieve reports belonging to all companies."""
-        self.login(admin=True, email='superuser@example.com')
         response = self.client.get(self.url)
         surveys = list(response.context.get('surveys'))
         engagement_lead_ids = [el.engagement_lead for el in surveys]
@@ -87,9 +74,44 @@ class ReportsAdminTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(reverse('djangae_login_redirect') in response.get('Location'))
 
+    @with_appengine_user('notenoughpermissions@gmail.com')
     def test_user_logged_in_not_in_permission_domains(self):
         """User could be logged in, but not having enough permissions to access to the resource."""
-        self.login(email='user@notenoughpermissions.com')
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 403)
+
+
+class ReportDetailTestCase(TestCase):
+    """Tests for `report_static` view."""
+    def setUp(self):
+
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
+
+        self.survey_result_1 = make_survey_result(
+            survey=self.survey_1,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.survey_1.last_survey_result = self.survey_result_1
+        self.survey_1.save()
+
+    def test_survey_has_survey_result(self):
+        """If a a`Survey` exists and it has a result, it should return 200."""
+        url = reverse('report', kwargs={'sid': self.survey_1.sid})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_survey_does_not_exist(self):
+        """If a a`Survey` does not exists it should raise 404."""
+        url = reverse('report', kwargs={'sid': '12345678890'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+    def test_survey_does_not_have_a_result(self):
+        """If a a`Survey` exists, but doesn't have a result, it should raise 404."""
+        url = reverse('report', kwargs={'sid': self.survey_2.sid})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)

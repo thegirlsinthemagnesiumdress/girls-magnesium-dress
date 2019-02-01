@@ -6,7 +6,7 @@ import zipfile
 import mock
 
 from core.qualtrics import download, exceptions
-from core.tests.mocks import qualtrics_export
+from core.tests.mocks import qualtrics_export, qualtrics_definition
 from djangae.test import TestCase
 from django.conf import settings
 from datetime import datetime
@@ -156,6 +156,44 @@ class FetchResultsTest(TestCase):
         self.assertTrue('startDate' in kwargs.get('payload'))
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
+    def test_fetch_results_correctly_questions_text(self, mock_request):
+        """fetch_results collects results correctly, and 'useLabels' parameter is in the request payload.
+
+        Export is generated correctly."""
+        mock_request.side_effect = self.mocks
+
+        download.fetch_results(text=True)
+
+        mock_request.assert_called()
+        self.assertEqual(mock_request.call_count, 3)
+
+        progress_id = export_generation_response['result']['id']
+        # assert the correct URLs are called
+        calls = [
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                payload=mock.ANY,
+                url=settings.RESPONSE_EXPORT_BASE_URL),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))),
+            mock.call(
+                deadline=mock.ANY,
+                headers=mock.ANY,
+                method=mock.ANY,
+                url=''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id, '/file'))),
+        ]
+        mock_request.assert_has_calls(calls)
+
+        # check 'useLabels' is in the payload in the first call
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertTrue('useLabels' in kwargs.get('payload'))
+
+    @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_fails_started_after_wrong_format(self, mock_request):
         """fetch_results will fail if started_after is not in isoformat."""
         mock_request.side_effect = self.mocks
@@ -224,3 +262,19 @@ class UnpackZipTest(TestCase):
             in_memory_buffer.write(get_zipped_content(num_files=0))
             files_in_memory = [file_content for file_content in download._unpack_zip(in_memory_buffer)]
         self.assertEqual(len(files_in_memory), 0)
+
+
+class FetchDefinitionTestCase(TestCase):
+    @mock.patch('google.appengine.api.urlfetch.fetch', return_value=MockResponse(error_response))
+    def test_fetch_survey_definition_data_fails(self, mock_request):
+        """When the survey definition download fails."""
+        self.assertRaises(exceptions.FetchResultException, download.fetch_survey)
+        mock_request.assert_called()
+        self.assertEqual(mock_request.call_count, 1)
+
+    @mock.patch('google.appengine.api.urlfetch.fetch', return_value=MockResponse(qualtrics_definition))
+    def test_fetch_survey_definition_data_ok(self, mock_request):
+        """When the survey definition is downloaded correctly."""
+        download.fetch_survey()
+        mock_request.assert_called()
+        self.assertEqual(mock_request.call_count, 1)
