@@ -212,6 +212,15 @@
               Country
             </span>
          </th>
+          <th
+              scope="col"
+              role="columnheader"
+              title="Sort by country"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Detail
+            </span>
+         </th>
         </tr>
       </thead>
       <tbody>
@@ -228,6 +237,16 @@
                 target="_blank">
               Report
             </a>
+            <ul>
+              <li ng-repeat="r in survey.survey_results" ng-if="survey.last_survey_result.response_id != r.response_id">
+                <a
+                    class="h-c-button h-c-button--flat"
+                    ng-href="{[r.report_link]}"
+                    target="_blank">
+                  Report
+                </a>
+              </li>
+            </ul>
             <span
                 ng-if="survey.survey_results_count == 0">
               -
@@ -235,6 +254,19 @@
           </td>
           <td role="gridcell">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
+          <td role="gridcell">
+            <a
+                ng-if="survey.last_survey_result.detail_link"
+                class="h-c-button h-c-button--flat"
+                ng-href="{[survey.last_survey_result.detail_link]}"
+                target="_blank">
+              Detail
+            </a>
+            <span
+                ng-if="!survey.last_survey_result.detail_link">
+              -
+            </span>
+           </td>
         </tr>
       </tbody>
     </table>
