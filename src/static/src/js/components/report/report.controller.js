@@ -115,6 +115,20 @@ class ReportController {
      */
     this.industryResult = null;
 
+    /**
+     * Industry best rating source industry.
+     * @const {string}
+     * @export
+     */
+    this.industryAvgSource = null;
+
+    /**
+     * Industry average source industry.
+     * @const {string}
+     * @export
+     */
+    this.industryBestSource = null;
+
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
     // We're saving the results in a service since it's not possible to
@@ -134,6 +148,8 @@ class ReportController {
 
       $http.get(`${industryEndpoint}${this.survey['industry']}`).then((res) => {
         this.industryResult = res.data;
+        this.industryAvgSource = this.industryResult['dmb_industry'];
+        this.industryBestSource = this.industryResult['dmb_bp_industry'];
         reportService.industryDmb_d = this.industryResult['dmb_d'];
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
         $rootScope.$broadcast('content-updated');
