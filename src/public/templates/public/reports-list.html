@@ -227,9 +227,10 @@
         <tr
             role="row"
             ng-repeat="survey in reportAdminCtrl.surveys"
-            ng-class="{'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRow}"
+            data-index={[$index]}
+            ng-class="{'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRows[$index]}"
         >
-          <td role="rowheader">{[survey.company_name]}</td>
+          <td role="rowheader" title="{[survey.company_name]}">{[survey.company_name]}</td>
           <td role="gridcell">
               {[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
           </td>
@@ -238,7 +239,7 @@
             <button
                 class="dmb-reports-admin__table-history-btn"
                 ng-if="survey.survey_results.length > 1"
-                ng-click="reportAdminCtrl.viewHistory()"
+                ng-click="reportAdminCtrl.viewHistory($index)"
               >
               View history
               <svg role="img" class="h-c-icon">
