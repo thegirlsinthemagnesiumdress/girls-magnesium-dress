@@ -235,7 +235,7 @@
               {[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
           </td>
           <td role="gridcell">
-            {[ survey.survey_results_count ]}
+            {[ survey.survey_results.length ]}
             <button
                 class="dmb-reports-admin__table-history-btn"
                 ng-if="survey.survey_results.length > 1"
@@ -256,13 +256,13 @@
           <td role="gridcell">
             <a
                 class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell"
-                ng-if="survey.survey_results_count > 0"
+                ng-if="survey.survey_results.length > 0"
                 ng-href="{[survey.last_survey_result_link]}"
                 target="_blank">
               Report
             </a>&nbsp;
             <span
-                ng-if="survey.survey_results_count == 0">
+                ng-if="survey.survey_results.length == 0">
               -
             </span>
             <div
