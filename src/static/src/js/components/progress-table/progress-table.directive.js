@@ -41,7 +41,8 @@ EXAMPLE HTML
   data-rating-main="reportCtrl.result.dmb"
   data-industry-avg="reportCtrl.industryResult.dmb"
   data-industry-best="reportCtrl.industryResult.dmb_bp"
-  data-company-name="{[reportCtrl.survey.company_name]}">
+  data-company-name="{[reportCtrl.survey.company_name]}"
+  data-industry-ready="!!dimensionTabCtrl.industryResult">
 </dmb-progress-table>
 
 */
