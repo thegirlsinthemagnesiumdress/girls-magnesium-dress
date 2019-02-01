@@ -94,10 +94,9 @@
     }
 
     th:first-of-type,
-    td:first-of-type,
-    &-company-name {
-      max-width: 10px;
-      // overflow: hidden;
+    td:first-of-type {
+      max-width: 20ch;
+      overflow: hidden;
       text-overflow: ellipsis;
     }
 
