@@ -157,7 +157,7 @@
             <span>
               Organisation name
             </span>
-         </th>
+          </th>
             <th
               scope="col"
               role="columnheader"
@@ -166,7 +166,15 @@
             <span>
               Date created
             </span>
-         </th>
+          </th>
+          <th
+          scope="col"
+          role="columnheader"
+          title="Sort by survey completions numerically"
+          data-glue-table-sort-type="numeric">
+          <span>
+            Survey completions
+          </span>
           <th
               scope="col"
               role="columnheader"
@@ -175,16 +183,8 @@
             <span>
               Survey link
             </span>
-         </th>
-          <th
-              scope="col"
-              role="columnheader"
-              title="Sort by survey completions numerically"
-              data-glue-table-sort-type="numeric">
-            <span>
-              Survey completions
-            </span>
-         </th>
+          </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -193,7 +193,7 @@
             <span>
               Report link
             </span>
-         </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -202,7 +202,7 @@
             <span>
               Industry
             </span>
-         </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -211,7 +211,7 @@
             <span>
               Country
             </span>
-         </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -220,7 +220,7 @@
             <span>
               Details
             </span>
-         </th>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -238,11 +238,11 @@
                       <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
                         {[survey.created_at|date:"d/M/yyyy hh:mm"]}
                       </div>
-            <!-- <div
-                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses"
+            <div
+                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first"
                 ng-repeat="response in survey.historical_responses">
               {[response.started_at|date:"d/M/yyyy hh:mm"]}
-            </div> -->
+            </div>
           </td>
           <td role="gridcell">
             {[ survey.survey_results_count ]}

@@ -113,8 +113,12 @@
       padding-bottom: 22px;
       padding-top: 22px;
 
-      &:nth-of-type(1) {
+      &:first-of-type {
         margin-top: 22px;
+      }
+
+      &:last-of-type {
+        padding-bottom: 0;
       }
 
       &--first {
