@@ -93,31 +93,33 @@
       font-size: 14px;
     }
 
+    th:first-of-type,
+    td:first-of-type,
+    &-company-name {
+      max-width: 10px;
+      // overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &-date {
       display: none;
     }
 
     &-history-btn {
       background: transparent;
-      border: none;
+      border: 0;
       white-space: nowrap;
 
       svg {
         height: 12px;
         margin-left: 10px;
-        width: 12px;
         transform: rotate(180deg);
-      }
-
-      &-history-btn--expanded {
-        svg {
-          transform: rotate(0);
-        }
-
+        width: 12px;
       }
     }
 
     &-subcell {
+      display: none;
       padding-bottom: 22px;
       padding-top: 22px;
 
@@ -133,12 +135,30 @@
         position: relative;
 
         &::before {
-          content: '';
           border-top: 1px solid $dmb-color-grey-light;
+          content: '';
+          left: 0;
           position: absolute;
           top: -1px;
-          left: 0;
           width: 100vw;
+        }
+      }
+    }
+
+    &-expanded-row {
+      $block: '.dmb-reports-admin__table';
+
+      #{$block}-subcell {
+        display: block;
+      }
+
+      #{$block}-top-report-cell {
+        display: none;
+      }
+
+      #{$block}-history-btn {
+        svg {
+          transform: rotate(0);
         }
       }
     }
