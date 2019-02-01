@@ -76,3 +76,27 @@ form[name='referral'] {
     }
   }
 }
+
+.result-detail {
+  &__dimension-header {
+    border-bottom: 1px solid $dmb-color-grey-accessible-grey;
+  }
+
+
+  &__section {
+    padding-top: 70px;
+  }
+
+  &__question-choices-body {
+    padding: 10px 0 0 30px;
+  }
+
+  &__missing-question {
+    background-color: rgba($dmb-color-red-cinnabar, .3);
+    padding: 30px 0;
+  }
+
+  &__choices_no_match {
+    padding: 30px 0;
+  }
+}
