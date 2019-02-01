@@ -341,22 +341,20 @@
         If there aren’t enough responses in the wider industry either, you will be shown results across all industries globally instead.
       </p>
       <p ng-if="reportCtrl.industryAvgSource" class="dmb-side-panel__benchmark-footnote">
-        Your “Industry average” is currently based on global
         <span ng-if="reportCtrl.industryAvgSource!=='all'">
-          top performers in the “{[reportCtrl.industryAvgSource]}” category
+          Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category.
         </span>
         <span ng-if="reportCtrl.industryAvgSource=='all'">
-          responses from all industries
+          Your “Industry average” is currently based on global responses from all industries.
         </span>
       </p>
 
       <p ng-if="reportCtrl.industryBestSource" class="dmb-side-panel__benchmark-footnote">
-        Your “Industry best” is currently based on global
         <span ng-if="reportCtrl.industryBestSource!=='all'">
-          top performers in the “{[reportCtrl.industryBestSource]}” category
+          Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category.
         </span>
         <span ng-if="reportCtrl.industryBestSource=='all'">
-          responses from all industries
+          Your “Industry best” is currently based on global responses from all industries.
         </span>
       </p>
     </div>
