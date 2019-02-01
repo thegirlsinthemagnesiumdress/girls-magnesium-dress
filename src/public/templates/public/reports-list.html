@@ -231,18 +231,6 @@
           <td role="rowheader">{[survey.company_name]}</td>
           <td role="gridcell">
               {[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
-
-                      <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
-                        {[survey.created_at|date:"d/M/yyyy hh:mm"]}
-                      </div>
-                      <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
-                        {[survey.created_at|date:"d/M/yyyy hh:mm"]}
-                      </div>
-            <div
-                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first"
-                ng-repeat="response in survey.historical_responses">
-              {[response.started_at|date:"d/M/yyyy hh:mm"]}
-            </div>
           </td>
           <td role="gridcell">
             {[ survey.survey_results_count ]}
@@ -254,6 +242,17 @@
                 <use xlink:href="#mi-chevron"></use>
               </svg>
             </button>
+                                  <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
+                                    {[survey.created_at|date:"d/M/yyyy hh:mm"]}
+                                  </div>
+                                  <div class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first" ng-if="!survey.historical_responses">
+                                    {[survey.created_at|date:"d/M/yyyy hh:mm"]}
+                                  </div>
+            <div
+                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first"
+                ng-repeat="response in survey.historical_responses">
+              {[response.started_at|date:"d/M/yyyy hh:mm"]}
+            </div>
           </td>
           <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
           <td role="gridcell">
