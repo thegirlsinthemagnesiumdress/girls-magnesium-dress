@@ -12,10 +12,7 @@
 
 # Configuration
 
-In order for the backend to be able to call Qualtrics APIs, a valid token needs to be configured, this can be done adding it as part of the `Config`
-object on the datastore. This step needs to be done manually.
-Not on local development: The token can be added manually accessing to [Config kind](http://localhost:8014/datastore?kind=Config) and adding a value to `qualtrics_api_token`.
-
+In order for the backend to be able to call Qualtrics APIs, a valid token needs to be configured, all information needed can be found on [DMB Wiki page](https://wiki.p.ota.to/Digital_Maturity_Benchmark).
 
 # Frontend Setup
 
