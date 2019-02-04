@@ -31,25 +31,29 @@ def get_app_config():
     class Config(ndb.Model):
         """A simple key-value store for application configuration settings."""
         secret_key = ndb.StringProperty()
-        user_specific_url_secret = ndb.StringProperty()
+        qualtrics_api_token = ndb.StringProperty()
 
-    # Create a random SECRET_KEY hash
+    # Create a random SECRET_KEY
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-    secret_key = get_random_string(50, chars)
 
-    key = ndb.Key(Config, 'config')
-    entity = key.get(use_cache=False)
-    if not entity:
-        entity = Config(key=key)
-        entity.secret_key = str(secret_key)
-        entity.user_specific_url_secret = str(get_random_string(50, chars))
-        entity.put()
-
-    if not entity.user_specific_url_secret:
-        entity.user_specific_url_secret = str(get_random_string(50, chars))
-        entity.put()
-
-    return entity
+    @ndb.transactional()
+    def txn():
+        # Get or create the Config in a transaction, so that if it doesn't exist we don't get 2
+        # threads creating a Config object and one overwriting the other
+        key = ndb.Key(Config, 'config')
+        entity = key.get(use_cache=False)
+        if not entity:
+            entity = Config(key=key)
+            entity.secret_key = get_random_string(50, chars)
+            entity.qualtrics_api_token = ''
+            entity.put()
+        # add `qualtrics_api_token` as field if it's not there,
+        # used to migrate the token as config field
+        if not entity.qualtrics_api_token:
+            entity.qualtrics_api_token = ''
+            entity.put()
+        return entity
+    return txn()
 
 
 def patch_sdk_logging():
