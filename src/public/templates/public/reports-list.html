@@ -232,7 +232,9 @@
         >
           <td role="rowheader" title="{[survey.company_name]}">{[survey.company_name]}</td>
           <td role="gridcell" ng-attr-title="{[survey.created_at|date:'d/M/yyyy hh:mm']}">
-              {[survey.created_at|date:"d/M/yyyy"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
+              {[survey.created_at|date:"d/M/yyyy"]}
+              {% comment %} This is used by tablesort-utility.js module to sort by date, please update it if this changes {% endcomment %}
+              <span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
           </td>
           <td role="gridcell">
             {[ survey.survey_results.length ]}
