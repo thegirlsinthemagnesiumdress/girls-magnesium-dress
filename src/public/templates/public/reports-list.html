@@ -207,6 +207,7 @@
               scope="col"
               role="columnheader"
               title="Sort by industry"
+              class="dmb-reports-admin__industry-col"
               data-glue-table-sort-type="alpha">
             <span>
               Industry
@@ -231,8 +232,8 @@
             ng-class="{'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRows[$index]}"
         >
           <td role="rowheader" title="{[survey.company_name]}">{[survey.company_name]}</td>
-          <td role="gridcell">
-              {[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
+          <td role="gridcell" ng-attr-title="{[survey.created_at|date:'d/M/yyyy hh:mm']}">
+              {[survey.created_at|date:"d/M/yyyy"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
           </td>
           <td role="gridcell">
             {[ survey.survey_results.length ]}
@@ -293,7 +294,7 @@
               </span>
             </div>
           </td>
-          <td role="gridcell">{[survey.industry_name]}</td>
+          <td role="gridcell" class="dmb-reports-admin__industry-col" ng-attr-title="{[survey.industry_name]}">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
         </tr>
       </tbody>
