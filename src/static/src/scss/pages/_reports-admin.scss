@@ -67,10 +67,18 @@
   &__table {
     background: none;
 
+    td {
+      white-space: nowrap;
+    }
+
     th[data-glue-table-sort-type]::after,
     th[glue-table-sort-type]::after {
       display: block;
       margin-left: 0;
+    }
+
+    .h-c-table {
+      overflow: hidden;
     }
 
     .h-c-table--datatable-altrows {
@@ -85,8 +93,73 @@
       font-size: 14px;
     }
 
+    th:first-of-type,
+    td:first-of-type {
+      max-width: 20ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &-date {
       display: none;
+    }
+
+    &-history-btn {
+      background: transparent;
+      border: 0;
+      white-space: nowrap;
+
+      svg {
+        height: 12px;
+        margin-left: 10px;
+        transform: rotate(180deg);
+        width: 12px;
+      }
+    }
+
+    &-subcell {
+      display: none;
+      padding-bottom: 22px;
+      padding-top: 22px;
+
+      &:first-of-type {
+        margin-top: 22px;
+      }
+
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+
+      &--first {
+        position: relative;
+
+        &::before {
+          border-top: 1px solid $dmb-color-grey-light;
+          content: '';
+          left: 0;
+          position: absolute;
+          top: -1px;
+          width: 100vw;
+        }
+      }
+    }
+
+    &-expanded-row {
+      $block: '.dmb-reports-admin__table';
+
+      #{$block}-subcell {
+        display: block;
+      }
+
+      #{$block}-top-report-cell {
+        display: none;
+      }
+
+      #{$block}-history-btn {
+        svg {
+          transform: rotate(0);
+        }
+      }
     }
   }
 

@@ -34,6 +34,11 @@ def report_static(request, sid):
     return render(request, 'public/report-static.html', {})
 
 
+def report_result_static(request, response_id):
+    get_object_or_404(SurveyResult, response_id=response_id)
+    return render(request, 'public/report-static.html', {})
+
+
 def index_static(request):
     return render(request, 'public/index.html', {})
 

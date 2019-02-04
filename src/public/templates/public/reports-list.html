@@ -157,7 +157,7 @@
             <span>
               Organisation name
             </span>
-         </th>
+          </th>
             <th
               scope="col"
               role="columnheader"
@@ -166,7 +166,15 @@
             <span>
               Date created
             </span>
-         </th>
+          </th>
+          <th
+          scope="col"
+          role="columnheader"
+          title="Sort by survey completions numerically"
+          data-glue-table-sort-type="numeric">
+          <span>
+            Survey completions
+          </span>
           <th
               scope="col"
               role="columnheader"
@@ -175,16 +183,8 @@
             <span>
               Survey link
             </span>
-         </th>
-          <th
-              scope="col"
-              role="columnheader"
-              title="Sort by survey completions numerically"
-              data-glue-table-sort-type="numeric">
-            <span>
-              Survey completions
-            </span>
-         </th>
+          </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -193,7 +193,7 @@
             <span>
               Report link
             </span>
-         </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -202,7 +202,7 @@
             <span>
               Industry
             </span>
-         </th>
+          </th>
           <th
               scope="col"
               role="columnheader"
@@ -224,38 +224,87 @@
         </tr>
       </thead>
       <tbody>
-        <tr role="row" ng-repeat="survey in reportAdminCtrl.surveys">
-          <td role="rowheader">{[survey.company_name]}</td>
-          <td class="" role="gridcell">{[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span></td>
+        <tr
+            role="row"
+            ng-repeat="survey in reportAdminCtrl.surveys"
+            data-index={[$index]}
+            ng-class="{'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRows[$index]}"
+        >
+          <td role="rowheader" title="{[survey.company_name]}">{[survey.company_name]}</td>
+          <td role="gridcell">
+              {[survey.created_at|date:"d/M/yyyy hh:mm"]}<span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
+          </td>
+          <td role="gridcell">
+            {[ survey.survey_results.length ]}
+            <button
+                class="dmb-reports-admin__table-history-btn"
+                ng-if="survey.survey_results.length > 1"
+                ng-click="reportAdminCtrl.viewHistory($index)"
+              >
+              View history
+              <svg role="img" class="h-c-icon">
+                <use xlink:href="#mi-chevron"></use>
+              </svg>
+            </button>
+            <div
+                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first"
+                ng-repeat="r in survey.survey_results">
+              {[r.started_at|date:"d/M/yyyy hh:mm"]}
+            </div>
+          </td>
           <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
-          <td role="gridcell">{[ survey.survey_results_count ]}</td>
           <td role="gridcell">
             <a
-                ng-if="survey.survey_results_count > 0"
-                class="h-c-button h-c-button--flat"
+                class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell"
+                ng-if="survey.survey_results.length > 0"
                 ng-href="{[survey.last_survey_result_link]}"
                 target="_blank">
               Report
-            </a>
+            </a>&nbsp;
             <span
-                ng-if="survey.survey_results_count == 0">
+                ng-if="survey.survey_results.length == 0">
               -
             </span>
+            <div
+                class="dmb-reports-admin__table-subcell"
+                ng-repeat="r in survey.survey_results">
+              <a
+                  class="h-c-button h-c-button--flat"
+                  ng-href="{[r.report_link]}"
+                  target="_blank">
+                Report
+              </a>
+            </div>
           </td>
           <td role="gridcell">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
           <td role="gridcell">
             <a
+                class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell"
                 ng-if="survey.last_survey_result.detail_link"
-                class="h-c-button h-c-button--flat"
                 ng-href="{[survey.last_survey_result.detail_link]}"
                 target="_blank">
               Detail
-            </a>
+            </a>&nbsp;
             <span
                 ng-if="!survey.last_survey_result.detail_link">
               -
             </span>
+            <div
+                class="dmb-reports-admin__table-subcell"
+                ng-repeat="r in survey.survey_results">
+              <a
+                  ng-if="r.detail_link"
+                  class="h-c-button h-c-button--flat"
+                  ng-href="{[r.detail_link]}"
+                  target="_blank">
+                Detail
+              </a>
+              <span
+                  ng-if="!r.detail_link">
+                -
+              </span>
+            </div>
            </td>
         </tr>
       </tbody>

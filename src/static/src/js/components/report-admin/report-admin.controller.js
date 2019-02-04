@@ -13,10 +13,28 @@ class ReportAdminController {
    */
   constructor(bootstrapData) {
     /**
+     * Whether a row with nested report rows is expanded or not.
+     * @type {!object}
+     * @export
+     */
+    this.expandedRows = {};
+
+    /**
      * @type {Array.<Object>}
      * @export
      */
     this.surveys = bootstrapData['surveys'];
+  }
+
+
+  /**
+   * Function to toggle the view of nested rows using the 'View history' button
+   * in the reports list
+   * @param {integer} rowIndex
+   * @export
+   */
+  viewHistory(rowIndex) {
+    this.expandedRows[rowIndex] = !this.expandedRows[rowIndex];
   }
 }
 

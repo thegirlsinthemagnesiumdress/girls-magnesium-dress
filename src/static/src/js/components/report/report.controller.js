@@ -4,8 +4,10 @@ const BreakpointService = goog.require('glue.ng.common.Breakpoint');
 const PaginationModel = goog.require('glue.ng.pagination.Model');
 
 const surveyEndpoint = '/api/report/company/';
+const resultEndpoint = '/api/report/result/';
 const industryEndpoint = '/api/report/industry/';
 const locationSidRegex = /reports\/(\w+)[#\/].*$/;
+const resultResponseIdRegex = /reports\/result\/(\w+)[#\/].*$/;
 
 
 /**
@@ -40,7 +42,10 @@ class ReportController {
       dimensionHeaders,
       glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
+    const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
+
     const surveyId = sidMatches ? sidMatches[1] : null;
+    const responseId = responseIdMatches ? responseIdMatches[1] : null;
 
     /** @private {!glue.ng.state.StateService} */
     this.glueState_ = glueState;
@@ -110,12 +115,28 @@ class ReportController {
      */
     this.industryResult = null;
 
+    /**
+     * Industry best rating source industry.
+     * @const {string}
+     * @export
+     */
+    this.industryAvgSource = null;
+
+    /**
+     * Industry average source industry.
+     * @const {string}
+     * @export
+     */
+    this.industryBestSource = null;
+
+    const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
+
     // We're saving the results in a service since it's not possible to
     // directly pass them to the directive throught the bindings since
     // the tab component messes up the scopes. We use a service instead.
-    $http.get(`${surveyEndpoint}${surveyId}`).then((res)=> {
+    $http.get(reportEndpoint).then((res)=> {
       this.survey = res.data;
-      this.result = this.survey['last_survey_result'];
+      this.result = this.survey['survey_result'];
 
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE.
@@ -127,6 +148,8 @@ class ReportController {
 
       $http.get(`${industryEndpoint}${this.survey['industry']}`).then((res) => {
         this.industryResult = res.data;
+        this.industryAvgSource = this.industryResult['dmb_industry'];
+        this.industryBestSource = this.industryResult['dmb_bp_industry'];
         reportService.industryDmb_d = this.industryResult['dmb_d'];
         reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
         $rootScope.$broadcast('content-updated');

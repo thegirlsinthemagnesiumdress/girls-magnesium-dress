@@ -22,6 +22,9 @@ const template = `
     </div>
     <div class="dmb-progress-table__row-wrp"
         aria-label="{[industryAvg ? '' : 'Industry average is not available yet, sorry!' ]}">
+      <div ng-if="!industryAvg" class="dmb-progress-table__banner">
+        Industry average is not available yet, sorry!
+      </div>
       <div
         class="dmb-progress-table__row dmb-progress-table__row--ind-avg"
           ng-class="{
@@ -40,8 +43,10 @@ const template = `
         </div>
       </div>
     </div>
-    <div class="dmb-progress-table__row-wrp"
-        aria-label="{[industryAvg ? '' : 'Industry best is not available yet, sorry!' ]}">
+    <div class="dmb-progress-table__row-wrp">
+      <div ng-if="!industryBest" class="dmb-progress-table__banner">
+        Industry best is not available yet, sorry!
+      </div>
       <div class="dmb-progress-table__row dmb-progress-table__row--ind-best"
           ng-class="{
             'dmb-progress-table__row--no-value': industryBest == null,
@@ -58,10 +63,6 @@ const template = `
           <span class="dmb-progress-table__rating" aria-label="industry best rating">{[industryBest|number:1]}</span>
         </div>
       </div>
-    </div>
-    <div class="dmb-progress-table__banner h-c-headline h-c-headline--subhead h-u-font-weight-medium"
-      ng-if="!industryAvg" aria-hidden="true">
-      Industry average and best aren’t available yet, sorry!
     </div>
   </div>
   <div class="dmb-progress-table__col dmb-progress-table__col--emerging">
