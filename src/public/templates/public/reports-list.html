@@ -197,6 +197,15 @@
           <th
               scope="col"
               role="columnheader"
+              title="Sort by country"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Detail
+            </span>
+          </th>
+          <th
+              scope="col"
+              role="columnheader"
               title="Sort by industry"
               data-glue-table-sort-type="alpha">
             <span>
@@ -210,15 +219,6 @@
               data-glue-table-sort-type="alpha">
             <span>
               Country
-            </span>
-         </th>
-          <th
-              scope="col"
-              role="columnheader"
-              title="Sort by country"
-              data-glue-table-sort-type="alpha">
-            <span>
-              Detail
             </span>
          </th>
         </tr>
@@ -276,36 +276,25 @@
               </a>
             </div>
           </td>
-          <td role="gridcell">{[survey.industry_name]}</td>
-          <td role="gridcell">{[survey.country_name]}</td>
           <td role="gridcell">
-            <a
-                class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell"
-                ng-if="survey.last_survey_result.detail_link"
-                ng-href="{[survey.last_survey_result.detail_link]}"
-                target="_blank">
+            <a class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell" ng-if="survey.last_survey_result.detail_link"
+              ng-href="{[survey.last_survey_result.detail_link]}" target="_blank">
               Detail
             </a>&nbsp;
-            <span
-                ng-if="!survey.last_survey_result.detail_link">
+            <span ng-if="!survey.last_survey_result.detail_link">
               -
             </span>
-            <div
-                class="dmb-reports-admin__table-subcell"
-                ng-repeat="r in survey.survey_results">
-              <a
-                  ng-if="r.detail_link"
-                  class="h-c-button h-c-button--flat"
-                  ng-href="{[r.detail_link]}"
-                  target="_blank">
+            <div class="dmb-reports-admin__table-subcell" ng-repeat="r in survey.survey_results">
+              <a ng-if="r.detail_link" class="h-c-button h-c-button--flat" ng-href="{[r.detail_link]}" target="_blank">
                 Detail
               </a>
-              <span
-                  ng-if="!r.detail_link">
+              <span ng-if="!r.detail_link">
                 -
               </span>
             </div>
-           </td>
+          </td>
+          <td role="gridcell">{[survey.industry_name]}</td>
+          <td role="gridcell">{[survey.country_name]}</td>
         </tr>
       </tbody>
     </table>
