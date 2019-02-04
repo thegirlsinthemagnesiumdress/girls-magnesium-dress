@@ -33,7 +33,7 @@
           {% for q in dimension_questions %}
             {% with result_detail.definitions|get_item:q as question %}
               <h3 class="h-c-headline h-c-headline--four h-u-mt-l">
-                {{question.id}} - {{question.text|safe}}
+                <span class="result-detail__question-id">{{question.id}} </span>{{question.text|safe}}
               </h3>
               <div class="result-detail__question-choices-body">
                 {% if question.available %}
@@ -51,7 +51,7 @@
                           {% endif %}
                           >
                         {{choice.text}}
-                        ({{choice.value}})
+                        <span class="result-detail__choice-value"> ({{choice.value}})</span>
                       </label>
                     {% endwith %}
                   {% endfor %}

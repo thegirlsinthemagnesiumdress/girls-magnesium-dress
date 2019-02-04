@@ -82,9 +82,13 @@ form[name='referral'] {
     border-bottom: 1px solid $dmb-color-grey-accessible-grey;
   }
 
-
   &__section {
     padding-top: 70px;
+  }
+
+  &__question-id,
+  &__choice-value {
+    display: none;
   }
 
   &__question-choices-body {
