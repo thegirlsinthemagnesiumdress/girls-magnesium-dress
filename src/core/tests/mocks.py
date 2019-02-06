@@ -755,7 +755,7 @@ def generate_surveys():
     surveys = []
 
     for company_name in companies_name:
-        s = Survey(company_name=company_name, industry="re", country="it")
+        s = Survey(company_name=company_name, industry="re", country="IT")
         s.save()
         surveys.append(s)
 

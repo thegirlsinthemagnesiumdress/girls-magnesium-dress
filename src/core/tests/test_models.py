@@ -50,7 +50,7 @@ class SurveyTest(TestCase):
     )
     def test_save_valid_industry(self):
         """Saving an industry that is in industry list, should set industry field to that industry."""
-        survey = Survey.objects.create(industry='IT')
+        survey = Survey.objects.create(country='IT', industry='IT')
         self.assertEqual(survey.industry, 'IT')
 
     def test_company_name_unicode(self):
@@ -61,6 +61,27 @@ class SurveyTest(TestCase):
         self.assertTrue(s.sid)
         survey = Survey.objects.get(sid=s.sid)
         self.assertEqual(unicode_company_name, survey.company_name)
+
+    @override_settings(
+        TENANTS={
+            'tenant1': {},
+            'tenant2': {},
+        }
+    )
+    def test_save_valid_tenant(self):
+        """Saving a tenant that is in tenant list, should set tenant field to that tenant."""
+        survey = Survey.objects.create(company_name="test", country="IT", industry="re", tenant='tenant1')
+        self.assertEqual(survey.tenant, 'tenant1')
+
+    @override_settings(
+        TENANTS={
+            'tenant1': {},
+            'tenant2': {},
+        }
+    )
+    def test_save_invalid_tenant(self):
+        """Saving a tenant that is not in tenant list, should raise AssertionError."""
+        self.assertRaises(Survey.objects.create, company_name="test", country="IT", industry="re", tenant='tenant3')
 
 
 class UserTest(TestCase):
