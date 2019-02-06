@@ -11,8 +11,12 @@ from google.appengine.api import urlfetch
 from django.conf import settings
 
 
-def fetch_results(file_format='json', started_after=None, text=False):
+def fetch_results(survey_id, file_format='json', started_after=None, text=False):
     """Fetch results from Quatrics API.
+        :param survey_id: id of the survey the results are fetched for
+        :param file_format: default set to `json`. Used to set the export format.
+        :param started_after: fetch survey results after `started_after` date.
+        :param text: fetch survey responses in text format. default value is `False`
 
         :raises: `core.qualtrics.exceptions.FetchResultException` if
             any of the steps to generate and retrieve the data export
@@ -54,7 +58,7 @@ def fetch_results(file_format='json', started_after=None, text=False):
     # Step 1: Creating Data Export
     data_export_payload = {
         'format': file_format,
-        'surveyId': settings.QUALTRICS_SURVEY_ID,
+        'surveyId': survey_id,
         'seenUnansweredRecode': '0',
         'endDate': (datetime.now() + timedelta(days=random.randint(1, 1000))).strftime('%Y-%m-%dT%H:%M:%SZ'),
     }
