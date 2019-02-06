@@ -132,14 +132,14 @@ def _unpack_zip(in_memory_buffer):
                 yield thefile.read()
 
 
-def fetch_survey():
+def fetch_survey(survey_id):
     """Fetch survey definition from Quatrics API."""
     headers = {
         'content-type': 'application/json',
         'x-api-token': settings.QUALTRICS_API_TOKEN,
     }
 
-    survey_definition_url = ''.join((settings.QUALTRICS_SURVEY_BASE_URL, settings.QUALTRICS_SURVEY_ID))
+    survey_definition_url = ''.join((settings.QUALTRICS_SURVEY_BASE_URL, survey_id))
     try:
         request_check_response = urlfetch.fetch(
             method=urlfetch.GET,

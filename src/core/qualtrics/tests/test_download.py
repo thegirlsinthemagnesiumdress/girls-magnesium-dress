@@ -282,16 +282,23 @@ class UnpackZipTest(TestCase):
 
 
 class FetchDefinitionTestCase(TestCase):
+    def setUp(self):
+        self.survey_id = 'somesurveyid'
+
     @mock.patch('google.appengine.api.urlfetch.fetch', return_value=MockResponse(error_response))
     def test_fetch_survey_definition_data_fails(self, mock_request):
         """When the survey definition download fails."""
-        self.assertRaises(exceptions.FetchResultException, download.fetch_survey)
+        self.assertRaises(exceptions.FetchResultException, download.fetch_survey, self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 1)
 
     @mock.patch('google.appengine.api.urlfetch.fetch', return_value=MockResponse(qualtrics_definition))
     def test_fetch_survey_definition_data_ok(self, mock_request):
         """When the survey definition is downloaded correctly."""
-        download.fetch_survey()
+        download.fetch_survey(self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 1)
+
+        # check survey_id is in requested url
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertTrue(self.survey_id in kwargs.get('url'))
