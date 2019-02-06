@@ -4,6 +4,14 @@ from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
 
+MOCKED_TENANTS = {
+    'tenant1': {
+        'label': 'Tenant 2 label',
+        'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
+        'EMAIL_TO': 'Q97_4_TEXT',
+        'EMAIL_BCC': 'Q97_5_TEXT',
+    }
+}
 
 MOCKED_DIMENSIONS = {
     'ads': [
