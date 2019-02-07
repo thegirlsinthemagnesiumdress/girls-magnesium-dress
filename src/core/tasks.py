@@ -37,6 +37,8 @@ def _get_definition(survey_id):
     If a new survey definition is found, it's then saved as `core.SurveyDefinition` and returned,
     the latest `core.SurveyDefinition` is returned otherwise.
 
+    :param survey_id: id of the survey the definition is fetched
+
     :returns: `core.SurveyDefinition` stored.
     """
     try:
@@ -63,6 +65,7 @@ def _get_definition(survey_id):
 def _get_results(tenant, survey_definition):
     """Download survey results from Qualtrics.
 
+    :param tenant: dictionary containing 'QUALTRICS_SURVEY_ID', 'EMAIL_TO', 'EMAIL_BCC' keys
     :param survey_definition: `core.SurveyDefinition` object.
 
 
