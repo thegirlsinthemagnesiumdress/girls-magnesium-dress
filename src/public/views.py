@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
 from core.conf.utils import flatten
+from django.template.exceptions import TemplateDoesNotExist
 
 
 INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
@@ -40,7 +41,10 @@ def report_result_static(request, response_id):
 
 
 def index_static(request, tenant):
-    return render(request, 'public/index.html', {'tenant': tenant})
+    try:
+        return render(request, 'public/{}/index.html'.format(tenant), {'tenant': tenant})
+    except TemplateDoesNotExist:
+        raise Http404
 
 
 @login_required
