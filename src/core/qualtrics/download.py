@@ -133,7 +133,15 @@ def _unpack_zip(in_memory_buffer):
 
 
 def fetch_survey(survey_id):
-    """Fetch survey definition from Quatrics API."""
+    """Fetch survey definition from Quatrics API.
+
+        :param survey_id: id of the survey the definition is fetched
+
+        :raises: `core.qualtrics.exceptions.FetchResultException` if
+            any of the steps to retrieve the survey definition fails
+
+        :returns: survey definition represented as dictionary
+    """
     headers = {
         'content-type': 'application/json',
         'x-api-token': settings.QUALTRICS_API_TOKEN,
