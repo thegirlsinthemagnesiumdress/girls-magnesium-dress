@@ -18,7 +18,6 @@ urlpatterns = [
     # Note that by default this is also locked down with login:admin in app.yaml
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', include('djangae.contrib.gauth.urls')),
-    url(r'', include(public.urls)),
     url(r'^(?P<tenant>{})/'.format(settings.ALLOWED_TENANTS), include(public.urls)),
     url(r'^api/', include(api.urls)),
     url(r'^cron/pull_qualtrics_results/$', views.sync_qualtrics_results, name="pull-qualtrics-results"),
