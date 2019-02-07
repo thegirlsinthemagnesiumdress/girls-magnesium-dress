@@ -19,7 +19,7 @@ INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
-def registration(request):
+def registration(request, tenant):
     return render(request, 'public/registration.html', {
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
@@ -39,8 +39,8 @@ def report_result_static(request, response_id):
     return render(request, 'public/report-static.html', {})
 
 
-def index_static(request):
-    return render(request, 'public/index.html', {})
+def index_static(request, tenant):
+    return render(request, 'public/index.html', {'tenant': tenant})
 
 
 @login_required
