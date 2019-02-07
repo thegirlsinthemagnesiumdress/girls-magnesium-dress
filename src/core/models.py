@@ -55,7 +55,7 @@ class Survey(models.Model):
         it to match the data against companies.
         """
         qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
-        survey_url = 'https://google.qualtrics.com/jfe/form/{}'.format(qualtrics_survey_id)
+        survey_url = settings.QUALTRICS_BASE_SURVEY_URL.format(survey_id=qualtrics_survey_id)
         return '{}?sid={}'.format(survey_url, self.sid)
 
     @property
