@@ -76,7 +76,7 @@ class Survey(models.Model):
 
         assert self.industry in settings.INDUSTRIES.keys()
         assert self.country in settings.COUNTRIES.keys()
-        # assert self.tenant in settings.TENANTS.keys()
+        assert self.tenant in settings.TENANTS.keys()
 
         super(Survey, self).save(*args, **kwargs)
 
