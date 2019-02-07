@@ -54,7 +54,8 @@ class Survey(models.Model):
         The sid will be stored for every survey response and we will be able to use
         it to match the data against companies.
         """
-        survey_url = 'https://google.qualtrics.com/jfe/form/{}'.format(self.tenant)
+        qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
+        survey_url = 'https://google.qualtrics.com/jfe/form/{}'.format(qualtrics_survey_id)
         return '{}?sid={}'.format(survey_url, self.sid)
 
     @property
