@@ -13,7 +13,6 @@ from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
 from core.conf.utils import flatten
-from django.template.exceptions import TemplateDoesNotExist
 
 
 INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
@@ -21,13 +20,10 @@ COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
 def registration(request, tenant):
-    try:
-        return render(request, 'public/{}/registration.html'.format(tenant), {
-            'industries': INDUSTRIES_TUPLE,
-            'countries': COUNTRIES_TUPLE,
-        })
-    except TemplateDoesNotExist:
-        raise Http404
+    return render(request, 'public/{}/registration.html'.format(tenant), {
+        'industries': INDUSTRIES_TUPLE,
+        'countries': COUNTRIES_TUPLE,
+    })
 
 
 def report_static(request, tenant, sid):
@@ -35,7 +31,7 @@ def report_static(request, tenant, sid):
     if not survey.last_survey_result:
         raise Http404
 
-    return render(request, 'public/report-static.html', {})
+    return render(request, 'public/{}/report-static.html'.format(tenant), {})
 
 
 def report_result_static(request, tenant, response_id):
@@ -44,10 +40,7 @@ def report_result_static(request, tenant, response_id):
 
 
 def index_static(request, tenant):
-    try:
-        return render(request, 'public/{}/index.html'.format(tenant), {'tenant': tenant})
-    except TemplateDoesNotExist:
-        raise Http404
+    return render(request, 'public/{}/index.html'.format(tenant), {'tenant': tenant})
 
 
 @login_required
@@ -60,8 +53,7 @@ def reports_admin(request, tenant):
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
     serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
-
-    return render(request, 'public/reports-list.html', {
+    return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
@@ -75,10 +67,10 @@ def reports_admin(request, tenant):
 
 @login_required
 @survey_admin_required
-def result_detail(request, response_id):
+def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
-    return render(request, 'public/result-detail.html', {
+    return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'result_detail': get_response_detail(survey_result.survey_definition.content, survey_result.raw),
         'survey_result': survey_result,
         'survey': survey_result.survey,
