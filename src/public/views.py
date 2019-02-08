@@ -21,13 +21,16 @@ COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
 def registration(request, tenant):
-    return render(request, 'public/registration.html', {
-        'industries': INDUSTRIES_TUPLE,
-        'countries': COUNTRIES_TUPLE,
-    })
+    try:
+        return render(request, 'public/{}/registration.html'.format(tenant), {
+            'industries': INDUSTRIES_TUPLE,
+            'countries': COUNTRIES_TUPLE,
+        })
+    except TemplateDoesNotExist:
+        raise Http404
 
 
-def report_static(request, sid):
+def report_static(request, tenant, sid):
     survey = get_object_or_404(Survey, sid=sid)
     if not survey.last_survey_result:
         raise Http404
@@ -35,7 +38,7 @@ def report_static(request, sid):
     return render(request, 'public/report-static.html', {})
 
 
-def report_result_static(request, response_id):
+def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
     return render(request, 'public/report-static.html', {})
 
@@ -49,7 +52,7 @@ def index_static(request, tenant):
 
 @login_required
 @survey_admin_required
-def reports_admin(request):
+def reports_admin(request, tenant):
 
     if request.user.is_super_admin:
         surveys = Survey.objects.all()
@@ -63,7 +66,7 @@ def reports_admin(request):
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
-        'create_survey_url': request.build_absolute_uri(reverse('registration')),
+        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': tenant})),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
         }),

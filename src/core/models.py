@@ -68,7 +68,7 @@ class Survey(models.Model):
 
     @property
     def last_survey_result_link(self):
-        return reverse('report', kwargs={'sid': self.sid}) if self.last_survey_result else None
+        return reverse('report', kwargs={'tenant': self.tenant, 'sid': self.sid}) if self.last_survey_result else None
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -97,7 +97,7 @@ class SurveyResult(models.Model):
 
     @property
     def report_link(self):
-        return reverse('report_result', kwargs={'response_id': self.response_id})
+        return reverse('report_result', kwargs={'tenant': self.survey.tenant, 'response_id': self.response_id})
 
     @property
     def detail_link(self):

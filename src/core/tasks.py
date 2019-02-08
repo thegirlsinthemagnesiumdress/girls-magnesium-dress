@@ -201,14 +201,16 @@ def send_emails_for_new_reports(email_list):
             company_name = s.company_name
             industry = s.get_industry_display()
             country = s.get_country_display()
+            tenant = s.tenant
         except Survey.DoesNotExist:
             company_name = ""
             industry = ""
             country = ""
+            tenant = settings.ADS
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
 
         if is_valid_email(to):
-            link = reverse('report', kwargs={'sid': sid})
+            link = reverse('report', kwargs={'tenant': tenant, 'sid': sid})
             bcc = [bcc] if is_valid_email(bcc) else None
             context = {
                 'url': "http://{}{}".format(domain, link),

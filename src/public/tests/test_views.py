@@ -1,11 +1,9 @@
-import os
-
 from djangae.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
 
-from core.test import with_appengine_admin, with_appengine_anon, with_appengine_user
+from core.test import with_appengine_admin, with_appengine_user
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
@@ -19,7 +17,7 @@ from core.tests.mommy_recepies import make_survey, make_survey_result
 class ReportsAdminTestCase(TestCase):
     """Tests for `reports_admin` view."""
     def setUp(self):
-        self.url = reverse('reports')
+        self.url = reverse('reports', kwargs={'tenant': 'ads'})
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()
 
@@ -85,7 +83,7 @@ class ReportsAdminTestCase(TestCase):
 class ReportDetailTestCase(TestCase):
     """Tests for `report_static` view."""
     def setUp(self):
-
+        self.tenant = 'ads'
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()
 
@@ -100,18 +98,18 @@ class ReportDetailTestCase(TestCase):
 
     def test_survey_has_survey_result(self):
         """If a a`Survey` exists and it has a result, it should return 200."""
-        url = reverse('report', kwargs={'sid': self.survey_1.sid})
+        url = reverse('report', kwargs={'tenant': self.tenant, 'sid': self.survey_1.sid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_survey_does_not_exist(self):
         """If a a`Survey` does not exists it should raise 404."""
-        url = reverse('report', kwargs={'sid': '12345678890'})
+        url = reverse('report', kwargs={'tenant': self.tenant, 'sid': '12345678890'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
     def test_survey_does_not_have_a_result(self):
         """If a a`Survey` exists, but doesn't have a result, it should raise 404."""
-        url = reverse('report', kwargs={'sid': self.survey_2.sid})
+        url = reverse('report', kwargs={'tenant': self.tenant, 'sid': self.survey_2.sid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)

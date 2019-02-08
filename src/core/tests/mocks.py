@@ -12,6 +12,7 @@ MOCKED_TENANTS = {
         'EMAIL_BCC': 'Q97_5_TEXT',
     }
 }
+MOCKED_ALLOWED_TENANTS = '|'.join(MOCKED_TENANTS.keys())
 
 MOCKED_DIMENSIONS = {
     'ads': [

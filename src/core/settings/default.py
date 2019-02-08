@@ -74,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'djangosecure.middleware.SecurityMiddleware',
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
     'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware',
+    'public.middleware.RedirectToDefaultTenant',
 )
 
 STATICFILES_FINDERS = (
