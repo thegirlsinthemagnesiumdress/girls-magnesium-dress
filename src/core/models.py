@@ -74,9 +74,9 @@ class Survey(models.Model):
         if not self.pk:
             self.sid = uuid4().hex
 
-        assert self.industry in settings.INDUSTRIES.keys()
-        assert self.country in settings.COUNTRIES.keys()
-        assert self.tenant in settings.TENANTS.keys()
+        assert self.industry in settings.INDUSTRIES.keys(), "%r is not in set of configured INDUSTRIES" % self.industry
+        assert self.country in settings.COUNTRIES.keys(), "%r is not in set of configured COUNTRIES" % self.country
+        assert self.tenant in settings.TENANTS.keys(), "%r is not in set of configured TENANTS" % self.tenant
 
         super(Survey, self).save(*args, **kwargs)
 
