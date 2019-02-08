@@ -3,6 +3,7 @@ from core.tasks import sync_qualtrics, generate_csv_export
 from djangae import deferred
 import logging
 from djangae.environment import task_or_admin_only
+from core.management import migrations
 
 
 @task_or_admin_only
@@ -27,6 +28,20 @@ def generate_export(request):
 
     deferred.defer(
         generate_csv_export,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def migrate_to_tenant_task(request):
+    """Migrate existing surveys to a specific tenant."""
+    msg = "Migrate existing surveys to a specific tenant"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.migrate_to_tenant,
         _queue='default',
     )
 
