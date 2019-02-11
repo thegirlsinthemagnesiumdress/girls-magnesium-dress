@@ -1,6 +1,5 @@
 # coding=utf-8
 
-from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
 
