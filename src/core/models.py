@@ -44,7 +44,7 @@ class Survey(models.Model):
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
-    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES, default=ADS)
+    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
 
     @property
     def link(self):
