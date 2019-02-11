@@ -198,6 +198,20 @@ class CreateSurveyTest(APITestCase):
         response = self.client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_survey_is_created_with_right_keys(self):
+        """Posting data not matching required parameters should fail."""
+        response = self.client.post(self.url, self.data)
+        response_data_keys = response.json().keys()
+        self.assertEqual(set(response_data_keys), {
+            'company_name',
+            'link',
+            'link_sponsor',
+            'engagement_lead',
+            'industry',
+            'country',
+            'tenant',
+        })
+
 
 @override_settings(
     DIMENSIONS={

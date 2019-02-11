@@ -5,7 +5,15 @@ from rest_framework.serializers import ModelSerializer, CharField, JSONField
 class SurveySerializer(ModelSerializer):
     class Meta:
         model = Survey
-        fields = ('company_name', 'link', 'link_sponsor', 'engagement_lead', 'industry', 'country')
+        fields = (
+            'company_name',
+            'link',
+            'link_sponsor',
+            'engagement_lead',
+            'industry',
+            'country',
+            'tenant',
+        )
 
 
 class SurveyCompanyNameSerializer(ModelSerializer):
