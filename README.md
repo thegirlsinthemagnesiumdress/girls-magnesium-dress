@@ -4,6 +4,21 @@
 
 1. You need to have a local SSH key linked to a GitHub account, which is a member of the [PotatoLondon organization](https://github.com/potatolondon)
 
+# Branches
+
+As good practice rule for the project, it has been decided to organize the work using the kind of branches:
+- features:
+    - be in the form of `feature/<ticket_id>-<short_description_of_the_feature>`
+    - should contain `[touch:<ticket_id>]` inside the commit messages, to update tickets using *hermes hooks*
+- hotfixes:
+    - be in the form of `hotfix/<ticket_id>-<short_description_of_the_fix>`
+    - should contain `[touch:<ticket_id>]` inside the commit messages, to update tickets using *hermes hooks*
+
+Working branches are organized as follows:
+
+- `master`: contains production code
+- `news-master`: main branch for Publishers client `news` workflow
+
 # Installation
 
 1. Clone the repository (you might have already done that!)
