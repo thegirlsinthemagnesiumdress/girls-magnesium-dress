@@ -7,7 +7,7 @@ from django.db import models
 from django.urls import reverse
 from uuid import uuid4
 from core.conf.utils import flatten
-from core.settings.tenants import TENANTS_CHOICES, ADS
+from core.settings.tenants import TENANTS_CHOICES
 
 
 class User(GaeAbstractDatastoreUser):
