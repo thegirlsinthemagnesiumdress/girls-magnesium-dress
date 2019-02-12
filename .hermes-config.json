@@ -1,5 +1,5 @@
 {
-        "name": "digital-maturity-benchmark/dmb-publishers",
+        "name": "google/digital-maturity-benchmark/dmb-publishers",
         "ticket_system": "gitlab",
         "status_labels": [
                 "Sprint Backlog",
