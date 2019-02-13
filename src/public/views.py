@@ -36,7 +36,7 @@ def report_static(request, tenant, sid):
 
 def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
-    return render(request, 'public/report-static.html', {})
+    return render(request, 'public/{}/report-static.html'.format(tenant), {})
 
 
 def index_static(request, tenant):
