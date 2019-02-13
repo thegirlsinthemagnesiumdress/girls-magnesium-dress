@@ -11,10 +11,8 @@ class RedirectToDefaultTenant(object):
         match = resolve(request.path)
         url = match.url_name
 
-        is_match_in_legacy_namespace = 'legacy' in match.namespaces
-        has_tenant_kwarg = match.kwargs.get('tenant') is not None
-
-        if is_match_in_legacy_namespace and not has_tenant_kwarg:
+        match_in_legacy_namespace = 'legacy' in match.namespaces
+        if match_in_legacy_namespace:
             match.kwargs.update({'tenant': settings.ADS})
             return redirect(url, *match.args, **match.kwargs)
 
