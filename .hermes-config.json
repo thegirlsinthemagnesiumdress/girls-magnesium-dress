@@ -1,0 +1,13 @@
+{
+        "name": "google/digital-maturity-benchmark/dmb-publishers",
+        "ticket_system": "gitlab",
+        "status_labels": [
+                "Sprint Backlog",
+                "In progress",
+                "Ready for review",
+                "Ready for staging",
+                "Ready for testing",
+                "Awaiting deployment"
+        ]
+
+}
