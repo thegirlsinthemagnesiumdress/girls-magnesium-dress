@@ -101,8 +101,19 @@ class SurveyResult(models.Model):
 
     @property
     def detail_link(self):
-        return (reverse('result-detail', kwargs={'tenant': self.survey.tenant, 'response_id': self.response_id})
-                if self.raw and self.survey_definition else None)
+        if not self.raw:
+            return None
+
+        if not self.survey_definition:
+            return None
+
+        return reverse(
+            'result-detail',
+            kwargs={
+                'tenant': self.survey.tenant,
+                'response_id': self.response_id,
+            },
+        )
 
 
 class SurveyDefinition(models.Model):
