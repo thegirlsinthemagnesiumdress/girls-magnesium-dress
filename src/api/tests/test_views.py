@@ -201,6 +201,8 @@ class CreateSurveyTest(APITestCase):
 
     def test_survey_is_created_with_right_keys(self):
         """Posting valid data should create survey"""
+        survey_count = Survey.objects.count()
+
         response = self.client.post(self.url, self.data)
         response_data_keys = response.json().keys()
         self.assertEqual(set(response_data_keys), {
@@ -212,6 +214,7 @@ class CreateSurveyTest(APITestCase):
             'country',
             'tenant',
         })
+        self.assertEqual(Survey.objects.count(), survey_count + 1)
 
 
 @override_settings(
