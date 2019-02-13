@@ -11,6 +11,7 @@ def make_survey(**kwargs):
     survey_kwargs = {
         "industry": settings.INDUSTRIES.keys()[0],
         "country": settings.COUNTRIES.keys()[0],
+        "tenant": settings.TENANTS.keys()[0],
     }
 
     survey_kwargs.update(kwargs)

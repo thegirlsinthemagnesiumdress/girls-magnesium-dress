@@ -19,33 +19,33 @@ INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
-def registration(request):
-    return render(request, 'public/registration.html', {
+def registration(request, tenant):
+    return render(request, 'public/{}/registration.html'.format(tenant), {
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
     })
 
 
-def report_static(request, sid):
+def report_static(request, tenant, sid):
     survey = get_object_or_404(Survey, sid=sid)
     if not survey.last_survey_result:
         raise Http404
 
-    return render(request, 'public/report-static.html', {})
+    return render(request, 'public/{}/report-static.html'.format(tenant), {})
 
 
-def report_result_static(request, response_id):
+def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
-    return render(request, 'public/report-static.html', {})
+    return render(request, 'public/{}/report-static.html'.format(tenant), {})
 
 
-def index_static(request):
-    return render(request, 'public/index.html', {})
+def index_static(request, tenant):
+    return render(request, 'public/{}/index.html'.format(tenant), {'tenant': tenant})
 
 
 @login_required
 @survey_admin_required
-def reports_admin(request):
+def reports_admin(request, tenant):
 
     if request.user.is_super_admin:
         surveys = Survey.objects.all()
@@ -53,13 +53,12 @@ def reports_admin(request):
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
     serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
-
-    return render(request, 'public/reports-list.html', {
+    return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
-        'create_survey_url': request.build_absolute_uri(reverse('registration')),
+        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': tenant})),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
         }),
@@ -68,10 +67,10 @@ def reports_admin(request):
 
 @login_required
 @survey_admin_required
-def result_detail(request, response_id):
+def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
-    return render(request, 'public/result-detail.html', {
+    return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'result_detail': get_response_detail(survey_result.survey_definition.content, survey_result.raw),
         'survey_result': survey_result,
         'survey': survey_result.survey,

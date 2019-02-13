@@ -7,9 +7,7 @@ from django.db import models
 from django.urls import reverse
 from uuid import uuid4
 from core.conf.utils import flatten
-
-
-SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{}'.format(settings.QUALTRICS_SURVEY_ID)
+from core.settings.tenants import TENANTS_CHOICES, ADS
 
 
 class User(GaeAbstractDatastoreUser):
@@ -46,6 +44,7 @@ class Survey(models.Model):
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
+    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES, default=ADS)
 
     @property
     def link(self):
@@ -55,7 +54,9 @@ class Survey(models.Model):
         The sid will be stored for every survey response and we will be able to use
         it to match the data against companies.
         """
-        return '{}?sid={}'.format(SURVEY_URL, self.sid)
+        qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
+        survey_url = settings.QUALTRICS_BASE_SURVEY_URL.format(survey_id=qualtrics_survey_id)
+        return '{}?sid={}'.format(survey_url, self.sid)
 
     @property
     def link_sponsor(self):
@@ -67,13 +68,16 @@ class Survey(models.Model):
 
     @property
     def last_survey_result_link(self):
-        return reverse('report', kwargs={'sid': self.sid}) if self.last_survey_result else None
+        return reverse('report', kwargs={'tenant': self.tenant, 'sid': self.sid}) if self.last_survey_result else None
 
     def save(self, *args, **kwargs):
         if not self.pk:
             self.sid = uuid4().hex
 
-        self.industry = self.industry if self.industry in settings.INDUSTRIES.keys() else None
+        assert self.industry in settings.INDUSTRIES.keys(), "%r is not in set of configured INDUSTRIES" % self.industry
+        assert self.country in settings.COUNTRIES.keys(), "%r is not in set of configured COUNTRIES" % self.country
+        assert self.tenant in settings.TENANTS.keys(), "%r is not in set of configured TENANTS" % self.tenant
+
         super(Survey, self).save(*args, **kwargs)
 
 
@@ -93,13 +97,23 @@ class SurveyResult(models.Model):
 
     @property
     def report_link(self):
-        return reverse('report_result', kwargs={'response_id': self.response_id})
+        return reverse('report_result', kwargs={'tenant': self.survey.tenant, 'response_id': self.response_id})
 
     @property
     def detail_link(self):
+        if not self.raw:
+            return None
+
+        if not self.survey_definition:
+            return None
+
         return reverse(
             'result-detail',
-            kwargs={'response_id': self.response_id}) if self.raw and self.survey_definition else None
+            kwargs={
+                'tenant': self.survey.tenant,
+                'response_id': self.response_id,
+            },
+        )
 
 
 class SurveyDefinition(models.Model):

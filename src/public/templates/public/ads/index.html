@@ -1,5 +1,6 @@
-{% extends "./base.html" %}
+{% extends "public/base.html" %}
 {% load staticfiles %}
+{% load angular %}
 
 {% block header %}
   {% with register=True %}
@@ -274,7 +275,7 @@
               This in-depth assessment takes around 30-minutes to complete.
             </p>
           </div>
-          <a href="{% url 'registration' %}" class="h-c-button h-c-button--primary">
+          <a href="{% url 'registration' tenant|ng_mark_safe %}" class="h-c-button h-c-button--primary">
             Start the assessment now
           </a>
         </div>

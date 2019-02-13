@@ -64,7 +64,9 @@ TEMPLATES = [{
 # Disable REST Framework's browsable API in staging/production
 REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ('rest_framework.renderers.JSONRenderer',)
 
-QUALTRICS_SURVEY_ID = 'SV_bPdoqhAPJnqMZwh'
+# override QUALTRICS_SURVEY_ID for production environment
+TENANTS['ads']['QUALTRICS_SURVEY_ID'] = 'SV_bPdoqhAPJnqMZwh'
+
 
 # Lock prod for now.
 MIDDLEWARE_CLASSES = tuple(

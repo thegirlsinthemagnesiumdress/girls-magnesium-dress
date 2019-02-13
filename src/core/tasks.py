@@ -22,24 +22,27 @@ from datetime import datetime
 
 
 def sync_qualtrics():
-    survey_definition = _get_definition()
+    for tenant_key, tenant in settings.TENANTS.items():
+        survey_definition = _get_definition(tenant['QUALTRICS_SURVEY_ID'])
 
-    if survey_definition:
-        _get_results(survey_definition)
-    else:
-        logging.error('Fetching survey definition failed, not fetching results')
+        if survey_definition:
+            _get_results(tenant, survey_definition)
+        else:
+            logging.error('Fetching survey definition failed, not fetching results')
 
 
-def _get_definition():
+def _get_definition(survey_id):
     """Download survey definition from Qualtrics and store it in `core.SurveyDefinition`.
 
     If a new survey definition is found, it's then saved as `core.SurveyDefinition` and returned,
     the latest `core.SurveyDefinition` is returned otherwise.
 
+    :param survey_id: id of the survey the definition is fetched
+
     :returns: `core.SurveyDefinition` stored.
     """
     try:
-        survey_definition = download.fetch_survey()
+        survey_definition = download.fetch_survey(survey_id)
         last_survey_definition = SurveyDefinition.objects.latest('last_modified')
         downloaded_survey_last_modified = parse_datetime(survey_definition['lastModifiedDate'])
         if downloaded_survey_last_modified > last_survey_definition.last_modified:
@@ -59,15 +62,17 @@ def _get_definition():
     return last_survey_definition
 
 
-def _get_results(survey_definition):
+def _get_results(tenant, survey_definition):
     """Download survey results from Qualtrics.
 
+    :param tenant: dictionary containing 'QUALTRICS_SURVEY_ID', 'EMAIL_TO', 'EMAIL_BCC' keys
     :param survey_definition: `core.SurveyDefinition` object.
 
 
     The function will use the latest stored `response_id` if any, otherwise
     download all the available results from Qualtrics.
     """
+    survey_id, email_to, email_bcc = tenant['QUALTRICS_SURVEY_ID'], tenant['EMAIL_TO'], tenant['EMAIL_BCC']
     try:
         survey_result = SurveyResult.objects.latest('started_at')
         started_after = survey_result.started_at
@@ -77,16 +82,15 @@ def _get_results(survey_definition):
         logging.info('No Survey results has already been downloaded so far, download all the results.')
 
     try:
-        results = download.fetch_results(started_after=started_after)
+        results = download.fetch_results(survey_id, started_after=started_after)
         responses = results.get('responses')
-        results_text = download.fetch_results(started_after=started_after, text=True)
+        results_text = download.fetch_results(survey_id, started_after=started_after, text=True)
         responses_text = results_text.get('responses')
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
         new_response_ids = _create_survey_results(merged_responses.values(), survey_definition)
-        to_key, bcc_key = settings.QUALTRICS_EMAIL_TO, settings.QUALTRICS_EMAIL_BCC
-        email_list = [(item.get(to_key), item.get(bcc_key), item.get('sid')) for item in responses
+        email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
             send_emails_for_new_reports(email_list)
@@ -197,14 +201,16 @@ def send_emails_for_new_reports(email_list):
             company_name = s.company_name
             industry = s.get_industry_display()
             country = s.get_country_display()
+            tenant = s.tenant
         except Survey.DoesNotExist:
             company_name = ""
             industry = ""
             country = ""
+            tenant = settings.ADS
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
 
         if is_valid_email(to):
-            link = reverse('report', kwargs={'sid': sid})
+            link = reverse('report', kwargs={'tenant': tenant, 'sid': sid})
             bcc = [bcc] if is_valid_email(bcc) else None
             context = {
                 'url': "http://{}{}".format(domain, link),

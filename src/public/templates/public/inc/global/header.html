@@ -1,3 +1,4 @@
+{% load angular %}
 <div class="dmb-header glue-header h-c-header h-c-header--product-marketing-one-tier">
   <div class="h-c-header__bar">
     <!-- Both the first- and second-tier variants of the hamburger icon are
@@ -121,7 +122,7 @@
         {% endcomment %}
         {% if register %}
         <li class="h-c-header__cta-li h-c-header__cta-li--primary">
-          <a href="{% url 'registration' %}" class="h-c-header__cta-li-link
+          <a href="{% url 'registration' tenant|ng_mark_safe %}" class="h-c-header__cta-li-link
               h-c-header__cta-li-link--primary">
             Start now
           </a>
@@ -200,7 +201,7 @@
           </a>
         </li>
         <li class="h-c-header__drawer-cta-li h-c-header__drawer-cta-li--primary">
-          <a href="{% url 'registration' %}" class="h-c-header__drawer-cta-li-link
+          <a href="{% url 'registration' tenant|ng_mark_safe %}" class="h-c-header__drawer-cta-li-link
               h-c-header__drawer-cta-li-link--primary">
             Start now
           </a>

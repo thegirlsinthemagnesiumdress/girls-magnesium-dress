@@ -4,6 +4,15 @@ from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
 
+MOCKED_TENANTS = {
+    'tenant1': {
+        'label': 'Tenant 2 label',
+        'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
+        'EMAIL_TO': 'Q97_4_TEXT',
+        'EMAIL_BCC': 'Q97_5_TEXT',
+    }
+}
+MOCKED_ALLOWED_TENANTS = '|'.join(MOCKED_TENANTS.keys())
 
 MOCKED_DIMENSIONS = {
     'ads': [
@@ -755,7 +764,7 @@ def generate_surveys():
     surveys = []
 
     for company_name in companies_name:
-        s = Survey(company_name=company_name, industry="re", country="it")
+        s = Survey(company_name=company_name, industry="re", country="IT")
         s.save()
         surveys.append(s)
 

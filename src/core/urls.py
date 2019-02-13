@@ -9,8 +9,6 @@ session_csrf.monkeypatch()
 from django.contrib import admin
 admin.autodiscover()
 
-import public.urls
-import api.urls
 
 urlpatterns = [
     url(r'^_ah/', include('djangae.urls')),
@@ -18,10 +16,12 @@ urlpatterns = [
     # Note that by default this is also locked down with login:admin in app.yaml
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', include('djangae.contrib.gauth.urls')),
-    url(r'', include(public.urls)),
-    url(r'^api/', include(api.urls)),
+    url(r'', include('public.urls', namespace="legacy")),  # handle all the old links before the introduction of tenants concept
+    url(r'^(?P<tenant>{})/'.format(settings.ALLOWED_TENANTS), include('public.urls')),
+    url(r'^api/', include('api.urls')),
     url(r'^cron/pull_qualtrics_results/$', views.sync_qualtrics_results, name="pull-qualtrics-results"),
     url(r'^cron/generate_export/$', views.generate_export, name="export-datastore-data"),
+    url(r'^migrations/migrate_to_default_tenant_task/$', views.migrate_to_default_tenant_task, name="migrate_to_default_tenant_task"),
 ]
 
 

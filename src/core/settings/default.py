@@ -74,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'djangosecure.middleware.SecurityMiddleware',
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
     'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware',
+    'public.middleware.RedirectToDefaultTenant',
 )
 
 STATICFILES_FINDERS = (
@@ -286,13 +287,11 @@ QUALTRICS_REQUEST_DEADLINE = 60
 
 
 from .constants import *
-
+from .tenants import *
 
 QUALTRICS_API_TOKEN = get_app_config().qualtrics_api_token
 
-QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
-QUALTRICS_EMAIL_TO = 'Q97_4_TEXT'
-QUALTRICS_EMAIL_BCC = 'Q97_5_TEXT'
+QUALTRICS_BASE_SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{survey_id}'
 
 MIN_ITEMS_INDUSTRY_THRESHOLD = 25
 MIN_ITEMS_BEST_PRACTICE_THRESHOLD = 5

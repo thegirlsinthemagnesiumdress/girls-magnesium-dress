@@ -1,8 +1,12 @@
-from django.http import HttpResponse
-from core.tasks import sync_qualtrics, generate_csv_export
-from djangae import deferred
 import logging
+
+from django.http import HttpResponse
+
+from djangae import deferred
 from djangae.environment import task_or_admin_only
+
+from core.management import migrations
+from core.tasks import sync_qualtrics, generate_csv_export
 
 
 @task_or_admin_only
@@ -27,6 +31,23 @@ def generate_export(request):
 
     deferred.defer(
         generate_csv_export,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def migrate_to_default_tenant_task(request):
+    """Migrate existing surveys to the default tenant.
+
+    The default tenant is ADS.
+    """
+    msg = "Migrate existing surveys to the default tenant"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.migrate_to_default_tenant,
         _queue='default',
     )
 

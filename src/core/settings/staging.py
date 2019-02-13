@@ -11,6 +11,7 @@ ALLOWED_AUTH_DOMAINS = [
     'potatolondon.com',
 ]
 
-QUALTRICS_SURVEY_ID = 'SV_beH0HTFtnk4A5rD'
-
 DJANGAE_CREATE_UNKNOWN_USER = True
+
+# override QUALTRICS_SURVEY_ID for staging environment
+TENANTS['ads']['QUALTRICS_SURVEY_ID'] = 'SV_beH0HTFtnk4A5rD'

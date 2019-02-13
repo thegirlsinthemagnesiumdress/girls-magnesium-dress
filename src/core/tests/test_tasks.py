@@ -4,7 +4,7 @@ import mock
 from core.models import Survey, SurveyResult, SurveyDefinition
 from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition, sync_qualtrics
 from djangae.test import TestCase
-from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished, get_survey_definition
+from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished, get_survey_definition, MOCKED_TENANTS
 from mommy_recepies import make_survey, make_survey_result, make_survey_definition
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
@@ -15,7 +15,8 @@ from collections import OrderedDict
 
 
 @override_settings(
-    DIMENSIONS=MOCKED_DIMENSIONS
+    DIMENSIONS=MOCKED_DIMENSIONS,
+    TENANTS=MOCKED_TENANTS,
 )
 class sync_qualtricsTestCase(TestCase):
     """
@@ -27,7 +28,20 @@ class sync_qualtricsTestCase(TestCase):
     def test_syncs_def_and_results(self, get_result_mock, get_survey_definition_mock):
         sync_qualtrics()
         self.assertEqual(get_survey_definition_mock.call_count, 1)
+
+        all_calls = get_survey_definition_mock.call_args_list
+
+        args, kwargs = all_calls[0]
+        self.assertEqual(len(args), 1)
+        self.assertIsNotNone(args[0])
+
         self.assertEqual(get_result_mock.call_count, 1)
+
+        all_calls = get_result_mock.call_args_list
+
+        args, kwargs = all_calls[0]
+        self.assertEqual(len(args), 2)
+        self.assertIsNotNone(args[0])
 
     @mock.patch('core.tasks._get_definition', return_value=None)
     @mock.patch('core.tasks._get_results', return_value='something')
@@ -42,6 +56,9 @@ class sync_qualtricsTestCase(TestCase):
 )
 class GetResultsTestCase(TestCase):
     """Tests for get_result function"""
+
+    def setUp(self):
+        self.tenant = MOCKED_TENANTS['tenant1']
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
@@ -62,7 +79,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _get_results(make_survey_definition())
+        _get_results(self.tenant, make_survey_definition())
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -102,7 +119,7 @@ class GetResultsTestCase(TestCase):
         make_survey()
         make_survey()
 
-        _get_results(make_survey_definition())
+        _get_results(self.tenant, make_survey_definition())
 
         survey_1 = Survey.objects.get(pk=survey.sid)
 
@@ -135,7 +152,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _get_results(make_survey_definition())
+        _get_results(self.tenant, make_survey_definition())
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -166,7 +183,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
-        _get_results(make_survey_definition())
+        _get_results(self.tenant, make_survey_definition())
 
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
@@ -211,9 +228,9 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         with mock.patch('core.tasks._create_survey_results') as survey_result_mock:
-            _get_results(make_survey_definition())
+            _get_results(self.tenant, make_survey_definition())
             survey_result_mock.assert_not_called()
-            download_mock.assert_called_once_with(started_after=survey_started_at)
+            download_mock.assert_called_once_with(self.tenant['QUALTRICS_SURVEY_ID'], started_after=survey_started_at)
             self.assertEqual(Survey.objects.count(), 1)
             self.assertEqual(SurveyResult.objects.count(), 1)
 
@@ -235,13 +252,46 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _get_results(make_survey_definition())
+        _get_results(self.tenant, make_survey_definition())
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
         # send_emails_for_new_reports is not called
         self.assertFalse(send_email_mock.called)
+
+    @mock.patch('core.tasks.send_emails_for_new_reports')
+    @mock.patch(
+        'core.qualtrics.download.fetch_results',
+        side_effect=[get_mocked_results(), get_mocked_results(text=True)]
+    )
+    def test_new_fetch_results_is_called_with_survey_id(self, download_mock, send_email_mock):
+        """Test fetch_results is always called with survey_id as positional paramenter."""
+        make_survey()
+        make_survey()
+        make_survey()
+
+        _get_results(self.tenant, make_survey_definition())
+
+        self.assertTrue(download_mock.called)
+        self.assertEqual(download_mock.call_count, 2)
+        all_calls = download_mock.call_args_list
+        # first call to get all results it should have started_after = None
+        args, kwargs = all_calls[0]
+
+        self.assertIsNone(kwargs.get('started_after'))
+        self.assertEqual(len(args), 1)
+        self.assertIsNotNone(args[0])
+        # second call to get all text results it should have started_after = None and text `True`
+        args, kwargs = all_calls[1]
+        self.assertIsNone(kwargs.get('started_after'))
+        self.assertEqual(len(args), 1)
+        self.assertIsNotNone(args[0])
+        self.assertEqual(kwargs.get('text'), True)
+
+        self.assertTrue(send_email_mock.called)
+        args, kwargs = send_email_mock.call_args
+        self.assertEqual(len(args[0]), 3)
 
 
 class EmailValidatorTestCase(TestCase):
@@ -509,8 +559,6 @@ class UpdateResponsesWithTextTestCase(TestCase):
 
         responses = _update_responses_with_text(responses_values, responses_text)
 
-        # print(responses)
-
         self.assertEqual(len(responses), len(responses_values))
         for val in responses_values_ids:
             self.assertIn(val, responses.keys())
@@ -626,11 +674,14 @@ class UpdateResponsesWithTextTestCase(TestCase):
 class GetDefinitionTestCase(TestCase):
     """Tests for _get_definition function"""
 
+    def setUp(self):
+        self.survey_id = 'surveyid'
+
     @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
     def test_new_definition_firts_time(self, download_mock):
         """When there are not survey definition, the first downloaded needs to be stored."""
         self.assertEqual(SurveyDefinition.objects.count(), 0)
-        last_definition = _get_definition()
+        last_definition = _get_definition(self.survey_id)
         self.assertEqual(SurveyDefinition.objects.count(), 1)
         last_stored = SurveyDefinition.objects.latest('last_modified')
         self.assertIsNotNone(last_definition)
@@ -646,7 +697,7 @@ class GetDefinitionTestCase(TestCase):
         # create a survey definition way in the past respect to the mock we have
         make_survey_definition(last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
         self.assertEqual(SurveyDefinition.objects.count(), 1)
-        last_definition = _get_definition()
+        last_definition = _get_definition(self.survey_id)
         # a new definition should be downloaded
         self.assertEqual(SurveyDefinition.objects.count(), 2)
         last_stored = SurveyDefinition.objects.latest('last_modified')
@@ -661,7 +712,7 @@ class GetDefinitionTestCase(TestCase):
         """
         make_survey_definition(last_modified=dateparse.parse_datetime('2019-01-28T16:04:23Z'))
         self.assertEqual(SurveyDefinition.objects.count(), 1)
-        last_definition = _get_definition()
+        last_definition = _get_definition(self.survey_id)
         # a new definition should not be downloaded
         self.assertEqual(SurveyDefinition.objects.count(), 1)
         last_stored = SurveyDefinition.objects.latest('last_modified')
@@ -680,6 +731,19 @@ class GetDefinitionTestCase(TestCase):
         }
         download_mock.side_effect = FetchResultException(exception_body)
         with mock.patch('logging.error') as logging_mock:
-            last_definition = _get_definition()
+            last_definition = _get_definition(self.survey_id)
             self.assertIsNone(last_definition)
             self.assertTrue(logging_mock.called)
+
+    @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
+    def test_fetch_survey_called_with_right_parameters(self, download_mock):
+        """When fetch_survey is called, check is called with right paramenters."""
+        _ = _get_definition(self.survey_id)
+
+        self.assertTrue(download_mock.called)
+        self.assertEqual(download_mock.call_count, 1)
+        all_calls = download_mock.call_args_list
+
+        args, kwargs = all_calls[0]
+        self.assertEqual(len(args), 1)
+        self.assertIsNotNone(args[0])

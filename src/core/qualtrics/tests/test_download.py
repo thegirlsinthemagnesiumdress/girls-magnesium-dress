@@ -78,6 +78,7 @@ class FetchResultsTest(TestCase):
             MockResponse(progress_generation_response),
             MockResponse(get_zipped_content(), zipped=True)
         ]
+        self.survey_id = 'somesurveyid'
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_correctly_all_results(self, mock_request):
@@ -86,7 +87,7 @@ class FetchResultsTest(TestCase):
         Export is generated correctly."""
         mock_request.side_effect = self.mocks
 
-        download.fetch_results()
+        download.fetch_results(self.survey_id)
 
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 3)
@@ -116,6 +117,10 @@ class FetchResultsTest(TestCase):
         # check 'startDate' is not in the payload in the first call
         args, kwargs = mock_request.call_args_list[0]
         self.assertFalse('startDate' in kwargs.get('payload'))
+        # check 'surveyId' used to make the request is the one passed as parameter
+        self.assertTrue('surveyId' in kwargs.get('payload'))
+        payload_obj = json.loads(kwargs.get('payload'))
+        self.assertEqual(payload_obj.get('surveyId'), self.survey_id)
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_correctly_after_start_date(self, mock_request):
@@ -124,7 +129,7 @@ class FetchResultsTest(TestCase):
         Export is generated correctly."""
         mock_request.side_effect = self.mocks
 
-        download.fetch_results(started_after=dateparse.parse_datetime('2018-07-31 14:16:06'))
+        download.fetch_results(self.survey_id, started_after=dateparse.parse_datetime('2018-07-31 14:16:06'))
 
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 3)
@@ -154,6 +159,10 @@ class FetchResultsTest(TestCase):
         # check 'startDate' is in the payload in the first call
         args, kwargs = mock_request.call_args_list[0]
         self.assertTrue('startDate' in kwargs.get('payload'))
+        # check 'surveyId' used to make the request is the one passed as parameter
+        self.assertTrue('surveyId' in kwargs.get('payload'))
+        payload_obj = json.loads(kwargs.get('payload'))
+        self.assertEqual(payload_obj.get('surveyId'), self.survey_id)
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_correctly_questions_text(self, mock_request):
@@ -162,7 +171,7 @@ class FetchResultsTest(TestCase):
         Export is generated correctly."""
         mock_request.side_effect = self.mocks
 
-        download.fetch_results(text=True)
+        download.fetch_results(self.survey_id, text=True)
 
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 3)
@@ -192,6 +201,9 @@ class FetchResultsTest(TestCase):
         # check 'useLabels' is in the payload in the first call
         args, kwargs = mock_request.call_args_list[0]
         self.assertTrue('useLabels' in kwargs.get('payload'))
+        # check 'surveyId' used to make the request is the one passed as parameter
+        payload_obj = json.loads(kwargs.get('payload'))
+        self.assertEqual(payload_obj.get('surveyId'), self.survey_id)
 
     @mock.patch('google.appengine.api.urlfetch.fetch')
     def test_fetch_results_fails_started_after_wrong_format(self, mock_request):
@@ -200,7 +212,12 @@ class FetchResultsTest(TestCase):
         self.mocks[0] = MockResponse(error_response)
         mock_request.side_effect = self.mocks
 
-        self.assertRaises(exceptions.FetchResultException, download.fetch_results, started_after=datetime.now())
+        self.assertRaises(
+            exceptions.FetchResultException,
+            download.fetch_results,
+            self.survey_id,
+            started_after=datetime.now()
+        )
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 1)
 
@@ -214,7 +231,7 @@ class FetchResultsTest(TestCase):
         self.mocks[0] = MockResponse(error_response)
         mock_request.side_effect = self.mocks
 
-        self.assertRaises(exceptions.FetchResultException, download.fetch_results)
+        self.assertRaises(exceptions.FetchResultException, download.fetch_results, self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 1)
 
@@ -224,7 +241,7 @@ class FetchResultsTest(TestCase):
         self.mocks[1] = MockResponse(error_response)
         mock_request.side_effect = self.mocks
 
-        self.assertRaises(exceptions.FetchResultException, download.fetch_results)
+        self.assertRaises(exceptions.FetchResultException, download.fetch_results, self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 2)
 
@@ -234,7 +251,7 @@ class FetchResultsTest(TestCase):
         self.mocks[2] = MockResponse(error_response)
         mock_request.side_effect = self.mocks
 
-        self.assertRaises(exceptions.FetchResultException, download.fetch_results)
+        self.assertRaises(exceptions.FetchResultException, download.fetch_results, self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 3)
 
@@ -265,16 +282,23 @@ class UnpackZipTest(TestCase):
 
 
 class FetchDefinitionTestCase(TestCase):
+    def setUp(self):
+        self.survey_id = 'somesurveyid'
+
     @mock.patch('google.appengine.api.urlfetch.fetch', return_value=MockResponse(error_response))
     def test_fetch_survey_definition_data_fails(self, mock_request):
         """When the survey definition download fails."""
-        self.assertRaises(exceptions.FetchResultException, download.fetch_survey)
+        self.assertRaises(exceptions.FetchResultException, download.fetch_survey, self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 1)
 
     @mock.patch('google.appengine.api.urlfetch.fetch', return_value=MockResponse(qualtrics_definition))
     def test_fetch_survey_definition_data_ok(self, mock_request):
         """When the survey definition is downloaded correctly."""
-        download.fetch_survey()
+        download.fetch_survey(self.survey_id)
         mock_request.assert_called()
         self.assertEqual(mock_request.call_count, 1)
+
+        # check survey_id is in requested url
+        args, kwargs = mock_request.call_args_list[0]
+        self.assertTrue(self.survey_id in kwargs.get('url'))
