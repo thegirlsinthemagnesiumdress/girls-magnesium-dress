@@ -16,9 +16,6 @@ from core.test import with_appengine_admin, with_appengine_user
 class SurveyTest(TestCase):
     """Test case for `core.Survey` model."""
 
-    # def setUp(self):
-    #     self.surveys = make_survey(_quantity=3)
-
     def test_uid_is_generated_on_save(self):
         """Test that the survey generates a sid on save."""
         s = Survey(company_name="test", country="IT", industry="re", tenant="tenant1")
