@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.utils.timezone import make_aware
 import pytz
 from django.utils.dateparse import parse_datetime
+from uuid import uuid4
 
 
 def make_survey(**kwargs):
@@ -12,15 +13,10 @@ def make_survey(**kwargs):
         "industry": settings.INDUSTRIES.keys()[0],
         "country": settings.COUNTRIES.keys()[0],
         "tenant": settings.TENANTS.keys()[0],
+        "sid": kwargs.get('sid', uuid4().hex)
     }
-
     survey_kwargs.update(kwargs)
-
     survey = mommy.make('core.Survey', **survey_kwargs)
-    sid = kwargs.get('sid')
-    if sid:
-        survey.sid = sid
-        survey.save()
     return survey
 
 

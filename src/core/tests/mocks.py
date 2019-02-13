@@ -1,6 +1,5 @@
 # coding=utf-8
 
-from core.models import Survey
 from django.utils import dateparse
 from collections import OrderedDict
 
@@ -757,18 +756,6 @@ survey_definition_dict = {
 qualtrics_definition = {
     'result': survey_definition_dict
 }
-
-
-def generate_surveys():
-    companies_name = ['1', '2', '3']
-    surveys = []
-
-    for company_name in companies_name:
-        s = Survey(company_name=company_name, industry="re", country="IT")
-        s.save()
-        surveys.append(s)
-
-    return surveys
 
 
 def get_mocked_results(started_after=None, text=False):

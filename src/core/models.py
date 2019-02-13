@@ -7,7 +7,7 @@ from django.db import models
 from django.urls import reverse
 from uuid import uuid4
 from core.conf.utils import flatten
-from core.settings.tenants import TENANTS_CHOICES, ADS
+from core.settings.tenants import TENANTS_CHOICES
 
 
 class User(GaeAbstractDatastoreUser):
@@ -44,7 +44,7 @@ class Survey(models.Model):
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
-    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES, default=ADS)
+    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
 
     @property
     def link(self):

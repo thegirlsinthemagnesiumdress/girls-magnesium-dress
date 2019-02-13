@@ -87,7 +87,7 @@ class SurveyDetailView(APITestCase):
     user_email = 'test@example.com'
 
     def setUp(self):
-        self.survey = Survey.objects.create(company_name='test company', industry="re", country="IT")
+        self.survey = make_survey(company_name='test company', country="IT")
         self.survey_result = make_survey_result(
             survey=self.survey,
             response_id='AAA',
@@ -137,7 +137,7 @@ class SurveyDetailView(APITestCase):
         self.assertEqual(response.data.get('survey_result').get('response_id'), 'BBB')
 
     def test_survey_does_not_have_last_result(self):
-        survey = Survey.objects.create(company_name='test company no last result', industry="ic-o", country="IT")
+        survey = make_survey(company_name='test company no last result', industry="ic-o", country="IT")
         url = reverse('survey_report', kwargs={'sid': survey.pk})
         response = self.client.get(url)
 
@@ -163,6 +163,7 @@ class CreateSurveyTest(APITestCase):
             'company_name': 'test company',
             'industry': 'ic-o',
             'country': 'GB',
+            'tenant': 'ads',
         }
 
         self.client.force_authenticate(user)
@@ -197,6 +198,23 @@ class CreateSurveyTest(APITestCase):
         self.data['industry'] = 'invalid'
         response = self.client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_survey_is_created_with_right_keys(self):
+        """Posting valid data should create survey"""
+        survey_count = Survey.objects.count()
+
+        response = self.client.post(self.url, self.data)
+        response_data_keys = response.json().keys()
+        self.assertEqual(set(response_data_keys), {
+            'company_name',
+            'link',
+            'link_sponsor',
+            'engagement_lead',
+            'industry',
+            'country',
+            'tenant',
+        })
+        self.assertEqual(Survey.objects.count(), survey_count + 1)
 
 
 @override_settings(
@@ -239,8 +257,16 @@ class SurveyIndustryResultTest(APITestCase):
             'dimension_C': 1.0,
         }
 
-        self.survey = Survey.objects.create(company_name='test company', industry='ic-o', country="IT")
-        self.survey_2 = Survey.objects.create(company_name='test company 2', industry='ic-o', country="IT")
+        self.survey = make_survey(
+            company_name='test company',
+            industry='ic-o',
+            country="IT"
+        )
+        self.survey_2 = make_survey(
+            company_name='test company 2',
+            industry='ic-o',
+            country="IT"
+        )
 
         survey_result = make_survey_result(
             survey=self.survey,
@@ -364,7 +390,7 @@ class SurveyIndustryResultTest(APITestCase):
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
     def test_last_survey_result_is_excluded_if_null(self, mocked_benchmark):
         """When last_survey_result is None, element is excluded from dmb calculation."""
-        Survey.objects.create(company_name='test company 3', industry='ic-o', country="IT", last_survey_result=None)
+        make_survey(company_name='test company 3', industry='ic-o', country="IT", last_survey_result=None)
 
         url = reverse('survey_industry', kwargs={'industry': 'ic'})
         response = self.client.get(url)
@@ -399,7 +425,7 @@ class SurveyIndustryResultTest(APITestCase):
     @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
     def test_industry_not_enough_results_group_benchmark(self, mocked_best_practice, mocked_benchmark):
         """When there are not enough results, it will return the global industry calculation."""
-        Survey.objects.create(company_name='test company 3', industry='ic-o', country="IT", last_survey_result=None)
+        make_survey(company_name='test company 3', industry='ic-o', country="IT", last_survey_result=None)
 
         url = reverse('survey_industry', kwargs={'industry': 'ic'})
         response = self.client.get(url)
@@ -440,7 +466,7 @@ class SurveyIndustryResultTest(APITestCase):
     @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
     def test_industry_not_enough_results_no_best_practice(self, mocked_best_practice, mocked_benchmark):
         """When there are not enough results, it will return the global industry calculation."""
-        Survey.objects.create(company_name='test company 3', industry='edu-o', country="IT", last_survey_result=None)
+        make_survey(company_name='test company 3', industry='edu-o', country="IT", last_survey_result=None)
 
         url = reverse('survey_industry', kwargs={'industry': 'ic'})
         response = self.client.get(url)
