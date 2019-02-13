@@ -35,13 +35,16 @@ def generate_export(request):
 
 
 @task_or_admin_only
-def migrate_to_tenant_task(request):
-    """Migrate existing surveys to a specific tenant."""
-    msg = "Migrate existing surveys to a specific tenant"
+def migrate_to_default_tenant_task(request):
+    """Migrate existing surveys to the default tenant.
+
+    The default tenant is ADS.
+    """
+    msg = "Migrate existing surveys to the default tenant"
     logging.info(msg)
 
     deferred.defer(
-        migrations.migrate_to_tenant,
+        migrations.migrate_to_default_tenant,
         _queue='default',
     )
 

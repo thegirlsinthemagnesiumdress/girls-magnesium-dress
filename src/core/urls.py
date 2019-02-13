@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^api/', include('api.urls')),
     url(r'^cron/pull_qualtrics_results/$', views.sync_qualtrics_results, name="pull-qualtrics-results"),
     url(r'^cron/generate_export/$', views.generate_export, name="export-datastore-data"),
-    url(r'^migrations/migrate_to_tenant_task/$', views.migrate_to_tenant_task, name="migrate_to_tenant_task"),
+    url(r'^migrations/migrate_to_default_tenant_task/$', views.migrate_to_default_tenant_task, name="migrate_to_default_tenant_task"),
 ]
 
 
