@@ -1,9 +1,12 @@
-from django.http import HttpResponse
-from core.tasks import sync_qualtrics, generate_csv_export
-from djangae import deferred
 import logging
+
+from django.http import HttpResponse
+
+from djangae import deferred
 from djangae.environment import task_or_admin_only
+
 from core.management import migrations
+from core.tasks import sync_qualtrics, generate_csv_export
 
 
 @task_or_admin_only
