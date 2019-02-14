@@ -85,8 +85,6 @@ class RegistrationController {
       'tenant': this.tenant,
     };
 
-    console.log(data);
-
     if (this.elId && !data['engagement_lead']) {
       data['engagement_lead'] = this.elId;
     }
