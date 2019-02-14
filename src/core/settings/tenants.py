@@ -11,9 +11,9 @@ TENANTS = {
     },
     PUBLISHERS: {
         'label': 'Publishers',
-        'QUALTRICS_SURVEY_ID': None,
-        'EMAIL_TO': None,
-        'EMAIL_BCC': None,
+        'QUALTRICS_SURVEY_ID': 'SV_4JxgntrYg5uiMyp',
+        'EMAIL_TO': 'Q1_4_TEXT',
+        'EMAIL_BCC': 'Q1_5_TEXT',
     },
 }
 
