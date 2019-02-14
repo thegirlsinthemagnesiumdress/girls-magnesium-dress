@@ -1,5 +1,5 @@
 ADS = 'ads'
-PUBLISHERS = 'publishers'
+NEWS = 'news'
 
 
 TENANTS = {
@@ -9,8 +9,8 @@ TENANTS = {
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
     },
-    PUBLISHERS: {
-        'label': 'Publishers',
+    NEWS: {
+        'label': 'News',
         'QUALTRICS_SURVEY_ID': None,
         'EMAIL_TO': None,
         'EMAIL_BCC': None,
