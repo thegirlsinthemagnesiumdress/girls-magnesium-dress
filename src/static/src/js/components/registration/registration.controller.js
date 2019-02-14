@@ -1,7 +1,7 @@
 goog.module('dmb.components.registration.controller');
 
 const SURVEY_ENDPOINT = '/api/survey';
-
+const CREATE_SURVEY = 'createsurvey';
 
 /**
  * Registration controller.
@@ -46,6 +46,15 @@ class RegistrationController {
 
     /**
      * @export
+     * @type{string}
+     *
+     * Get tenant from URL structure: url/<tenant>/createsurvey/
+     *
+     */
+    this.tenant = $location.absUrl().split(`/${CREATE_SURVEY}`)[0].split(`/`).pop();
+
+    /**
+     * @export
      * @type {boolean}
      */
     this.serverError = false;
@@ -73,7 +82,10 @@ class RegistrationController {
       'industry': this.industry,
       'country': this.country,
       'engagement_lead': this.engagementLead,
+      'tenant': this.tenant,
     };
+
+    console.log(data);
 
     if (this.elId && !data['engagement_lead']) {
       data['engagement_lead'] = this.elId;
