@@ -65,7 +65,7 @@ TEMPLATES = [{
 REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ('rest_framework.renderers.JSONRenderer',)
 
 # override QUALTRICS_SURVEY_ID for production environment
-TENANTS['ads']['QUALTRICS_SURVEY_ID'] = 'SV_bPdoqhAPJnqMZwh'
+TENANTS[ADS]['QUALTRICS_SURVEY_ID'] = 'SV_bPdoqhAPJnqMZwh'
 
 
 # Lock prod for now.
