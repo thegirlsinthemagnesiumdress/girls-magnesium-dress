@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib.staticfiles.views import serve
 from djangae.environment import is_production_environment
 from core import views
@@ -30,8 +31,7 @@ handler500 = 'public.views.handler500'
 
 # Only enable static serving locally, on prod we use app.yaml
 if not is_production_environment():
-    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += url('^devstatic/(?P<path>.*)$', serve),
+    urlpatterns += static(settings.STATIC_URL, serve)
     import debug_toolbar
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
