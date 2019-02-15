@@ -81,8 +81,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static', 'dev'),
+]
+
 STATIC_URL = '/devstatic/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dev')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'devstatic')
 
 THIRD_PARTY = os.path.join(os.path.dirname(BASE_DIR), "third_party")
 NODE_PREFIX = os.path.join(BASE_DIR, "..")
