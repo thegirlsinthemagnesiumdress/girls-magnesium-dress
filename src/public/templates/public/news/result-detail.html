@@ -1,0 +1,96 @@
+{% extends "public/base.html" %}
+{% load staticfiles %}
+{% load get %}
+{% load angular %}
+{% block main %}
+<div class="h-c-page result-detail">
+  {% djangoblock %}
+  <div class="">
+    <h1 class="h-c-headline h-c-headline--one h-u-mt-xl h-u-mb-std dmb-capitalize">
+      {{survey.company_name}} - {{survey_result.dmb|floatformat:"-1"}}
+    </h1>
+    <time class="h-c-headline h-c-headline--three" datetime="27/08/2018">{{survey_result.started_at|date:'F Y' }}</time>
+    <h3 class="h-c-headline h-c-headline--four h-u-mt-l result-detail__dimension-header">
+      Dimensions
+    </h3>
+    <ul class="h-u-mt-std">
+    {% for d in result_detail.dimensions %}
+    <li>
+      <a href="#dimension-{{d.id}}">
+        {{d.title}} - {{survey_result.dmb_d|get_item:d.id|floatformat:"-1"}}
+      </a>
+    </li>
+    {% endfor %}
+    </ul>
+  </div>
+
+  {% for d in result_detail.dimensions %}
+    <div class="result-detail__section" id="dimension-{{d.id}}">
+      <h2 class="result-detail__dimension-header h-c-headline h-c-headline--two">
+        {{d.title}} - {{survey_result.dmb_d|get_item:d.id|floatformat:"-1"}}
+      </h2>
+        {% with result_detail.questions_by_dimension|get_item:d.id as dimension_questions %}
+          {% for q in dimension_questions %}
+            {% with result_detail.definitions|get_item:q as question %}
+              <h3 class="h-c-headline h-c-headline--four h-u-mt-l">
+                <span class="result-detail__question-id">{{question.id}} </span>{{question.text|safe}}
+              </h3>
+              <div class="result-detail__question-choices-body">
+                {% if question.available %}
+                  {% for c in question.choices %}
+                    {% with question.choices_map|get_item:c as choice %}
+                    <label>
+                      <input
+                          type="{{question.type}}"
+                          name="{{question.id}}"
+                          value="{{choice.text}}"
+                          {% if choice.selected %}
+                            checked
+                          {% else%}
+                            disabled
+                          {% endif %}
+                          >
+                        {{choice.text}}
+                        <span class="result-detail__choice-value"> ({{choice.value}})</span>
+                      </label>
+                    {% endwith %}
+                  {% endfor %}
+                  {% if question.not_in_schema_text %}
+                    <div class="result-page__choices_no_match">
+                      The definition has probably changed and we could not match user response with the definition.
+                      Here's the user answer(s).
+                      <ul>
+                        {% for not_in_schema_c in question.not_in_schema_text %}
+                        <li>
+                          <label>
+                            <input
+                                type="{{question.type}}"
+                                name="{{question.id}}"
+                                value="{{not_in_schema_c}}"
+                                {% if choice.selected %}
+                                  checked
+                                {% else%}
+                                  disabled
+                                {% endif %}
+                                >
+                              {{not_in_schema_c}}
+                            </label>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="response-detail__missing-question">
+                    The definition has probably changed and we could not find any answer for this question.
+                  </div>
+                {% endif %}
+              </div>
+            {% endwith %}
+          {% endfor %}
+        {% endwith %}
+    </div>
+  {% endfor %}
+  {% enddjangoblock %}
+</div>
+{% endblock %}

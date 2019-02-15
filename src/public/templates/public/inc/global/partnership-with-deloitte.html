@@ -1,0 +1,10 @@
+{% load staticfiles %}
+
+<div class="dmb-partnership-with-bcg{% if invert %} dmb-partnership-with-bcg--invert{% endif %}">
+  <p>In partnership with</p>
+  {% if invert %}
+    <img src="{% static 'img/deloitte-logo.svg' %}" alt="In partnership with Deloitte" width="90px">
+  {% else %}
+    <img src="{% static 'img/deloitte-logo.svg' %}" alt="In partnership with Deloitte" width="90px">
+  {% endif %}
+</div>
