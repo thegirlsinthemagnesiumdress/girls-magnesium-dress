@@ -10,10 +10,10 @@
     <div class="h-c-grid" ng-if="!registrationCtrl.link">
       <div class="h-c-grid__col h-c-grid__col--12">
         <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
-          Ready to benchmark your company’s digital maturity?
+          Ready to benchmark your company’s data maturity?
         </h1>
         <p class="dmb-registration__subhead">
-          Let’s start with some details about your organisation:
+          Let’s start with some details about your organization:
         </p>
         <a
             class="dmb-button dmb-button--secondary dmb-button--external"
@@ -32,12 +32,13 @@
               <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
-              <label for="industry">Industry:</label>
+              <label for="industry">Primary distribution channel:</label>
               <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
-                <option value="" disabled selected>Select an industry</option>
-                {% for i_key, i_text in industries %}
-                <option value="{{i_key|ng_mark_safe}}">{{i_text|ng_mark_safe}}</option>
-                {% endfor %}
+                <option value="" disabled selected>Select your primary distribution channel</option>
+                <option value="print">Print</option>
+                <option value="broadcast">Broadcast</option>
+                <option value="digital">Digital</option>
+                <option value="hybrid">Hybrid</option>
               </select>
             </div>
             <div class="dmb-input-wrp">
