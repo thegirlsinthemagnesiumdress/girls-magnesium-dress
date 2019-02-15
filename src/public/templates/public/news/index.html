@@ -11,10 +11,30 @@
 {% block main %}
   <div class="dmb-landing">
 
-  {% include 'public/inc/home/hero.html' %}
+  <div class="dmb-hero">
+    <div class="h-c-page">
+      <div class="h-c-grid">
+        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5 dmb-hero__content">
+          <h1 class="dmb-hero__title h-c-headline h-c-headline--two">
+            Digital transformation through data
+          </h1>
+          <p class="dmb-hero__description h-c-headline h-c-headline--subhead">
+            Discover how your data maturity measures up against other news organizations, plan your progress and move up the scale.
+          </p>
+        </div>
+      </div>
+      {% include 'public/inc/global/partnership-with-deloitte.html' %}
+    </div>
+    <a href="#content" glue-smooth-scroll glue-smooth-scroll-hash="false" class="dmb-icon-button" aria-hidden="true">
+      <svg role="img" class="h-c-icon">
+        <use xlink:href="#mi-chevron"></use>
+      </svg>
+    </a>
+  </div>
 
   <div id="content" class="dmb-landing__trigger-container dmb-section-with-media dmb-section-with-media--desktop-content-right">
 
+    {% comment %}
     <div class="dmb-panel-trigger" dmb-pin-top>
       <button class="dmb-panel-trigger__button dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-home-side-panel">
         <div class="dmb-panel-trigger__icon">
@@ -23,19 +43,20 @@
           </svg>
         </div>
         <div class="dmb-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
-          Why digital maturity matters
+          Digital transformation through data
         </div>
       </button>
     </div>
+    {% endcomment %}
 
     <div class="h-c-page">
       <div class="h-c-grid">
         <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--6">
           <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--three">
-            Everyday there are hundreds of chances to engage with customers digitally
+            Improve how you engage and monetize your audience
           </h2>
           <p class="dmb-section-with-media__body">
-            But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey.<sup>*</sup>
+            Across your business, there are a multitude of opportunities to capture value by improving overall reader engagement, increasing direct-paying relationships with readers and driving additional revenue from advertisers.
           </p>
         </div>
         <div class="dmb-section-with-media__col-media h-c-grid__col h-c-grid__col--6">
@@ -50,7 +71,7 @@
     </div>
   </div>
 
-  <div class="dmb-section-with-media dmb-bg-light-grey">
+  {% comment %} <div class="dmb-section-with-media dmb-bg-light-grey">
     <div class="h-c-page">
       <div class="h-c-grid">
         <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col--6">
@@ -73,26 +94,31 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
 
-  <div class="dmb-roadmap-section">
+  <div class="dmb-roadmap-section dmb-bg-light-grey">
     <div class="h-c-page">
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col-l--8 h-c-grid__col-l--offset-2">
           <h2 class="dmb-roadmap-section__title h-c-headline h-c-headline--three">
-            Your roadmap to digital marketing maturity
+            Your roadmap to data maturity
           </h2>
         </div>
       </div>
       <div class="h-c-grid">
-        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4 h-c-grid__col-l--offset-2">
+        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4">
           <p>
-            The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG. The tool analyses where your business sits on the path to full data-driven marketing and attribution.
+            The Data Maturity Benchmark is a diagnostic tool based on our study with Deloitte of how news and media organizations leverage data to drive engagement and monetization across their digital properties.
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4">
           <p>
-            Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up.
+            First, it analyzes where your business sits on the path to full data maturity. Then, it generates a personalized interactive report to help you level up.
+          </p>
+        </div>
+        <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4">
+          <p>
+            For the purpose of this study, “data” is defined as audience data that encompasses first-, second-, and third-party data collected on user characteristics (such as location and demographic), reader engagement (such as page views and click-through rates) and transaction history (as it pertains to paying for content or other ancillary products and services). The use of data is under the assumption that publishers and their technology providers have received consent from users as defined by local policies and regulations.
           </p>
         </div>
       </div>
@@ -100,13 +126,13 @@
   </div>
 
 
-  <div class="dmb-hiw-section dmb-bg-light-grey">
+  <div class="dmb-hiw-section">
     <div class="h-c-page">
       <div>
         <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
         <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
           <div class="dmb-hiw-section__title-text">
-            Benchmark which stage your organisation is at on our digital maturity scale.
+            Find out where your news organization is on the data maturity scale
           </div>
         </h3>
       </div>
@@ -115,21 +141,21 @@
           <ol class="dmb-infographic__inner">
             <li class="dmb-infographic__step dmb-infographic__step--first">
               <h4 class="dmb-infographic__step-t">Nascent</h4>
-              <p class="dmb-infographic__step-d">Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales.</p>
+              <p class="dmb-infographic__step-d">Organizations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.</p>
             </li>
             <li class="dmb-infographic__step">
-              <h4 class="dmb-infographic__step-t">Emerging</h4>
-              <p class="dmb-infographic__step-d">In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing.</p>
+              <h4 class="dmb-infographic__step-t">Developing</h4>
+              <p class="dmb-infographic__step-d">These organizations are able to drive value from data in some pockets of their business. Leadership recognizes data as a priority, but is unclear on how to unlock the best returns.</p>
             </li>
             <li class="dmb-infographic__step">
-              <h4 class="dmb-infographic__step-t">Connected</h4>
-              <p class="dmb-infographic__step-d">By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.</p>
+              <h4 class="dmb-infographic__step-t">Mature</h4>
+              <p class="dmb-infographic__step-d">Data-informed decision making is the standard across much of the business. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual. </p>
             </li>
             <li class="dmb-infographic__step">
-              <h4 class="dmb-infographic__step-t">Multi-moment</h4>
-              <p class="dmb-infographic__step-d">At this stage, businesses have dynamic execution optimised towards a single-customer view across channels.</p>
+              <h4 class="dmb-infographic__step-t">Leading</h4>
+              <p class="dmb-infographic__step-d">These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.</p>
             </li>
-            <li class="dmb-infographic__roundel"></li>
+            <li class="dmb-infographic__roundel" style="background: white"></li>
           </ol>
         </div>
       </div>
@@ -142,22 +168,13 @@
         <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
         <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
           <div class="dmb-hiw-section__title-text">
-            Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability.
+            Dig deeper into how your news organization prioritizes data across four key dimensions
           </div>
         </h3>
       </div>
       <div class="dmb-dimensions-tiles">
-        <div class="dmb-dimensions-tiles__header">
-          <img class="h-c-tile__icon" src="{% static 'img/icons/organization.svg' %}" alt="" height="41" width="41">
-          <div class="dmb-dimensions-tiles__header-body">
-            <h4 class="dmb-dimensions-tiles__headline">
-              Organisation
-            </h4>
-            <p>Improve decision-making and results by working collaboratively across teams and with specialised partners</p>
-          </div>
-        </div>
         <div class="dmb-mobile-overflow-wrapper">
-          <ul class="dmb-dimensions-tiles__list">
+          <ul class="dmb-dimensions-tiles__list" style="padding-top: 60px">
             <li class="dmb-dimensions-tiles__item">
               <div class="dmb-landing__tile h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
                 <div class="h-c-tile__header h-c-tile__header--icon">
@@ -165,10 +182,25 @@
                 </div>
                 <div class="h-c-tile__body">
                   <h4 class="h-c-tile__headline">
-                      Attribution
+                    Strategic direction & ambition for data
                   </h4>
                   <p class="h-c-tile__description">
-                    Accurately measure and value customer touchpoints
+                    Understanding data consistently and having it play a critical role at all levels of the business
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="dmb-dimensions-tiles__item">
+              <div class="dmb-landing__tile h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
+                <div class="h-c-tile__header h-c-tile__header--icon">
+                  <img class="h-c-tile__icon" src="{% static 'img/icons/attribution.svg' %}" alt="" height="41" width="41">
+                </div>
+                <div class="h-c-tile__body">
+                  <h4 class="h-c-tile__headline">
+                    Reader engagement
+                  </h4>
+                  <p class="h-c-tile__description">
+                    Understanding critical audience segments and how to satisfy their preferences
                   </p>
                 </div>
               </div>
@@ -180,10 +212,10 @@
                 </div>
                 <div class="h-c-tile__body">
                   <h4 class="h-c-tile__headline">
-                    Assets and ads
+                    Reader revenue
                   </h4>
                   <p class="h-c-tile__description">
-                    Deliver attention-driving, intuitive experiences across digital touchpoints
+                    Driving financial value directly from readers, whether through subscriptions or net new revenue opportunities
                   </p>
                 </div>
               </div>
@@ -195,40 +227,10 @@
                 </div>
                 <div class="h-c-tile__body">
                   <h4 class="h-c-tile__headline">
-                    Audience
+                    Advertising revenue
                   </h4>
                   <p class="h-c-tile__description">
-                    Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="dmb-dimensions-tiles__item">
-              <div class="dmb-landing__tile h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-                <div class="h-c-tile__header h-c-tile__header--icon">
-                  <img class="h-c-tile__icon" src="{% static 'img/icons/access.svg' %}" alt="" height="41" width="41">
-                </div>
-                <div class="h-c-tile__body">
-                  <h4 class="h-c-tile__headline">
-                    Access
-                  </h4>
-                  <p class="h-c-tile__description">
-                    Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="dmb-dimensions-tiles__item">
-              <div class="dmb-landing__tile h-c-tile h-c-tile--border h-c-tile--hoverable h-c-tile--small-height">
-                <div class="h-c-tile__header h-c-tile__header--icon">
-                  <img class="h-c-tile__icon" src="{% static 'img/icons/automation.svg' %}" alt="" height="41" width="41">
-                </div>
-                <div class="h-c-tile__body">
-                  <h4 class="h-c-tile__headline">
-                    Automation
-                  </h4>
-                  <p class="h-c-tile__description">
-                    Optimise marketing operations to drive profitability and growth
+                    Reaching the right audience and delivering high-impact ad campaigns that do not diminish the reader experience
                   </p>
                 </div>
               </div>
@@ -245,13 +247,13 @@
       <h2 class="h-c-eyebrow dmb-hiw-section__eyebrow">How it works</h2>
       <h3 class="dmb-hiw-section__title h-c-headline h-c-headline--four">
         <div class="dmb-hiw-section__title-text">
-          Use the insights from your report to identify how to drive your organisation to the next level, and work with others in your company and your partners to achieve this.
+          Use these insights to identify where you need to develop to drive your organization to the next level.
         </div>
       </h3>
 
       <div class="h-c-grid dmb-landing__devices-grid">
         <div class="dmb-landing__logo-col h-c-grid__col h-c-grid__col-l--4">
-          {% include 'public/inc/global/partnership-with-bcg.html' %}
+          {% include 'public/inc/global/partnership-with-deloitte.html' %}
         </div>
         <div class="dmb-landing__devices-col h-c-grid__col h-c-grid__col-l--8">
           <img class="dmb-landing__devices-image" src="{% static 'img/home/dynamic.png' %}" alt="photo of devices">
@@ -265,18 +267,15 @@
       <div class="h-c-grid">
         <div class="dmb-section-with-media__col-content h-c-grid__col h-c-grid__col-l--5">
           <h2 class="dmb-section-with-media__title h-c-headline h-c-headline--two">
-            Benchmark your business now
+            Start the assessment now
           </h2>
           <div class="dmb-section-with-media__body">
-            <p class="h-u-mb-std h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-              Discover how your marketing maturity measures up, plan your progress, reach more customers.
-            </p>
             <p class="h-u-mb-l">
-              This in-depth assessment takes around 30-minutes to complete.
+              This assessment takes around 10-minutes to complete.
             </p>
           </div>
           <a href="{% url 'registration' tenant|ng_mark_safe %}" class="h-c-button h-c-button--primary">
-            Start the assessment now
+            Start the assessment
           </a>
         </div>
 
@@ -287,18 +286,8 @@
     </div>
   </div>
 
-  <div class="dmb-landing__footnote h-c-page">
 
-      <sup>*</sup>BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries -
-      <a class="" href="https://www.thinkwithgoogle.com/intl/en-gb/marketing-resources/data-measurement/delivering-meaningful-moments/" target="_blank">
-        read more.
-      </a>
-    </div>
-
-  </div>
-
-
-  <aside id="dmb-home-side-panel" class="dmb-side-panel dmb-side-panel--right" dmb-side-panel>
+  {% comment %} <aside id="dmb-home-side-panel" class="dmb-side-panel dmb-side-panel--right" dmb-side-panel>
     <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -487,7 +476,7 @@
         </p>
       </div>
     </div>
-  </aside>
+  </aside> {% endcomment %}
 
   </div>
 {% endblock main %}
