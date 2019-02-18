@@ -1,6 +1,10 @@
 import functools
 import os
-
+from importlib import import_module
+from django.core.urlresolvers import clear_url_caches
+from django.conf import settings
+import sys
+import shutil
 
 # App Engine login decorators
 
@@ -64,3 +68,27 @@ def with_appengine_anon(func):
     )
 
     return wrapped
+
+
+class TempTemplateFolder(object):
+    def __init__(self, dirname, filename):
+        self.dirname = dirname
+        self.filename = os.path.join(dirname, filename)
+
+    def __enter__(self):
+        if not os.path.exists(self.dirname):
+            os.makedirs(self.dirname)
+
+        return open(self.filename, 'w+b')
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        os.remove(self.filename)
+        if not os.listdir(self.dirname):
+            shutil.rmtree(self.dirname)
+
+
+def reload_urlconf():
+    clear_url_caches()
+    if settings.ROOT_URLCONF in sys.modules:
+        reload(sys.modules[settings.ROOT_URLCONF])
+    return import_module(settings.ROOT_URLCONF)
