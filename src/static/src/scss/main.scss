@@ -1,3 +1,5 @@
+// HERCULES AND GLUE SASS:
+////////////////////////////////////////
 // If you have Sass variable overrides, include them here and uncomment.
 @import 'hercules-variable-overrides';
 
@@ -39,6 +41,9 @@
 @import 'hercules/lib/global/scss/trumps/all';
 
 
+// DMB SASS:
+////////////////////////////////////////
+
 //Colors
 @import 'colors';
 
@@ -48,7 +53,7 @@
 // Mixins
 @import 'mixins';
 
-// Variables
+// Utilities
 @import 'utils';
 
 // Hercules overrides
@@ -87,5 +92,4 @@
 @import 'pages/landing';
 @import 'pages/reports-page';
 @import 'pages/reports-admin';
-
 @import 'pages/error-page';

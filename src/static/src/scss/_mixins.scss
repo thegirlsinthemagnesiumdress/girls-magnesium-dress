@@ -6,6 +6,7 @@
   }
 }
 
+
 @mixin screen-styles() {
   @media /** / print /*/ screen /**/ {
     @content;
@@ -21,6 +22,7 @@
   }
 }
 
+
 @mixin default-focus-outline {
   outline-color: Highlight;
   outline-style: solid;
@@ -29,5 +31,83 @@
   @media (-webkit-min-device-pixel-ratio: 0) {
     outline-color: -webkit-focus-ring-color;
     outline-style: auto;
+  }
+}
+
+
+@mixin mq($rule, $bp1, $bp2:'') {
+// Responsive breakpoint mixin that uses global breakpoint values
+// FROM:
+//    @include mq(from, [tablet|desktop|wide|<custom value>]) {}
+//    examples:
+//    @include mq(from, tablet) > @media (min-width: 600px)
+//    @include mq(from, wide) > @media (min-width: 1440px)
+//    @include mq(from, 500px) > @media (min-width: 500px)
+//
+// UNTIL:
+//    @include mq(until, [tablet|desktop|wide|<custom value>]) {}
+//    examples:
+//    @include mq(until, tablet) > @media (max-width: 599px)
+//    @include mq(until, desktop) > @media (max-width: 1023)
+//    @include mq(until, 700px) > @media (max-width: 699px)
+//
+// ONLY:
+//    @include mq(only, [tablet|desktop]) {}
+//    examples:
+//    @include mq(only, tablet) > @media (min-width: 600px) and (max-width: 1023px)
+//    @include mq(only, desktop) > @media (min-width: 1024px) and (max-width: 1439px)
+//
+// BETWEEN:
+//    @include mq(between, <custom value>, <custom value2>) {}
+//    example:
+//    @include mq(between, 400px, 650px) > @media (min-width: 400px) and (max-width: 649px)
+
+  @if $rule == 'from' {
+    @if $bp1 == 'tablet' {
+      @media (min-width: #{$bp-tablet}) { @content; }
+    }
+    @else if $bp1 == 'desktop' {
+      @media (min-width: #{$bp-desktop}) { @content; }
+    }
+    @else if $bp1 == 'wide' {
+      @media (min-width: #{$bp-wide}) { @content; }
+    }
+    @else {
+      @media (min-width: #{$bp1}) { @content; }
+    }
+  }
+
+  @else if $rule == 'until' {
+    @if $bp1 == 'tablet' {
+      @media (max-width: #{$bp-tablet - 1px}) { @content; }
+    }
+    @else if $bp1 == 'desktop' {
+      @media (max-width: #{$bp-desktop - 1px}) { @content; }
+    }
+    @else if $bp1 == 'wide' {
+      @media (max-width: #{$bp-wide - 1px}) { @content; }
+    }
+    @else {
+      @media (max-width: #{$bp1 - 1px}) { @content; }
+    }
+  }
+
+  @else if $rule == 'only' {
+    @if $bp1 == 'tablet' {
+      @media (min-width: #{$bp-tablet}) and (max-width: #{$bp-desktop - 1px}) {
+        @content;
+      }
+    }
+    @else if $bp1 == 'desktop' {
+      @media (min-width: #{$bp-desktop}) and (max-width: #{$bp-wide - 1px}) {
+        @content;
+      }
+    }
+  }
+
+  @else if $rule == 'between' {
+    @media (min-width: #{$bp1}) and (max-width: #{$bp2 - 1px}) {
+      @content;
+    }
   }
 }
