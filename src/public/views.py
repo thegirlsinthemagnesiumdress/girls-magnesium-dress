@@ -40,7 +40,7 @@ def report_result_static(request, tenant, response_id):
 
 
 def index_static(request, tenant):
-    return render(request, 'public/{}/index.html'.format(tenant), {'tenant': tenant})
+    return render(request, 'public/{}/index.html'.format(tenant), {'tenant': settings.TENANTS[tenant].get('slug')})
 
 
 @login_required
@@ -58,7 +58,7 @@ def reports_admin(request, tenant):
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
-        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': tenant})),
+        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': settings.TENANTS[tenant].get('slug')})),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
         }),
@@ -68,7 +68,7 @@ def reports_admin(request, tenant):
 @login_required
 @survey_admin_required
 def result_detail(request, tenant, response_id):
-    survey_result = get_object_or_404(SurveyResult, response_id=response_id)
+    survey_result = get_object_or_404(SurveyResult, response_id=response_id, tenant=tenant)
 
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'result_detail': get_response_detail(survey_result.survey_definition.content, survey_result.raw),
