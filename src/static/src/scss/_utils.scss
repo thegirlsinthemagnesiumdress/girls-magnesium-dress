@@ -87,39 +87,37 @@ $positions: (top, bottom);
     .dmb-h-#{str-slice($prop, 0, 1)} {
       &-#{str-slice($position, 0, 1)} {
         &-s {
-          #{$prop}-top: 20px;
+          #{$prop}-#{$position}: 20px;
 
           @include dmb-mq($from: desktop) {
-            #{$prop}-top: 30px;
+            #{$prop}-#{$position}: 30px;
           }
         }
 
         &-m {
-          #{$prop}-top: 40px;
+          #{$prop}-#{$position}: 40px;
 
           @include dmb-mq($from: tablet) {
-            #{$prop}-top: 50px;
+            #{$prop}-#{$position}: 50px;
           }
 
           @include dmb-mq($from: desktop) {
-            #{$prop}-top: 60px;
+            #{$prop}-#{$position}: 60px;
           }
         }
 
         &-l {
-          #{$prop}-top: 60px;
+          #{$prop}-#{$position}: 60px;
 
           @include dmb-mq($from: tablet) {
-            #{$prop}-top: 80px;
+            #{$prop}-#{$position}: 80px;
           }
 
           @include dmb-mq($from: desktop) {
-            #{$prop}-top: 120px;
+            #{$prop}-#{$position}: 120px;
           }
         }
       }
     }
   }
 }
-
-
