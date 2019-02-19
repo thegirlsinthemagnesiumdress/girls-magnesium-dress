@@ -16,7 +16,7 @@ const notify = require('gulp-notify');
 const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 const rev = require('gulp-rev');
-
+const svgSymbols = require('gulp-svg-symbols');
 
 const STATIC_DIR = './src/static';
 const SRC_STATIC_DIR = './src/static/src';
@@ -203,7 +203,6 @@ gulp.task('sass-lint', function() {
     .pipe(sassLint.format());
 });
 
-
 function copy(src, dest) {
   return gulp.src(src).pipe(gulp.dest(dest));
 }
@@ -225,6 +224,14 @@ gulp.task('fonts-dist', function() {
 
   return copy(src, outputDir);
 });
+
+gulp.task('svg-symbols', function () {
+  return gulp
+    .src(`${SRC_STATIC_DIR}/svg/*.svg`)
+    .pipe(svgSymbols({templates: ['default-svg']}))
+    .pipe(rename('_dmb-svgs.inc.html'))
+    .pipe(gulp.dest('./src/core/templates/core/inc'))
+})
 
 gulp.task('images-dev', function() {
   const outputDir = path.join(DEV_STATIC_DIR, 'img');
@@ -251,6 +258,7 @@ gulp.task('watch', function() {
     'js-dev'
   ));
 
+  gulp.watch(`${SRC_STATIC_DIR}/svg/*.svg`, gulp.parallel('svg-symbols'));
   gulp.watch(`${SRC_STATIC_DIR}/img/**/*.{jpg,png,svg,gif}`, gulp.parallel('images-dev'));
   gulp.watch(`${SRC_STATIC_DIR}/fonts/**/*.{otf,ttf,svg,woff,eot}`, gulp.parallel('fonts-dev'));
 
@@ -275,6 +283,7 @@ gulp.task('build',
     'js',
     'sass'
     ),
+    'svg-symbols',
     'images-dist',
     'fonts-dist'
   )
@@ -289,6 +298,7 @@ gulp.task('default', gulp.series(
     'js-dev',
     'sass-dev',
     'fonts-dev',
+    'svg-symbols',
     'images-dev'
   ),
   'watch'

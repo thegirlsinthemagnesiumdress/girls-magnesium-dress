@@ -129,3 +129,40 @@ score = 1.0
 score = 1.33
 score = 0.5
 ```
+
+# Using SVGs
+
+To use an SVG put the .svg file in `src/static/src/svg/` and then reference it in a template using `{% include 'core/inc/svg.html' with id='<filename>' %}`, where `id` is the filename without the '.svg' extension. This will generate an svg with classes `dmb-svg` and `dmb-svg--<filename>`, and width and height HTML attributes set to 100% (can be overridden by CSS `width` and `height` properties).
+
+The `{% include %}` also accepts one of two optional arguments; `size`, which accepts any valid size with units and sets the `width` and `height` attributes, or `inline`, which is a Boolean that adds a `dmb-svg--inline` class making the size, and left and right margins proportional to font size:
+```scss
+.dmb-svg--inline {
+  height: .75em;
+  margin-left: .3125em;
+  margin-right: .3125em;
+  width: .75em;
+}
+```
+
+For example, SVG file `src/static/src/svg/print-button.svg` can be used in the following ways:
+
+- `{% include 'core/inc/svg.html' with id='print-button' %}` will generate:
+    ```html
+    <svg role="img" class="dmb-svg dmb-svg--print-button" width="100%" height="100%">
+    ...
+    </svg>
+    ```
+
+- `{% include 'core/inc/svg.html' with id='print-button' size='30px' %}` will generate:
+    ```html
+    <svg role="img" class="dmb-svg dmb-svg--print-button" width="30px" height="30px">
+    ...
+    </svg>
+    ```
+
+- `{% include 'core/inc/svg.html' with id='print-button' inline=True %}` will generate:
+    ```html
+    <svg role="img" class="dmb-svg dmb-svg--print-button dmb-svg--inline">
+    ...
+    </svg>
+    ```
