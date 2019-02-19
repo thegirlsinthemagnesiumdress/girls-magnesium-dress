@@ -19,6 +19,8 @@ TENANTS = {
     },
 }
 
+DEFAULT_TENANT = ADS
+
 ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items()])
 TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in TENANTS.items()}
 TENANTS_CHOICES = [(k, v['label']) for k, v in TENANTS.items()]
