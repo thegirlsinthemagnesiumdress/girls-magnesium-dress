@@ -14,7 +14,7 @@ class RedirectToDefaultTenant(object):
 
         match_in_legacy_namespace = 'legacy' in match.namespaces
         if match_in_legacy_namespace:
-            match.kwargs.update({'tenant': settings.TENANTS[settings.ADS].get('slug')})
+            match.kwargs.update({'tenant': settings.TENANTS[settings.DEFAULT_TENANT].get('slug')})
             return redirect(url, *match.args, **match.kwargs)
 
     def process_view(self, request, view_func, view_args, view_kwargs):

@@ -12,20 +12,25 @@ from core.test import reload_urlconf, TempTemplateFolder
 
 
 @override_settings(
-    SURVEY_ADMIN_AUTHORIZED_DOMAINS=(
-        '@example.com',
-        '@google.com',
-        '@potatolondon.com',
-    ),
     TENANTS=mocks.MOCKED_TENANTS,
     ALLOWED_TENANTS=mocks.MOCKED_ALLOWED_TENANTS,
     TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
+    DEFAULT_TENANT='tenant1',
 )
 class ReportsAdminTestCase(TestCase):
     """Tests for `reports_admin` view."""
 
-    def setUp(self):
+    @classmethod
+    def tearDownClass(cls):
+        super(ReportsAdminTestCase, cls).tearDownClass()
         reload_urlconf()
+
+    @classmethod
+    def setUpClass(cls):
+        super(ReportsAdminTestCase, cls).setUpClass()
+        reload_urlconf()
+
+    def setUp(self):
         self.url = reverse('reports', kwargs={'tenant': 'tenant1-slug'})
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()

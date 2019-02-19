@@ -206,7 +206,7 @@ def send_emails_for_new_reports(email_list):
             company_name = ""
             industry = ""
             country = ""
-            tenant = settings.ADS
+            tenant = settings.DEFAULT_TENANT
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
 
         if is_valid_email(to):
