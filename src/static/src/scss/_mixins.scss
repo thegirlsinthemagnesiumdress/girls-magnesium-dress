@@ -22,7 +22,6 @@
   }
 }
 
-
 @mixin default-focus-outline {
   outline-color: Highlight;
   outline-style: solid;
@@ -34,86 +33,101 @@
   }
 }
 
+////////////////////////////////
 
-@mixin mq($rule, $bp1, $bp2: '') {
+// MEDIA QUERY MIXIN
+// A mixin for applying responsive properties
+//
+// Examples:
+// @include mq($from: tablet): 600px and up
+// @include mq($from: 430px): 430px and up
+// @include mq($until: wide): less than 1440px (up to 1439px)
+// @include mq($from: 200px, $until: tablet): 200px until 599px (200px <= x < 600px)
+// @include mq($only: desktop): 1024px until 1440px (1024px <= x < 1439px)
+@mixin dmb-mq($from: null, $until: null, $only: null) {
   // sass-lint:disable-block brace-style
-
-  // Responsive breakpoint mixin that uses global breakpoint values
-  // FROM:
-  //    @include mq(from, [tablet|desktop|wide|<custom value>]) {}
-  //    examples:
-  //    @include mq(from, tablet) > @media (min-width: 600px)
-  //    @include mq(from, wide) > @media (min-width: 1440px)
-  //    @include mq(from, 500px) > @media (min-width: 500px)
-  //
-  // UNTIL:
-  //    @include mq(until, [tablet|desktop|wide|<custom value>]) {}
-  //    examples:
-  //    @include mq(until, tablet) > @media (max-width: 599px)
-  //    @include mq(until, desktop) > @media (max-width: 1023)
-  //    @include mq(until, 700px) > @media (max-width: 699px)
-  //
-  // ONLY:
-  //    @include mq(only, [tablet|desktop]) {}
-  //    examples:
-  //    @include mq(only, tablet) > @media (min-width: 600px) and (max-width: 1023px)
-  //    @include mq(only, desktop) > @media (min-width: 1024px) and (max-width: 1439px)
-  //
-  // BETWEEN:
-  //    @include mq(between, <custom value>, <custom value2>) {}
-  //    example:
-  //    @include mq(between, 400px, 650px) > @media (min-width: 400px) and (max-width: 649px)
-
-  // FROM
-  @if $rule == 'from' {
-    @if $bp1 == 'tablet' {
-      @media (min-width: #{$bp-tablet}) { @content; }
-    }
-    @else if $bp1 == 'desktop' {
-      @media (min-width: #{$bp-desktop}) { @content; }
-    }
-    @else if $bp1 == 'wide' {
-      @media (min-width: #{$bp-wide}) { @content; }
-    }
-    @else {
-      @media (min-width: #{$bp1}) { @content; }
-    }
-  }
-
-  // UNTIL
-  @else if $rule == 'until' {
-    @if $bp1 == 'tablet' {
-      @media (max-width: #{$bp-tablet - 1px}) { @content; }
-    }
-    @else if $bp1 == 'desktop' {
-      @media (max-width: #{$bp-desktop - 1px}) { @content; }
-    }
-    @else if $bp1 == 'wide' {
-      @media (max-width: #{$bp-wide - 1px}) { @content; }
-    }
-    @else {
-      @media (max-width: #{$bp1 - 1px}) { @content; }
-    }
-  }
-
   // ONLY
-  @else if $rule == 'only' {
-    @if $bp1 == 'tablet' {
-      @media (min-width: #{$bp-tablet}) and (max-width: #{$bp-desktop - 1px}) {
-        @content;
-      }
+  @if $only { // if $only given, ignore user $from and $until values and set these
+    // Map device names to breakpoint values in ./_variables.scss for $from and $until
+    @if $only == 'tablet' {
+      $from: $bp-tablet;
+      $until: $bp-desktop;
     }
-    @else if $bp1 == 'desktop' {
-      @media (min-width: #{$bp-desktop}) and (max-width: #{$bp-wide - 1px}) {
-        @content;
-      }
+    @else if $only == 'desktop' {
+      $from: $bp-desktop;
+      $until: $bp-wide;
+    }
+  }
+  @else {
+    // FROM
+    // Map device names to breakpoint values in ./_variables.scss for $from
+    @if $from == 'tablet' {
+      $from: $bp-tablet;
+    }
+    @else if $from == 'desktop' {
+      $from: $bp-desktop;
+    }
+    @else if $from == 'wide' {
+      $from: $bp-wide;
+    }
+
+    // Map device names to breakpoint values in ./_variables.scss for $until
+    @if $until == 'tablet' {
+      $until: $bp-tablet;
+    }
+    @else if $until == 'desktop' {
+      $until: $bp-desktop;
+    }
+    @else if $until == 'wide' {
+      $until: $bp-wide;
     }
   }
 
-  // BETWEEN
-  @else if $rule == 'between' {
-    @media (min-width: #{$bp1}) and (max-width: #{$bp2 - 1px}) {
-      @content;
+  @if $from {
+    @if $until { // if both $from and $until given (by user or due to $only being given)
+      @media (min-width: $from) and (max-width: #{$until - 1px}) { @content; }
+    }
+    @else { // if only $from given
+      @media (min-width: $from) { @content; }
+    }
+  }
+  @else if $until { // if only $until given
+    @media (max-width: #{$until - 1px}) { @content; }
+  }
+}
+
+// RESPONSIVE PROPERTY MIXIN
+// Create responsive property values by specifying the property name, the mobile, tablet,
+// desktop and wide values. Only mobile value and one other value are necessary.
+// [Should be used instead of dmb-responsive mixin from now on].
+//
+// Examples:
+// @include dmb-resp-prob(margin-bottom, 20px, 40px, 60px)
+
+@mixin dmb-resp-prop(
+  $property,
+  $mob,
+  $tab: null,
+  $desk: null,
+  $wide: null
+) {
+  #{$property}: $mob;
+
+  @if $tab {
+    @include mq($from: tablet) {
+      #{$property}: $tab;
+    }
+  }
+
+  @if $desk {
+    @include mq($from: desktop) {
+      #{$property}: $desk;
+    }
+  }
+
+  @if $wide {
+    @include mq($from: tablet) {
+      #{$property}: $wide;
     }
   }
 }

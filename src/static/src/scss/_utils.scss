@@ -60,3 +60,66 @@
 .dmb-capitalize {
   text-transform: capitalize;
 }
+
+////////////////////
+
+
+///// RESPONSIVE MARGINS AND PADDING
+
+// The following will generate these helper classes:
+// .dmb-h-m-t-s > responsive margin top small
+// .dmb-h-m-t-m > responsive margin top medium
+// .dmb-h-m-t-l > responsive margin top large
+// .dmb-h-m-b-s > responsive margin bottom small
+// .dmb-h-m-b-m > responsive margin bottom medium
+// .dmb-h-m-b-l > responsive margin bottom large
+// .dmb-h-p-t-s > responsive padding top small
+// .dmb-h-p-t-m > responsive padding top medium
+// .dmb-h-p-t-l > responsive padding top large
+// .dmb-h-p-b-s > responsive padding bottom small
+// .dmb-h-p-b-m > responsive padding bottom medium
+// .dmb-h-p-b-l > responsive padding bottom large
+
+$properties: (margin, padding);
+$positions: (top, bottom);
+@each $prop in $properties {
+  @each $position in $positions {
+    .dmb-h-#{str-slice($prop, 0, 1)} {
+      &-#{str-slice($position, 0, 1)} {
+        &-s {
+          #{$prop}-top: 20px;
+
+          @include dmb-mq($from: desktop) {
+            #{$prop}-top: 30px;
+          }
+        }
+
+        &-m {
+          #{$prop}-top: 40px;
+
+          @include dmb-mq($from: tablet) {
+            #{$prop}-top: 50px;
+          }
+
+          @include dmb-mq($from: desktop) {
+            #{$prop}-top: 60px;
+          }
+        }
+
+        &-l {
+          #{$prop}-top: 60px;
+
+          @include dmb-mq($from: tablet) {
+            #{$prop}-top: 80px;
+          }
+
+          @include dmb-mq($from: desktop) {
+            #{$prop}-top: 120px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
