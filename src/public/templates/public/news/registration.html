@@ -33,7 +33,9 @@
             </div>
             <div class="dmb-input-wrp">
               <label for="industry">Primary distribution channel:</label>
-              <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+              {% comment %} TODO: use news industry here {% endcomment %}
+              <input id="prodId" name="industry" type="hidden" value="ic-bnpj" ng-init="registrationCtrl.industry='ic-bnpj'">
+              <select class="dmb-input" name="distributionChannel" id="distributionChannel" ng-model="registrationCtrl.distributionChannel" required>
                 <option value="" disabled selected>Select your primary distribution channel</option>
                 <option value="print">Print</option>
                 <option value="broadcast">Broadcast</option>
