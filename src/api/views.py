@@ -113,14 +113,16 @@ class SurveyResultsIndustryDetail(APIView):
         global_id, _ = settings.ALL_INDUSTRIES
 
         surveys, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
+        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys
+                      if not survey.last_survey_result.excluded_from_best_practice]
         dmb, dmb_d, dmb_industry = None, None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
             dmb_industry = industry_map[current_industry] if current_industry else global_id
 
         surveys, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
-        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys]
+        dmb_d_list = [survey.last_survey_result.dmb_d for survey in surveys
+                      if not survey.last_survey_result.excluded_from_best_practice]
         dmb_bp, dmb_d_bp, dmb_bp_industry = None, None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
             dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
