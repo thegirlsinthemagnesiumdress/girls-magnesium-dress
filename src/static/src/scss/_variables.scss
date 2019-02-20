@@ -35,9 +35,19 @@ $h-screen-sm: '(min-width: 1024px)';
 $dmb-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .29);
 
 
+
 //////////////////
 
 // Breakpoints
-$bp-tablet: 600px;
-$bp-desktop: 1024px;
-$bp-wide: 1440px;
+$dmb-breakpoints: (
+  tablet: 600px,
+  desktop: 1024px,
+  wide: 1440px
+);
+
+// Vertical spacings
+$dmb-vertical-spacings: (
+  s: (mobile: 20px, tablet: 20px, desktop: 30px),
+  m: (mobile: 40px, tablet: 50px, desktop: 60px),
+  l: (mobile: 60px, tablet: 80px, desktop: 120px)
+);

@@ -6,13 +6,11 @@
   }
 }
 
-
 @mixin screen-styles() {
   @media /** / print /*/ screen /**/ {
     @content;
   }
 }
-
 
 @mixin dmb-responsive($property-name, $mobile-val, $desktop-val) {
   #{$property-name}: #{$mobile-val}px;
@@ -33,53 +31,60 @@
   }
 }
 
+
+
+
 ////////////////////////////////
 
-// MEDIA QUERY MIXIN
-// A mixin for applying responsive properties
-//
-// Examples:
-// @include mq($from: tablet): 600px and up
-// @include mq($from: 430px): 430px and up
-// @include mq($until: wide): less than 1440px (up to 1439px)
-// @include mq($from: 200px, $until: tablet): 200px until 599px (200px <= x < 600px)
-// @include mq($only: desktop): 1024px until 1440px (1024px <= x < 1439px)
+// MEDIA QUERIES
 @mixin dmb-mq($from: null, $until: null, $only: null) {
+  // A mixin for applying responsive properties, takes in device names (tablet, desktop, wide)
+  // then uses corresponsing values from $dmb-breakpoints map in ./_variables.scss, or pixel values.
+  //
+  // Examples:
+  // for $dmb-breakpoints: (tablet: 600px, desktop: 1024px, wide: 1440px)
+  // @include mq($from: tablet) or @include mq(tablet): 600px and up
+  // @include mq($from: 430px) or @include mq(430px): 430px and up
+  // @include mq($until: wide): less than 1440px (up to 1439px)
+  // @include mq($from: 200px,$until: tablet) or @include mq(200px,tablet): 200px until 599px (200px <= x < 600px)
+  // @include mq($only: desktop): 1024px until 1440px (1024px <= x < 1439px)
+
   // sass-lint:disable-block brace-style
+
   // ONLY
   @if $only { // if $only given, ignore user $from and $until values and set these
     // Map device names to breakpoint values in ./_variables.scss for $from and $until
     @if $only == 'tablet' {
-      $from: $bp-tablet;
-      $until: $bp-desktop;
+      $from: map-get($dmb-breakpoints, tablet);
+      $until: map-get($dmb-breakpoints, desktop);
     }
     @else if $only == 'desktop' {
-      $from: $bp-desktop;
-      $until: $bp-wide;
+      $from: map-get($dmb-breakpoints, desktop);
+      $until: map-get($dmb-breakpoints, wide);
     }
   }
   @else {
     // FROM
     // Map device names to breakpoint values in ./_variables.scss for $from
     @if $from == 'tablet' {
-      $from: $bp-tablet;
+      $from: map-get($dmb-breakpoints, tablet);
     }
     @else if $from == 'desktop' {
-      $from: $bp-desktop;
+      $from: map-get($dmb-breakpoints, desktop);
     }
     @else if $from == 'wide' {
-      $from: $bp-wide;
+      $from: map-get($dmb-breakpoints, wide);
     }
 
     // Map device names to breakpoint values in ./_variables.scss for $until
     @if $until == 'tablet' {
-      $until: $bp-tablet;
+      $until: map-get($dmb-breakpoints, tablet);
     }
     @else if $until == 'desktop' {
-      $until: $bp-desktop;
+      $until: map-get($dmb-breakpoints, desktop);
     }
     @else if $until == 'wide' {
-      $until: $bp-wide;
+      $until: map-get($dmb-breakpoints, wide);
     }
   }
 
@@ -96,37 +101,34 @@
   }
 }
 
-// RESPONSIVE PROPERTY MIXIN
-// Create responsive property values by specifying the property name, the mobile, tablet,
-// desktop and wide values. Only mobile value and one other value are necessary.
-// [Should be used instead of dmb-responsive mixin from now on].
-//
-// Examples:
-// @include dmb-resp-prob(margin-bottom, 20px, 40px, 60px)
 
-@mixin dmb-resp-prop(
-  $property,
-  $mob,
-  $tab: null,
-  $desk: null,
-  $wide: null
-) {
+// RESPONSIVE PROPERTIES
+@mixin dmb-resp-prop($property,$mob,$tab: null,$desk: null,$wide: null) {
+  // Create responsive property values by specifying the property name, the mobile, tablet,
+  // desktop and wide values. Only mobile value and one other value are necessary.
+  //
+  // [Should be used instead of dmb-responsive mixin from now on]
+  //
+  // Example:
+  // @include dmb-resp-prop(margin-bottom, 20px, 40px, 60px, 80px)
+  // will give the item a bottom margin of 20px, 40px, 60px and 80px at mobile, tablet, desktop and wide respectively.
+
   #{$property}: $mob;
 
   @if $tab {
-    @include mq($from: tablet) {
+    @include dmb-mq($from: tablet) {
       #{$property}: $tab;
     }
   }
 
   @if $desk {
-    @include mq($from: desktop) {
+    @include dmb-mq($from: desktop) {
       #{$property}: $desk;
     }
   }
 
   @if $wide {
-    @include mq($from: tablet) {
+    @include dmb-mq($from: wide) {
       #{$property}: $wide;
     }
   }
