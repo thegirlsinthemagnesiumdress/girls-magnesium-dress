@@ -103,7 +103,7 @@
 
 
 // RESPONSIVE PROPERTIES
-@mixin dmb-resp-prop($property,$mob,$tab: null,$desk: null,$wide: null) {
+@mixin dmb-resp-prop($property, $mob, $tab: null, $desk: null, $wide: null) {
   // Create responsive property values by specifying the property name, the mobile, tablet,
   // desktop and wide values. Only mobile value and one other value are necessary.
   //

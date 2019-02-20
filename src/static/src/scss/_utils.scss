@@ -62,59 +62,50 @@
 }
 
 ////////////////////
+// UTILITY CLASSES
 
-
-///// RESPONSIVE MARGINS AND PADDING
-
-// The following will generate these helper classes:
-// .dmb-h-m-t-s > responsive margin top small
-// .dmb-h-m-t-m > responsive margin top medium
-// .dmb-h-m-t-l > responsive margin top large
-// .dmb-h-m-b-s > responsive margin bottom small
-// .dmb-h-m-b-m > responsive margin bottom medium
-// .dmb-h-m-b-l > responsive margin bottom large
-// .dmb-h-p-t-s > responsive padding top small
-// .dmb-h-p-t-m > responsive padding top medium
-// .dmb-h-p-t-l > responsive padding top large
-// .dmb-h-p-b-s > responsive padding bottom small
-// .dmb-h-p-b-m > responsive padding bottom medium
-// .dmb-h-p-b-l > responsive padding bottom large
+// RESPONSIVE VERTCIAL SPACINGS
+// Resposive vertical spacing utility classes generated from $dmb-vertical-spacings map in ./_variables.scss
+//
+// Examples:
+// .dmb-u-m-t-s > responsive margin top small
+// .dmb-u-m-t-m > responsive margin top medium
+// .dmb-u-m-t-l > responsive margin top large
+// .dmb-u-m-b-s > responsive margin bottom small
+// .dmb-u-m-b-m > responsive margin bottom medium
+// .dmb-u-m-b-l > responsive margin bottom large
+// .dmb-u-p-t-s > responsive padding top small
+// .dmb-u-p-t-m > responsive padding top medium
+// .dmb-u-p-t-l > responsive padding top large
+// .dmb-u-p-b-s > responsive padding bottom small
+// .dmb-u-p-b-m > responsive padding bottom medium
+// .dmb-u-p-b-l > responsive padding bottom large
 
 $properties: (margin, padding);
 $positions: (top, bottom);
+
 @each $prop in $properties {
   @each $position in $positions {
-    .dmb-h-#{str-slice($prop, 0, 1)} {
+    .dmb-u-#{str-slice($prop, 0, 1)} {
       &-#{str-slice($position, 0, 1)} {
-        &-s {
-          #{$prop}-#{$position}: 20px;
+        @each $size in (s, m, l) {
+          &-#{$size} {
+            $spacings: map-get($dmb-vertical-spacings, #{$size});
+            #{$prop}-#{$position}: map-get($spacings, 'mobile');
 
-          @include dmb-mq($from: desktop) {
-            #{$prop}-#{$position}: 30px;
-          }
-        }
+            // Add tablet spacings if different from mobile
+            @if map-get($spacings, 'mobile') != map-get($spacings, 'tablet') {
+              @include dmb-mq($from: tablet) {
+                #{$prop}-#{$position}: map-get($spacings, 'tablet');
+              }
+            }
 
-        &-m {
-          #{$prop}-#{$position}: 40px;
-
-          @include dmb-mq($from: tablet) {
-            #{$prop}-#{$position}: 50px;
-          }
-
-          @include dmb-mq($from: desktop) {
-            #{$prop}-#{$position}: 60px;
-          }
-        }
-
-        &-l {
-          #{$prop}-#{$position}: 60px;
-
-          @include dmb-mq($from: tablet) {
-            #{$prop}-#{$position}: 80px;
-          }
-
-          @include dmb-mq($from: desktop) {
-            #{$prop}-#{$position}: 120px;
+            // Add desktop spacings if different from tablet
+            @if map-get($spacings, 'tablet') != map-get($spacings, 'desktop') {
+              @include dmb-mq($from: desktop) {
+                #{$prop}-#{$position}: map-get($spacings, 'desktop');
+              }
+            }
           }
         }
       }
