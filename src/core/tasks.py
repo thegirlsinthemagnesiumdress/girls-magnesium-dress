@@ -89,7 +89,8 @@ def _get_results(tenant, survey_definition):
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_response_ids = _create_survey_results(merged_responses.values(), survey_definition)
+        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition)
+        new_response_ids = [result.response_id for result in new_survey_results]
         email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
@@ -123,15 +124,15 @@ def _create_survey_results(results_data, last_survey_definition):
 
     :returns: list of `response_id` for each `core.SurveyResult` created.
     """
-    response_ids = []
+    new_survey_results = []
     for data in results_data:
         try:
             new_survey_result = _create_survey_result(data, last_survey_definition)
             if new_survey_result:
-                response_ids.append(new_survey_result)
+                new_survey_results.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
             logging.error(e)
-    return response_ids
+    return new_survey_results
 
 
 def _create_survey_result(survey_data, last_survey_definition):
@@ -170,7 +171,7 @@ def _create_survey_result(survey_data, last_survey_definition):
                 raw=raw_data,
                 survey_definition=last_survey_definition,
             )
-            new_survey_result = response_id
+            new_survey_result = survey_result
             try:
                 s = Survey.objects.get(pk=response_data.get('sid'))
                 s.last_survey_result = survey_result

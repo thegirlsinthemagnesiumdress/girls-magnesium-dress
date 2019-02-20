@@ -330,7 +330,8 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_ids = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 1)
         # mocked data contains 3 finished survey results
@@ -345,7 +346,8 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_ids = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -367,7 +369,8 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-        got_ids = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
         # no new results are created
