@@ -1,0 +1,30 @@
+.dmb-img-text-collage {
+  &__img-col {
+    &--double {
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+
+      img {
+        &:nth-of-type(2) {
+          @include dmb-resp-prop(margin-top, 15px, 15px, 27px)
+        }
+      }
+    }
+  }
+
+  &__tall-img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
+
+  &__text-col {
+    &.h-c-grid__col{
+      @include dmb-mq($until: tablet) {
+        margin-top: 20px;
+      }
+    }
+  }
+}
