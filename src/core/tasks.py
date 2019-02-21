@@ -19,6 +19,7 @@ import cloudstorage
 from google.appengine.api import app_identity
 import unicodecsv as csv
 from datetime import datetime
+from collections import defaultdict
 
 
 def sync_qualtrics():
@@ -312,3 +313,16 @@ def generate_csv_export():
     logging.info("Copying {} as {}".format(filename, latest))
     cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
     logging.info("Export completed")
+
+
+def update_industries_benchmarks(survey_results):
+    """
+    Update industries benchmarks for each element in `survey_results` parameter.
+
+    :param survey_results: a list of `core.models.SurveyResults` used to update
+        `core.models.IndustryBenchmark`
+    """
+    results_by_industry = defaultdict(list)
+    for s in survey_results:
+        if s.survey:
+            results_by_industry[s.survey.industry].append(s)

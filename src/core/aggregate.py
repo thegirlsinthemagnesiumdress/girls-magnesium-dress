@@ -1,5 +1,6 @@
 from core.models import Survey
 from django.conf import settings
+from collections import defaultdict
 
 
 def children(industry, elements):
@@ -23,7 +24,7 @@ def descendant(industry, elements, result):
     return result
 
 
-def _get_path(element, elements):
+def _get_path(element, elements, root_element=None):
     """Given an element it returns the path from that element to the root element.
 
     `element` must be a part of `elements`.
@@ -38,7 +39,7 @@ def _get_path(element, elements):
         label, parent = elements.get(current_element)
         current_element = parent
     else:
-        path.append(current_element)
+        path.append(root_element)
     return path
 
 
@@ -53,3 +54,20 @@ def get_surveys_by_industry(initial_industry, threshold):
             break
 
     return surveys, industry
+
+
+def updatable_industries(survey_results):
+    """Return a dictionary of industries to be updated with related `core.models.SurveyResult`.
+
+    :param survey_results: list of `core.models.SurveyResult` to be organized by industry.
+
+    :return: a dictionary like object of industry to be updated.
+    """
+    results_by_industry = defaultdict(list)
+    for s in survey_results:
+        if s.survey is not None:
+            path = _get_path(s.survey.industry, settings.INDUSTRIES, settings.ALL_INDUSTRIES[0])
+            for industry in path:
+                results_by_industry[industry].append(s)
+
+    return results_by_industry
