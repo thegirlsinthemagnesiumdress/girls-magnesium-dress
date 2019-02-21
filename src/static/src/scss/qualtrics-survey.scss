@@ -1,5 +1,5 @@
 // If you have Sass variable overrides, include them here and uncomment.
-@import 'hercules-variable-overrides';
+@import 'legacy/hercules-variable-overrides';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&lang=en'); // sass-lint:disable-line no-url-domains no-url-protocols
 
@@ -27,26 +27,26 @@
 @import 'hercules/lib/components/icons/icons';
 
 //Colors
-@import 'colors';
+@import 'legacy/colors';
 
 // Variables
-@import 'variables';
+@import 'legacy/variables';
 
 // Mixins
-@import 'mixins';
+@import 'legacy/mixins';
 
 // Variables
-@import 'utils';
+@import 'legacy/utils';
 
 // Hercules overrides
-@import 'hercules-overrides';
+@import 'legacy/hercules-overrides';
 
 // Shared
-@import 'shared/fab';
-@import 'shared/hero';
-@import 'shared/side-panel';
-@import 'shared/buttons';
-@import 'shared/partnership-with-bcg';
+@import 'legacy/shared/fab';
+@import 'legacy/shared/hero';
+@import 'legacy/shared/side-panel';
+@import 'legacy/shared/buttons';
+@import 'legacy/shared/partnership-with-bcg';
 
 // Components
 @import 'survey/buttons';
