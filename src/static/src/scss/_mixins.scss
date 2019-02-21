@@ -75,23 +75,23 @@
   // @include dmb-resp-prop(margin-bottom, 20px, 40px, 60px, 80px)
   // will give the item a bottom margin of 20px, 40px, 60px and 80px at mobile, tablet, desktop and wide respectively.
 
-  #{$property}: $mob;
+  #{$property}: #{$mob};
 
   @if $tab {
     @include dmb-mq($from: tablet) {
-      #{$property}: $tab;
+      #{$property}: #{$tab};
     }
   }
 
   @if $desk {
     @include dmb-mq($from: desktop) {
-      #{$property}: $desk;
+      #{$property}: #{$desk};
     }
   }
 
   @if $wide {
     @include dmb-mq($from: wide) {
-      #{$property}: $wide;
+      #{$property}: #{$wide};
     }
   }
 }
