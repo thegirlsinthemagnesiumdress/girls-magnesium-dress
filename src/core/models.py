@@ -8,7 +8,7 @@ from django.urls import reverse
 from uuid import uuid4
 from core.conf.utils import flatten
 from core.settings.tenants import TENANTS_CHOICES
-from core.conf.utils import flatten, get_tenant_key
+from core.conf.utils import flatten, get_tenant_key, get_tenant_slug
 
 
 class User(GaeAbstractDatastoreUser):
@@ -73,7 +73,7 @@ class Survey(models.Model):
 
     @property
     def slug(self):
-        return settings.TENANTS[self.tenant].get('slug')
+        return get_tenant_slug(self.tenant)
 
     def save(self, *args, **kwargs):
         if not self.pk:

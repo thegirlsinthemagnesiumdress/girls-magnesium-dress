@@ -104,3 +104,7 @@ def flatten(industries, parent_label='', leaf_only=True):
 
 def get_tenant_key(slug):
     return settings.TENANTS_SLUG_TO_KEY[slug]
+
+
+def get_tenant_slug(tenant):
+    return settings.TENANTS[tenant]['slug']

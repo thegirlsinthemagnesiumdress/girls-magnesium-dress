@@ -20,6 +20,8 @@ from google.appengine.api import app_identity
 import unicodecsv as csv
 from datetime import datetime
 
+from core.conf.utils import get_tenant_slug
+
 
 def sync_qualtrics():
     for tenant_key, tenant in settings.TENANTS.items():
@@ -210,7 +212,8 @@ def send_emails_for_new_reports(email_list):
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
 
         if is_valid_email(to):
-            link = reverse('report', kwargs={'tenant': settings.TENANTS[tenant].get('slug'), 'sid': sid})
+            slug = get_tenant_slug(tenant)
+            link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
             bcc = [bcc] if is_valid_email(bcc) else None
             context = {
                 'url': "http://{}{}".format(domain, link),
