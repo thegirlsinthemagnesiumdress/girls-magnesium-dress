@@ -1,0 +1,5 @@
+.h-c-headline {
+  hyphens: none;
+  page-break-inside: avoid;
+  @include dmb-resp-prop(margin-bottom, 20px, 30px);
+}
