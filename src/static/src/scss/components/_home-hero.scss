@@ -1,5 +1,5 @@
 $dmb-home-hero-card-bg: #fff;
-$dmb-half-col-width: calc(#{$h-col-width-base}% / 2);
+$dmb-half-col-width: calc(#{$h-grid-column-width} / 2);
 
 .dmb-home-hero {
   position: relative;
