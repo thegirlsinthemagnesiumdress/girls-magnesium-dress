@@ -12,7 +12,7 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten
+from core.conf.utils import flatten, get_tenant_slug
 
 
 INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
@@ -40,7 +40,8 @@ def report_result_static(request, tenant, response_id):
 
 
 def index_static(request, tenant):
-    return render(request, 'public/{}/index.html'.format(tenant), {'tenant': settings.TENANTS[tenant].get('slug')})
+    slug = get_tenant_slug(tenant)
+    return render(request, 'public/{}/index.html'.format(tenant), {'tenant': slug})
 
 
 @login_required
@@ -52,13 +53,15 @@ def reports_admin(request, tenant):
     else:
         surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
 
+    slug = get_tenant_slug(tenant)
+
     serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
-        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': settings.TENANTS[tenant].get('slug')})),
+        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
         'bootstrap_data': JSONRenderer().render({
             'surveys': serialized_data.data
         }),

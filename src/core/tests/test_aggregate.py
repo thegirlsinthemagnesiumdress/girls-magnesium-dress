@@ -29,8 +29,8 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough element for that industry,
         it will fall back to parent industry."""
 
-        surveys, industry = aggregate.get_surveys_by_industry('ic-o', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        self.assertEqual(len(surveys), 3)
+        survey_results, industry = aggregate.get_surveys_by_industry('ic-o', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
+        self.assertEqual(len(survey_results), 3)
         self.assertEqual(industry, 'ic')
 
     def test_get_surveys_by_industry_current_industry(self):
@@ -40,24 +40,24 @@ class SurveyDMBListTest(TestCase):
         self._make_survey_with_result(industry='ic-s')
         self._make_survey_with_result(industry='ic-s')
 
-        surveys, industry = aggregate.get_surveys_by_industry('ic-s', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        self.assertEqual(len(surveys), 3)
+        survey_results, industry = aggregate.get_surveys_by_industry('ic-s', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
+        self.assertEqual(len(survey_results), 3)
         self.assertEqual(industry, 'ic-s')
 
     def test_get_surveys_by_industry_fallback_global(self):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = aggregate.get_surveys_by_industry('edu-fe', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        self.assertEqual(len(surveys), 3)
+        survey_results, industry = aggregate.get_surveys_by_industry('edu-fe', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
+        self.assertEqual(len(survey_results), 3)
         self.assertEqual(industry, None)
 
     def test_get_surveys_by_industry_global_industry(self):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = aggregate.get_surveys_by_industry('edu', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        self.assertEqual(len(surveys), 3)
+        survey_results, industry = aggregate.get_surveys_by_industry('edu', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
+        self.assertEqual(len(survey_results), 3)
         self.assertIsNone(industry)
 
     @override_settings(
@@ -67,8 +67,8 @@ class SurveyDMBListTest(TestCase):
         """Test if there are not enough elements for that industry and
         neither for the parent industry, use global."""
 
-        surveys, industry = aggregate.get_surveys_by_industry('edu', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        self.assertEqual(len(surveys), 3)
+        survey_results, industry = aggregate.get_surveys_by_industry('edu', settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
+        self.assertEqual(len(survey_results), 3)
         self.assertEqual(industry, None)
 
     def test_get_surveys_by_industry_invalid_industry(self):
