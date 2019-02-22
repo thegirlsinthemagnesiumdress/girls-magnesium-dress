@@ -36,6 +36,12 @@ class RegistrationController {
      * @export
      * @type{string}
      */
+    this.distributionChannel= '';
+
+    /**
+     * @export
+     * @type{string}
+     */
     this.country= '';
 
     /**

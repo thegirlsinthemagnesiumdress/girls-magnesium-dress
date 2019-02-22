@@ -1,3 +1,5 @@
+from django.conf import settings
+
 
 def map_industries(industries, parent, result):
     """Given a dictionary of nested industries, it returns a
@@ -98,3 +100,11 @@ def flatten(industries, parent_label='', leaf_only=True):
                 result.append((key, label))
 
     return result
+
+
+def get_tenant_key(slug):
+    return settings.TENANTS_SLUG_TO_KEY[slug]
+
+
+def get_tenant_slug(tenant):
+    return settings.TENANTS[tenant]['slug']

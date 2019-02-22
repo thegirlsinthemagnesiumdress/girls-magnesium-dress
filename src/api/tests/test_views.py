@@ -307,6 +307,63 @@ class SurveyIndustryResultTest(APITestCase):
 
     @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
     @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
+    def test_industry_with_results_excluded_from_best_practice(self, mocked_best_practice, mocked_benchmark):
+        """
+        When there are some results for an industry, and we are above minimum
+        threshold, we expect some results back, excluded the one where
+        `excluded_from_best_practice` is True.
+        """
+        survey_dmb_d = {
+            'dimension_A': 1.0,
+            'dimension_C': 1.0,
+        }
+        survey = Survey.objects.create(
+            company_name='test company 3',
+            industry='ic-o',
+            country='IT',
+            tenant='ads',
+        )
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='CCC',
+            dmb=1.0,
+            excluded_from_best_practice=True,
+            dmb_d=json.dumps(survey_dmb_d)
+        )
+        survey.last_survey_result = survey_result
+
+        url = reverse('survey_industry', kwargs={'industry': 'ic'})
+        response = self.client.get(url)
+        response_data_keys = response.data.keys()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(set(response_data_keys), {
+            'industry',
+            'dmb_industry',
+            'dmb_bp_industry',
+            'dmb',
+            'dmb_d',
+            'dmb_bp',
+            'dmb_d_bp'
+        })
+        # check mocked_benchmark is called with correct parameters
+        mocked_benchmark.assert_called()
+        args, _ = mocked_benchmark.call_args_list[0]
+        dmb_d_list_arg = args[0]
+        self.assertEqual(len(dmb_d_list_arg), 2)
+        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
+        self.assertFalse(self._assert_dict_in_list(survey_dmb_d, dmb_d_list_arg))
+
+        # check mocked_best_practice is called with correct parameters
+        mocked_best_practice.assert_called()
+        args, _ = mocked_best_practice.call_args_list[0]
+        dmb_d_list_arg = args[0]
+        self.assertEqual(len(dmb_d_list_arg), 2)
+        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
+        self.assertFalse(self._assert_dict_in_list(survey_dmb_d, dmb_d_list_arg))
+
+    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
     def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_best_practice, mocked_benchmark):
         """
         When a survey has multiple results, only the last one should be use
