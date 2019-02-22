@@ -29,7 +29,7 @@
     }
 
     @include dmb-mq(#{$h-site-width-desktop}) {
-      padding-top: calc(150% - #{$h-grid-gutter-max-width});
+      padding-top: calc(150% + #{$h-grid-gutter-max-width});
     }
   }
 
