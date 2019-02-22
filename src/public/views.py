@@ -71,7 +71,7 @@ def reports_admin(request, tenant):
 @login_required
 @survey_admin_required
 def result_detail(request, tenant, response_id):
-    survey_result = get_object_or_404(SurveyResult, response_id=response_id, tenant=tenant)
+    survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'result_detail': get_response_detail(survey_result.survey_definition.content, survey_result.raw),
