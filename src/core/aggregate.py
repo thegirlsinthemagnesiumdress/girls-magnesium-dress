@@ -65,7 +65,7 @@ def updatable_industries(survey_results):
     """
     results_by_industry = defaultdict(list)
     for s in survey_results:
-        if s.survey is not None:
+        if s.survey:
             path = _get_path(s.survey.industry, settings.INDUSTRIES, settings.ALL_INDUSTRIES[0])
             for industry in path:
                 results_by_industry[industry].append(s)

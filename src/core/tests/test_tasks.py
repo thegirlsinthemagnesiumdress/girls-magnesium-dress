@@ -1,11 +1,11 @@
 # encoding=utf-8
 import mock
 
-from core.models import Survey, SurveyResult, SurveyDefinition
-from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition, sync_qualtrics
+from core.models import Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
+from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition, sync_qualtrics, calculate_industry_benchmark
 from djangae.test import TestCase
 from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished, get_survey_definition, MOCKED_TENANTS
-from mommy_recepies import make_survey, make_survey_result, make_survey_definition
+from mommy_recepies import make_survey, make_survey_result, make_survey_definition, make_survey_with_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
 from django.utils import dateparse
@@ -750,3 +750,104 @@ class GetDefinitionTestCase(TestCase):
         args, kwargs = all_calls[0]
         self.assertEqual(len(args), 1)
         self.assertIsNotNone(args[0])
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+)
+class CalculateIndustryBenchmark(TestCase):
+    """Tests for calculate_industry_benchmark function"""
+
+    def setUp(self):
+        self.survey_id = 'surveyid'
+
+    def test_no_initial_values(self):
+        """When there are no IndustryBencmark objects, after calculate benchmark
+        run, we should have all the industries from ic-o to root saved as
+        IndustryBenchmark."""
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 0)
+
+        make_survey_with_result(industry='ic-o')
+        calculate_industry_benchmark('tenant1')
+
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 3)
+
+    def test_has_initial_values(self):
+        """When there are IndustryBencmark objects, after calculate benchmark
+        run, we should have all the industries from ic-o to root saved as
+        IndustryBenchmark, with values updated."""
+        IndustryBenchmark.objects.create(
+            industry='ic-o',
+            tenant='tenant1',
+            initial_dmb=1.0,
+            initial_dmb_d={},
+            initial_best_practice=2.0,
+            initial_best_practice_d={},
+            sample_size=10
+        )
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 1)
+        make_survey_with_result(industry='ic-o')
+        calculate_industry_benchmark('tenant1')
+
+        # check all industries `all -- ic -- ic-o` are present
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 3)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='ic-o')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='ic')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='all')), 1)
+
+    def test_no_surveys_should_not_update_benchmarks(self):
+        """When there are IndustryBencmark objects, but there are no survey results,
+        calculation should be left untouched."""
+        IndustryBenchmark.objects.create(
+            industry='ic-o',
+            tenant='tenant1',
+            initial_dmb=1.0,
+            initial_dmb_d={},
+            initial_best_practice=2.0,
+            initial_best_practice_d={},
+            sample_size=10
+        )
+
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 1)
+
+        calculate_industry_benchmark('tenant1')
+
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 1)
+
+    def test_multi_tenant(self):
+        """IndustryBencmark objects are handled tenant based."""
+        IndustryBenchmark.objects.create(
+            industry='ic-o',
+            tenant='tenant1',
+            initial_dmb=1.0,
+            initial_dmb_d={},
+            initial_best_practice=2.0,
+            initial_best_practice_d={},
+            sample_size=10
+        )
+        IndustryBenchmark.objects.create(
+            industry='edu-o',
+            tenant='tenant2',
+            initial_dmb=1.0,
+            initial_dmb_d={},
+            initial_best_practice=2.0,
+            initial_best_practice_d={},
+            sample_size=10
+        )
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant2')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 2)
+
+        # create a survey for tenant1
+        make_survey_with_result(industry='ic-o')
+        calculate_industry_benchmark('tenant1')
+
+        # check all industries `all -- ic -- ic-o` are present
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 4)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='ic-o')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='ic')), 1)
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='all')), 1)
+        # but the one for tenant2 should be left untouched
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant2')), 1)

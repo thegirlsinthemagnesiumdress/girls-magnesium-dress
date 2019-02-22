@@ -2,7 +2,7 @@ import logging
 import os
 import pytz
 
-from core.models import Survey, SurveyResult, SurveyDefinition
+from core.models import Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
 from core.qualtrics import benchmark, download, exceptions, question
 from django.conf import settings
 
@@ -20,6 +20,7 @@ from google.appengine.api import app_identity
 import unicodecsv as csv
 from datetime import datetime
 from collections import defaultdict
+from core.aggregate import updatable_industries
 
 
 def sync_qualtrics():
@@ -326,3 +327,35 @@ def update_industries_benchmarks(survey_results):
     for s in survey_results:
         if s.survey:
             results_by_industry[s.survey.industry].append(s)
+
+
+def calculate_industry_benchmark(tenant):
+    last_survey_results_pks = Survey.objects.filter(
+        last_survey_result__isnull=False).values_list('last_survey_result', flat=True)
+    valid_survey_results = SurveyResult.valid_results.filter(pk__in=list(last_survey_results_pks))
+
+    survey_results_by_industry = updatable_industries(valid_survey_results)
+
+    initial_industry_benchmarks = IndustryBenchmark.objects.filter(tenant=tenant)
+    initial_industry_benchmarks_dict = {initial.industry: initial for initial in initial_industry_benchmarks}
+
+    for industry, survey_results in survey_results_by_industry.items():
+        current_industry_benchmark = initial_industry_benchmarks_dict.get(industry)
+
+        dmb_d_list = [result.dmb_d for result in survey_results]
+        dmb = [result.dmb for result in survey_results]
+
+        if current_industry_benchmark:
+            dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
+            dmb += [current_industry_benchmark.initial_dmb] * current_industry_benchmark.sample_size
+
+        dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+
+        IndustryBenchmark.objects.update_or_create(
+            tenant=tenant,
+            industry=industry,
+            defaults={
+                'dmb_value': dmb,
+                'dmb_d_value': dmb_d,
+            }
+        )

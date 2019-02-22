@@ -37,3 +37,11 @@ def make_user(**kwargs):
 
 def make_survey_definition(**kwargs):
     return mommy.make('core.SurveyDefinition', **kwargs)
+
+
+def make_survey_with_result(industry):
+    survey = make_survey(industry=industry)
+    survey_res = make_survey_result(survey=survey)
+    survey.last_survey_result = survey_res
+    survey.save()
+    return survey
