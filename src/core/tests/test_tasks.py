@@ -27,7 +27,7 @@ class sync_qualtricsTestCase(TestCase):
     @mock.patch('core.tasks._get_results', return_value='something')
     def test_syncs_def_and_results(self, get_result_mock, get_survey_definition_mock):
         sync_qualtrics()
-        self.assertEqual(get_survey_definition_mock.call_count, 1)
+        self.assertEqual(get_survey_definition_mock.call_count, len(MOCKED_TENANTS.keys()))
 
         all_calls = get_survey_definition_mock.call_args_list
 
@@ -35,7 +35,7 @@ class sync_qualtricsTestCase(TestCase):
         self.assertEqual(len(args), 1)
         self.assertIsNotNone(args[0])
 
-        self.assertEqual(get_result_mock.call_count, 1)
+        self.assertEqual(get_result_mock.call_count, len(MOCKED_TENANTS.keys()))
 
         all_calls = get_result_mock.call_args_list
 
@@ -47,7 +47,7 @@ class sync_qualtricsTestCase(TestCase):
     @mock.patch('core.tasks._get_results', return_value='something')
     def test_syncs_def_fails(self, get_result_mock, get_survey_definition_mock):
         sync_qualtrics()
-        self.assertEqual(get_survey_definition_mock.call_count, 1)
+        self.assertEqual(get_survey_definition_mock.call_count, len(MOCKED_TENANTS.keys()))
         self.assertEqual(get_result_mock.call_count, 0)
 
 
