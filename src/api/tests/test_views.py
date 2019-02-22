@@ -317,7 +317,12 @@ class SurveyIndustryResultTest(APITestCase):
             'dimension_A': 1.0,
             'dimension_C': 1.0,
         }
-        survey = Survey.objects.create(company_name='test company 3', industry='ic-o', country="it")
+        survey = Survey.objects.create(
+            company_name='test company 3',
+            industry='ic-o',
+            country='IT',
+            tenant='advertisers',
+        )
         survey_result = make_survey_result(
             survey=survey,
             response_id='CCC',
