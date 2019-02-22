@@ -295,10 +295,6 @@ class SurveyIndustryResultTest(APITestCase):
         response = self.client.get(url)
         response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-<<<<<<< HEAD
-=======
-
->>>>>>> master
         self.assertEqual(set(response_data_keys), {
             'industry',
             'dmb_industry',
