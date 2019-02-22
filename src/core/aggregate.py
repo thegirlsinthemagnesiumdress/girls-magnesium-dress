@@ -49,7 +49,9 @@ def get_surveys_by_industry(initial_industry, threshold):
     for industry in _get_path(initial_industry, settings.INDUSTRIES):
         current_industries = descendant(industry, settings.INDUSTRIES, [])
         surveys = Survey.objects.filter(industry__in=current_industries).exclude(last_survey_result__isnull=True)
-        if len(surveys) > threshold:
+        survey_results = [survey.last_survey_result for survey in surveys
+                          if not survey.last_survey_result.excluded_from_best_practice]
+        if len(survey_results) > threshold:
             break
 
-    return surveys, industry
+    return survey_results, industry

@@ -8,6 +8,7 @@ from django.urls import reverse
 from uuid import uuid4
 from core.conf.utils import flatten
 from core.settings.tenants import TENANTS_CHOICES
+from core.conf.utils import flatten, get_tenant_key, get_tenant_slug
 
 
 class User(GaeAbstractDatastoreUser):
@@ -68,7 +69,11 @@ class Survey(models.Model):
 
     @property
     def last_survey_result_link(self):
-        return reverse('report', kwargs={'tenant': self.tenant, 'sid': self.sid}) if self.last_survey_result else None
+        return reverse('report', kwargs={'tenant': self.slug, 'sid': self.sid}) if self.last_survey_result else None
+
+    @property
+    def slug(self):
+        return get_tenant_slug(self.tenant)
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -97,7 +102,7 @@ class SurveyResult(models.Model):
 
     @property
     def report_link(self):
-        return reverse('report_result', kwargs={'tenant': self.survey.tenant, 'response_id': self.response_id})
+        return reverse('report_result', kwargs={'tenant': self.survey.slug, 'response_id': self.response_id})
 
     @property
     def detail_link(self):
@@ -110,7 +115,7 @@ class SurveyResult(models.Model):
         return reverse(
             'result-detail',
             kwargs={
-                'tenant': self.survey.tenant,
+                'tenant': self.survey.slug,
                 'response_id': self.response_id,
             },
         )
