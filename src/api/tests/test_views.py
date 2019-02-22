@@ -321,7 +321,7 @@ class SurveyIndustryResultTest(APITestCase):
             company_name='test company 3',
             industry='ic-o',
             country='IT',
-            tenant='advertisers',
+            tenant='ads',
         )
         survey_result = make_survey_result(
             survey=survey,
