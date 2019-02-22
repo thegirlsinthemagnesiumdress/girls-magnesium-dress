@@ -20,6 +20,10 @@ $h-grid-width-mobile: '100vw';
 $h-grid-col-width-mobile: '0.208 * 100vw';
 $h-grid-gutter-width-mobile: '0.0528 * 100vw';
 
-$h-grid-width: '100vw - (2 * 32px)';
-$h-grid-col-width: '0.0639 * (100vw - (2 * 32px))';
-$h-grid-gutter-width: '0.0212 * (100vw - (2 * 32px))';
+$h-grid-width: '100vw - (2 * #{$h-site-padding})';
+$h-grid-col-width: '0.0639 * (100vw - (2 * #{$h-site-padding}))';
+$h-grid-gutter-width: '0.0212 * (100vw - (2 * #{$h-site-padding}))';
+
+$h-grid-max-width: '#{$h-site-width-desktop} - (2 * #{$h-site-padding})';
+$h-grid-col-max-width: '0.0639 * (#{$h-site-width-desktop} - (2 * #{$h-site-padding}))';
+$h-grid-gutter-max-width: '0.0212 * (#{$h-site-width-desktop} - (2 * #{$h-site-padding}))';

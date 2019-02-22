@@ -16,7 +16,7 @@
 
       // give margin a maximum value
       @include dmb-mq(#{$h-site-width-desktop}) {
-        margin-top: 27px;
+        margin-top: calc(#{$h-grid-gutter-max-width});
       }
     }
   }
@@ -29,7 +29,7 @@
     }
 
     @include dmb-mq(#{$h-site-width-desktop}) {
-      padding-top: calc(150% + 27px);
+      padding-top: calc(150% - #{$h-grid-gutter-max-width});
     }
   }
 

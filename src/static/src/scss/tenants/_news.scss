@@ -11,10 +11,12 @@ $dmb-news-primary-color-dark: $dmb-color-green-jewel;
 
 // TENANT STYLES
 .dmb--news {
+  // TENANT PRIMARY COLOR
   .dmb-primary-heading {
     color: $dmb-news-primary-color;
   }
 
+  // HOME HERO IMAGES
   .dmb-home-hero {
     &__bg-img {
       background-image: url('../img/news/home-hero-s.jpg');
@@ -33,6 +35,7 @@ $dmb-news-primary-color-dark: $dmb-color-green-jewel;
     }
   }
 
+  // IMAGE TEXT COLLAGE IMAGES
   .dmb-img-text-collage {
     &__img--1 {
       background-image: url('../img/news/home-collage-img1.jpg');

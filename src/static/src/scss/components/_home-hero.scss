@@ -1,5 +1,4 @@
 $dmb-home-hero-card-bg: #fff;
-$dmb-half-col-width: calc(#{$h-grid-column-width} / 2);
 
 .dmb-home-hero {
   position: relative;
@@ -13,7 +12,11 @@ $dmb-half-col-width: calc(#{$h-grid-column-width} / 2);
     padding: 20px;
 
     @include dmb-mq(tablet) {
-      padding-left: $dmb-half-col-width;
+      padding-left: calc(#{$h-grid-col-width} / 2);
+    }
+
+    @include dmb-mq(#{$h-site-width-desktop}) {
+      padding-left: calc(#{$h-grid-col-max-width} / 2);
     }
   }
 
@@ -30,7 +33,7 @@ $dmb-half-col-width: calc(#{$h-grid-column-width} / 2);
 
     @include dmb-mq(tablet) {
       background-size: cover;
-      width: calc((100% - #{$dmb-half-col-width}) - 32px);
+      width: calc(96.8% - 32px);
     }
   }
 }
