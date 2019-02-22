@@ -32,4 +32,31 @@ $dmb-news-primary-color-dark: $dmb-color-green-jewel;
       }
     }
   }
+
+  .dmb-img-text-collage {
+    &__img--1 {
+      background-image: url('../img/news/home-collage-img1.jpg');
+      background-position: center top;
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/news/home-collage-img1@2x.jpg');
+      }
+    }
+
+    &__img--2 {
+      background-image: url('../img/news/home-collage-img2.jpg');
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/news/home-collage-img2@2x.jpg');
+      }
+    }
+
+    &__img--3 {
+      background-image: url('../img/news/home-collage-img3.jpg');
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/news/home-collage-img3@2x.jpg');
+      }
+    }
+  }
 }

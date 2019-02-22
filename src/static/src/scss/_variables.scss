@@ -1,13 +1,25 @@
-// Breakpoints
+// BREAKPOINTS
 $dmb-breakpoints: (
   tablet: 600px,
   desktop: 1024px,
   wide: 1440px
 );
 
-// Vertical spacings
+// VERTICAL SPACINGS
 $dmb-vertical-spacings: (
   s: (mobile: 20px, tablet: 20px, desktop: 30px),
   m: (mobile: 40px, tablet: 50px, desktop: 60px),
   l: (mobile: 60px, tablet: 80px, desktop: 120px)
 );
+
+// GRID DIMENSIONS
+// `.h-c-grid` grid, column and gutter widths as fractions of vw for mobile and normal grids
+// Example:
+// margin-top: calc(#{$h-grid-col-width});
+$h-grid-width-mobile: '100vw';
+$h-grid-col-width-mobile: '0.208 * 100vw';
+$h-grid-gutter-width-mobile: '0.0528 * 100vw';
+
+$h-grid-width: '100vw - (2 * 32px)';
+$h-grid-col-width: '0.0639 * (100vw - (2 * 32px))';
+$h-grid-gutter-width: '0.0212 * (100vw - (2 * 32px))';

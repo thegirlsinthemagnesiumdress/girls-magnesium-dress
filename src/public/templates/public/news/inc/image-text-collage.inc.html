@@ -1,44 +1,43 @@
 {% comment %}
-  Generates the a collage with 3 images, 1 vertical div with a background image next to 2 stacked img tags with srcsets with 1x and 2x images.
+  Generates a collage with two columns of images using srcsets with 1x and 2x images, next to text. An image can be portrait or landscape by giving it a modifier class of `dmb-img-text-collage__img--portait` or `dmb-img-text-collage__img--landscape` respectively.
 
-  Takes following parameters:
-    img1, img2, img3 - url of images without extension e.g. 'img/news/collage'.
-    extensions - images extensions e.g. 'jpg'.
-    title - title copy
-    text - text copy
+  Valid combinations:
+    1 portrait in each column
+    1 landscape in each column
+    2 lanscape in each column
+    2 lanscape in one column and 1 potrait in the other.
+
+  Each images should be given a unique class and then it's src can be added, and background-position overridden if required, in the tenant SCSS file:
+
+  .dmb-img-text-collage__img--1 {
+    background-image: url('../img/news/home-collage-img1.jpg');
+    background-position: center top;
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url('../img/news/home-collage-img1@2x.jpg');
+    }
+  }
 {% endcomment %}
 
 {% load staticfiles %}
 
-<div class="dmb-img-text-collage h-c-page">
+<div class="dmb-img-text-collage h-c-page dmb-u-m-b-l">
     <div class="h-c-grid">
       <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
-        <div
-            class="dmb-img-text-collage__tall-img"
-            style="background-image: url('{% static img1 %}.{{extensions}}');
-              @media(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){background-image: url('{% static img1 %}@2x.{{extensions}}')}">
-        </div>
+        <div class="dmb-img-text-collage__img--1 dmb-img-text-collage__img dmb-img-text-collage__img--portrait"></div>
       </div>
 
-      <div class="dmb-img-text-collage__img-col dmb-img-text-collage__img-col--double h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
-        <img
-            class="dmb-img-text-collage__img"
-            srcset="{% static img2 %}.{{extensions}} 1x, {% static img2 %}@2x.{{extensions}} 2x"
-            src="{% static img2 %}.{{extensions}}"
-            alt="collage image">
-        <img
-            class="dmb-img-text-collage__img"
-            srcset="{% static img3 %}.{{extensions}} 1x, {% static img3 %}@2x.{{extensions}} 2x"
-            src="{% static img3 %}.{{extensions}}"
-            alt="collage image">
+      <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
+        <div class="dmb-img-text-collage__img--2 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
+        <div class="dmb-img-text-collage__img--3 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
       </div>
 
       <div class="dmb-img-text-collage__text-col h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1 h-c-grid__col--align-middle">
         <h2 class="h-c-headline h-c-headline--three">
-          {{title}}
+          Improve how you engage and monetise your audience
         </h2>
         <p>
-          {{text}}
+          Across your business there are a multitude of opportunities to improve the way you engage and monetise your audience
         </p>
       </div>
     </div>
