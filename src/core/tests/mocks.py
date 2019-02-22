@@ -5,13 +5,15 @@ from collections import OrderedDict
 
 MOCKED_TENANTS = {
     'tenant1': {
-        'label': 'Tenant 2 label',
+        'label': 'Tenant 1 label',
+        'slug': 'tenant1-slug',
         'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
     }
 }
-MOCKED_ALLOWED_TENANTS = '|'.join(MOCKED_TENANTS.keys())
+MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])
+MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 MOCKED_DIMENSIONS = {
     'ads': [
