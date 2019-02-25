@@ -1,0 +1,12 @@
+{% load staticfiles %}
+
+<section class="dmb-product-hero dmb-u-p-b-m h-u-text-center{% if class %} {{class}}{% endif %}">
+  <img
+      class="dmb-product-hero__bg-img"
+      src="{% static 'img/news/product-hero-bg.svg' %}"
+      alt="background image">
+
+  {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img' img='img/news/laptop' ext='png' alt='laptop screen demo' %}
+
+  <div class="dmb-product-hero__color-bg"></div>
+</section>

@@ -19,26 +19,24 @@
   }
 {% endcomment %}
 
-{% load staticfiles %}
-
-<section class="dmb-img-text-collage h-c-page dmb-u-m-b-l">
-    <div class="h-c-grid">
-      <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
-        <div class="dmb-img-text-collage__img--1 dmb-img-text-collage__img dmb-img-text-collage__img--portrait"></div>
-      </div>
-
-      <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
-        <div class="dmb-img-text-collage__img--2 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
-        <div class="dmb-img-text-collage__img--3 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
-      </div>
-
-      <div class="dmb-img-text-collage__text-col h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1 h-c-grid__col--align-middle">
-        <h2 class="h-c-headline h-c-headline--three">
-          Improve how you engage and monetise your audience
-        </h2>
-        <p>
-          Across your business there are a multitude of opportunities to improve the way you engage and monetise your audience
-        </p>
-      </div>
+<section class="dmb-img-text-collage h-c-page{% if class %} {{class}}{% endif %}">
+  <div class="h-c-grid">
+    <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
+      <div class="dmb-img-text-collage__img--1 dmb-img-text-collage__img dmb-img-text-collage__img--portrait"></div>
     </div>
+
+    <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2">
+      <div class="dmb-img-text-collage__img--2 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
+      <div class="dmb-img-text-collage__img--3 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
+    </div>
+
+    <div class="dmb-img-text-collage__text-col h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1 h-c-grid__col--align-middle">
+      <h2 class="h-c-headline h-c-headline--three">
+        Improve how you engage and monetise your audience
+      </h2>
+      <p>
+        Across your business there are a multitude of opportunities to improve the way you engage and monetise your audience
+      </p>
+    </div>
+  </div>
 </section>

@@ -10,12 +10,14 @@
 
   Usage:
 
-    {% include 'public/inc/glocal/responsive-image.inc.html' with classes='dmb-class dmb-class-2' img='img/news/home-collage-img1' ext='jpg' alt='image alt' %}
+    {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-class dmb-class-2' img='img/news/home-collage-img1' ext='jpg' alt='image alt' %}
 
 {% endcomment %}
+
+{% load staticfiles %}
 
 <img
   srcset="{% static img %}.{{ext}} 1x, {% static img %}@2x.{{ext}} 2x"
   src="{% static img %}.{{ext}}"
-  {% if classes %}class="{{classes}}"{% endif %}
+  {% if class %}class="{{class}}"{% endif %}
   {% if alt %}alt="{{alt}}"{% endif %} />

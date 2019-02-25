@@ -4,16 +4,16 @@ $dmb-color-green-salem: #1e8e3e;
 $dmb-color-green-jewel: #0d7533;
 $dmb-color-green-jewel-dark: #0a4e22;
 
-$dmb-news-primary-color: $dmb-color-green-ecalyptus;
-$dmb-news-primary-color-light: $dmb-color-green-salem;
-$dmb-news-primary-color-dark: $dmb-color-green-jewel;
+$dmb-tenant-primary-color: $dmb-color-green-ecalyptus;
+$dmb-tenant-primary-color-light: $dmb-color-green-salem;
+$dmb-tenant-primary-color-dark: $dmb-color-green-jewel;
 
 
 // TENANT STYLES
 .dmb--news {
   // PRIMARY HEADING COLOR
   .dmb-primary-heading {
-    color: $dmb-news-primary-color;
+    color: $dmb-tenant-primary-color;
   }
 
   // HOME HERO IMAGES
