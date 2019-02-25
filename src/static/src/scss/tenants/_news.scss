@@ -86,8 +86,8 @@ $dimension-colors: (
           color: $color;
         }
 
-        &.glue-is-expanded .dmb-home-tabs__tab-heading {
-          border-color: $color;
+        .dmb-home-tabs__tab-text {
+          border-left-color: $color;
         }
       }
     };

@@ -3,7 +3,7 @@
   {% include 'public/news/inc/step-heading.inc.html' with text='Find out where your news organisation is on the data maturity scale.' svg='shield' %}
 
   <div class="dmb-home-tabs__tabs glue-tabby glue-zippy-style h-t-hercules"
-    data-glue-tabby-tabset-breakpoints="['medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
+    data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
     <ul class="glue-zippy-set-single">
       <li data-glue-label="nascent" id="nascent" class="dmb-home-tabs__tab--nascent glue-a-zippy--v-smooth-expand">
         <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
@@ -15,7 +15,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          CONTENT Nascent
+          {% include 'public/news/inc/home-tab-content.inc.html' with title='Nascent' text='Organisations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.' %}
         </div>
       </li>
 
@@ -29,7 +29,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          CONTENT Developing
+          {% include 'public/news/inc/home-tab-content.inc.html' with title='Developing' text='These organisations are able to drive value from data in some pockets of their business. Leadership recognizes data as a priority, but is unclear on how to unlock the best returns.' %}
         </div>
       </li>
 
@@ -43,7 +43,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          CONTENT Mature
+          {% include 'public/news/inc/home-tab-content.inc.html' with title='Mature' text='Data-informed decision making is the standard across much of the business. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.' %}
         </div>
       </li>
 
@@ -57,7 +57,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          CONTENT Leading
+          {% include 'public/news/inc/home-tab-content.inc.html' with title='Leading' text='These organisations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.' %}
         </div>
       </li>
     </ul>
