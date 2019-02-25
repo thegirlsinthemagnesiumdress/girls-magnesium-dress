@@ -1,13 +1,18 @@
 // TENANT VARIABLES
 //sass-lint:disable no-ids
-$dmb-color-green-ecalyptus: #34a853;
+$dmb-color-green-eucalyptus: #34a853;
 $dmb-color-green-salem: #1e8e3e;
 $dmb-color-green-jewel: #0d7533;
 $dmb-color-green-jewel-dark: #0a4e22;
 
-$dmb-tenant-primary-color: $dmb-color-green-ecalyptus;
-$dmb-tenant-primary-color-light: $dmb-color-green-salem;
-$dmb-tenant-primary-color-dark: $dmb-color-green-jewel;
+$dmb-tenant-primary-color: $dmb-color-green-eucalyptus;
+
+$dimension-colors: (
+  nascent: $dmb-color-green-eucalyptus,
+  developing: $dmb-color-green-salem,
+  mature: $dmb-color-green-jewel,
+  leading: $dmb-color-green-jewel-dark
+);
 
 
 // TENANT STYLES
@@ -64,5 +69,28 @@ $dmb-tenant-primary-color-dark: $dmb-color-green-jewel;
         }
       }
     }
+
+    @each $dimension, $color in $dimension-colors {
+      .glue-pagination-tab[data-glue-pagination-label='#{$dimension}'] {
+        .glue-c-tabset__button {
+          color: $color;
+        }
+
+        &.glue-is-active .glue-c-tabset__button {
+          border-color: $color;
+        }
+      }
+
+      .dmb-home-tabs__tab--#{$dimension} {
+        .dmb-home-tabs__tab-heading {
+          color: $color;
+        }
+
+        &.glue-is-expanded .dmb-home-tabs__tab-heading {
+          border-color: $color;
+        }
+      }
+    };
+
   } //#dmb-landing
 }
