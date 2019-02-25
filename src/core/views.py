@@ -56,6 +56,20 @@ def migrate_to_default_tenant_task(request):
 
 
 @task_or_admin_only
+def migrate_deloitte_data_task(request):
+    """Migrate deafult values provided by Deloitte."""
+    msg = "Migrate deafult values provided by Deloitte"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.migrate_deloitte_data,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
 def update_industries_benchmarks_task(request):
     """Update benchmarks for each industry, for each tenant."""
     msg = "Update industries benchmarks"
