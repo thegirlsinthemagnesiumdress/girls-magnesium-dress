@@ -24,7 +24,7 @@ def descendant(industry, elements, result):
     return result
 
 
-def _get_path(element, elements, root_element=None):
+def get_path(element, elements, root_element=None):
     """Given an element it returns the path from that element to the root element.
 
     `element` must be a part of `elements`.
@@ -47,7 +47,7 @@ def get_surveys_by_industry(initial_industry, threshold):
     if initial_industry not in settings.INDUSTRIES:
         raise ValueError("`{}` is not in `settings.INDUSTRIES`".format(initial_industry))
 
-    for industry in _get_path(initial_industry, settings.INDUSTRIES):
+    for industry in get_path(initial_industry, settings.INDUSTRIES):
         current_industries = descendant(industry, settings.INDUSTRIES, [])
         surveys = Survey.objects.filter(industry__in=current_industries).exclude(last_survey_result__isnull=True)
         survey_results = [survey.last_survey_result for survey in surveys
@@ -68,7 +68,7 @@ def updatable_industries(survey_results):
     results_by_industry = defaultdict(list)
     for s in survey_results:
         if s.survey:
-            path = _get_path(s.survey.industry, settings.INDUSTRIES, settings.ALL_INDUSTRIES[0])
+            path = get_path(s.survey.industry, settings.INDUSTRIES, settings.ALL_INDUSTRIES[0])
             for industry in path:
                 results_by_industry[industry].append(s)
 

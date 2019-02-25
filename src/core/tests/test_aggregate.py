@@ -97,17 +97,17 @@ class SurveyDMBListTest(TestCase):
     }
 )
 class GetPathTest(TestCase):
-    """Test class for `core.aggregate._get_path` function."""
+    """Test class for `core.aggregate.get_path` function."""
 
     def test_get_path_leaf_element(self):
-        path = aggregate._get_path('co', settings.INDUSTRIES)
+        path = aggregate.get_path('co', settings.INDUSTRIES)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 2)
         self.assertIn('co', path)
         self.assertIn(None, path)
 
     def test_get_path_nested_leaf_element(self):
-        path = aggregate._get_path('fi-i', settings.INDUSTRIES)
+        path = aggregate.get_path('fi-i', settings.INDUSTRIES)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 3)
         self.assertIn('fi-i', path)
@@ -115,20 +115,20 @@ class GetPathTest(TestCase):
         self.assertIn(None, path)
 
     def test_get_path_intermediate_element(self):
-        path = aggregate._get_path('fi', settings.INDUSTRIES)
+        path = aggregate.get_path('fi', settings.INDUSTRIES)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 2)
         self.assertIn('fi', path)
         self.assertIn(None, path)
 
     def test_get_path_root_element(self):
-        path = aggregate._get_path(None, settings.INDUSTRIES)
+        path = aggregate.get_path(None, settings.INDUSTRIES)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 1)
         self.assertIn(None, path)
 
     def test_get_path_root_element_custom(self):
-        path = aggregate._get_path('fi', settings.INDUSTRIES, root_element='ROOT')
+        path = aggregate.get_path('fi', settings.INDUSTRIES, root_element='ROOT')
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 2)
         self.assertIn('fi', path)
