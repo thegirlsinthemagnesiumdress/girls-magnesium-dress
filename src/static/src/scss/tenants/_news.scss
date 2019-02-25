@@ -11,8 +11,7 @@ $dmb-tenant-primary-color-dark: $dmb-color-green-jewel;
 
 
 // TENANT STYLES
-[data-tenant='news'] {
-
+.dmb--news {
   // PRIMARY HEADING COLOR
   .dmb-primary-heading {
     color: $dmb-tenant-primary-color;
