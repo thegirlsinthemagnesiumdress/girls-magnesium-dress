@@ -1,0 +1,765 @@
+$report-page-color-map: (
+  attribution: (
+    main: $dmb-color-blue-cornflower,
+    light: $dmb-color-blue-alice
+  ),
+  ads: (
+    main: $dmb-color-red-cinnabar,
+    light: $dmb-color-red-pale-pink
+  ),
+  audience: (
+    main: $dmb-color-yellow-selective,
+    light: $dmb-color-yellow-forget-me-not
+  ),
+  access: (
+    main: $dmb-color-green-ecalyptus,
+    light: $dmb-color-green-frosted-mint
+  ),
+  automation: (
+    main: $dmb-color-grey-chateau-old,
+    light: $dmb-color-blue-solitude
+  ),
+  organization: (
+    main: $dmb-color-blue-denim-2,
+    light: $dmb-color-blue-lavender
+  )
+);
+
+$recommendation-classes: analytics, speed-test, ux-bp;
+
+$dmb-button-height: 46px;
+$dmb-report-hero-padding-bottom: 37px;
+$dmb-tabs-border-radius: 5px;
+$dmb-tabs-shadow-color: rgba($dmb-color-grey-suva, .5);
+$dmb-headline-accent-color: $dmb-color-blue-manatee;
+$dmb-eyebrow-border-color: $dmb-color-grey-zircon-old;
+
+
+.dmb-report-page {
+  .h-c-eyebrow {
+    border-bottom: 6px solid $dmb-eyebrow-border-color;
+    display: inline-block;
+    padding-bottom: 8px;
+
+    @include dmb-responsive(margin-bottom, 35, 40);
+
+    @media (max-width: 1279px) {
+      max-width: 135px;
+
+      &--wide {
+        max-width: 186px;
+      }
+    }
+  }
+
+  strong {
+    font-weight: $h-font-weight-medium;
+  }
+
+  .h-c-page {
+    @media (max-width: 1279px) {
+      padding: 0 24px;
+    }
+  }
+
+  main {
+    section {
+      padding: 40px 0 32px;
+
+      @include bp(m) {
+        padding: 100px 0 54px;
+      }
+    }
+  }
+
+  &__hero-muted {
+    opacity: .62;
+  }
+
+  .h-c-header {
+    &__bar {
+      position: absolute !important;
+    }
+  }
+
+  .glue-header.h-is-wholly-scrolled .h-c-header__bar  {
+    transform: none !important;
+  }
+
+  &__hero-h-c-page {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  &__hero {
+    background: $dmb-color-blue-denim;
+    color: $dmb-light-text-color;
+    padding: 24px 0 48px;
+    position: relative;
+
+    @include bp(s) {
+      padding: 48px 0;
+    }
+
+    @include bp(m) {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      min-height: calc(100vh - 64px);
+      padding: 52px 0;
+    }
+
+    .dmb-progress-circle {
+      font-size: 13px;
+      height: 184px;
+      width: 184px;
+
+      @include bp(s) {
+        font-size: 16px;
+        height: 232px;
+        width: 232px;
+      }
+
+      &__bg-bar {
+        stroke: rgba($dmb-prog-circ-inverted-bar-color, .24);
+      }
+
+      &__prog-bar {
+        stroke: $dmb-prog-circ-inverted-bar-color;
+      }
+    }
+
+    @include print-styles {
+      background: transparent;
+      color: $dmb-text-color;
+      min-height: 0;
+      padding-bottom: 0;
+      padding-top:  #{$_h-header-height--full-size + 10px};
+      page-break-after: always;
+
+      .glue-flexbox & .h-c-grid__col {
+        flex-basis: auto;
+        width: auto;
+      }
+    }
+  }
+
+  &__hero-title {
+    font-family: $dmb-alt-font-family;
+    font-weight: $h-font-weight-regular;
+
+    @include dmb-responsive(font-size, 44, 88);
+
+    @include bp(s) {
+      font-size: 72px;
+    }
+  }
+
+  &__hero-company {
+    display: block;
+    font-weight: $h-font-weight-medium;
+
+    &:empty::before {
+      content: '\200b'; // unicode zero width space character
+    }
+  }
+
+  &__hero-date {
+    @include dmb-responsive(margin-top, 8, 32);
+    color: inherit;
+    margin: 24px 0 50px;
+
+    @include bp(s) {
+      margin: 32px 0  57px;
+    }
+
+    @include bp(m) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__hero-benchmark-wrp {
+    $subgrid: &;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    @include bp(s) {
+      flex-direction: row;
+    }
+
+    @include bp(m) {
+      margin-left: -8%;
+      width: 108%;
+    }
+  }
+
+  &__hero-circle-wrp,
+  &__hero-sub-title {
+    font-family: $dmb-alt-font-family;
+    text-align: center;
+
+    @include bp(m) {
+      text-align: left;
+    }
+  }
+
+  &__hero-sub-title {
+    font-size: 55px;
+    margin-left: 40px;
+    text-align: left;
+
+    @media (max-width: 599px) {
+      display: none;
+    }
+  }
+
+  &__hero-subhead {
+    font-size: 14px;
+    @include dmb-responsive(margin-top, 40, 52);
+
+    @include bp(s) {
+      font-size: 20px;
+    }
+
+    @include bp(m) {
+      margin-left: -8%;
+    }
+  }
+
+  @include print-styles {
+    &__hero-title {
+      font-size: 88px !important;
+      line-height: 1em;
+    }
+
+    &__hero-title &__hero-accent {
+      font-weight: $h-font-weight-medium;
+    }
+
+    &__hero p {
+      font-size: 20px;
+      max-width: 31em;
+    }
+
+    &__hero-date {
+      font-size: 44px !important;
+    }
+  }
+
+  &__hero-footer {
+    position: relative;
+
+    .dmb-report-page__hero-footer-wrp {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      max-width: 1216px;
+      min-height: 130px;
+    }
+
+    @include bp(s) {
+      display: block;
+    }
+  }
+
+  &__hero-button {
+    bottom: 0;
+    display: none;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    @include bp(s) {
+      display: inline-flex;
+    }
+  }
+
+  &__company-dmb-content {
+    display: flex;
+    margin: 88px 0;
+
+    .dmb-progress-circle {
+      margin-right: 640px;
+    }
+  }
+
+  &__content {
+    position: relative;
+
+    @include print-styles {
+      padding: $dmb-margin-small 0;
+    }
+  }
+
+  &__content-title {
+    font-family: $dmb-alt-font-family;
+    margin-bottom: 24px;
+    @include dmb-responsive(font-size, 32, 44);
+
+    @media (max-width: 1279px) {
+      margin-top: 43px;
+    }
+
+    strong {
+      font-size: 44px;
+    }
+  }
+
+  &__info {
+    @extend .dmb-h-hidden--print;
+    background: none;
+    border: 0;
+    height: 20px;
+    padding: 0;
+    position: relative;
+    top: -3px;
+    width: 20px;
+  }
+
+  &__headline-accent {
+    color: $dmb-headline-accent-color;
+  }
+
+  &__maturity {
+    .h-c-grid__col-l--2 {
+      @include bp(m) {
+        margin-right: 50px;
+      }
+    }
+
+    .h-c-eyebrow {
+      @include dmb-responsive(margin-bottom, 43, 80);
+    }
+
+    .dmb-progress-table {
+      @include dmb-responsive(margin-top, 40, 80);
+    }
+  }
+
+  &__maturity-intro {
+    max-width: 400px;
+
+    @media (max-width: 1279px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__dimensions {
+    @include print-styles {
+      margin-top: 56px;
+    }
+  }
+
+  &__dimension-zippy {
+    @media (max-width: 1279px) {
+      margin-top: 40px;
+    }
+  }
+
+  .glue-zippy-set {
+    .glue-zippy-btn {
+      align-items: center;
+      display: flex;
+      padding: 0;
+
+      h4 {
+        flex-grow: 1;
+      }
+
+      svg {
+        margin: 0;
+      }
+
+      &:focus {
+        border: 1px solid transparent;
+        padding-bottom: 0;
+      }
+    }
+
+    &.h-t-hercules {
+      .glue-c-zippy__content-container {
+        padding: 14px 0 0;
+      }
+
+      .h-c-expansion-panels__button-header,
+      .glue-zippy-btn:focus .h-c-expansion-panels__button-header {
+        color: $dmb-text-color;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .glue-is-expanded {
+        .glue-zippy-btn {
+          border: 1px solid transparent;
+        }
+      }
+    }
+  }
+
+  &__zippy-container {
+    border-radius: 3px;
+    box-shadow: $dmb-box-shadow;
+    margin-bottom: 16px;
+    padding: 16px 20px;
+  }
+
+  &__zippy-btn {
+    vertical-align: middle;
+
+    &::before {
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 39px;
+      margin-right: 20px;
+      vertical-align: middle;
+      width: 39px;
+    }
+
+    $i: 1;
+
+    @each $name, $color in $report-page-color-map {
+      .glue-zippy:nth-of-type(#{$i}) &::before {
+        background-image: url('../img/icons/#{$name}.svg');
+      }
+
+      $i: $i + 1;
+    }
+  }
+
+  &__tab-content {
+    .dmb-progress-table {
+      max-width: 980px;
+
+      @include dmb-responsive(margin-top, 35, 90);
+      @include dmb-responsive(margin-bottom, 64, 90);
+      @include bp(s) {
+        padding-right: 40px;
+      }
+      @include bp(m) {
+        padding-right: 0;
+      }
+    }
+
+    @include print-styles {
+      padding: 0;
+    }
+  }
+
+  &__tabs {
+    @include dmb-responsive(margin-top, 40, 64);
+
+    .glue-tabby {
+      margin-top: 16px;
+    }
+
+    .glue-c-tabset {
+      &__tab {
+        font-family: $dmb-alt-font-family;
+        margin: 0;
+        position: relative;
+
+        &.glue-is-active {
+          &::after {
+            background: $h-white;
+            bottom: -5px;
+            content: '';
+            display: block;
+            height: 10px;
+            left: 1px;
+            position: absolute;
+            right: 1px;
+          }
+
+          .glue-c-tabset__button {
+            box-shadow: 0 -1px 8px 0 $dmb-tabs-shadow-color;
+            color: $dmb-color-grey-accessible-grey;
+            font-weight: $h-font-weight-medium;
+          }
+        }
+      }
+
+      &__button {
+        border: 0;
+        border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+        color: $dmb-color-grey-accessible-grey;
+        height: 100%;
+        padding: 14px 10px;
+        width: 100%;
+
+        &:hover::before {
+          background: $dmb-color-blue-solitude;
+        }
+
+        &::before {
+          border-radius: 5px;
+          content: '';
+          display: block;
+          height: 43px;
+          left: 50%;
+          min-width: 140px;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 80%;
+          z-index: -1;
+        }
+
+        // Quick win to make icon on top of the tab clickable.
+        &::after {
+          bottom: 0;
+          content: '';
+          display: block;
+          height: 150px;
+          position: absolute;
+          width: 100%;
+        }
+      }
+
+      &__panel-container {
+        border: 0;
+        padding: 0;
+      }
+
+      &__page {
+        border: 0;
+        border-radius: $dmb-tabs-border-radius;
+        box-shadow: $dmb-box-shadow;
+
+
+        > h3 {
+          display: block;
+
+          @include bp(s) {
+            display: none;
+          }
+
+          @include print-styles {
+            display: none;
+          }
+        }
+
+        @include print-styles {
+          box-shadow: none;
+          display: block;
+          padding: 0;
+          page-break-before: always;
+        }
+
+        &:first-child {
+          border-top-left-radius: 0;
+        }
+
+        &:last-child {
+          border-top-right-radius: 0;
+        }
+      }
+    }
+  }
+
+  &__tabs-icons,
+  .glue-c-tabset__tablist {
+    @extend .dmb-h-hidden--print;
+    display: flex;
+
+    > div,
+    .glue-c-tabset__tab {
+      flex-basis: calc(100% / 6);
+    }
+  }
+
+  &__tabs-icons {
+    display: flex;
+    margin-bottom: 16px;
+
+    .dmb-progress-circle {
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+  &__tabs-sticky-nav {
+    @include h-u-box-shadow-1();
+    background-color: $h-white;
+    display: none;
+    font-family: $h-font-family-google-sans;
+    font-weight: $h-font-weight-regular;
+    height: $_h-header-height;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .3s, opacity 1ms .3s;
+    z-index: $_h-header-bar-z-index + 1;
+
+    @include bp(s) {
+      display: block;
+    }
+
+    @media (min-width: $h-header-breakpoint--full-size) {
+      height: $_h-header-height--full-size;
+    }
+
+    .h-c-page,
+    ul {
+      height: 100%;
+    }
+
+    ul {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    &.dmb-pinned {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform .3s;
+    }
+  }
+
+  &__tabs-sticky-nav-btn {
+    background: transparent;
+    border: 0;
+    color: $dmb-color-grey-accessible-grey;
+    outline: 0;
+    padding: 8px 20px;
+
+    &.is-active {
+      background-color: $dmb-color-blue-solitude;
+      border-radius: $dmb-tabs-border-radius $dmb-tabs-border-radius 0 0;
+      font-weight: $h-font-weight-medium;
+    }
+  }
+
+  @each $name, $color in $report-page-color-map {
+    [dmb-dimension-tab='#{$name}'] {
+      .dmb-progress-table__row--main {
+        border-color: map-get($color, main);
+      }
+    }
+
+    .dmb-progress-circle.dmb-progress-circle--#{$name} .dmb-progress-circle {
+      &__bg-bar {
+        stroke: map-get($color, light);
+      }
+
+      &__prog-bar {
+        stroke: map-get($color, main);
+      }
+
+      &__icon {
+        background-image: url('../img/icons/#{$name}.svg');
+      }
+    }
+  }
+
+  &__cta-icon {
+    background-image: url('../img/icons/learn-more.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @include dmb-responsive(width, 18, 22);
+    @include dmb-responsive(height, 18, 22);
+  }
+
+  &__cta-extra-text {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  @each $class in $recommendation-classes {
+    &__recommendation {
+      &--#{$class} .dmb-report-page__cta-icon {
+        background-image: url('../img/icons/#{$class}.svg');
+      }
+    }
+  }
+
+  .dmb-panel-trigger {
+    &__button {
+      top: 40px;
+
+      @include bp(s) {
+        top: 100px;
+      }
+    }
+
+    @include bp(s) {
+      @include dmb-pannel-trigger-wide;
+    }
+  }
+
+  &__appendix {
+    @include print-styles {
+      page-break-before: always;
+    }
+  }
+
+  &__print-button-container {
+    margin-top: 36.5px;
+  }
+
+  &__print-button {
+    bottom: 53px;
+    display: none;
+    height: 70px;
+    position: fixed;
+    right: 33px;
+    width: 70px;
+    z-index: 10;
+
+    @include bp(m) {
+      display: block;
+    }
+
+    svg {
+      width: 30px;
+    }
+
+    &::before {
+      background-color: rgba(#000, .07);
+      border-radius: 24.5px;
+      color: $dmb-light-text-color;
+      content: attr(data-tooltip-text);
+      font-family: $dmb-alt-font-family;
+      opacity: 0;
+      padding: 10px 20px;
+      position: absolute;
+      right: calc(100% + 14px);
+      top: 50%;
+      transform: translateY(-50%);
+      transition: visibility 0s, opacity .3s linear;
+      visibility: hidden;
+      white-space: nowrap;
+      @include dmb-responsive(font-size, 16, 18);
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &--dark-print-button-text {
+    .dmb-report-page__print-button {
+      &::before {
+        background-color: $dmb-color-blue-solitude;
+        color: $dmb-color-blue-charade;
+      }
+    }
+  }
+}

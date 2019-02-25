@@ -1,62 +1,54 @@
-.dmb-bg-light-grey {
-  background-color: $dmb-background-grey-color;
+// ALT FONT FAMILY
+.dmb-u-alt-font {
+  font-family: $h-font-family-google-sans;
 }
 
-.dmb-h-visible {
-  display: block !important;
-}
 
-.dmb-h-hidden {
-  display: none !important;
+// RESPONSIVE VERTCIAL SPACINGS
+// Resposive vertical spacing utility classes generated from $dmb-vertical-spacings map in ./_variables.scss
+//
+// Examples:
+// .dmb-u-m-t-s > responsive margin top small
+// .dmb-u-m-t-m > responsive margin top medium
+// .dmb-u-m-t-l > responsive margin top large
+// .dmb-u-m-b-s > responsive margin bottom small
+// .dmb-u-m-b-m > responsive margin bottom medium
+// .dmb-u-m-b-l > responsive margin bottom large
+// .dmb-u-p-t-s > responsive padding top small
+// .dmb-u-p-t-m > responsive padding top medium
+// .dmb-u-p-t-l > responsive padding top large
+// .dmb-u-p-b-s > responsive padding bottom small
+// .dmb-u-p-b-m > responsive padding bottom medium
+// .dmb-u-p-b-l > responsive padding bottom large
 
-  @include print-styles {
-    &--print {
-      display: none !important;
+$properties: (margin, padding);
+$positions: (top, bottom);
+
+@each $prop in $properties {
+  @each $position in $positions {
+    .dmb-u-#{str-slice($prop, 0, 1)} {
+      &-#{str-slice($position, 0, 1)} {
+        @each $size in (s, m, l) {
+          &-#{$size} {
+            $spacings: map-get($dmb-vertical-spacings, #{$size});
+            #{$prop}-#{$position}: map-get($spacings, 'mobile');
+
+            // Add tablet spacings if different from mobile
+            @if map-get($spacings, 'mobile') != map-get($spacings, 'tablet') {
+              @include dmb-mq($from: tablet) {
+                #{$prop}-#{$position}: map-get($spacings, 'tablet');
+              }
+            }
+
+            // Add desktop spacings if different from tablet
+            @if map-get($spacings, 'tablet') != map-get($spacings, 'desktop') {
+              @include dmb-mq($from: desktop) {
+                #{$prop}-#{$position}: map-get($spacings, 'desktop');
+              }
+            }
+          }
+        }
+      }
     }
   }
-
-  @include screen-styles {
-    &--screen {
-      display: none !important;
-    }
-  }
-}
-
-.dmb-h-show--print-only {
-  display: none;
-
-  @include print-styles {
-    display: block;
-  }
-}
-
-.dmb-body--has-modal {
-  overflow: hidden;
-}
-
-.dmb-h-mb--small {
-  margin-bottom: $dmb-margin-small;
-}
-
-.dmb-h-mb--medium {
-  margin-bottom: $dmb-margin-medium;
-}
-
-.dmb-h-mb--big {
-  margin-bottom: $dmb-margin-big;
-}
-
-.dmb-h-alt-font {
-  font-family: $dmb-alt-font-family;
-}
-
-.dmb-print-page-header {
-  @include print-styles {
-    border-bottom: 1px solid $dmb-heading-border-color !important;
-    font-size: 40px !important;
-  }
-}
-
-.dmb-capitalize {
-  text-transform: capitalize;
 }

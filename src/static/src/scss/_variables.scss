@@ -1,35 +1,13 @@
-// Margins
-$dmb-margin-small: 24px;
-$dmb-margin-medium: 48px;
-$dmb-margin-big: 96px;
+// Breakpoints
+$dmb-breakpoints: (
+  tablet: 600px,
+  desktop: 1024px,
+  wide: 1440px
+);
 
-$dmb-print-gutter: 8px;
-
-$dmb-default-transition-duration: .15s;
-$dmb-easing--standard: cubic-bezier(.4, 0, .2, 1);
-$dmb-easing--out: cubic-bezier(0, 0, .2, 1);
-$dmb-easing--in: cubic-bezier(.4, 0, 1, 1);
-
-$dmb-input-color--passive: #979797;
-$dmb-input-color--active: $h-button-primary-bg-color;
-
-$dmb-progress-color--passive: #f4f4f4;
-$dmb-progress-color--active: $h-button-primary-bg-color;
-$dmb-progress-height: 8px;
-
-$dmb-survey-max-width: 800px;
-
-$dmb-background-grey-color: #f4f4f4;
-
-$dmb-trans-time: 1.5s;
-$dmb-trans-fn: ease-in-out;
-
-$dmb-heading-border-color: #e0e4e5;
-
-$dmb-alt-font-family: $h-font-family-google-sans;
-
-// Small Desktop breakpoint, not available within the mixins.
-// Used to adjust h-c-page max-width.
-$h-screen-sm: '(min-width: 1024px)';
-
-$dmb-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .29);
+// Vertical spacings
+$dmb-vertical-spacings: (
+  s: (mobile: 20px, tablet: 20px, desktop: 30px),
+  m: (mobile: 40px, tablet: 50px, desktop: 60px),
+  l: (mobile: 60px, tablet: 80px, desktop: 120px)
+);
