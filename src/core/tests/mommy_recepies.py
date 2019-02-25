@@ -45,3 +45,7 @@ def make_survey_with_result(industry):
     survey.last_survey_result = survey_res
     survey.save()
     return survey
+
+
+def make_industry_benchmark(**kwargs):
+    return mommy.make('core.IndustryBenchmark', **kwargs)

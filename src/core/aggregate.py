@@ -1,4 +1,4 @@
-from core.models import Survey
+from core.models import Survey, IndustryBenchmark
 from django.conf import settings
 from collections import defaultdict
 
@@ -73,3 +73,19 @@ def updatable_industries(survey_results):
                 results_by_industry[industry].append(s)
 
     return results_by_industry
+
+
+def industry_benchmark(industry, global_id=settings.ALL_INDUSTRIES[0]):
+    dmb, dmb_d, dmb_industry = None, None, None
+    for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
+        try:
+            industry_benchmark = IndustryBenchmark.objects.get(industry=current_industry)
+            dmb = industry_benchmark.dmb_value
+            dmb_d = industry_benchmark.dmb_value
+            dmb_industry = current_industry
+        except IndustryBenchmark.DoesNotExist:
+            pass
+        if dmb:
+            break
+
+    return dmb, dmb_d, dmb_industry

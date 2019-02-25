@@ -19,8 +19,9 @@ from rest_framework.generics import (
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from core.aggregate import get_surveys_by_industry
+from core import aggregate
 from core.conf.utils import flatten
+from rest_framework import status
 
 
 class CreateSurveyView(CreateAPIView):
@@ -105,21 +106,21 @@ class SurveyResultsIndustryDetail(APIView):
 
     @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request, industry, *args, **kwargs):
+
+        tenant = self.request.query_params.get('tenant', None)
+        if not tenant:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
         industry_map = OrderedDict(flatten(settings.HIERARCHICAL_INDUSTRIES, leaf_only=False))
 
         if industry not in settings.INDUSTRIES.keys():
-            raise Http404
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-        global_id, _ = settings.ALL_INDUSTRIES
+        dmb, dmb_d, dmb_industry = aggregate.industry_benchmark(industry)
 
-        survey_results, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_INDUSTRY_THRESHOLD)
-        dmb_d_list = [result.dmb_d for result in survey_results]
-        dmb, dmb_d, dmb_industry = None, None, None
-        if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
-            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
-            dmb_industry = industry_map[current_industry] if current_industry else global_id
+        global_id = settings.ALL_INDUSTRIES[0]
 
-        survey_results, current_industry = get_surveys_by_industry(industry, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
+        survey_results, current_industry = aggregate.get_surveys_by_industry(industry, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
         dmb_d_list = [result.dmb_d for result in survey_results]
         dmb_bp, dmb_d_bp, dmb_bp_industry = None, None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:

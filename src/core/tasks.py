@@ -352,7 +352,9 @@ def calculate_industry_benchmark(tenant):
             dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
             dmb += [current_industry_benchmark.initial_dmb] * current_industry_benchmark.sample_size
 
-        dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+        dmb, dmb_d = None, None
+        if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
 
         IndustryBenchmark.objects.update_or_create(
             tenant=tenant,
