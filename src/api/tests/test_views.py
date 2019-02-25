@@ -228,17 +228,20 @@ class SurveyIndustryResultTest(APITestCase):
         make_industry_benchmark(industry='ic')
         make_industry_benchmark(industry='ic-o')
 
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
     @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
-    def test_industry_no_tenant_in_url(self, mocked_industry_benchmark):
+    def test_industry_no_tenant_in_url(self, mocked_industry_benchmark, mocked_industry_best_practice):
         """When `tenant` paramenter is not in url, it should return 400 bad request."""
         url = reverse('survey_industry', kwargs={'industry': 'ic-o'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         mocked_industry_benchmark.assert_not_called()
+        mocked_industry_best_practice.assert_not_called()
 
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
     @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
-    def test_industry_with_results(self, mocked_industry_benchmark):
+    def test_industry_with_results(self, mocked_industry_benchmark, mocked_industry_best_practice):
         """
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back.
@@ -249,6 +252,7 @@ class SurveyIndustryResultTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         mocked_industry_benchmark.assert_called()
+        mocked_industry_best_practice.assert_called()
 
         self.assertEqual(set(response_data_keys), {
             'industry',
@@ -260,8 +264,9 @@ class SurveyIndustryResultTest(APITestCase):
             'dmb_d_bp'
         })
 
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
     @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
-    def test_industry_does_not_exist(self, mocked_industry_benchmark):
+    def test_industry_does_not_exist(self, mocked_industry_benchmark, mocked_industry_best_practice):
         """
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back, excluded the one where
@@ -273,6 +278,7 @@ class SurveyIndustryResultTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
         mocked_industry_benchmark.assert_not_called()
+        mocked_industry_best_practice.assert_not_called()
 
 
 class SurveyResultDetailView(APITestCase):

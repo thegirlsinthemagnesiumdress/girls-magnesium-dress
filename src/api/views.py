@@ -5,7 +5,6 @@ from api.serializers import (
     SurveyWithResultSerializer,
 )
 from core.models import Survey, SurveyResult
-from core.qualtrics import benchmark
 from django.conf import settings
 from django.http import Http404
 from django.utils.decorators import method_decorator
@@ -112,20 +111,11 @@ class SurveyResultsIndustryDetail(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         industry_map = OrderedDict(flatten(settings.HIERARCHICAL_INDUSTRIES, leaf_only=False))
-
         if industry not in settings.INDUSTRIES.keys():
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         dmb, dmb_d, dmb_industry = aggregate.industry_benchmark(industry)
-
-        global_id = settings.ALL_INDUSTRIES[0]
-
-        survey_results, current_industry = aggregate.get_surveys_by_industry(industry, settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD)
-        dmb_d_list = [result.dmb_d for result in survey_results]
-        dmb_bp, dmb_d_bp, dmb_bp_industry = None, None, None
-        if len(dmb_d_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
-            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_list)
-            dmb_bp_industry = industry_map[current_industry] if current_industry else global_id
+        dmb_bp, dmb_d_bp, dmb_bp_industry = aggregate.industry_best_practice(industry)
 
         data = {
             'industry': industry_map[industry],

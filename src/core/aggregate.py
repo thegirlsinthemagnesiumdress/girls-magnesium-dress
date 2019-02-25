@@ -76,12 +76,12 @@ def updatable_industries(survey_results):
 
 
 def industry_benchmark(industry, global_id=settings.ALL_INDUSTRIES[0]):
-    dmb, dmb_d, dmb_industry = None, None, None
+    dmb, dmb_d, dmb_industry = None, None, global_id
     for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
         try:
             industry_benchmark = IndustryBenchmark.objects.get(industry=current_industry)
             dmb = industry_benchmark.dmb_value
-            dmb_d = industry_benchmark.dmb_value
+            dmb_d = industry_benchmark.dmb_d_value
             dmb_industry = current_industry
         except IndustryBenchmark.DoesNotExist:
             pass
@@ -89,3 +89,19 @@ def industry_benchmark(industry, global_id=settings.ALL_INDUSTRIES[0]):
             break
 
     return dmb, dmb_d, dmb_industry
+
+
+def industry_best_practice(industry, global_id=settings.ALL_INDUSTRIES[0]):
+    dmb_bp, dmb_d_bp, dmb_industry = None, None, global_id
+    for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
+        try:
+            industry_benchmark = IndustryBenchmark.objects.get(industry=current_industry)
+            dmb_bp = industry_benchmark.dmb_bp_value
+            dmb_d_bp = industry_benchmark.dmb_d_bp_value
+            dmb_industry = current_industry
+        except IndustryBenchmark.DoesNotExist:
+            pass
+        if dmb_bp:
+            break
+
+    return dmb_bp, dmb_d_bp, dmb_industry

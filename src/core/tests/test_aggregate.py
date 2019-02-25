@@ -261,3 +261,56 @@ class IndustryBenchmark(TestCase):
 
         self.assertEqual(got_dmb, 1.0)
         self.assertEqual(got_industry, 'all')
+
+
+@override_settings(
+    INDUSTRIES={
+        'co': ('Construction', None),
+        'edu': ('Education', None),
+        'edu-fe': ('Further education', 'edu'),
+        'edu-o': ('Other', 'edu'),
+        'edu-pe': ('Primary education', 'edu'),
+        'edu-se': ('Secondary education', 'edu'),
+        'egsw': ('Electricity, gas, steam, water', None),
+        'fi': ('Financial and Insurance', None),
+        'fi-b': ('Banking', 'fi'),
+        'fi-i': ('Insurance', 'fi'),
+        'fi-o': ('Other', 'fi'),
+    },
+    ALL_INDUSTRIES=('all', 'all'),
+    MIN_ITEMS_INDUSTRY_THRESHOLD=2,
+)
+class IndustryBestPractice(TestCase):
+    """Test class for `core.aggregate.industry_best_practice` function."""
+
+    def setUp(self):
+        make_industry_benchmark(industry='edu', dmb_bp_value=2.0)
+        make_industry_benchmark(industry='all', dmb_bp_value=1.0)
+
+    def test_industry_benchmark_industry_has_value(self):
+        """When industry has a value for dmb, it should return it."""
+        make_industry_benchmark(industry='edu-o', dmb_bp_value=3.0)
+        industry_to_be_updated = aggregate.industry_best_practice('edu-o')
+
+        got_dmb, got_dmb_d, got_industry = industry_to_be_updated
+
+        self.assertEqual(got_dmb, 3.0)
+        self.assertEqual(got_industry, 'edu-o')
+
+    def test_industry_benchmark_industry_fallback_parent(self):
+        """When industry does not have a value for dmb, it should  fallback to parent."""
+        make_industry_benchmark(industry='edu-o')
+        industry_to_be_updated = aggregate.industry_best_practice('edu-o')
+        got_dmb, got_dmb_d, got_industry = industry_to_be_updated
+
+        self.assertEqual(got_dmb, 2.0)
+        self.assertEqual(got_industry, 'edu')
+
+    def test_industry_benchmark_industry_fallback_to_root(self):
+        """When industry does not have a value for dmb, it should fallback to parent,
+        and so on until you get eventualy to root."""
+        industry_to_be_updated = aggregate.industry_best_practice('fi-b')
+        got_dmb, got_dmb_d, got_industry = industry_to_be_updated
+
+        self.assertEqual(got_dmb, 1.0)
+        self.assertEqual(got_industry, 'all')

@@ -346,15 +346,21 @@ def calculate_industry_benchmark(tenant):
         current_industry_benchmark = initial_industry_benchmarks_dict.get(industry)
 
         dmb_d_list = [result.dmb_d for result in survey_results]
-        dmb = [result.dmb for result in survey_results]
+        dmb_d_bp_list = [result.dmb_d for result in survey_results]
+        # dmb = [result.dmb for result in survey_results]
 
         if current_industry_benchmark:
             dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
-            dmb += [current_industry_benchmark.initial_dmb] * current_industry_benchmark.sample_size
+            # dmb += [current_industry_benchmark.initial_dmb] * current_industry_benchmark.sample_size
+            dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d]
 
         dmb, dmb_d = None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list)
+
+        dmb_bp, dmb_d_bp = None, None
+        if len(dmb_d_bp_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
+            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list)
 
         IndustryBenchmark.objects.update_or_create(
             tenant=tenant,
@@ -362,5 +368,7 @@ def calculate_industry_benchmark(tenant):
             defaults={
                 'dmb_value': dmb,
                 'dmb_d_value': dmb_d,
+                'dmb_bp_value': dmb_bp,
+                'dmb_d_bp_value': dmb_d_bp,
             }
         )
