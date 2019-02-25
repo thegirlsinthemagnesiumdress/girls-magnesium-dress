@@ -1,0 +1,23 @@
+.dmb-step-heading {
+  display: flex;
+  @include dmb-resp-prop(margin-bottom, 30px, 40px);
+
+  &__icon {
+    counter-increment: step-heading;
+    flex-shrink: 0;
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
+
+    &::after {
+      color: #fff;
+      content: counter(step-heading);
+      font-size: 13px;
+      font-weight: 700;
+      left: 50%;
+      position: absolute;
+      top: 2px;
+      transform: translateX(-50%);
+    }
+  }
+}

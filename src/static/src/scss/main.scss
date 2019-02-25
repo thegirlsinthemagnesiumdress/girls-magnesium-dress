@@ -86,15 +86,23 @@
 
 @import 'hercules-overrides';
 
-// DMB components
+// DMB
+// Common components
 @import 'components/button';
 @import 'components/footer';
+@import 'components/partnership-logo';
+@import 'components/svg';
+
+// Includes
 @import 'components/home-hero';
 @import 'components/icon-text-cta';
 @import 'components/img-text-collage';
 @import 'components/partnership-logo';
 @import 'components/product-hero';
+@import 'components/step-heading';
 
+// Pages
+@import 'pages/landing';
 
-// DMB Tenants
+// Tenants
 @import 'tenants/news';

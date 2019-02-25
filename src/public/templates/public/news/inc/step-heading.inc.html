@@ -1,0 +1,19 @@
+{% comment %}
+  Heading with a SVG with a number that increments whenever a new instance if placed on a page. The number's default size and color are 13px and white. They can be overridden in the tenant SCSS file using `.dmb-step-heading__icon::after {color: red; font-size: 15px;}`
+
+  To use:
+  1. Set `counter-reset: step-heading;` in the page SCSS.
+  2. Add the include to the page and specify the SVG id to use (this is passed on to the SVG include).
+  3. Override number default size and color in the tenant SCSS file.
+
+  Example:
+    {% include 'public/news/inc/step-heading.inc.html' with text='Find out more' svg='shield' %}
+
+{% endcomment %}
+
+<h3 class="dmb-step-heading dmb-u-m-b-s h-c-headline h-c-headline--four{% if class %} {{class}}{% endif %}">
+  <div class="dmb-step-heading__icon">
+    {% include 'core/inc/svg.html' with id=svg size='24px' %}
+  </div>
+  <span class="dmb-step-heading__text">{{text}}</span>
+</h3>
