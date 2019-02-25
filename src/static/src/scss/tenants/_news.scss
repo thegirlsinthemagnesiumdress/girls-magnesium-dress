@@ -1,4 +1,5 @@
 // TENANT VARIABLES
+//sass-lint:disable no-ids
 $dmb-color-green-ecalyptus: #34a853;
 $dmb-color-green-salem: #1e8e3e;
 $dmb-color-green-jewel: #0d7533;
@@ -10,7 +11,8 @@ $dmb-tenant-primary-color-dark: $dmb-color-green-jewel;
 
 
 // TENANT STYLES
-.dmb--news {
+[data-tenant='news'] {
+
   // PRIMARY HEADING COLOR
   .dmb-primary-heading {
     color: $dmb-tenant-primary-color;
@@ -36,30 +38,32 @@ $dmb-tenant-primary-color-dark: $dmb-color-green-jewel;
   }
 
   // IMAGE TEXT COLLAGE IMAGES
-  .dmb-img-text-collage {
-    &__img--1 {
-      background-image: url('../img/news/home-collage-img1.jpg');
-      background-position: center top;
+  #dmb-landing {
+    .dmb-img-text-collage {
+      &__img--1 {
+        background-image: url('../img/news/home-collage-img1.jpg');
+        background-position: center top;
 
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/home-collage-img1@2x.jpg');
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          background-image: url('../img/news/home-collage-img1@2x.jpg');
+        }
+      }
+
+      &__img--2 {
+        background-image: url('../img/news/home-collage-img2.jpg');
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          background-image: url('../img/news/home-collage-img2@2x.jpg');
+        }
+      }
+
+      &__img--3 {
+        background-image: url('../img/news/home-collage-img3.jpg');
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          background-image: url('../img/news/home-collage-img3@2x.jpg');
+        }
       }
     }
-
-    &__img--2 {
-      background-image: url('../img/news/home-collage-img2.jpg');
-
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/home-collage-img2@2x.jpg');
-      }
-    }
-
-    &__img--3 {
-      background-image: url('../img/news/home-collage-img3.jpg');
-
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/home-collage-img3@2x.jpg');
-      }
-    }
-  }
+  } //#dmb-landing
 }
