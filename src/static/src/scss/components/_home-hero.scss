@@ -1,15 +1,23 @@
-$dmb-home-hero-card-bg: #fff;
 $dmb-half-col-width: calc(#{$h-col-width-base}% / 2);
 
 .dmb-home-hero {
+  padding-top: 173px;
   position: relative;
-  @include dmb-resp-prop(padding-top, 173px, 17px, 38px, 77px);
-  @include dmb-resp-prop(padding-bottom, 0, 17px, 38px, 77px);
+
+  @include dmb-mq($from: tablet) {
+    padding: 40px 0;
+  }
+
+  @include dmb-mq($from: desktop) {
+    align-items: center;
+    display: flex;
+    min-height: 600px;
+  }
 
   &__card {
-    background: $dmb-home-hero-card-bg;
+    background: #fff;
     border-radius: 2px;
-    font-weight: 400;
+    font-weight:  $h-font-weight-regular;
     padding: 20px;
 
     @include dmb-mq(tablet) {
@@ -28,7 +36,8 @@ $dmb-half-col-width: calc(#{$h-col-width-base}% / 2);
     width: 100%;
     z-index: -1;
 
-    @include dmb-mq(tablet) {
+    @include dmb-mq($from: tablet) {
+      background-position: right -200px center;
       background-size: cover;
       width: calc((100% - #{$dmb-half-col-width}) - 32px);
     }
