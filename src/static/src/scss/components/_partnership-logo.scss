@@ -1,5 +1,5 @@
 .dmb-partnership-logo {
-  $this: &;
+  $block: &;
   color: $dmb-color-grey-mid;
 
   &__text {
@@ -16,8 +16,12 @@
     display: flex;
     flex-wrap: wrap;
 
-    #{$this}__text {
-      margin: 0 10px 0 0;
+    @include dmb-mq($until: tablet) {
+      flex-direction: column;
+    }
+
+    #{$block}__text {
+      margin: 0 10px 10px 0;
     }
   }
 
