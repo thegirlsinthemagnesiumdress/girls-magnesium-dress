@@ -1,13 +1,14 @@
 .dmb-step-heading {
-  display: flex;
-  @include dmb-resp-prop(margin-bottom, 30px, 40px);
+  @include dmb-mq($from: tablet) {
+    display: flex;
+  }
 
   &__icon {
     counter-increment: step-heading;
+    display: inline-block;
     flex-shrink: 0;
     margin-right: 10px;
     position: relative;
-    top: 1px;
 
     &::after {
       color: #fff;

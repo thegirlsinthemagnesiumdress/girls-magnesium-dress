@@ -70,27 +70,32 @@ $dimension-colors: (
       }
     }
 
+    // Add dimension colors to tab text, tab borders and content mobile border
     @each $dimension, $color in $dimension-colors {
-      .glue-pagination-tab[data-glue-pagination-label='#{$dimension}'] {
-        .glue-c-tabset__button {
-          color: $color;
+      .dmb-home-tabs {
+        .glue-pagination-tab[data-glue-pagination-label='#{$dimension}'] {
+          .glue-c-tabset__button {
+            color: $color; // tablet and desktop tab heading color
+          }
+
+          &.glue-is-active .glue-c-tabset__button {
+            border-color: $color; // tablet and desktop tab border color
+          }
         }
 
-        &.glue-is-active .glue-c-tabset__button {
-          border-color: $color;
+        .dmb-home-tabs__tab--#{$dimension} {
+          .h-c-tabby__heading {
+            color: $color; // mobile tab heading color
+          }
+
+          .dmb-home-tabs__tab-text {
+            border-color: $color; // mobile border color
+          }
         }
       }
-
-      .dmb-home-tabs__tab--#{$dimension} {
-        .dmb-home-tabs__tab-heading {
-          color: $color;
-        }
-
-        .dmb-home-tabs__tab-text {
-          border-left-color: $color;
-        }
-      }
-    };
-
+    }
   } //#dmb-landing
 }
+
+
+
