@@ -1,0 +1,43 @@
+.dmb-img-text-collage {
+  &__img {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  &__img--landscape {
+    padding-top: 75%;
+
+    &:nth-of-type(2) {
+      margin-top: calc(#{$h-grid-gutter-width-mobile});
+
+      @include dmb-mq(tablet) {
+        margin-top: calc(#{$h-grid-gutter-width});
+      }
+
+      // give margin a maximum value
+      @include dmb-mq(#{$h-site-width-desktop}) {
+        margin-top: calc(#{$h-grid-gutter-max-width});
+      }
+    }
+  }
+
+  &__img--portrait {
+    padding-top: calc(150% + #{$h-grid-gutter-width-mobile});
+
+    @include dmb-mq(tablet) {
+      padding-top: calc(150% + #{$h-grid-gutter-width});
+    }
+
+    @include dmb-mq(#{$h-site-width-desktop}) {
+      padding-top: calc(150% + #{$h-grid-gutter-max-width});
+    }
+  }
+
+  &__text-col {
+    &.h-c-grid__col {
+      @include dmb-mq($until: tablet) {
+        margin-top: 20px;
+      }
+    }
+  }
+}

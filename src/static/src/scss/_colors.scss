@@ -1,8 +1,11 @@
-// Map colors using http://www.color-blindness.com/color-name-hue/
-// with $dmb-color-<hue>-<color name>
+// GLOBAL COLORS
+// Name colors using http://www.color-blindness.com/color-name-hue/
+// with $dmb-color-<hue>-<color-name>
 
 $dmb-color-black-russian: #202124;
+$dmb-color-grey-mid: #676c72;
 $dmb-color-blue-charcoal: #292d33;
+
 $dmb-color-grey-chateau: #959ca5;
 $dmb-color-grey-zircon: #dfe1e5;
 $dmb-color-blue-solitude: #f1f3f4;
@@ -10,11 +13,5 @@ $dmb-color-blue-solitude: #f1f3f4;
 $dmb-color-blue-cornflower: #4285f4;
 $dmb-color-blue-royal: #1a73e8;
 
-$dmb-color-green-ecalyptus: #34a853;
-$dmb-color-green-salem: #1e8e3e;
-$dmb-color-green-jewel: #0d7533;
-$dmb-color-green-jewel-dark: #0a4e22;
-
-// TYPOGRAPHY COLORS
 $dmb-text-color: $dmb-color-black-russian;
 $dmb-light-text-color: #fff;

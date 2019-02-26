@@ -1,0 +1,21 @@
+{% comment %}
+
+  Generates an <img> tag with an srcset with 1x and 2x versions of the image
+
+  Arguments:
+    img: image file path relative to static directory without file extension
+    ext: image file extension
+    classes: (optional) space-separated classnames to give image
+    alt: (optional) image alt text
+
+  Usage:
+
+    {% include 'public/inc/glocal/responsive-image.inc.html' with classes='dmb-class dmb-class-2' img='img/news/home-collage-img1' ext='jpg' alt='image alt' %}
+
+{% endcomment %}
+
+<img
+  srcset="{% static img %}.{{ext}} 1x, {% static img %}@2x.{{ext}} 2x"
+  src="{% static img %}.{{ext}}"
+  {% if classes %}class="{{classes}}"{% endif %}
+  {% if alt %}alt="{{alt}}"{% endif %} />
