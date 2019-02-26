@@ -147,4 +147,5 @@ class IndustryBenchmark(models.Model):
     dmb_bp_value = models.DecimalField(max_digits=4, decimal_places=2, null=True)
     dmb_d_bp_value = JSONField(null=True)
 
-    unique_together = (("industry", "tenant"),)
+    class Meta:
+        unique_together = (("industry", "tenant"),)
