@@ -1,0 +1,27 @@
+.dmb-product-hero {
+  position: relative;
+
+  &__bg-img {
+    left: 50%;
+    max-width: 1440px;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+
+  &__img {
+    max-width: 950px;
+    min-width: 288px;
+    width: 65%;
+  }
+
+  &__color-bg {
+    background: $dmb-color-blue-solitude;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    @include dmb-resp-prop(height, 47%, 45%);
+  }
+}

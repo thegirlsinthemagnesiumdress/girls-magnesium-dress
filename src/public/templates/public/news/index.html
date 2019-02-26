@@ -9,12 +9,22 @@
 {% endblock %}
 
 {% block main %}
-  <main id="dmb-home">
-
+  <main id="dmb-landing">
     {% include 'public/news/inc/home-hero.inc.html' %}
 
-    {% include 'public/news/inc/image-text-collage.inc.html' %}
+    <div class="dmb-u-m-b-l">
+      {% include 'public/news/inc/image-text-collage.inc.html' %}
+    </div>
 
+    <div class="dmb-u-m-b-s">
+      {% include 'public/news/inc/header-text-cta.inc.html' %}
+    </div>
+
+    {% include 'public/news/inc/product-hero.inc.html' %}
+
+    {% include 'public/news/inc/icon-text-cta.inc.html' %}
+
+    {% include 'public/news/inc/step-heading.inc.html' with text='Find out where your news organisation is on the data maturity scale.' svg='shield' %}
   </main>
 {% endblock main %}
 

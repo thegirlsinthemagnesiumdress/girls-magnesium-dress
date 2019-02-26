@@ -1,0 +1,4 @@
+// Link glue breakpoints to DMB's in ./_variables.scss
+$h-screen-s: '(min-width: #{map-get($dmb-breakpoints, tablet)})';
+$h-screen-m: '(min-width: #{map-get($dmb-breakpoints, desktop)})';
+$h-screen-l: '(min-width: #{map-get($dmb-breakpoints, wide)})';

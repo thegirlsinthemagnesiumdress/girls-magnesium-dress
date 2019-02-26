@@ -1,7 +1,10 @@
+// DMB Variables
+@import 'variables';
+
 // HERCULES AND GLUE SASS:
 ////////////////////////////////////////
 // If you have Sass variable overrides, include them here and uncomment.
-// @import 'hercules-variable-overrides';
+@import 'hercules-variable-overrides';
 
 // Sass compiler knows the paths to Glue and Hercules SASS through the Gulp
 // compiler configuration.
@@ -80,18 +83,29 @@
 
 // DMB STYLES
 @import 'colors';
-@import 'variables';
 @import 'mixins';
 @import 'utils';
 
+
 @import 'hercules-overrides';
+@import 'grid-variables';
 
-// DMB components
+// DMB
+// Common components
+@import 'components/button';
 @import 'components/footer';
-@import 'components/home-hero';
-@import 'components/img-text-collage';
 @import 'components/partnership-logo';
+@import 'components/svg';
 
+// Includes
+@import 'components/home-hero';
+@import 'components/icon-text-cta';
+@import 'components/img-text-collage';
+@import 'components/product-hero';
+@import 'components/step-heading';
 
-// DMB Tenants
+// Pages
+@import 'pages/landing';
+
+// Tenants
 @import 'tenants/news';

@@ -1,0 +1,23 @@
+.dmb-step-heading {
+  display: flex;
+  margin-bottom: 0;
+
+  &__icon {
+    counter-increment: step-heading;
+    flex-shrink: 0;
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
+
+    &::after {
+      color: #fff;
+      content: counter(step-heading);
+      font-size: 13px;
+      font-weight: 700;
+      left: 50%;
+      position: absolute;
+      top: 2px;
+      transform: translateX(-50%);
+    }
+  }
+}
