@@ -1,0 +1,26 @@
+.dmb-img-text {
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &__heading {
+    @include dmb-mq($from: tablet) {
+      margin: 175px 0 120px;
+    }
+
+    @include dmb-mq($from: desktop) {
+      margin: 250px 0 210px;
+    }
+
+    @include dmb-mq($from: wide) {
+      margin: 400px 0 300px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+
+    @include dmb-mq($from: tablet) {
+      display: none;
+    }
+  }
+}
