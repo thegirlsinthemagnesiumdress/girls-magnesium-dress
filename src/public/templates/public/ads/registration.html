@@ -28,6 +28,9 @@
         <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
           <div class="input-wrp">
             <div class="dmb-input-wrp">
+              <input class="dmb-input" id="tenant" name="tenant" ng-model="registrationCtrl.tenant" type="hidden" required value="{{tenant}}">
+            </div>
+            <div class="dmb-input-wrp">
               <label for="companyName">Organisation name:</label>
               <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
