@@ -11,7 +11,7 @@
 
         &,
         &:focus {
-          border: none;
+          border: 0;
         }
       }
 
@@ -22,8 +22,8 @@
 
       // Mobile Tab Content
       .glue-c-zippy__content-container {
-        padding: 8px 0 48px;
         border-bottom:  0;
+        padding: 8px 0 48px;
       }
 
       // Tablet & Desktop Tab Button
