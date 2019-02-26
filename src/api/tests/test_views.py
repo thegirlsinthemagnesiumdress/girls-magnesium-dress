@@ -288,7 +288,6 @@ class SurveyIndustryResultTest(APITestCase):
         """
         url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'notanind'}))
         response = self.client.get(url)
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
         mocked_industry_benchmark.assert_not_called()
