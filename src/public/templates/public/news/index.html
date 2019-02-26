@@ -10,14 +10,14 @@
 
 {% block main %}
   <main id="dmb-landing">
+{% comment %}
     {% include 'public/news/inc/home-hero.inc.html' %}
 
-    {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' mobile_only=True class='dmb-u-m-b-l' %}
+    {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' mobile_only=True class='dmb-u-m-b-l' url='' %}
 
     <div class="dmb-u-m-b-l">
       {% include 'public/news/inc/image-text-collage.inc.html' %}
     </div>
-{% comment %}
 
     <div class="dmb-u-m-b-s">
       {% include 'public/news/inc/header-text-cta.inc.html' %}
@@ -27,13 +27,13 @@
 
     {% include 'public/news/inc/icon-text-cta.inc.html' %}
 
-{% endcomment %}
     <div class="dmb-u-m-t-l">
       {% include 'public/news/inc/image-text.inc.html' %}
     </div>
 
+{% endcomment %}
     <div class="dmb-u-m-t-l">
-      {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' %}
+      {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' url='' %}
     </div>
 
     <div class="h-c-page dmb-u-m-t-l h-c-footnote">
