@@ -767,7 +767,7 @@ class CalculateIndustryBenchmark(TestCase):
         IndustryBenchmark."""
         self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 0)
 
-        make_survey_with_result(industry='ic-o')
+        make_survey_with_result(industry='ic-o', tenant='tenant1')
         calculate_industry_benchmark('tenant1')
 
         self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 3)
@@ -786,7 +786,7 @@ class CalculateIndustryBenchmark(TestCase):
             sample_size=10
         )
         self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 1)
-        make_survey_with_result(industry='ic-o')
+        make_survey_with_result(industry='ic-o', tenant='tenant1')
         calculate_industry_benchmark('tenant1')
 
         # check all industries `all -- ic -- ic-o` are present
@@ -841,7 +841,7 @@ class CalculateIndustryBenchmark(TestCase):
         self.assertEqual(len(IndustryBenchmark.objects.all()), 2)
 
         # create a survey for tenant1
-        make_survey_with_result(industry='ic-o')
+        make_survey_with_result(industry='ic-o', tenant='tenant1')
         calculate_industry_benchmark('tenant1')
 
         # check all industries `all -- ic -- ic-o` are present

@@ -6,7 +6,7 @@ import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
-from core.tests.mocks import INDUSTRIES, MOCKED_ALLOWED_TENANTS, MOCKED_TENANTS_SLUG_TO_KEY
+from core.tests.mocks import INDUSTRIES, MOCKED_ALLOWED_TENANTS, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
 from core.test import reload_urlconf
 
 
@@ -218,6 +218,7 @@ class CreateSurveyTest(APITestCase):
 
 @override_settings(
     INDUSTRIES=INDUSTRIES,
+    TENANTS=MOCKED_TENANTS,
     ALLOWED_TENANTS=MOCKED_ALLOWED_TENANTS,
     TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
     MIN_ITEMS_INDUSTRY_THRESHOLD=1,
@@ -237,9 +238,9 @@ class SurveyIndustryResultTest(APITestCase):
         reload_urlconf()
 
     def setUp(self):
-        make_industry_benchmark(industry='all')
-        make_industry_benchmark(industry='ic')
-        make_industry_benchmark(industry='ic-o')
+        make_industry_benchmark(industry='all', tenant='tenant1')
+        make_industry_benchmark(industry='ic', tenant='tenant1')
+        make_industry_benchmark(industry='ic-o', tenant='tenant1')
 
     @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
     @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
@@ -259,7 +260,7 @@ class SurveyIndustryResultTest(APITestCase):
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back.
         """
-        url = '{}?tenant=tenant1-slug'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
+        url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data_keys = response.data.keys()
@@ -285,9 +286,9 @@ class SurveyIndustryResultTest(APITestCase):
         threshold, we expect some results back, excluded the one where
         `excluded_from_best_practice` is True.
         """
-        url = '{}?tenant=tenant1-slug'.format(reverse('survey_industry', kwargs={'industry': 'notanind'}))
+        url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'notanind'}))
         response = self.client.get(url)
-
+        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
         mocked_industry_benchmark.assert_not_called()

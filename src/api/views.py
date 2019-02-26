@@ -107,6 +107,8 @@ class SurveyResultsIndustryDetail(APIView):
     def get(self, request, industry, *args, **kwargs):
 
         tenant = self.request.query_params.get('tenant', None)
+        print(">>>>> ", tenant)
+        print(">>>>> ", settings.TENANTS.keys())
         if not tenant or tenant not in settings.TENANTS.keys():
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
