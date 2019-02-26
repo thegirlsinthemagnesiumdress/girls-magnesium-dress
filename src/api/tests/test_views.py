@@ -6,7 +6,8 @@ import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
-from core.tests.mocks import INDUSTRIES
+from core.tests.mocks import INDUSTRIES, MOCKED_ALLOWED_TENANTS, MOCKED_TENANTS_SLUG_TO_KEY
+from core.test import reload_urlconf
 
 
 User = get_user_model()
@@ -217,11 +218,23 @@ class CreateSurveyTest(APITestCase):
 
 @override_settings(
     INDUSTRIES=INDUSTRIES,
+    ALLOWED_TENANTS=MOCKED_ALLOWED_TENANTS,
+    TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
     MIN_ITEMS_INDUSTRY_THRESHOLD=1,
     MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2
 )
 class SurveyIndustryResultTest(APITestCase):
     """Tests for `api.views.SurveyResultsIndustryDetail` view."""
+
+    @classmethod
+    def tearDownClass(cls):
+        super(SurveyIndustryResultTest, cls).tearDownClass()
+        reload_urlconf()
+
+    @classmethod
+    def setUpClass(cls):
+        super(SurveyIndustryResultTest, cls).setUpClass()
+        reload_urlconf()
 
     def setUp(self):
         make_industry_benchmark(industry='all')
@@ -246,11 +259,11 @@ class SurveyIndustryResultTest(APITestCase):
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back.
         """
-        url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
+        url = '{}?tenant=tenant1-slug'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
         response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data_keys = response.data.keys()
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
         mocked_industry_benchmark.assert_called()
         mocked_industry_best_practice.assert_called()
 
@@ -272,10 +285,22 @@ class SurveyIndustryResultTest(APITestCase):
         threshold, we expect some results back, excluded the one where
         `excluded_from_best_practice` is True.
         """
-        url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'notanind'}))
+        url = '{}?tenant=tenant1-slug'.format(reverse('survey_industry', kwargs={'industry': 'notanind'}))
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        mocked_industry_benchmark.assert_not_called()
+        mocked_industry_best_practice.assert_not_called()
+
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
+    @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
+    def test_tenant_does_not_exist(self, mocked_industry_benchmark, mocked_industry_best_practice):
+        """When `tenant` paramenter is not a valid tenant, it should return 400 bad request."""
+        url = '{}?tenant=notatenant'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         mocked_industry_benchmark.assert_not_called()
         mocked_industry_best_practice.assert_not_called()
@@ -309,6 +334,7 @@ class SurveyResultDetailView(APITestCase):
             'country_name',
             'survey_result',
             'created_at',
+            'tenant',
         })
 
     def test_survey_result_not_found(self):
@@ -338,6 +364,7 @@ class SurveyResultDetailView(APITestCase):
             'country_name',
             'survey_result',
             'created_at',
+            'tenant',
         })
 
     def test_survey_result_no_survey_attached(self):

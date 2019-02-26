@@ -107,7 +107,7 @@ class SurveyResultsIndustryDetail(APIView):
     def get(self, request, industry, *args, **kwargs):
 
         tenant = self.request.query_params.get('tenant', None)
-        if not tenant:
+        if not tenant or tenant not in settings.TENANTS_SLUG_TO_KEY.keys():
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         industry_map = OrderedDict(flatten(settings.HIERARCHICAL_INDUSTRIES, leaf_only=False))
