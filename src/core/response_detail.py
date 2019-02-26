@@ -6,8 +6,9 @@ from django.conf import settings
 
 
 class SurveyDefinition(object):
-    def __init__(self, definition):
+    def __init__(self, definition, dimensions):
         self.definition = definition
+        self.dimensions = dimensions
 
     def get_questions(self):
         questions = {
@@ -21,7 +22,7 @@ class SurveyDefinition(object):
                 def_q_id = element['questionId']
                 q_definition = self._get_question(def_q_id)
                 q_id = q_definition['id']
-                q_dimension = get_question_dimension(q_id)
+                q_dimension = get_question_dimension(q_id, self.dimensions)
 
                 if q_dimension:
                     questions['definitions'][q_id] = q_definition
@@ -89,8 +90,9 @@ class SurveyDefinition(object):
 
         return type_map.get(question_type['selector'], None)
 
-def get_response_detail(definition, response_data):
-    survey_definition = SurveyDefinition(definition)
+
+def get_response_detail(definition, response_data, dimensions):
+    survey_definition = SurveyDefinition(definition, dimensions)
     questions = survey_definition.get_questions()
 
     response_detail = copy.deepcopy(questions)

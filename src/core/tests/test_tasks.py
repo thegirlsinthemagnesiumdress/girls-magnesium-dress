@@ -12,6 +12,7 @@ from django.utils import dateparse
 from django.utils.timezone import make_aware
 import pytz
 from collections import OrderedDict
+from django.conf import settings
 
 
 @override_settings(
@@ -312,7 +313,7 @@ class EmailValidatorTestCase(TestCase):
 
 
 @override_settings(
-    DIMENSIONS=MOCKED_DIMENSIONS
+    TENANTS=MOCKED_TENANTS
 )
 class CreateSurveyResultTestCase(TestCase):
     """Tests for _create_survey_results function, when survey has been completed."""
@@ -323,6 +324,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.response_ids = [response['value'].get('ResponseID') for response in self.responses
                              if response['value'].get('Finished') == '1']
         self.survey_definition = make_survey_definition()
+        self.tenant = settings.TENANTS['tenant1']
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -330,7 +332,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 1)
@@ -346,7 +348,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -369,7 +371,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -379,6 +381,9 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(len(got_ids), 0)
 
 
+@override_settings(
+    TENANTS=MOCKED_TENANTS
+)
 class CreateSurveyResultUnfinishedTestCase(TestCase):
     """Tests for _create_survey_results function, when survey has not been completed."""
     def setUp(self):
@@ -386,6 +391,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         responses_text = get_mocked_results_unfished(text=True).get('responses')
         self.responses = _update_responses_with_text(responses_values, responses_text).values()
         self.survey_definition = make_survey_definition()
+        self.tenant = settings.TENANTS['tenant1']
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -393,7 +399,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant)
 
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -403,7 +409,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant)
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -415,7 +421,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 
         # Asserting we're logging a message if survey is not completed
         with mock.patch('logging.warning') as logging_mock:
-            _create_survey_results(self.responses, self.survey_definition)
+            _create_survey_results(self.responses, self.survey_definition, self.tenant)
             self.assertTrue(logging_mock.called)
 
         self.assertEqual(Survey.objects.count(), 0)

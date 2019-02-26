@@ -93,8 +93,9 @@ def _get_results(tenant, survey_definition):
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition)
+        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant)
         new_response_ids = [result.response_id for result in new_survey_results]
+
         email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
@@ -118,7 +119,7 @@ def _update_responses_with_text(responses, text_responses):
     return merged_responses
 
 
-def _create_survey_results(results_data, last_survey_definition):
+def _create_survey_results(results_data, last_survey_definition, tenant):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param results_data: dictionary containing the downloaded responses
@@ -131,7 +132,7 @@ def _create_survey_results(results_data, last_survey_definition):
     new_survey_results = []
     for data in results_data:
         try:
-            new_survey_result = _create_survey_result(data, last_survey_definition)
+            new_survey_result = _create_survey_result(data, last_survey_definition, tenant)
             if new_survey_result:
                 new_survey_results.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
@@ -139,7 +140,7 @@ def _create_survey_results(results_data, last_survey_definition):
     return new_survey_results
 
 
-def _create_survey_result(survey_data, last_survey_definition):
+def _create_survey_result(survey_data, last_survey_definition, tenant):
     """Create `SurveyResult` given a single `result_data`.
 
     :param data: dictionary of data downloaded from Qualtrics
@@ -158,9 +159,9 @@ def _create_survey_result(survey_data, last_survey_definition):
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
-
-            questions = question.data_to_questions(response_data)
-            questions_text = question.data_to_questions_text(response_text)
+            dimensions, multianswers, weights = tenant['DIMENSIONS'], tenant['MULTI_ANSWER_QUESTIONS'], tenant['WEIGHTS']
+            questions = question.data_to_questions(response_data, dimensions, multianswers, weights)
+            questions_text = question.data_to_questions_text(response_text, dimensions, multianswers)
 
             raw_data = question.to_raw(questions, questions_text)
             dmb, dmb_d = benchmark.calculate_response_benchmark(questions)

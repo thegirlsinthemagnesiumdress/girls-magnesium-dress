@@ -4,10 +4,9 @@ from collections import defaultdict
 
 import numpy
 from core.qualtrics.question import weighted_questions_average
-from django.conf import settings
 
 
-def calculate_group_benchmark_from_raw_responses(filtered_responses):
+def calculate_group_benchmark_from_raw_responses(filtered_responses, dimensions):
     """ Calculates benchmark on the responses filtered dataset
 
     Arguments:
@@ -24,14 +23,14 @@ def calculate_group_benchmark_from_raw_responses(filtered_responses):
         # Create a dict where single response benchmarks aggregated by dimension.
         _, response_benchmarks_by_dimension = calculate_response_benchmark(response)
 
-        for dimension in settings.DIMENSIONS:
+        for dimension in dimensions:
             benchmark = response_benchmarks_by_dimension.get(dimension, 0)
             responses_benchmarks_by_dimension[dimension].append(benchmark)
 
     benchmark_by_dimension = {}
 
     # Create a dict where responses benchmarks aggregated by dimension.
-    for dimension in settings.DIMENSIONS:
+    for dimension in dimensions:
         benchmark_by_dimension[dimension] = numpy.average(responses_benchmarks_by_dimension[dimension])
 
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
@@ -54,7 +53,7 @@ def calculate_response_benchmark(response_questions):
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
 
 
-def _by_dimension(dmb_d_list, aggregated_function):
+def _by_dimension(dmb_d_list, aggregated_function, dimensions):
     """
     Given a `dmb_d_list` and an `aggregated_function`, returns a dictionary
     where the `aggregated_function` is applied for each `settings.DIMENSION`
@@ -64,19 +63,19 @@ def _by_dimension(dmb_d_list, aggregated_function):
 
     for dmb_d in dmb_d_list:
 
-        for dimension in settings.DIMENSIONS:
+        for dimension in dimensions:
             benchmark = dmb_d.get(dimension, 0)
             dmb_d_by_dimension[dimension].append(benchmark)
 
-    for dimension in settings.DIMENSIONS:
+    for dimension in dimensions:
         benchmark_by_dimension[dimension] = aggregated_function(dmb_d_by_dimension[dimension])
 
     return benchmark_by_dimension
 
 
-def calculate_group_benchmark(dmb_d_list, dmb_values=None):
+def calculate_group_benchmark(dmb_d_list, dimensions, dmb_values=None):
     """ Calculates benchmark on the dmb_d_list dataset."""
-    benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.average)
+    benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.average, dimensions)
     dmb = None
     if dmb_values is not None:
         # case for NEWS
@@ -87,9 +86,9 @@ def calculate_group_benchmark(dmb_d_list, dmb_values=None):
     return dmb, benchmark_by_dimension
 
 
-def calculate_best_practice(dmb_d_list, dmb_values=None):
+def calculate_best_practice(dmb_d_list, dimensions, dmb_values=None):
     """ Calculates best practice on the dmb_d_list dataset."""
-    benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.amax)
+    benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.amax, dimensions)
     dmb = None
     if dmb_values is not None:
         # case for NEWS

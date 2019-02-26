@@ -74,8 +74,10 @@ def reports_admin(request, tenant):
 def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
+    dimensions = settings.TENANT[tenant]['DIMENSIONS']
+
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
-        'result_detail': get_response_detail(survey_result.survey_definition.content, survey_result.raw),
+        'result_detail': get_response_detail(survey_result.survey_definition.content, survey_result.raw, dimensions),
         'survey_result': survey_result,
         'survey': survey_result.survey,
     })

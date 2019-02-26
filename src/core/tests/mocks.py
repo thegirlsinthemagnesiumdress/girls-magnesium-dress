@@ -3,24 +3,6 @@
 from django.utils import dateparse
 from collections import OrderedDict
 
-MOCKED_TENANTS = {
-    'tenant1': {
-        'label': 'Tenant 1 label',
-        'slug': 'tenant1-slug',
-        'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
-        'EMAIL_TO': 'Q97_4_TEXT',
-        'EMAIL_BCC': 'Q97_5_TEXT',
-    },
-    'tenant2': {
-        'label': 'Tenant 2 label',
-        'slug': 'tenant2-slug',
-        'QUALTRICS_SURVEY_ID': 'SV_aaxxxxxxxx',
-        'EMAIL_TO': 'Q97_4_TEXT',
-        'EMAIL_BCC': 'Q97_5_TEXT',
-    }
-}
-MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])
-MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 MOCKED_DIMENSIONS = {
     'ads': [
@@ -47,6 +29,16 @@ MOCKED_DIMENSIONS = {
         'Q7',
     ],
 }
+
+MOCKED_MULTI_ANSWER_QUESTIONS = [
+    'Q13',
+]
+
+MOCKED_WEIGHTS = {
+    'Q1': 2,
+    'Q3': 3,
+}
+
 qualtrics_export = {
     'responses': [
         {
@@ -212,6 +204,20 @@ INDUSTRIES = {
     'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
 }
 
+MOCKED_TENANTS = {
+    'tenant1': {
+        'label': 'Tenant 1 label',
+        'slug': 'tenant1-slug',
+        'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
+        'EMAIL_TO': 'Q97_4_TEXT',
+        'EMAIL_BCC': 'Q97_5_TEXT',
+        'DIMENSIONS': MOCKED_DIMENSIONS,
+        'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
+        'WEIGHTS': MOCKED_WEIGHTS,
+    }
+}
+MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])
+MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 qualtrics_text_export = {
     'responses': [
