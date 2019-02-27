@@ -1,7 +1,5 @@
 .dmb-step-heading {
-  @include dmb-mq($from: tablet) {
-    display: flex;
-  }
+  display: flex;
 
   &__icon {
     counter-increment: step-heading;

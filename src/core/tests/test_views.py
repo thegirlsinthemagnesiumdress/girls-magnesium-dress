@@ -1,10 +1,13 @@
 import mock
 
-from core.tasks import sync_qualtrics
+from core.tasks import sync_qualtrics, calculate_industry_benchmark
 from djangae.test import TestCase
 from django.shortcuts import reverse
 import os
 from django.contrib.auth import get_user_model
+from core.test import with_appengine_admin, with_appengine_user
+from django.test import override_settings
+from core.tests.mocks import MOCKED_TENANTS
 
 
 class SyncQualtricsTestCase(TestCase):
@@ -35,6 +38,39 @@ class SyncQualtricsTestCase(TestCase):
 
     @mock.patch('djangae.deferred.defer')
     def test_sync_access_defined_if_user_not_logged_in(self, mock_defer):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 403)
+        mock_defer.assert_not_called()
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS
+)
+class UpdateIndustriesBenchmarksTask(TestCase):
+    """Tests for `update_industries_benchmarks_task` function."""
+    def setUp(self):
+        self.url = reverse('update-benchmarks')
+
+    @with_appengine_admin("test@google.com")
+    @mock.patch('djangae.deferred.defer')
+    def test_update_industries_benchmarks_task_called_correctly(self, mock_defer):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(mock_defer.call_count, 2)
+
+        args, kwargs = mock_defer.call_args_list[0]
+        self.assertEqual(args[0], calculate_industry_benchmark)
+        self.assertTrue(args[1] in MOCKED_TENANTS.keys())
+
+        args, kwargs = mock_defer.call_args_list[1]
+        self.assertEqual(args[0], calculate_industry_benchmark)
+        self.assertTrue(args[1] in MOCKED_TENANTS.keys())
+
+    @with_appengine_user("test@gmail.com")
+    @mock.patch('djangae.deferred.defer')
+    def test_update_industries_benchmarks_access_denied_if_user_not_logged_in(self, mock_defer):
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 403)

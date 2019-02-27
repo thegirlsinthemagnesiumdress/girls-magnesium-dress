@@ -21,6 +21,7 @@ COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 def registration(request, tenant):
     return render(request, 'public/{}/registration.html'.format(tenant), {
+        'tenant': tenant,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
     })
