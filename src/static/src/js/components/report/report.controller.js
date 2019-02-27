@@ -146,7 +146,7 @@ class ReportController {
 
       reportService.dmb_d = this.result['dmb_d'];
 
-      $http.get(`${industryEndpoint}${this.survey['industry']}`).then((res) => {
+      $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
         this.industryResult = res.data;
         this.industryAvgSource = this.industryResult['dmb_industry'];
         this.industryBestSource = this.industryResult['dmb_bp_industry'];

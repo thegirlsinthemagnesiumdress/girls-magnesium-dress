@@ -10,6 +10,13 @@ MOCKED_TENANTS = {
         'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
+    },
+    'tenant2': {
+        'label': 'Tenant 2 label',
+        'slug': 'tenant2-slug',
+        'QUALTRICS_SURVEY_ID': 'SV_aaxxxxxxxx',
+        'EMAIL_TO': 'Q97_4_TEXT',
+        'EMAIL_BCC': 'Q97_5_TEXT',
     }
 }
 MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])

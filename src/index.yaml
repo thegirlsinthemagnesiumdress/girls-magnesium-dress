@@ -53,6 +53,16 @@ indexes:
   - name: industry
   - name: last_survey_result_id
 
+- kind: core_survey
+  properties:
+  - name: tenant
+  - name: last_survey_result_id
+
+- kind: core_surveyresult
+  properties:
+  - name: survey_id
+  - name: loaded_at
+
 - kind: core_surveyresult
   properties:
   - name: survey_id

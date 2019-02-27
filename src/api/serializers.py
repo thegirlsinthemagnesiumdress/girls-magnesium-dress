@@ -3,6 +3,7 @@ from rest_framework.serializers import ModelSerializer, CharField, JSONField
 
 
 class SurveySerializer(ModelSerializer):
+
     class Meta:
         model = Survey
         fields = (
@@ -44,4 +45,5 @@ class SurveyWithResultSerializer(ModelSerializer):
             'country_name',
             'survey_result',
             'created_at',
+            'tenant',
         )
