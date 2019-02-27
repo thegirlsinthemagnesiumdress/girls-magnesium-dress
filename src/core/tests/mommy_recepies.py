@@ -12,7 +12,7 @@ def make_survey(**kwargs):
     survey_kwargs = {
         "industry": settings.INDUSTRIES.keys()[0],
         "country": settings.COUNTRIES.keys()[0],
-        "tenant": settings.TENANTS.keys()[0],
+        "tenant": kwargs.get('tenant', settings.TENANTS.keys()[0]),
         "sid": kwargs.get('sid', uuid4().hex)
     }
     survey_kwargs.update(kwargs)
@@ -37,3 +37,15 @@ def make_user(**kwargs):
 
 def make_survey_definition(**kwargs):
     return mommy.make('core.SurveyDefinition', **kwargs)
+
+
+def make_survey_with_result(industry, tenant=None):
+    survey = make_survey(industry=industry, tenant=tenant)
+    survey_res = make_survey_result(survey=survey)
+    survey.last_survey_result = survey_res
+    survey.save()
+    return survey
+
+
+def make_industry_benchmark(**kwargs):
+    return mommy.make('core.IndustryBenchmark', **kwargs)

@@ -74,13 +74,27 @@ def _by_dimension(dmb_d_list, aggregated_function):
     return benchmark_by_dimension
 
 
-def calculate_group_benchmark(dmb_d_list):
+def calculate_group_benchmark(dmb_d_list, dmb_values=None):
     """ Calculates benchmark on the dmb_d_list dataset."""
     benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.average)
-    return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
+    dmb = None
+    if dmb_values is not None:
+        # case for NEWS
+        dmb = numpy.average(dmb_values)
+    else:
+        dmb = numpy.average(benchmark_by_dimension.values())
+
+    return dmb, benchmark_by_dimension
 
 
-def calculate_best_practice(dmb_d_list):
+def calculate_best_practice(dmb_d_list, dmb_values=None):
     """ Calculates best practice on the dmb_d_list dataset."""
     benchmark_by_dimension = _by_dimension(dmb_d_list, numpy.amax)
-    return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
+    dmb = None
+    if dmb_values is not None:
+        # case for NEWS
+        dmb = numpy.amax(dmb_values)
+    else:
+        dmb = numpy.average(benchmark_by_dimension.values())
+
+    return dmb, benchmark_by_dimension
