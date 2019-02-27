@@ -6,9 +6,9 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from uuid import uuid4
-from core.conf.utils import flatten
 from core.settings.tenants import TENANTS_CHOICES
-from core.conf.utils import flatten, get_tenant_key, get_tenant_slug
+from core.managers import NotExcludedFromBestPracticeManager
+from core.conf.utils import flatten, get_tenant_slug
 
 
 class User(GaeAbstractDatastoreUser):
@@ -75,6 +75,10 @@ class Survey(models.Model):
     def slug(self):
         return get_tenant_slug(self.tenant)
 
+    @property
+    def excluded(self):
+        return self.last_survey_result.excluded_from_best_practice if self.last_survey_result else True
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.sid = uuid4().hex
@@ -100,6 +104,9 @@ class SurveyResult(models.Model):
     raw = JSONField()
     survey_definition = models.ForeignKey('SurveyDefinition', null=True, related_name="survey_definition")
 
+    objects = models.Manager()
+    valid_results = NotExcludedFromBestPracticeManager()
+
     @property
     def report_link(self):
         return reverse('report_result', kwargs={'tenant': self.survey.slug, 'response_id': self.response_id})
@@ -124,3 +131,21 @@ class SurveyResult(models.Model):
 class SurveyDefinition(models.Model):
     last_modified = models.DateTimeField()
     content = JSONField()
+
+
+class IndustryBenchmark(models.Model):
+    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
+    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
+    initial_dmb = models.DecimalField(max_digits=4, decimal_places=2, null=True)
+    initial_dmb_d = JSONField(null=True)
+    initial_best_practice = models.DecimalField(max_digits=4, decimal_places=2, null=True)
+    initial_best_practice_d = JSONField(null=True)
+    sample_size = models.IntegerField(null=True)
+
+    dmb_value = models.DecimalField(max_digits=4, decimal_places=2, null=True)
+    dmb_d_value = JSONField(null=True)
+    dmb_bp_value = models.DecimalField(max_digits=4, decimal_places=2, null=True)
+    dmb_d_bp_value = JSONField(null=True)
+
+    class Meta:
+        unique_together = (("industry", "tenant"),)

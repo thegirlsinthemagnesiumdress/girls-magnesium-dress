@@ -2,7 +2,7 @@ import logging
 import os
 import pytz
 
-from core.models import Survey, SurveyResult, SurveyDefinition
+from core.models import Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
 from core.qualtrics import benchmark, download, exceptions, question
 from django.conf import settings
 
@@ -19,6 +19,8 @@ import cloudstorage
 from google.appengine.api import app_identity
 import unicodecsv as csv
 from datetime import datetime
+from collections import defaultdict
+from core.aggregate import updatable_industries
 
 from core.conf.utils import get_tenant_slug
 
@@ -91,7 +93,8 @@ def _get_results(tenant, survey_definition):
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_response_ids = _create_survey_results(merged_responses.values(), survey_definition)
+        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition)
+        new_response_ids = [result.response_id for result in new_survey_results]
         email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
@@ -125,15 +128,15 @@ def _create_survey_results(results_data, last_survey_definition):
 
     :returns: list of `response_id` for each `core.SurveyResult` created.
     """
-    response_ids = []
+    new_survey_results = []
     for data in results_data:
         try:
             new_survey_result = _create_survey_result(data, last_survey_definition)
             if new_survey_result:
-                response_ids.append(new_survey_result)
+                new_survey_results.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
             logging.error(e)
-    return response_ids
+    return new_survey_results
 
 
 def _create_survey_result(survey_data, last_survey_definition):
@@ -172,7 +175,7 @@ def _create_survey_result(survey_data, last_survey_definition):
                 raw=raw_data,
                 survey_definition=last_survey_definition,
             )
-            new_survey_result = response_id
+            new_survey_result = survey_result
             try:
                 s = Survey.objects.get(pk=response_data.get('sid'))
                 s.last_survey_result = survey_result
@@ -314,3 +317,73 @@ def generate_csv_export():
     logging.info("Copying {} as {}".format(filename, latest))
     cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
     logging.info("Export completed")
+
+
+def update_industries_benchmarks(survey_results):
+    """
+    Update industries benchmarks for each element in `survey_results` parameter.
+
+    :param survey_results: a list of `core.models.SurveyResults` used to update
+        `core.models.IndustryBenchmark`
+    """
+    results_by_industry = defaultdict(list)
+    for s in survey_results:
+        if s.survey:
+            results_by_industry[s.survey.industry].append(s)
+
+
+def calculate_industry_benchmark(tenant):
+    logging.info("calculate_industry_benchmark called for tenant: {}".format(tenant))
+    last_survey_results_pks = Survey.objects.filter(
+        tenant=tenant,
+        last_survey_result__isnull=False).values_list('last_survey_result', flat=True)
+    valid_survey_results = SurveyResult.valid_results.filter(pk__in=list(last_survey_results_pks))
+
+    survey_results_by_industry = updatable_industries(valid_survey_results)
+
+    initial_industry_benchmarks = IndustryBenchmark.objects.filter(tenant=tenant)
+    initial_industry_benchmarks_dict = {initial.industry: initial for initial in initial_industry_benchmarks}
+
+    for industry, survey_results in survey_results_by_industry.items():
+        logging.info("Updating industry: {}".format(industry))
+        current_industry_benchmark = initial_industry_benchmarks_dict.get(industry)
+
+        dmb_d_list = [result.dmb_d for result in survey_results]
+        dmb_values_list = [result.dmb for result in survey_results]
+        dmb_d_bp_list = [result.dmb_d for result in survey_results]
+        dmb_bp_values_list = [result.dmb for result in survey_results]
+
+        if current_industry_benchmark:
+            if current_industry_benchmark.initial_dmb_d:
+                dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
+                dmb_values_list += [current_industry_benchmark.initial_dmb] * current_industry_benchmark.sample_size
+            if current_industry_benchmark.initial_best_practice_d:
+                dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d]
+                dmb_bp_values_list += [current_industry_benchmark.initial_best_practice]
+
+        dmb, dmb_d = None, None
+        if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
+            logging.info(
+                "Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {}".format(industry))
+            dmb_values_list = dmb_values_list if tenant == settings.NEWS else None
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dmb_values=dmb_values_list)
+            logging.info("Calculated dmb: {} , dmb_d: {}".format(dmb, dmb_d))
+
+        dmb_bp, dmb_d_bp = None, None
+        if len(dmb_d_bp_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
+            logging.info(
+                "Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {}".format(industry))
+            dmb_bp_values_list = dmb_bp_values_list if tenant == settings.NEWS else None
+            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dmb_values=dmb_bp_values_list)
+            logging.info("Calculated dmb_bp: {} , dmb_d_bp: {} for best practice".format(dmb_bp, dmb_d_bp))
+
+        IndustryBenchmark.objects.update_or_create(
+            tenant=tenant,
+            industry=industry,
+            defaults={
+                'dmb_value': dmb,
+                'dmb_d_value': dmb_d,
+                'dmb_bp_value': dmb_bp,
+                'dmb_d_bp_value': dmb_d_bp,
+            }
+        )

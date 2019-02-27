@@ -1,5 +1,3 @@
-import json
-
 from core.models import Survey
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
@@ -7,9 +5,10 @@ from django.test import override_settings
 import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
-from core.tests.mommy_recepies import make_survey, make_survey_result
-from core.tests.mocks import INDUSTRIES
-from core.aggregate import get_surveys_by_industry
+from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
+from core.tests.mocks import INDUSTRIES, MOCKED_ALLOWED_TENANTS, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
+from core.test import reload_urlconf
+
 
 User = get_user_model()
 
@@ -218,83 +217,57 @@ class CreateSurveyTest(APITestCase):
 
 
 @override_settings(
-    DIMENSIONS={
-        'dimension_A': ['Q1', 'Q2'],
-        'dimension_B': ['Q3'],
-        'dimension_C': ['Q2'],
-    },
     INDUSTRIES=INDUSTRIES,
+    TENANTS=MOCKED_TENANTS,
+    ALLOWED_TENANTS=MOCKED_ALLOWED_TENANTS,
+    TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
     MIN_ITEMS_INDUSTRY_THRESHOLD=1,
     MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2
 )
 class SurveyIndustryResultTest(APITestCase):
     """Tests for `api.views.SurveyResultsIndustryDetail` view."""
 
-    def _assert_dict_in_list(self, d, list_to_ckeck):
-        item_equal = []
-        for l in list_to_ckeck:
-            if not set(d.keys()) - set(l.keys()):
-                equals = True
-                for k, v in d.iteritems():
-                    if v != l.get(k):
-                        equals = False
-                item_equal.append(equals)
-        return any(item_equal)
+    @classmethod
+    def tearDownClass(cls):
+        super(SurveyIndustryResultTest, cls).tearDownClass()
+        reload_urlconf()
+
+    @classmethod
+    def setUpClass(cls):
+        super(SurveyIndustryResultTest, cls).setUpClass()
+        reload_urlconf()
 
     def setUp(self):
-        self.survey_1_dmb_d = {
-            'dimension_A': 2.0,
-            'dimension_B': 2.0,
-        }
+        make_industry_benchmark(industry='all', tenant='tenant1')
+        make_industry_benchmark(industry='ic', tenant='tenant1')
+        make_industry_benchmark(industry='ic-o', tenant='tenant1')
 
-        self.survey_2_dmb_d = {
-            'dimension_A': 3.0,
-            'dimension_C': 3.0,
-        }
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
+    @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
+    def test_industry_no_tenant_in_url(self, mocked_industry_benchmark, mocked_industry_best_practice):
+        """When `tenant` paramenter is not in url, it should return 400 bad request."""
+        url = reverse('survey_industry', kwargs={'industry': 'ic-o'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-        self.survey_3_dmb_d = {
-            'dimension_A': 1.0,
-            'dimension_C': 1.0,
-        }
+        mocked_industry_benchmark.assert_not_called()
+        mocked_industry_best_practice.assert_not_called()
 
-        self.survey = make_survey(
-            company_name='test company',
-            industry='ic-o',
-            country="IT"
-        )
-        self.survey_2 = make_survey(
-            company_name='test company 2',
-            industry='ic-o',
-            country="IT"
-        )
-
-        survey_result = make_survey_result(
-            survey=self.survey,
-            response_id='AAA',
-            dmb=1.0,
-            dmb_d=json.dumps(self.survey_1_dmb_d)
-        )
-
-        survey_result_2 = make_survey_result(
-            survey=self.survey_2,
-            response_id='AAB',
-            dmb=2.0,
-            dmb_d=json.dumps(self.survey_2_dmb_d)
-        )
-        self.survey.last_survey_result = survey_result
-        self.survey_2.last_survey_result = survey_result_2
-        self.survey.save()
-        self.survey_2.save()
-
-    def test_industry_with_results(self):
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
+    @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
+    def test_industry_with_results(self, mocked_industry_benchmark, mocked_industry_best_practice):
         """
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back.
         """
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
+        url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
         response = self.client.get(url)
-        response_data_keys = response.data.keys()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response_data_keys = response.data.keys()
+
+        mocked_industry_benchmark.assert_called()
+        mocked_industry_best_practice.assert_called()
+
         self.assertEqual(set(response_data_keys), {
             'industry',
             'dmb_industry',
@@ -305,258 +278,32 @@ class SurveyIndustryResultTest(APITestCase):
             'dmb_d_bp'
         })
 
-    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
-    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
-    def test_industry_with_results_excluded_from_best_practice(self, mocked_best_practice, mocked_benchmark):
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
+    @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
+    def test_industry_does_not_exist(self, mocked_industry_benchmark, mocked_industry_best_practice):
         """
         When there are some results for an industry, and we are above minimum
         threshold, we expect some results back, excluded the one where
         `excluded_from_best_practice` is True.
         """
-        survey_dmb_d = {
-            'dimension_A': 1.0,
-            'dimension_C': 1.0,
-        }
-        survey = Survey.objects.create(
-            company_name='test company 3',
-            industry='ic-o',
-            country='IT',
-            tenant='ads',
-        )
-        survey_result = make_survey_result(
-            survey=survey,
-            response_id='CCC',
-            dmb=1.0,
-            excluded_from_best_practice=True,
-            dmb_d=json.dumps(survey_dmb_d)
-        )
-        survey.last_survey_result = survey_result
-
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
-        response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        self.assertEqual(set(response_data_keys), {
-            'industry',
-            'dmb_industry',
-            'dmb_bp_industry',
-            'dmb',
-            'dmb_d',
-            'dmb_bp',
-            'dmb_d_bp'
-        })
-        # check mocked_benchmark is called with correct parameters
-        mocked_benchmark.assert_called()
-        args, _ = mocked_benchmark.call_args_list[0]
-        dmb_d_list_arg = args[0]
-        self.assertEqual(len(dmb_d_list_arg), 2)
-        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
-        self.assertFalse(self._assert_dict_in_list(survey_dmb_d, dmb_d_list_arg))
-
-        # check mocked_best_practice is called with correct parameters
-        mocked_best_practice.assert_called()
-        args, _ = mocked_best_practice.call_args_list[0]
-        dmb_d_list_arg = args[0]
-        self.assertEqual(len(dmb_d_list_arg), 2)
-        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
-        self.assertFalse(self._assert_dict_in_list(survey_dmb_d, dmb_d_list_arg))
-
-    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
-    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
-    def test_industry_with_results_multiple_survey_result_per_survey(self, mocked_best_practice, mocked_benchmark):
-        """
-        When a survey has multiple results, only the last one should be use
-        to calculate the aggregated benchmarks.
-        """
-        survey_result_3 = make_survey_result(
-            survey=self.survey_2,
-            response_id='AAC',
-            dmb=2.0,
-            dmb_d=json.dumps(self.survey_3_dmb_d)
-        )
-        self.survey_2.last_survey_result = survey_result_3
-        self.survey_2.save()
-
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
-        response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        for key in ['industry', 'dmb', 'dmb_d', 'dmb_bp', 'dmb_d_bp']:
-            self.assertIsNotNone(key in response_data_keys)
-
-        # check mocked_benchmark is called with correct parameters
-        mocked_benchmark.assert_called()
-        args, _ = mocked_benchmark.call_args_list[0]
-        dmb_d_list_arg = args[0]
-        self.assertEqual(len(dmb_d_list_arg), 2)
-        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
-        self.assertTrue(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
-        self.assertFalse(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
-
-        # check mocked_best_practice is called with correct parameters
-        mocked_best_practice.assert_called()
-        args, _ = mocked_best_practice.call_args_list[0]
-        dmb_d_list_arg = args[0]
-        self.assertEqual(len(dmb_d_list_arg), 2)
-        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
-        self.assertTrue(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
-        self.assertFalse(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
-
-    def test_industry_without_results_no_industry(self):
-        """When the is no industry with that specific name, we expect no results back."""
-        url = reverse('survey_industry', kwargs={'industry': 'MKT'})
+        url = '{}?tenant=tenant1'.format(reverse('survey_industry', kwargs={'industry': 'notanind'}))
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=100,
-        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=100
-    )
-    def test_industry_without_results_not_enough_results(self):
-        """
-        If there are not enough results globally we expect no results back.
-        """
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
+        mocked_industry_benchmark.assert_not_called()
+        mocked_industry_best_practice.assert_not_called()
+
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
+    @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
+    def test_tenant_does_not_exist(self, mocked_industry_benchmark, mocked_industry_best_practice):
+        """When `tenant` paramenter is not a valid tenant, it should return 400 bad request."""
+        url = '{}?tenant=notatenant'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
         response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        # if industry is not found, or there are not enough results to calculate
-        # dmb and dmb_d are returned as `None`
-        self.assertEqual(set(response_data_keys), {
-            'industry',
-            'dmb_industry',
-            'dmb_bp_industry',
-            'dmb',
-            'dmb_d',
-            'dmb_bp',
-            'dmb_d_bp'
-        })
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-        # industry will be `None` because of the default value in root
-        self.assertEqual(response.data.get('industry'), 'Information and Communication')
-        self.assertIsNone(response.data.get('dmb_industry'))
-        self.assertIsNone(response.data.get('dmb_bp_industry'))
-        self.assertIsNone(response.data.get('dmb'))
-        self.assertIsNone(response.data.get('dmb_d'))
-        self.assertIsNone(response.data.get('dmb_bp'))
-        self.assertIsNone(response.data.get('dmb_d_bp'))
-
-    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
-    def test_last_survey_result_is_excluded_if_null(self, mocked_benchmark):
-        """When last_survey_result is None, element is excluded from dmb calculation."""
-        make_survey(company_name='test company 3', industry='ic-o', country="IT", last_survey_result=None)
-
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
-        response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(set(response_data_keys), {
-            'industry',
-            'dmb_industry',
-            'dmb_bp_industry',
-            'dmb',
-            'dmb_d',
-            'dmb_bp',
-            'dmb_d_bp'
-        })
-
-        mocked_benchmark.assert_called()
-
-        call = mocked_benchmark.call_args_list[0]
-        args, _ = call
-
-        dmb_d_list_arg = args[0]
-        self.assertEqual(len(dmb_d_list_arg), 2)
-        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
-        self.assertTrue(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
-        self.assertFalse(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
-
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=10,
-        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2
-    )
-    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
-    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
-    def test_industry_not_enough_results_group_benchmark(self, mocked_best_practice, mocked_benchmark):
-        """When there are not enough results, it will return the global industry calculation."""
-        make_survey(company_name='test company 3', industry='ic-o', country="IT", last_survey_result=None)
-
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
-        response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        self.assertEqual(set(response_data_keys), {
-            'industry',
-            'dmb_industry',
-            'dmb_bp_industry',
-            'dmb',
-            'dmb_d',
-            'dmb_bp',
-            'dmb_d_bp'
-        })
-
-        self.assertEqual(mocked_benchmark.call_count, 0)
-        self.assertEqual(mocked_best_practice.call_count, 1)
-
-        call = mocked_best_practice.call_args_list[0]
-        args, _ = call
-
-        dmb_d_list_arg = args[0]
-        self.assertEqual(len(dmb_d_list_arg), 2)
-        self.assertTrue(self._assert_dict_in_list(self.survey_1_dmb_d, dmb_d_list_arg))
-        self.assertTrue(self._assert_dict_in_list(self.survey_2_dmb_d, dmb_d_list_arg))
-        self.assertFalse(self._assert_dict_in_list(self.survey_3_dmb_d, dmb_d_list_arg))
-
-        self.assertIsNone(response.data['dmb_industry'])
-        self.assertEqual(response.data['industry'], 'Information and Communication')
-        self.assertEqual(response.data['dmb_bp_industry'], 'all')
-
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=10,
-        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=5
-    )
-    @mock.patch('core.qualtrics.benchmark.calculate_group_benchmark', return_value=(None, None))
-    @mock.patch('core.qualtrics.benchmark.calculate_best_practice', return_value=(None, None))
-    def test_industry_not_enough_results_no_best_practice(self, mocked_best_practice, mocked_benchmark):
-        """When there are not enough results, it will return the global industry calculation."""
-        make_survey(company_name='test company 3', industry='edu-o', country="IT", last_survey_result=None)
-
-        url = reverse('survey_industry', kwargs={'industry': 'ic'})
-        response = self.client.get(url)
-        response_data_keys = response.data.keys()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        self.assertEqual(set(response_data_keys), {
-            'industry',
-            'dmb_industry',
-            'dmb_bp_industry',
-            'dmb',
-            'dmb_d',
-            'dmb_bp',
-            'dmb_d_bp'
-        })
-
-        self.assertEqual(mocked_benchmark.call_count, 0)
-        self.assertEqual(mocked_best_practice.call_count, 0)
-
-    @override_settings(
-        MIN_ITEMS_INDUSTRY_THRESHOLD=2,
-        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=3
-    )
-    @mock.patch('api.views.get_surveys_by_industry', autospec=True, return_value=get_surveys_by_industry('ic-o', 2))
-    def test_industry_fallbacks_average(self, get_surveys_by_industry_mock):
-        """Views use get_survey_by_industry to get the fallbacked industry and related surveys"""
-
-        url = reverse('survey_industry', kwargs={'industry': 'ic-o'})
-        self.client.get(url)
-
-        self.assertEqual(get_surveys_by_industry_mock.call_count, 2)
-        self.assertEqual(get_surveys_by_industry_mock.call_count, 2)
-        self.assertEqual(get_surveys_by_industry_mock.call_args_list, [mock.call('ic-o', 2), mock.call('ic-o', 3)])
+        mocked_industry_benchmark.assert_not_called()
+        mocked_industry_best_practice.assert_not_called()
 
 
 class SurveyResultDetailView(APITestCase):
@@ -587,6 +334,7 @@ class SurveyResultDetailView(APITestCase):
             'country_name',
             'survey_result',
             'created_at',
+            'tenant',
         })
 
     def test_survey_result_not_found(self):
@@ -616,6 +364,7 @@ class SurveyResultDetailView(APITestCase):
             'country_name',
             'survey_result',
             'created_at',
+            'tenant',
         })
 
     def test_survey_result_no_survey_attached(self):
