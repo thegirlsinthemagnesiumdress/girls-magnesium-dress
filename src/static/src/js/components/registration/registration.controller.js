@@ -57,7 +57,7 @@ class RegistrationController {
      * Get tenant from URL structure: url/<tenant>/createsurvey/
      *
      */
-    this.tenant = $location.absUrl().split(`/${CREATE_SURVEY}`)[0].split(`/`).pop();
+    this.tenant = '';
 
     /**
      * @export

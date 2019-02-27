@@ -5,3 +5,6 @@ cron:
 - description: "surveys daily export"
   url: /cron/generate_export/
   schedule: every 24 hours
+- description: Update industries benchmark for each tenant
+  url: /cron/update_benchmarks/
+  schedule: every 12 hours
