@@ -380,6 +380,50 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertTrue(isinstance(got_ids, list))
         self.assertEqual(len(got_ids), 0)
 
+    @mock.patch('core.qualtrics.benchmark.calculate_response_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.question.get_question')
+    @mock.patch('core.qualtrics.question.data_to_questions_text')
+    @mock.patch('core.qualtrics.question.data_to_questions')
+    def test__create_survey_results_call_correctly_underlying_functions(
+        self, data_to_questions_mock, data_to_questions_text_mock, get_question_mock, calculate_response_benchmark_mock
+    ):
+        """_create_survey_results is calling with correct parameters the underlying functions."""
+        make_survey()
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        _create_survey_results(self.responses, self.survey_definition, self.tenant)
+
+        data_to_questions_mock.assert_called()
+        data_to_questions_text_mock.assert_called()
+        calculate_response_benchmark_mock.assert_called()
+        # expected get_question function not to be called, if tenant is not NEWS
+        get_question_mock.assert_not_called()
+
+    @mock.patch('core.qualtrics.benchmark.calculate_response_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.question.get_question', return_value=1)
+    @mock.patch('core.qualtrics.question.data_to_questions_text')
+    @mock.patch('core.qualtrics.question.data_to_questions')
+    def test__create_survey_results_call_correctly_underlying_functions_news_tenant(
+        self, data_to_questions_mock, data_to_questions_text_mock, get_question_mock, calculate_response_benchmark_mock
+    ):
+        """
+        _create_survey_results is calling with correct parameters the underlying functions when the tenant is NEWS.
+        """
+        tenant = settings.TENANTS['tenant2']
+        # force tenant key to be news
+        tenant['key'] = 'news'
+        make_survey()
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        _create_survey_results(self.responses, self.survey_definition, tenant)
+
+        data_to_questions_mock.assert_called()
+        data_to_questions_text_mock.assert_called()
+        calculate_response_benchmark_mock.assert_called()
+        get_question_mock.assert_called()
+
 
 @override_settings(
     TENANTS=MOCKED_TENANTS

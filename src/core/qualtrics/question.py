@@ -204,3 +204,9 @@ def discard_scores(survey_data):
     start_date = datetime.strptime(survey_data.get('StartDate'), DATE_FORMAT)
     end_date = datetime.strptime(survey_data.get('EndDate'), DATE_FORMAT)
     return end_date - start_date < timedelta(minutes=5)
+
+
+def get_question(question_key, questions):
+    question_dict = {item[0]: item for item in questions}
+    answer_value = question_dict[question_key][3]
+    return answer_value

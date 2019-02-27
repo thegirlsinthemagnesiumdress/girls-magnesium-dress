@@ -164,7 +164,13 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
             questions_text = question.data_to_questions_text(response_text, dimensions, multianswers)
 
             raw_data = question.to_raw(questions, questions_text)
-            dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
+            dmb, dmb_d = None, None
+            if tenant['key'] == settings.NEWS:
+                answer_value = question.get_question(tenant['DIMENSIONS_WEIGHTS_QUESTION_ID'], questions)
+                dimensions_weights = tenant['DIMENSIONS_WEIGHTS'][answer_value]
+            else:
+                dimensions_weights = None
+            dmb, dmb_d = benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
             excluded_from_best_practice = question.discard_scores(response_data)
             survey_result = SurveyResult.objects.create(
                 survey_id=response_data.get('sid'),

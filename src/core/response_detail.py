@@ -2,13 +2,13 @@ import copy
 import re
 from collections import defaultdict
 from core.qualtrics.question import get_question_dimension
-from django.conf import settings
 
 
 class SurveyDefinition(object):
-    def __init__(self, definition, dimensions):
+    def __init__(self, definition, dimensions, dimensions_titles):
         self.definition = definition
         self.dimensions = dimensions
+        self.dimensions_titles = dimensions_titles
 
     def get_questions(self):
         questions = {
@@ -30,7 +30,7 @@ class SurveyDefinition(object):
 
                     dimension_obj = {
                         'id': q_dimension,
-                        'title': settings.DIMENSION_TITLES.get(q_dimension),
+                        'title': self.dimensions_titles.get(q_dimension),
                     }
                     if dimension_obj not in questions['dimensions']:
                         questions['dimensions'].append(dimension_obj)
@@ -91,8 +91,8 @@ class SurveyDefinition(object):
         return type_map.get(question_type['selector'], None)
 
 
-def get_response_detail(definition, response_data, dimensions):
-    survey_definition = SurveyDefinition(definition, dimensions)
+def get_response_detail(definition, response_data, dimensions, dimensions_titles):
+    survey_definition = SurveyDefinition(definition, dimensions, dimensions_titles)
     questions = survey_definition.get_questions()
 
     response_detail = copy.deepcopy(questions)

@@ -24,80 +24,92 @@ result_data = {
     },
 }
 
+DIMENSIONS = {
+    'ads': [
+        'Q102',
+        'Q103',
+        'Q104',
+        'Q105',
+        'Q106',
+        'Q107',
+        'Q108',
+        'Q109',
+        'Q110',
+        'Q112',
+        'Q113',
+        'Q114',
+        'Q115',
+    ],
+    'access': [
+        'Q116',
+        'Q117',
+        'Q118',
+        'Q119',
+        'Q161',
+        'Q120',
+        'Q162',
+        'Q121',
+    ],
+    'audience': [
+        'Q122',
+        'Q123',
+        'Q124',
+        'Q125',
+        'Q126',
+        'Q127',
+        'Q128',
+        'Q129',
+        'Q130',
+        'Q131',
+        'Q132',
+    ],
+    'automation': [
+        'Q133',
+        'Q134',
+        'Q135',
+        'Q136',
+        'Q137',
+        'Q138',
+        'Q163',
+    ],
+    'attribution': [
+        'Q139',
+        'Q140',
+        'Q141',
+        'Q142',
+        'Q143',
+        'Q144',
+        'Q145',
+        'Q146',
+        'Q147',
+    ],
+    'organization': [
+        'Q148',
+        'Q149',
+        'Q150',
+        'Q151',
+        'Q152',
+        'Q153',
+        'Q154',
+        'Q155',
+    ],
+}
+
+DIMENSION_TITLES = {
+    'ads': 'Assets and ads',
+    'access': 'Access',
+    'audience': 'Audience',
+    'attribution': 'Attribution',
+    'automation': 'Automation',
+    'organization': 'Organization',
+}
+
 
 class SurveyDefinitionTestCase(TestCase):
     def setUp(self):
-        dimensions = {
-            'ads': [
-                'Q102',
-                'Q103',
-                'Q104',
-                'Q105',
-                'Q106',
-                'Q107',
-                'Q108',
-                'Q109',
-                'Q110',
-                'Q112',
-                'Q113',
-                'Q114',
-                'Q115',
-            ],
-            'access': [
-                'Q116',
-                'Q117',
-                'Q118',
-                'Q119',
-                'Q161',
-                'Q120',
-                'Q162',
-                'Q121',
-            ],
-            'audience': [
-                'Q122',
-                'Q123',
-                'Q124',
-                'Q125',
-                'Q126',
-                'Q127',
-                'Q128',
-                'Q129',
-                'Q130',
-                'Q131',
-                'Q132',
-            ],
-            'automation': [
-                'Q133',
-                'Q134',
-                'Q135',
-                'Q136',
-                'Q137',
-                'Q138',
-                'Q163',
-            ],
-            'attribution': [
-                'Q139',
-                'Q140',
-                'Q141',
-                'Q142',
-                'Q143',
-                'Q144',
-                'Q145',
-                'Q146',
-                'Q147',
-            ],
-            'organization': [
-                'Q148',
-                'Q149',
-                'Q150',
-                'Q151',
-                'Q152',
-                'Q153',
-                'Q154',
-                'Q155',
-            ],
-        }
-        self.survey_definition = SurveyDefinition(survey_definition_dict, dimensions)
+        dimensions = DIMENSIONS
+        dimensions_titles = DIMENSION_TITLES
+        self.survey_definition = SurveyDefinition(survey_definition_dict, dimensions, dimensions_titles)
 
     def test_map_question_type_not_considered(self):
         input_type = {
@@ -248,79 +260,16 @@ class SurveyDefinitionTestCase(TestCase):
 class GetSurveyDetailTestCase(TestCase):
 
     def setUp(self):
-        self.dimensions = {
-            'ads': [
-                'Q102',
-                'Q103',
-                'Q104',
-                'Q105',
-                'Q106',
-                'Q107',
-                'Q108',
-                'Q109',
-                'Q110',
-                'Q112',
-                'Q113',
-                'Q114',
-                'Q115',
-            ],
-            'access': [
-                'Q116',
-                'Q117',
-                'Q118',
-                'Q119',
-                'Q161',
-                'Q120',
-                'Q162',
-                'Q121',
-            ],
-            'audience': [
-                'Q122',
-                'Q123',
-                'Q124',
-                'Q125',
-                'Q126',
-                'Q127',
-                'Q128',
-                'Q129',
-                'Q130',
-                'Q131',
-                'Q132',
-            ],
-            'automation': [
-                'Q133',
-                'Q134',
-                'Q135',
-                'Q136',
-                'Q137',
-                'Q138',
-                'Q163',
-            ],
-            'attribution': [
-                'Q139',
-                'Q140',
-                'Q141',
-                'Q142',
-                'Q143',
-                'Q144',
-                'Q145',
-                'Q146',
-                'Q147',
-            ],
-            'organization': [
-                'Q148',
-                'Q149',
-                'Q150',
-                'Q151',
-                'Q152',
-                'Q153',
-                'Q154',
-                'Q155',
-            ],
-        }
+        self.dimensions = DIMENSIONS
+        self.dimensions_titles = DIMENSION_TITLES
 
     def test_get_response_detail(self):
-        detail = get_response_detail(survey_definition_dict, result_data, self.dimensions)
+        detail = get_response_detail(
+            survey_definition_dict,
+            result_data,
+            self.dimensions,
+            self.dimensions_titles
+        )
 
         Q102_choices_map = detail['definitions']['Q102']['choices_map']
         Q103_choices_map = detail['definitions']['Q103']['choices_map']
@@ -338,7 +287,7 @@ class GetSurveyDetailTestCase(TestCase):
         data = copy.deepcopy(result_data)
         choice_text = 'Not in definition'
         data['Q102']['choices_text'] = [choice_text]
-        detail = get_response_detail(survey_definition_dict, data, self.dimensions)
+        detail = get_response_detail(survey_definition_dict, data, self.dimensions, self.dimensions_titles)
 
         Q102 = detail['definitions']['Q102']
 
@@ -348,14 +297,14 @@ class GetSurveyDetailTestCase(TestCase):
         self.assertEqual(Q102['not_in_schema_text'], [choice_text])
 
     def test_get_response_detail_set_in_question_not_available_in_result(self):
-        detail = get_response_detail(survey_definition_dict, result_data, self.dimensions)
+        detail = get_response_detail(survey_definition_dict, result_data, self.dimensions, self.dimensions_titles)
         for k, q in detail['definitions'].items():
             self.assertTrue(q['available'])
 
     def test_get_response_detail_available_not_set_in_result(self):
         data = copy.deepcopy(result_data)
         data.pop('Q102', None)
-        detail = get_response_detail(survey_definition_dict, data, self.dimensions)
+        detail = get_response_detail(survey_definition_dict, data, self.dimensions, self.dimensions_titles)
         self.assertFalse(detail['definitions']['Q102'].get('available', False))
         self.assertTrue(detail['definitions']['Q103'].get('available', False))
         self.assertTrue(detail['definitions']['Q104'].get('available', False))

@@ -41,6 +41,89 @@ class CalculateResponseBenchmarkTest(TestCase):
         self.assertEqual(dmb, 1.75)
 
 
+class CalculateResponseBenchmarkWeightedTest(TestCase):
+    """Test class for `calculate_response_benchmark` function for weighted case."""
+
+    def test_single_dimension(self):
+        """Test for a single dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+        ]
+
+        dimensions_weights = {
+            'dimension_A': 0.5
+        }
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses, dimensions_weights)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 1)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertEqual(dmb, 2)
+
+    def test_multi_dimensions(self):
+        """Test for a multiple dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+            ('Q4', [1.0], 3, 'dimension_B'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_B'),
+        ]
+
+        dimensions_weights = {
+            'dimension_A': 0.1,
+            'dimension_B': 0.9,
+        }
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses, dimensions_weights)
+
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 2)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertTrue('dimension_B' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
+        # (W_dimension_A*dmb_dimension_A + W_dimension_B*dmb_dimension_B)/(W_dimension_A+W_dimension_B)
+        # (0.1*2 + 0.9*1.5)/1
+        self.assertEqual(dmb, 1.55)
+
+    def test_multi_dimensions_zero_weight(self):
+        """Test for a multiple dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+            ('Q4', [1.0], 3, 'dimension_B'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_B'),
+            ('Q4', [1.0], 3, 'dimension_C'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_C'),
+
+        ]
+
+        dimensions_weights = {
+            'dimension_A': 0.3,
+            'dimension_B': 0.3,
+            'dimension_C': 0,
+        }
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses, dimensions_weights)
+
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 3)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertTrue('dimension_B' in dmb_d_dictionary)
+        self.assertTrue('dimension_C' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_C'), 1.5, places=2)
+        # (W_dim_A*dmb_dim_A + W_dim_B*dmb_dim_B +W_dim_C*dmb_dim_C)/(W_dim_A+W_dim_B+W_dim_C)
+        # (0.3*2 + 0.3*1.5 + 0*1.5)/(0.3+0.3+0)
+        self.assertAlmostEqual(dmb, 1.75, places=2)
+
+
 class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
     """Test class for `calculate_group_benchmark_from_raw_responses` function."""
 

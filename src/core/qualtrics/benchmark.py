@@ -36,7 +36,7 @@ def calculate_group_benchmark_from_raw_responses(filtered_responses, dimensions)
     return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
 
 
-def calculate_response_benchmark(response_questions):
+def calculate_response_benchmark(response_questions, dimensions_weights=None):
 
     # Create a dict where single response questions are aggregated by dimension.
     questions_by_dimension = defaultdict(list)
@@ -50,7 +50,16 @@ def calculate_response_benchmark(response_questions):
     for dimension, questions in questions_by_dimension.iteritems():
         benchmark_by_dimension[dimension] = weighted_questions_average(questions)
 
-    return numpy.average(benchmark_by_dimension.values()), benchmark_by_dimension
+    ordered_weights = None
+    benchmark_by_dimension_values = []
+    if dimensions_weights:
+        ordered_weights = []
+        for dim, val in benchmark_by_dimension.items():
+            benchmark_by_dimension_values.append(val)
+            ordered_weights.append(dimensions_weights[dim])
+    else:
+        benchmark_by_dimension_values = benchmark_by_dimension.values()
+    return numpy.average(benchmark_by_dimension_values, weights=ordered_weights), benchmark_by_dimension
 
 
 def _by_dimension(dmb_d_list, aggregated_function, dimensions):

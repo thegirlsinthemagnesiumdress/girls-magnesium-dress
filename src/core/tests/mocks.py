@@ -39,6 +39,13 @@ MOCKED_WEIGHTS = {
     'Q3': 3,
 }
 
+MOCKED_DIMENSIONS_WEIGHTS = {
+    1: {
+        'asd': 0.2,
+        'automation': 0.4,
+    }
+}
+
 qualtrics_export = {
     'responses': [
         {
@@ -206,6 +213,7 @@ INDUSTRIES = {
 
 MOCKED_TENANTS = {
     'tenant1': {
+        'key': 'tenant1',
         'label': 'Tenant 1 label',
         'slug': 'tenant1-slug',
         'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
@@ -214,6 +222,19 @@ MOCKED_TENANTS = {
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': MOCKED_WEIGHTS,
+    },
+    'tenant2': {
+        'key': 'tenant2',
+        'label': 'Tenant 2 label',
+        'slug': 'tenant2-slug',
+        'QUALTRICS_SURVEY_ID': 'SV_aaxxxxxxxx',
+        'EMAIL_TO': 'Q97_4_TEXT',
+        'EMAIL_BCC': 'Q97_5_TEXT',
+        'DIMENSIONS': MOCKED_DIMENSIONS,
+        'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
+        'WEIGHTS': MOCKED_WEIGHTS,
+        'DIMENSIONS_WEIGHTS_QUESTION_ID': 'Q4',
+        'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS,
     }
 }
 MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])
