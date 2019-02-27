@@ -10,7 +10,6 @@
 
 {% block main %}
   <main id="dmb-landing">
-    {% comment %}
 
     {% include 'public/news/inc/home-hero.inc.html' %}
 
@@ -28,6 +27,10 @@
     {% endcomment %}
 
     {% include 'public/news/inc/home-tabs.inc.html' with class="dmb-u-m-b-m" %}
+
+    <div class="dmb-u-m-t-l">
+      {% include 'public/news/inc/image-text.inc.html' %}
+    </div>
 
   </main>
 {% endblock main %}
