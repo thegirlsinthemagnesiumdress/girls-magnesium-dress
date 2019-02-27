@@ -166,7 +166,7 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
             raw_data = question.to_raw(questions, questions_text)
             dmb, dmb_d = None, None
             if tenant['key'] == settings.NEWS:
-                answer_value = question.get_question(tenant['DIMENSIONS_WEIGHTS_QUESTION_ID'], questions)
+                answer_value = question.get_question(tenant['DIMENSIONS_WEIGHTS_QUESTION_ID'], response_data)
                 dimensions_weights = tenant['DIMENSIONS_WEIGHTS'][answer_value]
             else:
                 dimensions_weights = None

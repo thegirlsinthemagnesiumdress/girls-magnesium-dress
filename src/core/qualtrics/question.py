@@ -205,7 +205,6 @@ def discard_scores(survey_data):
     return end_date - start_date < timedelta(minutes=5)
 
 
-def get_question(question_key, questions):
-    question_dict = {item[0]: item for item in questions}
-    answer_value = question_dict[question_key][3]
-    return answer_value
+def get_question(question_key, response_data):
+    str_value = response_data[question_key]
+    return int(str_value)
