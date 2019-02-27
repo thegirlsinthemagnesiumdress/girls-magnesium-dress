@@ -73,11 +73,6 @@ MIDDLEWARE_CLASSES = tuple(
     list(MIDDLEWARE_CLASSES)
 )
 
-ALLOWED_AUTH_DOMAINS = [
-    'google.com',
-    'potatolondon.com',
-]
-
 
 CSP_SCRIPT_SRC += (
     "'sha256-Zk5IgZ4b9G375sPeV/3uici3CrQ4you2YI5DwtVjrQs='",  # Analytics snippet.
