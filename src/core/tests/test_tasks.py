@@ -475,7 +475,8 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 class SendEmailTestCase(TestCase):
     """Tests for send_emails_for_new_reports function."""
     def setUp(self):
-        self.responses = get_mocked_results().get('responses')
+        make_survey(sid='1')
+        make_survey(sid='2')
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_not_send_to_invalid(self, email_mock):
@@ -535,6 +536,16 @@ class SendEmailTestCase(TestCase):
 
         send_emails_for_new_reports(email_list)
         self.assertEqual(email_mock.call_count, 2)
+
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
+    def test_email_is_not_sent_if_surevy_does_not_exist(self, email_mock):
+        """`SurveyResult` email is not sent, when `Survey` object does not exist."""
+        email_list = [
+            ('test@example.com', 'test@example.com', '3')
+        ]
+
+        send_emails_for_new_reports(email_list)
+        self.assertEqual(email_mock.call_count, 0)
 
 
 class GenerateExportTestCase(TestCase):

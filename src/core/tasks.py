@@ -214,43 +214,39 @@ def send_emails_for_new_reports(email_list):
             industry = s.get_industry_display()
             country = s.get_country_display()
             tenant = s.tenant
+            if is_valid_email(to):
+                slug = get_tenant_slug(tenant)
+                link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
+                bcc = [bcc] if is_valid_email(bcc) else None
+                context = {
+                    'url': "http://{}{}".format(domain, link),
+                    'company_name': company_name,
+                    'industry': industry,
+                    'country': country,
+                }
+
+                email_kwargs = {
+                    'to': [to],
+                    'subject': subject_template.render(context).split("\n")[0],
+                    'sender': settings.CONTACT_EMAIL,
+                    'body': text_message_template.render(context),
+                    'html': html_message_template.render(context),
+                }
+
+                if getattr(settings, 'REPLY_TO_EMAIL', None):
+                    email_kwargs['reply_to'] = settings.REPLY_TO_EMAIL
+
+                message = mail.EmailMessage(**email_kwargs)
+
+                if bcc:
+                    message.bcc = bcc
+
+                message.send()
+
+                logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
         except Survey.DoesNotExist:
-            company_name = ""
-            industry = ""
-            country = ""
-            tenant = settings.DEFAULT_TENANT
+            # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
-
-        if is_valid_email(to):
-            slug = get_tenant_slug(tenant)
-            link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
-            bcc = [bcc] if is_valid_email(bcc) else None
-            context = {
-                'url': "http://{}{}".format(domain, link),
-                'company_name': company_name,
-                'industry': industry,
-                'country': country,
-            }
-
-            email_kwargs = {
-                'to': [to],
-                'subject': subject_template.render(context).split("\n")[0],
-                'sender': settings.CONTACT_EMAIL,
-                'body': text_message_template.render(context),
-                'html': html_message_template.render(context),
-            }
-
-            if getattr(settings, 'REPLY_TO_EMAIL', None):
-                email_kwargs['reply_to'] = settings.REPLY_TO_EMAIL
-
-            message = mail.EmailMessage(**email_kwargs)
-
-            if bcc:
-                message.bcc = bcc
-
-            message.send()
-
-            logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
 
 
 def is_valid_email(email):
