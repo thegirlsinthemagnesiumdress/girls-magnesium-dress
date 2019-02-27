@@ -1,24 +1,26 @@
 .dmb-step-heading {
-  @include dmb-mq($from: tablet) {
-    display: flex;
-  }
+  display: flex;
+  $block: &;
 
   &__icon {
-    counter-increment: step-heading;
     display: inline-block;
     flex-shrink: 0;
     margin-right: 10px;
     position: relative;
 
-    &::after {
-      color: #fff;
-      content: counter(step-heading);
-      font-size: 13px;
-      font-weight: 700;
-      left: 50%;
-      position: absolute;
-      top: 2px;
-      transform: translateX(-50%);
+    #{$block} & {
+      counter-increment: step-heading;
+
+      &::after {
+        color: #fff;
+        content: counter(step-heading);
+        font-size: 13px;
+        font-weight: 700;
+        left: 50%;
+        position: absolute;
+        top: 2px;
+        transform: translateX(-50%);
+      }
     }
   }
 }
