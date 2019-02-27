@@ -2,4 +2,9 @@
   background: transparent;
   border: 1px solid $dmb-color-grey-zircon;
   color: $dmb-color-blue-royal;
+
+  &--light {
+    border: 2px solid $dmb-light-text-color;
+    color: inherit;
+  }
 }

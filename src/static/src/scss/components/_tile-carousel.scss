@@ -1,0 +1,22 @@
+.dmb-tile-carousel {
+  background: $dmb-color-blue-solitude;
+
+  &__tiles {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+
+  &__tile {
+    flex-shrink: 0;
+    margin-bottom: 10px;
+
+    & + & {
+      margin-left: 8px;
+    }
+  }
+
+  &__tile-icon {
+    margin: 24px 0;
+  }
+}

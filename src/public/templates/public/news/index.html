@@ -13,6 +13,8 @@
 
     {% include 'public/news/inc/home-hero.inc.html' %}
 
+    {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' mobile_only=True class='dmb-u-m-b-l' %}
+
     <div class="dmb-u-m-b-l">
       {% include 'public/news/inc/image-text-collage.inc.html' %}
     </div>
@@ -27,9 +29,17 @@
 
     {% include 'public/news/inc/home-tabs.inc.html' with class="dmb-u-m-b-m" %}
 
+    {% include 'public/news/inc/image-text.inc.html' %}
+
     <div class="dmb-u-m-t-l">
-      {% include 'public/news/inc/image-text.inc.html' %}
+      {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' %}
     </div>
+
+    <div class="h-c-page dmb-u-m-t-l h-c-footnote">
+      * Deloitte identified these figures by examining success factors and capabilities in over 40 companies across eight industries - <a href="#">read more</a>.
+    </div>
+
+    {% include 'public/news/inc/tile-carousel.inc.html' %}
 
   </main>
 {% endblock main %}

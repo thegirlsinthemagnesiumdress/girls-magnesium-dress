@@ -15,27 +15,33 @@
 @import 'hercules/lib/global/scss/elements/all';
 
 // Glue component base styles
-@import 'scss/zippy';
+// @import 'scss/zippy';
+
+
+// Hercules component base styles
+// @import 'hercules/lib/components/icons/icons';
+// @import 'hercules/lib/components/social/social';
+// @import 'hercules/lib/components/table/settings';
+// @import 'hercules/lib/components/table/tools';
+// @import 'hercules/lib/components/table/table';
+// @import 'hercules/lib/components/carousel/carousel';
+// @import 'hercules/lib/components/expansion-panels/expansion-panels';
+
+
 @import 'scss/tabby';
 @import 'scss/tabset';
 
-// Hercules component base styles
 @import 'hercules/lib/components/buttons/buttons';
 @import 'hercules/lib/components/footer/footer';
 @import 'hercules/lib/components/grids/grids';
 @import 'hercules/lib/components/header/header';
-@import 'hercules/lib/components/icons/icons';
-@import 'hercules/lib/components/social/social';
 @import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
 @import 'hercules/lib/components/tabby/tabby';
-@import 'hercules/lib/components/table/settings';
-@import 'hercules/lib/components/table/tools';
-@import 'hercules/lib/components/table/table';
-@import 'hercules/lib/components/type/type';
 @import 'hercules/lib/components/tiles/tiles';
-@import 'hercules/lib/components/carousel/carousel';
-@import 'hercules/lib/components/expansion-panels/expansion-panels';
+@import 'hercules/lib/components/type/type';
+
+
 
 @import 'hercules/lib/global/scss/trumps/all';
 
@@ -101,11 +107,13 @@
 // Includes
 @import 'components/home-hero';
 @import 'components/home-tabs';
+@import 'components/cta-banner';
 @import 'components/icon-text-cta';
 @import 'components/img-text-collage';
 @import 'components/img-text';
 @import 'components/product-hero';
 @import 'components/step-heading';
+@import 'components/tile-carousel';
 
 // Pages
 @import 'pages/landing';
