@@ -282,7 +282,7 @@ class CleanDataTest(TestCase):
             self.assertListEqual(sorted(v), sorted(data[k]))
 
     def test_survey_clean_empty_q_answer(self):
-        """Should throw an exeption"""
+        """Should keep the question with empty value"""
         survey_result = {
             'Organization-sum': '0.0',
             'Organization-weightedAvg': '0.0',
@@ -317,13 +317,17 @@ class CleanDataTest(TestCase):
         }
         multi_answer_questions = ['Q13']
 
-        self.assertRaises(
-            InvalidResponseData,
-            question.clean_survey_data,
-            survey_result,
-            dimensions,
-            multi_answer_questions
-        )
+        expected_clean_data = {
+            'Q3': [''],
+            'Q4': ['1'],
+            'Q5_1': ['1'],
+            'Q13': ['1.33', '1.0', '0', '2.33'],
+        }
+
+        data = question.clean_survey_data(survey_result, dimensions, multi_answer_questions)
+        self.assertCountEqual(expected_clean_data.keys(), data.keys())
+        for k, v in expected_clean_data.items():
+            self.assertListEqual(sorted(v), sorted(data[k]))
 
     def test_survey_clean_text(self):
         """Should return the expected cleaned dictionary"""

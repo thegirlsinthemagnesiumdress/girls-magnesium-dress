@@ -111,8 +111,7 @@ def _get_questions_by_type(data):
 
         # is a single answer question
         if match['question_id'] and not match['multi_answer_value']:
-            if question_value:
-                single_answer[match['question_id']].append(question_value)
+            single_answer[match['question_id']].append(question_value)
         # is a multi answer question
         elif match['question_id'] and match['multi_answer_value']:
             # As mentioned in the readme we had to hack the multiple answer values
@@ -135,7 +134,7 @@ def data_to_questions(survey_data, dimensions, multianswers, weights, default_we
     data = clean_survey_data(survey_data, dimensions, multianswers)
 
     def create_tuple(question_key, data):
-        question_value = 0
+        question_value = [0.0]
         try:
             question_value = map(float, data.get(question_key))
 
