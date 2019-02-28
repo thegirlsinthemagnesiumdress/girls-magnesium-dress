@@ -1,6 +1,14 @@
 /* eslint-disable max-len */
 
-goog.module('dmb.components.dimensionTab.newsStrings');
+goog.module('dmb.components.tenant.conf.news');
+
+const levels = {
+  0: 'Nascent',
+  1: 'Emerging',
+  2: 'NEWSConnected',
+  3: 'Multi-moment',
+};
+
 
 const dimensionHeaders = {
   'attribution': 'News Attribution',
@@ -11,7 +19,7 @@ const dimensionHeaders = {
   'organization': 'Organisation',
 };
 
-const newsDimensionHeadersDescription = {
+const dimensionHeadersDescription = {
   'attribution': 'News Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.',
   'ads': 'Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.',
   'audience': 'To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.',
@@ -21,7 +29,7 @@ const newsDimensionHeadersDescription = {
 };
 
 
-const newsDimensionLevelDescription = {
+const dimensionLevelDescription = {
   'attribution': {
     0: 'You use a mix of measurement methodologies but results mostly only influence long-term planning. Evaluation of your marketing activities tends to be based on campaign metrics.',
     1: 'You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics.',
@@ -60,7 +68,7 @@ const newsDimensionLevelDescription = {
   },
 };
 
-const newsDimensionLevelRecommendations = {
+const dimensionLevelRecommendations = {
   'attribution': {
     0: [{
       'header': 'Measure the true value of your marketing activities',
@@ -423,9 +431,13 @@ const newsDimensionLevelRecommendations = {
 };
 
 
-exports = {
+const conf = {
+  levels,
   dimensionHeaders,
-  newsDimensionHeadersDescription,
-  newsDimensionLevelDescription,
-  newsDimensionLevelRecommendations,
+  dimensionHeadersDescription,
+  dimensionLevelDescription,
+  dimensionLevelRecommendations,
 };
+
+
+exports = conf;

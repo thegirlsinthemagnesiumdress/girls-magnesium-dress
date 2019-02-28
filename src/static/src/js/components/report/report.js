@@ -22,16 +22,9 @@ module.factory('floorDmbFactory', () => {
     (angular.isDefined(dmb) ? Math.min(Math.floor(dmb), 3) : null);
 });
 
-module.filter('dmbLevelText', ['floorDmbFactory', (floorDmbFactory)=> {
+module.filter('dmbLevelText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory, tenantConf)=> {
   return (dmb) => {
-    const levels = {
-      0: 'Nascent',
-      1: 'Emerging',
-      2: 'Connected',
-      3: 'Multi-moment',
-    };
-
-    return angular.isDefined(dmb) ? levels[floorDmbFactory(dmb)] : '';
+    return angular.isDefined(dmb) ? tenantConf.levels[floorDmbFactory(dmb)] : '';
   };
 }]);
 

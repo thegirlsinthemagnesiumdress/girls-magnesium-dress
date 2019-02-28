@@ -10,10 +10,7 @@ class DimensionTabController {
    * @param {!angular.Scope} $scope
    * @param {!Object} reportService
    * @param {!Function} floorDmbFactory
-   * @param {!Object} dimensionHeaders
-   * @param {!Object} dimensionHeadersDescription
-   * @param {!Object} dimensionLevelDescription
-   * @param {!Object} dimensionLevelRecommendations
+   * @param {!Object} tenantConf
    *
    * @ngInject
    */
@@ -21,33 +18,30 @@ class DimensionTabController {
       $scope,
       reportService,
       floorDmbFactory,
-      dimensionHeaders,
-      dimensionHeadersDescription,
-      dimensionLevelDescription,
-      dimensionLevelRecommendations) {
+      tenantConf) {
         /**
          * @export
          * type {Object}
          */
-        this.dimensionHeaders = dimensionHeaders;
+        this.dimensionHeaders = tenantConf.dimensionHeaders;
 
         /**
          * @export
          * type {Object}
          */
-        this.dimensionHeadersDescription = dimensionHeadersDescription;
+        this.dimensionHeadersDescription = tenantConf.dimensionHeadersDescription;
 
         /**
          * @export
          * type {Object}
          */
-        this.dimensionLevelDescription = dimensionLevelDescription;
+        this.dimensionLevelDescription = tenantConf.dimensionLevelDescription;
 
         /**
          * @export
          * type {Object}
          */
-        this.dimensionLevelRecommendations = dimensionLevelRecommendations;
+        this.dimensionLevelRecommendations = tenantConf.dimensionLevelRecommendations;
 
         /**
          * @export

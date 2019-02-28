@@ -1,6 +1,13 @@
 /* eslint-disable max-len */
 
-goog.module('dmb.components.dimensionTab.adsStrings');
+goog.module('dmb.components.tenant.conf.ads');
+
+const levels = {
+  0: 'Nascent',
+  1: 'Emerging',
+  2: 'Connected',
+  3: 'Multi-moment',
+};
 
 const dimensionHeaders = {
   'attribution': 'Attribution',
@@ -424,6 +431,7 @@ const dimensionLevelRecommendations = {
 
 
 exports = {
+  levels,
   dimensionHeaders,
   dimensionHeadersDescription,
   dimensionLevelDescription,
