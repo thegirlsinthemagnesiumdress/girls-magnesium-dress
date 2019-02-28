@@ -29,6 +29,7 @@ TENANTS = {
         'WEIGHTS': news_conf.WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': news_conf.DIMENSIONS_WEIGHTS_QUESTION_ID,
         'DIMENSIONS_WEIGHTS': news_conf.DIMENSIONS_WEIGHTS,
+        'FORCED_INDUSTRY': 'ic-bnpj',
     },
 }
 
