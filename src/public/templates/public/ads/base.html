@@ -1,7 +1,8 @@
 {% load staticfiles %}
 {% load static_rev %}
+
 <!DOCTYPE html>
-<html lang="en" data-tenant="news" data-dimensions='["strategic-direction", "reader-engagement", "reader-revenue", "ad-revenue"]'>
+<html lang="en">
 <head ng-csp>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,7 +60,7 @@
 
 {% include 'core/inc/_svg.inc.html' %}
 {% include 'core/inc/_dmb-svgs.inc.html' %}
-<div class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}"></div>
+<div class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant_key }}" data-dimensions="{{ dimensions }}"></div>
 
 {% if debug %}
 
