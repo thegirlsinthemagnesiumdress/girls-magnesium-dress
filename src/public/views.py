@@ -49,16 +49,14 @@ def index_static(request, tenant):
 @survey_admin_required
 def reports_admin(request, tenant):
 
-    if request.user.is_super_admin:
-        surveys = Survey.objects.all()
-    else:
-        surveys = Survey.objects.filter(engagement_lead=request.user.engagement_lead)
+    surveys = Survey.objects.filter(tenant=tenant)
+    if not request.user.is_super_admin:
+        surveys = surveys.filter(engagement_lead=request.user.engagement_lead)
 
     slug = get_tenant_slug(tenant)
 
     serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
-        'surveys': surveys,
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
