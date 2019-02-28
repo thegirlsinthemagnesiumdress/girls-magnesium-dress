@@ -1,3 +1,11 @@
+{% comment %}
+  See README for information on how to use
+
+  Example:
+    {% include 'core/inc/svg.html' with id='analysis' size='80px' class='dmb-u-m-t-s dmb-u-m-b-s' only %}
+
+{% endcomment %}
+
 <svg
     role="img"
     class="dmb-svg dmb-svg--{{id}}{% if inline %} dmb-svg--inline{% endif %}{% if class %} {{class}}{% endif %}"

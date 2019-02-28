@@ -1,5 +1,5 @@
 // DMB Variables
-@import 'variables';
+@import 'breakpoints';
 
 // HERCULES AND GLUE SASS:
 ////////////////////////////////////////
@@ -24,71 +24,68 @@
 @import 'hercules/lib/components/footer/footer';
 @import 'hercules/lib/components/grids/grids';
 @import 'hercules/lib/components/header/header';
-@import 'hercules/lib/components/icons/icons';
-@import 'hercules/lib/components/social/social';
 @import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
-@import 'hercules/lib/components/table/settings';
-@import 'hercules/lib/components/table/tools';
-@import 'hercules/lib/components/table/table';
-@import 'hercules/lib/components/type/type';
+@import 'hercules/lib/components/tabby/tabby';
 @import 'hercules/lib/components/tiles/tiles';
-@import 'hercules/lib/components/carousel/carousel';
+@import 'hercules/lib/components/type/type';
+// @import 'hercules/lib/components/icons/icons';
+// @import 'hercules/lib/components/social/social';
+// @import 'hercules/lib/components/table/settings';
+// @import 'hercules/lib/components/table/tools';
+// @import 'hercules/lib/components/table/table';
+// @import 'hercules/lib/components/carousel/carousel';
 @import 'hercules/lib/components/expansion-panels/expansion-panels';
 
 @import 'hercules/lib/global/scss/trumps/all';
 
-
+////////////////////////////////////////
 // DMB SASS:
 ////////////////////////////////////////
-// @import 'hercules-overrides';
-
 // Shared
-// @import 'shared/fab';
-// @import 'shared/hero';
-// @import 'shared/side-panel';
-// @import 'shared/partnership-with-bcg';
-// @import 'shared/buttons';
+// @import 'legacy/shared/hero';
+// @import 'legacy/shared/partnership-with-bcg';
+// @import 'legacy/shared/buttons';
 
 // Components
-// @import 'components/form';
-// @import 'components/footer';
-// @import 'components/admin';
-// @import 'components/box';
-// @import 'components/dimensions-tiles';
-// @import 'components/dimensions-tab';
-// @import 'components/header';
-// @import 'components/hero';
-// @import 'components/hiw';
-// @import 'components/infographic';
-// @import 'components/input';
-// @import 'components/mobile-overflow-wrapper';
-// @import 'components/panel-trigger';
-// @import 'components/progress-circle';
-// @import 'components/progress-table';
-// @import 'components/registration';
-// @import 'components/roadmap-section';
-// @import 'components/section';
-// @import 'components/section-with-media';
-// @import 'components/side-panel';
-// @import 'components/svg';
+// @import 'legacy/components/form';
+// @import 'legacy/components/footer';
+// @import 'legacy/components/admin';
+// @import 'legacy/components/box';
+// @import 'legacy/components/dimensions-tiles';
+// @import 'legacy/components/dimensions-tab';
+// @import 'legacy/components/header';
+// @import 'legacy/components/hero';
+// @import 'legacy/components/hiw';
+// @import 'legacy/components/infographic';
+// @import 'legacy/components/input';
+// @import 'legacy/components/mobile-overflow-wrapper';
+// @import 'legacy/components/panel-trigger';
+// @import 'legacy/components/progress-circle';
+// @import 'legacy/components/progress-table';
+// @import 'legacy/components/registration';
+// @import 'legacy/components/roadmap-section';
+// @import 'legacy/components/section';
+// @import 'legacy/components/section-with-media';
+// @import 'legacy/components/svg';
 
 //Pages
-// @import 'pages/landing';
-// @import 'pages/reports-page';
-// @import 'pages/reports-admin';
-// @import 'pages/error-page';
+// @import 'legacy/pages/landing';
+// @import 'legacy/pages/reports-page';
+// @import 'legacy/pages/reports-admin';
+// @import 'legacy/pages/error-page';
 
 
 
 // DMB STYLES
 @import 'colors';
 @import 'mixins';
+@import 'variables';
 @import 'utils';
-
-
 @import 'hercules-overrides';
+
 @import 'grid-variables';
+
 
 // DMB
 // Common components
@@ -99,10 +96,22 @@
 
 // Includes
 @import 'components/home-hero';
+@import 'components/home-tabs';
+@import 'components/cta-banner';
 @import 'components/icon-text-cta';
 @import 'components/img-text-collage';
+@import 'components/img-text';
 @import 'components/product-hero';
 @import 'components/step-heading';
+@import 'components/tile-carousel';
+
+// TODO(aabuelgasim) replace with new styles
+// MVP Styles
+@import 'mvp';
+@import 'legacy/shared/fab';
+@import 'legacy/shared/side-panel';
+@import 'legacy/components/side-panel';
+//////
 
 // @import 'legacy/variables';
 // @import 'legacy/colors';

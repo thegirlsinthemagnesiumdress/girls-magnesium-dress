@@ -161,9 +161,9 @@
           text-align: center;
           top: 3px;
 
-          @include bp(m) {
-            top: 7px;
-          }
+          // @include bp(m) {
+          //   top: 7px;
+          // }
         }
       }
 

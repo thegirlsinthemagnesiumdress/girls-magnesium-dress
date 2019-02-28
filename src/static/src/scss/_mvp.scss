@@ -1,0 +1,85 @@
+// TODO(aabuelgasim): replace
+// MVP for Sidepanel
+$dmb-margin-small: 24px;
+$dmb-alt-font-family: $h-font-family-google-sans;
+$dmb-heading-border-color: #e0e4e5;
+$dmb-color-grey-accessible-grey: #70767b;
+$dmb-color-grey-zircon-old: #e0e4e5;
+$dmb-color-grey-gainsboro: #ddd;
+$dmb-color-grey-very-light: #c7c7c7;
+
+$dmb-default-transition-duration: .15s;
+$dmb-easing--standard: cubic-bezier(.4, 0, .2, 1);
+// $dmb-easing--out: cubic-bezier(0, 0, .2, 1);
+// $dmb-easing--in: cubic-bezier(.4, 0, 1, 1);
+
+$dmb-print-gutter: 8px;
+
+
+// Using comment toggles to allow easily switching these on or off globally
+@mixin print-styles() {
+  @media /**/ print /*/ screen /**/ {
+    @content;
+  }
+}
+
+@mixin screen-styles() {
+  @media /** / print /*/ screen /**/ {
+    @content;
+  }
+}
+
+.dmb-h-hidden {
+  display: none !important;
+
+  @include print-styles {
+    &--print {
+      display: none !important;
+    }
+  }
+
+  @include screen-styles {
+    &--screen {
+      display: none !important;
+    }
+  }
+}
+
+.dmb-h-show--print-only {
+  display: none;
+
+  @include print-styles {
+    display: block;
+  }
+}
+
+// PRINT STYLES
+.glue-app-supported,
+.glue-app-ready {
+  .h-c-header__bar {
+    @include print-styles {
+      position: absolute;
+    }
+  }
+}
+
+.h-c-page {
+  @include print-styles {
+    max-width: none;
+    padding-left: $dmb-print-gutter;
+    padding-right: $dmb-print-gutter;
+  }
+}
+
+.h-c-header {
+  @include print-styles {
+    &__bar {
+      box-shadow: none;
+    }
+
+    &.h-is-wholly-scrolled &__bar {
+      transform: none !important;
+    }
+  }
+}
+

@@ -44,7 +44,11 @@ $dmb-home-hero-card-bg: #fff;
     @include dmb-mq($from: tablet) {
       background-position: right -200px center;
       background-size: cover;
-      width: calc(96.8% - 32px);
+      width: calc(100% - (#{$h-grid-col-width} / 2));
+    }
+
+    @include dmb-mq(#{$h-site-width-desktop}) {
+      width: calc(100% - (#{$h-grid-col-max-width} / 2));
     }
   }
 }
