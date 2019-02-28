@@ -85,6 +85,12 @@ class ReportController {
      * @type {!Object}
      * @export
      */
+    this.levels = tenantConf.levels;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
     this.dimensionHeaders = tenantConf.dimensionHeaders;
 
     /**

@@ -43,7 +43,7 @@
           </div>
 
           <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb < 3">
-              This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>{[ (reportCtrl.result.dmb + 1) | dmbLevelText]}</strong>.
+            This report will show you how you score across the four key dimensions, and what to do to get to the next level, <strong>{[ (reportCtrl.result.dmb + 1) | dmbLevelText]}</strong>.
           </p>
           <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb > 2">
             This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level.
@@ -61,10 +61,10 @@
       <div class="h-c-page">
         <div class="dmb-report-page__hero-footer-wrp">
           <div class="dmb-h-hidden--print">
-            {% include 'public/inc/global/partnership-with-bcg.html' with invert=True %}
+            {% include 'public/inc/global/partnership-logo.inc.html' with image="img/partners/deloitte-logo" extension="png" company="deloitte" invert=True %}
           </div>
           <div class="dmb-h-show--print-only">
-            {% include 'public/inc/global/partnership-with-bcg.html' %}
+            {% include 'public/inc/global/partnership-logo.inc.html' with image="img/partners/deloitte-logo" extension="png" company="deloitte" %}
           </div>
           <a
               href="#dmb-report-page-main"
@@ -291,25 +291,25 @@
         Levels of digital marketing maturity
       </h1>
       <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
-        Nascent
+        {[reportCtrl.levels[0]]}
       </h2>
       <p>
         Marketing campaigns use mainly external data and direct buys, with limited links to sales.
       </p>
       <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
-        Emerging
+        {[reportCtrl.levels[1]]}
       </h2>
       <p>
         Some use of owned data in automated buying with single-channel optimisation and testing.
       </p>
       <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
-        Connected
+        {[reportCtrl.levels[2]]}
       </h2>
       <p>
         Data integrated and activated across channels with demonstrated link to ROI or sales proxies.
       </p>
       <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
-        Multi-moment
+        {[reportCtrl.levels[3]]}
       </h2>
       <p>
         Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions
