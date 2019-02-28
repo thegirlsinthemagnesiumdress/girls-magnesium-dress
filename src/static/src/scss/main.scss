@@ -104,6 +104,14 @@
 @import 'components/product-hero';
 @import 'components/step-heading';
 
+@import 'legacy/variables';
+@import 'legacy/colors';
+@import 'legacy/mixins';
+@import 'legacy/components/buttons';
+@import 'legacy/components/form';
+@import 'legacy/components/section';
+@import 'legacy/components/registration';
+
 // Pages
 @import 'pages/landing';
 

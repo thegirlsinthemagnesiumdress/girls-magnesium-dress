@@ -6,7 +6,14 @@ const {
   dimensionHeadersDescription,
   dimensionLevelDescription,
   dimensionLevelRecommendations,
-} = goog.require('dmb.components.dimensionTab.strings');
+} = goog.require('dmb.components.dimensionTab.adsStrings');
+
+const {
+  dimensionHeaders,
+  newsDimensionHeadersDescription,
+  newsDimensionLevelDescription,
+  newsDimensionLevelRecommendations,
+} = goog.require('dmb.components.dimensionTab.newsStrings');
 
 
 /** @const {string} */
@@ -20,10 +27,19 @@ const module = angular.module(MODULE_NAME, []);
 
 
 module.directive(directive.DIRECTIVE_NAME, directive.main);
-module.factory('dimensionHeaders', () => dimensionHeaders);
-module.factory('dimensionHeadersDescription', () => dimensionHeadersDescription);
-module.factory('dimensionLevelDescription', () => dimensionLevelDescription);
-module.factory('dimensionLevelRecommendations', () => dimensionLevelRecommendations);
+
+module.factory('dimensionHeaders', ['tenant', (tenant) => {
+  return tenant === 'news' ? newsDimensionHeaders : dimensionHeaders;
+}]);
+module.factory('dimensionHeadersDescription', ['tenant', (tenant) => {
+  return tenant === 'news' ? newsDimensionHeadersDescription : dimensionHeadersDescription;
+}]);
+module.factory('dimensionLevelDescription', ['tenant', (tenant) => {
+  return tenant === 'news' ? newsDimensionLevelDescription : dimensionLevelDescription;
+}]);
+module.factory('dimensionLevelRecommendations', ['tenant', (tenant) => {
+  return tenant === 'news' ? newsDimensionLevelRecommendations : dimensionLevelRecommendations;
+}]);
 
 
 /**

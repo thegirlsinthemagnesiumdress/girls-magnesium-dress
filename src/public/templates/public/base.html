@@ -2,7 +2,7 @@
 {% load static_rev %}
 <!DOCTYPE html>
 {# TODO(https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/72): make the `dmb--news` class dynamic depending on tenant #}
-<html lang="en" class="dmb--news">
+<html lang="en" class="dmb--news" data-tenant="news">
 <head ng-csp>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +44,7 @@
     <title>Digital Maturity Benchmark</title>
 </head>
 {# TODO(pchillari): make data-tenant="news" dynamic #}
-<body class="{% block body_class %}{% endblock %}" data-tenant="news" angular-app>
+<body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
 
   {% block header %}

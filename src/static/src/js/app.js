@@ -59,7 +59,11 @@ try {
 
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
+
+const tenant = document.documentElement.dataset['tenant'];
+
 module.constant('csrfToken', csrfToken);
+module.constant('tenant', tenant);
 
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);

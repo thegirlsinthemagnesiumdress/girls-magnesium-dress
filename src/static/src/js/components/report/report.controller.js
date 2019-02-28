@@ -10,6 +10,25 @@ const locationSidRegex = /reports\/(\w+)[#\/].*$/;
 const resultResponseIdRegex = /reports\/result\/(\w+)[#\/].*$/;
 
 
+const dimensionByTenant =  {
+  'ads': [
+    'attribution',
+    'ads',
+    'audience',
+    'access',
+    'automation',
+    'organization',
+  ],
+  'news': [
+    'attribution',
+    'ads',
+    'audience',
+    'access',
+    'automation',
+    'organization',
+  ]
+}
+
 /**
  * Report class controller
  */
@@ -26,6 +45,7 @@ class ReportController {
    * @param {!Object} reportService
    * @param {!Function} floorDmbFactory
    * @param {!Object} dimensionHeaders
+   * @param {!Object} tenant
    * @param {!Object} glueBreakpoint
    *
    * @ngInject
@@ -40,6 +60,7 @@ class ReportController {
       reportService,
       floorDmbFactory,
       dimensionHeaders,
+      tenant,
       glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
@@ -91,14 +112,7 @@ class ReportController {
      * @export
      * @type {Array.<string>}
      */
-    this.dimensions = [
-      'attribution',
-      'ads',
-      'audience',
-      'access',
-      'automation',
-      'organization',
-    ];
+    this.dimensions = dimensionByTenant[tenant];
 
        /**
      * @type {glue.ng.pagination.Model}

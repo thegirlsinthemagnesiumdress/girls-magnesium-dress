@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 
-goog.module('dmb.components.dimensionTab.strings');
+goog.module('dmb.components.dimensionTab.newsStrings');
 
 const dimensionHeaders = {
-  'attribution': 'Attribution',
+  'attribution': 'News Attribution',
   'ads': 'Assets and ads',
   'audience': 'Audience',
   'access': 'Access',
@@ -11,8 +11,8 @@ const dimensionHeaders = {
   'organization': 'Organisation',
 };
 
-const dimensionHeadersDescription = {
-  'attribution': 'Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.',
+const newsDimensionHeadersDescription = {
+  'attribution': 'News Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.',
   'ads': 'Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.',
   'audience': 'To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.',
   'access': 'Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control.',
@@ -21,7 +21,7 @@ const dimensionHeadersDescription = {
 };
 
 
-const dimensionLevelDescription = {
+const newsDimensionLevelDescription = {
   'attribution': {
     0: 'You use a mix of measurement methodologies but results mostly only influence long-term planning. Evaluation of your marketing activities tends to be based on campaign metrics.',
     1: 'You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics.',
@@ -60,7 +60,7 @@ const dimensionLevelDescription = {
   },
 };
 
-const dimensionLevelRecommendations = {
+const newsDimensionLevelRecommendations = {
   'attribution': {
     0: [{
       'header': 'Measure the true value of your marketing activities',
@@ -425,7 +425,7 @@ const dimensionLevelRecommendations = {
 
 exports = {
   dimensionHeaders,
-  dimensionHeadersDescription,
-  dimensionLevelDescription,
-  dimensionLevelRecommendations,
+  newsDimensionHeadersDescription,
+  newsDimensionLevelDescription,
+  newsDimensionLevelRecommendations,
 };
