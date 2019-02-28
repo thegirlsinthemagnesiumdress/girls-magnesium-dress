@@ -43,21 +43,6 @@ def get_path(element, elements, root_element=None):
     return path
 
 
-def get_surveys_by_industry(initial_industry, threshold):
-    if initial_industry not in settings.INDUSTRIES:
-        raise ValueError("`{}` is not in `settings.INDUSTRIES`".format(initial_industry))
-
-    for industry in get_path(initial_industry, settings.INDUSTRIES):
-        current_industries = descendant(industry, settings.INDUSTRIES, [])
-        surveys = Survey.objects.filter(industry__in=current_industries).exclude(last_survey_result__isnull=True)
-        survey_results = [survey.last_survey_result for survey in surveys
-                          if not survey.last_survey_result.excluded_from_best_practice]
-        if len(survey_results) > threshold:
-            break
-
-    return survey_results, industry
-
-
 def updatable_industries(survey_results):
     """Return a dictionary of industries to be updated with related `core.models.SurveyResult`.
 

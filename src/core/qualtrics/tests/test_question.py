@@ -1,21 +1,10 @@
 from core.qualtrics import question
 from core.qualtrics.exceptions import InvalidResponseData
 from djangae.test import TestCase
-from django.test import override_settings
 import mock
+from django.conf import settings
 
 
-@override_settings(
-    WEIGHTS={
-        'Q1': 2,
-        'Q3': 3,
-    },
-    DIMENSIONS={
-        'activation': ['Q3', 'Q12'],
-        'audience': ['Q13'],
-    },
-    MULTI_ANSWER_QUESTION=['Q13'],
-)
 class DataToQuestionTest(TestCase):
     """Test case for `core.qualtrics.question.data_to_questions` function."""
 
@@ -43,7 +32,18 @@ class DataToQuestionTest(TestCase):
     }
 
     def setUp(self):
-        questions = question.data_to_questions(self.survey_result)
+
+        weights = {
+            'Q1': 2,
+            'Q3': 3,
+        }
+        dimensions = {
+            'activation': ['Q3', 'Q12'],
+            'audience': ['Q13'],
+        }
+        multi_answer_questions = ['Q13']
+
+        questions = question.data_to_questions(self.survey_result, dimensions, multi_answer_questions, weights)
         self.question_dict = {item[0]: item for item in questions}
 
     def test_question_tuple_correctly_generated(self):
@@ -74,12 +74,20 @@ class DataToQuestionTest(TestCase):
 
         self.assertEqual(set(expected_answer), set(answer))
 
-    @override_settings(
-        MULTI_ANSWER_QUESTIONS=[],
-    )
     @mock.patch('core.qualtrics.question.logging')
     def test_multiple_answer_question_missing_in_settings(self, logging_mock):
-        question.data_to_questions(self.survey_result)
+
+        weights = {
+            'Q1': 2,
+            'Q3': 3,
+        }
+        dimensions = {
+            'activation': ['Q3', 'Q12'],
+            'audience': ['Q13'],
+        }
+        multi_answer_questions = []
+
+        question.data_to_questions(self.survey_result, dimensions, multi_answer_questions, weights)
         self.assertTrue(logging_mock.warn.called)
 
     def test_reg_ex(self):
@@ -154,18 +162,16 @@ class WeightedQuestionAverageTest(TestCase):
         self.assertAlmostEqual(average, weighted_average, places=4)
 
 
-@override_settings(
-    DIMENSIONS={
-        'activation': ['Q3', 'Q4'],
-        'audience': ['Q2'],
-    }
-)
 class GetQuestionDimensionTest(TestCase):
     """Test case for `core.qualtrics.question.get_question_dimension` function."""
 
     def test_question_with_dimension(self):
         """When question belongs to a dimension, it should be returned"""
-        dimension = question.get_question_dimension('Q3')
+        dimensions = {
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q2'],
+        }
+        dimension = question.get_question_dimension('Q3', dimensions)
 
         self.assertEqual(dimension, 'activation')
 
@@ -222,19 +228,19 @@ class DataReliableTest(TestCase):
 class CleanDataTest(TestCase):
     """Test `core.qualtrics.question.clean_survey_data` function."""
 
-    @override_settings(
-        WEIGHTS={
-            'Q1': 2,
-            'Q3': 3,
-        },
-        DIMENSIONS={
-            'activation': ['Q3', 'Q4'],
-            'audience': ['Q5_1', 'Q13'],
-        },
-        MULTI_ANSWER_QUESTION=['Q13'],
-    )
     def test_survey_clean(self):
         """Should return the expected cleaned dictionary"""
+
+        weights = {
+            'Q1': 2,
+            'Q3': 3,
+        }
+        dimensions = {
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q5_1', 'Q13'],
+        }
+        multi_answer_questions = ['Q13']
+
         survey_result = {
             'Organization-sum': '0.0',
             'Organization-weightedAvg': '0.0',
@@ -270,13 +276,13 @@ class CleanDataTest(TestCase):
 
         }
 
-        data = question.clean_survey_data(survey_result)
+        data = question.clean_survey_data(survey_result, dimensions, multi_answer_questions)
         self.assertCountEqual(expected_clean_data.keys(), data.keys())
         for k, v in expected_clean_data.items():
             self.assertListEqual(sorted(v), sorted(data[k]))
 
     def test_survey_clean_empty_q_answer(self):
-        """Should throw an exeption"""
+        """Should keep the question with empty value"""
         survey_result = {
             'Organization-sum': '0.0',
             'Organization-weightedAvg': '0.0',
@@ -305,19 +311,24 @@ class CleanDataTest(TestCase):
 
         }
 
-        self.assertRaises(InvalidResponseData, question.clean_survey_data, survey_result)
-
-    @override_settings(
-        WEIGHTS={
-            'Q1': 2,
-            'Q3': 3,
-        },
-        DIMENSIONS={
+        dimensions = {
             'activation': ['Q3', 'Q4'],
             'audience': ['Q5_1', 'Q13'],
-        },
-        MULTI_ANSWER_QUESTION=['Q13'],
-    )
+        }
+        multi_answer_questions = ['Q13']
+
+        expected_clean_data = {
+            'Q3': [''],
+            'Q4': ['1'],
+            'Q5_1': ['1'],
+            'Q13': ['1.33', '1.0', '0', '2.33'],
+        }
+
+        data = question.clean_survey_data(survey_result, dimensions, multi_answer_questions)
+        self.assertCountEqual(expected_clean_data.keys(), data.keys())
+        for k, v in expected_clean_data.items():
+            self.assertListEqual(sorted(v), sorted(data[k]))
+
     def test_survey_clean_text(self):
         """Should return the expected cleaned dictionary"""
         survey_result = {
@@ -355,22 +366,17 @@ class CleanDataTest(TestCase):
 
         }
 
-        data = question.clean_survey_data(survey_result)
+        dimensions = {
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q5_1', 'Q13'],
+        }
+        multi_answer_questions = ['Q13']
+
+        data = question.clean_survey_data(survey_result, dimensions, multi_answer_questions)
         self.assertCountEqual(expected_clean_data.keys(), data.keys())
         for k, v in expected_clean_data.items():
             self.assertListEqual(sorted(v), sorted(data[k]))
 
-    @override_settings(
-        WEIGHTS={
-            'Q1': 2,
-            'Q3': 3,
-        },
-        DIMENSIONS={
-            'activation': ['Q3', 'Q4'],
-            'audience': ['Q5_1', 'Q13'],
-        },
-        MULTI_ANSWER_QUESTION=['Q13'],
-    )
     def test_question_tuple_skipped_if_not_found_by_regex(self):
         """When a question does not match the regex is not return by questions property."""
         survey_result = {
@@ -401,21 +407,16 @@ class CleanDataTest(TestCase):
 
         }
 
-        data = question.clean_survey_data(survey_result)
+        dimensions = {
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q5_1', 'Q13'],
+        }
+        multi_answer_questions = ['Q13']
+
+        data = question.clean_survey_data(survey_result,dimensions, multi_answer_questions)
         self.assertIsNone(data.get('Q1_1_TEXT'))
 
 
-@override_settings(
-    WEIGHTS={
-        'Q1': 2,
-        'Q3': 3,
-    },
-    DIMENSIONS={
-        'activation': ['Q3', 'Q12'],
-        'audience': ['Q13'],
-    },
-    MULTI_ANSWER_QUESTION=['Q13'],
-)
 class DataToQuestionTextTest(TestCase):
     """Test case for `core.qualtrics.question.data_to_questions_text` function."""
 
@@ -444,7 +445,14 @@ class DataToQuestionTextTest(TestCase):
     }
 
     def setUp(self):
-        questions = question.data_to_questions_text(self.survey_result)
+
+        dimensions = {
+            'activation': ['Q3', 'Q12'],
+            'audience': ['Q13'],
+        }
+        multi_answer_questions = ['Q13']
+
+        questions = question.data_to_questions_text(self.survey_result, dimensions, multi_answer_questions)
         self.question_dict = {item[0]: item for item in questions}
 
     def test_question_tuple_correctly_generated(self):

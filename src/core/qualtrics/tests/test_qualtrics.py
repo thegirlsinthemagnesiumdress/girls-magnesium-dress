@@ -1,7 +1,5 @@
 from core.qualtrics import benchmark
 from djangae.test import TestCase
-from django.conf import settings
-from django.test import override_settings
 
 
 class CalculateResponseBenchmarkTest(TestCase):
@@ -43,16 +41,99 @@ class CalculateResponseBenchmarkTest(TestCase):
         self.assertEqual(dmb, 1.75)
 
 
-@override_settings(
-    DIMENSIONS={
-        'dimension_A': ['Q1', 'Q2'],
-        'dimension_B': ['Q3'],
-        'dimension_C': ['Q2'],
-        'dimension_D': ['Q1'],
-    }
-)
+class CalculateResponseBenchmarkWeightedTest(TestCase):
+    """Test class for `calculate_response_benchmark` function for weighted case."""
+
+    def test_single_dimension(self):
+        """Test for a single dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+        ]
+
+        dimensions_weights = {
+            'dimension_A': 0.5
+        }
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses, dimensions_weights)
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 1)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertEqual(dmb, 2)
+
+    def test_multi_dimensions(self):
+        """Test for a multiple dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+            ('Q4', [1.0], 3, 'dimension_B'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_B'),
+        ]
+
+        dimensions_weights = {
+            'dimension_A': 0.1,
+            'dimension_B': 0.9,
+        }
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses, dimensions_weights)
+
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 2)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertTrue('dimension_B' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
+        # (W_dimension_A*dmb_dimension_A + W_dimension_B*dmb_dimension_B)/(W_dimension_A+W_dimension_B)
+        # (0.1*2 + 0.9*1.5)/1
+        self.assertEqual(dmb, 1.55)
+
+    def test_multi_dimensions_zero_weight(self):
+        """Test for a multiple dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q2', [3.0], 1, 'dimension_A'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+            ('Q4', [1.0], 3, 'dimension_B'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_B'),
+            ('Q4', [1.0], 3, 'dimension_C'),
+            ('Q5', [1.0, 2.0], 1, 'dimension_C'),
+
+        ]
+
+        dimensions_weights = {
+            'dimension_A': 0.3,
+            'dimension_B': 0.3,
+            'dimension_C': 0,
+        }
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses, dimensions_weights)
+
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 3)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertTrue('dimension_B' in dmb_d_dictionary)
+        self.assertTrue('dimension_C' in dmb_d_dictionary)
+        self.assertEqual(dmb_d_dictionary.get('dimension_A'), 2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_C'), 1.5, places=2)
+        # (W_dim_A*dmb_dim_A + W_dim_B*dmb_dim_B +W_dim_C*dmb_dim_C)/(W_dim_A+W_dim_B+W_dim_C)
+        # (0.3*2 + 0.3*1.5 + 0*1.5)/(0.3+0.3+0)
+        self.assertAlmostEqual(dmb, 1.75, places=2)
+
+
 class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
     """Test class for `calculate_group_benchmark_from_raw_responses` function."""
+
+    def setUp(self):
+        self.dimensions = {
+            'dimension_A': ['Q1', 'Q2'],
+            'dimension_B': ['Q3'],
+            'dimension_C': ['Q2'],
+            'dimension_D': ['Q1'],
+        }
 
     def test_calculate_group_benchmark_from_raw_responses_single_response(self):
         """Test for a single reponse."""
@@ -64,12 +145,12 @@ class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
             ]
         ]
 
-        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark_from_raw_responses(responses)
+        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark_from_raw_responses(responses, self.dimensions)
         self.assertIsInstance(dmb_d_dictionary, dict)
-        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+        self.assertEqual(len(dmb_d_dictionary), len(self.dimensions))
 
         # check all dimensions defined in settings are in the response dictionary
-        for dimension in settings.DIMENSIONS.keys():
+        for dimension in self.dimensions.keys():
             self.assertTrue(dimension in dmb_d_dictionary)
 
         # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
@@ -116,12 +197,12 @@ class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
             ]
         ]
 
-        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark_from_raw_responses(responses)
+        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark_from_raw_responses(responses, self.dimensions)
         self.assertIsInstance(dmb_d_dictionary, dict)
-        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+        self.assertEqual(len(dmb_d_dictionary), len(self.dimensions))
 
         # check all dimensions defined in settings are in the response dictionary
-        for dimension in settings.DIMENSIONS.keys():
+        for dimension in self.dimensions.keys():
             self.assertTrue(dimension in dmb_d_dictionary)
 
         # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
@@ -158,16 +239,16 @@ class CalculateGroupFromRawResponsesBenchmarkTest(TestCase):
         self.assertEqual(dmb, 1.0)
 
 
-@override_settings(
-    DIMENSIONS={
-        'dimension_A': ['Q1', 'Q2'],
-        'dimension_B': ['Q3'],
-        'dimension_C': ['Q2'],
-        'dimension_D': ['Q1'],
-    }
-)
 class CalculateDimensionBenchmarkTest(TestCase):
     """Test class for `calculate_group_benchmark` function."""
+
+    def setUp(self):
+        self.dimensions = {
+            'dimension_A': ['Q1', 'Q2'],
+            'dimension_B': ['Q3'],
+            'dimension_C': ['Q2'],
+            'dimension_D': ['Q1'],
+        }
 
     def test_calculate_group_benchmark_from_raw_responses_single_response(self):
         """Test for a single reponse."""
@@ -178,12 +259,12 @@ class CalculateDimensionBenchmarkTest(TestCase):
             },
         ]
 
-        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark(dmb_d_list)
+        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark(dmb_d_list, self.dimensions)
         self.assertIsInstance(dmb_d_dictionary, dict)
-        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+        self.assertEqual(len(dmb_d_dictionary), len(self.dimensions))
 
         # check all dimensions defined in settings are in the response dictionary
-        for dimension in settings.DIMENSIONS.keys():
+        for dimension in self.dimensions.keys():
             self.assertTrue(dimension in dmb_d_dictionary)
 
         # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
@@ -228,12 +309,12 @@ class CalculateDimensionBenchmarkTest(TestCase):
             },
         ]
 
-        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark(dmb_d_list)
+        dmb, dmb_d_dictionary = benchmark.calculate_group_benchmark(dmb_d_list, self.dimensions)
         self.assertIsInstance(dmb_d_dictionary, dict)
-        self.assertEqual(len(dmb_d_dictionary), len(settings.DIMENSIONS))
+        self.assertEqual(len(dmb_d_dictionary), len(self.dimensions))
 
         # check all dimensions defined in settings are in the response dictionary
-        for dimension in settings.DIMENSIONS.keys():
+        for dimension in self.dimensions.keys():
             self.assertTrue(dimension in dmb_d_dictionary)
 
         # each element of `dmb_d_dictionary` will be the average of weighted averages by dimension
@@ -270,16 +351,16 @@ class CalculateDimensionBenchmarkTest(TestCase):
         self.assertEqual(dmb, 1.0)
 
 
-@override_settings(
-    DIMENSIONS={
-        'dimension_A': ['Q1', 'Q2'],
-        'dimension_B': ['Q3'],
-        'dimension_C': ['Q2'],
-        'dimension_D': ['Q1'],
-    }
-)
 class CalculateBestPracticeTest(TestCase):
     """Test class for `calculate_best_practice` function."""
+
+    def setUp(self):
+        self.dimensions = {
+            'dimension_A': ['Q1', 'Q2'],
+            'dimension_B': ['Q3'],
+            'dimension_C': ['Q2'],
+            'dimension_D': ['Q1'],
+        }
 
     def test_calculate_best_practice_single_response(self):
         """Test for a single reponse."""
@@ -290,12 +371,12 @@ class CalculateBestPracticeTest(TestCase):
             },
         ]
 
-        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list)
+        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list, self.dimensions)
         self.assertIsInstance(dmb_d_max_dictionary, dict)
-        self.assertEqual(len(dmb_d_max_dictionary), len(settings.DIMENSIONS))
+        self.assertEqual(len(dmb_d_max_dictionary), len(self.dimensions))
 
         # check all dimensions defined in settings are in the response dictionary
-        for dimension in settings.DIMENSIONS.keys():
+        for dimension in self.dimensions.keys():
             self.assertTrue(dimension in dmb_d_max_dictionary)
 
         # each element of `dmb_d_max_dictionary` will be the max of weighted averages by dimension
@@ -325,12 +406,12 @@ class CalculateBestPracticeTest(TestCase):
             },
         ]
 
-        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list)
+        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list, self.dimensions)
         self.assertIsInstance(dmb_d_max_dictionary, dict)
-        self.assertEqual(len(dmb_d_max_dictionary), len(settings.DIMENSIONS))
+        self.assertEqual(len(dmb_d_max_dictionary), len(self.dimensions))
 
         # check all dimensions defined in settings are in the response dictionary
-        for dimension in settings.DIMENSIONS.keys():
+        for dimension in self.dimensions.keys():
             self.assertTrue(dimension in dmb_d_max_dictionary)
 
         # each element of `dmb_d_max_dictionary` will be the max of weighted averages by dimension

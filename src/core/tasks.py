@@ -93,8 +93,9 @@ def _get_results(tenant, survey_definition):
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition)
+        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant)
         new_response_ids = [result.response_id for result in new_survey_results]
+
         email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid')) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
@@ -118,7 +119,7 @@ def _update_responses_with_text(responses, text_responses):
     return merged_responses
 
 
-def _create_survey_results(results_data, last_survey_definition):
+def _create_survey_results(results_data, last_survey_definition, tenant):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param results_data: dictionary containing the downloaded responses
@@ -131,7 +132,7 @@ def _create_survey_results(results_data, last_survey_definition):
     new_survey_results = []
     for data in results_data:
         try:
-            new_survey_result = _create_survey_result(data, last_survey_definition)
+            new_survey_result = _create_survey_result(data, last_survey_definition, tenant)
             if new_survey_result:
                 new_survey_results.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
@@ -139,7 +140,7 @@ def _create_survey_results(results_data, last_survey_definition):
     return new_survey_results
 
 
-def _create_survey_result(survey_data, last_survey_definition):
+def _create_survey_result(survey_data, last_survey_definition, tenant):
     """Create `SurveyResult` given a single `result_data`.
 
     :param data: dictionary of data downloaded from Qualtrics
@@ -158,12 +159,18 @@ def _create_survey_result(survey_data, last_survey_definition):
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
-
-            questions = question.data_to_questions(response_data)
-            questions_text = question.data_to_questions_text(response_text)
+            dimensions, multianswers, weights = tenant['DIMENSIONS'], tenant['MULTI_ANSWER_QUESTIONS'], tenant['WEIGHTS']
+            questions = question.data_to_questions(response_data, dimensions, multianswers, weights)
+            questions_text = question.data_to_questions_text(response_text, dimensions, multianswers)
 
             raw_data = question.to_raw(questions, questions_text)
-            dmb, dmb_d = benchmark.calculate_response_benchmark(questions)
+            dmb, dmb_d = None, None
+            if tenant['key'] == settings.NEWS:
+                answer_value = question.get_question(tenant['DIMENSIONS_WEIGHTS_QUESTION_ID'], response_data)
+                dimensions_weights = tenant['DIMENSIONS_WEIGHTS'][answer_value]
+            else:
+                dimensions_weights = None
+            dmb, dmb_d = benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
             excluded_from_best_practice = question.discard_scores(response_data)
             survey_result = SurveyResult.objects.create(
                 survey_id=response_data.get('sid'),
@@ -207,43 +214,39 @@ def send_emails_for_new_reports(email_list):
             industry = s.get_industry_display()
             country = s.get_country_display()
             tenant = s.tenant
+            if is_valid_email(to):
+                slug = get_tenant_slug(tenant)
+                link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
+                bcc = [bcc] if is_valid_email(bcc) else None
+                context = {
+                    'url': "http://{}{}".format(domain, link),
+                    'company_name': company_name,
+                    'industry': industry,
+                    'country': country,
+                }
+
+                email_kwargs = {
+                    'to': [to],
+                    'subject': subject_template.render(context).split("\n")[0],
+                    'sender': settings.CONTACT_EMAIL,
+                    'body': text_message_template.render(context),
+                    'html': html_message_template.render(context),
+                }
+
+                if getattr(settings, 'REPLY_TO_EMAIL', None):
+                    email_kwargs['reply_to'] = settings.REPLY_TO_EMAIL
+
+                message = mail.EmailMessage(**email_kwargs)
+
+                if bcc:
+                    message.bcc = bcc
+
+                message.send()
+
+                logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
         except Survey.DoesNotExist:
-            company_name = ""
-            industry = ""
-            country = ""
-            tenant = settings.DEFAULT_TENANT
+            # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
-
-        if is_valid_email(to):
-            slug = get_tenant_slug(tenant)
-            link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
-            bcc = [bcc] if is_valid_email(bcc) else None
-            context = {
-                'url': "http://{}{}".format(domain, link),
-                'company_name': company_name,
-                'industry': industry,
-                'country': country,
-            }
-
-            email_kwargs = {
-                'to': [to],
-                'subject': subject_template.render(context).split("\n")[0],
-                'sender': settings.CONTACT_EMAIL,
-                'body': text_message_template.render(context),
-                'html': html_message_template.render(context),
-            }
-
-            if getattr(settings, 'REPLY_TO_EMAIL', None):
-                email_kwargs['reply_to'] = settings.REPLY_TO_EMAIL
-
-            message = mail.EmailMessage(**email_kwargs)
-
-            if bcc:
-                message.bcc = bcc
-
-            message.send()
-
-            logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
 
 
 def is_valid_email(email):
@@ -341,6 +344,12 @@ def calculate_industry_benchmark(tenant):
 
     survey_results_by_industry = updatable_industries(valid_survey_results)
 
+    if tenant == settings.NEWS:
+        forced_industry = settings.TENANTS[tenant]['FORCED_INDUSTRY']
+        survey_results_by_industry = {
+            forced_industry: survey_results_by_industry[forced_industry]
+        }
+
     initial_industry_benchmarks = IndustryBenchmark.objects.filter(tenant=tenant)
     initial_industry_benchmarks_dict = {initial.industry: initial for initial in initial_industry_benchmarks}
 
@@ -349,32 +358,34 @@ def calculate_industry_benchmark(tenant):
         current_industry_benchmark = initial_industry_benchmarks_dict.get(industry)
 
         dmb_d_list = [result.dmb_d for result in survey_results]
-        dmb_values_list = [result.dmb for result in survey_results]
+        dmb_values_list = [float(result.dmb) for result in survey_results]
         dmb_d_bp_list = [result.dmb_d for result in survey_results]
-        dmb_bp_values_list = [result.dmb for result in survey_results]
+        dmb_bp_values_list = [float(result.dmb) for result in survey_results]
+
+        dimensions = settings.TENANTS[tenant]['DIMENSIONS']
 
         if current_industry_benchmark:
             if current_industry_benchmark.initial_dmb_d:
                 dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
-                dmb_values_list += [current_industry_benchmark.initial_dmb] * current_industry_benchmark.sample_size
+                dmb_values_list += [float(current_industry_benchmark.initial_dmb)] * current_industry_benchmark.sample_size
             if current_industry_benchmark.initial_best_practice_d:
                 dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d]
-                dmb_bp_values_list += [current_industry_benchmark.initial_best_practice]
+                dmb_bp_values_list += [float(current_industry_benchmark.initial_best_practice)]
 
         dmb, dmb_d = None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
             logging.info(
-                "Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {}".format(industry))
+                "Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))
             dmb_values_list = dmb_values_list if tenant == settings.NEWS else None
-            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dmb_values=dmb_values_list)
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dimensions, dmb_values=dmb_values_list)
             logging.info("Calculated dmb: {} , dmb_d: {}".format(dmb, dmb_d))
 
         dmb_bp, dmb_d_bp = None, None
         if len(dmb_d_bp_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
             logging.info(
-                "Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {}".format(industry))
+                "Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))
             dmb_bp_values_list = dmb_bp_values_list if tenant == settings.NEWS else None
-            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dmb_values=dmb_bp_values_list)
+            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dimensions, dmb_values=dmb_bp_values_list)
             logging.info("Calculated dmb_bp: {} , dmb_d_bp: {} for best practice".format(dmb_bp, dmb_d_bp))
 
         IndustryBenchmark.objects.update_or_create(
