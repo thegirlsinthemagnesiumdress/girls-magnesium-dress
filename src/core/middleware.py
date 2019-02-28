@@ -53,5 +53,5 @@ class UsersRestrictionMiddleware(object):
             return
 
         if domain not in ALLOWED_AUTH_DOMAINS and '*' not in ALLOWED_AUTH_DOMAINS:
-            logging.info('User is not on a valid domain')
+            logging.info('User is not on a valid domain. User domain is {} while the allowed ones are {}'.format(domain, ALLOWED_AUTH_DOMAINS))
             return HttpResponseForbidden("Forbidden")
