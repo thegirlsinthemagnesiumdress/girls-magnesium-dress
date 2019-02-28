@@ -9,6 +9,13 @@ const levels = {
   3: 'Multi-moment',
 };
 
+const levelDescriptions = {
+  0: 'Marketing campaigns use mainly external data and direct buys, with limited links to sales.',
+  1: 'Some use of owned data in automated buying with single-channel optimisation and testing.',
+  2: 'Data integrated and activated across channels with demonstrated link to ROI or sales proxies.',
+  3: 'Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.',
+};
+
 const dimensionHeaders = {
   'attribution': 'Attribution',
   'ads': 'Assets and ads',
@@ -432,6 +439,7 @@ const dimensionLevelRecommendations = {
 
 exports = {
   levels,
+  levelDescriptions,
   dimensionHeaders,
   dimensionHeadersDescription,
   dimensionLevelDescription,
