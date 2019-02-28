@@ -11,29 +11,32 @@
 {% block main %}
   <main id="dmb-landing">
 
-    {% include 'public/news/inc/home-hero.inc.html' %}
+    {% include 'public/news/home/home-hero.inc.html' %}
 
-    {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' mobile_only=True class='dmb-u-m-b-l' url='' %}
+    {# TODO(aabuelgasim): use dynamic link from BE #}
+    {% include 'public/news/home/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' mobile_only=True class='dmb-u-m-b-l' url='/news/createsurvey/' %}
 
-    {% include 'public/news/inc/image-text-collage.inc.html' with class='dmb-u-m-b-l' %}
+    {% include 'public/news/home/image-text-collage.inc.html' with class='dmb-u-m-b-l' %}
 
-    {% include 'public/news/inc/header-text-cta.inc.html' with class='dmb-u-m-b-s' %}
+    {% include 'public/news/home/header-text-cta.inc.html' with class='dmb-u-m-b-s' %}
 
-    {% include 'public/news/inc/product-hero.inc.html' %}
+    {% include 'public/news/home/product-hero.inc.html' %}
 
-    {% include 'public/news/inc/icon-text-cta.inc.html' %}
+    {% include 'public/news/home/icon-text-cta.inc.html' %}
 
-    {% include 'public/news/inc/home-tabs.inc.html' with class="dmb-u-m-t-m dmb-u-m-b-m" %}
+    {% include 'public/news/home/home-tabs.inc.html' with class="dmb-u-m-t-m dmb-u-m-b-m" %}
 
-    {% include 'public/news/inc/tile-carousel.inc.html' %}
+    {% include 'public/news/home/tile-carousel.inc.html' %}
 
-    {% include 'public/news/inc/image-text.inc.html' %}
+    {% include 'public/news/home/image-text.inc.html' %}
 
-    {% include 'public/news/inc/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' class='dmb-u-m-t-l' %}
+    {% include 'public/news/home/cta-banner.inc.html' with cta='Start the assesment now' footnote='This assessment takes around 10 minutes to complete.' class='dmb-u-m-t-l' url='/news/createsurvey/' %}
 
     <div class="h-c-page dmb-u-m-t-l h-c-footnote">
       * Deloitte identified these figures by examining success factors and capabilities in over 40 companies across eight industries - <a href="#">read more</a>.
     </div>
+
+    {% include 'public/news/home/home-sidepanel.inc.html' %}
 
   </main>
 {% endblock main %}

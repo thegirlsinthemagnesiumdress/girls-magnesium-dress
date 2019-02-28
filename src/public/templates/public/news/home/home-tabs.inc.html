@@ -1,6 +1,6 @@
 <section class="dmb-home-tabs h-c-page{% if class %} {{class}}{% endif %}">
   <h3 class="h-c-eyebrow dmb-u-m-b-m">How it works</h3>
-  {% include 'public/news/inc/step-heading.inc.html' with text='Find out where your news organisation is on the data maturity scale' svg='shield' numbered=True only %}
+  {% include 'public/inc/global/step-heading.inc.html' with text='Find out where your news organisation is on the data maturity scale' svg='shield' numbered=True only %}
 
   <div class="dmb-home-tabs__tabs glue-tabby glue-zippy-style h-t-hercules"
     data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']" ng-cloak>
@@ -15,7 +15,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          {% include 'public/news/inc/home-tab-content.inc.html' with title='Nascent' text='Organisations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.' %}
+          {% include 'public/news/home/home-tab-content.inc.html' with title='Nascent' text='Organisations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.' %}
         </div>
       </li>
 
@@ -29,7 +29,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          {% include 'public/news/inc/home-tab-content.inc.html' with title='Developing' text='These organisations are able to drive value from data in some pockets of their business. Leadership recognizes data as a priority, but is unclear on how to unlock the best returns.' %}
+          {% include 'public/news/home/home-tab-content.inc.html' with title='Developing' text='These organisations are able to drive value from data in some pockets of their business. Leadership recognizes data as a priority, but is unclear on how to unlock the best returns.' %}
         </div>
       </li>
 
@@ -43,7 +43,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          {% include 'public/news/inc/home-tab-content.inc.html' with title='Mature' text='Data-informed decision making is the standard across much of the business. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.' %}
+          {% include 'public/news/home/home-tab-content.inc.html' with title='Mature' text='Data-informed decision making is the standard across much of the business. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.' %}
         </div>
       </li>
 
@@ -57,7 +57,7 @@
           </svg>
         </h3>
         <div class="h-c-tabby__content">
-          {% include 'public/news/inc/home-tab-content.inc.html' with title='Leading' text='These organisations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.' %}
+          {% include 'public/news/home/home-tab-content.inc.html' with title='Leading' text='These organisations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.' %}
         </div>
       </li>
     </ul>
