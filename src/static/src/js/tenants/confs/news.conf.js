@@ -17,40 +17,40 @@ const levelDescriptions = {
 };
 
 const dimensionHeaders = {
-  'strategic-direction': 'Strategic direction and data foundations',
-  'reader-engagement': 'Reader engagement',
-  'reader-revenue': 'Reader revenue',
-  'ad-revenue': 'Advertising revenue',
+  'strategic_direction': 'Strategic direction and data foundations',
+  'reader_engagement': 'Reader engagement',
+  'reader_revenue': 'Reader revenue',
+  'advertising_revenue': 'Advertising revenue',
 };
 
 const dimensionHeadersDescription = {
-  'strategic-direction': 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
-  'reader-engagement': 'Reader engagement is crucial to acquiring and retaining readers and increasing share of attention. Without an engaged readership, a news company cannot secure the subscription and advertising opportunities it needs to survive and thrive.',
-  'reader-revenue': 'News companies that successfully build valuable direct-to-consumer relationships with their readers not only see the near-term benefits of increased revenue but also reduce operating volatility through long-term, recurring revenue streams.',
-  'ad-revenue': 'Leading news companies know their readers better than anyone, and they create content to attract and retain those readers. They act as advisors in the creative and campaign development process to deliver high-impact, relevant advertising that does not diminish the reader experience.',
+  'strategic_direction': 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
+  'reader_engagement': 'Reader engagement is crucial to acquiring and retaining readers and increasing share of attention. Without an engaged readership, a news company cannot secure the subscription and advertising opportunities it needs to survive and thrive.',
+  'reader_revenue': 'News companies that successfully build valuable direct-to-consumer relationships with their readers not only see the near-term benefits of increased revenue but also reduce operating volatility through long-term, recurring revenue streams.',
+  'advertising_revenue': 'Leading news companies know their readers better than anyone, and they create content to attract and retain those readers. They act as advisors in the creative and campaign development process to deliver high-impact, relevant advertising that does not diminish the reader experience.',
 };
 
 
 const dimensionLevelDescription = {
-  'strategic-direction': {
+  'strategic_direction': {
     0: 'You have limited strategy in connecting data with your overarching business goals.',
     1: 'Leadership have provided an initial articulation of specific and well-defined data initiatives, but there is limited continued focus on this.',
     2: 'There is widespread knowledge and respect for the role data plays in achieving the overall business strategy.',
     3: 'There is universal understanding of how data underpins the overarching business strategy, at all levels.',
   },
-  'reader-engagement': {
+  'reader_engagement': {
     0: 'You collect basic engagement data (i.e., page views), but do not translate it into audience insights. Content decisions are primarily based on instinct and editorial experience.',
     1: 'You know what the broad audience segments are and start to uncover discrete audience insights using basic web analytics tools. However, reader experience and content decisions are still driven by “gut instinct.”',
     2: 'You understand how different segments engage with content and use these insights to improve engagement. Meanwhile, the editorial team actively use engagement insights and data to improve content format (i.e., headlines, length).',
     3: 'You clearly understand the context of the full reader journey and why audiences engage. You tailor the reader experience for different segments and occasions. Meanwhile, editorial decisions are generally data-informed.',
   },
-  'reader-revenue': {
+  'reader_revenue': {
     0: 'Your paid content offering is limited to one size fits all.',
     1: 'You use metrics to develop promotions or price tiers for paid content offerings. You understand conversion triggers such as registration, login, and subscription.',
     2: 'You use different products to improve the reader’s journey and determine how to bundle these products for different audiences. Your business is starting to explore using LTV-focused metrics and beginning to understand subscription and churn drivers.',
     3: 'You have differentiated products that are relevant to readers across their life cycles. The portfolio of products are mutually reinforcing and drive loyalty and LTV. You understand the needs and behaviors of readers at different stages in their life cycles.',
   },
-  'ad-revenue': {
+  'advertising_revenue': {
     0: 'You have basic segments (demographics, location) in place for audience-based advertising.',
     1: 'You use combinations of pre-built segments to assemble campaigns for advertisers. Meanwhile, you use exchanges / PMPs in a reactive way, primarily to monetize remnant inventory.',
     2: 'You use different data sets to build interest and intent-based segments. You share insights and equip the sales team to clearly communicate the value of different segments to advertisers. You use exchanges / PMPs in a strategic way to optimize yield.',
@@ -59,7 +59,7 @@ const dimensionLevelDescription = {
 };
 
 const dimensionLevelRecommendations = {
-  'strategic-direction': {
+  'strategic_direction': {
     0: [
       {
         'header': 'Broadcast a thoughtful data strategy',
@@ -117,7 +117,7 @@ const dimensionLevelRecommendations = {
       },
     ],
   },
-  'reader-engagement': {
+  'reader_engagement': {
     0: [
       {
         'header': 'Measure it to improve it',
@@ -219,7 +219,7 @@ const dimensionLevelRecommendations = {
       },
     ],
   },
-  'reader-revenue': {
+  'reader_revenue': {
     0: [
       {
         'header': 'Understand the value of your readers',
@@ -281,7 +281,7 @@ const dimensionLevelRecommendations = {
       },
     ],
   },
-  'ad-revenue': {
+  'advertising_revenue': {
     0: [
       {
         'header': 'Measure it to improve it',

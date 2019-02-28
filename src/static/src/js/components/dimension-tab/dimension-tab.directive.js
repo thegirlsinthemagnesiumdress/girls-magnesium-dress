@@ -12,7 +12,7 @@ function ReportDirective() {
   return {
     restrict: 'A',
     scope: {
-      'dmbDimensionsTab': '@',
+      'dmbDimensionTab': '@',
       'companyName': '@',
     },
     template: dimensionTabtemplate,
