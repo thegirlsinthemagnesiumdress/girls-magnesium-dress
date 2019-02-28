@@ -20,6 +20,18 @@ class DimensionTabController {
       floorDmbFactory,
       tenantConf) {
         /**
+         * @type {!Object}
+         * @export
+         */
+        this.levels = tenantConf.levels;
+
+        /**
+         * @export
+         * @type {string}
+         */
+        this.levelsTotal = Object.keys(this.levels).length;
+
+        /**
          * @export
          * type {Object}
          */

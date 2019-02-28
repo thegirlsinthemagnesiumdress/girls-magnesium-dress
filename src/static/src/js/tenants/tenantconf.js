@@ -67,6 +67,7 @@ class TenantConfiguration {
     const conf = confMap[this.tenant];
 
     this.levels = conf.levels;
+    this.levelDescriptions = conf.levelDescriptions;
     this.dimensionHeaders = conf.dimensionHeaders;
     this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
     this.dimensionLevelDescription = conf.dimensionLevelDescription;

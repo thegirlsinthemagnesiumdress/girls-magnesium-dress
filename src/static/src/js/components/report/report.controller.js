@@ -91,13 +91,25 @@ class ReportController {
      * @type {!Object}
      * @export
      */
-    this.dimensionHeaders = tenantConf.dimensionHeaders;
+    this.levelDescriptions = tenantConf.levelDescriptions;
 
     /**
      * @export
      * @type {Array.<string>}
      */
     this.dimensions = tenantConf.dimensions;
+
+    /**
+     * @export
+     * @type {string}
+     */
+    this.levelsTotal = Object.keys(this.levels).length;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.dimensionHeaders = tenantConf.dimensionHeaders;
 
        /**
      * @type {glue.ng.pagination.Model}

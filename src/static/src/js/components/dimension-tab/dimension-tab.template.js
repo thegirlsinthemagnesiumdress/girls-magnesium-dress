@@ -7,16 +7,18 @@ const dimensionTabTemplate = `
 
   <div class="dmb-tab__header-grid h-c-grid">
     <div class="dmb-report-page__tab-static-col h-c-grid__col  h-c-grid__col--12 h-c-grid__col-l--5">
-      <h2 class="dmb-print-page-header h-c-headline h-c-headline--one">{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}</h2>
+      <h2 class="dmb-print-page-header h-c-headline h-c-headline--one">
+        {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
+      </h2>
       <p>
-      {[ dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab] ]}
+        {[ dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab] ]}
       </p>
     </div>
 
     <div class="dmb-report-page__tab-dynamic-col h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--7">
       <div class="h-c-grid dmb-tab__subgrid">
         <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--4">
-            <div class="dmb-progress-circle dmb-progress-circle--dimension-main dmb-progress-circle--{[dmbDimensionTab]}"">
+            <div class="dmb-progress-circle dmb-progress-circle--dimension-main dmb-progress-circle--dimension-{[$parent.$index]}"">
               <svg
                   dmb-progress-circle="dimensionTabCtrl.dmb"
                   class="dmb-progress-circle__prog-svg"
@@ -27,7 +29,7 @@ const dimensionTabTemplate = `
               <div class="dmb-progress-circle__icon"></div>
             </div>
             <div class="dmb-report-page__tab-progress-circle-results dmb-progress-circle__results">
-              <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">4.0</span>
+              <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">{[dimensionTabCtrl.levelsTotal]}.0</span>
               </span>
             </div>
         </div>
@@ -70,8 +72,9 @@ const dimensionTabTemplate = `
 
     <ul class="dmb-report-page__recommendations dmb-tab__recommendations">
 
-      <li class="dmb-report-page__recommendation dmb-tab__recommendation dmb-report-page__recommendation--{[ recommendation.cta.class ]}"
-        ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
+      <li
+          class="dmb-report-page__recommendation dmb-tab__recommendation dmb-report-page__recommendation--{[ recommendation.cta.class ]}"
+          ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
         <h4 class="h-c-headline h-c-headline--five h-u-font-weight-medium dmb-h-mb--small">{[ recommendation.header ]}</h4>
         <p>
           {[ recommendation.text ]}
