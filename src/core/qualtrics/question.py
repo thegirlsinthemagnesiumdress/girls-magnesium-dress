@@ -5,7 +5,7 @@ from collections import defaultdict
 from exceptions import InvalidResponseData
 
 import numpy
-from django.conf import settings
+
 
 _question_key_regex = re.compile(r'^(?P<question_id>Q\d+(_\d+)*)(_(?P<multi_answer_value>\d{3})\.\d+)?$')
 DEFAULT_WEIGHT = 1
@@ -13,15 +13,15 @@ DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 _MULTI_MISSING_IN_SETTINGS = ("Some multi answer questions are defined in qualtrics but they haven't "
-                              "been added to settings.MULTI_ANSWER_QUESTIONS. Questions ids: {}")
+                              "been added to tenant.MULTI_ANSWER_QUESTIONS. Questions ids: {}")
 
-_MULTI_MISSING_IN_QUALTRICS = ("Some multi answer questions are defined in settings.MULTI_ANSWER_QUESTIONS but they "
+_MULTI_MISSING_IN_QUALTRICS = ("Some multi answer questions are defined in tenant.MULTI_ANSWER_QUESTIONS but they "
                                "haven't been properly defined in QUALTRICS. Questions ids: {}")
 
-_MISSING_IN_SETTINGS = ("Some questions are defined in qualtrics but they haven't been added to settings.DIMENSIONS."
+_MISSING_IN_SETTINGS = ("Some questions are defined in qualtrics but they haven't been added to tenant.DIMENSIONS."
                         "Questions ids: {}")
 
-_IDS_NOT_IN_QUALTRICS = ("Some questions are defined in settings.DIMENSIONS but they haven't been properly "
+_IDS_NOT_IN_QUALTRICS = ("Some questions are defined in tenant.DIMENSIONS but they haven't been properly "
                          "defined in QUALTRICS or (required) questions not been answered. Questions ids: {}")
 
 
@@ -49,10 +49,10 @@ def match_question_key(key):
     }
 
 
-def clean_survey_data(data):
+def clean_survey_data(data, dimensions, multianswers):
     """A single response object is a dict with a lot of data we don't need.
 
-    This function filters the dict keys to be only the questions set in settings.DIMENSION and transforms the untuitive
+    This function filters the dict keys to be only the questions set in tenant.DIMENSION and transforms the untuitive
     structure of the multi select answers.
 
     Multi select answers have a key that looks like {question_id}_--{question_answer_value}-{answer_index}
@@ -64,7 +64,7 @@ def clean_survey_data(data):
     """
     single_answer_questions_dict, multi_answer_questions_dict = _get_questions_by_type(data)
 
-    configured_multi_answer = set(settings.MULTI_ANSWER_QUESTIONS)
+    configured_multi_answer = set(multianswers)
     multi_answer_from_survey = set(multi_answer_questions_dict.keys())
     # multi answer that are in data received but not in configured settings
     multi_missing_in_settings = multi_answer_from_survey - configured_multi_answer
@@ -82,8 +82,8 @@ def clean_survey_data(data):
     questions_dict.update(multi_answer_questions_dict)
 
     questions_from_survey = set(questions_dict.keys())
-    # set of questions that are configured in settings.DIMENSIONS
-    configured_questions = set([item for questions in settings.DIMENSIONS.values() for item in questions])
+    # set of questions that are configured in dimensions
+    configured_questions = set([item for questions in dimensions.values() for item in questions])
     # questions that are in survey data but not in configured settings
     missing_in_settings = questions_from_survey - configured_questions
     # questions that are in configured settings but are not in survey data or doesn't have an answer
@@ -95,7 +95,7 @@ def clean_survey_data(data):
     if ids_not_in_qualtrics:
         raise InvalidResponseData(_IDS_NOT_IN_QUALTRICS.format(', '.join(ids_not_in_qualtrics)))
 
-    # We ignore all the questions that are not configured in settings.DIMENSIONS
+    # We ignore all the questions that are not configured in dimensions
     for id in missing_in_settings:
         del questions_dict[id]
 
@@ -111,8 +111,7 @@ def _get_questions_by_type(data):
 
         # is a single answer question
         if match['question_id'] and not match['multi_answer_value']:
-            if question_value:
-                single_answer[match['question_id']].append(question_value)
+            single_answer[match['question_id']].append(question_value)
         # is a multi answer question
         elif match['question_id'] and match['multi_answer_value']:
             # As mentioned in the readme we had to hack the multiple answer values
@@ -131,11 +130,11 @@ def _get_questions_by_type(data):
     return single_answer, multi_answer
 
 
-def data_to_questions(survey_data):
-    data = clean_survey_data(survey_data)
+def data_to_questions(survey_data, dimensions, multianswers, weights, default_weight=DEFAULT_WEIGHT):
+    data = clean_survey_data(survey_data, dimensions, multianswers)
 
     def create_tuple(question_key, data):
-        question_value = 0
+        question_value = [0.0]
         try:
             question_value = map(float, data.get(question_key))
 
@@ -145,8 +144,8 @@ def data_to_questions(survey_data):
         return (
             question_key,
             question_value,
-            settings.WEIGHTS.get(question_key, DEFAULT_WEIGHT),
-            get_question_dimension(question_key)
+            weights.get(question_key, default_weight),
+            get_question_dimension(question_key, dimensions)
         )
 
     questions = map(lambda x: create_tuple(x, data), data)
@@ -154,8 +153,8 @@ def data_to_questions(survey_data):
     return questions
 
 
-def data_to_questions_text(survey_data):
-    data = clean_survey_data(survey_data)
+def data_to_questions_text(survey_data, dimensions, multianswers):
+    data = clean_survey_data(survey_data, dimensions, multianswers)
 
     def create_tuple(question_key, data):
         question_value = ''
@@ -187,8 +186,8 @@ def to_raw(questions, questions_text):
     }
 
 
-def get_question_dimension(question_id):
-    for dimension_key, dimension_value in settings.DIMENSIONS.iteritems():
+def get_question_dimension(question_id, dimensions):
+    for dimension_key, dimension_value in dimensions.iteritems():
         if question_id in dimension_value:
             return dimension_key
 
@@ -204,3 +203,8 @@ def discard_scores(survey_data):
     start_date = datetime.strptime(survey_data.get('StartDate'), DATE_FORMAT)
     end_date = datetime.strptime(survey_data.get('EndDate'), DATE_FORMAT)
     return end_date - start_date < timedelta(minutes=5)
+
+
+def get_question(question_key, response_data):
+    str_value = response_data[question_key]
+    return int(str_value)

@@ -11,13 +11,6 @@ def migrate_to_default_tenant():
 
 def migrate_deloitte_data():
 
-    DIMENSION_TITLES = {
-        'strategic_choices': 'Strategic choices and Ambition for data',
-        'audience_engagement': 'Audience Engagement',
-        'consumer_revenue': 'Consumer Revenue',
-        'advertising_revenue': 'Advertising Revenue',
-    }
-
     dmb = 2.45
     dmb_bp = 3.65
     samples = 46

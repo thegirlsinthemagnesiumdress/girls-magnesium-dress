@@ -12,6 +12,7 @@ from django.utils import dateparse
 from django.utils.timezone import make_aware
 import pytz
 from collections import OrderedDict
+from django.conf import settings
 
 
 @override_settings(
@@ -312,7 +313,7 @@ class EmailValidatorTestCase(TestCase):
 
 
 @override_settings(
-    DIMENSIONS=MOCKED_DIMENSIONS
+    TENANTS=MOCKED_TENANTS
 )
 class CreateSurveyResultTestCase(TestCase):
     """Tests for _create_survey_results function, when survey has been completed."""
@@ -323,6 +324,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.response_ids = [response['value'].get('ResponseID') for response in self.responses
                              if response['value'].get('Finished') == '1']
         self.survey_definition = make_survey_definition()
+        self.tenant = settings.TENANTS['tenant1']
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -330,7 +332,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 1)
@@ -346,7 +348,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -369,7 +371,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -378,7 +380,54 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertTrue(isinstance(got_ids, list))
         self.assertEqual(len(got_ids), 0)
 
+    @mock.patch('core.qualtrics.benchmark.calculate_response_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.question.get_question')
+    @mock.patch('core.qualtrics.question.data_to_questions_text')
+    @mock.patch('core.qualtrics.question.data_to_questions')
+    def test__create_survey_results_call_correctly_underlying_functions(
+        self, data_to_questions_mock, data_to_questions_text_mock, get_question_mock, calculate_response_benchmark_mock
+    ):
+        """_create_survey_results is calling with correct parameters the underlying functions."""
+        make_survey()
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
 
+        _create_survey_results(self.responses, self.survey_definition, self.tenant)
+
+        data_to_questions_mock.assert_called()
+        data_to_questions_text_mock.assert_called()
+        calculate_response_benchmark_mock.assert_called()
+        # expected get_question function not to be called, if tenant is not NEWS
+        get_question_mock.assert_not_called()
+
+    @mock.patch('core.qualtrics.benchmark.calculate_response_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.question.get_question', return_value=1)
+    @mock.patch('core.qualtrics.question.data_to_questions_text')
+    @mock.patch('core.qualtrics.question.data_to_questions')
+    def test__create_survey_results_call_correctly_underlying_functions_news_tenant(
+        self, data_to_questions_mock, data_to_questions_text_mock, get_question_mock, calculate_response_benchmark_mock
+    ):
+        """
+        _create_survey_results is calling with correct parameters the underlying functions when the tenant is NEWS.
+        """
+        tenant = settings.TENANTS['tenant2']
+        # force tenant key to be news
+        tenant['key'] = 'news'
+        make_survey()
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        _create_survey_results(self.responses, self.survey_definition, tenant)
+
+        data_to_questions_mock.assert_called()
+        data_to_questions_text_mock.assert_called()
+        calculate_response_benchmark_mock.assert_called()
+        get_question_mock.assert_called()
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS
+)
 class CreateSurveyResultUnfinishedTestCase(TestCase):
     """Tests for _create_survey_results function, when survey has not been completed."""
     def setUp(self):
@@ -386,6 +435,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         responses_text = get_mocked_results_unfished(text=True).get('responses')
         self.responses = _update_responses_with_text(responses_values, responses_text).values()
         self.survey_definition = make_survey_definition()
+        self.tenant = settings.TENANTS['tenant1']
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
@@ -393,7 +443,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant)
 
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -403,7 +453,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant)
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -415,7 +465,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 
         # Asserting we're logging a message if survey is not completed
         with mock.patch('logging.warning') as logging_mock:
-            _create_survey_results(self.responses, self.survey_definition)
+            _create_survey_results(self.responses, self.survey_definition, self.tenant)
             self.assertTrue(logging_mock.called)
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -425,7 +475,8 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 class SendEmailTestCase(TestCase):
     """Tests for send_emails_for_new_reports function."""
     def setUp(self):
-        self.responses = get_mocked_results().get('responses')
+        make_survey(sid='1')
+        make_survey(sid='2')
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_not_send_to_invalid(self, email_mock):
@@ -485,6 +536,16 @@ class SendEmailTestCase(TestCase):
 
         send_emails_for_new_reports(email_list)
         self.assertEqual(email_mock.call_count, 2)
+
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
+    def test_email_is_not_sent_if_surevy_does_not_exist(self, email_mock):
+        """`SurveyResult` email is not sent, when `Survey` object does not exist."""
+        email_list = [
+            ('test@example.com', 'test@example.com', '3')
+        ]
+
+        send_emails_for_new_reports(email_list)
+        self.assertEqual(email_mock.call_count, 0)
 
 
 class GenerateExportTestCase(TestCase):

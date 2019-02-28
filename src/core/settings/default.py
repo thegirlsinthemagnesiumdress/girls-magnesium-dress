@@ -130,7 +130,8 @@ NOSE_ARGS = [
     '--cover-erase',
     '--cover-html',
     '--cover-html-dir=coverage_html',
-    '--logging-level=CRITICAL'
+    '--logging-level=CRITICAL',
+    '--nocapture',
 ]
 
 NOSE_COVER_PACKAGES = [
