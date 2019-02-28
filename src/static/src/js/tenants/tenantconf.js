@@ -18,12 +18,10 @@ const module = angular.module(MODULE_NAME, []);
  * Tenant conf class
  */
 class TenantConfiguration {
-
   /**
    *
    */
   constructor() {
-
     /**
      * @type string
      * @export

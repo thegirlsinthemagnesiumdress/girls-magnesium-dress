@@ -15,7 +15,6 @@ const module = angular.module(MODULE_NAME, []);
 module.directive(directive.DIRECTIVE_NAME, directive.main);
 
 
-
 /**
  * Dimension tab angular module.
  * @type {!angular.Module}
