@@ -1,6 +1,7 @@
 from django.core.urlresolvers import resolve
 from django.conf import settings
 from core.conf.utils import get_tenant_key
+import json
 
 
 def tenant_details(request, *args, **kwargs):
@@ -11,7 +12,7 @@ def tenant_details(request, *args, **kwargs):
         dimensions = settings.TENANTS[tenant_key]['DIMENSION_TITLES']
         return {
             'tenant_key': tenant_key,
-            'dimensions': dimensions,
+            'dimensions': json.dumps(dimensions),
         }
 
     return {}
