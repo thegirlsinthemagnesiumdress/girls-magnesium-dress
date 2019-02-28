@@ -9,6 +9,7 @@ MIDDLEWARE_CLASSES = tuple(
 ALLOWED_AUTH_DOMAINS = [
     'google.com',
     'potatolondon.com',
+    'deloitte.corp-partner.google.com',
 ]
 
 DJANGAE_CREATE_UNKNOWN_USER = True
