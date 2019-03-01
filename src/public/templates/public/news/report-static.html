@@ -46,7 +46,7 @@
             This report will show you how you score across the four key dimensions, and what to do to get to the next level, <strong>{[ (reportCtrl.result.dmb + 1) | dmbLevelText]}</strong>.
           </p>
           <p class="dmb-report-page__hero-subhead" ng-if="reportCtrl.floorDmb > 2">
-            This report will show you how you score across the four key dimensions, and what to do to remain at the most advanced level, <strong>{[reportCtrl.levels[3]]}</strong>.
+            Congratulations! You're in the top group for overall data maturity. This report will show you how you score across the four key dimensions, and how to get even better.
           </p>
 
           {% comment "We won't have any date for average and best-pracitce for the MVP" %}
@@ -161,7 +161,7 @@
 
         <section class="dmb-report-page__dimensions"> <!-- 4 dimensions -->
           <h2 class="h-c-eyebrow h-c-eyebrow--wide">
-            Four dimensions of digital marketing maturity
+            Dimensions of digital marketing maturity
             <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three" aria-label="Get more informations about the 4 dimensions">
               <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
             </button>
@@ -325,19 +325,16 @@
         Benchmark calculations
       </h1>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Industry average & industry best
+        Industry average
       </h2>
       <p>
-        These two metrics show how your company compares to the average and top performers in your industry globally.
+        How news organisations perform on average; calculated based on survey responses from participants.
       </p>
+      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        Industry best
+      </h2>
       <p>
-        If your specific industry (e.g. “Retail trade - Household goods”) doesn’t yet have enough responses to form a reliable average, you will be shown an average based on the wider industry (e.g. “Retail trade”).
-      </p>
-      <p>
-        If there aren’t enough responses in the wider industry either, you will be shown results across all industries globally instead.
-      </p>
-      <p>
-        In case the scores you are seeing do not refer to your specific industry yet, you can check back later as the scores are being continuously updated.
+        This is the highest recorded score from a participant that completed the data maturity survey.
       </p>
     </div>
   </aside>
@@ -352,48 +349,34 @@
     </button>
     <div class="dmb-side-panel__inner">
       <h1 class="h-c-headline h-c-headline--three">
-        6 dimensions of marketing maturity
+        Four Dimensions of digital maturity
       </h1>
       <p>
-        We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity.
-        The results showed these 6 capabilities are key to top performance and delivering what today's customers expect from
-        brands.
+        We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organisation.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Attribution
+        Strategic direction and data foundations
       </h2>
       <p>
-        The capability to accurately measure and value customer touchpoints.
+        Understand the role of data and the core capabilities required to successfully activate data within the organisation.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Assets and ads
+        Reader engagement
       </h2>
       <p>
-        The capability to deliver attention-driving, intuitive experiences across digital touchpoints.
+        Understanding critical audience segments and how to satisfy their preferences.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Audience
+        Reader revenue
       </h2>
       <p>
-        The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel.
+        Driving financial value directly from readers, whether through subscriptions or net new revenue opportunities.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Access
+        Advertising revenue
       </h2>
       <p>
-        The capability to reach and deliver across all inventory types and channels.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Automation
-      </h2>
-      <p>
-        The capability to optimise marketing operations to drive profitability and growth.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Organisation
-      </h2>
-      <p>
-        The capability to improve decision-making and results by working collaboratively across teams and with specialised partners.
+        Reaching the right audiences and delivering high-impact advertising campaigns that do not diminish the reader experience.
       </p>
     </div>
   </aside>
