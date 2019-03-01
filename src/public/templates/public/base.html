@@ -43,8 +43,7 @@
 
     <title>Digital Maturity Benchmark</title>
 </head>
-{# TODO(pchillari): make data-tenant="news" dynamic #}
-<body class="{% block body_class %}{% endblock %}" data-tenant="news" angular-app>
+<body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
 
   {% block header %}

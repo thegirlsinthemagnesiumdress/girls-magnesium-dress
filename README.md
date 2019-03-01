@@ -146,21 +146,21 @@ The `{% include %}` also accepts one of two optional arguments; `size`, which ac
 
 For example, SVG file `src/static/src/svg/print-button.svg` can be used in the following ways:
 
-- `{% include 'core/inc/svg.html' with id='print-button' %}` will generate:
+- `{% include 'core/inc/svg.html' with id='print-button' only %}` will generate:
     ```html
     <svg role="img" class="dmb-svg dmb-svg--print-button" width="100%" height="100%">
     ...
     </svg>
     ```
 
-- `{% include 'core/inc/svg.html' with id='print-button' size='30px' %}` will generate:
+- `{% include 'core/inc/svg.html' with id='print-button' size='30px' only %}` will generate:
     ```html
     <svg role="img" class="dmb-svg dmb-svg--print-button" width="30px" height="30px">
     ...
     </svg>
     ```
 
-- `{% include 'core/inc/svg.html' with id='print-button' inline=True %}` will generate:
+- `{% include 'core/inc/svg.html' with id='print-button' inline=True only %}` will generate:
     ```html
     <svg role="img" class="dmb-svg dmb-svg--print-button dmb-svg--inline">
     ...

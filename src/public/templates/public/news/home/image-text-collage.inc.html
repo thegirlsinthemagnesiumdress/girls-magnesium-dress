@@ -7,16 +7,18 @@
     2 lanscape in each column
     2 lanscape in one column and 1 potrait in the other.
 
-  Each images should be given a unique class and then it's src can be added, and background-position overridden if required, in the tenant SCSS file:
+  Each images should be given a unique class and then it's background-image should be set using 1x and 2x images in the tenant SCSS file as follows:
 
   .dmb-img-text-collage__img--1 {
     background-image: url('../img/news/home-collage-img1.jpg');
-    background-position: center top;
 
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
       background-image: url('../img/news/home-collage-img1@2x.jpg');
     }
   }
+
+  The default background properties are `background-position: center center` and `background-size: cover`, but can be overridden in the tenant SCSS file if required.
+
 {% endcomment %}
 
 <section class="dmb-img-text-collage h-c-page{% if class %} {{class}}{% endif %}">

@@ -7,3 +7,15 @@ strong {
   page-break-inside: avoid;
   @include dmb-resp-prop(margin-bottom, 20px, 30px);
 }
+
+.h-c-eyebrow {
+  border-bottom: 5px solid $dmb-color-grey-zircon;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.h-c-header__product-logo-text {
+  @include dmb-mq($until: tablet) {
+    font-size: 16px;
+  }
+}
