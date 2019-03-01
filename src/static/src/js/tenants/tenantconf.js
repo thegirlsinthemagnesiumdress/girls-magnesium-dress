@@ -1,7 +1,7 @@
 goog.module('dmb.components.tenant');
 
 const confMap = goog.require('dmb.components.tenant.confMap');
-const tenantDataElementName = 'dmb-tenant-data';
+const tenantDataElementName = 'bootstrap-data';
 
 /** @const {string} */
 const MODULE_NAME = 'tenant';
