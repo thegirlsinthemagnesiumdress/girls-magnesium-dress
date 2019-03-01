@@ -246,7 +246,6 @@ TEMPLATES = [{
             "django.contrib.messages.context_processors.messages",
             "session_csrf.context_processor",
             "django.template.context_processors.request",
-            "core.context_processors.tenant_details",
         )
     },
 }]

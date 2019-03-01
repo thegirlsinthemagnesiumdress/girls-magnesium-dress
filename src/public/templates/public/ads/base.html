@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load static_rev %}
+{% load angular %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +61,7 @@
 
 {% include 'core/inc/_svg.inc.html' %}
 {% include 'core/inc/_dmb-svgs.inc.html' %}
-<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant_key }}" data-dimensions="{{ dimensions }}"></div>
+<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant|ng_mark_safe }}" data-dimensions="{{ dimensions|ng_mark_safe }}"></div>
 
 {% if debug %}
 
