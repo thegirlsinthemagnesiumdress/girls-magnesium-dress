@@ -1,1 +1,17 @@
-<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><circle fill="#FFF" cx="40" cy="40" r="40"/><path d="M61.333 32.889c0 1.955-1.672 3.555-3.717 3.555-.334 0-.65-.035-.948-.124l-6.616 6.311c.093.285.13.605.13.925 0 1.955-1.673 3.555-3.717 3.555-2.045 0-3.718-1.6-3.718-3.555 0-.32.038-.64.13-.925l-4.739-4.533a3.423 3.423 0 0 1-.966.124c-.335 0-.67-.035-.967-.124l-8.456 8.106a2.9 2.9 0 0 1 .13.907c0 1.956-1.673 3.556-3.717 3.556-2.045 0-3.718-1.6-3.718-3.556 0-1.955 1.673-3.555 3.718-3.555.334 0 .65.035.947.124l8.476-8.089a3.013 3.013 0 0 1-.13-.924c0-1.956 1.672-3.556 3.717-3.556 2.044 0 3.717 1.6 3.717 3.556 0 .32-.037.64-.13.924l4.74 4.533c.297-.088.631-.124.966-.124.334 0 .669.036.966.124l6.598-6.328a2.9 2.9 0 0 1-.13-.907c0-1.956 1.673-3.556 3.717-3.556 2.045 0 3.717 1.6 3.717 3.556z" fill="#959CA5"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M26,34.4 L32,34.4 L32,54 L26,54 L26,34.4 Z M37.2,26 L42.8,26 L42.8,54 L37.2,54 L37.2,26 Z M48.4,42 L54,42 L54,54 L48.4,54 L48.4,42 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4">
+            <circle id="circle-container" fill="#FFFFFF" fill-rule="nonzero" cx="40" cy="40" r="40"></circle>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Shape" fill="#959CA5" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
