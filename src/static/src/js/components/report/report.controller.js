@@ -164,20 +164,21 @@ class ReportController {
 
       reportService.dmb_d = this.result['dmb_d'];
 
-        // ENABLE FOR DEMO
-        // reportService.dmb_d['reader_revenue'] = null;
+      // ENABLE FOR DEMO
+      // reportService.dmb_d['reader_revenue'] = null;
 
       // TODO(aabuelgasim): remove this chunk once new tabby is used
-      for (var key in reportService.dmb_d) {
-        if(reportService.dmb_d[key] === null) {
-          const index = this.dimensions.indexOf(key);
-          this.dimensions.splice(index,1);
+      for (let key in reportService.dmb_d) {
+        if (reportService.dmb_d[key] === null) {
+          this.dimensions.splice(this.dimensions.indexOf(key), 1);
         }
       }
+
       this.ngTimeout_(() => {
         this.renderTabset = true;
       }, 0, true);
-      ////////////////
+
+      // //////////////
 
 
       $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
