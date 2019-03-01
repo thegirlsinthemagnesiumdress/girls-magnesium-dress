@@ -76,7 +76,7 @@ const dimensionLevelRecommendations = {
         'text': 'Institute systems to evaluate decisions based on empirical analysis.  Reward evidence-based rationale for operational decision-making.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -98,7 +98,7 @@ const dimensionLevelRecommendations = {
         'text': 'Provide access to tools that enable and encourage colleagues to analyze decision criteria and execute data-supported decisions.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -120,7 +120,7 @@ const dimensionLevelRecommendations = {
         'text': 'Create intuitive tools and portals that enable access to relevant audience data for all team members.  Provide trainings and educational resources to team members and encourage use of available resources.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Mature publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how some Leading publishers have developed their cultural, skills-based, data-related, and technological foundations.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -142,7 +142,7 @@ const dimensionLevelRecommendations = {
         'text': 'Communicate the unique emphasis your organisation places on being data-informed, and establish recruiting partnerships to maintain a strong pipeline of technical professionals.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how other Leading publishers have developed their cultural, skills-based, data-related, and technological foundations.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -174,11 +174,11 @@ const dimensionLevelRecommendations = {
         'text': 'Understand your different segments of readers and how they engage with your site.',
         'cta': {
           'text': 'News Consumer Insights',
-          'link': '/todo',
+          'link': 'https://newsinitiative.withgoogle.com/training/newsconsumerinsights',
         },
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -208,11 +208,11 @@ const dimensionLevelRecommendations = {
         'text': 'Understand your different segments of readers and how they engage with your site.',
         'cta': {
           'text': 'News Consumer Insights',
-          'link': '/todo',
+          'link': 'https://newsinitiative.withgoogle.com/training/newsconsumerinsights',
         },
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -242,11 +242,11 @@ const dimensionLevelRecommendations = {
         'text': 'Understand your different segments of readers and how they engage with your site.',
         'cta': {
           'text': 'News Consumer Insights',
-          'link': 'https://developers.google.com/web/fundamentals/design-and-ux/principles/',
+          'link': 'https://newsinitiative.withgoogle.com/training/newsconsumerinsights',
         },
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Mature publishers have sophisticated approaches to improving overall reader engagement but want to see what other publishers are doing.The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached improving overall reader engagement.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -272,11 +272,11 @@ const dimensionLevelRecommendations = {
         'text': 'Understand your different segments of readers and how they engage with your site.',
         'cta': {
           'text': 'News Consumer Insights',
-          'link': '/todo',
+          'link': 'https://newsinitiative.withgoogle.com/training/newsconsumerinsights',
         },
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a sophisticated approach to improving overall reader engagement but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached improving overall reader engagement.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -292,7 +292,7 @@ const dimensionLevelRecommendations = {
         'text': 'Understand your different segments of readers and how they engage with your content and your platform. Implement simple plug-in tools to help you measure and visualize these reader segments and how much value they bring.',
         'cta': {
           'text': 'News Consumer Insights',
-          'link': '/todo',
+          'link': 'https://newsinitiative.withgoogle.com/training/newsconsumerinsights',
         },
       },
       {
@@ -304,7 +304,7 @@ const dimensionLevelRecommendations = {
         'text': 'Identify engaged segments of your audience and explore new offerings that they may want. These might be opportunities that you develop on your own, or you may need to seek partners to support.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -326,7 +326,7 @@ const dimensionLevelRecommendations = {
         'text': 'Integrate your data across different product or service offerings to get an understanding of reader behavior across the whole businesses. Develop the capability to identify readers and structure opportunities to cross-sell.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -348,7 +348,7 @@ const dimensionLevelRecommendations = {
         'text': 'Actively cross-promote different titles or businesses based on reader interests or characteristics. Start to understand the relative value of decisions to direct readers between sites and products.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Mature publishers have created significant revenue from increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached increasing direct-paying reader relationships.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -370,7 +370,7 @@ const dimensionLevelRecommendations = {
         'text': 'Leverage your unique audience insights to identify and support strategic decisions to pursue opportunities that can generate new revenue for the business.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a sophisticated approach to increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached increasing direct-paying reader relationships.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -398,7 +398,7 @@ const dimensionLevelRecommendations = {
         'text': 'Capture and organize audience on-site behavioral data to inform user interface and design decisions.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide [Link] provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -428,7 +428,7 @@ const dimensionLevelRecommendations = {
         'text': 'Review historical performance of advertising sales across channels to begin developing a successful sales mix strategy.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -454,7 +454,7 @@ const dimensionLevelRecommendations = {
         'text': 'Think about advertising holistically and drive value through the strategic combination of relevant context, creative, advertising placement, and advertising format.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Mature publishers generate significant revenue through advertising but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached driving revenue from advertisers.',
         'cta': {
           'text': 'Data Activation Guide',
@@ -480,7 +480,7 @@ const dimensionLevelRecommendations = {
         'text': 'Enhance technological capabilities, including focusing on direct programmatic, to effectively serve advertisers at scale without sacrificing quality of content or reader experience.',
       },
       {
-        'title': 'Data Activation Guide',
+        'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a sophisticated approach to driving revenue from advertisers but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached driving revenue from advertisers.',
         'cta': {
           'text': 'Data Activation Guide',
