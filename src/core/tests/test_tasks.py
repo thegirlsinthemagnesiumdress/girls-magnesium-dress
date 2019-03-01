@@ -815,6 +815,8 @@ class GetDefinitionTestCase(TestCase):
 
 @override_settings(
     TENANTS=MOCKED_TENANTS,
+    MIN_ITEMS_INDUSTRY_THRESHOLD=2,
+    MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2,
 )
 class CalculateIndustryBenchmark(TestCase):
     """Tests for calculate_industry_benchmark function"""
@@ -912,3 +914,116 @@ class CalculateIndustryBenchmark(TestCase):
         self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1', industry='all')), 1)
         # but the one for tenant2 should be left untouched
         self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant2')), 1)
+
+    def test_excluded_dimension_should_not_count(self):
+        """When there are IndustryBencmark objects, if a dimension is
+        excluded, it should not be considered in calculation."""
+
+        dmb_d_res_1 = {
+            'attribution': 4.0,
+            'ads': 2.0,
+            'automation': None,
+        }
+
+        dmb_d_res_2 = {
+            'attribution': 6.0,
+            'ads': None,
+            'automation': 1.0,
+        }
+
+        IndustryBenchmark.objects.create(
+            industry='ic-o',
+            tenant='tenant1',
+            initial_dmb=0.0,
+            initial_dmb_d={},
+            initial_best_practice=0.0,
+            initial_best_practice_d={},
+            sample_size=10
+        )
+
+        survey_1 = make_survey(industry='ic-o', tenant='tenant1')
+        survey_2 = make_survey(industry='ic-o', tenant='tenant1')
+
+        survey_res_1 = make_survey_result(survey=survey_1, dmb_d=dmb_d_res_1)
+        survey_1.last_survey_result = survey_res_1
+        survey_1.save()
+
+        survey_res_2 = make_survey_result(survey=survey_2, dmb_d=dmb_d_res_2)
+        survey_2.last_survey_result = survey_res_2
+        survey_2.save()
+
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 1)
+        self.assertEqual(len(Survey.objects.filter(tenant='tenant1')), 2)
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 1)
+
+        calculate_industry_benchmark('tenant1')
+
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant1')), 3)
+
+        ib = IndustryBenchmark.objects.get(tenant='tenant1', industry='ic-o')
+
+        self.assertAlmostEqual(float(ib.dmb_value), 2.67, places=2)
+        self.assertEqual(ib.dmb_d_value.get('attribution'), 5.0)
+        self.assertEqual(ib.dmb_d_value.get('ads'), 2.0)
+        self.assertEqual(ib.dmb_d_value.get('automation'), 1.0)
+
+    @override_settings(
+        TENANTS=MOCKED_TENANTS,
+        MIN_ITEMS_INDUSTRY_THRESHOLD=2,
+        MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2,
+        NEWS='tenant2',
+    )
+    def test_excluded_dimension_should_not_count_tenant_2(self):
+        """When there are IndustryBencmark objects, if a dimension is
+        excluded, it should not be considered in calculation."""
+
+        dmb_d_res_1 = {
+            'attribution': 4.0,
+            'ads': 2.0,
+            'automation': None,
+        }
+
+        dmb_d_res_2 = {
+            'attribution': 6.0,
+            'ads': None,
+            'automation': 1.0,
+        }
+
+        IndustryBenchmark.objects.create(
+            industry='ic-bnpj',
+            tenant='tenant2',
+            initial_dmb=None,
+            initial_dmb_d={},
+            initial_best_practice=None,
+            initial_best_practice_d={},
+            sample_size=10
+        )
+
+        survey_1 = make_survey(industry='ic-bnpj', tenant='tenant2')
+        survey_2 = make_survey(industry='ic-bnpj', tenant='tenant2')
+
+        survey_res_1 = make_survey_result(survey=survey_1, dmb_d=dmb_d_res_1, dmb=2.0)
+        survey_1.last_survey_result = survey_res_1
+        survey_1.save()
+
+        survey_res_2 = make_survey_result(survey=survey_2, dmb_d=dmb_d_res_2, dmb=4.0)
+        survey_2.last_survey_result = survey_res_2
+        survey_2.save()
+
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant2')), 1)
+        self.assertEqual(len(Survey.objects.filter(tenant='tenant2')), 2)
+        self.assertEqual(len(IndustryBenchmark.objects.all()), 1)
+
+        calculate_industry_benchmark('tenant2')
+
+        self.assertEqual(len(IndustryBenchmark.objects.filter(tenant='tenant2')), 1)
+
+        ib = IndustryBenchmark.objects.get(tenant='tenant2', industry='ic-bnpj')
+
+        self.assertEqual(ib.dmb_d_value.get('attribution'), 5.0)
+        self.assertEqual(ib.dmb_d_value.get('ads'), 2.0)
+        self.assertEqual(ib.dmb_d_value.get('automation'), 1.0)
+        # average of survey result dmb
+        self.assertAlmostEqual(float(ib.dmb_value), 3, places=2)
+        # max of survey result dmb
+        self.assertAlmostEqual(float(ib.dmb_bp_value), 4, places=2)
