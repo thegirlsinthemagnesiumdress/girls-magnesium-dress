@@ -369,7 +369,7 @@ def calculate_industry_benchmark(tenant):
                 dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
                 dmb_values_list += [float(current_industry_benchmark.initial_dmb)] * current_industry_benchmark.sample_size
             if current_industry_benchmark.initial_best_practice_d:
-                dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d]
+                dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d] * current_industry_benchmark.sample_size
                 dmb_bp_values_list += [float(current_industry_benchmark.initial_best_practice)]
 
         dmb, dmb_d = None, None
