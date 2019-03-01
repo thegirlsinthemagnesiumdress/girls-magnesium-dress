@@ -9,6 +9,7 @@ from core.tests import mocks
 from django.conf import settings
 import os
 from core.test import reload_urlconf, TempTemplateFolder
+import json
 
 
 @override_settings(
@@ -32,8 +33,9 @@ class ReportsAdminTestCase(TestCase):
 
     def setUp(self):
         self.url = reverse('reports', kwargs={'tenant': 'tenant1-slug'})
-        self.survey_1 = make_survey()
-        self.survey_2 = make_survey()
+        self.survey_1 = make_survey(tenant='tenant1')
+        self.survey_2 = make_survey(tenant='tenant1')
+        self.survey_3 = make_survey(tenant='tenant2')
 
         self.survey_result_1 = make_survey_result(
             survey=self.survey_1,
@@ -51,7 +53,7 @@ class ReportsAdminTestCase(TestCase):
 
     @with_appengine_user('test@google.com')
     def test_standard_user_logged_in(self):
-        """Standard user can retrieve reports belonging to its engagement_lead."""
+        """Standard user can retrieve reports belonging to its engagement_lead within a specific tenant."""
 
         self.user = get_user_model().objects.create(email='test@google.com')
 
@@ -63,26 +65,44 @@ class ReportsAdminTestCase(TestCase):
         with TempTemplateFolder(templates_path, 'reports-list.html'):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
-            surveys = list(response.context.get('surveys'))
+
+            bootstrap_data = json.loads(response.context.get('bootstrap_data'))
+            surveys = bootstrap_data.get('surveys')
 
             self.assertTrue(surveys)
             self.assertEqual(len(surveys), 1)
-            self.assertEqual(surveys[0].engagement_lead, self.survey_1.engagement_lead)
+            self.assertEqual(surveys[0]['engagement_lead'], self.survey_1.engagement_lead)
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in(self):
-        """Whitelisted user can retrieve reports belonging to all companies."""
+        """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'reports-list.html'):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
-            surveys = list(response.context.get('surveys'))
-            engagement_lead_ids = [el.engagement_lead for el in surveys]
+            bootstrap_data = json.loads(response.context.get('bootstrap_data'))
+            surveys = bootstrap_data.get('surveys')
+
+            engagement_lead_ids = [el['engagement_lead'] for el in surveys]
 
             self.assertTrue(surveys)
             self.assertEqual(len(surveys), 2)
             self.assertTrue(self.survey_1.engagement_lead in engagement_lead_ids)
             self.assertTrue(self.survey_2.engagement_lead in engagement_lead_ids)
+
+    @with_appengine_admin('test@google.com')
+    def test_whitelisted_user_logged_in_tenant_2(self):
+        """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
+        url = reverse('reports', kwargs={'tenant': 'tenant2-slug'})
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'reports-list.html'):
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+            bootstrap_data = json.loads(response.context.get('bootstrap_data'))
+            surveys = bootstrap_data.get('surveys')
+
+            self.assertTrue(surveys)
+            self.assertEqual(len(surveys), 1)
 
     def test_user_not_logged_in(self):
         """Anonymous user cannot retrieve any report."""
