@@ -1,6 +1,7 @@
 goog.module('dmb.components.tenant');
 
 const confMap = goog.require('dmb.components.tenant.confMap');
+const tenantDataElementName = 'dmb-tenant-data';
 
 /** @const {string} */
 const MODULE_NAME = 'tenant';
@@ -26,49 +27,59 @@ class TenantConfiguration {
      * @type string
      * @export
      */
-    this.tenant = document.documentElement.dataset['tenant'];
+    this.tenant = '';
 
     /**
-     * @type string[]
+     * @param {Object}
      * @export
      */
-    this.dimensions = JSON.parse(document.documentElement.dataset['dimensions']);
+    this.levels = {};
 
     /**
-     * @type string[]
+     * @param {Object}
      * @export
      */
-    this.levels = [];
+    this.levelDescriptions = {};
 
     /**
-     * @type string[]
+     * @param {Array}
      * @export
      */
-    this.dimensionHeaders = [];
+    this.dimensions = [];
 
     /**
-     * @type string[]
+     * @param {Object}
      * @export
      */
-    this.dimensionHeadersDescription = [];
+    this.dimensionHeaders = {};
+
 
     /**
-     * @type string[]
+     * @param {Object}
      * @export
      */
-    this.dimensionLevelDescription = [];
+    this.dimensionHeadersDescription = {};
 
     /**
-     * @type string[]
+     * @param {Object}
      * @export
      */
-    this.dimensionLevelRecommendations = [];
+    this.dimensionLevelDescription = {};
 
+    /**
+     * @param {Object}
+     * @export
+     */
+    this.dimensionLevelRecommendations = {};
+
+
+    const tenantDataElement = document.getElementById(tenantDataElementName);
+    this.tenant = tenantDataElement.dataset['tenant'];
     const conf = confMap[this.tenant];
-
     this.levels = conf.levels;
     this.levelDescriptions = conf.levelDescriptions;
-    this.dimensionHeaders = conf.dimensionHeaders;
+    this.dimensions = conf.dimensions;
+    this.dimensionHeaders = JSON.parse(tenantDataElement.dataset['dimensions']);
     this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
     this.dimensionLevelDescription = conf.dimensionLevelDescription;
     this.dimensionLevelRecommendations = conf.dimensionLevelRecommendations;

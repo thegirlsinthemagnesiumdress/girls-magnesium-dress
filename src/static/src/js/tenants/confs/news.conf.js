@@ -16,12 +16,14 @@ const levelDescriptions = {
   3: 'Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.',
 };
 
-const dimensionHeaders = {
-  'strategic_direction': 'Strategic direction and data foundations',
-  'reader_engagement': 'Reader engagement',
-  'reader_revenue': 'Reader revenue',
-  'advertising_revenue': 'Advertising revenue',
-};
+
+// TODO(aabuelgasim): Get this from the backend?
+const dimensions = [
+  'strategic_direction',
+  'reader_engagement',
+  'reader_revenue',
+  'advertising_revenue',
+];
 
 const dimensionHeadersDescription = {
   'strategic_direction': 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
@@ -365,7 +367,7 @@ const dimensionLevelRecommendations = {
 const conf = {
   levels,
   levelDescriptions,
-  dimensionHeaders,
+  dimensions,
   dimensionHeadersDescription,
   dimensionLevelDescription,
   dimensionLevelRecommendations,

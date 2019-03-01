@@ -16,14 +16,16 @@ const levelDescriptions = {
   3: 'Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.',
 };
 
-const dimensionHeaders = {
-  'attribution': 'Attribution',
-  'ads': 'Assets and ads',
-  'audience': 'Audience',
-  'access': 'Access',
-  'automation': 'Automation',
-  'organization': 'Organisation',
-};
+
+// TODO(aabuelgasim): Get this from the backend?
+const dimensions = [
+  'attribution',
+  'ads',
+  'audience',
+  'access',
+  'automation',
+  'organization',
+];
 
 const dimensionHeadersDescription = {
   'attribution': 'Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.',
@@ -33,7 +35,6 @@ const dimensionHeadersDescription = {
   'automation': 'Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth.',
   'organization': 'Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed.',
 };
-
 
 const dimensionLevelDescription = {
   'attribution': {
@@ -440,7 +441,7 @@ const dimensionLevelRecommendations = {
 exports = {
   levels,
   levelDescriptions,
-  dimensionHeaders,
+  dimensions,
   dimensionHeadersDescription,
   dimensionLevelDescription,
   dimensionLevelRecommendations,

@@ -176,7 +176,11 @@
 
           <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
             <div class="dmb-report-page__tabs-icons">
-              <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+
+              <div
+                  class="h-u-text-center"
+                  ng-repeat="dimension in reportCtrl.dimensions"
+                  ng-if="reportCtrl.result.dmb_d[dimension] !== null"> <!-- dimension tabs-->
                 <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
                   <svg dmb-progress-circle="reportCtrl.result.dmb_d[dimension]" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
                     <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
@@ -184,13 +188,17 @@
                   </svg>
                   <div class="dmb-progress-circle__icon"></div>
                 </div>
-              </div>
+              </div> <!-- /dimension tabs -->
+
             </div>
             <div>
               <div class="dmb-report-page__tabs-sticky-nav" aria-hidden="true" dmb-pin-top>
                 <div class="h-c-page">
-                  <ul class="">
-                    <li ng-repeat="dimension in reportCtrl.dimensions">
+                  <ul>
+
+                    <li
+                        ng-repeat="dimension in reportCtrl.dimensions"
+                        ng-if="reportCtrl.result.dmb_d[dimension] !== null">
                       <button
                           class="dmb-report-page__tabs-sticky-nav-btn"
                           ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
@@ -198,6 +206,7 @@
                         {[reportCtrl.dimensionHeaders[dimension]]}
                       </button>
                     </li>
+
                   </ul>
                 </div>
               </div>
@@ -210,6 +219,7 @@
                 <ul>
                   <li
                       ng-repeat="dimension in reportCtrl.dimensions"
+                      ng-if="reportCtrl.result.dmb_d[dimension] !== null"
                       data-glue-label="{[dimension]}"
                       id="{[dimension]}">
                     <h3>
@@ -237,10 +247,14 @@
           <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
             <div class="glue-zippy-set h-t-hercules" ng-cloak>
               <ul class="h-c-expansion-panels__list">
-                <li class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container" ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
+                <li
+                    class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container"
+                    ng-repeat="dimension in reportCtrl.dimensions"
+                    ng-if="reportCtrl.result.dmb_d[dimension] !== null"
+                    ng-attr-id="{[ dimension ]}">
                   <div class="glue-zippy-btn">
                     <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
-                      {[ reportCtrl.dimensionHeaders[dimension] ]}
+                      {[ reportCtrl.dimensionHeaders[dimension] ]}<br>
                     </h4>
                     <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
                       <use xlink:href="#mi-arrow-item"></use>
@@ -256,7 +270,7 @@
               </ul>
             </div>
           </div>
-        </section> <!-- 4 dimensions -->
+        </section> <!-- /4 dimensions -->
 
         {% comment "Out of scope for now, we will enable this in the future" %}
         <!-- <div class="h-u-text-right">
