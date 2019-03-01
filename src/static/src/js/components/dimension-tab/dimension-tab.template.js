@@ -18,7 +18,7 @@ const dimensionTabTemplate = `
     <div class="dmb-report-page__tab-dynamic-col h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--7">
       <div class="h-c-grid dmb-tab__subgrid">
         <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--4">
-            <div class="dmb-progress-circle dmb-progress-circle--dimension-main dmb-progress-circle--dimension-{[$parent.$index]}"">
+            <div class="dmb-progress-circle dmb-progress-circle--dimension-main dmb-progress-circle--{[dmbDimensionTab]}"">
               <svg
                   dmb-progress-circle="dimensionTabCtrl.dmb"
                   class="dmb-progress-circle__prog-svg"
