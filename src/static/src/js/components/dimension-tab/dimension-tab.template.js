@@ -29,7 +29,7 @@ const dimensionTabTemplate = `
               <div class="dmb-progress-circle__icon"></div>
             </div>
             <div class="dmb-report-page__tab-progress-circle-results dmb-progress-circle__results">
-              <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">{[dimensionTabCtrl.levelsTotal]}.0</span>
+              <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">{[dimensionTabCtrl.levelsTotal|number : 1]}</span>
               </span>
             </div>
         </div>
