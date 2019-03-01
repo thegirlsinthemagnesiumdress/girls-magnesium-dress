@@ -215,11 +215,11 @@
                   data-glue-state-id="dimension-tabs"
                   data-glue-tabset-model="reportCtrl.model"
                   data-glue-tabset-enable-arrow-nav
+                  ng-if="reportCtrl.renderTabset"
                   ng-cloak>
                 <ul>
                   <li
                       ng-repeat="dimension in reportCtrl.dimensions"
-                      ng-if="reportCtrl.result.dmb_d[dimension] !== null"
                       data-glue-label="{[dimension]}"
                       id="{[dimension]}">
                     <h3>
@@ -254,7 +254,7 @@
                     ng-attr-id="{[ dimension ]}">
                   <div class="glue-zippy-btn">
                     <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
-                      {[ reportCtrl.dimensionHeaders[dimension] ]}<br>
+                      {[ reportCtrl.dimensionHeaders[dimension] ]}
                     </h4>
                     <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
                       <use xlink:href="#mi-arrow-item"></use>

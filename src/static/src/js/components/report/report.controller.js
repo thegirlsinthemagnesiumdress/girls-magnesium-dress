@@ -140,6 +140,13 @@ class ReportController {
      */
     this.industryBestSource = null;
 
+    /**
+     * Whether to render tabset of not
+     * @type {boolean}
+     * @export
+     */
+    this.renderTabset = false;
+
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
     // We're saving the results in a service since it's not possible to
@@ -156,6 +163,22 @@ class ReportController {
       this.floorDmb = floorDmbFactory(this.result.dmb);
 
       reportService.dmb_d = this.result['dmb_d'];
+
+        // ENABLE FOR DEMO
+        // reportService.dmb_d['reader_revenue'] = null;
+
+      // TODO(aabuelgasim): remove this chunk once new tabby is used
+      for (var key in reportService.dmb_d) {
+        if(reportService.dmb_d[key] === null) {
+          const index = this.dimensions.indexOf(key);
+          this.dimensions.splice(index,1);
+        }
+      }
+      this.ngTimeout_(() => {
+        this.renderTabset = true;
+      }, 0, true);
+      ////////////////
+
 
       $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
         this.industryResult = res.data;
