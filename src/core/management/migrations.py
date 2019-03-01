@@ -15,16 +15,16 @@ def migrate_deloitte_data():
     dmb_bp = 3.65
     samples = 46
     dmb_d = {
-        'strategic_choices': 2.86,
-        'audience_engagement': 2.3,
-        'consumer_revenue': 2.0,
+        'strategic_direction': 2.86,
+        'reader_engagement': 2.3,
+        'reader_revenue': 2.0,
         'advertising_revenue': 2.2,
     }
 
     dmb_d_bp = {
-        'strategic_choices': 4.0,
-        'audience_engagement': 3.7,
-        'consumer_revenue': 3.55,
+        'strategic_direction': 4.0,
+        'reader_engagement': 3.7,
+        'reader_revenue': 3.55,
         'advertising_revenue': 3.5,
     }
 
