@@ -1,0 +1,13 @@
+{% extends 'public/base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+  <main id="dmb-landing">
+    {% include 'public/news/report/report-intro.inc.html' %}
+
+  </main>
+{% endblock %}
+
+{% block footer %}
+  {% include 'public/inc/global/footer.html' with footerClass="dmb-h-hidden--print" footerAttribute="ng-cloak" %}
+{% endblock footer %}
