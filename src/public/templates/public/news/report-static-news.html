@@ -2,8 +2,10 @@
 {% load staticfiles %}
 
 {% block main %}
-  <main id="dmb-landing">
+  <main id="dmb-report" dmb-report ng-cloak>
+    {% comment %}
     {% include 'public/news/report/report-intro.inc.html' %}
+    {% endcomment %}
 
   </main>
 {% endblock %}
