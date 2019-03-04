@@ -31,7 +31,7 @@ class ReportController {
    * @ngInject
    */
   constructor(
-      $scope,
+    $scope,
       $rootScope,
       $http,
       $location,
@@ -41,8 +41,20 @@ class ReportController {
       floorDmbFactory,
       tenantConf,
       glueBreakpoint) {
-    const sidMatches = $location.absUrl().match(locationSidRegex);
-    const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
+    // TODO(aabuelgasim): uncomment consts and remove lets assignments
+    // and if statement below when no longer using `reports-news` URL:
+    // const sidMatches = $location.absUrl().match(locationSidRegex);
+    // const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
+    let sidMatches = $location.absUrl().match(locationSidRegex);
+    let responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
+
+    if (!sidMatches) {
+      const locationSidRegex2 = /reports-news\/(\w+)[#\/].*$/;
+      const resultResponseIdRegex2 = /reports-news\/result\/(\w+)[#\/].*$/;
+      sidMatches = $location.absUrl().match(locationSidRegex2);
+      responseIdMatches = $location.absUrl().match(resultResponseIdRegex2);
+    }
+    // /////////////////
 
     const surveyId = sidMatches ? sidMatches[1] : null;
     const responseId = responseIdMatches ? responseIdMatches[1] : null;
@@ -86,6 +98,18 @@ class ReportController {
      * @export
      */
     this.levels = tenantConf.levels;
+
+    /**
+     * @type {!string}
+     * @export
+     */
+    this.currentLevel = '';
+
+    /**
+     * @type {!string}
+     * @export
+     */
+    this.nextLevel = '';
 
     /**
      * @type {!Object}
@@ -161,6 +185,14 @@ class ReportController {
       this.result.dmb = parseFloat(this.result['dmb']);
 
       this.floorDmb = floorDmbFactory(this.result.dmb);
+
+      this.currentLevel = this.levels[this.floorDmb].toLowerCase();
+      if (this.floorDmb < 3) {
+        this.nextLevel = this.levels[(this.floorDmb + 1)].toLowerCase();
+      } else {
+        this.nextLevel = this.currentLevel;
+      }
+
 
       reportService.dmb_d = this.result['dmb_d'];
 
