@@ -200,9 +200,6 @@ def send_emails_for_new_reports(email_list):
     :param email_list: tuple of element (to, bcc, sid)
     """
     domain = getattr(settings, 'LIVE_DOMAIN', os.environ['HTTP_HOST'])
-    subject_template = get_template("core/response_ready_email_subject.txt")
-    html_message_template = get_template("core/response_ready_email_body.html")
-    text_message_template = get_template("core/response_ready_email_body.txt")
 
     for email_data in email_list:
         to, bcc, sid = email_data
@@ -224,6 +221,10 @@ def send_emails_for_new_reports(email_list):
                     'industry': industry,
                     'country': country,
                 }
+
+                subject_template = get_template("{}/email/response_ready_email_subject.txt".format(tenant))
+                html_message_template = get_template("{}/email/response_ready_email_body.html".format(tenant))
+                text_message_template = get_template("{}/email/response_ready_email_body.txt".format(tenant))
 
                 email_kwargs = {
                     'to': [to],
