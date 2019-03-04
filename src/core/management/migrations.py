@@ -1,6 +1,7 @@
 from django.conf import settings
 
 from core.models import Survey, IndustryBenchmark
+import logging
 
 
 def migrate_to_default_tenant():
@@ -37,3 +38,12 @@ def migrate_deloitte_data():
         initial_best_practice_d=dmb_d_bp,
         sample_size=samples,
     )
+
+
+def migrate_to_tenant(old_tenant, new_tenant):
+
+    logging.info("Migrating from tenant {} to {}".format(old_tenant, new_tenant))
+    old_tenants = Survey.objects.filter(tenant=old_tenant)
+    logging.info("Found {} with tenant {}".format(old_tenants.count(), old_tenant))
+    updated = old_tenants.update(tenant=new_tenant)
+    logging.info("{} updated to tenant {}".format(updated, new_tenant))

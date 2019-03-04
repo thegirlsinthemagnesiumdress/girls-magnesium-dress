@@ -56,6 +56,25 @@ def migrate_to_default_tenant_task(request):
 
 
 @task_or_admin_only
+def migrate_to_tenant_task(request):
+    """Migrate existing surveys from a tenant to another.
+
+    The default tenant is ADS.
+    """
+    msg = "Migrate existing surveys to the default tenant"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.migrate_to_tenant,
+        'advertisers',
+        settings.ADS,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
 def migrate_deloitte_data_task(request):
     """Migrate deafult values provided by Deloitte."""
     msg = "Migrate deafult values provided by Deloitte"
