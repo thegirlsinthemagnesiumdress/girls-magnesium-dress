@@ -222,9 +222,9 @@ def send_emails_for_new_reports(email_list):
                     'country': country,
                 }
 
-                subject_template = get_template("{}/email/response_ready_email_subject.txt".format(tenant))
-                html_message_template = get_template("{}/email/response_ready_email_body.html".format(tenant))
-                text_message_template = get_template("{}/email/response_ready_email_body.txt".format(tenant))
+                subject_template = get_template("public/{}/email/response_ready_email_subject.txt".format(tenant))
+                html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+                text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
                 email_kwargs = {
                     'to': [to],
