@@ -203,6 +203,7 @@ def send_emails_for_new_reports(email_list):
 
     for email_data in email_list:
         to, bcc, sid = email_data
+        logging.info("Preparing to send email for: sid: {} to: {} bcc: {}".format(sid, to, bcc))
 
         # Last minute change, we should refactor this and pass the object in
         try:
