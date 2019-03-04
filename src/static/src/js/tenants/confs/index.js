@@ -3,6 +3,6 @@ const news = goog.require('dmb.components.tenant.conf.news');
 const ads = goog.require('dmb.components.tenant.conf.ads');
 
 exports = {
-  news,
-  ads,
+  'news': news,
+  'ads': ads,
 };
