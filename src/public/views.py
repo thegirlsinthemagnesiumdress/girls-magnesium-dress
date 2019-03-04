@@ -101,19 +101,23 @@ def result_detail(request, tenant, response_id):
     })
 
 
-def handler404(request):
+def handler404(request, *args, **kwargs):
     return render(request, 'public/error.html', {
         'title': '404',
         'subtitle': "Woops.. that page doesn't seem to exist, or the link is broken.",
         'text': 'Try returning to the homepage.',
         'cta': 'Return to homepage',
+        'tenant': '',
+        'dimensions': '',
     }, status=404)
 
 
-def handler500(request):
+def handler500(request, *args, **kwargs):
     return render(request, 'public/error.html', {
         'title': '500',
         'subtitle': 'Woops.. there was an internal server error.',
         'text': 'Try returning to the homepage.',
         'cta': 'Return to homepage',
+        'tenant': '',
+        'dimensions': '',
     }, status=500)
