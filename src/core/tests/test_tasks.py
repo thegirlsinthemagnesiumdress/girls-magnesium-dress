@@ -547,6 +547,30 @@ class SendEmailTestCase(TestCase):
         send_emails_for_new_reports(email_list)
         self.assertEqual(email_mock.call_count, 0)
 
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
+    @mock.patch('core.tasks.get_template')
+    def test_email_is_sent_using_tenant_specific_templates(self, get_template_mock, email_mock):
+        survey = make_survey(sid='3', tenant='ads')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid)
+        ]
+
+        send_emails_for_new_reports(email_list)
+
+        for call in get_template_mock.call_args_list:
+            template_name = call[0][0]
+            self.assertIn('ads', template_name)
+
+        survey = make_survey(sid='4', tenant='news')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid)
+        ]
+
+        send_emails_for_new_reports(email_list)
+        for call in get_template_mock.call_args_list[3:]:
+            template_name = call[0][0]
+            self.assertIn('news', template_name)
+
 
 class GenerateExportTestCase(TestCase):
 
