@@ -40,6 +40,18 @@ def report_static(request, tenant, sid):
     })
 
 
+# @TODO remove this and use report_static. This is a temporary view to develop new report styles
+def report_static_news(request, tenant, sid):
+    survey = get_object_or_404(Survey, sid=sid)
+    if not survey.last_survey_result:
+        raise Http404
+
+    return render(request, 'public/{}/report-static-news.html'.format(tenant), {
+        'tenant': tenant,
+        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+    })
+
+
 def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
     return render(request, 'public/{}/report-static.html'.format(tenant), {
