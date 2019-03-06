@@ -1,2 +1,2 @@
-We've finished analyzing your survey responses to find out where you can improve your marketing strategy.
+We've finished analysing your survey responses to find out where you can improve your data maturity.
 Here's the link to access your report: {{url}}
