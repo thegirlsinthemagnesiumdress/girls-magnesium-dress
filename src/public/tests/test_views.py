@@ -51,6 +51,14 @@ class ReportsAdminTestCase(TestCase):
             dmb_d='{}'
         )
 
+    def _get_bootstrap_data(self, context):
+        # We use django-angular-protect (see https://github.com/potatolondon/django-angular-protect)
+        # which wraps our context values in an object.
+        # This gets us at our original value.
+        bootstrap_data = context.get('bootstrap_data')._original
+        bootstrap_data = json.loads(bootstrap_data)
+        return bootstrap_data
+
     @with_appengine_user('test@google.com')
     def test_standard_user_logged_in(self):
         """Standard user can retrieve reports belonging to its engagement_lead within a specific tenant."""
@@ -66,7 +74,7 @@ class ReportsAdminTestCase(TestCase):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
 
-            bootstrap_data = json.loads(response.context.get('bootstrap_data'))
+            bootstrap_data = self._get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('surveys')
 
             self.assertTrue(surveys)
@@ -80,7 +88,7 @@ class ReportsAdminTestCase(TestCase):
         with TempTemplateFolder(templates_path, 'reports-list.html'):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
-            bootstrap_data = json.loads(response.context.get('bootstrap_data'))
+            bootstrap_data = self._get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('surveys')
 
             engagement_lead_ids = [el['engagement_lead'] for el in surveys]
@@ -98,7 +106,7 @@ class ReportsAdminTestCase(TestCase):
         with TempTemplateFolder(templates_path, 'reports-list.html'):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
-            bootstrap_data = json.loads(response.context.get('bootstrap_data'))
+            bootstrap_data = self._get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('surveys')
 
             self.assertTrue(surveys)
