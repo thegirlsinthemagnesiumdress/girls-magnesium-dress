@@ -32,9 +32,11 @@ class sync_qualtricsTestCase(TestCase):
 
         all_calls = get_survey_definition_mock.call_args_list
 
-        args, kwargs = all_calls[0]
-        self.assertEqual(len(args), 1)
-        self.assertIsNotNone(args[0])
+        for args, kwargs in all_calls:
+            self.assertEqual(len(args), 2)
+            tenant, qualtrics_id = args
+            self.assertIsNotNone(tenant)
+            self.assertTrue(tenant in MOCKED_TENANTS.keys())
 
         self.assertEqual(get_result_mock.call_count, len(MOCKED_TENANTS.keys()))
 
