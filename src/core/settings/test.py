@@ -10,4 +10,4 @@ def patch_django_angular_render():
     DjangoBlockNode.render = lambda x, y: ''
 
 
-patch_django_angular_render()
+# patch_django_angular_render()
