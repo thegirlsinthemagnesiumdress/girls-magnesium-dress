@@ -1,0 +1,30 @@
+.dmb-survey-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__title {
+    font-family: $dmb-alt-font-family;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5;
+    text-transform: uppercase;
+    // @include dmb-resp-prop(font-size, 12px, 14px);
+
+    @include dmb-mq($from: tablet) {
+      br {
+        display: none;
+      }
+    }
+  }
+
+  &-container {
+    .InnerInner {
+      padding-bottom: 0;
+    }
+
+    &.QuestionOuter + .Separator {
+      display: none;
+    }
+  }
+}

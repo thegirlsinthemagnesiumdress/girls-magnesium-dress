@@ -1,29 +1,35 @@
 .dmb-survey-footer {
-  align-items: baseline;
-  display: flex;
-  flex-flow: row wrap;
-  font-size: 16px;
-  justify-content: center;
-  list-style-type: none;
-  margin: 0 auto;
+  @include dmb-mq($from: tablet) {
+    display: flex;
+  }
 
-  > li {
+  &__logo {
+    margin-right: 50px;
+    width: 86px;
+
+    @include dmb-mq($until: tablet) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__links {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  &__link {
+    color: $dmb-color-grey-shuttle;
     display: block;
-    padding: 0 6px;
-  }
-}
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
 
-.Skin {
-  #Footer { // sass-lint:disable-line no-ids
-    margin: $dmb-margin-medium auto $dmb-margin-small;
-    padding: 0;
-  }
+    &:not(:last-of-type) {
+      margin-right: 30px;
+    }
 
-  #PushStickyFooter { // sass-lint:disable-line no-ids
-    display: none;
-  }
-
-  #Plug { // sass-lint:disable-line no-ids
-    @include element-invisible();
+    @include dmb-mq($from: tablet) {
+      display: inline-block;
+    }
   }
 }

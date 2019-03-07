@@ -1,0 +1,54 @@
+.dmb-survey-hero {
+  text-align: left;
+
+  &__lockup {
+    display: flex;
+  }
+
+  &__company-logo {
+    margin-right: 10px;
+    width: 50px;
+
+    @include dmb-mq($from: desktop) {
+      width: 60px;
+    }
+  }
+
+  &__product-logo {
+    color: $dmb-color-grey-mid;
+    font-family: 'Product Sans', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: -3px;
+
+    @include dmb-mq($from: desktop) {
+      font-size: 16px;
+    }
+  }
+
+  .dmb-primary-heading {
+    color: $dmb-news-primary-color;
+  }
+
+  &__flex {
+    @include dmb-mq($from: desktop) {
+      align-items: baseline;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__panel-button {
+    @include dmb-mq($until: desktop) {
+      &.h-c-button {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__instructions {
+    h2 {
+      margin-bottom: 10px;
+    }
+  }
+}

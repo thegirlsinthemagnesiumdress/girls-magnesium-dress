@@ -1,0 +1,90 @@
+// DMB Variables
+@import 'breakpoints';
+
+// If you have Sass variable overrides, include them here and uncomment.
+@import 'legacy/hercules-variable-overrides';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&lang=en'); // sass-lint:disable-line no-url-domains no-url-protocols
+
+// main.scss
+// Sass compiler knows the paths to glue Sass through the Gulp
+// compiler configuration.
+@import 'hercules/lib/global/scss/settings/all';
+
+// If you have Sass variable overrides, include them here and uncomment.
+// @import 'myproject/custom/settings';
+
+@import 'hercules/lib/global/scss/tools/all';
+@import 'hercules/lib/global/scss/generic/all';
+@import 'hercules/lib/global/scss/elements/all';
+// Hercules component base styles
+@import 'hercules/lib/components/buttons/buttons';
+@import 'hercules/lib/components/grids/grids';
+@import 'hercules/lib/components/links/links';
+@import 'hercules/lib/components/page/page';
+@import 'hercules/lib/components/type/type';
+@import 'hercules/lib/components/icons/icons';
+
+// //Colors
+// @import 'legacy/colo
+// // Variables
+// @import 'legacy/variables';
+
+// // Mixins
+// @import 'legacy/mixins';
+
+// // Variables
+// @import 'legacy/utils';
+
+// Hercules overrides
+// @import 'legacy/hercules-overrides';
+// @import 'hercules-overrides';
+
+// // Shared
+// @import 'legacy/shared/fab';
+// @import 'legacy/shared/hero';
+@import 'mvp';
+@import 'legacy/shared/side-panel';
+// @import 'legacy/shared/buttons';
+// @import 'legacy/shared/partnership-with-bcg';
+
+// // Components
+// @import 'legacy/survey/buttons';
+// @import 'legacy/survey/footer';
+// @import 'legacy/survey/form-fields';
+// @import 'legacy/survey/header';
+// @import 'legacy/survey/layout';
+// @import 'legacy/survey/matrix';
+// @import 'legacy/survey/progress-bar';
+// @import 'legacy/survey/radio-buttons';
+// @import 'legacy/survey/side-panel';
+// @import 'legacy/survey/styled-list';
+// @import 'legacy/survey/privacy-question';
+// @import 'legacy/survey/dimension-header';
+
+
+// DMB STYLES
+@import 'colors';
+@import 'mixins';
+@import 'variables';
+@import 'utils';
+@import 'hercules-overrides';
+
+// Common components
+// @import 'components/button';
+// @import 'components/footer';
+@import 'components/partnership-logo';
+// @import 'components/svg';
+
+
+@import 'survey/qualtrics-overrides';
+@import 'survey/banner';
+@import 'survey/dimension-header';
+@import 'survey/footer';
+@import 'survey/hero';
+@import 'survey/user-details';
+@import 'survey/privacy-policy';
+
+
+// Hercules part that needs to come last
+@import 'hercules/lib/global/scss/trumps/all';
