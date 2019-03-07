@@ -581,7 +581,7 @@ class GenerateExportTestCase(TestCase):
         # check mock called the write for writing headers
         handle = cloud_mock()
         handle.write.assert_called_once_with(
-            'id,company_name,industry,country,created_at,engagement_lead,dmb,access,audience,attribution,ads,organization,automation\n'
+            'id,company_name,industry,country,created_at,engagement_lead,tenant,excluded_from_best_practice,dmb,access,audience,attribution,ads,organization,automation\n'
         )
 
         # check a copy is made

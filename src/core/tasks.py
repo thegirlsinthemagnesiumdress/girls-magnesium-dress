@@ -282,6 +282,8 @@ def generate_csv_export():
             'country',
             'created_at',
             'engagement_lead',
+            'tenant',
+            'excluded_from_best_practice',
             'dmb',
             'access',
             'audience',
@@ -302,6 +304,8 @@ def generate_csv_export():
                     'country': settings.COUNTRIES.get(survey.country),
                     'created_at': survey.created_at,
                     'engagement_lead': survey.engagement_lead,
+                    'tenant': survey.tenant,
+                    'excluded_from_best_practice': None,
                     'dmb': None,
                     'access': None,
                     'audience': None,
@@ -311,6 +315,7 @@ def generate_csv_export():
                     'automation': None,
                 }
                 if survey.last_survey_result:
+                    survey_data['excluded_from_best_practice'] = survey.last_survey_result.excluded_from_best_practice
                     survey_data['dmb'] = survey.last_survey_result.dmb
                     survey_data.update(survey.last_survey_result.dmb_d)
             except SurveyResult.DoesNotExist:
