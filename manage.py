@@ -26,8 +26,8 @@ if __name__ == "__main__":
         print("NOTE: Using core.settings.live as we are deploying")
         os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.live"
     elif "test" in sys.argv:
-        print("NOTE: Using core.settings.test as we are testing")
-        os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.test"
+        print("NOTE: Using core.settings.local as we are testing")
+        os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.local"
 
     if "test" in sys.argv:
         from djangae.core.management import test_execute_from_command_line
