@@ -56,6 +56,12 @@
           padding: 40px 0;
         }
       }
+
+      .glue-pagination-tab.glue-is-active {
+        .glue-c-tabset__button:focus {
+          background: transparent;
+        }
+      }
     }
   }
 
