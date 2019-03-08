@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load static_rev %}
+{% load angular %}
 <!DOCTYPE html>
 {# TODO(https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/72): make the `dmb--news` class dynamic depending on tenant #}
 <html lang="en" class="dmb--news">
@@ -60,7 +61,7 @@
 
 {% include 'core/inc/_svg.inc.html' %}
 {% include 'core/inc/_dmb-svgs.inc.html' %}
-<div class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}"></div>
+<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant|ng_mark_safe }}" data-dimensions="{{ dimensions|ng_mark_safe }}"></div>
 
 {% if debug %}
 

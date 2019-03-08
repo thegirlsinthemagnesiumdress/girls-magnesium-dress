@@ -17,8 +17,8 @@
     class="dmb-partnership-logo{% if inline %} dmb-partnership-logo--inline{% endif %}{% if invert %} dmb-partnership-logo--invert{% endif %}">
   <div class="dmb-partnership-logo__text">In partnership with</div>
   <img
-      srcset="{% static image %}.{{extension}} 1x, {% static image %}@2x.{{extension}} 2x"
-      src="{% static image %}.{{extension}}"
+      srcset="{% static image %}{% if invert %}-light{% endif %}.{{extension}} 1x, {% static image %}{% if invert %}-light{% endif %}@2x.{{extension}} 2x"
+      src="{% static image %}{% if invert %}-light{% endif %}.{{extension}}"
       alt="In partnership with {{company}}"
       class="dmb-partnership-logo__img">
 </div>

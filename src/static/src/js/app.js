@@ -20,6 +20,7 @@ const progressCircle = goog.require('dmb.components.progressCircle');
 const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
 const forceReflow = goog.require('dmb.components.forceReflow');
+const tenant = goog.require('dmb.components.tenant');
 const configureAdditionalSortTypes = goog.require('dmb.tableCustomSort');
 
 // Custom tablesort date configuration.
@@ -45,6 +46,7 @@ const module = angular.module('dmb', [
   tabby.module.name,
   tableSort.module.name,
   forceReflow.module.name,
+  tenant.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);
@@ -59,6 +61,7 @@ try {
 
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
+
 module.constant('csrfToken', csrfToken);
 
 // Conditionally start the app if it's a supported browser.

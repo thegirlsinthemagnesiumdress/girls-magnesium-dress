@@ -3,8 +3,8 @@ goog.module('dmb.components.progressTable.template');
 const template = `
 <div class="dmb-progress-table dmb-progress-table--{[progressTableCtrl.getClass(ratingMain)]}">
   <div class="dmb-progress-table__col"></div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--nascent">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">Nascent</h3>
+  <div class="dmb-progress-table__col dmb-progress-table__col--level-0">
+    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressTableCtrl.levels[0]]}</h3>
     <div class="dmb-progress-table__row-wrp">
       <div class="dmb-progress-table__row dmb-progress-table__row--main"
           ng-class="{
@@ -64,14 +64,14 @@ const template = `
       </div>
     </div>
   </div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--emerging">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">Emerging</h3>
+  <div class="dmb-progress-table__col dmb-progress-table__col--level-1">
+    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressTableCtrl.levels[1]]}</h3>
   </div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--connected">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">Connected</h3>
+  <div class="dmb-progress-table__col dmb-progress-table__col--level-2">
+    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressTableCtrl.levels[2]]}</h3>
   </div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--multimoment">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">Multi-Moment</h3>
+  <div class="dmb-progress-table__col dmb-progress-table__col--level-3">
+    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressTableCtrl.levels[3]]}</h3>
   </div>
 </div>
 `;

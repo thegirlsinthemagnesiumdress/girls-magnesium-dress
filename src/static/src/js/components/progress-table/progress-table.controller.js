@@ -8,15 +8,24 @@ class ProgressTableController {
    * ProgressTable controller
    *
    * @param {function (*): number|null} floorDmbFactory
+   * @param {!Object} tenantConf
    *
    * @ngInject
    */
-  constructor(floorDmbFactory) {
+  constructor(
+    floorDmbFactory,
+    tenantConf) {
     /**
      * @type {function (*): number|null}
      * @private
      */
     this.floorDmbFactory_ = floorDmbFactory;
+
+    /**
+     * @export
+     * type {Object}
+     */
+    this.levels = tenantConf.levels;
   }
 
   /**

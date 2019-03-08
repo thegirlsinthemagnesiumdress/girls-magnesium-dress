@@ -763,3 +763,16 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon-old;
     }
   }
 }
+
+
+
+// TODO(aabuelgasim): remove
+.dmb-report-page__tabs {
+  .dmb-report-page__tabs-icons,
+  .glue-c-tabset__tablist {
+    > div,
+    .glue-c-tabset__tab {
+      flex-basis: calc(100% / 4);
+    }
+  }
+}

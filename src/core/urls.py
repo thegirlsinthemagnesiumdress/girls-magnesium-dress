@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^cron/generate_export/$', views.generate_export, name="export-datastore-data"),
     url(r'^cron/update_benchmarks/$', views.update_industries_benchmarks_task, name="update-benchmarks"),
     url(r'^migrations/migrate_to_default_tenant_task/$', views.migrate_to_default_tenant_task, name="migrate_to_default_tenant_task"),
+    url(r'^migrations/migrate_to_tenant_task/$', views.migrate_to_tenant_task, name="migrate_to_tenant_task"),
     url(r'^migrations/migrate_deloitte_data_task/$', views.migrate_deloitte_data_task, name="migrate_deloitte_data_task"),
 ]
 

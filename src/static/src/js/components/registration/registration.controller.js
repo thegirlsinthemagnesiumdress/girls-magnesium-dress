@@ -1,7 +1,6 @@
 goog.module('dmb.components.registration.controller');
 
 const SURVEY_ENDPOINT = '/api/survey';
-const CREATE_SURVEY = 'createsurvey';
 
 /**
  * Registration controller.

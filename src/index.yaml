@@ -56,6 +56,12 @@ indexes:
 - kind: core_survey
   properties:
   - name: tenant
+  - name: created_at
+    direction: desc
+
+- kind: core_survey
+  properties:
+  - name: tenant
   - name: last_survey_result_id
 
 - kind: core_surveyresult
