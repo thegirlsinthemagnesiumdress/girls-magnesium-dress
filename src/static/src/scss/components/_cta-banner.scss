@@ -2,12 +2,6 @@
   background: $dmb-interactive-color;
   color: $dmb-light-text-color;
 
-  &--mobile-only {
-    @include dmb-mq($from: tablet) {
-      display: none;
-    }
-  }
-
   .h-c-footnote {
     color: inherit;
   }

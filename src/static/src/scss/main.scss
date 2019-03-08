@@ -83,7 +83,6 @@
 @import 'variables';
 @import 'utils';
 @import 'hercules-overrides';
-
 @import 'grid-variables';
 
 
@@ -103,25 +102,9 @@
 @import 'components/img-text';
 @import 'components/product-hero';
 @import 'components/report-intro';
+@import 'components/report-hero';
 @import 'components/step-heading';
 @import 'components/tile-carousel';
-
-
-// TODO(aabuelgasim) replace with new styles
-// MVP Styles
-// @import 'mvp';
-// @import 'legacy/shared/fab';
-// @import 'legacy/shared/side-panel';
-// @import 'legacy/components/side-panel';
-//////
-
-// @import 'legacy/variables';
-// @import 'legacy/colors';
-// @import 'legacy/mixins';
-// @import 'legacy/components/buttons';
-// @import 'legacy/components/form';
-// @import 'legacy/components/section';
-// @import 'legacy/components/registration';
 
 // Pages
 @import 'pages/landing';

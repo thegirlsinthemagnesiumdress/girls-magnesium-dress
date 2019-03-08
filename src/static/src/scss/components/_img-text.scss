@@ -2,6 +2,10 @@
   background-repeat: no-repeat;
   background-size: contain;
 
+  @include dmb-mq($until: tablet) {
+    padding-top: 60px;
+  }
+
   &__heading {
     @include dmb-mq($from: tablet) {
       margin: 175px 0 120px;
