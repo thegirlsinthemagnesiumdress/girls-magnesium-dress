@@ -27,7 +27,7 @@ from core.conf.utils import get_tenant_slug
 
 def sync_qualtrics():
     for tenant_key, tenant in settings.TENANTS.items():
-        survey_definition = _get_definition(tenant['QUALTRICS_SURVEY_ID'])
+        survey_definition = _get_definition(tenant_key, tenant['QUALTRICS_SURVEY_ID'])
 
         if survey_definition:
             _get_results(tenant, survey_definition)
@@ -35,7 +35,7 @@ def sync_qualtrics():
             logging.error('Fetching survey definition failed, not fetching results')
 
 
-def _get_definition(survey_id):
+def _get_definition(tenant, survey_id):
     """Download survey definition from Qualtrics and store it in `core.SurveyDefinition`.
 
     If a new survey definition is found, it's then saved as `core.SurveyDefinition` and returned,
@@ -47,15 +47,17 @@ def _get_definition(survey_id):
     """
     try:
         survey_definition = download.fetch_survey(survey_id)
-        last_survey_definition = SurveyDefinition.objects.latest('last_modified')
+        last_survey_definition = SurveyDefinition.objects.filter(tenant=tenant).latest('last_modified')
         downloaded_survey_last_modified = parse_datetime(survey_definition['lastModifiedDate'])
         if downloaded_survey_last_modified > last_survey_definition.last_modified:
             last_survey_definition = SurveyDefinition.objects.create(
+                tenant=tenant,
                 last_modified=downloaded_survey_last_modified,
                 content=survey_definition
             )
     except SurveyDefinition.DoesNotExist:
         last_survey_definition = SurveyDefinition.objects.create(
+            tenant=tenant,
             last_modified=survey_definition['lastModifiedDate'],
             content=survey_definition
         )
