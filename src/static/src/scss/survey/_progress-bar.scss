@@ -1,0 +1,39 @@
+// sass-lint:disable no-ids
+.Skin {
+  #ProgressBar {
+    margin: -100px auto 0;
+    max-width: 100%;
+    position: fixed;
+    width: 100%;
+
+    .ProgressBarContainer {
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .12);
+      height: 20px;
+      width: 100%;
+
+      tr:first-of-type {
+        display: none;
+      }
+
+      tr:nth-of-type(2) {
+        td:not(:nth-of-type(2)) {
+          display: none;
+        }
+      }
+    }
+
+    .ProgressBarFill,
+    .ProgressBarFillContainer {
+      border-radius: 0;
+      height: 100%;
+    }
+
+    .ProgressBarFillContainer {
+      background: #fff;
+    }
+
+    .ProgressBarFill {
+      background: $dmb-interactive-color;
+    }
+  }
+}

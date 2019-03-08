@@ -1,4 +1,5 @@
 .dmb-survey-banner {
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -8,8 +9,8 @@
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 1.5;
+    line-height: 1;
     text-transform: uppercase;
-    // @include dmb-resp-prop(font-size, 12px, 14px);
 
     @include dmb-mq($from: tablet) {
       br {

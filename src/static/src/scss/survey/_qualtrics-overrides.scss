@@ -5,22 +5,29 @@
   background-repeat: no-repeat;
   margin: 0 auto;
   max-width: 768px;
-  padding: 173px 16px 0;
+  padding: 16px;
 
-  @include dmb-mq($from: tablet) {
-    padding: 190px 60px 0;
+  @include dmb-resp-prop(padding-top, 40px, 60px, 80px);
+
+  &.dmb-survey--start {
+    padding: 173px 16px 0;
+
+    @include dmb-mq($from: tablet) {
+      padding: 190px 60px 0;
+    }
+
+    @include dmb-mq($from: desktop) {
+      max-width: 1024px;
+      padding: 250px 115px 0;
+    }
   }
 
-  @include dmb-mq($from: desktop) {
-    max-width: 1024px;
-    padding: 250px 115px 0;
-  }
 
   .LabelWrapper label {
     background: $dmb-color-blue-solitude;
     border-radius: $dmb-border-radius;
 
-    &.q-focused {
+    &.q-checked {
       color: $dmb-interactive-color;
     }
   }
@@ -45,8 +52,6 @@
     display: inline-block;
   }
 }
-
-
 
 // Skin styles
 .Skin {
@@ -145,6 +150,8 @@
   }
 
   #Buttons {
+    padding: 0 16px;
+
     #PreviousButton,
     #NextButton {
       border-radius: $dmb-border-radius;
@@ -189,5 +196,3 @@ fieldset {
   margin: 0;
   padding: 0;
 }
-
-
