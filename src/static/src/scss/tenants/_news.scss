@@ -7,7 +7,7 @@ $dmb-color-green-jewel-dark: #0a4e22;
 
 $dmb-tenant-primary-color: $dmb-color-green-eucalyptus;
 
-$dimension-colors: (
+$level-colors: (
   nascent: $dmb-color-green-eucalyptus,
   developing: $dmb-color-green-salem,
   mature: $dmb-color-green-jewel,
@@ -42,8 +42,8 @@ $dimension-colors: (
     }
   }
 
-  // IMAGE TEXT COLLAGE IMAGES
   #dmb-landing {
+    // IMAGE TEXT COLLAGE IMAGES
     .dmb-img-text-collage {
       &__img--1 {
         background-image: url('../img/news/home/collage-img1.jpg');
@@ -72,9 +72,9 @@ $dimension-colors: (
     }
 
     // Add dimension colors to tab text, tab borders and content mobile border
-    @each $dimension, $color in $dimension-colors {
+    @each $level, $color in $level-colors {
       .dmb-home-tabs {
-        .glue-pagination-tab[data-glue-pagination-label='#{$dimension}'] {
+        .glue-pagination-tab[data-glue-pagination-label='#{$level}'] {
           .glue-c-tabset__button {
             color: $color; // tablet and desktop tab heading color
           }
@@ -84,7 +84,7 @@ $dimension-colors: (
           }
         }
 
-        .dmb-home-tabs__tab--#{$dimension} {
+        .dmb-home-tabs__tab--#{$level} {
           .h-c-tabby__heading {
             color: $color; // mobile tab heading color
           }
@@ -110,9 +110,17 @@ $dimension-colors: (
         background-position: right top;
       }
     }
-
   } //#dmb-landing
+
+  .dmb-report-hero {
+    @each $level, $color in $level-colors {
+      .dmb-report-hero__current--#{$level} {
+        background-color: $color;
+      }
+
+      .dmb-report-hero__next--#{$level} {
+        background-color: $color;
+      }
+    }
+  }
 }
-
-
-

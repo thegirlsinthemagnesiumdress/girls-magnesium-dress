@@ -1,0 +1,70 @@
+.dmb-report-hero {
+  color: #fff;
+  position: relative;
+  @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
+
+  &__bg {
+    background: $dmb-color-blue-solitude;
+    height: 120px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  &__current {
+    padding: 20px 20px 60px;
+
+    @include dmb-mq($from: tablet) {
+      padding: 40px 50px 30px;
+    }
+
+    @include dmb-mq($from: dekstop) {
+      padding: 40px 60px;
+    }
+  }
+
+  &__header,
+  &__current-level {
+    @include dmb-mq($from: tablet) {
+      align-items: baseline;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__date {
+    @include dmb-resp-prop(margin-bottom, 60px, 40px, 45px);
+  }
+
+  &__subheading {
+    margin-bottom: 10px;
+
+    @include dmb-mq($from: desktop) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__current-level {
+    margin-bottom: 0;
+  }
+
+  &__print-btn {
+    svg {
+      margin: 0;
+    }
+  }
+
+  &__next {
+    padding: 20px;
+
+    @include dmb-mq($from: tablet) {
+      padding: 20px 50px;
+    }
+
+    @include dmb-mq($from: desktop) {
+      padding-left: 20px 60px;
+    }
+  }
+}
