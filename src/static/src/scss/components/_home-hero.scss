@@ -22,10 +22,12 @@ $dmb-home-hero-card-bg: #fff;
     padding: 20px;
 
     @include dmb-mq(tablet) {
+      padding: 30px;
       padding-left: calc(#{$h-grid-col-width} / 2);
     }
 
     @include dmb-mq(#{$h-site-width-desktop}) {
+      padding: 40px;
       padding-left: calc(#{$h-grid-col-max-width} / 2);
     }
   }
