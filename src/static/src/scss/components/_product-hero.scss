@@ -19,9 +19,9 @@
   &__color-bg {
     background: $dmb-color-blue-solitude;
     bottom: 0;
+    height: 33%;
     position: absolute;
     width: 100%;
     z-index: -1;
-    @include dmb-resp-prop(height, 47%, 45%);
   }
 }
