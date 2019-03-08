@@ -1,0 +1,39 @@
+<section class="dmb-report-hero{% if class %} {{class}}{% endif %}">
+  <div class="dmb-report-hero__bg"></div>
+  <div class="h-c-page">
+    <div class="dmb-report-hero__current dmb-report-hero__current--{[reportCtrl.currentLevel]}">
+      <div class="dmb-report-hero__header">
+        <div class="dmb-report-hero__company h-c-headline h-c-headline--three">
+          {[reportCtrl.survey.company_name]}
+        </div>
+        <div class="dmb-report-hero__date h-c-headline h-c-headline--subhead">
+          {[reportCtrl.result.started_at|date:'MMMM yyyy']}
+        </div>
+      </div>
+      <div class="dmb-report-hero__subheading h-c-headline h-c-headline--subhead">
+        Your Digital Maturity level is
+      </div>
+      <div class="dmb-report-hero__current-level h-c-headline h-c-headline--display-two">
+        <span class="">
+          {[reportCtrl.levels[reportCtrl.floorDmb]]}
+        </span>
+        <button
+            class="dmb-report-hero__print-btn dmb-u-hide-mobile"
+            aria-label="Print report button"
+            data-tooltip-text="This page is designed to be printable"
+            ng-click ="reportCtrl.print()">
+          {% include 'core/inc/svg.html' with id='print' inline=True only %}
+        </button>
+      </div>
+    </div>
+    <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--{[reportCtrl.nextLevel]}">
+      <span ng-if="reportCtrl.floorDmb < 3">
+        Next level: <strong>{[reportCtrl.levels[reportCtrl.floorDmb + 1]]}</strong>
+      </span>
+      <span ng-if="reportCtrl.floorDmb >= 3">
+        Congratulations, you're in the top group for data maturity</strong>
+      </span>
+      {% include 'core/inc/svg.html' with id='info' inline=True only %}
+    </div>
+  </div>
+</section>
