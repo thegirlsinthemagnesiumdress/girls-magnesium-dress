@@ -27,7 +27,7 @@ from core.conf.utils import get_tenant_slug
 
 def sync_qualtrics():
     for tenant_key, tenant in settings.TENANTS.items():
-        survey_definition = _get_definition(tenant['QUALTRICS_SURVEY_ID'])
+        survey_definition = _get_definition(tenant_key, tenant['QUALTRICS_SURVEY_ID'])
 
         if survey_definition:
             _get_results(tenant, survey_definition)
@@ -35,7 +35,7 @@ def sync_qualtrics():
             logging.error('Fetching survey definition failed, not fetching results')
 
 
-def _get_definition(survey_id):
+def _get_definition(tenant, survey_id):
     """Download survey definition from Qualtrics and store it in `core.SurveyDefinition`.
 
     If a new survey definition is found, it's then saved as `core.SurveyDefinition` and returned,
@@ -47,15 +47,17 @@ def _get_definition(survey_id):
     """
     try:
         survey_definition = download.fetch_survey(survey_id)
-        last_survey_definition = SurveyDefinition.objects.latest('last_modified')
+        last_survey_definition = SurveyDefinition.objects.filter(tenant=tenant).latest('last_modified')
         downloaded_survey_last_modified = parse_datetime(survey_definition['lastModifiedDate'])
         if downloaded_survey_last_modified > last_survey_definition.last_modified:
             last_survey_definition = SurveyDefinition.objects.create(
+                tenant=tenant,
                 last_modified=downloaded_survey_last_modified,
                 content=survey_definition
             )
     except SurveyDefinition.DoesNotExist:
         last_survey_definition = SurveyDefinition.objects.create(
+            tenant=tenant,
             last_modified=survey_definition['lastModifiedDate'],
             content=survey_definition
         )
@@ -200,12 +202,10 @@ def send_emails_for_new_reports(email_list):
     :param email_list: tuple of element (to, bcc, sid)
     """
     domain = getattr(settings, 'LIVE_DOMAIN', os.environ['HTTP_HOST'])
-    subject_template = get_template("core/response_ready_email_subject.txt")
-    html_message_template = get_template("core/response_ready_email_body.html")
-    text_message_template = get_template("core/response_ready_email_body.txt")
 
     for email_data in email_list:
         to, bcc, sid = email_data
+        logging.info("Preparing to send email for: sid: {} to: {} bcc: {}".format(sid, to, bcc))
 
         # Last minute change, we should refactor this and pass the object in
         try:
@@ -224,6 +224,10 @@ def send_emails_for_new_reports(email_list):
                     'industry': industry,
                     'country': country,
                 }
+
+                subject_template = get_template("public/{}/email/response_ready_email_subject.txt".format(tenant))
+                html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+                text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
                 email_kwargs = {
                     'to': [to],

@@ -80,16 +80,22 @@
         <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()" ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'">
           <div class="input-wrp">
             <div class="dmb-input-wrp">
+              <input class="dmb-input" id="tenant" name="tenant" ng-model="registrationCtrl.tenant" type="hidden" required value="{{tenant|ng_mark_safe}}" ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'">
+            </div>
+            <div class="dmb-input-wrp">
               <label for="companyName">Organisation name:</label>
               <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
-              <label for="industry">Industry:</label>
-              <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
-                <option value="" disabled selected>Select an industry</option>
-                {% for i_key, i_text in industries %}
-                <option value="{{i_key|ng_mark_safe}}">{{i_text|ng_mark_safe}}</option>
-                {% endfor %}
+              <label for="industry">Primary distribution channel:</label>
+              {% comment %} TODO: use news industry here {% endcomment %}
+              <input id="prodId" name="industry" type="hidden" value="ic-bnpj" ng-init="registrationCtrl.industry='ic-bnpj'">
+              <select class="dmb-input" name="distributionChannel" id="distributionChannel" ng-model="registrationCtrl.distributionChannel" required>
+                <option value="" disabled selected>Select your primary distribution channel</option>
+                <option value="print">Print</option>
+                <option value="broadcast">Broadcast</option>
+                <option value="digital">Digital</option>
+                <option value="hybrid">Hybrid</option>
               </select>
             </div>
             <div class="dmb-input-wrp">

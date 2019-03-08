@@ -32,9 +32,11 @@ class sync_qualtricsTestCase(TestCase):
 
         all_calls = get_survey_definition_mock.call_args_list
 
-        args, kwargs = all_calls[0]
-        self.assertEqual(len(args), 1)
-        self.assertIsNotNone(args[0])
+        for args, kwargs in all_calls:
+            self.assertEqual(len(args), 2)
+            tenant, qualtrics_id = args
+            self.assertIsNotNone(tenant)
+            self.assertTrue(tenant in MOCKED_TENANTS.keys())
 
         self.assertEqual(get_result_mock.call_count, len(MOCKED_TENANTS.keys()))
 
@@ -547,6 +549,30 @@ class SendEmailTestCase(TestCase):
         send_emails_for_new_reports(email_list)
         self.assertEqual(email_mock.call_count, 0)
 
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
+    @mock.patch('core.tasks.get_template')
+    def test_email_is_sent_using_tenant_specific_templates(self, get_template_mock, email_mock):
+        survey = make_survey(sid='3', tenant='ads')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid)
+        ]
+
+        send_emails_for_new_reports(email_list)
+
+        for call in get_template_mock.call_args_list:
+            template_name = call[0][0]
+            self.assertIn('ads', template_name)
+
+        survey = make_survey(sid='4', tenant='news')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid)
+        ]
+
+        send_emails_for_new_reports(email_list)
+        for call in get_template_mock.call_args_list[3:]:
+            template_name = call[0][0]
+            self.assertIn('news', template_name)
+
 
 class GenerateExportTestCase(TestCase):
 
@@ -735,17 +761,21 @@ class UpdateResponsesWithTextTestCase(TestCase):
         self.assertNotIn('BBB', responses_values_ids)
 
 
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+)
 class GetDefinitionTestCase(TestCase):
     """Tests for _get_definition function"""
 
     def setUp(self):
         self.survey_id = 'surveyid'
+        self.tenant = 'tenant1'
 
     @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
     def test_new_definition_firts_time(self, download_mock):
         """When there are not survey definition, the first downloaded needs to be stored."""
         self.assertEqual(SurveyDefinition.objects.count(), 0)
-        last_definition = _get_definition(self.survey_id)
+        last_definition = _get_definition(self.tenant, self.survey_id)
         self.assertEqual(SurveyDefinition.objects.count(), 1)
         last_stored = SurveyDefinition.objects.latest('last_modified')
         self.assertIsNotNone(last_definition)
@@ -759,9 +789,9 @@ class GetDefinitionTestCase(TestCase):
         """
 
         # create a survey definition way in the past respect to the mock we have
-        make_survey_definition(last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
+        make_survey_definition(tenant='tenant1', last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
         self.assertEqual(SurveyDefinition.objects.count(), 1)
-        last_definition = _get_definition(self.survey_id)
+        last_definition = _get_definition(self.tenant, self.survey_id)
         # a new definition should be downloaded
         self.assertEqual(SurveyDefinition.objects.count(), 2)
         last_stored = SurveyDefinition.objects.latest('last_modified')
@@ -774,9 +804,9 @@ class GetDefinitionTestCase(TestCase):
         When the new downloaded survey definition last modified date is not grater than the last stored one,
         it should not be saved.
         """
-        make_survey_definition(last_modified=dateparse.parse_datetime('2019-01-28T16:04:23Z'))
+        make_survey_definition(tenant='tenant1', last_modified=dateparse.parse_datetime('2019-01-28T16:04:23Z'))
         self.assertEqual(SurveyDefinition.objects.count(), 1)
-        last_definition = _get_definition(self.survey_id)
+        last_definition = _get_definition(self.tenant, self.survey_id)
         # a new definition should not be downloaded
         self.assertEqual(SurveyDefinition.objects.count(), 1)
         last_stored = SurveyDefinition.objects.latest('last_modified')
@@ -795,14 +825,14 @@ class GetDefinitionTestCase(TestCase):
         }
         download_mock.side_effect = FetchResultException(exception_body)
         with mock.patch('logging.error') as logging_mock:
-            last_definition = _get_definition(self.survey_id)
+            last_definition = _get_definition(self.tenant, self.survey_id)
             self.assertIsNone(last_definition)
             self.assertTrue(logging_mock.called)
 
     @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
     def test_fetch_survey_called_with_right_parameters(self, download_mock):
         """When fetch_survey is called, check is called with right paramenters."""
-        _ = _get_definition(self.survey_id)
+        _get_definition(self.tenant, self.survey_id)
 
         self.assertTrue(download_mock.called)
         self.assertEqual(download_mock.call_count, 1)
@@ -811,6 +841,28 @@ class GetDefinitionTestCase(TestCase):
         args, kwargs = all_calls[0]
         self.assertEqual(len(args), 1)
         self.assertIsNotNone(args[0])
+
+    @mock.patch('core.qualtrics.download.fetch_survey', return_value=get_survey_definition())
+    def test_new_definition_found_multi_tenant(self, download_mock):
+        """
+        When the new downloaded survey definition last modified date is grater than the last stored one,
+        it should be saved.
+        """
+
+        # create a survey definition way in the past respect to the mock we have
+        make_survey_definition(tenant='tenant1', last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
+        make_survey_definition(tenant='tenant2', last_modified=dateparse.parse_datetime('2015-11-29T13:27:15Z'))
+        self.assertEqual(SurveyDefinition.objects.count(), 2)
+        last_definition = _get_definition(self.tenant, self.survey_id)
+        # a new definition should be downloaded for tenant 1
+        self.assertEqual(SurveyDefinition.objects.count(), 3)
+        self.assertEqual(SurveyDefinition.objects.filter(tenant='tenant1').count(), 2)
+        self.assertEqual(SurveyDefinition.objects.filter(tenant='tenant2').count(), 1)
+
+        last_stored = SurveyDefinition.objects.filter(tenant='tenant1').latest('last_modified')
+        self.assertIsNotNone(last_definition)
+        self.assertEqual(last_definition.pk, last_stored.pk)
+        self.assertEqual(last_definition.last_modified, dateparse.parse_datetime('2018-12-11T17:22:31Z'))
 
 
 @override_settings(

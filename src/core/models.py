@@ -129,6 +129,7 @@ class SurveyResult(models.Model):
 
 
 class SurveyDefinition(models.Model):
+    tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     last_modified = models.DateTimeField()
     content = JSONField()
 
