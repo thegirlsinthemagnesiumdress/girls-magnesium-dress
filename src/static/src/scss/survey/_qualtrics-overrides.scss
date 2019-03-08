@@ -155,7 +155,7 @@
 
   #Footer {
     margin: 0;
-    @include dmb-resp-prop(padding, '40px 16px', '40px 30px');
+    padding: 0;
   }
 
   #Plug {

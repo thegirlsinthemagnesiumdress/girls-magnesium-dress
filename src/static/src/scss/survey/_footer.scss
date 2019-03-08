@@ -1,6 +1,19 @@
 .dmb-survey-footer {
+  position: relative;
+  @include dmb-resp-prop(padding, '40px 16px', '40px 30px');
+
   @include dmb-mq($from: tablet) {
     display: flex;
+  }
+
+  &__bg {
+    background: $dmb-color-blue-solitude;
+    bottom: 0;
+    left: -1000px;
+    position: absolute;
+    right: -1000px;
+    top: 0;
+    z-index: -1;
   }
 
   &__logo {
