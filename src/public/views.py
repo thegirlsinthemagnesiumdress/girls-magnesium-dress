@@ -69,6 +69,15 @@ def index_static(request, tenant):
     })
 
 
+def thank_you(request, tenant):
+    slug = get_tenant_slug(tenant)
+    return render(request, 'public/{}/thank-you.html'.format(tenant), {
+        'tenant': tenant,
+        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'slug': slug,
+    })
+
+
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
