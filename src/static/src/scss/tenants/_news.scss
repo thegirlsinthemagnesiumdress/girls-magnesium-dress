@@ -116,4 +116,14 @@ $level-colors: (
       }
     }
   }
+
+  .dmb-card-on-bg {
+    &__bg {
+      background-image: url('../img/news/survey/thankyou.jpg');
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/news/survey/thankyou@2x.jpg');
+      }
+    }
+  }
 }
