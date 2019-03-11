@@ -1,6 +1,6 @@
 import mock
 
-from core.tasks import sync_qualtrics, calculate_industry_benchmark
+from core import tasks
 from djangae.test import TestCase
 from django.shortcuts import reverse
 import os
@@ -32,7 +32,7 @@ class SyncQualtricsTestCase(TestCase):
 
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once_with(
-            sync_qualtrics,
+            tasks.sync_qualtrics,
             _queue='default'
         )
 
@@ -61,12 +61,94 @@ class UpdateIndustriesBenchmarksTask(TestCase):
         self.assertEqual(mock_defer.call_count, 2)
 
         args, kwargs = mock_defer.call_args_list[0]
-        self.assertEqual(args[0], calculate_industry_benchmark)
+        self.assertEqual(args[0], tasks.calculate_industry_benchmark)
         self.assertTrue(args[1] in MOCKED_TENANTS.keys())
 
         args, kwargs = mock_defer.call_args_list[1]
-        self.assertEqual(args[0], calculate_industry_benchmark)
+        self.assertEqual(args[0], tasks.calculate_industry_benchmark)
         self.assertTrue(args[1] in MOCKED_TENANTS.keys())
+
+    @with_appengine_user("test@gmail.com")
+    @mock.patch('djangae.deferred.defer')
+    def test_update_industries_benchmarks_access_denied_if_user_not_logged_in(self, mock_defer):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 403)
+        mock_defer.assert_not_called()
+
+
+class GenerateExportsTask(TestCase):
+    """Tests for `generate_exports_task` function."""
+    def setUp(self):
+        self.url = reverse('export-datastore-data')
+
+    @with_appengine_admin("test@google.com")
+    @mock.patch('djangae.deferred.defer')
+    def test_generate_exports_task_called_correctly_advertisers(self, mock_defer):
+        response = self.client.get(self.url)
+
+        survey_fields = [
+            'id',
+            'company_name',
+            'industry',
+            'country',
+            'created_at',
+            'engagement_lead',
+            'tenant',
+            'excluded_from_best_practice',
+            'dmb',
+        ]
+
+        survey_result_fields = [
+            'access',
+            'audience',
+            'attribution',
+            'ads',
+            'organization',
+            'automation',
+        ]
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(mock_defer.call_count, 2)
+
+        # check paremeters for advertisers call
+        args, kwargs = mock_defer.call_args_list[0]
+        self.assertEqual(args[0], tasks.generate_csv_export)
+        self.assertListEqual(args[2], survey_fields)
+        self.assertListEqual(args[3], survey_result_fields)
+
+    @with_appengine_admin("test@google.com")
+    @mock.patch('djangae.deferred.defer')
+    def test_generate_exports_task_called_correctly_news(self, mock_defer):
+        response = self.client.get(self.url)
+
+        survey_fields = [
+            'id',
+            'company_name',
+            'industry',
+            'country',
+            'created_at',
+            'engagement_lead',
+            'tenant',
+            'excluded_from_best_practice',
+            'dmb',
+        ]
+
+        survey_result_fields = [
+            'strategic_direction',
+            'reader_engagement',
+            'reader_revenue',
+            'advertising_revenue',
+        ]
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(mock_defer.call_count, 2)
+
+        # check paremeters for news call
+        args, kwargs = mock_defer.call_args_list[1]
+        self.assertEqual(args[0], tasks.generate_csv_export)
+        self.assertListEqual(args[2], survey_fields)
+        self.assertListEqual(args[3], survey_result_fields)
 
     @with_appengine_user("test@gmail.com")
     @mock.patch('djangae.deferred.defer')
