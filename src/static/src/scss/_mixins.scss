@@ -95,3 +95,18 @@
     }
   }
 }
+
+
+// PRINT STYLES
+// Using comment toggles to allow easily switching these on or off globally
+@mixin print-styles() {
+  @media /**/ print /*/ screen /**/ {
+    @content;
+  }
+}
+
+@mixin screen-styles() {
+  @media /** / print /*/ screen /**/ {
+    @content;
+  }
+}
