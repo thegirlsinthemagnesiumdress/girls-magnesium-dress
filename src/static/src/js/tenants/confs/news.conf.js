@@ -80,7 +80,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -102,7 +102,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -124,7 +124,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Mature publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how some Leading publishers have developed their cultural, skills-based, data-related, and technological foundations.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -146,7 +146,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Leading publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how other Leading publishers have developed their cultural, skills-based, data-related, and technological foundations.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -182,7 +182,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -216,7 +216,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -250,7 +250,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Mature publishers have sophisticated approaches to improving overall reader engagement but want to see what other publishers are doing.The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached improving overall reader engagement.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
         },
       },
     ],
@@ -280,7 +280,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Leading publishers have a sophisticated approach to improving overall reader engagement but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached improving overall reader engagement.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
         },
       },
     ],
@@ -308,7 +308,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -330,7 +330,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -352,7 +352,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Mature publishers have created significant revenue from increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached increasing direct-paying reader relationships.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
         },
       },
     ],
@@ -374,7 +374,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Leading publishers have a sophisticated approach to increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached increasing direct-paying reader relationships.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
         },
       },
     ],
@@ -402,7 +402,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide [Link] provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -432,7 +432,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
         },
       },
     ],
@@ -458,7 +458,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Mature publishers generate significant revenue through advertising but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached driving revenue from advertisers.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
         },
       },
     ],
@@ -484,7 +484,7 @@ const dimensionLevelRecommendations = {
         'text': 'Many Leading publishers have a sophisticated approach to driving revenue from advertisers but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached driving revenue from advertisers.',
         'cta': {
           'text': 'Data Activation Guide',
-          'link': '/todo',
+          'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
         },
       },
     ],
