@@ -418,10 +418,6 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Know the value of your audience',
         'text': 'Monitor the performance of different audiences across your sales mix.  Analyze and record insights across segments to develop a long-term understanding of audience segment performance.',
-        'cta': {
-          'text': 'Gooogle Ad Manager Resource Guide',
-          'link': '/todo',
-        },
       },
       {
         'header': 'Make the most of your platform mix',
@@ -440,10 +436,6 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Build and enhance the understanding of your audience ',
         'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments.  Develop systems to effectively price audience segments based on historical performance and perceived value.',
-        'cta': {
-          'text': 'Gooogle Ad Manager Resource Guide',
-          'link': '/todo',
-        },
       },
       {
         'header': 'Connect the right audience to the right advertiser',
@@ -466,10 +458,6 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Build and enhance the understanding of your audience ',
         'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments.  Develop systems to effectively price audience segments based on historical performance and perceived value.',
-        'cta': {
-          'text': 'Gooogle Ad Manager Resource Guide',
-          'link': '/todo',
-        },
       },
       {
         'header': 'Connect the right audience to the right advertiser',
