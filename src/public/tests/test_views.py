@@ -174,3 +174,41 @@ class ReportDetailTestCase(TestCase):
         url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_2.sid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+
+@override_settings(
+    TENANTS=mocks.MOCKED_TENANTS,
+    ALLOWED_TENANTS=mocks.MOCKED_ALLOWED_TENANTS,
+    TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
+)
+class ThankyouPage(TestCase):
+    """Tests for `thankyou` view."""
+
+    def setUp(self):
+        reload_urlconf()
+        self.tenant_slug = 'tenant1-slug'
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
+
+        self.survey_result_1 = make_survey_result(
+            survey=self.survey_1,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.survey_1.last_survey_result = self.survey_result_1
+        self.survey_1.save()
+
+    def test_custom_thank_you_page(self):
+        """If template exists should return 200."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        with TempTemplateFolder(templates_path, 'thank-you.html'):
+            url = reverse('thank-you', kwargs={'tenant': self.tenant_slug})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+
+    def test_custom_thank_you_page_template_does_not_exist(self):
+        """If template exists should return 400."""
+        url = reverse('thank-you', kwargs={'tenant': 'tenant2-slug'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
