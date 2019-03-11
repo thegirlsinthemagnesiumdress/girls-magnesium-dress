@@ -16,8 +16,7 @@ Flat
 
 Add one of the following script tags:
 
-Staging: `script src="https://gweb-digitalmaturity-staging.appspot.com/static/js/qualtrics-survey.min.js"></script>`
-
+Staging: `script src="https://news-dot-gweb-digitalmaturity-staging.appspot.com/static/js/qualtrics-survey.min.js"></script>`
 Production: `<script src="https://digitalmaturitybenchmark.withgoogle.com/static/js/qualtrics-survey.min.js"></script`
 
 
@@ -39,11 +38,16 @@ Use `./footer.html`
 **External CSS**:
 
 Development: `http://localhost:8000/devstatic/css/qualtrics-<tenant>.css`
-
-Staging: `https://gweb-digitalmaturity-staging.appspot.com/static/css/qualtrics-<tenant>.css`
-
+Staging: `https://news-dot-gweb-digitalmaturity-staging.appspot.com/static/css/qualtrics-<tenant>.css`
 Production: `https://digitalmaturitybenchmark.withgoogle.com/static/css/qualtrics-<tenant>.css`
 
+
+#### Survey Options > Survey Termination
+
+**Redirect**:
+Development: `http://localhost:8000/<tenant>/thankyou`
+Staging: `https://news-dot-gweb-digitalmaturity-staging.appspot.com/<tenant>/thankyou`
+Production: `https://digitalmaturitybenchmark.withgoogle.com/<tenant>/thankyou`
 
 
 ## Question Components
@@ -51,7 +55,7 @@ Production: `https://digitalmaturitybenchmark.withgoogle.com/static/css/qualtric
 ### Hero
 
 1. Use `./hero.html` as question HTML
-2. Replace `http://localhost:8000/devstatic` with `https://gweb-digitalmaturity-staging.appspot.com/static` for staging, and `https://digitalmaturitybenchmark.withgoogle.com/static` for production
+2. Replace `http://localhost:8000/devstatic` with `https://news-dot-gweb-digitalmaturity-staging.appspot.com/static` for staging, and `https://digitalmaturitybenchmark.withgoogle.com/static` for production
 3. Edit Question JavaScript and add `./hero.js`
 
 
@@ -83,7 +87,7 @@ Edit Question JavaScript and add `./user-details.js`
 2. Add dimension name below `<!-- DIMENSION NAME GOES HERE -->`
 3. Add question text below `<!-- QUESTION TEXT GOES HERE  -->`
 4. Replace `<svg-filename>`with appropriate svg.
-5. Replace `http://localhost:8000/devstatic/` with `https://gweb-digitalmaturity-staging.appspot.com/static` for staging, and `https://digitalmaturitybenchmark.withgoogle.com/static` for production
+5. Replace `http://localhost:8000/devstatic/` with `https://news-dot-gweb-digitalmaturity-staging.appspot.com/static` for staging, and `https://digitalmaturitybenchmark.withgoogle.com/static` for production
 
 
 
