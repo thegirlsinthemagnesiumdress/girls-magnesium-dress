@@ -10,14 +10,9 @@
 // Sass compiler knows the paths to glue Sass through the Gulp
 // compiler configuration.
 @import 'hercules/lib/global/scss/settings/all';
-
-// If you have Sass variable overrides, include them here and uncomment.
-// @import 'myproject/custom/settings';
-
 @import 'hercules/lib/global/scss/tools/all';
 @import 'hercules/lib/global/scss/generic/all';
 @import 'hercules/lib/global/scss/elements/all';
-// Hercules component base styles
 @import 'hercules/lib/components/buttons/buttons';
 @import 'hercules/lib/components/grids/grids';
 @import 'hercules/lib/components/links/links';
@@ -25,66 +20,29 @@
 @import 'hercules/lib/components/type/type';
 @import 'hercules/lib/components/icons/icons';
 
-// //Colors
-// @import 'legacy/colors
-// // Variables
-// @import 'legacy/variables';
 
-// // Mixins
-// @import 'legacy/mixins';
-
-// // Variables
-// @import 'legacy/utils';
-
-// Hercules overrides
-// @import 'legacy/hercules-overrides';
-// @import 'hercules-overrides';
-
-// // Shared
-// @import 'legacy/shared/fab';
-// @import 'legacy/shared/hero';
-@import 'mvp';
-@import 'legacy/shared/side-panel';
-// @import 'legacy/shared/buttons';
-// @import 'legacy/shared/partnership-with-bcg';
-
-// // Components
-// @import 'legacy/survey/buttons';
-// @import 'legacy/survey/footer';
-// @import 'legacy/survey/form-fields';
-// @import 'legacy/survey/header';
-// @import 'legacy/survey/layout';
-// @import 'legacy/survey/matrix';
-// @import 'legacy/survey/progress-bar';
-// @import 'legacy/survey/radio-buttons';
-// @import 'legacy/survey/side-panel';
-// @import 'legacy/survey/styled-list';
-// @import 'legacy/survey/privacy-question';
-// @import 'legacy/survey/dimension-header';
-
-
-// DMB STYLES
+// Base Styles
 @import 'colors';
 @import 'mixins';
 @import 'variables';
 @import 'utils';
 @import 'hercules-overrides';
 
-// Common components
-// @import 'components/button';
-// @import 'components/footer';
-// @import 'components/svg';
+// Common Components
+@import 'components/fab';
 @import 'components/partnership-logo';
+@import 'components/side-panel';
+@import 'components/styled-list';
 
-
+// Qualtrics-Specific Components
 @import 'survey/qualtrics-overrides';
 @import 'survey/banner';
 @import 'survey/dimension-header';
 @import 'survey/footer';
 @import 'survey/hero';
-@import 'survey/user-details';
 @import 'survey/privacy-policy';
 @import 'survey/progress-bar';
+@import 'survey/user-details';
 
 
 // Hercules part that needs to come last
