@@ -1029,6 +1029,18 @@ class CalculateIndustryBenchmark(TestCase):
         """When there are IndustryBencmark objects, if a dimension is
         excluded, it should not be considered in calculation."""
 
+        initial_dmb_d = {
+            'attribution': 2.0,
+            'ads': None,
+            'automation': 3.0,
+        }
+
+        initial_dmb_d_bp = {
+            'attribution': 3.5,
+            'ads': 1.5,
+            'automation': 4.0,
+        }
+
         dmb_d_res_1 = {
             'attribution': 4.0,
             'ads': 2.0,
@@ -1044,10 +1056,14 @@ class CalculateIndustryBenchmark(TestCase):
         IndustryBenchmark.objects.create(
             industry='ic-bnpj',
             tenant='tenant2',
-            initial_dmb=None,
-            initial_dmb_d={},
-            initial_best_practice=None,
-            initial_best_practice_d={},
+            initial_dmb=2.5,
+            initial_dmb_d=initial_dmb_d,
+            initial_best_practice=3.9,
+            initial_best_practice_d=initial_dmb_d_bp,
+            dmb_value=2.5,
+            dmb_d_value=initial_dmb_d,
+            dmb_bp_value=3.9,
+            dmb_d_bp_value=initial_dmb_d_bp,
             sample_size=10
         )
 
@@ -1072,10 +1088,11 @@ class CalculateIndustryBenchmark(TestCase):
 
         ib = IndustryBenchmark.objects.get(tenant='tenant2', industry='ic-bnpj')
 
-        self.assertEqual(ib.dmb_d_value.get('attribution'), 5.0)
-        self.assertEqual(ib.dmb_d_value.get('ads'), 2.0)
-        self.assertEqual(ib.dmb_d_value.get('automation'), 1.0)
+        # check that values are unchanged, and only initial values are kept
+        self.assertEqual(ib.dmb_d_value.get('attribution'), 2.0)
+        self.assertEqual(ib.dmb_d_value.get('ads'), None)
+        self.assertEqual(ib.dmb_d_value.get('automation'), 3.0)
         # average of survey result dmb
-        self.assertAlmostEqual(float(ib.dmb_value), 3, places=2)
+        self.assertAlmostEqual(float(ib.dmb_value), 2.5, places=2)
         # max of survey result dmb
-        self.assertAlmostEqual(float(ib.dmb_bp_value), 4, places=2)
+        self.assertAlmostEqual(float(ib.dmb_bp_value), 3.9, places=2)
