@@ -8,6 +8,7 @@ from djangae.environment import task_or_admin_only
 from core.management import migrations
 from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
 from django.conf import settings
+from core.models import Survey
 
 
 @task_or_admin_only
@@ -25,13 +26,69 @@ def sync_qualtrics_results(request):
 
 
 @task_or_admin_only
-def generate_export(request):
-    """Generate surveys export from Datastore."""
-    msg = "Generating surveys export from Datastore"
+def generate_exports_task(request):
+    """Generate surveys exports from Datastore."""
+    msg = "Generating surveys exports from Datastore"
     logging.info(msg)
+
+    advertisers_survey_fields = [
+        'id',
+        'company_name',
+        'industry',
+        'country',
+        'created_at',
+        'engagement_lead',
+        'tenant',
+        'excluded_from_best_practice',
+        'dmb',
+    ]
+
+    advertisers_survey_result_fields = [
+        'access',
+        'audience',
+        'attribution',
+        'ads',
+        'organization',
+        'automation',
+    ]
+
+    publishers_survey_fields = [
+        'id',
+        'company_name',
+        'industry',
+        'country',
+        'created_at',
+        'engagement_lead',
+        'tenant',
+        'excluded_from_best_practice',
+        'dmb',
+    ]
+
+    publishers_survey_result_fields = [
+        'strategic_direction',
+        'reader_engagement',
+        'reader_revenue',
+        'advertising_revenue',
+    ]
+
+    advertisers_surveys = Survey.objects.filter(tenant=settings.ADS)
+    publishers_surveys = Survey.objects.filter(tenant=settings.NEWS)
 
     deferred.defer(
         generate_csv_export,
+        advertisers_surveys,
+        advertisers_survey_fields,
+        advertisers_survey_result_fields,
+        settings.ADS,
+        _queue='default',
+    )
+
+    deferred.defer(
+        generate_csv_export,
+        publishers_surveys,
+        publishers_survey_fields,
+        publishers_survey_result_fields,
+        settings.NEWS,
         _queue='default',
     )
 
