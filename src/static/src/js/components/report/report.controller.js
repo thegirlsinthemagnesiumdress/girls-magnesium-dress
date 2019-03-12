@@ -118,6 +118,12 @@ class ReportController {
     this.levelDescriptions = tenantConf.levelDescriptions;
 
     /**
+     * @type {!Object}
+     * @export
+     */
+    this.reportLevelDescriptions = tenantConf.reportLevelDescriptions;
+
+    /**
      * @export
      * @type {Array.<string>}
      */
