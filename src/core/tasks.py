@@ -267,52 +267,46 @@ def _survey_completed(is_finished):
     return bool(is_finished)
 
 
-def generate_csv_export():
+def generate_csv_export(surveys, survey_fields, survey_result_fields, prefix):
+    """Generate csv export for a list of surveys, and store it on configured bucket.
 
-    surveys = Survey.objects.all()
+    :param surveys: list of `core.models.Survey` to be exported to csv
+    :param survey_fields: list of `core.models.Survey` fields to be exported
+    :param survey_result_fields: list of `core.models.SurveyResult` fields to be exported
+    :param prefix: filename prefix to use in addition of filename
+
+    """
     bucket_name = os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
-    filename = os.path.join('/', bucket_name, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
+    filename = os.path.join(
+        '/',
+        bucket_name,
+        '{}-export-{}.csv'.format(prefix, datetime.now().strftime('%Y%m%d-%H%M%S'))
+    )
 
     logging.info("Creating export in {}".format(filename))
 
+    all_fields = survey_fields + survey_result_fields
+
     write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
     with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
-        fieldnames = [
-            'id',
-            'company_name',
-            'industry',
-            'country',
-            'created_at',
-            'engagement_lead',
-            'dmb',
-            'access',
-            'audience',
-            'attribution',
-            'ads',
-            'organization',
-            'automation',
-        ]
+        fieldnames = all_fields
         writer = csv.DictWriter(gcs_file, fieldnames=fieldnames, lineterminator='\n')
         writer.writeheader()
 
         for survey in surveys:
+            survey_data = {field: None for field in all_fields}
             try:
-                survey_data = {
+                survey_data.update({
                     'id': survey.pk,
                     'company_name': survey.company_name,
                     'industry': settings.INDUSTRIES.get(survey.industry),
                     'country': settings.COUNTRIES.get(survey.country),
                     'created_at': survey.created_at,
                     'engagement_lead': survey.engagement_lead,
-                    'dmb': None,
-                    'access': None,
-                    'audience': None,
-                    'attribution': None,
-                    'ads': None,
-                    'organization': None,
-                    'automation': None,
-                }
+                    'tenant': survey.tenant
+                })
                 if survey.last_survey_result:
+                    survey_data['excluded_from_best_practice'] = survey.last_survey_result.excluded_from_best_practice
                     survey_data['dmb'] = survey.last_survey_result.dmb
                     survey_data.update(survey.last_survey_result.dmb_d)
             except SurveyResult.DoesNotExist:
@@ -320,7 +314,7 @@ def generate_csv_export():
                 pass
             writer.writerow(survey_data)
 
-    latest = os.path.join('/', bucket_name, 'latest.csv')
+    latest = os.path.join('/', bucket_name, '{}-latest.csv'.format(prefix))
     logging.info("Copying {} as {}".format(filename, latest))
     cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
     logging.info("Export completed")
