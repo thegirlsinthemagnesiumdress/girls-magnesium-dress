@@ -14,6 +14,12 @@
     display: none;
   }
 
+  &__text {
+    .h-c-inline-link {
+      border: 0;
+    }
+  }
+
   &--visible {
     #{$block}__more {
       display: none;
