@@ -574,17 +574,41 @@ class SendEmailTestCase(TestCase):
             self.assertIn('news', template_name)
 
 
+@override_settings(
+    TENANTS=MOCKED_TENANTS
+)
 class GenerateExportTestCase(TestCase):
+
+    def setUp(self):
+        self.surveys = Survey.objects.filter(tenant='tenant1')
+        self.survey_fields = [
+            'id',
+            'company_name',
+            'industry',
+            'country',
+            'created_at',
+            'engagement_lead',
+            'tenant',
+            'excluded_from_best_practice',
+            'dmb',
+        ]
+        self.survey_result_fields = [
+            'access',
+            'audience',
+            'attribution',
+            'ads',
+            'organization',
+            'automation',
+        ]
 
     @mock.patch('cloudstorage.copy2')
     @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
     def test_generate_export_empty(self, cloud_mock, copy_mock):
-        generate_csv_export()
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         # check mock called the write for writing headers
+        header = ','.join(self.survey_fields + self.survey_result_fields) + '\n'
         handle = cloud_mock()
-        handle.write.assert_called_once_with(
-            'id,company_name,industry,country,created_at,engagement_lead,dmb,access,audience,attribution,ads,organization,automation\n'
-        )
+        handle.write.assert_called_once_with(header)
 
         # check a copy is made
         copy_mock.assert_called_once()
@@ -592,8 +616,8 @@ class GenerateExportTestCase(TestCase):
     @mock.patch('cloudstorage.copy2')
     @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
     def test_generate_export_one_survey(self, cloud_mock, copy_mock):
-        make_survey()
-        generate_csv_export()
+        make_survey(tenant='tenant1')
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         handle = cloud_mock()
 
         # called once for headers and once for survey
@@ -605,9 +629,9 @@ class GenerateExportTestCase(TestCase):
     @mock.patch('cloudstorage.copy2')
     @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
     def test_generate_export_multi_survey(self, cloud_mock, copy_mock):
-        make_survey()
-        make_survey()
-        generate_csv_export()
+        make_survey(tenant='tenant1')
+        make_survey(tenant='tenant1')
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         handle = cloud_mock()
 
         # called once for headers and once for each survey
@@ -621,15 +645,56 @@ class GenerateExportTestCase(TestCase):
         ])
     )
     def test_generate_export_survey_unicode(self, cloud_mock, copy_mock):
-        make_survey(company_name=u'ññññññññ')
-        make_survey(country='AX')  # unicode country
-        generate_csv_export()
+        make_survey(tenant='tenant1', company_name=u'ññññññññ')
+        make_survey(tenant='tenant1', country='AX')  # unicode country
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         handle = cloud_mock()
 
         # called once for headers and once for each survey
         self.assertEqual(handle.write.call_count, 3)
         # check a copy is made
         copy_mock.assert_called_once()
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_multi_survey_with_results(self, cloud_mock, copy_mock):
+        survey_1 = make_survey(tenant='tenant1')
+        survey_res = make_survey_result(survey=survey_1)
+        survey_1.last_survey_result = survey_res
+        survey_1.save()
+
+        survey_2 = make_survey(tenant='tenant1')
+        survey_res = make_survey_result(survey=survey_2)
+        survey_2.last_survey_result = survey_res
+        survey_2.save()
+
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
+        handle = cloud_mock()
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 3)
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_multi_survey_multi_tenant(self, cloud_mock, copy_mock):
+        make_survey(tenant='tenant1')
+        make_survey(tenant='tenant2')
+        make_survey(tenant='tenant2')
+        handle = cloud_mock()
+
+        surveys_tenant_1 = Survey.objects.filter(tenant='tenant1')
+        generate_csv_export(surveys_tenant_1, self.survey_fields, self.survey_result_fields, 'tenant1')
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 2)
+
+        # reset the mock to calculate rows for tenant2
+        cloud_mock().reset_mock()
+        surveys_tenant_2 = Survey.objects.filter(tenant='tenant2')
+        generate_csv_export(surveys_tenant_2, self.survey_fields, self.survey_result_fields, 'tenant2')
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 3)
 
 
 class UpdateResponsesWithTextTestCase(TestCase):
