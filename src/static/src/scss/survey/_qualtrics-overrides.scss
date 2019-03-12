@@ -36,9 +36,9 @@
     background: #fff;
     border: 1px solid $dmb-color-grey-zircon;
     border-radius: $dmb-border-radius;
-    color: #535659;
+    color: $dmb-color-grey-shuttle;
     display: none;
-    font-family: 'Roboto';
+    font-family: $h-font-family-sans-serif;
     margin: 0;
     @include dmb-resp-prop(font-size, 14px, 16px);
 
@@ -97,12 +97,12 @@
   .QuestionText {
     color: inherit;
     font-family: $dmb-alt-font-family;
-    font-weight: 400;
+    font-weight: $h-font-weight-regular;
     margin-bottom: 20px;
     @include dmb-resp-prop(font-size, 16px 16px, 22px);
 
     p {
-      font-weight: 300;
+      font-weight: $h-font-weight-light;
     }
   }
 
@@ -121,8 +121,8 @@
     background: transparent;
     border: 1px solid $dmb-color-grey-zircon;
     border-radius: $dmb-border-radius;
-    color: #535659;
-    font-family: 'Roboto';
+    color: $dmb-color-grey-shuttle;
+    font-family: $h-font-family-sans-serif;
     @include dmb-resp-prop(font-size, 14px, 16px);
   }
 

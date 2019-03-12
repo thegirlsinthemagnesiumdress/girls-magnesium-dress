@@ -1,6 +1,7 @@
 // sass-lint:disable no-ids
 .Skin {
   #ProgressBar {
+    // Qualtrics adds `style="top: 100px"` to the progress bar so need to compensate with negative top margin.
     margin: -100px auto 0;
     max-width: 100%;
     position: fixed;

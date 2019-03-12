@@ -16,9 +16,9 @@
 
   &__product-logo {
     color: $dmb-color-grey-mid;
-    font-family: 'Product Sans', Arial, Helvetica, sans-serif;
+    font-family: $h-font-family-product-sans;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: $h-font-weight-regular;
     margin-top: -3px;
 
     @include dmb-mq($from: desktop) {

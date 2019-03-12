@@ -20,6 +20,6 @@
     background: #fff;
     margin: 0 auto;
     max-width: 800px;
-    @include dmb-resp-prop(padding, 20px,'30px 60px', '40px 80px');
+    @include dmb-resp-prop(padding, 20px, '30px 60px', '40px 80px');
   }
 }

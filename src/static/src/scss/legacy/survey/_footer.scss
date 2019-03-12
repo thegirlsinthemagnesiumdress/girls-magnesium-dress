@@ -13,17 +13,17 @@
   }
 }
 
-// .Skin {
-//   #Footer { // sass-lint:disable-line no-ids
-//     margin: $dmb-margin-medium auto $dmb-margin-small;
-//     padding: 0;
-//   }
+.Skin {
+  #Footer { // sass-lint:disable-line no-ids
+    margin: $dmb-margin-medium auto $dmb-margin-small;
+    padding: 0;
+  }
 
-//   #PushStickyFooter { // sass-lint:disable-line no-ids
-//     display: none;
-//   }
+  #PushStickyFooter { // sass-lint:disable-line no-ids
+    display: none;
+  }
 
-//   #Plug { // sass-lint:disable-line no-ids
-//     @include element-invisible();
-//   }
-// }
+  #Plug { // sass-lint:disable-line no-ids
+    @include element-invisible();
+  }
+}
