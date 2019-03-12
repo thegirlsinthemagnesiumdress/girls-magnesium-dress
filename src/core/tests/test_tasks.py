@@ -574,17 +574,41 @@ class SendEmailTestCase(TestCase):
             self.assertIn('news', template_name)
 
 
+@override_settings(
+    TENANTS=MOCKED_TENANTS
+)
 class GenerateExportTestCase(TestCase):
+
+    def setUp(self):
+        self.surveys = Survey.objects.filter(tenant='tenant1')
+        self.survey_fields = [
+            'id',
+            'company_name',
+            'industry',
+            'country',
+            'created_at',
+            'engagement_lead',
+            'tenant',
+            'excluded_from_best_practice',
+            'dmb',
+        ]
+        self.survey_result_fields = [
+            'access',
+            'audience',
+            'attribution',
+            'ads',
+            'organization',
+            'automation',
+        ]
 
     @mock.patch('cloudstorage.copy2')
     @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
     def test_generate_export_empty(self, cloud_mock, copy_mock):
-        generate_csv_export()
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         # check mock called the write for writing headers
+        header = ','.join(self.survey_fields + self.survey_result_fields) + '\n'
         handle = cloud_mock()
-        handle.write.assert_called_once_with(
-            'id,company_name,industry,country,created_at,engagement_lead,dmb,access,audience,attribution,ads,organization,automation\n'
-        )
+        handle.write.assert_called_once_with(header)
 
         # check a copy is made
         copy_mock.assert_called_once()
@@ -592,8 +616,8 @@ class GenerateExportTestCase(TestCase):
     @mock.patch('cloudstorage.copy2')
     @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
     def test_generate_export_one_survey(self, cloud_mock, copy_mock):
-        make_survey()
-        generate_csv_export()
+        make_survey(tenant='tenant1')
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         handle = cloud_mock()
 
         # called once for headers and once for survey
@@ -605,9 +629,9 @@ class GenerateExportTestCase(TestCase):
     @mock.patch('cloudstorage.copy2')
     @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
     def test_generate_export_multi_survey(self, cloud_mock, copy_mock):
-        make_survey()
-        make_survey()
-        generate_csv_export()
+        make_survey(tenant='tenant1')
+        make_survey(tenant='tenant1')
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         handle = cloud_mock()
 
         # called once for headers and once for each survey
@@ -621,15 +645,56 @@ class GenerateExportTestCase(TestCase):
         ])
     )
     def test_generate_export_survey_unicode(self, cloud_mock, copy_mock):
-        make_survey(company_name=u'ññññññññ')
-        make_survey(country='AX')  # unicode country
-        generate_csv_export()
+        make_survey(tenant='tenant1', company_name=u'ññññññññ')
+        make_survey(tenant='tenant1', country='AX')  # unicode country
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
         handle = cloud_mock()
 
         # called once for headers and once for each survey
         self.assertEqual(handle.write.call_count, 3)
         # check a copy is made
         copy_mock.assert_called_once()
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_multi_survey_with_results(self, cloud_mock, copy_mock):
+        survey_1 = make_survey(tenant='tenant1')
+        survey_res = make_survey_result(survey=survey_1)
+        survey_1.last_survey_result = survey_res
+        survey_1.save()
+
+        survey_2 = make_survey(tenant='tenant1')
+        survey_res = make_survey_result(survey=survey_2)
+        survey_2.last_survey_result = survey_res
+        survey_2.save()
+
+        generate_csv_export(self.surveys, self.survey_fields, self.survey_result_fields, 'tenant1')
+        handle = cloud_mock()
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 3)
+
+    @mock.patch('cloudstorage.copy2')
+    @mock.patch('cloudstorage.open', new_callable=mock.mock_open)
+    def test_generate_export_multi_survey_multi_tenant(self, cloud_mock, copy_mock):
+        make_survey(tenant='tenant1')
+        make_survey(tenant='tenant2')
+        make_survey(tenant='tenant2')
+        handle = cloud_mock()
+
+        surveys_tenant_1 = Survey.objects.filter(tenant='tenant1')
+        generate_csv_export(surveys_tenant_1, self.survey_fields, self.survey_result_fields, 'tenant1')
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 2)
+
+        # reset the mock to calculate rows for tenant2
+        cloud_mock().reset_mock()
+        surveys_tenant_2 = Survey.objects.filter(tenant='tenant2')
+        generate_csv_export(surveys_tenant_2, self.survey_fields, self.survey_result_fields, 'tenant2')
+
+        # called once for headers and once for each survey
+        self.assertEqual(handle.write.call_count, 3)
 
 
 class UpdateResponsesWithTextTestCase(TestCase):
@@ -1029,6 +1094,18 @@ class CalculateIndustryBenchmark(TestCase):
         """When there are IndustryBencmark objects, if a dimension is
         excluded, it should not be considered in calculation."""
 
+        initial_dmb_d = {
+            'attribution': 2.0,
+            'ads': None,
+            'automation': 3.0,
+        }
+
+        initial_dmb_d_bp = {
+            'attribution': 3.5,
+            'ads': 1.5,
+            'automation': 4.0,
+        }
+
         dmb_d_res_1 = {
             'attribution': 4.0,
             'ads': 2.0,
@@ -1044,10 +1121,14 @@ class CalculateIndustryBenchmark(TestCase):
         IndustryBenchmark.objects.create(
             industry='ic-bnpj',
             tenant='tenant2',
-            initial_dmb=None,
-            initial_dmb_d={},
-            initial_best_practice=None,
-            initial_best_practice_d={},
+            initial_dmb=2.5,
+            initial_dmb_d=initial_dmb_d,
+            initial_best_practice=3.9,
+            initial_best_practice_d=initial_dmb_d_bp,
+            dmb_value=2.5,
+            dmb_d_value=initial_dmb_d,
+            dmb_bp_value=3.9,
+            dmb_d_bp_value=initial_dmb_d_bp,
             sample_size=10
         )
 
@@ -1072,10 +1153,11 @@ class CalculateIndustryBenchmark(TestCase):
 
         ib = IndustryBenchmark.objects.get(tenant='tenant2', industry='ic-bnpj')
 
-        self.assertEqual(ib.dmb_d_value.get('attribution'), 5.0)
-        self.assertEqual(ib.dmb_d_value.get('ads'), 2.0)
-        self.assertEqual(ib.dmb_d_value.get('automation'), 1.0)
+        # check that values are unchanged, and only initial values are kept
+        self.assertEqual(ib.dmb_d_value.get('attribution'), 2.0)
+        self.assertEqual(ib.dmb_d_value.get('ads'), None)
+        self.assertEqual(ib.dmb_d_value.get('automation'), 3.0)
         # average of survey result dmb
-        self.assertAlmostEqual(float(ib.dmb_value), 3, places=2)
+        self.assertAlmostEqual(float(ib.dmb_value), 2.5, places=2)
         # max of survey result dmb
-        self.assertAlmostEqual(float(ib.dmb_bp_value), 4, places=2)
+        self.assertAlmostEqual(float(ib.dmb_bp_value), 3.9, places=2)
