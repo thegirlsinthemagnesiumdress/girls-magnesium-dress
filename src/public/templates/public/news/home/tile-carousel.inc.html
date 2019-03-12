@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <section class="dmb-tile-carousel{% if class %} {{class}}{% endif %} dmb-u-p-t-m dmb-u-p-b-m">
   <div class="h-c-page">
     {% include 'public/inc/global/step-heading.inc.html' with text='Dig deeper into how your news organisation prioritises data across four key dimensions' svg='shield' numbered=True only %}
@@ -6,7 +8,10 @@
 
       <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
         <div class="h-c-tile__body">
-          {% include 'core/inc/svg.html' with id='strategic-direction' size='48px' class='dmb-tile-carousel__tile-icon' %}
+          <img
+              src="{% static 'img/news/dimensions/strategic-direction.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="strategic direction icon">
           <h4 class="h-c-tile__headline">
             Strategic direction & data foundations
           </h4>
@@ -18,7 +23,10 @@
 
       <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
         <div class="h-c-tile__body">
-          {% include 'core/inc/svg.html' with id='reader-engagement' size='48px' class='dmb-tile-carousel__tile-icon' %}
+          <img
+              src="{% static 'img/news/dimensions/reader-engagement.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="reader engagement icon">
           <h4 class="h-c-tile__headline">
             Reader engagement
           </h4>
@@ -30,7 +38,10 @@
 
       <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
         <div class="h-c-tile__body">
-          {% include 'core/inc/svg.html' with id='reader-revenue' size='48px' class='dmb-tile-carousel__tile-icon' %}
+          <img
+              src="{% static 'img/news/dimensions/reader-revenue.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="Reader revenue icon">
           <h4 class="h-c-tile__headline">
             Reader revenue
           </h4>
@@ -42,7 +53,10 @@
 
       <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
         <div class="h-c-tile__body">
-          {% include 'core/inc/svg.html' with id='ad-revenue' size='48px' class='dmb-tile-carousel__tile-icon' %}
+          <img
+              src="{% static 'img/news/dimensions/ad-revenue.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="Advertising revenue icon">
           <h4 class="h-c-tile__headline">
             Advertising revenue
           </h4>
