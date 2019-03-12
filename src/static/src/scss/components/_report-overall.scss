@@ -1,0 +1,23 @@
+.dmb-report-overall {
+  @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
+
+  .h-c-eyebrow {
+    @include dmb-resp-prop(margin-bottom, 30px, 40px);
+  }
+
+  &__link {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .dmb-progress-circle {
+    @include dmb-mq($until: tablet) {
+      margin: 20px auto;
+      width: 170px;
+    }
+
+    @include dmb-mq($from: tablet) {
+      margin-top: -90px;
+    }
+  }
+}
