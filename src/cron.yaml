@@ -3,7 +3,7 @@ cron:
   url: /cron/pull_qualtrics_results/
   schedule: every 10 mins
 - description: "surveys daily export"
-  url: /cron/generate_export/
+  url: /cron/generate_exports/
   schedule: every 24 hours
 - description: Update industries benchmark for each tenant
   url: /cron/update_benchmarks/
