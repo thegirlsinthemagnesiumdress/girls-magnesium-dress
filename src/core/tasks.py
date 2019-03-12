@@ -267,52 +267,46 @@ def _survey_completed(is_finished):
     return bool(is_finished)
 
 
-def generate_csv_export():
+def generate_csv_export(surveys, survey_fields, survey_result_fields, prefix):
+    """Generate csv export for a list of surveys, and store it on configured bucket.
 
-    surveys = Survey.objects.all()
+    :param surveys: list of `core.models.Survey` to be exported to csv
+    :param survey_fields: list of `core.models.Survey` fields to be exported
+    :param survey_result_fields: list of `core.models.SurveyResult` fields to be exported
+    :param prefix: filename prefix to use in addition of filename
+
+    """
     bucket_name = os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
-    filename = os.path.join('/', bucket_name, 'export-{}.csv'.format(datetime.now().strftime('%Y%m%d-%H%M%S')))
+    filename = os.path.join(
+        '/',
+        bucket_name,
+        '{}-export-{}.csv'.format(prefix, datetime.now().strftime('%Y%m%d-%H%M%S'))
+    )
 
     logging.info("Creating export in {}".format(filename))
 
+    all_fields = survey_fields + survey_result_fields
+
     write_retry_params = cloudstorage.RetryParams(backoff_factor=1.1)
     with cloudstorage.open(filename, 'w', content_type='text/csv', retry_params=write_retry_params) as gcs_file:
-        fieldnames = [
-            'id',
-            'company_name',
-            'industry',
-            'country',
-            'created_at',
-            'engagement_lead',
-            'dmb',
-            'access',
-            'audience',
-            'attribution',
-            'ads',
-            'organization',
-            'automation',
-        ]
+        fieldnames = all_fields
         writer = csv.DictWriter(gcs_file, fieldnames=fieldnames, lineterminator='\n')
         writer.writeheader()
 
         for survey in surveys:
+            survey_data = {field: None for field in all_fields}
             try:
-                survey_data = {
+                survey_data.update({
                     'id': survey.pk,
                     'company_name': survey.company_name,
                     'industry': settings.INDUSTRIES.get(survey.industry),
                     'country': settings.COUNTRIES.get(survey.country),
                     'created_at': survey.created_at,
                     'engagement_lead': survey.engagement_lead,
-                    'dmb': None,
-                    'access': None,
-                    'audience': None,
-                    'attribution': None,
-                    'ads': None,
-                    'organization': None,
-                    'automation': None,
-                }
+                    'tenant': survey.tenant
+                })
                 if survey.last_survey_result:
+                    survey_data['excluded_from_best_practice'] = survey.last_survey_result.excluded_from_best_practice
                     survey_data['dmb'] = survey.last_survey_result.dmb
                     survey_data.update(survey.last_survey_result.dmb_d)
             except SurveyResult.DoesNotExist:
@@ -320,7 +314,7 @@ def generate_csv_export():
                 pass
             writer.writerow(survey_data)
 
-    latest = os.path.join('/', bucket_name, 'latest.csv')
+    latest = os.path.join('/', bucket_name, '{}-latest.csv'.format(prefix))
     logging.info("Copying {} as {}".format(filename, latest))
     cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
     logging.info("Export completed")
@@ -341,55 +335,33 @@ def update_industries_benchmarks(survey_results):
 
 def calculate_industry_benchmark(tenant):
     logging.info("calculate_industry_benchmark called for tenant: {}".format(tenant))
+    if tenant == settings.NEWS:
+        return
+
     last_survey_results_pks = Survey.objects.filter(
         tenant=tenant,
         last_survey_result__isnull=False).values_list('last_survey_result', flat=True)
     valid_survey_results = SurveyResult.valid_results.filter(pk__in=list(last_survey_results_pks))
 
     survey_results_by_industry = updatable_industries(valid_survey_results)
-
-    if tenant == settings.NEWS:
-        forced_industry = settings.TENANTS[tenant]['FORCED_INDUSTRY']
-        survey_results_by_industry = {
-            forced_industry: survey_results_by_industry[forced_industry]
-        }
-
-    initial_industry_benchmarks = IndustryBenchmark.objects.filter(tenant=tenant)
-    initial_industry_benchmarks_dict = {initial.industry: initial for initial in initial_industry_benchmarks}
+    dimensions = settings.TENANTS[tenant]['DIMENSIONS']
 
     for industry, survey_results in survey_results_by_industry.items():
         logging.info("Updating industry: {}".format(industry))
-        current_industry_benchmark = initial_industry_benchmarks_dict.get(industry)
 
         dmb_d_list = [result.dmb_d for result in survey_results]
-        dmb_values_list = [float(result.dmb) for result in survey_results]
         dmb_d_bp_list = [result.dmb_d for result in survey_results]
-        dmb_bp_values_list = [float(result.dmb) for result in survey_results]
-
-        dimensions = settings.TENANTS[tenant]['DIMENSIONS']
-
-        if current_industry_benchmark:
-            if current_industry_benchmark.initial_dmb_d:
-                dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
-                dmb_values_list += [float(current_industry_benchmark.initial_dmb)] * current_industry_benchmark.sample_size
-            if current_industry_benchmark.initial_best_practice_d:
-                dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d] * current_industry_benchmark.sample_size
-                dmb_bp_values_list += [float(current_industry_benchmark.initial_best_practice)]
 
         dmb, dmb_d = None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
-            logging.info(
-                "Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))
-            dmb_values_list = dmb_values_list if tenant == settings.NEWS else None
-            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dimensions, dmb_values=dmb_values_list)
+            logging.info("Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))  # noqa
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dimensions)
             logging.info("Calculated dmb: {} , dmb_d: {}".format(dmb, dmb_d))
 
         dmb_bp, dmb_d_bp = None, None
         if len(dmb_d_bp_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
-            logging.info(
-                "Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))
-            dmb_bp_values_list = dmb_bp_values_list if tenant == settings.NEWS else None
-            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dimensions, dmb_values=dmb_bp_values_list)
+            logging.info("Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))  # noqa
+            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dimensions)
             logging.info("Calculated dmb_bp: {} , dmb_d_bp: {} for best practice".format(dmb_bp, dmb_d_bp))
 
         IndustryBenchmark.objects.update_or_create(

@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^(?P<tenant>{})/'.format(settings.ALLOWED_TENANTS), include('public.urls')),
     url(r'^api/', include('api.urls')),
     url(r'^cron/pull_qualtrics_results/$', views.sync_qualtrics_results, name="pull-qualtrics-results"),
-    url(r'^cron/generate_export/$', views.generate_export, name="export-datastore-data"),
+    url(r'^cron/generate_exports/$', views.generate_exports_task, name="export-datastore-data"),
     url(r'^cron/update_benchmarks/$', views.update_industries_benchmarks_task, name="update-benchmarks"),
     url(r'^migrations/migrate_to_default_tenant_task/$', views.migrate_to_default_tenant_task, name="migrate_to_default_tenant_task"),
     url(r'^migrations/migrate_to_tenant_task/$', views.migrate_to_tenant_task, name="migrate_to_tenant_task"),
