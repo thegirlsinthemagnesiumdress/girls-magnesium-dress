@@ -58,6 +58,10 @@
   color: $dmb-text-color;
   font-family: inherit;
 
+  button {
+    font-family: inherit;
+  }
+
   .SkinInner {
     background: #fff;
     border-radius: $dmb-border-radius;
@@ -134,12 +138,10 @@
   .QuestionOuter {
     &.Highlight {
       .Inner {
-        // border-color: $h-google-red-500;
         border-color: transparent;
 
         .QuestionText {
           color: $h-google-red-500;
-
         }
       }
     }
@@ -154,6 +156,7 @@
 
     #PreviousButton,
     #NextButton {
+      background: $dmb-interactive-color;
       border-radius: $dmb-border-radius;
       color: #fff;
       padding: 12px 24px;

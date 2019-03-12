@@ -2,42 +2,29 @@
 .dmb-survey-privacy-policy {
   $block: &;
 
-  &__intro {
-    margin-bottom: 10px;
+  &__btn {
+    &.h-c-button {
+      font-size: 12px;
+      margin: 20px 0 10px;
+    }
   }
 
-  &__read-more-label {
-    font-weight: 500;
-  }
-
-  &__less {
+  &__less,
+  &__text {
     display: none;
   }
 
-  &__text {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .5s ease-out;
+  &--visible {
+    #{$block}__more {
+      display: none;
+    }
 
-    .h-c-button {
+    #{$block}__less {
       display: inline;
-      font-size: 12px;
-    }
-  }
-
-  &__read-more:checked {
-    & + label {
-      #{$block}__less {
-        display: inline;
-      }
-
-      #{$block}__more {
-        display: none;
-      }
     }
 
-    & ~ #{$block}__text {
-      max-height: 700px;
+    #{$block}__text {
+      display: block;
     }
   }
 }
