@@ -1,5 +1,6 @@
 .dmb-reports-admin {
   margin: 0 16px;
+  @include dmb-responsive(padding-top, 32, 66);
 
   @include bp(m) {
     margin: 0 50px;
@@ -14,7 +15,7 @@
   }
 
   &__title {
-    @include dmb-responsive(margin-top, 32, 66);
+    margin-top: 20px;
     @include dmb-responsive(margin-bottom, 16, 48);
   }
 

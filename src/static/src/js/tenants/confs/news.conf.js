@@ -60,6 +60,16 @@ const dimensionLevelDescription = {
   },
 };
 
+const dataFoundationsGuideCta = {
+  'text': 'Data Activation Guide',
+  'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
+};
+
+const activatingUseCasesGuideCta = {
+  'text': 'Data Activation Guide',
+  'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
+};
+
 const dimensionLevelRecommendations = {
   'strategic_direction': {
     0: [
@@ -78,10 +88,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     1: [
@@ -100,10 +107,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     2: [
@@ -122,10 +126,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how some Leading publishers have developed their cultural, skills-based, data-related, and technological foundations.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     3: [
@@ -144,10 +145,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how other Leading publishers have developed their cultural, skills-based, data-related, and technological foundations.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
   },
@@ -180,10 +178,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     1: [
@@ -214,10 +209,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     2: [
@@ -248,10 +240,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature publishers have sophisticated approaches to improving overall reader engagement but want to see what other publishers are doing.The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached improving overall reader engagement.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': activatingUseCasesGuideCta,
       },
     ],
     3: [
@@ -278,10 +267,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a sophisticated approach to improving overall reader engagement but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached improving overall reader engagement.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': activatingUseCasesGuideCta,
       },
     ],
   },
@@ -306,10 +292,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     1: [
@@ -328,10 +311,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     2: [
@@ -350,10 +330,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature publishers have created significant revenue from increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached increasing direct-paying reader relationships.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': activatingUseCasesGuideCta,
       },
     ],
     3: [
@@ -372,10 +349,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a sophisticated approach to increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached increasing direct-paying reader relationships.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': activatingUseCasesGuideCta,
       },
     ],
   },
@@ -400,10 +374,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide [Link] provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     1: [
@@ -418,10 +389,6 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Know the value of your audience',
         'text': 'Monitor the performance of different audiences across your sales mix.  Analyze and record insights across segments to develop a long-term understanding of audience segment performance.',
-        'cta': {
-          'text': 'Gooogle Ad Manager Resource Guide',
-          'link': '/todo',
-        },
       },
       {
         'header': 'Make the most of your platform mix',
@@ -430,20 +397,13 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': dataFoundationsGuideCta,
       },
     ],
     2: [
       {
         'header': 'Build and enhance the understanding of your audience ',
         'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments.  Develop systems to effectively price audience segments based on historical performance and perceived value.',
-        'cta': {
-          'text': 'Gooogle Ad Manager Resource Guide',
-          'link': '/todo',
-        },
       },
       {
         'header': 'Connect the right audience to the right advertiser',
@@ -456,20 +416,13 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature publishers generate significant revenue through advertising but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached driving revenue from advertisers.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': activatingUseCasesGuideCta,
       },
     ],
     3: [
       {
         'header': 'Build and enhance the understanding of your audience ',
         'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments.  Develop systems to effectively price audience segments based on historical performance and perceived value.',
-        'cta': {
-          'text': 'Gooogle Ad Manager Resource Guide',
-          'link': '/todo',
-        },
       },
       {
         'header': 'Connect the right audience to the right advertiser',
@@ -482,10 +435,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading publishers have a sophisticated approach to driving revenue from advertisers but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached driving revenue from advertisers.',
-        'cta': {
-          'text': 'Data Activation Guide',
-          'link': '/todo',
-        },
+        'cta': activatingUseCasesGuideCta,
       },
     ],
   },

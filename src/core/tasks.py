@@ -335,55 +335,33 @@ def update_industries_benchmarks(survey_results):
 
 def calculate_industry_benchmark(tenant):
     logging.info("calculate_industry_benchmark called for tenant: {}".format(tenant))
+    if tenant == settings.NEWS:
+        return
+
     last_survey_results_pks = Survey.objects.filter(
         tenant=tenant,
         last_survey_result__isnull=False).values_list('last_survey_result', flat=True)
     valid_survey_results = SurveyResult.valid_results.filter(pk__in=list(last_survey_results_pks))
 
     survey_results_by_industry = updatable_industries(valid_survey_results)
-
-    if tenant == settings.NEWS:
-        forced_industry = settings.TENANTS[tenant]['FORCED_INDUSTRY']
-        survey_results_by_industry = {
-            forced_industry: survey_results_by_industry[forced_industry]
-        }
-
-    initial_industry_benchmarks = IndustryBenchmark.objects.filter(tenant=tenant)
-    initial_industry_benchmarks_dict = {initial.industry: initial for initial in initial_industry_benchmarks}
+    dimensions = settings.TENANTS[tenant]['DIMENSIONS']
 
     for industry, survey_results in survey_results_by_industry.items():
         logging.info("Updating industry: {}".format(industry))
-        current_industry_benchmark = initial_industry_benchmarks_dict.get(industry)
 
         dmb_d_list = [result.dmb_d for result in survey_results]
-        dmb_values_list = [float(result.dmb) for result in survey_results]
         dmb_d_bp_list = [result.dmb_d for result in survey_results]
-        dmb_bp_values_list = [float(result.dmb) for result in survey_results]
-
-        dimensions = settings.TENANTS[tenant]['DIMENSIONS']
-
-        if current_industry_benchmark:
-            if current_industry_benchmark.initial_dmb_d:
-                dmb_d_list += [current_industry_benchmark.initial_dmb_d] * current_industry_benchmark.sample_size
-                dmb_values_list += [float(current_industry_benchmark.initial_dmb)] * current_industry_benchmark.sample_size
-            if current_industry_benchmark.initial_best_practice_d:
-                dmb_d_bp_list += [current_industry_benchmark.initial_best_practice_d] * current_industry_benchmark.sample_size
-                dmb_bp_values_list += [float(current_industry_benchmark.initial_best_practice)]
 
         dmb, dmb_d = None, None
         if len(dmb_d_list) >= settings.MIN_ITEMS_INDUSTRY_THRESHOLD:
-            logging.info(
-                "Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))
-            dmb_values_list = dmb_values_list if tenant == settings.NEWS else None
-            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dimensions, dmb_values=dmb_values_list)
+            logging.info("Number of survey results above MIN_ITEMS_INDUSTRY_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))  # noqa
+            dmb, dmb_d = benchmark.calculate_group_benchmark(dmb_d_list, dimensions)
             logging.info("Calculated dmb: {} , dmb_d: {}".format(dmb, dmb_d))
 
         dmb_bp, dmb_d_bp = None, None
         if len(dmb_d_bp_list) >= settings.MIN_ITEMS_BEST_PRACTICE_THRESHOLD:
-            logging.info(
-                "Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))
-            dmb_bp_values_list = dmb_bp_values_list if tenant == settings.NEWS else None
-            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dimensions, dmb_values=dmb_bp_values_list)
+            logging.info("Number of survey results above MIN_ITEMS_BEST_PRACTICE_THRESHOLD for industry: {} tenant: {}".format(industry, tenant))  # noqa
+            dmb_bp, dmb_d_bp = benchmark.calculate_best_practice(dmb_d_bp_list, dimensions)
             logging.info("Calculated dmb_bp: {} , dmb_d_bp: {} for best practice".format(dmb_bp, dmb_d_bp))
 
         IndustryBenchmark.objects.update_or_create(
