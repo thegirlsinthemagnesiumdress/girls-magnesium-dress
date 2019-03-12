@@ -1,0 +1,54 @@
+.dmb-progress-circle {
+  $block: &;
+  display: block;
+  position: relative;
+  width: 100%;
+
+  &__prog-svg {
+    display: block;
+    margin: 0 auto;
+    top: 0;
+    transform: rotate(-90deg);
+  }
+
+  &__bg-bar,
+  &__prog-bar {
+    r: 54;
+    stroke-width: 5;
+  }
+
+  &__bg-bar {
+    stroke: $dmb-color-grey-zircon;
+  }
+
+  &__prog-bar {
+    stroke: $dmb-text-color;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    transition: stroke-dashoffset $dmb-progress-trans-time $dmb-progress-trans-fn;
+
+    @include print-styles {
+      transition: none;
+    }
+  }
+
+  &__text {
+    left: 12%;
+    letter-spacing: 1px;
+    position: absolute;
+    right: 12%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--small {
+    width: 58px;
+
+    #{$block}__bg-bar,
+    #{$block}__prog-bar {
+      r: 50;
+      stroke-width: 20;
+    }
+  }
+}

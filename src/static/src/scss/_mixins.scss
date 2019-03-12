@@ -95,3 +95,15 @@
     }
   }
 }
+
+@mixin print-styles() {
+  @media /**/ print /*/ screen /**/ {
+    @content;
+  }
+}
+
+@mixin screen-styles() {
+  @media /** / print /*/ screen /**/ {
+    @content;
+  }
+}
