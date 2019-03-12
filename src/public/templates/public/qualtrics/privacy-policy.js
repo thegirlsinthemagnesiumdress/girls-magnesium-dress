@@ -6,5 +6,10 @@ Qualtrics.SurveyEngine.addOnReady(function () {
   var button = element.find('#dmb-read-more');
   button.click(function () {
     dmbPrivacyPolicy.toggleClass(activeClass);
+    if (jQuery(this).attr('aria-expanded') === 'false') {
+      jQuery(this).attr('aria-expanded', 'true');
+    } else {
+      jQuery(this).attr('aria-expanded', 'false');
+    }
   });
 });
