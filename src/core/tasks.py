@@ -314,7 +314,7 @@ def generate_csv_export(surveys, survey_fields, survey_result_fields, prefix):
                 pass
             writer.writerow(survey_data)
 
-    latest = os.path.join('/', bucket_name, 'latest.csv')
+    latest = os.path.join('/', bucket_name, '{}-latest.csv')
     logging.info("Copying {} as {}".format(filename, latest))
     cloudstorage.copy2(filename, latest, metadata=None, retry_params=write_retry_params)
     logging.info("Export completed")

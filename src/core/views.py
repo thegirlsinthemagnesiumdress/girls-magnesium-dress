@@ -79,6 +79,7 @@ def generate_exports_task(request):
         advertisers_surveys,
         advertisers_survey_fields,
         advertisers_survey_result_fields,
+        settings.ADS,
         _queue='default',
     )
 
@@ -87,6 +88,7 @@ def generate_exports_task(request):
         publishers_surveys,
         publishers_survey_fields,
         publishers_survey_result_fields,
+        settings.NEWS,
         _queue='default',
     )
 
