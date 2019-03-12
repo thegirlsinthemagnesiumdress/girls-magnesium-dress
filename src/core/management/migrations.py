@@ -13,14 +13,14 @@ def migrate_to_default_tenant():
 
 def migrate_deloitte_data():
 
-    dmb = 2.45
+    dmb = 1.76
     dmb_bp = 3.65
     samples = 46
     dmb_d = {
-        'strategic_direction': 2.86,
-        'reader_engagement': 2.3,
-        'reader_revenue': 2.0,
-        'advertising_revenue': 2.2,
+        'strategic_direction': 2.23,
+        'reader_engagement': 1.81,
+        'reader_revenue': 1.56,
+        'advertising_revenue': 1.75,
     }
 
     dmb_d_bp = {
@@ -37,6 +37,10 @@ def migrate_deloitte_data():
         initial_dmb_d=dmb_d,
         initial_best_practice=dmb_bp,
         initial_best_practice_d=dmb_d_bp,
+        dmb_value=dmb,
+        dmb_d_value=dmb_d,
+        dmb_bp_value=dmb_bp,
+        dmb_d_bp_value=dmb_d_bp,
         sample_size=samples,
     )
 
