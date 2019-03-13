@@ -1,9 +1,10 @@
-<section class="dmb-report-overall h-c-page dmb-report-overall--{[reportCtrl.currentLevel]}">
-  <p class="h-c-eyebrow">
+<section class="dmb-report-overall dmb-report-overall--{[reportCtrl.currentLevel]} dmb-u-m-b-l h-c-page">
+  <h1 class="h-c-eyebrow">
     Your digital maturity score
-  </p>
+  </h1>
   <div class="h-c-grid">
     <div class="dmb-report-overall__donut-col h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-1 h-c-grid__col--align-middle h-c-grid__col-m--order-2">
+
       <div class="dmb-progress-circle" data-progress="reportCtrl.result.dmb">
         <svg dmb-progress-circle="reportCtrl.result.dmb" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
           <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none"/>
@@ -13,6 +14,7 @@
           <span class="h-c-headline h-c-headline--display-two dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span class="h-c-headline h-c-headline--four dmb-progress-circle__total">/{[reportCtrl.levelsTotal]}</span>
         </div>
       </div>
+
     </div>
     <div class="h-c-grid__col h-c-grid__col--6">
       <h2 class="h-c-headline h-c-headline--three">
@@ -25,5 +27,15 @@
         Learn more about levels
       </a>
     </div>
+  </div>
+
+  <div class="dmb-report-overall__table-container">
+    <dmb-progress-table
+        data-rating-main="reportCtrl.result.dmb"
+        data-industry-avg="reportCtrl.industryResult.dmb"
+        data-industry-best="reportCtrl.industryResult.dmb_bp"
+        data-company-name="{[reportCtrl.survey.company_name]}"
+        data-industry-ready="!!reportCtrl.industryResult">
+    </dmb-progress-table>
   </div>
 </section>

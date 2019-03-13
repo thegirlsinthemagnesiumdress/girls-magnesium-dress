@@ -13,6 +13,7 @@ strong {
   border-bottom: 5px solid $dmb-color-grey-zircon;
   display: inline-block;
   padding-bottom: 20px;
+  @include dmb-resp-prop(margin-bottom, 20px, 30px, 40px);
 }
 
 .h-c-header__product-logo-text {
@@ -24,4 +25,9 @@ strong {
 button {
   background: transparent;
   border: 0;
+}
+
+.h-c-inline-link {
+  border: 0;
+  font-weight: $h-font-weight-medium;
 }

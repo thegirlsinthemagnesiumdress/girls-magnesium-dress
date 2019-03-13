@@ -1,8 +1,6 @@
 .dmb-report-overall {
-  @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
-
-  .h-c-eyebrow {
-    @include dmb-resp-prop(margin-bottom, 30px, 40px);
+  &__table-container {
+    @include dmb-resp-prop(margin-top, 50px, 60px, 80px);
   }
 
   &__link {
