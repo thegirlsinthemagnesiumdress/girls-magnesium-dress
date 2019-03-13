@@ -140,7 +140,7 @@ $level-colors: (
   .dmb-report-page {
     &__zippy-btn {
       .glue-zippy &::before {
-        display: none
+        display: none;
       }
     }
   }
