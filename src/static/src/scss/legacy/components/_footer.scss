@@ -1,4 +1,42 @@
 .dmb-footer {
+  &__tenant-footer {
+    border-bottom: 1px solid $h-gm-grey-300;
+    margin-bottom: 40px;
+    min-width: 100%;
+    padding-bottom: 40px;
+  }
+
+  &__tenant-footer-title {
+    color: $dmb-text-color;
+  }
+
+  &__tenant-footer-title,
+  &__tenant-footer-list-item:not(:last-of-type) {
+    margin-bottom: 18px;
+  }
+
+  &__tenant-footer-list {
+    list-style: none;
+    margin: 0;
+  }
+
+  &__tenant-footer-list-item {
+    a {
+      font-size: 14px;
+      font-weight: 400;
+
+      &,
+      &:visited {
+        color: $h-gm-grey-700;
+      }
+
+      &:hover,
+      &:focus {
+        color: $dmb-text-color;
+      }
+    }
+  }
+
   &__feedback-link {
     align-items: center;
     display: flex;
