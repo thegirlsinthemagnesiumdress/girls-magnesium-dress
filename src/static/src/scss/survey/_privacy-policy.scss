@@ -1,0 +1,56 @@
+// sass-lint:disable no-ids
+.dmb-survey-privacy-policy {
+  $block: &;
+
+  &__btn {
+    &.h-c-button {
+      font-size: 12px;
+      margin: 20px 0 10px;
+    }
+  }
+
+  &__less,
+  &__text {
+    display: none;
+  }
+
+  &__text {
+    .h-c-inline-link {
+      border: 0;
+    }
+  }
+
+  &--visible {
+    #{$block}__more {
+      display: none;
+    }
+
+    #{$block}__less {
+      display: inline;
+    }
+
+    #{$block}__text {
+      display: block;
+    }
+  }
+}
+
+.dmb-survey-policy-checkbox {
+  &.QuestionOuter {
+    padding-top: 0;
+  }
+
+  #Wrapper & {
+    .LabelWrapper label {
+      color: $dmb-text-color;
+
+      &:not(.q-focused) {
+        background: transparent;
+      }
+    }
+  }
+
+  .LabelWrapper {
+    background: transparent;
+  }
+}

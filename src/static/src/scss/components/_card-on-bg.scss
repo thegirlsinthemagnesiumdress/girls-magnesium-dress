@@ -1,0 +1,25 @@
+.dmb-card-on-bg {
+  margin: 0 auto;
+  max-width: 1024px;
+  position: relative;
+  @include dmb-resp-prop(padding, '170px 16px 0', '190px 32px 0', '250px 32px 0');
+
+  &__bg {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    @include dmb-resp-prop(height, 193px, 250px, 331px);
+  }
+
+  &__card {
+    background: #fff;
+    margin: 0 auto;
+    max-width: 800px;
+    @include dmb-resp-prop(padding, 20px, '30px 60px', '40px 80px');
+  }
+}

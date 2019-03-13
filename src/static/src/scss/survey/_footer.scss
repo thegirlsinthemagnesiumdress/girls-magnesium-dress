@@ -1,29 +1,48 @@
 .dmb-survey-footer {
-  align-items: baseline;
-  display: flex;
-  flex-flow: row wrap;
-  font-size: 16px;
-  justify-content: center;
-  list-style-type: none;
-  margin: 0 auto;
+  position: relative;
+  @include dmb-resp-prop(padding, '40px 16px', '40px 30px');
 
-  > li {
+  @include dmb-mq($from: tablet) {
+    display: flex;
+  }
+
+  &__bg {
+    background: $dmb-color-blue-solitude;
+    bottom: 0;
+    left: -1000px;
+    position: absolute;
+    right: -1000px;
+    top: 0;
+    z-index: -1;
+  }
+
+  &__logo {
+    margin-right: 50px;
+    width: 86px;
+
+    @include dmb-mq($until: tablet) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__links {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  &__link {
+    color: $dmb-color-grey-shuttle;
     display: block;
-    padding: 0 6px;
-  }
-}
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
 
-.Skin {
-  #Footer { // sass-lint:disable-line no-ids
-    margin: $dmb-margin-medium auto $dmb-margin-small;
-    padding: 0;
-  }
+    &:not(:last-of-type) {
+      margin-right: 30px;
+    }
 
-  #PushStickyFooter { // sass-lint:disable-line no-ids
-    display: none;
-  }
-
-  #Plug { // sass-lint:disable-line no-ids
-    @include element-invisible();
+    @include dmb-mq($from: tablet) {
+      display: inline-block;
+    }
   }
 }

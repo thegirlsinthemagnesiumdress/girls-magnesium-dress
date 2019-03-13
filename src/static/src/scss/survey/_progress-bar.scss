@@ -1,60 +1,40 @@
 // sass-lint:disable no-ids
-#ProgressBar {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(198, 198, 198, .5);
-  left: 0;
-  padding: 28px 0 60px;
-  position: absolute;
-  right: 0;
-  top: 100vh;
-  z-index: 2;
-
-  &.is-sticky {
+.Skin {
+  #ProgressBar {
+    // Qualtrics adds `style="top: 100px"` to the progress bar so need to compensate with negative top margin.
+    margin: -100px auto 0;
+    max-width: 100%;
     position: fixed;
-    top: 0 !important;
-  }
-
-  > div {
-    @extend .h-c-page;
-    max-width: $dmb-survey-max-width;
-  }
-
-  .ProgressBarContainer {
     width: 100%;
 
-    > tbody> tr > td {
-      &:first-child,
-      &:last-child {
+    .ProgressBarContainer {
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .12);
+      height: 20px;
+      width: 100%;
+
+      tr:first-of-type {
         display: none;
       }
+
+      tr:nth-of-type(2) {
+        td:not(:nth-of-type(2)) {
+          display: none;
+        }
+      }
     }
-  }
 
-  .ProgressBarFillContainer,
-  .ProgressBarFill {
-    border-radius: #{$dmb-progress-height / 2};
-    height: $dmb-progress-height;
-  }
-
-  .ProgressBarFillContainer {
-    background-color: $dmb-progress-color--passive;
-    position: relative;
-    width: 100%;
-
-    .offScreen {
-      font-size: 16px; // @TODO
-      height: auto;
-      left: 0;
-      overflow: visible;
-      position: absolute;
-      top: #{$dmb-progress-height + 16px};
-      width: auto;
+    .ProgressBarFill,
+    .ProgressBarFillContainer {
+      border-radius: 0;
+      height: 100%;
     }
-  }
 
-  .ProgressBarFill {
-    background-color: $dmb-progress-color--active;
-    min-width: $dmb-progress-height;
-    transition: width 2s;
+    .ProgressBarFillContainer {
+      background: #fff;
+    }
+
+    .ProgressBarFill {
+      background: $dmb-interactive-color;
+    }
   }
 }

@@ -1,3 +1,7 @@
+$dmb-border-radius: 2px;
+$dmb-alt-font-family: $h-font-family-google-sans;
+
+
 // VERTICAL SPACINGS
 $dmb-vertical-spacings: (
   s: (mobile: 20px, tablet: 20px, desktop: 30px),
@@ -5,5 +9,9 @@ $dmb-vertical-spacings: (
   l: (mobile: 60px, tablet: 80px, desktop: 120px)
 );
 
+
+// ANIMATIONS
+$dmb-easing-cubic: cubic-bezier(.4, 0, .2, 1);
+$dmb-transition-duration: .15s;
 $dmb-progress-trans-time: 1.5s;
 $dmb-progress-trans-fn: ease-in-out;

@@ -63,3 +63,23 @@ $positions: (top, bottom);
     }
   }
 }
+
+.dmb-h-visible {
+  display: block !important;
+}
+
+.dmb-h-hidden {
+  display: none !important;
+
+  @include print-styles {
+    &--print {
+      display: none !important;
+    }
+  }
+
+  @include screen-styles {
+    &--screen {
+      display: none !important;
+    }
+  }
+}

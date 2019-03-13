@@ -1,0 +1,201 @@
+// Overrides
+// sass-lint:disable no-ids
+#Wrapper {
+  background-position: center top;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  max-width: 768px;
+  padding: 16px;
+
+  @include dmb-resp-prop(padding-top, 40px, 60px, 80px);
+
+  &.dmb-survey--start {
+    padding: 173px 16px 0;
+
+    @include dmb-mq($from: tablet) {
+      padding: 190px 60px 0;
+    }
+
+    @include dmb-mq($from: desktop) {
+      max-width: 1024px;
+      padding: 250px 115px 0;
+    }
+  }
+
+
+  .LabelWrapper label {
+    background: $dmb-color-blue-solitude;
+    border-radius: $dmb-border-radius;
+
+    &.q-checked {
+      color: $dmb-interactive-color;
+    }
+  }
+
+  .TextEntryBox {
+    background: #fff;
+    border: 1px solid $dmb-color-grey-zircon;
+    border-radius: $dmb-border-radius;
+    color: $dmb-color-grey-shuttle;
+    display: none;
+    font-family: $h-font-family-sans-serif;
+    margin: 0;
+    @include dmb-resp-prop(font-size, 14px, 16px);
+
+    @include dmb-mq($from: tablet) {
+      margin: 0 0 24px 54px;
+      width: 420px;
+    }
+  }
+
+  .q-checked + .TextEntryBox {
+    display: inline-block;
+  }
+}
+
+// Skin styles
+.Skin {
+  color: $dmb-text-color;
+  font-family: inherit;
+
+  button {
+    font-family: inherit;
+  }
+
+  .SkinInner {
+    background: #fff;
+    border-radius: $dmb-border-radius;
+    max-width: 100%;
+    width: auto;
+    @include dmb-resp-prop(margin-bottom, 20px, 60px, 80px);
+    @include dmb-resp-prop(padding-top, 0, 10px, 20px);
+  }
+
+
+  // Header styles
+  #HeaderContainer {
+    margin-top: 0;
+  }
+
+  #Header {
+    color: $dmb-text-color;
+    padding: 0;
+  }
+
+
+  // Question styles
+  .MC .QuestionBody,
+  .QuestionBody,
+  .QuestionText {
+    padding: 0 !important;
+  }
+
+  .QuestionOuter {
+    padding: 0;
+  }
+
+  .MC li .LabelWrapper {
+    @include dmb-resp-prop(margin-bottom, 10px, 20px, 20px);
+  }
+
+  .QuestionText {
+    color: inherit;
+    font-family: $dmb-alt-font-family;
+    font-weight: $h-font-weight-regular;
+    margin-bottom: 20px;
+    @include dmb-resp-prop(font-size, 16px 16px, 22px);
+
+    p {
+      font-weight: $h-font-weight-light;
+    }
+  }
+
+  fieldset {
+    width: auto;
+  }
+
+  .Separator {
+    border-top: 1px solid $dmb-color-grey-zircon;
+    @include dmb-resp-prop(margin, '0', '30px 0' '40px 0');
+  }
+
+
+  // Text Input
+  .TE .FORM .InputText {
+    background: transparent;
+    border: 1px solid $dmb-color-grey-zircon;
+    border-radius: $dmb-border-radius;
+    color: $dmb-color-grey-shuttle;
+    font-family: $h-font-family-sans-serif;
+    @include dmb-resp-prop(font-size, 14px, 16px);
+  }
+
+  // Validation error message styles
+  .ValidationError {
+    margin: 40px 0 20px;
+  }
+
+  .QuestionOuter {
+    &.Highlight {
+      .Inner {
+        border-color: transparent;
+
+        .QuestionText {
+          color: $h-google-red-500;
+        }
+      }
+    }
+  }
+
+  .Button {
+    font-family: $dmb-alt-font-family;
+  }
+
+  #Buttons {
+    padding: 0 16px;
+
+    #PreviousButton,
+    #NextButton {
+      background: $dmb-interactive-color;
+      border-radius: $dmb-border-radius;
+      color: #fff;
+      padding: 12px 24px;
+    }
+  }
+
+  #Footer {
+    margin: 0;
+    padding: 0;
+  }
+
+  #Plug {
+    visibility: hidden;
+  }
+}
+
+.LabelWrapper {
+  background: $dmb-color-blue-solitude;
+  border-radius: $dmb-border-radius;
+}
+
+#PushStickyFooter {
+  display: none;
+}
+
+.SkinInner {
+  @include dmb-resp-prop(padding, 20px, 30px, '40px 80px');
+}
+
+#LogoContainer {
+  display: none;
+}
+
+.InnerInner {
+  padding: 20px 16px;
+}
+
+fieldset {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}

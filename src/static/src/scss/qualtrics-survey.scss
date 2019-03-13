@@ -49,18 +49,18 @@
 @import 'legacy/shared/partnership-with-bcg';
 
 // Components
-@import 'survey/buttons';
-@import 'survey/footer';
-@import 'survey/form-fields';
-@import 'survey/header';
-@import 'survey/layout';
-@import 'survey/matrix';
-@import 'survey/progress-bar';
-@import 'survey/radio-buttons';
-@import 'survey/side-panel';
-@import 'survey/styled-list';
-@import 'survey/privacy-question';
-@import 'survey/dimension-header';
+@import 'legacy/survey/buttons';
+@import 'legacy/survey/footer';
+@import 'legacy/survey/form-fields';
+@import 'legacy/survey/header';
+@import 'legacy/survey/layout';
+@import 'legacy/survey/matrix';
+@import 'legacy/survey/progress-bar';
+@import 'legacy/survey/radio-buttons';
+@import 'legacy/survey/side-panel';
+@import 'legacy/survey/styled-list';
+@import 'legacy/survey/privacy-question';
+@import 'legacy/survey/dimension-header';
 
 // Hercules part that needs to come last
 @import 'hercules/lib/global/scss/trumps/all';

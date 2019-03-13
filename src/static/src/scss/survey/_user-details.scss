@@ -1,0 +1,10 @@
+.dmb-survey-user-details {
+  &.QuestionOuter + .Separator,
+  td:not(.ControlContainer) {
+    display: none;
+  }
+
+  .InnerInner {
+    padding-bottom: 0;
+  }
+}

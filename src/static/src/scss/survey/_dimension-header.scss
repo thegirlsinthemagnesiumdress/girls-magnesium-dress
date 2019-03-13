@@ -1,7 +1,6 @@
 .dmb-dimension-header {
-  @extend .h-c-headline;
-  @extend .h-c-headline--two;
-  border-bottom: 5px solid $dmb-heading-border-color;
-  margin-bottom: 56px;
-  padding-bottom: 15px;
+  .dmb-dimension-header__icon {
+    display: block;
+    width: 44px;
+  }
 }

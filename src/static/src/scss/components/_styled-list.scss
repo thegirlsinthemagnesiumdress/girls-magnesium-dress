@@ -1,0 +1,35 @@
+.dmb-styled-list {
+  list-style: none;
+  margin-bottom: 48px;
+  margin-left: 36px;
+  margin-top: 36px;
+
+  @include dmb-mq($from: tablet) {
+    margin-left: 58px;
+  }
+
+  &__item {
+    font-size: 16px;
+    position: relative;
+
+    &::before {
+      background-color: $h-google-blue-500;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: 1em;
+      left: -36px;
+      position: absolute;
+      top: 6px;
+      width: 1em;
+
+      @include dmb-mq($from: tablet) {
+        left: -58px;
+      }
+    }
+  }
+
+  &__item-title.h-c-headline {
+    margin-bottom: 10px;
+  }
+}

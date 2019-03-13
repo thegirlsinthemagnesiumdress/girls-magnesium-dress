@@ -1,0 +1,37 @@
+.dmb-fab {
+  background: transparent;
+  border: 0 none;
+  padding: 0;
+  text-align: center;
+
+  &__icon {
+    @extend .h-c-button;
+    @extend .h-c-button--secondary;
+
+    border-radius: 23px;
+    display: block;
+    margin-top: 0;
+    padding: 11px 0;
+    text-align: center;
+    width: 46px;
+
+    > svg {
+      fill: currentColor;
+    }
+  }
+
+  &__text {
+    @include h-font-smoothing($h-font-smoothing-moz, $h-font-smoothing-webkit, $h-font-smoothing-rendering);
+    color: $dmb-color-grey-shuttle;
+    display: block;
+    font-family: $dmb-alt-font-family;
+    font-size: $h-button-font-size;
+    font-weight: $h-font-weight-medium;
+    letter-spacing: .75px;
+
+    @include dmb-mq($from: desktop) {
+      font-size: $h-button-font-size--desktop;
+      letter-spacing: .5px;
+    }
+  }
+}

@@ -86,20 +86,17 @@
 @import 'grid-variables';
 
 
-// DMB
-// Common components
-@import 'components/button';
+// DMB Components
+@import 'components/card-on-bg';
 @import 'components/footer';
-@import 'components/partnership-logo';
-@import 'components/svg';
-
-// Includes
 @import 'components/home-hero';
 @import 'components/home-tabs';
 @import 'components/cta-banner';
 @import 'components/icon-text-cta';
-@import 'components/img-text-collage';
 @import 'components/img-text';
+@import 'components/img-text-collage';
+@import 'components/outline-button';
+@import 'components/partnership-logo';
 @import 'components/product-hero';
 @import 'components/progress-circle';
 @import 'components/progress-table';
@@ -107,6 +104,7 @@
 @import 'components/report-hero';
 @import 'components/report-overall';
 @import 'components/step-heading';
+@import 'components/svg';
 @import 'components/tile-carousel';
 
 // Pages

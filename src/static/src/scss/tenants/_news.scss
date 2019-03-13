@@ -1,11 +1,5 @@
-// TENANT VARIABLES
+// TENANT STYLES
 //sass-lint:disable no-ids
-$dmb-color-green-eucalyptus: #34a853;
-$dmb-color-green-salem: #1e8e3e;
-$dmb-color-green-jewel: #0d7533;
-$dmb-color-green-jewel-dark: #0a4e22;
-
-$dmb-tenant-primary-color: $dmb-color-green-eucalyptus;
 
 $level-colors: (
   nascent: $dmb-color-green-eucalyptus,
@@ -15,12 +9,11 @@ $level-colors: (
 );
 
 
-// TENANT STYLES
 // Try to only set colors, and background properties background-image, background-size and background-position
 .dmb--news {
   // PRIMARY HEADING COLOR
   .dmb-primary-heading {
-    color: $dmb-tenant-primary-color;
+    color: $dmb-news-primary-color;
   }
 
   // HOME HERO IMAGES
@@ -120,6 +113,16 @@ $level-colors: (
 
       .dmb-report-hero__next--#{$level} {
         background-color: $color;
+      }
+    }
+  }
+
+  .dmb-card-on-bg {
+    &__bg {
+      background-image: url('../img/news/survey/thankyou.jpg');
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/news/survey/thankyou@2x.jpg');
       }
     }
   }

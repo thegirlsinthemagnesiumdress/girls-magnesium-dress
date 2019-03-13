@@ -17,7 +17,7 @@ $dmb-home-hero-card-bg: #fff;
 
   &__card {
     background: #fff;
-    border-radius: 2px;
+    border-radius: $dmb-border-radius;
     font-weight: $h-font-weight-regular;
     padding: 20px;
 
