@@ -126,4 +126,13 @@ $level-colors: (
       }
     }
   }
+
+  // Change color of progress bar fill based on level
+  @each $level, $color in $level-colors {
+    .dmb-report-overall--#{$level} {
+      .dmb-progress-circle__prog-bar {
+        stroke: $color;
+      }
+    }
+  }
 }
