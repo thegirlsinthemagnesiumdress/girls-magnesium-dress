@@ -57,6 +57,7 @@
 .Skin {
   color: $dmb-text-color;
   font-family: inherit;
+  overflow-x: hidden;
 
   button {
     font-family: inherit;
@@ -169,7 +170,10 @@
   }
 
   #Plug {
+    height: 0;
+    position: relative;
     visibility: hidden;
+    z-index: -1000;
   }
 }
 
