@@ -802,6 +802,191 @@ survey_definition_dict = {
 }
 
 
+survey_def_no_choices_page_break_dict = {
+    "id": "SV_beH0HTFtnk4A5rD",
+    "name": "DMB Survey - Staging",
+    "ownerId": "UR_eQjASeYvNZoXnPD",
+    "organizationId": "google",
+    "isActive": True,
+    "creationDate": "2018-11-29T13:27:15Z",
+    "lastModifiedDate": "2018-12-11T17:22:31Z",
+    "expiration": {
+        "startDate": None,
+        "endDate": None
+    },
+    "questions": {
+        "QID102": {
+            "questionType": {
+                "type": "MC",
+                "selector": "SAVR",
+                "subSelector": "TX"
+            },
+            "questionText": "<h2 class=\"dmb-dimension-header\">Assets &amp; Ads</h2>\nWhich of the following best describes the extent to which your organisation uses data to inform creative development?",
+            "questionLabel": None,
+            "validation": {
+                "doesForceResponse": True
+            },
+            "questionName": "Q102",
+            "choices": {
+                "1": {
+                    "recode": "0",
+                    "description": "Creatives are based mainly on brand and product principles.",
+                    "choiceText": "Creatives are based mainly on brand and product principles.",
+                    "imageDescription": None,
+                    "variableName": None,
+                    "analyze": True,
+                    "scoring": [
+                        {
+                            "category": "SC_577ByjK0PVdnw69",
+                            "value": "0"
+                        }
+                    ]
+                },
+                "2": {
+                    "recode": "1",
+                    "description": "Creatives are based mainly on insights from a specific digital channel and advanced analytics.",
+                    "choiceText": "Creatives are based mainly on insights from a specific digital channel and advanced analytics.",
+                    "imageDescription": None,
+                    "variableName": None,
+                    "analyze": True,
+                    "scoring": [
+                        {
+                            "category": "SC_577ByjK0PVdnw69",
+                            "value": "1"
+                        }
+                    ]
+                },
+            }
+        },
+        "QID267": {
+            "questionLabel": None,
+            "questionName": "Q39",
+            "questionText": "<div></div>",
+            "questionType": {
+                "selector": "TB",
+                "subSelector": None,
+                "type": "DB"
+            },
+            "validation": {
+                "doesForceResponse": False
+            }
+        },
+
+    },
+    "exportColumnMap": {
+        "Q97_4_TEXT": {
+            "question": "QID97",
+            "choice": "QID97.choices.4"
+        },
+        "Q97_5_TEXT": {
+            "question": "QID97",
+            "choice": "QID97.choices.5"
+        },
+        "Q173_1": {
+            "question": "QID173",
+            "choice": "QID173.choices.1"
+        },
+        "Q102": {
+            "question": "QID102"
+        },
+        "Q103": {
+            "question": "QID103"
+        },
+        "Q104": {
+            "question": "QID104"
+        },
+        "Q128_133.1": {
+            "question": "QID128",
+            "choice": "QID128.choices.1"
+        },
+        "Q128_133.2": {
+            "question": "QID128",
+            "choice": "QID128.choices.2"
+        },
+        "Q128_133.3": {
+            "question": "QID128",
+            "choice": "QID128.choices.3"
+        },
+    },
+    "blocks": {
+        "BL_4OcGZZcRLl0cRYp": {
+            "description": "User Details",
+            "elements": [
+                {
+                    "type": "Question",
+                    "questionId": "QID102"
+                },
+                {
+                    "type": "Question",
+                    "questionId": "QID267"
+                },
+                {
+                    "type": "PageBreak"
+                },
+            ]
+        }
+    },
+    "flow": [
+        {
+            "type": "EmbeddedData"
+        },
+        {
+            "type": "WebService"
+        },
+        {
+            "id": "BL_4OcGZZcRLl0cRYp",
+            "type": "Block"
+        },
+        {
+            "id": "BL_d4IXvKmLwWF9lo9",
+            "type": "Block"
+        },
+        {
+            "type": "EmbeddedData"
+        },
+        {
+            "type": "EndSurvey"
+        }
+    ],
+    "embeddedData": [
+        {
+            "name": "sid"
+        },
+        {
+            "name": "Enter Embedded Data Field Name Here..."
+        },
+        {
+            "name": "sponsor"
+        },
+        {
+            "name": "company_name",
+            "type": "Custom"
+        },
+        {
+            "name": "dmb",
+            "defaultValue": "${gr://SC_577ByjK0PVdnw69/WeightedMean}"
+        }
+    ],
+    "comments": {
+        "QID3": {
+            "commentList": [
+                {
+                    "userId": "UR_eQjASeYvNZoXnPD",
+                    "message": "Hero element",
+                    "timestamp": 1519214611
+                }
+            ]
+        }
+    },
+    "loopAndMerge": {},
+    "responseCounts": {
+        "auditable": 256,
+        "generated": 0,
+        "deleted": 104
+    }
+}
+
+
 qualtrics_definition = {
     'result': survey_definition_dict
 }
