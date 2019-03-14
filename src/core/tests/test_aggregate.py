@@ -194,6 +194,12 @@ class IndustryBenchmark(TestCase):
         correct one."""
         make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=2.0)
         make_industry_benchmark(tenant='tenant2', industry='edu-o', dmb_value=4.0)
+        industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'edu-o')
+        got_dmb, got_dmb_d, got_industry = industry_to_be_updated
+
+        self.assertEqual(got_dmb, 2.0)
+        self.assertEqual(got_industry, 'edu-o')
+
         industry_to_be_updated = aggregate.industry_benchmark('tenant2', 'edu-o')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
