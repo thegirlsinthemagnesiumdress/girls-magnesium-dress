@@ -16,6 +16,12 @@ const levelDescriptions = {
   3: 'These organisations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 };
 
+const reportLevelDescriptions = {
+  0: 'This is the most basic of the four levels of maturity. You have the basic tools, but often face cultural challenges to truly embracing data-supported decision-making.',
+  1: 'This is the second of the four levels of maturity. You are able to drive value from data in some pockets of the business. Leadership recognises data as a priority, but is unclear on how to unlock the best returns.',
+  2: 'This is the third of the four levels of maturity. Data-informed decision-making is the standard across much of your organization. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.',
+  3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
+};
 
 // TODO(aabuelgasim): Get this from the backend?
 const dimensions = [
@@ -445,6 +451,7 @@ const dimensionLevelRecommendations = {
 const conf = {
   levels,
   levelDescriptions,
+  reportLevelDescriptions,
   dimensions,
   dimensionHeadersDescription,
   dimensionLevelDescription,

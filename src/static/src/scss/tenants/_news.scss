@@ -135,4 +135,14 @@ $level-colors: (
       }
     }
   }
+
+  // TODO(aabuelgasim): Remove when switching to news CSS
+  .dmb-report-page {
+    &__zippy-btn {
+      .glue-zippy &::before {
+        display: none;
+      }
+    }
+  }
+  ///////////
 }
