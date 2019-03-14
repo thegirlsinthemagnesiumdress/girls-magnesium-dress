@@ -1,4 +1,8 @@
 .dmb-footer {
+  .h-c-footer__global {
+    padding-top: 50px;
+  }
+
   &__tenant-footer {
     border-bottom: 1px solid $h-gm-grey-300;
     margin-bottom: 40px;
