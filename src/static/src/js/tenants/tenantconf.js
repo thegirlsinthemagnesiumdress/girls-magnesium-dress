@@ -42,6 +42,12 @@ class TenantConfiguration {
     this.levelDescriptions = {};
 
     /**
+     * @param {Object}
+     * @export
+     */
+    this.reportLevelDescriptions = {};
+
+    /**
      * @param {Array}
      * @export
      */
@@ -78,6 +84,7 @@ class TenantConfiguration {
     const conf = confMap[this.tenant];
     this.levels = conf.levels;
     this.levelDescriptions = conf.levelDescriptions;
+    this.reportLevelDescriptions = conf.reportLevelDescriptions;
     this.dimensions = conf.dimensions;
     this.dimensionHeaders = JSON.parse(tenantDataElement.dataset['dimensions']);
     this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
