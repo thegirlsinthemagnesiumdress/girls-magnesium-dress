@@ -21,21 +21,24 @@ class SurveyDefinition(object):
             for element in block['elements']:
                 # it might not be of type question, so does not have a question id (ie Page Break)
                 def_q_id = element.get('questionId', None)
-                if def_q_id:
-                    q_definition = self._get_question(def_q_id)
-                    q_id = q_definition['id']
-                    q_dimension = get_question_dimension(q_id, self.dimensions)
+                if def_q_id is None:
+                    continue
 
-                    if q_dimension:
-                        questions['definitions'][q_id] = q_definition
-                        questions['questions_by_dimension'][q_dimension].append(q_id)
+                q_definition = self._get_question(def_q_id)
+                q_id = q_definition['id']
+                q_dimension = get_question_dimension(q_id, self.dimensions)
 
-                        dimension_obj = {
-                            'id': q_dimension,
-                            'title': self.dimensions_titles.get(q_dimension),
-                        }
-                        if dimension_obj not in questions['dimensions']:
-                            questions['dimensions'].append(dimension_obj)
+                if q_dimension:
+                    questions['definitions'][q_id] = q_definition
+                    questions['questions_by_dimension'][q_dimension].append(q_id)
+
+                    dimension_obj = {
+                        'id': q_dimension,
+                        'title': self.dimensions_titles.get(q_dimension),
+                    }
+                    if dimension_obj not in questions['dimensions']:
+                        questions['dimensions'].append(dimension_obj)
+
         return questions
 
     def _get_question(self, q_id):
