@@ -4,6 +4,7 @@ from core.tests.mommy_recepies import make_survey, make_survey_result, make_indu
 from core import aggregate
 from django.conf import settings
 from core.models import SurveyResult
+from core.tests import mocks
 
 
 @override_settings(
@@ -151,18 +152,19 @@ class UpdatableIndustries(TestCase):
     },
     ALL_INDUSTRIES=('all', 'all'),
     MIN_ITEMS_INDUSTRY_THRESHOLD=2,
+    TENANTS=mocks.MOCKED_TENANTS,
 )
 class IndustryBenchmark(TestCase):
     """Test class for `core.aggregate.industry_benchmark` function."""
 
     def setUp(self):
-        make_industry_benchmark(industry='edu', dmb_value=2.0)
-        make_industry_benchmark(industry='all', dmb_value=1.0)
+        make_industry_benchmark(tenant='tenant1', industry='edu', dmb_value=2.0)
+        make_industry_benchmark(tenant='tenant1', industry='all', dmb_value=1.0)
 
     def test_industry_benchmark_industry_has_value(self):
         """When industry has a value for dmb, it should return it."""
-        make_industry_benchmark(industry='edu-o', dmb_value=3.0)
-        industry_to_be_updated = aggregate.industry_benchmark('edu-o')
+        make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=3.0)
+        industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'edu-o')
 
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
@@ -171,8 +173,8 @@ class IndustryBenchmark(TestCase):
 
     def test_industry_benchmark_industry_fallback_parent(self):
         """When industry does not have a value for dmb, it should  fallback to parent."""
-        make_industry_benchmark(industry='edu-o')
-        industry_to_be_updated = aggregate.industry_benchmark('edu-o')
+        make_industry_benchmark(tenant='tenant1', industry='edu-o')
+        industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'edu-o')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
         self.assertEqual(got_dmb, 2.0)
@@ -181,11 +183,22 @@ class IndustryBenchmark(TestCase):
     def test_industry_benchmark_industry_fallback_to_root(self):
         """When industry does not have a value for dmb, it should fallback to parent,
         and so on until you get eventualy to root."""
-        industry_to_be_updated = aggregate.industry_benchmark('fi-b')
+        industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'fi-b')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
         self.assertEqual(got_dmb, 1.0)
         self.assertEqual(got_industry, 'all')
+
+    def test_industry_benchmark_industry_in_more_than_one_tenant(self):
+        """When industry has the same name in more than one tenant, it should return the
+        correct one."""
+        make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=2.0)
+        make_industry_benchmark(tenant='tenant2', industry='edu-o', dmb_value=4.0)
+        industry_to_be_updated = aggregate.industry_benchmark('tenant2', 'edu-o')
+        got_dmb, got_dmb_d, got_industry = industry_to_be_updated
+
+        self.assertEqual(got_dmb, 4.0)
+        self.assertEqual(got_industry, 'edu-o')
 
 
 @override_settings(
