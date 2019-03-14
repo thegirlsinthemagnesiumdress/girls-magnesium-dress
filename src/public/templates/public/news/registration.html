@@ -31,8 +31,12 @@
               <input class="dmb-input" id="tenant" name="tenant" ng-model="registrationCtrl.tenant" type="hidden" required value="{{tenant|ng_mark_safe}}" ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'">
             </div>
             <div class="dmb-input-wrp">
-              <label for="companyName">Organisation name:</label>
-              <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
+              <label for="companyName">Organization name:</label>
+              <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organization name">
+            </div>
+            <div class="dmb-input-wrp">
+              {% comment %} TODO: use news industry here {% endcomment %}
+              <input id="prodId" name="industry" type="hidden" value="ic-bnpj" ng-init="registrationCtrl.industry='ic-bnpj'">
             </div>
             <div class="dmb-input-wrp">
               <label for="country">Country:</label>
@@ -56,7 +60,7 @@
       <div class="h-c-grid__col h-c-grid__col--12">
         <h2 class="h-c-headline h-c-headline--three"> Hello {[ registrationCtrl.companyName ]},</h2>
         <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
-          Your personalised assessment is ready to be completed
+          Your personalized assessment is ready to be completed
         </h1>
 
         <div class="dmb-registration__result-box">
