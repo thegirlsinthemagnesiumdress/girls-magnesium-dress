@@ -19,21 +19,23 @@ class SurveyDefinition(object):
 
         for block_id, block in self.definition['blocks'].items():
             for element in block['elements']:
-                def_q_id = element['questionId']
-                q_definition = self._get_question(def_q_id)
-                q_id = q_definition['id']
-                q_dimension = get_question_dimension(q_id, self.dimensions)
+                # it might not be of type question, so does not have a question id (ie Page Break)
+                def_q_id = element.get('questionId', None)
+                if def_q_id:
+                    q_definition = self._get_question(def_q_id)
+                    q_id = q_definition['id']
+                    q_dimension = get_question_dimension(q_id, self.dimensions)
 
-                if q_dimension:
-                    questions['definitions'][q_id] = q_definition
-                    questions['questions_by_dimension'][q_dimension].append(q_id)
+                    if q_dimension:
+                        questions['definitions'][q_id] = q_definition
+                        questions['questions_by_dimension'][q_dimension].append(q_id)
 
-                    dimension_obj = {
-                        'id': q_dimension,
-                        'title': self.dimensions_titles.get(q_dimension),
-                    }
-                    if dimension_obj not in questions['dimensions']:
-                        questions['dimensions'].append(dimension_obj)
+                        dimension_obj = {
+                            'id': q_dimension,
+                            'title': self.dimensions_titles.get(q_dimension),
+                        }
+                        if dimension_obj not in questions['dimensions']:
+                            questions['dimensions'].append(dimension_obj)
         return questions
 
     def _get_question(self, q_id):
@@ -43,9 +45,10 @@ class SurveyDefinition(object):
     @classmethod
     def get_question_definition(cls, q_definition):
         q_type = SurveyDefinition.map_question_type(q_definition['questionType'])
+        choices = q_definition.get('choices', {})
         choices_map = {
             choice['choiceText']: cls.get_choice_definition(id, choice, q_type)
-            for id, choice in q_definition['choices'].items()
+            for id, choice in choices.items()
         }
 
         # Since we don't get an array for choices but a map, we assume the indexes are ordered.
