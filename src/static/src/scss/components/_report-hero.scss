@@ -67,4 +67,15 @@
       padding-left: 20px 60px;
     }
   }
+
+  // TODO(aabuelgasim): remove when switching to news CSS
+  .h-c-headline {
+    color: inherit;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+
+  }
 }

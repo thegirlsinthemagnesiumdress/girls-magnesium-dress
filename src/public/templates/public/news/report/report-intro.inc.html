@@ -1,13 +1,15 @@
 <section class="dmb-report-intro dmb-u-p-t-m dmb-u-p-b-m{% if class %} {{class}}{% endif %}">
   <div class="h-c-page">
-    <h1 class="h-c-headline h-c-headline--two">Data Maturity report</h1>
-    <p class="h-c-headline h-c-headline--subhead">This report shows you how you score across the four key dimensions, and what to do to get to the next level.</p>
-    <div class="h-c-grid">
-      <div class="h-c-grid__col h-c-grid__col--6">
-        <a href="#" class="h-c-button h-c-button--flat"> Why Digital Maturity matters</a></div>
-      <div class="h-c-grid__col h-c-grid__col--6 dmb-report-intro__partnership">
-        {% include 'public/inc/global/partnership-logo.inc.html' with image="img/partners/deloitte-logo" extension="png" company="deloitte" inline=True %}
-      </div>
-    </div>
+    <h1 class="h-c-headline h-c-headline--two dmb-u-m-b-s">Data Maturity report</h1>
+    <p class="h-c-headline h-c-headline--subhead  dmb-u-m-b-s">
+      <span ng-if="reportCtrl.floorDmb < 3">
+        This report will show you how you score across the four key dimensions, and what to do to get to the next level, {[reportCtrl.levels[reportCtrl.floorDmb + 1]]}.
+      </span>
+      <span ng-if="reportCtrl.floorDmb >= 3">
+        Congratulations! You're in the top group for overall data maturity. This report will show you how you score across the four key dimensions, and how to get even better.
+      </span>
+    </p>
+
+    {% include 'public/inc/global/partnership-logo.inc.html' with image="img/partners/deloitte-logo" extension="png" company="deloitte" inline=True %}
   </div>
 </section>
