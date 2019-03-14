@@ -919,7 +919,10 @@ survey_def_no_choices_page_break_dict = {
                 {
                     "type": "Question",
                     "questionId": "QID267"
-                }
+                },
+                {
+                    "type": "PageBreak"
+                },
             ]
         }
     },
