@@ -1,7 +1,7 @@
 import mock
 import copy
 
-from core.tests.mocks import survey_definition_dict, MOCKED_DIMENSIONS
+from core.tests.mocks import survey_definition_dict, MOCKED_DIMENSIONS, survey_def_no_choices_page_break_dict
 from core.response_detail import SurveyDefinition, get_response_detail
 from djangae.test import TestCase
 
@@ -309,3 +309,14 @@ class GetSurveyDetailTestCase(TestCase):
         self.assertTrue(detail['definitions']['Q103'].get('available', False))
         self.assertTrue(detail['definitions']['Q104'].get('available', False))
         self.assertTrue(detail['definitions']['Q128'].get('available', False))
+
+    def test_get_response_detail_available_definiton_not_question(self):
+        data = copy.deepcopy(result_data)
+        detail = get_response_detail(
+            survey_def_no_choices_page_break_dict,
+            data,
+            self.dimensions,
+            self.dimensions_titles
+        )
+        self.assertIsNotNone(detail['definitions'].get('Q102'))
+        self.assertIsNone(detail['definitions'].get('Q267'))
