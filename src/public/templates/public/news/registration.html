@@ -35,6 +35,10 @@
               <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
+              {% comment %} TODO: use news industry here {% endcomment %}
+              <input id="prodId" name="industry" type="hidden" value="ic-bnpj" ng-init="registrationCtrl.industry='ic-bnpj'">
+            </div>
+            <div class="dmb-input-wrp">
               <label for="country">Country:</label>
               <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
                 <option value="" disabled selected>Select a country</option>
