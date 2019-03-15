@@ -89,7 +89,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Embed data-informed decision making',
-        'text': 'Institute systems to evaluate decisions based on empirical analysis.  Reward evidence-based rationale for operational decision-making.',
+        'text': 'Institute systems to evaluate decisions based on empirical analysis. Reward evidence-based rationale for operational decision-making.',
       },
       {
         'header': 'Data Activation Guide',
@@ -100,7 +100,7 @@ const dimensionLevelRecommendations = {
     1: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Craft messaging that captures your organization`s approach to handling and activating data.  Encourage leadership at all levels to communicate this message to team members.',
+        'text': 'Craft messaging that captures your organization`s approach to handling and activating data. Encourage leadership at all levels to communicate this message to team members.',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
@@ -108,7 +108,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Embed data-informed decision making',
-        'text': 'Provide access to tools that enable and encourage colleagues to analyse decision criteria and execute data-supported decisions.',
+        'text': 'Provide access to tools that enable and encourage colleagues to analyze decision criteria and execute data-supported decisions.',
       },
       {
         'header': 'Data Activation Guide',
@@ -119,7 +119,7 @@ const dimensionLevelRecommendations = {
     2: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Craft messaging that captures your organization`s approach to handling and activating data.  Encourage leadership at all levels to communicate this message to team members. ',
+        'text': 'Craft messaging that captures your organization`s approach to handling and activating data. Encourage leadership at all levels to communicate this message to team members.',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
@@ -138,7 +138,7 @@ const dimensionLevelRecommendations = {
     3: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Craft messaging that captures your organization`s approach to handling and activating data.  Encourage leadership at all levels to communicate this message to team members.',
+        'text': 'Craft messaging that captures your organization`s approach to handling and activating data. Encourage leadership at all levels to communicate this message to team members.',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
@@ -159,7 +159,7 @@ const dimensionLevelRecommendations = {
     0: [
       {
         'header': 'Measure it to improve it',
-        'text': 'Drive collaboration amongst data teams and business leaders to prioritise data collection activities and measurement capabilities.',
+        'text': 'Drive collaboration amongst data teams and business leaders to prioritize data collection activities and measurement capabilities.',
       },
       {
         'header': 'Understand what makes your audience tick',
@@ -202,7 +202,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Make the experience intuitive',
-        'text': 'Capture and organise audience on-site behavioral data to inform user interface and design decisions.',
+        'text': 'Capture and organize audience on-site behavioral data to inform user interface and design decisions.',
       },
       {
         'header': 'Unlock insights from your Google Analytics data',
@@ -233,7 +233,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Promote experimentation',
-        'text': 'Use A/B and multivariate tests to frequently identify areas to improve user interface and content options for readers.  Promote a culture of testing and learning to drive continual improvement.',
+        'text': 'Use A/B and multivariate tests to frequently identify areas to improve user interface and content options for readers. Promote a culture of testing and learning to drive continual improvement.',
       },
       {
         'header': 'Unlock insights from your Google Analytics data',
@@ -342,7 +342,7 @@ const dimensionLevelRecommendations = {
     3: [
       {
         'header': 'Understand the value of your readers',
-        'text': 'Continue to refine the approach to quantifying reader lifetime value (LTV).  Leverage reader LTV data to inform operational improvements and identify strategic growth opportunities.',
+        'text': 'Continue to refine the approach to quantifying reader lifetime value (LTV). Leverage reader LTV data to inform operational improvements and identify strategic growth opportunities.',
       },
       {
         'header': 'Tailor your subscription approach',
@@ -363,15 +363,15 @@ const dimensionLevelRecommendations = {
     0: [
       {
         'header': 'Measure it to improve it',
-        'text': 'Identify organisational objectives and tie key performance metrics to those objectives.',
+        'text': 'Identify organizational objectives and tie key performance metrics to those objectives.',
       },
       {
         'header': 'Understand what makes your audience tick',
-        'text': 'Build technical teams to enhance segmentation practices and improve on foundational understandings of how audiences engage with your platform. ',
+        'text': 'Build technical teams to enhance segmentation practices and improve on foundational understandings of how audiences engage with your platform.',
       },
       {
         'header': 'Connect data to your content',
-        'text': 'Deploy technology solutions to support cross-functional collaboration between data and editorial teams and help guide content decisions. ',
+        'text': 'Deploy technology solutions to support cross-functional collaboration between data and editorial teams and help guide content decisions.',
       },
       {
         'header': 'Make the experience intuitive',
@@ -379,7 +379,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Data Activation Guide',
-        'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide [Link] provides tips and best practices to overcome some of these challenges.',
+        'text': 'Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
         'cta': dataFoundationsGuideCta,
       },
     ],
@@ -390,11 +390,11 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Connect the right audience to the right advertiser',
-        'text': 'Collaborate with your advertisers to identify the audiences they want to reach.  Start incorporating advertiser input into audience segmentation practices. ',
+        'text': 'Collaborate with your advertisers to identify the audiences they want to reach.  Start incorporating advertiser input into audience segmentation practices.',
       },
       {
         'header': 'Know the value of your audience',
-        'text': 'Monitor the performance of different audiences across your sales mix.  Analyze and record insights across segments to develop a long-term understanding of audience segment performance.',
+        'text': 'Monitor the performance of different audiences across your sales mix. Analyze and record insights across segments to develop a long-term understanding of audience segment performance.',
       },
       {
         'header': 'Make the most of your platform mix',
@@ -409,7 +409,7 @@ const dimensionLevelRecommendations = {
     2: [
       {
         'header': 'Build and enhance the understanding of your audience ',
-        'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments.  Develop systems to effectively price audience segments based on historical performance and perceived value.',
+        'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments. Develop systems to effectively price audience segments based on historical performance and perceived value.',
       },
       {
         'header': 'Connect the right audience to the right advertiser',
@@ -428,7 +428,7 @@ const dimensionLevelRecommendations = {
     3: [
       {
         'header': 'Build and enhance the understanding of your audience ',
-        'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments.  Develop systems to effectively price audience segments based on historical performance and perceived value.',
+        'text': 'Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments. Develop systems to effectively price audience segments based on historical performance and perceived value.',
       },
       {
         'header': 'Connect the right audience to the right advertiser',
