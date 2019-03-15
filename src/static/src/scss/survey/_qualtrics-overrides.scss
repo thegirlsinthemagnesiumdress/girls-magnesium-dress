@@ -161,6 +161,10 @@
       border-radius: $dmb-border-radius;
       color: #fff;
       padding: 12px 24px;
+
+      &:focus {
+        background: $h-gm-blue-900;
+      }
     }
   }
 
@@ -179,7 +183,12 @@
 
 .LabelWrapper {
   background: $dmb-color-blue-solitude;
+  border: 2px solid transparent;
   border-radius: $dmb-border-radius;
+
+  .q-focused + & {
+    border: 2px solid $dmb-interactive-color;
+  }
 }
 
 #PushStickyFooter {

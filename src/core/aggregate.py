@@ -60,11 +60,26 @@ def updatable_industries(survey_results):
     return results_by_industry
 
 
-def industry_benchmark(industry, global_id=settings.ALL_INDUSTRIES[0]):
+def industry_benchmark(tenant, industry, global_id=settings.ALL_INDUSTRIES[0]):
+    """
+    Return the digital maturity benchmark and the digital maturity benchmark by
+    dimension stored in `core.models.IndustryBenchmark` element given `tenant`
+    and `industry` paramenters
+
+    :param tenant: tenant to retrieve the industry for
+    :param industry: starting industry to retrieve for `tenant`
+    :param global_id: name for the root industry to be returned
+
+    :returns: tuple of three elements (dmb, dmb_d, dmb_industry) where:
+        - dmb : represent the dmb stored in `core.models.IndustryBenchmark`
+        - dmb_d : represent the dmb by dimension stored in `core.models.IndustryBenchmark`
+        - dmb_industry : represent the root industry
+    """
+
     dmb, dmb_d, dmb_industry = None, None, global_id
     for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
         try:
-            industry_benchmark = IndustryBenchmark.objects.get(industry=current_industry)
+            industry_benchmark = IndustryBenchmark.objects.get(tenant=tenant, industry=current_industry)
             dmb = industry_benchmark.dmb_value
             dmb_d = industry_benchmark.dmb_d_value
             dmb_industry = current_industry
@@ -76,11 +91,26 @@ def industry_benchmark(industry, global_id=settings.ALL_INDUSTRIES[0]):
     return dmb, dmb_d, dmb_industry
 
 
-def industry_best_practice(industry, global_id=settings.ALL_INDUSTRIES[0]):
+def industry_best_practice(tenant, industry, global_id=settings.ALL_INDUSTRIES[0]):
+    """
+    Return the digital maturity benchmark best practice and the digital maturity benchmark by
+    dimension  best practice stored in `core.models.IndustryBenchmark` element given `tenant`
+    and `industry` paramenters.
+
+    :param tenant: tenant to retrieve the industry for
+    :param industry: starting industry to retrieve for `tenant`
+    :param global_id: name for the root industry to be returned
+
+    :returns: tuple of three elements (dmb, dmb_d, dmb_industry) where:
+        - dmb : represent the dmb stored in `core.models.IndustryBenchmark`
+        - dmb_d : represent the dmb by dimension stored in `core.models.IndustryBenchmark`
+        - dmb_industry : represent the root industry
+    """
+
     dmb_bp, dmb_d_bp, dmb_industry = None, None, global_id
     for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
         try:
-            industry_benchmark = IndustryBenchmark.objects.get(industry=current_industry)
+            industry_benchmark = IndustryBenchmark.objects.get(tenant=tenant, industry=current_industry)
             dmb_bp = industry_benchmark.dmb_bp_value
             dmb_d_bp = industry_benchmark.dmb_d_bp_value
             dmb_industry = current_industry

@@ -1,0 +1,21 @@
+.dmb-report-overall {
+  &__table-container {
+    @include dmb-resp-prop(margin-top, 50px, 60px, 80px);
+  }
+
+  &__link {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .dmb-progress-circle {
+    @include dmb-mq($until: tablet) {
+      margin: 20px auto;
+      width: 170px;
+    }
+
+    @include dmb-mq($from: tablet) {
+      margin-top: -90px;
+    }
+  }
+}
