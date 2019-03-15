@@ -115,8 +115,8 @@ class SurveyResultsIndustryDetail(APIView):
         if industry not in settings.INDUSTRIES.keys():
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        dmb, dmb_d, dmb_industry = aggregate.industry_benchmark(industry)
-        dmb_bp, dmb_d_bp, dmb_bp_industry = aggregate.industry_best_practice(industry)
+        dmb, dmb_d, dmb_industry = aggregate.industry_benchmark(tenant, industry)
+        dmb_bp, dmb_d_bp, dmb_bp_industry = aggregate.industry_best_practice(tenant, industry)
 
         data = {
             'industry': industry_map[industry],
