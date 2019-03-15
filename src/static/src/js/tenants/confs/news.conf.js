@@ -81,11 +81,11 @@ const dimensionLevelRecommendations = {
     0: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Articulate your broader organisational mission, and identify areas in which data may be able to support or drive efforts to meet the mission.',
+        'text': 'Articulate your broader organizational mission, and identify areas in which data may be able to support or drive efforts to meet the mission.',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
-        'text': 'Identify opportunities to align data functions with the centers of influence in the organisation.',
+        'text': 'Identify opportunities to align data functions with the centers of influence in the organization.',
       },
       {
         'header': 'Embed data-informed decision making',
@@ -100,15 +100,15 @@ const dimensionLevelRecommendations = {
     1: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Craft messaging that captures your organisation’s approach to handling and activating data.Encourage leadership at all levels to communicate this message to team members.',
+        'text': 'Craft messaging that captures your organization`s approach to handling and activating data.  Encourage leadership at all levels to communicate this message to team members.',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
-        'text': 'Establish educational sessions in which representatives from the data team provide information and training on key aspects of the data operation to team members throughout the organisation.',
+        'text': 'Establish educational sessions in which representatives from the data team provide information and training on key aspects of the data operation to team members throughout the organization.',
       },
       {
         'header': 'Embed data-informed decision making',
-        'text': 'Provide access to tools that enable and encourage colleagues to analyze decision criteria and execute data-supported decisions.',
+        'text': 'Provide access to tools that enable and encourage colleagues to analyse decision criteria and execute data-supported decisions.',
       },
       {
         'header': 'Data Activation Guide',
@@ -119,15 +119,15 @@ const dimensionLevelRecommendations = {
     2: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Craft messaging that captures your organisation’s approach to handling and activating data.Encourage leadership at all levels to communicate this message to team members.',
+        'text': 'Craft messaging that captures your organization`s approach to handling and activating data.  Encourage leadership at all levels to communicate this message to team members. ',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
-        'text': 'Incorporate data strategy messaging in team meetings. Establish key performance indicators (KPIs) that drive collaboration across organisational silos and incentivize cross-functional performance.',
+        'text': 'Incorporate data strategy messaging in team meetings. Establish key performance indicators (KPIs) that drive collaboration across organizational silos and incentivise cross-functional performance.',
       },
       {
-        'header': 'Democratise your data',
-        'text': 'Create intuitive tools and portals that enable access to relevant audience data for all team members.  Provide trainings and educational resources to team members and encourage use of available resources.',
+        'header': 'Democratize your data',
+        'text': 'Create intuitive tools and portals that enable access to relevant audience data for all team members. Provide trainings and educational resources to team members and encourage use of available resources.',
       },
       {
         'header': 'Data Activation Guide',
@@ -138,15 +138,15 @@ const dimensionLevelRecommendations = {
     3: [
       {
         'header': 'Broadcast a thoughtful data strategy',
-        'text': 'Craft messaging that captures your organisation’s approach to handling and activating data.Encourage leadership at all levels to communicate this message to team members.',
+        'text': 'Craft messaging that captures your organization`s approach to handling and activating data.  Encourage leadership at all levels to communicate this message to team members.',
       },
       {
         'header': 'Foster collaboration and cross-functional teamwork',
-        'text': 'Continue regular cadence of cross-functional team meetings and craft incentives to encourage further collaboration across the organisation.',
+        'text': 'Continue regular cadence of cross-functional team meetings and craft incentives to encourage further collaboration across the organization.',
       },
       {
         'header': 'Attract the right talent',
-        'text': 'Communicate the unique emphasis your organisation places on being data-informed, and establish recruiting partnerships to maintain a strong pipeline of technical professionals.',
+        'text': 'Communicate the unique emphasis your organization places on being data-informed, and establish recruiting partnerships to maintain a strong pipeline of technical professionals.',
       },
       {
         'header': 'Data Activation Guide',
@@ -159,7 +159,7 @@ const dimensionLevelRecommendations = {
     0: [
       {
         'header': 'Measure it to improve it',
-        'text': 'Drive collaboration amongst data teams and business leaders to prioritize data collection activities and measurement capabilities.',
+        'text': 'Drive collaboration amongst data teams and business leaders to prioritise data collection activities and measurement capabilities.',
       },
       {
         'header': 'Understand what makes your audience tick',
@@ -171,11 +171,11 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Make the experience intuitive',
-        'text': 'Build your team’s skills in web analytics to better understand and improve pain points in the reader journey.',
+        'text': 'Build your team`s skills in web analytics to better understand and improve pain points in the reader journey.',
       },
       {
         'header': 'Unlock insights from your Google Analytics data',
-        'text': 'Understand your different segments of readers and how they engage with your site.',
+        'text': 'Understand your different segments of readers and how they engage with your site',
         'cta': {
           'text': 'News Consumer Insights',
           'link': 'https://newsinitiative.withgoogle.com/training/newsconsumerinsights',
@@ -190,7 +190,7 @@ const dimensionLevelRecommendations = {
     1: [
       {
         'header': 'Measure it to improve it',
-        'text': 'Identify organisational objectives and tie key performance metrics to those objectives.',
+        'text': 'Identify organizational objectives and tie key performance metrics to those objectives.',
       },
       {
         'header': 'Understand what makes your audience tick',
@@ -202,7 +202,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Make the experience intuitive',
-        'text': 'Capture and organize audience on-site behavioral data to inform user interface and design decisions.',
+        'text': 'Capture and organise audience on-site behavioral data to inform user interface and design decisions.',
       },
       {
         'header': 'Unlock insights from your Google Analytics data',
@@ -221,7 +221,7 @@ const dimensionLevelRecommendations = {
     2: [
       {
         'header': 'Measure it to improve it',
-        'text': 'Make analytics and reporting accessible to relevant team members, so everyone in the organisation can understand the health and performance of the digital platform.',
+        'text': 'Make analytics and reporting accessible to relevant team members, so everyone in the organization can understand the health and performance of the digital platform.',
       },
       {
         'header': 'Understand what makes your audience tick',
@@ -256,7 +256,7 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Understand what makes your audience tick',
-        'text': 'Enhance technological capabilities and data collection efforts to refine the understanding of specific audience segments and individual reader profiles.  Continue to uncover insights that inform best ways to serve readers.',
+        'text': 'Enhance technological capabilities and data collection efforts to refine the understanding of specific audience segments and individual reader profiles. Continue to uncover insights that inform best ways to serve readers.',
       },
       {
         'header': 'Focus on optimizing the impact of your content',
