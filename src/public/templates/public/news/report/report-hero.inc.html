@@ -13,8 +13,8 @@
       <div class="dmb-report-hero__subheading h-c-headline h-c-headline--subhead">
         Your Data Maturity level is
       </div>
-      <div class="dmb-report-hero__current-level h-c-headline h-c-headline--display-two">
-        <span class="">
+      <h2 class="dmb-report-hero__current-level h-c-headline h-c-headline--display-two">
+        <span>
           {[reportCtrl.levels[reportCtrl.floorDmb]]}
         </span>
         <button
@@ -24,7 +24,7 @@
             ng-click ="reportCtrl.print()">
           {% include 'core/inc/svg.html' with id='print' inline=True only %}
         </button>
-      </div>
+      </h2>
     </div>
     <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--{[reportCtrl.nextLevel]}">
       <span ng-if="reportCtrl.floorDmb < 3">
@@ -33,7 +33,9 @@
       <span ng-if="reportCtrl.floorDmb >= 3">
         Congratulations, you're in the top group for data maturity</strong>
       </span>
-      {% include 'core/inc/svg.html' with id='info' inline=True only %}
+      <button dmb-side-panel-trigger="#dmb-report-left-side-panel-one" aria-label="Get more informations about what your maturity represents">
+        {% include 'core/inc/svg.html' with id='info' inline=True only %}
+      </button>
     </div>
   </div>
 </section>

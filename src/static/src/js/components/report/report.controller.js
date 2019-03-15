@@ -41,21 +41,8 @@ class ReportController {
       floorDmbFactory,
       tenantConf,
       glueBreakpoint) {
-    // TODO(aabuelgasim): uncomment consts and remove lets assignments
-    // and if statement below when no longer using `reports-news` URL:
-    // const sidMatches = $location.absUrl().match(locationSidRegex);
-    // const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
-    let sidMatches = $location.absUrl().match(locationSidRegex);
-    let responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
-
-    if (!sidMatches) {
-      const locationSidRegex2 = /reports-news\/(\w+)[#\/].*$/;
-      const resultResponseIdRegex2 = /reports-news\/result\/(\w+)[#\/].*$/;
-      sidMatches = $location.absUrl().match(locationSidRegex2);
-      responseIdMatches = $location.absUrl().match(resultResponseIdRegex2);
-    }
-    // /////////////////
-
+    const sidMatches = $location.absUrl().match(locationSidRegex);
+    const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
     const responseId = responseIdMatches ? responseIdMatches[1] : null;
 
@@ -116,6 +103,12 @@ class ReportController {
      * @export
      */
     this.levelDescriptions = tenantConf.levelDescriptions;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.reportLevelDescriptions = tenantConf.reportLevelDescriptions;
 
     /**
      * @export
@@ -193,7 +186,6 @@ class ReportController {
         this.nextLevel = this.currentLevel;
       }
 
-
       reportService.dmb_d = this.result['dmb_d'];
 
       // ENABLE FOR DEMO
@@ -205,11 +197,9 @@ class ReportController {
           this.dimensions.splice(this.dimensions.indexOf(key), 1);
         }
       }
-
       this.ngTimeout_(() => {
         this.renderTabset = true;
       }, 0, true);
-
       // //////////////
 
 

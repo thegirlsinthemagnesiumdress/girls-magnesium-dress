@@ -1,0 +1,5 @@
+.dmb-report-tabs {
+  &__intro {
+    @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
+  }
+}
