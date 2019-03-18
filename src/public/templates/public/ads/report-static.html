@@ -1,5 +1,6 @@
 {% extends "public/ads/base.html" %}
 {% load staticfiles %}
+{% load angular %}
 
 {% block body_class %}dmb-report-page{% endblock %}
 
@@ -217,6 +218,7 @@
                     </h3>
                     <div>
                       <div
+                        tenant="{{tenant|ng_mark_safe}}"
                         dmb-dimension-tab="{[dimension]}"
                         company-name="{[ reportCtrl.survey.company_name ]}">
                       </div>

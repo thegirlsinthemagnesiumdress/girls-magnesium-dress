@@ -1,5 +1,6 @@
-{% extends "public/ads/base.html" %}
+{% extends "public/base.html" %}
 {% load staticfiles %}
+{% load angular %}
 
 {% block body_class %}dmb-report-page{% endblock %}
 
@@ -7,11 +8,15 @@
 {% comment %}
   TODO(aabuelgasim): remove dmb-news class when we switch to news scss
 {% endcomment %}
-<div dmb-report ng-cloak class="dmb--news">
-
-  {% include 'public/news/report/report-intro.inc.html' %}
-
-  {% include 'public/news/report/report-hero.inc.html' %}
+<div dmb-report ng-cloak id="dmb-{{tenant|ng_mark_safe}}">
+  <main id="dmb-report" dmb-report ng-cloak>
+    {% comment %}
+    {% include 'public/news/report/report-intro.inc.html' %}
+    {% include 'public/news/report/report-hero.inc.html' %}
+    {% include 'public/news/report/report-overall.inc.html' %}
+    {% endcomment %}
+    {% include 'public/news/report/report-dimensions.inc.html' %}
+  </main>
 
 
   <main class="dmb-report-page__content" id="dmb-report-page-main">

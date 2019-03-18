@@ -1,7 +1,8 @@
 goog.module('dmb.components.dimensionTab.directive');
 
 const dimensionTabCtrl = goog.require('dmb.components.dimensionTab.controller');
-const dimensionTabtemplate = goog.require('dmb.components.dimensionTab.template');
+const dimensionTabLegacyTemplate = goog.require('dmb.components.dimensionTab.legacyTemplate');
+const dimensionTabTemplate = goog.require('dmb.components.dimensionTab.template');
 
 /**
  * Dimension tab directive.
@@ -15,7 +16,9 @@ function ReportDirective() {
       'dmbDimensionTab': '@',
       'companyName': '@',
     },
-    template: dimensionTabtemplate,
+    template: function(tElem, tAttrs) {
+      return tAttrs.tenant === 'ads' ? dimensionTabLegacyTemplate : dimensionTabTemplate;
+    },
     controller: dimensionTabCtrl.main,
     controllerAs: dimensionTabCtrl.CONTROLLER_AS_NAME,
   };
