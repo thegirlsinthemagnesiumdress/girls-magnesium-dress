@@ -29,65 +29,14 @@
     </div>
   </div>
 
+  <div class="dmb-u-m-t-m">
+    <dmb-progress-grid
+        data-company-name="{[reportCtrl.survey.company_name]}"
+        data-company-level="reportCtrl.result.dmb"
+        data-industry-avg="reportCtrl.industryResult.dmb"
+        data-industry-best="reportCtrl.industryResult.dmb_bp"
+        data-industry-ready="!!reportCtrl.industryResult">
+    </dmb-progress-grid>
+  </div>
 
-
-  <dmb-progress-grid class="dmb-progress-grid dmb-progress-grid--level-{[reportCtrl.floorDmb]} dmb-u-m-t-m">
-    <!-- col-bg -->
-    <div class="dmb-progress-grid__col-bg dmb-progress-grid__col-bg--level-{[$index]}"
-      ng-repeat="level in reportCtrl.levels">
-    </div>
-
-    <!-- grid headings -->
-    <div class="dmb-progress-grid__heading dmb-progress-grid__heading--level-{[$index]} h-c-eyebrow"
-      ng-repeat="level in reportCtrl.levels">
-      {[level]}
-    </div>
-
-    <!-- bar labels -->
-    <div class="dmb-progress-grid__label dmb-progress-grid__label--company h-u-font-weight-medium">
-      {[reportCtrl.survey.company_name]}
-    </div>
-    <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular">
-      <button dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-        aria-label="Get more informations about the industry average">
-        {% include 'core/inc/svg.html' with id='info' size='20px' only %}
-      </button> Industry average
-    </div>
-    <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-regular">
-      <button dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-        aria-label="Get more informations about the industry average">
-        {% include 'core/inc/svg.html' with id='info' size='20px' only %}
-      </button> Industry best
-    </div>
-
-    <!-- vertical bars -->
-    <div class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--company"
-      data-value="{[reportCtrl.result.dmb|number:1]}" data-level-name="{[reportCtrl.getLevelName(reportCtrl.result.dmb)]}"
-      ng-style="{height: reportCtrl.getProgress(reportCtrl.result.dmb)}">
-    </div>
-    <div class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-best"
-      data-value="{[reportCtrl.industryResult.dmb_bp|number:1]}"
-      data-level-name="{[reportCtrl.getLevelName(reportCtrl.industryResult.dmb_bp)]}"
-      ng-style="{height: reportCtrl.getProgress(reportCtrl.industryResult.dmb_bp)}">
-    </div>
-    <div class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-avg"
-      data-value="{[reportCtrl.industryResult.dmb|number:1]}"
-      data-level-name="{[reportCtrl.getLevelName(reportCtrl.industryResult.dmb)]}"
-      ng-style="{height: reportCtrl.getProgress(reportCtrl.industryResult.dmb)}">
-    </div>
-
-    <!-- horizontal bars -->
-    <div class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--company"
-      data-value="{[reportCtrl.result.dmb|number:1]}" ng-style="{width: reportCtrl.getProgress(reportCtrl.result.dmb)}">
-    </div>
-    <div class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-avg"
-      data-value="{[reportCtrl.industryResult.dmb|number:1]}"
-      ng-style="{width: reportCtrl.getProgress(reportCtrl.industryResult.dmb)}">
-    </div>
-    <div class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-best"
-      data-value="{[reportCtrl.industryResult.dmb_bp|number:1]}"
-      ng-style="{width: reportCtrl.getProgress(reportCtrl.industryResult.dmb_bp)}">
-    </div>
-
-  </dmb-progress-grid>
 </section>

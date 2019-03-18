@@ -233,40 +233,6 @@ class ReportController {
   print() {
     window['print']();
   }
-
-  /**
-   *
-   * @param {number} value
-   * @return {string}
-   * @export
-   */
-  getLevel(value) {
-    return Math.min(Math.floor(value), (this.levelsTotal - 1));
-  }
-
-  /**
-   *
-   * @param {number} value
-   * @return {string}
-   * @export
-   */
-  getLevelName(value) {
-    const level = this.getLevel(value);
-    const levelName = this.levels[level];
-    return levelName;
-  }
-
-  /**
-   *
-   * @param {number} value
-   * @return {string}
-   * @export
-   */
-  getProgress(value) {
-    const prog = value * 100;
-    const offset = this.getLevel(value);
-    return `calc(${prog}% + ${offset}px)`;
-  }
 }
 
 
