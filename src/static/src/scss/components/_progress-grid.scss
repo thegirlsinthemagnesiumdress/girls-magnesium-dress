@@ -96,6 +96,11 @@ $block: '.dmb-progress-grid';
     }
   }
 
+  .dmb-svg {
+    position: relative;
+    top: 2px;
+  }
+
   // Tenant-specific styles
   // These include styles that rely on the tenant levels or the break-point at which the grid rotates ($grid-switch-bp)
   @each $tenant, $value in $tenants {
