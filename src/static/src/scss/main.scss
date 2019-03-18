@@ -78,13 +78,12 @@
 
 
 // DMB STYLES
-@import 'colors';
 @import 'mixins';
 @import 'variables';
 @import 'utils';
 @import 'hercules-overrides';
 @import 'grid-variables';
-
+@import 'tenants-variables';
 
 // DMB Components
 @import 'components/card-on-bg';

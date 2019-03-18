@@ -77,4 +77,36 @@
       padding-left: 10px;
     }
   }
+
+  // Change color of home tab based on level
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
+
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      @each $level, $value in $tenant-levels {
+        $color: map-get($value, color);
+
+        .glue-pagination-tab[data-glue-pagination-label='level-#{$level}'] {
+          .glue-c-tabset__button {
+            color: $color; // tablet and desktop tab heading color
+          }
+
+          &.glue-is-active .glue-c-tabset__button {
+            border-color: $color; // tablet and desktop tab border color
+          }
+        }
+
+        .dmb-home-tabs__tab--level-#{$level} {
+          .h-c-tabby__heading {
+            color: $color; // mobile tab heading color
+          }
+
+          .dmb-home-tabs__tab-text {
+            border-color: $color; // mobile border color
+          }
+        }
+      }
+    }
+  }
 }
+

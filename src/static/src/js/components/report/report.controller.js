@@ -87,18 +87,6 @@ class ReportController {
     this.levels = tenantConf.levels;
 
     /**
-     * @type {!string}
-     * @export
-     */
-    this.currentLevel = '';
-
-    /**
-     * @type {!string}
-     * @export
-     */
-    this.nextLevel = '';
-
-    /**
      * @type {!Object}
      * @export
      */
@@ -157,13 +145,6 @@ class ReportController {
      */
     this.industryBestSource = null;
 
-    /**
-     * Whether to render tabset of not
-     * @type {boolean}
-     * @export
-     */
-    this.renderTabset = false;
-
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
     // We're saving the results in a service since it's not possible to
@@ -179,16 +160,9 @@ class ReportController {
 
       this.floorDmb = floorDmbFactory(this.result.dmb);
 
-      this.currentLevel = this.levels[this.floorDmb].toLowerCase();
-      if (this.floorDmb < 3) {
-        this.nextLevel = this.levels[(this.floorDmb + 1)].toLowerCase();
-      } else {
-        this.nextLevel = this.currentLevel;
-      }
-
       reportService.dmb_d = this.result['dmb_d'];
 
-      // ENABLE FOR DEMO
+      // ENABLE TO DEMO A HIDDEN DIMENSION
       // reportService.dmb_d['reader_revenue'] = null;
 
       // TODO(aabuelgasim): remove this chunk once new tabby is used
@@ -237,7 +211,7 @@ class ReportController {
     return bpTabsEnabled.indexOf(size) > -1;
   }
 
-    /**
+  /**
    * Opens a specific tab if state is enabled. This is expected to be used with
    * something like ngClick.
    *
@@ -258,6 +232,40 @@ class ReportController {
    */
   print() {
     window['print']();
+  }
+
+  /**
+   *
+   * @param {number} value
+   * @return {string}
+   * @export
+   */
+  getLevel(value) {
+    return Math.min(Math.floor(value), (this.levelsTotal - 1));
+  }
+
+  /**
+   *
+   * @param {number} value
+   * @return {string}
+   * @export
+   */
+  getLevelName(value) {
+    const level = this.getLevel(value);
+    const levelName = this.levels[level];
+    return levelName;
+  }
+
+  /**
+   *
+   * @param {number} value
+   * @return {string}
+   * @export
+   */
+  getProgress(value) {
+    const prog = value * 100;
+    const offset = this.getLevel(value);
+    return `calc(${prog}% + ${offset}px)`;
   }
 }
 
