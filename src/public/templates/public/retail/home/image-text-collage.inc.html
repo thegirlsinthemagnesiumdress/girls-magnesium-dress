@@ -1,0 +1,44 @@
+{% comment %}
+  Generates a collage with two columns of images using srcsets with 1x and 2x images, next to text. An image can be portrait or landscape by giving it a modifier class of `dmb-img-text-collage__img--portait` or `dmb-img-text-collage__img--landscape` respectively.
+
+  Valid combinations:
+    1 portrait in each column
+    1 landscape in each column
+    2 lanscape in each column
+    2 lanscape in one column and 1 potrait in the other.
+
+  Each images should be given a unique class and then it's background-image should be set using 1x and 2x images in the tenant SCSS file as follows:
+
+  .dmb-img-text-collage__img--1 {
+    background-image: url('../img/news/home-collage-img1.jpg');
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url('../img/news/home-collage-img1@2x.jpg');
+    }
+  }
+
+  The default background properties are `background-position: center center` and `background-size: cover`, but can be overridden in the tenant SCSS file if required.
+
+{% endcomment %}
+
+<section class="dmb-img-text-collage h-c-page{% if class %} {{class}}{% endif %}">
+  <div class="h-c-grid">
+    <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2 h-c-grid__col--align-middle">
+      <div class="dmb-img-text-collage__img--1 dmb-img-text-collage__img dmb-img-text-collage__img--portrait"></div>
+    </div>
+
+    <div class="dmb-img-text-collage__img-col h-c-grid__col h-c-grid__col--3 h-c-grid__col-s--2 h-c-grid__col--align-middle">
+      <div class="dmb-img-text-collage__img--2 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
+      <div class="dmb-img-text-collage__img--3 dmb-img-text-collage__img dmb-img-text-collage__img--landscape"></div>
+    </div>
+
+    <div class="dmb-img-text-collage__text-col h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1 h-c-grid__col--align-middle">
+      <h2 class="h-c-headline h-c-headline--three">
+        Improve how you engage and monetize your audience
+      </h2>
+      <p>
+        Across your business there are a multitude of opportunities to improve the way you engage and monetize your audience
+      </p>
+    </div>
+  </div>
+</section>
