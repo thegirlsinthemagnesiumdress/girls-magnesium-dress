@@ -3,6 +3,7 @@ $dmb-prog-grid-col-bg-color: $dmb-color-blue-solitude;
 $dmb-prog-grid-bar-color: $dmb-color-grey-chateau;
 $dmb-prog-grid-bar-size: 12px;
 $dmb-prog-grid-margin-right: 35px; //to accommodate full and nearly full bar labels
+$dmb-prog-grid-margin-top: 75px; //to accommodate full and nearly full bar labels
 $sources: company ind-avg ind-best;
 $elements: label bar;
 $block: '.dmb-progress-grid';
@@ -104,6 +105,10 @@ $block: '.dmb-progress-grid';
 
     #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
       grid-template-rows: repeat($tenant-levels-total, 50px) auto;
+
+      @include dmb-mq($until: $grid-switch-bp) {
+        margin-top: $dmb-prog-grid-margin-top; //to accommodate full and nearly full bar labels
+      }
 
       @include dmb-mq($from: $grid-switch-bp) {
         border-right: 1px solid $dmb-prog-grid-line-color;

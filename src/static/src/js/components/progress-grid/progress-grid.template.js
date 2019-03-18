@@ -21,11 +21,17 @@ const template = `
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular">
     <button dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
       aria-label="Get more informations about the industry average">
+       <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
+          <use xlink:href="#info"></use>
+        </svg>
     </button> Industry average
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-regular">
     <button dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
       aria-label="Get more informations about the industry best">
+       <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
+          <use xlink:href="#info"></use>
+        </svg>
     </button> Industry best
   </div>
 
