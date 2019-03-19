@@ -1,6 +1,6 @@
 // sass-lint:disable no-ids
 #Wrapper.dmb-survey--start {
-  background-image: url('../img/news/survey/survey-hero.jpg');
+  background-image: url('../img/retail/survey/survey-hero.jpg');
   background-size: auto 193px;
 
   @include dmb-mq(tablet) {
@@ -12,6 +12,6 @@
   }
 
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    background-image: url('../img/news/survey/survey-hero@2x.jpg');
+    background-image: url('../img/retail/survey/survey-hero@2x.jpg');
   }
 }

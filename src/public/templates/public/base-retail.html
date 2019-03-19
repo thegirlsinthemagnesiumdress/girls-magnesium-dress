@@ -2,7 +2,7 @@
 {% load static_rev %}
 {% load angular %}
 <!DOCTYPE html>
-<html lang="en" id="dmb-{{ tenant|ng_mark_safe }}">
+<html lang="en" id="dmb-retail">
 <head ng-csp>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500,200|Product+Sans:400&lang=en" rel="stylesheet">
 
-    <title>Data Maturity Benchmark</title>
+    <title>Digital Maturity Benchmark</title>
 </head>
 <body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
@@ -62,7 +62,7 @@
   {% include 'core/inc/_svg.inc.html' %}
   {% include 'core/inc/_dmb-svgs.inc.html' %}
 </div>
-<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant|ng_mark_safe }}" data-dimensions="{{ dimensions|ng_mark_safe }}"></div>
+<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="retail" data-dimensions="{{ dimensions|ng_mark_safe }}"></div>
 
 {% if debug %}
 

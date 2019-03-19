@@ -2,34 +2,34 @@
 //sass-lint:disable no-ids
 
 $level-colors: (
-  nascent: $dmb-color-green-eucalyptus,
-  developing: $dmb-color-green-salem,
-  mature: $dmb-color-green-jewel,
-  leading: $dmb-color-green-jewel-dark
+  nascent: $h-gm-red-500,
+  developing: $h-gm-red-600,
+  mature: $h-gm-red-700,
+  leading: $h-gm-red-800
 );
 
 
 // Try to only set colors, and background properties background-image, background-size and background-position
-#dmb-news {
+#dmb-retail {
   // PRIMARY HEADING COLOR
   .dmb-primary-heading {
-    color: $dmb-news-primary-color;
+    color: $dmb-retail-primary-color;
   }
 
   // HOME HERO IMAGES
   .dmb-home-hero {
     &__bg-img {
-      background-image: url('../img/news/home/hero-mobile.jpg');
+      background-image: url('../img/retail/home/hero-mobile.jpg');
 
       @include dmb-mq(tablet) {
-        background-image: url('../img/news/home/hero.jpg');
+        background-image: url('../img/retail/home/hero.jpg');
       }
 
       @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/home/hero-mobile@2x.jpg');
+        background-image: url('../img/retail/home/hero-mobile@2x.jpg');
 
         @include dmb-mq(tablet) {
-          background-image: url('../img/news/home/hero@2x.jpg');
+          background-image: url('../img/retail/home/hero@2x.jpg');
         }
       }
     }
@@ -39,27 +39,27 @@ $level-colors: (
     // IMAGE TEXT COLLAGE IMAGES
     .dmb-img-text-collage {
       &__img--1 {
-        background-image: url('../img/news/home/collage-img1.jpg');
+        background-image: url('../img/retail/home/collage-img1.jpg');
         background-position: center top;
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-          background-image: url('../img/news/home/collage-img1@2x.jpg');
+          background-image: url('../img/retail/home/collage-img1@2x.jpg');
         }
       }
 
       &__img--2 {
-        background-image: url('../img/news/home/collage-img2.jpg');
+        background-image: url('../img/retail/home/collage-img2.jpg');
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-          background-image: url('../img/news/home/collage-img2@2x.jpg');
+          background-image: url('../img/retail/home/collage-img2@2x.jpg');
         }
       }
 
       &__img--3 {
-        background-image: url('../img/news/home/collage-img3.jpg');
+        background-image: url('../img/retail/home/collage-img3.jpg');
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-          background-image: url('../img/news/home/collage-img3@2x.jpg');
+          background-image: url('../img/retail/home/collage-img3@2x.jpg');
         }
       }
     }
@@ -91,7 +91,7 @@ $level-colors: (
 
     .dmb-img-text {
       @include dmb-mq(tablet) {
-        background-image: url('../img/news/home/img-text-img.jpg');
+        background-image: url('../img/retail/home/img-text-img.jpg');
         background-position: right -50px top;
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -138,7 +138,7 @@ $level-colors: (
 }
 
 // TODO(aabuelgasim): Remove when switching to news CSS
-#dmb-news {
+#dmb-retail {
   .dmb-report-page {
     .dmb-report-page__zippy-btn {
       &::before {
