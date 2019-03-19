@@ -2,7 +2,7 @@
 $tenants: (
   news: (
     primary-color: $dmb-color-green-eucalyptus,
-    grid-switch-bp: 800px,
+    progress-grid-switch-bp: 800px,
     levels: (
       0: (
         color: $dmb-color-green-eucalyptus
@@ -20,7 +20,7 @@ $tenants: (
   ),
   retail: (
     primary-color: $h-gm-red-500,
-    grid-switch-bp: 1024px,
+    progress-grid-switch-bp: 1024px,
     levels: (
       0: (
         color: $h-gm-red-500

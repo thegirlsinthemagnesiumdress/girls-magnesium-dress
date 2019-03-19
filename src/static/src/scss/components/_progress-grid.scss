@@ -102,21 +102,21 @@ $block: '.dmb-progress-grid';
   }
 
   // Tenant-specific styles
-  // These include styles that rely on the tenant levels or the break-point at which the grid rotates ($grid-switch-bp)
+  // These include styles that rely on the tenant levels or the break-point at which the grid rotates ($progress-grid-switch-bp)
   @each $tenant, $value in $tenants {
     $tenant-levels: map-get($value, levels);
     $tenant-levels-total: length($tenant-levels);
-    $grid-switch-bp: map-get($value, grid-switch-bp);
+    $progress-grid-switch-bp: map-get($value, progress-grid-switch-bp);
 
     #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
       grid-template-rows: repeat($tenant-levels-total, 50px) auto;
 
-      @include dmb-mq($until: $grid-switch-bp) {
+      @include dmb-mq($until: $progress-grid-switch-bp) {
         margin-top: $dmb-prog-grid-margin-top; //to accommodate full and nearly full bar labels
         border-top: 1px solid $dmb-prog-grid-line-color;
       }
 
-      @include dmb-mq($from: $grid-switch-bp) {
+      @include dmb-mq($from: $progress-grid-switch-bp) {
         border-right: 1px solid $dmb-prog-grid-line-color;
         grid-template-columns: auto repeat($tenant-levels-total, 1fr);
         grid-template-rows: auto repeat(length($sources), auto) 15px;
@@ -124,7 +124,7 @@ $block: '.dmb-progress-grid';
       }
 
       &__col-bg {
-        @include dmb-mq($until: $grid-switch-bp) {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
           border-bottom: 1px solid $dmb-prog-grid-line-color;
           grid-column: 1 / -1;
 
@@ -137,7 +137,7 @@ $block: '.dmb-progress-grid';
           }
         }
 
-        @include dmb-mq($from: $grid-switch-bp) {
+        @include dmb-mq($from: $progress-grid-switch-bp) {
           border-left: 1px solid $dmb-color-grey-zircon;
           grid-row: 1 / -1;
 
@@ -152,11 +152,11 @@ $block: '.dmb-progress-grid';
       }
 
       &__heading {
-        @include dmb-mq($until: $grid-switch-bp) {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
           display: none;
         }
 
-        @include dmb-mq($from: $grid-switch-bp) {
+        @include dmb-mq($from: $progress-grid-switch-bp) {
           @for $i from 0 to $tenant-levels-total {
             $j: $i + 2;
 
@@ -168,7 +168,7 @@ $block: '.dmb-progress-grid';
       }
 
       &__label {
-        @include dmb-mq($until: $grid-switch-bp) {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
           display: flex;
           flex-direction: column-reverse;
           grid-row: -1;
@@ -186,7 +186,7 @@ $block: '.dmb-progress-grid';
           }
         }
 
-        @include dmb-mq($from: $grid-switch-bp) {
+        @include dmb-mq($from: $progress-grid-switch-bp) {
           align-self: center;
           grid-column: 1;
           margin: 15px 20px 15px 0;
@@ -205,13 +205,13 @@ $block: '.dmb-progress-grid';
       &__v-bar {
         grid-row: $tenant-levels-total;
 
-        @include dmb-mq($from: $grid-switch-bp) {
+        @include dmb-mq($from: $progress-grid-switch-bp) {
           display: none;
         }
       }
 
       &__h-bar {
-        @include dmb-mq($until: $grid-switch-bp) {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
           display: none;
         }
       }
