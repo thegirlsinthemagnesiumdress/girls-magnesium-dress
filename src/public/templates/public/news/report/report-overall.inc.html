@@ -35,8 +35,19 @@
         data-company-level="reportCtrl.result.dmb"
         data-industry-avg="reportCtrl.industryResult.dmb"
         data-industry-best="reportCtrl.industryResult.dmb_bp"
-        data-industry-ready="!!reportCtrl.industryResult">
+        data-industry-ready="!!reportCtrl.industryResult"
+        ng-if="!browserIsIE">
     </dmb-progress-grid>
   </div>
+
+  <!-- Fallback to original progress table for IE -->
+  <dmb-progress-table
+      data-company-name="{[reportCtrl.survey.company_name]}"
+      data-rating-main="reportCtrl.result.dmb"
+      data-industry-avg="reportCtrl.industryResult.dmb"
+      data-industry-best="reportCtrl.industryResult.dmb_bp"
+      data-industry-ready="!!reportCtrl.industryResult"
+      ng-if="browserIsIE">
+  </dmb-progress-table>
 
 </section>
