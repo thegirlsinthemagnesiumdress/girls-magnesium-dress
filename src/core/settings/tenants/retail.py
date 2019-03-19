@@ -1,12 +1,17 @@
 WEIGHTS = {}
 
-DIMENSION_TITLES = {}
+DIMENSION_TITLES = {
+    'strategic_direction': 'Strategic direction and data foundations',
+    'user_engagement': 'User engagement',
+    'core_sales': 'Core sales activities',
+    'emerging_monetization': 'Emerging monetization opportunities',
+}
 
 DIMENSIONS = {
     'strategic_direction': 'Strategic direction and data foundations',
-    'user_experience': 'User Experience',
-    'core_sales': 'Core Sales Activities',
-    'monetization_opportunities': 'Emerging Monetization Opportunities',
+    'user_engagement': 'User engagement',
+    'core_sales': 'Core sales activities',
+    'emerging_monetization': 'Emerging monetization opportunities',
 }
 
 MULTI_ANSWER_QUESTIONS = []

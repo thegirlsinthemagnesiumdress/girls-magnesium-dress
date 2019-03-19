@@ -95,7 +95,7 @@ $level-colors: (
         background-position: right -50px top;
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-          background-image: url('../img/news/home/img-text-img@2x.jpg');
+          background-image: url('../img/retail/home/img-text-img@2x.jpg');
         }
       }
 
@@ -119,10 +119,10 @@ $level-colors: (
 
   .dmb-card-on-bg {
     &__bg {
-      background-image: url('../img/news/survey/thankyou.jpg');
+      background-image: url('../img/retail/survey/thankyou.jpg');
 
       @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/survey/thankyou@2x.jpg');
+        background-image: url('../img/retail/survey/thankyou@2x.jpg');
       }
     }
   }
@@ -137,7 +137,7 @@ $level-colors: (
   }
 }
 
-// TODO(aabuelgasim): Remove when switching to news CSS
+// TODO(aabuelgasim): Remove when switching to new CSS
 #dmb-retail {
   .dmb-report-page {
     .dmb-report-page__zippy-btn {

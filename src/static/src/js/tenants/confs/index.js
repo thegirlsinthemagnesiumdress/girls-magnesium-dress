@@ -6,5 +6,5 @@ const retail = goog.require('dmb.components.tenant.conf.retail');
 exports = {
   'ads': ads,
   'news': news,
-  'ads': retail,
+  'retail': retail,
 };

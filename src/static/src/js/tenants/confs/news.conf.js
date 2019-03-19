@@ -23,7 +23,6 @@ const reportLevelDescriptions = {
   3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 };
 
-// TODO(aabuelgasim): Get this from the backend?
 const dimensions = [
   'strategic_direction',
   'reader_engagement',

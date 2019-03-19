@@ -5,9 +5,9 @@
 
 {% block main %}
 {% comment %}
-  TODO(aabuelgasim): remove dmb-news class when we switch to news scss
+  TODO(aabuelgasim): remove dmb-retail class when we switch to new scss
 {% endcomment %}
-<div dmb-report ng-cloak class="dmb--news">
+<div dmb-report ng-cloak id="dmb-retail">
 
   {% include 'public/retail/report/report-intro.inc.html' %}
 
@@ -50,13 +50,13 @@
               This is the most basic of the four levels of maturity. You have the basic tools, but often face cultural challenges to truly embracing data-supported decision-making.
             </p>
             <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 1">
-              This is the most basic of the four levels of maturity. You have the basic tools, but often face cultural challenges to truly embracing data-supported decision-making.
+              This is the second of the four levels of maturity. You are able to drive value from data in some pockets of the business. Leadership recognises data as a priority, but is unclear on how to unlock the best returns.
             </p>
             <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 2">
-              This is the third of the four levels of maturity. Data-informed decision-making is the standard across much of your organisation. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.
+              This is the third of the four levels of maturity. Data-informed decision-making is the standard across much of your organization. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.
             </p>
             <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 3">
-              This is the most basic of the four levels of maturity. You have the basic tools, but often face cultural challenges to truly embracing data-supported decision-making.
+              This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.
             </p>
           </div>
         </div>
@@ -76,7 +76,7 @@
           </button>
         </h2>
         <p class="dmb-report-page__dimensions-intro">
-          Together with Deloitte, we identified the four dimensions that drive digital transformation through data. Click the icons to see how you perform in each.
+          Together with Deloitte, we identified the dimensions that can drive your digital transformation through data. Click the icons to see how you perform in each.
         </p>
 
         <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
@@ -231,7 +231,7 @@
         Industry average
       </h2>
       <p>
-        How news organizations perform on average; calculated based on the Deloitte Digital Transformation through Data study.
+        How retailers perform on average; calculated based on the Deloitte Digital Transformation through Data study.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
         Industry best
@@ -252,7 +252,7 @@
     </button>
     <div class="dmb-side-panel__inner">
       <h1 class="h-c-headline h-c-headline--three">
-        Four dimensions of digital maturity
+        Four dimensions of data maturity
       </h1>
       <p>
         We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organization.
@@ -264,22 +264,22 @@
         Understand the role of data and the core capabilities required to successfully activate data within the organization.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Reader engagement
+        User experience
       </h2>
       <p>
-        Understanding critical audience segments and how to satisfy their preferences.
+        Using customer data to enhance the overall online experience.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Reader revenue
+        Core sales activities
       </h2>
       <p>
-        Driving financial value directly from readers, whether through subscriptions or net new revenue opportunities.
+        Critical capabilities that leverage customer data to improve a retailer’s ability to sell products and serve customers.
       </p>
       <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Advertising revenue
+        Emerging monetization opportunities
       </h2>
       <p>
-        Reaching the right audiences and delivering high-impact advertising campaigns that do not diminish the reader experience.
+        New investment opportunities that retailers can implement to better monetize their digital media assets and provide online-to-offline support.
       </p>
     </div>
   </aside>

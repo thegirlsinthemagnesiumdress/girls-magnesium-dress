@@ -23,19 +23,19 @@ const reportLevelDescriptions = {
   3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 };
 
-// TODO(aabuelgasim): Get this from the backend?
 const dimensions = [
   'strategic_direction',
-  'reader_engagement',
-  'reader_revenue',
-  'advertising_revenue',
+  'user_engagement',
+  'core_sales',
+  'emerging_monetization',
 ];
+
 
 const dimensionHeadersDescription = {
   'strategic_direction': 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
-  'reader_engagement': 'Reader engagement is crucial to acquiring and retaining readers and increasing share of attention. Without an engaged readership, a news company cannot secure the subscription and advertising opportunities it needs to survive and thrive.',
-  'reader_revenue': 'News companies that successfully build valuable direct-to-consumer relationships with their readers not only see the near-term benefits of increased revenue but also reduce operating volatility through long-term, recurring revenue streams.',
-  'advertising_revenue': 'Leading news companies know their readers better than anyone, and they create content to attract and retain those readers. They act as advisors in the creative and campaign development process to deliver high-impact, relevant advertising that does not diminish the reader experience.',
+  'user_engagement': 'Leading Retailers clearly understand the context of the full customer journey and why customers engage. Teams effectively use customer data and insights to design an on-site experience that increases customer engagement and improves the efficiency of their path to purchase.',
+  'core_sales': 'Leading Retailers have differentiated features that are relevant to customers across their life cycles. The portfolio of features and products are mutually reinforcing, and it drives loyalty and increases LTV. You frequently use LTV metrics to support business decisions, like providing targeted customer support or pushing tailored promotions to specific customers.',
+  'emerging_monetization': 'Best-in-class build unique segments using enriched first-party data that gets to the heart of customer interest and purchase intent. You proactively collaborate with suppliers, non-suppliers, and advertising agencies to craft campaigns that incorporate unique audience insights. You maintain a unified view of customer profiles to support certain online to offline sales activities.',
 };
 
 
@@ -46,23 +46,23 @@ const dimensionLevelDescription = {
     2: 'There is widespread knowledge and respect for the role data plays in achieving the overall business strategy.',
     3: 'There is universal understanding of how data underpins the overarching business strategy, at all levels.',
   },
-  'reader_engagement': {
-    0: 'You collect basic engagement data (i.e., page views), but do not translate it into audience insights. Content decisions are primarily based on instinct and editorial experience.',
-    1: 'You know what the broad audience segments are and start to uncover discrete audience insights using basic web analytics tools. However, reader experience and content decisions are still driven by “gut instinct.”',
-    2: 'You understand how different segments engage with content and use these insights to improve engagement. Meanwhile, the editorial team actively use engagement insights and data to improve content format (i.e., headlines, length).',
-    3: 'You clearly understand the context of the full reader journey and why audiences engage. You tailor the reader experience for different segments and occasions. Meanwhile, editorial decisions are generally data-informed.',
+  'user_engagement': {
+    0: 'You collect basic engagement data (e.g., page views), but do not translate it into customer engagement insights. UI / UX decisions are primarily based on instinct and team experience.',
+    1: 'You know what the broad customer segments are and start to uncover discrete customer insights using basic web analytics tools. However, customer experience and UI / UX decisions are made based on qualitative judgment.',
+    2: 'You understand how different segments engage with product pages and use these insights to improve engagement. Customer engagement data and insights drive certain design decisions on your digital platforms (e.g., product description length, thumbnail image size).',
+    3: 'You clearly understand the context of the full customer journey and why customers engage. Teams effectively use customer data and insights to design an on-site experience that increases customer engagement and improves the efficiency of their path to purchase.',
   },
-  'reader_revenue': {
-    0: 'Your paid content offering is limited to one size fits all.',
-    1: 'You use metrics to develop promotions or price tiers for paid content offerings. You understand conversion triggers such as registration, login, and subscription.',
-    2: 'You use different products to improve the reader’s journey and determine how to bundle these products for different audiences. Your business is starting to explore using LTV-focused metrics and beginning to understand subscription and churn drivers.',
-    3: 'You have differentiated products that are relevant to readers across their life cycles. The portfolio of products are mutually reinforcing and drive loyalty and LTV. You understand the needs and behaviors of readers at different stages in their life cycles.',
+  'core_sales': {
+    0: 'Your product offering is limited to a one size fits all merchandising strategy.',
+    1: 'You use metrics to develop recommendations and promotions for your product assortment. You understand and use conversion triggers that signal specific customer actions, like adding items to a basket or completing a transaction.',
+    2: 'You use different features to improve the customer’s journey and determine how to bundle these features for different customer segements. Your business uses LTV-focused metrics and has a strong grasp on drivers of key customer actions, like sales conversion and basket abandonment.',
+    3: 'You have differentiated features that are relevant to customers across their life cycles. The portfolio of features and products are mutually reinforcing, and it drives loyalty and increases LTV. You frequently use LTV metrics to support business decisions, like providing targeted customer support or pushing tailored promotions to specific customers.',
   },
-  'advertising_revenue': {
-    0: 'You have basic segments (demographics, location) in place for audience-based advertising.',
-    1: 'You use combinations of pre-built segments to assemble campaigns for advertisers. Meanwhile, you use exchanges / PMPs in a reactive way, primarily to monetize remnant inventory.',
-    2: 'You use different data sets to build interest and intent-based segments. You share insights and equip the sales team to clearly communicate the value of different segments to advertisers. You use exchanges / PMPs in a strategic way to optimize yield.',
-    3: 'You build unique segments using enriched first party data that gets to the heart of reader interest & intent. You proactively collaborate with advertisers & agencies to craft campaigns that incorporate unique audience insights.',
+  'emerging_monetization': {
+    0: 'You have basic segments (e.g., demographics, location) created to facilitate targeted marketing efforts for suppliers and non-suppliers.',
+    1: 'You use combinations of pre-built segments to assemble campaigns for suppliers and non-suppliers. You have technology tools that allow you to provide performance reporting directly to suppliers and non-suppliers.',
+    2: 'You use different data sets to build interest and intent-based segments. You share insights and equip the sales team to clearly communicate the value of different segments to suppliers and non-suppliers. You maintain customer profiles that allow some degree of integration between on-site and offline customer data.',
+    3: 'You build unique segments using enriched first-party data that gets to the heart of customer interest and purchase intent. You proactively collaborate with suppliers, non-suppliers, and advertising agencies to craft campaigns that incorporate unique audience insights. You maintain a unified view of customer profiles to support certain online to offline sales activities.',
   },
 };
 
@@ -155,7 +155,7 @@ const dimensionLevelRecommendations = {
       },
     ],
   },
-  'reader_engagement': {
+  'user_engagement': {
     0: [
       {
         'header': 'Measure it to improve it',
@@ -277,7 +277,7 @@ const dimensionLevelRecommendations = {
       },
     ],
   },
-  'reader_revenue': {
+  'core_sales': {
     0: [
       {
         'header': 'Understand the value of your readers',
@@ -359,7 +359,7 @@ const dimensionLevelRecommendations = {
       },
     ],
   },
-  'advertising_revenue': {
+  'emerging_monetization': {
     0: [
       {
         'header': 'Measure it to improve it',
