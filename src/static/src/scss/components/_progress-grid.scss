@@ -112,8 +112,8 @@ $block: '.dmb-progress-grid';
       grid-template-rows: repeat($tenant-levels-total, 50px) auto;
 
       @include dmb-mq($until: $progress-grid-switch-bp) {
-        margin-top: $dmb-prog-grid-margin-top; //to accommodate full and nearly full bar labels
         border-top: 1px solid $dmb-prog-grid-line-color;
+        margin-top: $dmb-prog-grid-margin-top; //to accommodate full and nearly full bar labels
       }
 
       @include dmb-mq($from: $progress-grid-switch-bp) {
