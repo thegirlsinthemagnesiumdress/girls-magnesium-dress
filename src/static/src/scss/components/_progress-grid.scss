@@ -113,6 +113,7 @@ $block: '.dmb-progress-grid';
 
       @include dmb-mq($until: $grid-switch-bp) {
         margin-top: $dmb-prog-grid-margin-top; //to accommodate full and nearly full bar labels
+        border-top: 1px solid $dmb-prog-grid-line-color;
       }
 
       @include dmb-mq($from: $grid-switch-bp) {
