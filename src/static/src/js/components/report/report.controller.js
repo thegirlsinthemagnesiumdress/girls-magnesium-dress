@@ -108,7 +108,7 @@ class ReportController {
      * @export
      * @type {string}
      */
-    this.levelsTotal = Object.keys(this.levels).length;
+    this.levelsTotal = tenantConf.levelsTotal;
 
     /**
      * @type {!Object}

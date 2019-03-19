@@ -17,10 +17,11 @@ const module = angular.module(MODULE_NAME, []);
 module.directive(directive.DIRECTIVE_NAME, directive.main);
 module.service(service.SERVICE_NAME, service.main);
 
-module.factory('floorDmbFactory', () => {
+module.factory('floorDmbFactory', ['tenantConf', (tenantConf) => {
+  const levelsTotal = tenantConf.levelsTotal;
   return (dmb) =>
-    (angular.isDefined(dmb) ? Math.min(Math.floor(dmb), 3) : null);
-});
+    (angular.isDefined(dmb) ? Math.min(Math.floor(dmb), (levelsTotal - 1)) : null);
+}]);
 
 module.filter('dmbLevelText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory, tenantConf)=> {
   return (dmb) => {
@@ -28,23 +29,24 @@ module.filter('dmbLevelText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory
   };
 }]);
 
-module.filter('dmbRangeText', ['floorDmbFactory', (floorDmbFactory) => {
+module.filter('dmbRangeText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory, tenantConf) => {
   return (dmb) => {
     if (!angular.isDefined(dmb)) {
       return '';
     }
 
     const floor = floorDmbFactory(dmb);
-    const ceil = Math.min(Math.ceil(dmb), 4);
+    const ceil = Math.min(Math.ceil(dmb), tenantConf.levelsTotal);
     return `${floor}-${ceil}`;
   };
 }]);
 
-module.filter('dmbPercentageNumber', ()=> {
+module.filter('dmbPercentageNumber', ['tenantConf', (tenantConf)=> {
+  const levelsTotal = tenantConf.levelsTotal;
   return (dmb) => {
-    return angular.isDefined(dmb) ? dmb / 4 * 100 : 0;
+    return angular.isDefined(dmb) ? dmb / levelsTotal * 100 : 0;
   };
-});
+}]);
 
 
 /**
