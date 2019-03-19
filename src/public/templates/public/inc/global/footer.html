@@ -4,7 +4,7 @@
   <section class="h-c-footer__global">
     <div class="dmb-footer__tenant-footer">
       <p class="dmb-footer__tenant-footer-title h-c-headline h-c-headline--subhead">
-        Data Maturity Benchmark
+        {% if tenant|ng_mark_safe == 'ads' %}Digital{% else %}Data{% endif %} Maturity Benchmark
       </p>
       <ul class="dmb-footer__tenant-footer-list">
         <!-- TODO(aabuelgasim,mazzalin): make this dynamic -->
