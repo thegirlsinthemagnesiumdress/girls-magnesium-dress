@@ -173,7 +173,7 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
             else:
                 dimensions_weights = None
             dmb, dmb_d = benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
-            excluded_from_best_practice = question.discard_scores(response_data)
+            excluded_from_best_practice = question.discard_scores(response_data, tenant['EXCLUDED_TIME_THRESHOLD'])
             survey_result = SurveyResult.objects.create(
                 survey_id=response_data.get('sid'),
                 response_id=response_id,
