@@ -1,15 +1,137 @@
-{% extends 'public/base.html' %}
+{% extends 'public/ads/base.html' %}
 {% load staticfiles %}
 
 {% block body_class %}dmb-report-page{% endblock %}
 
 {% block main %}
-<div dmb-report ng-cloak>
-  <main>
-    {% include 'public/retail/report/report-intro.inc.html' %}
-    {% include 'public/retail/report/report-hero.inc.html' %}
-    {% include 'public/retail/report/report-overall.inc.html' %}
-  </main>
+<div dmb-report ng-cloak id="dmb-retail">
+
+  {% include 'public/retail/report/report-intro.inc.html' %}
+
+  {% include 'public/retail/report/report-hero.inc.html' %}
+
+  {% include 'public/retail/report/report-overall.inc.html' %}
+
+
+  <main class="dmb-report-page__content" id="dmb-report-page-main">
+    <div class="h-c-page">
+      <section class="dmb-report-page__dimensions"> <!-- Dimensions -->
+        <h2 class="h-c-eyebrow h-c-eyebrow--wide">
+          Dimensions of digital marketing maturity
+          <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three" aria-label="Get more informations about the 4 dimensions">
+            <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+          </button>
+        </h2>
+        <p class="dmb-report-page__dimensions-intro">
+          Together with Deloitte, we identified the dimensions that can drive your digital transformation through data. Click the icons to see how you perform in each.
+        </p>
+
+        <div class="dmb-report-page__tabs" data-ng-if="reportCtrl.showTabs">
+          <div class="dmb-report-page__tabs-icons">
+
+            <div
+                class="h-u-text-center"
+                ng-repeat="dimension in reportCtrl.dimensions"> <!-- dimension tabs-->
+              <div class="dmb-progress-circle dmb-progress-circle--{[dimension]}">
+                <svg dmb-progress-circle="reportCtrl.result.dmb_d[dimension]" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
+                  <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                  <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                </svg>
+                <div class="dmb-progress-circle__icon"></div>
+              </div>
+            </div> <!-- /dimension tabs -->
+
+          </div>
+          <div ng-if="reportCtrl.renderTabset">
+            <div class="dmb-report-page__tabs-sticky-nav" aria-hidden="true" dmb-pin-top>
+              <div class="h-c-page">
+                <ul>
+
+                  <li
+                      ng-repeat="dimension in reportCtrl.dimensions">
+                    <button
+                        class="dmb-report-page__tabs-sticky-nav-btn"
+                        ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
+                        ng-click="reportCtrl.selectTab('dimension-tabs', dimension)">
+                      {[reportCtrl.dimensionHeaders[dimension]]}
+                    </button>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+            <div class="glue-tabset"
+                data-glue-tabset-state="['activeEl']"
+                data-glue-state-id="dimension-tabs"
+                data-glue-tabset-model="reportCtrl.model"
+                data-glue-tabset-enable-arrow-nav
+                ng-cloak>
+              <ul>
+                <li
+                    ng-repeat="dimension in reportCtrl.dimensions"
+                    data-glue-label="{[dimension]}"
+                    id="{[dimension]}">
+                  <h3>
+                    {[reportCtrl.dimensionHeaders[dimension]]}
+                  </h3>
+                  <div>
+                    <div
+                      dmb-dimension-tab="{[dimension]}"
+                      company-name="{[ reportCtrl.survey.company_name ]}">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% comment %}
+          We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a bug where,
+          if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to the top ( probably # left at the end of the url).
+          Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking ( unfortunately that is enabled by default when using
+          2 way data binding)
+        {% endcomment %}
+
+        <div class="dmb-report-page__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
+          <div class="glue-zippy-set h-t-hercules" ng-cloak>
+            <ul class="h-c-expansion-panels__list">
+              <li
+                  class="glue-zippy glue-a-zippy--v-smooth-expand dmb-report-page__zippy-container"
+                  ng-repeat="dimension in reportCtrl.dimensions"
+                  ng-attr-id="{[ dimension ]}">
+                <div class="glue-zippy-btn">
+                  <h4 class="h-c-expansion-panels__button-header dmb-report-page__zippy-btn">
+                    {[ reportCtrl.dimensionHeaders[dimension] ]}
+                  </h4>
+                  <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
+                    <use xlink:href="#mi-arrow-item"></use>
+                  </svg>
+                </div>
+                <div class="glue-zippy-content">
+                  <div
+                      dmb-dimension-tab="{[dimension]}"
+                      company-name="{[ reportCtrl.survey.company_name ]}">
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section> <!-- / Dimensions -->
+
+      {% comment "Out of scope for now, we will enable this in the future" %}
+      <!-- <div class="h-u-text-right">
+        <a href="#" class="h-c-link h-c-link--internal dmb-h-hidden--print">
+          Go to next dimension
+          <svg role="img" class="h-c-icon h-c-icon--link h-c-icon--arrow-forward">
+            <use xlink:href="#mi-arrow-forward"></use>
+          </svg>
+        </a>
+      </div> -->
+      {% endcomment %}
+    </div> <!-- h-c-page -->
+  </main> <!-- #dmb-report-page-main -->
 
   <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
     <div class="h-c-page">
