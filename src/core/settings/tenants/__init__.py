@@ -1,8 +1,10 @@
 import ads as advertisers_conf
 import news as news_conf
+import retail as retail_conf
 
 ADS = 'ads'
 NEWS = 'news'
+RETAIL = 'retail'
 
 
 TENANTS = {
@@ -31,6 +33,19 @@ TENANTS = {
         'WEIGHTS': news_conf.WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': news_conf.DIMENSIONS_WEIGHTS_QUESTION_ID,
         'DIMENSIONS_WEIGHTS': news_conf.DIMENSIONS_WEIGHTS,
+        'FORCED_INDUSTRY': 'ic-bnpj',
+    },
+    RETAIL: {
+        'key': RETAIL,
+        'label': 'Retail',
+        'slug': 'retail',
+        'QUALTRICS_SURVEY_ID': '',
+        'EMAIL_TO': None,
+        'EMAIL_BCC': None,
+        'DIMENSIONS': retail_conf.DIMENSIONS,
+        'DIMENSION_TITLES': retail_conf.DIMENSION_TITLES,
+        'MULTI_ANSWER_QUESTIONS': retail_conf.MULTI_ANSWER_QUESTIONS,
+        'WEIGHTS': retail_conf.WEIGHTS,
         'FORCED_INDUSTRY': 'ic-bnpj',
     },
 }
