@@ -1,6 +1,7 @@
 $dmb-prog-grid-line-color: $dmb-color-grey-zircon;
 $dmb-prog-grid-col-bg-color: $dmb-color-blue-solitude;
 $dmb-prog-grid-bar-color: $dmb-color-grey-chateau;
+$dmb-prog-grid-banner-bg-color:  $h-gm-grey-100;
 $dmb-prog-grid-bar-size: 12px;
 $dmb-prog-grid-overflow-h-margin: 35px; //to accommodate full and nearly full bar labels
 $dmb-prog-grid-overflow-v-margin: 75px; //to accommodate full and nearly full bar labels
@@ -101,8 +102,18 @@ $block: '.dmb-progress-grid';
     top: 2px;
   }
 
+  &__banner {
+    align-items: center;
+    background: $dmb-prog-grid-banner-bg-color;
+    border-radius: $dmb-border-radius;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+
   // Tenant-specific styles
-  // These include styles that rely on the tenant levels or the break-point at which the grid rotates ($progress-grid-switch-bp)
+  // These are styles that rely on the tenant levels or the break-point at which the grid rotates ($progress-grid-switch-bp)
   @each $tenant, $value in $tenants {
     $tenant-levels: map-get($value, levels);
     $tenant-levels-total: length($tenant-levels);
@@ -223,6 +234,35 @@ $block: '.dmb-progress-grid';
       &__h-bar {
         @include dmb-mq($until: $progress-grid-switch-bp) {
           display: none;
+        }
+      }
+
+      &__banner {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          grid-row-end: $tenant-levels-total + 1;
+          grid-row-start: 1;
+
+          @each $source in $sources {
+            $i: index($sources, #{$source});
+
+            &--#{$source} {
+              grid-column: #{$i};
+            }
+          }
+        }
+
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          grid-column-end: -1;
+          grid-column-start: 2;
+          justify-content: center;
+
+          @each $source in $sources {
+            $i: index($sources, #{$source}) + 1;
+
+            &--#{$source} {
+              grid-row: #{$i};
+            }
+          }
         }
       }
 
