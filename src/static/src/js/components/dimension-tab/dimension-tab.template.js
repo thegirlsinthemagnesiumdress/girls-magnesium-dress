@@ -59,8 +59,18 @@ const dimensionTabTemplate = `
     <h3 class="h-c-headline h-c-headline--three">
       <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span>
       <strong ng-if="dimensionTabCtrl.floorDMB < 3">{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
-      <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
-      <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top 2% for marketing maturity</strong>
+
+      <!-- TODO: The copy beneath should go in the tenant configuration instead (https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/195) -->
+
+      <div class="dmb-tab__recommendation-congrat--ads">
+        <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
+        <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top 2% for marketing maturity</strong>
+      </div>
+
+      <div class="dmb-tab__recommendation-congrat--news">
+        <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
+        <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top group for data maturity</strong>
+      </div>
     </h3>
 
     <p
