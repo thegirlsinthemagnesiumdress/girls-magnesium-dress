@@ -1,1 +1,16 @@
 @import 'legacy/all';
+
+
+// TODO(aabuelgasim): Remove once we switch to news CSS for news report page
+@import 'breakpoints';
+@import 'variables';
+@import 'mixins';
+@import 'utils';
+@import 'tenants-variables';
+@import 'hercules-overrides';
+@import 'components/partnership-logo';
+@import 'components/svg';
+@import 'components/report-intro';
+@import 'components/report-hero';
+@import 'tenants/news';
+// /////////////////
