@@ -120,8 +120,8 @@ class SurveyResultsIndustryDetail(APIView):
 
         data = {
             'industry': industry_map[industry],
-            'dmb_industry': dmb_industry,
-            'dmb_bp_industry': dmb_bp_industry,
+            'dmb_industry': industry_map.get(dmb_industry, settings.ALL_INDUSTRIES[0]),
+            'dmb_bp_industry': industry_map.get(dmb_bp_industry, settings.ALL_INDUSTRIES[0]),
             'dmb': dmb,
             'dmb_d': dmb_d,
             'dmb_bp': dmb_bp,
