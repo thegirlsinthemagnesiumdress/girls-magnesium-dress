@@ -43,7 +43,7 @@ const template = `
     </button> Industry average
   </div>
   <div
-      class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-retegular"
+      class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-regular"
       aria-hidden="true">
     <button
         dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
