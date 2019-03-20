@@ -7,10 +7,20 @@
 @import 'mixins';
 @import 'utils';
 @import 'tenants-variables';
-@import 'hercules-overrides';
 @import 'components/partnership-logo';
 @import 'components/svg';
 @import 'components/report-intro';
 @import 'components/report-hero';
 @import 'tenants/news';
+
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.h-c-headline {
+  color: inherit;
+}
+
 // /////////////////

@@ -8,7 +8,8 @@ const template = `
       'dmb-progress-grid--overflow-h': progressGridCtrl.horizontalOverflow
     }">
 
-    <ul class="dmb-u-screen-reader-only">
+    <!-- This list is visually hidden and only read out by screen readers -->
+    <ul class="h-u-visually-hidden">
       <li>
         <span ng-if="!ratingMain">
           Fetching your company rating...
@@ -17,13 +18,15 @@ const template = `
           Your company, {[companyName]}, has a rating of {[ratingMain|number:1]}, which is a maturity level of {[progressGridCtrl.getLevelName(ratingMain)]}.
         </span>
       </li>
+      <li>
         <span ng-if="!industryReady">
           Fetching industry average...
         </span>
         <span ng-if="industryReady">
           The industry average is {[industryAvg|number:1]}, which is a maturity level of {[progressGridCtrl.getLevelName(industryAvg)]}.
         </span>
-        <li>
+      </li>
+      <li>
         <span ng-if="!industryReady">
           Fetching industry best...
         </span>
@@ -51,14 +54,10 @@ const template = `
   <div class="dmb-progress-grid__label dmb-progress-grid__label--company h-u-font-weight-medium">
     {[companyName]}
   </div>
-  <div
-      class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular"
-      aria-label="{[progressGridCtrl.indAvgAriaLabel]}">
+  <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular">
     <button
         dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-        aria-label="Get more information about the industry average"
-        aria-controls="dmb-rerort-left-side-panel-two"
-        aria-expanded="false">
+        aria-label="Get more information about the industry average">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
           <use xlink:href="#info"></use>
         </svg>
