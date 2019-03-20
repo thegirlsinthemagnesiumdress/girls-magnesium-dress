@@ -40,8 +40,7 @@ class ReportController {
       reportService,
       floorDmbFactory,
       tenantConf,
-      glueBreakpoint,
-      browserIsIE) {
+      glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
@@ -52,13 +51,6 @@ class ReportController {
 
     /** @private {!angular.$timeout} */
     this.ngTimeout_ = $timeout;
-
-    /**
-     * Is Browser IE?
-     * @type {boolean}
-     * @export
-     */
-    this.browserIsIE = browserIsIE;
 
     /**
      * Survey object.

@@ -32,10 +32,22 @@ class ProgressGridController {
      * type {Object}
      */
     this.levelsTotal = Object.keys(this.levels).length;
+
+    /**
+     * @export
+     * type {boolean}
+     */
+    this.verticalOverflow = null;
+
+    /**
+     * @export
+     * type {boolean}
+     */
+    this.horizontalOverflow = null;
   }
 
   /**
-   *
+   * Function to get a rounded level value from a value
    * @param {number} value
    * @return {string}
    * @export
@@ -45,19 +57,18 @@ class ProgressGridController {
   }
 
   /**
-   *
+   * Function to get the level name from the value
    * @param {number} value
    * @return {string}
    * @export
    */
   getLevelName(value) {
     const level = this.getLevel(value);
-    const levelName = this.levels[level];
-    return levelName;
+    return this.levels[level];
   }
 
   /**
-   *
+   * Function to get the progressw width/height for the horizontal and vertical bars
    * @param {number} value
    * @return {string}
    * @export
@@ -65,6 +76,8 @@ class ProgressGridController {
   getProgress(value) {
     const prog = value * 100;
     const offset = this.getLevel(value);
+    this.verticalOverflow = value > 3.2;
+    this.horizontalOverflow = value > 3.83;
     return `calc(${prog}% + ${offset}px)`;
   }
 }

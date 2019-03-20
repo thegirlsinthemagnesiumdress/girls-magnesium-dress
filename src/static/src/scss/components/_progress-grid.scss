@@ -2,8 +2,8 @@ $dmb-prog-grid-line-color: $dmb-color-grey-zircon;
 $dmb-prog-grid-col-bg-color: $dmb-color-blue-solitude;
 $dmb-prog-grid-bar-color: $dmb-color-grey-chateau;
 $dmb-prog-grid-bar-size: 12px;
-$dmb-prog-grid-margin-right: 35px; //to accommodate full and nearly full bar labels
-$dmb-prog-grid-margin-top: 75px; //to accommodate full and nearly full bar labels
+$dmb-prog-grid-overflow-h-margin: 35px; //to accommodate full and nearly full bar labels
+$dmb-prog-grid-overflow-v-margin: 75px; //to accommodate full and nearly full bar labels
 $sources: company ind-avg ind-best;
 $elements: label bar;
 $block: '.dmb-progress-grid';
@@ -113,14 +113,24 @@ $block: '.dmb-progress-grid';
 
       @include dmb-mq($until: $progress-grid-switch-bp) {
         border-top: 1px solid $dmb-prog-grid-line-color;
-        margin-top: $dmb-prog-grid-margin-top; //to accommodate full and nearly full bar labels
       }
 
       @include dmb-mq($from: $progress-grid-switch-bp) {
         border-right: 1px solid $dmb-prog-grid-line-color;
         grid-template-columns: auto repeat($tenant-levels-total, 1fr);
         grid-template-rows: auto repeat(length($sources), auto) 15px;
-        margin-right: $dmb-prog-grid-margin-right; //to accommodate full and nearly full bar labels
+      }
+
+      &--overflow-v {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          margin-top: $dmb-prog-grid-overflow-v-margin; //to accommodate nearly full bar labels
+        }
+      }
+
+      &--overflow-h {
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          margin-right: $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
+        }
       }
 
       &__col-bg {

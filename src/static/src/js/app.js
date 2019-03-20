@@ -65,12 +65,9 @@ const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 
 // Detect IE
-const sUsrAg = navigator.userAgent;
-let browserIsIE = false;
-browserIsIE = (sUsrAg.indexOf('Trident') > -1);
-
+const cssGridSupport = typeof document.getElementById('bootstrap-data').style.grid === 'string';
 module.constant('csrfToken', csrfToken);
-module.constant('browserIsIE', browserIsIE);
+module.constant('cssGridSupport', cssGridSupport);
 
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);

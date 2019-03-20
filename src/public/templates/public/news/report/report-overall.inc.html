@@ -32,22 +32,11 @@
   <div class="dmb-u-m-t-m">
     <dmb-progress-grid
         data-company-name="{[reportCtrl.survey.company_name]}"
-        data-company-level="reportCtrl.result.dmb"
+        data-rating-main="reportCtrl.result.dmb"
         data-industry-avg="reportCtrl.industryResult.dmb"
         data-industry-best="reportCtrl.industryResult.dmb_bp"
-        data-industry-ready="!!reportCtrl.industryResult"
-        ng-if="!browserIsIE">
+        data-industry-ready="!!reportCtrl.industryResult">
     </dmb-progress-grid>
   </div>
-
-  <!-- Fallback to original progress table for IE -->
-  <dmb-progress-table
-      data-company-name="{[reportCtrl.survey.company_name]}"
-      data-rating-main="reportCtrl.result.dmb"
-      data-industry-avg="reportCtrl.industryResult.dmb"
-      data-industry-best="reportCtrl.industryResult.dmb_bp"
-      data-industry-ready="!!reportCtrl.industryResult"
-      ng-if="browserIsIE">
-  </dmb-progress-table>
 
 </section>
