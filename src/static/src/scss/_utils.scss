@@ -15,6 +15,14 @@
   }
 }
 
+.dmb-u-screen-reader-only {
+  height:1px;
+  left:-10000px;
+  overflow:hidden;
+  position:absolute;
+  width:1px;
+}
+
 // RESPONSIVE VERTCIAL SPACINGS
 // Resposive vertical spacing utility classes generated from $dmb-vertical-spacings map in ./_variables.scss
 //
