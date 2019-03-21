@@ -1,0 +1,17 @@
+{% extends 'public/base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+  <main id="dmb-report" dmb-report ng-cloak>
+    {% comment %}
+      {% include 'public/retail/report/report-intro.inc.html' %}
+    {% endcomment %}
+
+    {% include 'public/retail/report/report-hero.inc.html' %}
+
+  </main>
+{% endblock %}
+
+{% block footer %}
+  {% include 'public/inc/global/footer.html' with footerClass="dmb-h-hidden--print" footerAttribute="ng-cloak" %}
+{% endblock footer %}

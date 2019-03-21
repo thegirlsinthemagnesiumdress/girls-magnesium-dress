@@ -2,8 +2,7 @@
 {% load static_rev %}
 {% load angular %}
 <!DOCTYPE html>
-{# TODO(https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/72): make the `dmb--news` class dynamic depending on tenant #}
-<html lang="en" class="dmb--news">
+<html lang="en" id="dmb-{{ tenant|ng_mark_safe }}">
 <head ng-csp>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

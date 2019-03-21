@@ -10,7 +10,7 @@ $level-colors: (
 
 
 // Try to only set colors, and background properties background-image, background-size and background-position
-.dmb--news {
+#dmb-news {
   // PRIMARY HEADING COLOR
   .dmb-primary-heading {
     color: $dmb-news-primary-color;
@@ -138,8 +138,8 @@ $level-colors: (
 }
 
 // TODO(aabuelgasim): Remove when switching to news CSS
-.dmb-report-page {
-  .dmb--news {
+#dmb-news {
+  .dmb-report-page {
     .dmb-report-page__zippy-btn {
       &::before {
         display: none;
