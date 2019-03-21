@@ -15,7 +15,8 @@ const template = `
           Fetching your company rating...
         </span>
         <span ng-if="ratingMain">
-          Your company, {[companyName]}, has a rating of {[ratingMain|number:1]}, which is a maturity level of {[progressGridCtrl.getLevelName(ratingMain)]}.
+          Your company, {[companyName]}, has a rating of {[ratingMain|number:1]},
+          which is a maturity level of {[progressGridCtrl.getLevelName(ratingMain)]}.
         </span>
       </li>
       <li>
@@ -23,7 +24,8 @@ const template = `
           Fetching industry average...
         </span>
         <span ng-if="industryReady">
-          The industry average is {[industryAvg|number:1]}, which is a maturity level of {[progressGridCtrl.getLevelName(industryAvg)]}.
+          The industry average is {[industryAvg|number:1]},
+          which is a maturity level of {[progressGridCtrl.getLevelName(industryAvg)]}.
         </span>
       </li>
       <li>
@@ -31,7 +33,8 @@ const template = `
           Fetching industry best...
         </span>
         <span ng-if="industryReady">
-          The industry best is {[industryBest|number:1]}, which is a maturity level of {[progressGridCtrl.getLevelName(industryBest)]}.
+          The industry best is {[industryBest|number:1]},
+          which is a maturity level of {[progressGridCtrl.getLevelName(industryBest)]}.
         </span>
       </li>
     </ul>
