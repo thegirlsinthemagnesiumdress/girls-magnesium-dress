@@ -64,7 +64,7 @@ try {
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 
-// Detect IE
+// Detect CSS Grid support
 const cssGridSupport = typeof document.getElementById('bootstrap-data').style.grid === 'string';
 module.constant('csrfToken', csrfToken);
 module.constant('cssGridSupport', cssGridSupport);
