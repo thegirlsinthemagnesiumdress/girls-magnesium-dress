@@ -19,3 +19,4 @@ LIVE_DOMAIN = os.environ['HTTP_HOST']
 
 # override QUALTRICS_SURVEY_ID for staging environment
 TENANTS[ADS]['QUALTRICS_SURVEY_ID'] = 'SV_beH0HTFtnk4A5rD'
+TENANTS[NEWS]['QUALTRICS_SURVEY_ID'] = 'SV_4JxgntrYg5uiMyp'
