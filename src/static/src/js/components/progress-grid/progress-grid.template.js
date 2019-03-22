@@ -123,14 +123,14 @@ const template = `
 
   <!-- "Not available" banners -->
   <div
-      class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-avg h-c-footnote"
-      ng-if="industryReady && !industryAvg">
-    Industry average is not available yet, sorry!
+      class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-avg h-u-font-weight-regular"
+      ng-if="industryReady && industryAvg">
+    Not available yet
   </div>
   <div
-      class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-best h-c-footnote"
-      ng-if="industryReady && !industryBest">
-    Industry best is not available yet, sorry!
+      class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-best h-u-font-weight-regular"
+      ng-if="industryReady && industryBest">
+    Not available yet
   </div>
 </div>
 `;
