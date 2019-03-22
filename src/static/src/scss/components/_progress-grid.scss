@@ -230,9 +230,8 @@ $block: '.dmb-progress-grid';
         @include dmb-mq($until: $progress-grid-switch-bp) {
           align-items: center;
           display: flex;
-          justify-content: center;
           grid-row: $tenant-levels-total;
-
+          justify-content: center;
 
           @each $source in $sources {
             $i: index($sources, #{$source});

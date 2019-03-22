@@ -1,4 +1,4 @@
-.dmb-report-tabs {
+.dmb-dimension-tabs {
   &__sticky-nav {
     @include h-u-box-shadow-1();
     background-color: $h-white;
@@ -110,21 +110,15 @@
       }
     }
   }
-}
 
-
-// TENANT SPECIFIC STUFF
-// Use $levelsTotal for this once #84 is merged
-$levels-total: 4;
-
-.dmb-report-tabs {
-  .dmb-report-tabs__icons,
+  .dmb-dimension-tabs__icons,
   .glue-c-tabset__tablist {
     display: flex;
 
-    > div,
-    .glue-c-tabset__tab {
-      flex-basis: calc(100% / #{$levels-total});
-    }
+  }
+
+  .dmb-dimension-tabs__icon,
+  .glue-c-tabset__tab {
+    flex: 1 0 0;
   }
 }
