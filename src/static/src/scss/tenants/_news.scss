@@ -65,6 +65,19 @@
     }
   }
 
+  #dmb-report {
+    // TODO(aabuelgasim): remove once news report switches to new design
+    .dmb-report-page__tabs {
+      .dmb-report-page__tabs-icons,
+      .glue-c-tabset__tablist {
+        > div,
+        .glue-c-tabset__tab {
+          flex-basis: calc(100% / 4);
+        }
+      }
+    }
+  }
+
   #dmb-survey-thank-you {
     .dmb-card-on-bg {
       &__bg {
