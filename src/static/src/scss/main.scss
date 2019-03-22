@@ -100,17 +100,17 @@
 @import 'components/product-hero';
 @import 'components/progress-circle';
 @import 'components/progress-table';
-@import 'components/report-dimensions';
 @import 'components/report-intro';
+// @import 'components/report-dimensions';
 @import 'components/report-hero';
 @import 'components/report-overall';
+@import 'components/report-tabs';
 @import 'components/step-heading';
 @import 'components/svg';
 @import 'components/tile-carousel';
 
 // Pages
 @import 'pages/landing';
-// @import 'pages/report';
 
 // Tenants
 @import 'tenants/news';

@@ -9,7 +9,7 @@ const dimensionTabTemplate = goog.require('dmb.components.dimensionTab.template'
  * @ngInject
  * @return {Object} Config for the directive
  */
-function ReportDirective() {
+function DimensionTabDirective() {
   return {
     restrict: 'A',
     scope: {
@@ -26,12 +26,12 @@ function ReportDirective() {
 
 
 /** @const {string} */
-ReportDirective.DIRECTIVE_NAME = 'dmbDimensionTab';
+DimensionTabDirective.DIRECTIVE_NAME = 'dmbDimensionTab';
 
 
 exports = {
-  main: ReportDirective,
-  DIRECTIVE_NAME: ReportDirective.DIRECTIVE_NAME,
+  main: DimensionTabDirective,
+  DIRECTIVE_NAME: DimensionTabDirective.DIRECTIVE_NAME,
 };
 
 /*
