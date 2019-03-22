@@ -11,7 +11,7 @@
     <div class="dmb-report-tabs__icons"> <!-- Tab Icons -->
       <div class="h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
         <div
-            class="dmb-progress-circle dmb-progress-circle--small"
+            class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[progressCircleCtrl.level]}"
             data-progress="reportCtrl.result.dmb_d[dimension]">
           <svg
               class="dmb-progress-circle__prog-svg"
@@ -93,7 +93,10 @@
             </svg>
           </div>
           <div class="glue-zippy-content">
-            <div dmb-dimension-tab="{[dimension]}" company-name="{[ reportCtrl.survey.company_name ]}">
+            <div
+                company-name="{[reportCtrl.survey.company_name]}"
+                dmb-dimension-tab="{[dimension]}"
+                tenant="{{tenant|ng_mark_safe}}">
             </div>
           </div>
         </li>
