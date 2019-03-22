@@ -39,7 +39,7 @@ TENANTS = {
         'key': RETAIL,
         'label': 'Retail',
         'slug': 'retail',
-        'QUALTRICS_SURVEY_ID': '',
+        'QUALTRICS_SURVEY_ID': 'SV_b1OV8m7xVD337rD',
         'EMAIL_TO': None,
         'EMAIL_BCC': None,
         'DIMENSIONS': retail_conf.DIMENSIONS,

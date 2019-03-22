@@ -78,13 +78,12 @@
 
 
 // DMB STYLES
-@import 'colors';
 @import 'mixins';
 @import 'variables';
 @import 'utils';
 @import 'hercules-overrides';
 @import 'grid-variables';
-
+@import 'tenants-variables';
 
 // DMB Components
 @import 'components/card-on-bg';
@@ -99,6 +98,7 @@
 @import 'components/partnership-logo';
 @import 'components/product-hero';
 @import 'components/progress-circle';
+@import 'components/progress-grid';
 @import 'components/progress-table';
 @import 'components/report-intro';
 // @import 'components/report-dimensions';
@@ -112,6 +112,5 @@
 // Pages
 @import 'pages/landing';
 
-// Tenants
 @import 'tenants/news';
 @import 'tenants/retail';

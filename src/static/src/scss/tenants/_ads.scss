@@ -1,0 +1,25 @@
+#dmb-ads {
+  .dmb-report-page__zippy-btn {
+    &::before {
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 39px;
+      margin-right: 20px;
+      vertical-align: middle;
+      width: 39px;
+    }
+  }
+
+  $i: 1;
+
+  @each $name, $color in $report-page-color-map {
+    .glue-zippy:nth-of-type(#{$i}) {
+      .dmb-report-page__zippy-btn::before {
+        background-image: url('../img/icons/#{$name}.svg');
+      }
+    }
+
+    $i: $i + 1;
+  }
+}

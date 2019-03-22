@@ -17,6 +17,7 @@ const sidePanel = goog.require('dmb.components.sidePanel');
 const report = goog.require('dmb.components.report');
 const reportList = goog.require('dmb.components.reportAdmin');
 const progressCircle = goog.require('dmb.components.progressCircle');
+const progressGrid = goog.require('dmb.components.progressGrid');
 const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
 const forceReflow = goog.require('dmb.components.forceReflow');
@@ -40,6 +41,7 @@ const module = angular.module('dmb', [
   report.module.name,
   reportList.module.name,
   progressCircle.module.name,
+  progressGrid.module.name,
   progressTable.module.name,
   dimensionTab.module.name,
   smoothScroll.module.name,
@@ -62,7 +64,10 @@ try {
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 
+// Detect CSS Grid support
+const cssGridSupport = typeof document.getElementById('bootstrap-data').style.grid === 'string';
 module.constant('csrfToken', csrfToken);
+module.constant('cssGridSupport', cssGridSupport);
 
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);

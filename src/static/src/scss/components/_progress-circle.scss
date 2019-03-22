@@ -51,4 +51,19 @@
       stroke-width: 20;
     }
   }
+
+  // Change color of donut progress bar based on level
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
+
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      @each $level, $value in $tenant-levels {
+        &--level-#{$level} {
+          #{$block}__prog-bar {
+            stroke: map-get($value, color);
+          }
+        }
+      }
+    }
+  }
 }

@@ -5,13 +5,16 @@
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-1 h-c-grid__col--align-middle h-c-grid__col-m--order-2 h-u-text-center">
 
-      <div class="dmb-progress-circle" data-progress="reportCtrl.result.dmb">
+      <div class="dmb-progress-circle dmb-progress-circle--level-{[reportCtrl.floorDmb]}"
+        data-progress="reportCtrl.result.dmb">
         <svg dmb-progress-circle="reportCtrl.result.dmb" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
-          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none"/>
-          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none"/>
+          <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
+          <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
         </svg>
         <div class="dmb-progress-circle__text">
-          <span class="h-c-headline h-c-headline--display-two dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span class="h-c-headline h-c-headline--four dmb-progress-circle__total">/{[reportCtrl.levelsTotal]}</span>
+          <span
+            class="h-c-headline h-c-headline--display-two dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span
+            class="h-c-headline h-c-headline--four dmb-progress-circle__total">/{[reportCtrl.levelsTotal]}</span>
         </div>
       </div>
 
@@ -29,13 +32,14 @@
     </div>
   </div>
 
-  <div class="dmb-report-overall__table-container">
-    <dmb-progress-table
+  <div class="dmb-u-m-t-m">
+    <dmb-progress-grid
+        data-company-name="{[reportCtrl.survey.company_name]}"
         data-rating-main="reportCtrl.result.dmb"
         data-industry-avg="reportCtrl.industryResult.dmb"
         data-industry-best="reportCtrl.industryResult.dmb_bp"
-        data-company-name="{[reportCtrl.survey.company_name]}"
         data-industry-ready="!!reportCtrl.industryResult">
-    </dmb-progress-table>
+    </dmb-progress-grid>
   </div>
+
 </section>

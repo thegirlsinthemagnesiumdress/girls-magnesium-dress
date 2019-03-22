@@ -5,6 +5,12 @@ $dmb-home-hero-card-bg: #fff;
   padding-top: 173px;
   position: relative;
 
+  &__grid { // IE10 bug fix: the media query only applies to IE 10 and 11
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      width: 100%;
+    }
+  }
+
   @include dmb-mq($from: tablet) {
     padding: 40px 0;
   }

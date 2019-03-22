@@ -1,21 +1,17 @@
 {% extends 'public/base.html' %}
 {% load staticfiles %}
 
-{% block body_class %}dmb-report-page{% endblock %}
+{% block body_class %}dmb-report{% endblock %}
 
 {% block main %}
-<main id="dmb-report-page" dmb-report ng-cloak>
-
+<main id="dmb-report" dmb-report ng-cloak>
   {% comment %}
+  {% endcomment %}
   {% include 'public/retail/report/report-intro.inc.html' %}
   {% include 'public/retail/report/report-hero.inc.html' %}
   {% include 'public/retail/report/report-overall.inc.html' %}
-  {% endcomment %}
   {% include 'public/retail/report/report-dimensions.inc.html' with class='dmb-u-m-b-l' %}
-
-
-
-  </main>
+</main>
 
   {% comment %}
   <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
@@ -118,7 +114,6 @@
 
   {% endcomment %}
 
-</div>
 {% endblock %}
 
 {% block footer %}

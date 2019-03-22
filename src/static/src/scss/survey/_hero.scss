@@ -26,10 +26,6 @@
     }
   }
 
-  .dmb-primary-heading {
-    color: $dmb-news-primary-color;
-  }
-
   &__flex {
     @include dmb-mq($from: desktop) {
       align-items: baseline;

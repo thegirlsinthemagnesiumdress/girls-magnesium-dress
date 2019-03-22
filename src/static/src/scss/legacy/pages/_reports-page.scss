@@ -408,26 +408,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon-old;
 
   &__zippy-btn {
     vertical-align: middle;
-
-    &::before {
-      background-size: contain;
-      content: '';
-      display: inline-block;
-      height: 39px;
-      margin-right: 20px;
-      vertical-align: middle;
-      width: 39px;
-    }
-
-    $i: 1;
-
-    @each $name, $color in $report-page-color-map {
-      .glue-zippy:nth-of-type(#{$i}) &::before {
-        background-image: url('../img/icons/#{$name}.svg');
-      }
-
-      $i: $i + 1;
-    }
   }
 
   &__tab-content {
@@ -760,19 +740,6 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon-old;
         background-color: $dmb-color-blue-solitude;
         color: $dmb-color-blue-charade;
       }
-    }
-  }
-}
-
-
-
-// TODO(aabuelgasim): remove
-.dmb-report-page__tabs {
-  .dmb-report-page__tabs-icons,
-  .glue-c-tabset__tablist {
-    > div,
-    .glue-c-tabset__tab {
-      flex-basis: calc(100% / 4);
     }
   }
 }

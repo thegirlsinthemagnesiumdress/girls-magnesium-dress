@@ -1,17 +1,27 @@
 @import 'legacy/all';
+@import 'tenants/ads';
 
 
 // TODO(aabuelgasim): Remove once we switch to news CSS for news report page
 @import 'breakpoints';
 @import 'variables';
-@import 'colors';
 @import 'mixins';
 @import 'utils';
+@import 'tenants-variables';
 @import 'components/partnership-logo';
-@import 'components/svg';
 @import 'components/report-intro';
 @import 'components/report-hero';
-
+@import 'components/svg';
 @import 'tenants/news';
-@import 'tenants/retail';
+
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.h-c-headline {
+  color: inherit;
+}
+
 // /////////////////
