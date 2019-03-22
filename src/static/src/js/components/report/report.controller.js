@@ -87,6 +87,18 @@ class ReportController {
     this.levels = tenantConf.levels;
 
     /**
+     * @export
+     * @type {number}
+     */
+    this.levelsTotal = tenantConf.levelsTotal;
+
+    /**
+     * @export
+     * @type {number}
+     */
+    this.nextLevel = null;
+
+    /**
      * @type {!Object}
      * @export
      */
@@ -104,11 +116,6 @@ class ReportController {
      */
     this.dimensions = tenantConf.dimensions;
 
-    /**
-     * @export
-     * @type {string}
-     */
-    this.levelsTotal = tenantConf.levelsTotal;
 
     /**
      * @type {!Object}
@@ -116,7 +123,7 @@ class ReportController {
      */
     this.dimensionHeaders = tenantConf.dimensionHeaders;
 
-       /**
+    /**
      * @type {glue.ng.pagination.Model}
      * @export
      */
@@ -159,6 +166,7 @@ class ReportController {
       this.result.dmb = parseFloat(this.result['dmb']);
 
       this.floorDmb = floorDmbFactory(this.result.dmb);
+      this.nextLevel = floorDmbFactory(this.floorDmb + 1);
 
       reportService.dmb_d = this.result['dmb_d'];
 

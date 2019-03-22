@@ -26,11 +26,11 @@
         </button>
       </h2>
     </div>
-    <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--level-{[reportCtrl.floorDmb + 1]}">
-      <span ng-if="reportCtrl.floorDmb < 3">
+    <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--level-{[reportCtrl.nextLevel]}">
+      <span ng-if="reportCtrl.floorDmb < (reportCtrl.levelsTotal - 1)">
         Next level: <strong>{[reportCtrl.levels[reportCtrl.floorDmb + 1]]}</strong>
       </span>
-      <span ng-if="reportCtrl.floorDmb >= 3">
+      <span ng-if="reportCtrl.floorDmb >= (reportCtrl.levelsTotal - 1)">
         Congratulations, you're in the top group for data maturity</strong>
       </span>
       <button dmb-side-panel-trigger="#dmb-report-left-side-panel-one" aria-label="Get more informations about what your maturity represents">
