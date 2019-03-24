@@ -13,8 +13,9 @@ function DimensionTabDirective() {
   return {
     restrict: 'A',
     scope: {
-      'dmbDimensionTab': '@',
       'companyName': '@',
+      'dmbDimensionTab': '@',
+      'tenant': '@',
     },
     template: function(tElem, tAttrs) {
       return tAttrs.tenant === 'retail' ? dimensionTabTemplate : dimensionTabLegacyTemplate;

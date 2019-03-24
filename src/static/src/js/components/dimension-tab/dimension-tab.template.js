@@ -2,10 +2,110 @@ goog.module('dmb.components.dimensionTab.template');
 
 /* eslint-disable max-len */
 const dimensionTabTemplate = `
-dmbDimensionTab: {[dmbDimensionTab]} <br><br>
-companyName: {{companyName]} <br><br>
+<div
+    class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[dimensionTabCtrl.floorDMB]} dmb-u-p-t-m">
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div class="dmb-u-m-b-m">
+    <div class="h-c-grid">
+      <div class="h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
+        ICON
+        <img
+            ng-src="{[staticUrl]}/{[tenant]}/dimensions/{[dimensionClassNames[dmbDimensionTab]]}.svg"
+            alt="{[dmbDimensionTab]} logo"
+            class="dmb-dimension-tabs__logo">
+      </div>
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
+        <h3 class="h-c-headline h-c-headline--three">
+          {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
+        </h3>
+        <p class="h-c-headline h-c-headline--subhead">
+          {[dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab]]}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dmb-dimension-tabs__results">
+    <div class="h-c-grid">
+      <div class="dmb-dimension-tabs__results-highlight h-c-grid__col h-c-grid__col--4 h-u-text-center">
+        <div class="dmb-dimension-tabs__results-heading h-c-headline h-c-headline--two">
+          {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB]]}
+        </div>
+        <div class="dmb-dimension-tabs__results-subheading h-u-font-weight-regular">
+          in this dimension
+        </div>
+        <div class="dmb-dimension-tabs__results-value h-c-headline h-c-headline--three">
+          {[dimensionTabCtrl.dmb|number:1]}/{[dimensionTabCtrl.levelsTotal]}
+        </div>
+      </div>
+      <div class="h-c-grid__col h-c-grid__col--7">
+        {[ dimensionTabCtrl.dimensionLevelDescription[dmbDimensionTab][dimensionTabCtrl.floorDMB]]}
+      </div>
+    </div>
+  </div>
+
+  <div class="dmb-u-m-b-m">
+    <dmb-progress-grid
+        data-company-name="{[companyName]}"
+        data-rating-main="dimensionTabCtrl.dmb"
+        data-industry-avg="dimensionTabCtrl.industryDmb"
+        data-industry-best="dimensionTabCtrl.industryDmb_bp"
+        data-industry-ready="!!dimensionTabCtrl.industryResult">
+    </dmb-progress-grid>
+  </div>
+
+
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
+      <h4 class="h-c-headline h-c-headline--four">
+        {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
+      </h4>
+      <h4 class="h-c-headline h-c-headline--two">
+        <span ng-if="dimensionTabCtrl.floorDMB < (dimensionTabCtrl.levelsTotal - 1)">
+          You could be {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB + 1]]}
+        </span>
+        <span ng-if="dimensionTabCtrl.floorDMB === (dimensionTabCtrl.levelsTotal - 1)">
+          Congratulations, you're in the top group for data maturity
+        </span>
+      </h4>
+
+      <div class="dmb-dimension-tabs__recommendations">
+        <h4 class="h-c-headline h-c-headline--four">
+          <span ng-if="dimensionTabCtrl.floorDMB < (dimensionTabCtrl.levelsTotal - 1)">
+            Here's how you get there:
+          </span>
+          <span ng-if="dimensionTabCtrl.floorDMB === (dimensionTabCtrl.levelsTotal - 1)">
+            Here's how to get even better:
+          </span>
+        </h4>
+
+        <ul class="dmb-dimension-tabs__recommendation-list">
+          <li
+              class="dmb-dimension-tabs__recommendation"
+              ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB]">
+            <h5 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+              {[recommendation.header]}
+            </h5>
+            <p>
+              {[recommendation.text]}
+            </p>
+            <a
+                ng-if="recommendation.cta"
+                class="dmb-dimension-tabs__recommendation-cta dmb-h-hidden--print h-c-button h-c-button--secondary"
+                href="{[recommendation.cta.link]}"
+                target="_blank">
+              {[recommendation.cta.text]}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
 `;
 /* eslint-enable max-len */
 

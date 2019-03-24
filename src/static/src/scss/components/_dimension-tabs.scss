@@ -1,4 +1,6 @@
 .dmb-dimension-tabs {
+  $block: &;
+
   &__sticky-nav {
     @include h-u-box-shadow-1();
     background-color: $h-white;
@@ -114,11 +116,80 @@
   .dmb-dimension-tabs__icons,
   .glue-c-tabset__tablist {
     display: flex;
-
   }
 
   .dmb-dimension-tabs__icon,
   .glue-c-tabset__tab {
     flex: 1 0 0;
+  }
+
+  &__results {
+    @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
+  }
+
+  &__results-heading,
+  &__results-value {
+    margin: 0;
+  }
+
+  &__results-value {
+    @include dmb-mq($until: tablet) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__results-subheading {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  &__recommendation-list {
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+
+    @include dmb-mq($from: tablet) {
+      display: flex;
+      flex-direction: column;
+      flex-flow: wrap;
+    }
+  }
+
+  $dmb-recommendation-spacing: 24px;
+  $dmb-recommendation-border-radius: 5px;
+
+  &__recommendation {
+    background: $dmb-color-blue-solitude;
+    border-radius: $dmb-recommendation-border-radius;
+    display: block;
+    margin-bottom: 12px;
+    padding: $dmb-recommendation-spacing;
+
+    @include dmb-mq($from: tablet) {
+      width: calc(50% - (#{$dmb-recommendation-spacing} / 2));
+    }
+  }
+
+  &__recommendation-cta {
+    &.h-c-button.h-c-button--secondary {
+      background: #fff;
+      color: $dmb-interactive-color;
+      margin-top: 20px;
+    }
+  }
+
+  // Change color of donut progress bar based on level
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
+
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      @each $level, $value in $tenant-levels {
+        &__content--level-#{$level} {
+          #{$block}__results-highlight {
+            color: map-get($value, color);
+          }
+        }
+      }
+    }
   }
 }

@@ -1,11 +1,15 @@
 {% load angular %}
 <section class="dmb-report-dimensions h-c-page{% if class %} {{class}}{% endif %}">
-  <h2 class="h-c-eyebrow">
-    Dimensions of data maturity
-  </h2>
-  <p class="dmb-u-m-b-m">
-    Together with Deloitte, we identified the dimensions that can drive your digital transformation through data. Click the icons to see how you perform in each.
-  </p>
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--8">
+      <h2 class="h-c-eyebrow">
+        Dimensions of data maturity
+      </h2>
+      <p class="dmb-u-m-b-m">
+        Together with Deloitte, we identified the dimensions that can drive your digital transformation through data. Click the icons to see how you perform in each.
+      </p>
+    </div>
+  </div>
 
   <div class="dmb-dimension-tabs" data-ng-if="reportCtrl.showTabs">
     <div class="dmb-dimension-tabs__icons"> <!-- Tab Icons -->
@@ -68,17 +72,9 @@
       </div>
     </div>
   </div>
-
   {% comment %}
-  We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have
-  a bug where,
-  if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to
-  the top ( probably # left at the end of the url).
-  Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking (
-  unfortunately that is enabled by default when using
-  2 way data binding)
+  We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a bug where, if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page scrolls to the top ( probably # left at the end of the url). Unfortunately I coulnd't find the reason why this happens. The issue is related to the tabby using deeplinking (unfortunately that is enabled by default when using 2 way data binding)
   {% endcomment %}
-
   <div class="dmb-dimension-tabs__dimension-zippy" data-ng-if="!reportCtrl.showTabs">
     <div class="glue-zippy-set h-t-hercules" ng-cloak>
       <ul class="h-c-expansion-panels__list">

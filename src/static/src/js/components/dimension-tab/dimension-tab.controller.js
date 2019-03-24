@@ -29,7 +29,17 @@ class DimensionTabController {
      * @export
      * @type {string}
      */
-    this.levelsTotal = Object.keys(this.levels).length;
+    this.levelsTotal = tenantConf.levelsTotal;
+
+    /**
+     * @export
+     * type {Object}
+     */
+    this.dimensionClassNames = {};
+
+    tenantConf.dimensions.map((dimension) => {
+      this.dimensionClassNames[dimension] = dimension.replace(/_/g, '-');
+    });
 
     /**
      * @export
