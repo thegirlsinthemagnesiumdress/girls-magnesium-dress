@@ -1,0 +1,34 @@
+.dmb-collaboration {
+  $block: &;
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+
+  &:not(&--invert) {
+    color: $dmb-color-grey-mid !important;
+  }
+
+  &--invert {
+    #{$block}__text {
+      color: $dmb-light-text-color !important;
+    }
+  }
+
+  &__text {
+    margin: 0 10px 10px 0;
+  }
+
+  &__logos {
+    flex-grow: 1;
+  }
+
+  &__img {
+    height: 1em !important;
+    margin: 0 10px 10px 0;
+
+    &--gni {
+      height: 1.4em !important;
+      margin-top: .1em;
+    }
+  }
+}
