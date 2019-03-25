@@ -17,6 +17,7 @@ TENANTS = {
         'DIMENSION_TITLES': advertisers_conf.DIMENSION_TITLES,
         'MULTI_ANSWER_QUESTIONS': advertisers_conf.MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': advertisers_conf.WEIGHTS,
+        'EXCLUDED_TIME_THRESHOLD': 5,
     },
     NEWS: {
         'key': NEWS,
@@ -32,6 +33,7 @@ TENANTS = {
         'DIMENSIONS_WEIGHTS_QUESTION_ID': news_conf.DIMENSIONS_WEIGHTS_QUESTION_ID,
         'DIMENSIONS_WEIGHTS': news_conf.DIMENSIONS_WEIGHTS,
         'FORCED_INDUSTRY': 'ic-bnpj',
+        'EXCLUDED_TIME_THRESHOLD': 2,
     },
 }
 
