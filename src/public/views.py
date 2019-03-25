@@ -134,6 +134,7 @@ def handler404(request, *args, **kwargs):
         'text': 'Try returning to the homepage.',
         'cta': 'Return to homepage',
         'tenant': '',
+        'slug': '',
         'dimensions': '',
     }, status=404)
 
@@ -145,5 +146,6 @@ def handler500(request, *args, **kwargs):
         'text': 'Try returning to the homepage.',
         'cta': 'Return to homepage',
         'tenant': '',
+        'slug': '',
         'dimensions': '',
     }, status=500)
