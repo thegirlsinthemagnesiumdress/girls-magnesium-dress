@@ -223,7 +223,7 @@ class DataReliableTest(TestCase):
         'company_name': 'new survey',
         'dmb': '0.5',
         'StartDate': '2018-07-31 14:16:06',
-        'EndDate': '2018-07-31 14:18:06',
+        'EndDate': '2018-07-31 14:20:06',
 
         'Q1_1_TEXT': '',
         'Q1_2_TEXT': '',
