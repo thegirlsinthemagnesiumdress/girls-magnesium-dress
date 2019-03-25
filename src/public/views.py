@@ -23,6 +23,7 @@ COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 def registration(request, tenant):
     return render(request, 'public/{}/registration.html'.format(tenant), {
         'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
         'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
@@ -36,6 +37,7 @@ def report_static(request, tenant, sid):
 
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
         'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
     })
 
@@ -56,6 +58,7 @@ def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
         'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
     })
 
@@ -91,6 +94,7 @@ def reports_admin(request, tenant):
     serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
         'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
@@ -115,6 +119,7 @@ def result_detail(request, tenant, response_id):
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
         'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
         'result_detail': result_detail,
         'survey_result': survey_result,
