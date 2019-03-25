@@ -1,5 +1,6 @@
 .dmb-dimension-tabs {
   $block: &;
+  $dmb-recommendation-spacing: 24px;
 
   &__sticky-nav {
     @include h-u-box-shadow-1();
@@ -17,7 +18,7 @@
     transition: transform .3s, opacity 1ms .3s;
     z-index: $_h-header-bar-z-index + 1;
 
-    @include bp(s) {
+    @include dmb-mq($from: tablet) {
       display: block;
     }
 
@@ -66,7 +67,6 @@
 
   &__icons {
     display: flex;
-    margin-bottom: 10px;
   }
 
   .glue-c-tabset {
@@ -91,8 +91,8 @@
       color: $dmb-color-grey-shuttle;
       font-weight: $h-font-weight-regular;
       height: 100%;
-      margin: 0;
-      padding: 20px 25px;
+      margin: 0 0 10px;
+      padding: 10px 25px;
       width: 100%;
 
       &:focus {
@@ -123,8 +123,20 @@
     flex: 1 0 0;
   }
 
+  &__content {
+    @include dmb-resp-prop(padding-top, 20px, 30px, 40px);
+  }
+
+  &__intro,
   &__results {
     @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
+
+  &__logo {
+    @include dmb-mq($until: tablet) {
+      margin-bottom: 20px;
+      width: 140px;
+  }
+
   }
 
   &__results-heading,
@@ -143,6 +155,19 @@
     margin-bottom: 10px;
   }
 
+  &__progress-grid {
+    @include dmb-resp-prop(margin-bottom, 40px, 60px, 80px);
+  }
+
+  &__recommendations-header {
+    display: flex;
+
+    img {
+      height: 1.5em;
+      margin: -3px 10px 0 0;
+    }
+  }
+
   &__recommendation-list {
     justify-content: space-between;
     list-style: none;
@@ -155,14 +180,11 @@
     }
   }
 
-  $dmb-recommendation-spacing: 24px;
-  $dmb-recommendation-border-radius: 5px;
-
   &__recommendation {
     background: $dmb-color-blue-solitude;
-    border-radius: $dmb-recommendation-border-radius;
+    border-radius: $dmb-border-radius;
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: $dmb-recommendation-spacing;
     padding: $dmb-recommendation-spacing;
 
     @include dmb-mq($from: tablet) {
@@ -170,11 +192,25 @@
     }
   }
 
+  &__recommendation-heading {
+    &.h-c-headline {
+      margin-bottom: 20px;
+    }
+  }
+
   &__recommendation-cta {
+    border: 1px solid $dmb-color-grey-zircon;
+    margin-top: 20px;
+
     &.h-c-button.h-c-button--secondary {
       background: #fff;
+      border-radius: $dmb-border-radius;
       color: $dmb-interactive-color;
-      margin-top: 20px;
+
+      &:hover,
+      &:focus {
+        background: $dmb-color-grey-zircon;
+      }
     }
   }
 

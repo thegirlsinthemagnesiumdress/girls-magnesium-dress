@@ -75,10 +75,9 @@ class ProgressGridController {
    */
   getProgress(value) {
     const prog = value * 100;
-    const offset = this.getLevel(value);
-    this.verticalOverflow = value > 3.2;
-    this.horizontalOverflow = value > 3.83;
-    return `calc(${prog}% + ${offset}px)`;
+    this.verticalOverflow = this.verticalOverflow || value > 3.2;
+    this.horizontalOverflow = this.horizontalOverflow || value > 3.83;
+    return `${prog}%`;
   }
 }
 

@@ -33,12 +33,20 @@ class DimensionTabController {
 
     /**
      * @export
+     * @type {string}
+     */
+    this.logoUrls = {};
+
+    /**
+     * @export
      * type {Object}
      */
     this.dimensionClassNames = {};
 
     tenantConf.dimensions.map((dimension) => {
-      this.dimensionClassNames[dimension] = dimension.replace(/_/g, '-');
+      const dimensionHyphenatedName = dimension.replace(/_/g, '-');
+      this.dimensionClassNames[dimension] = dimensionHyphenatedName;
+      this.logoUrls[dimension] = `devstatic/img/${$scope.tenant}/dimensions/${dimensionHyphenatedName}.svg`;
     });
 
     /**

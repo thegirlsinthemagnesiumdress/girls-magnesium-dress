@@ -5,114 +5,118 @@
 
 {% block main %}
 <main id="dmb-report" dmb-report ng-cloak>
-  {% comment %}
   {% include 'public/retail/report/report-intro.inc.html' %}
   {% include 'public/retail/report/report-hero.inc.html' %}
   {% include 'public/retail/report/report-overall.inc.html' %}
-  {% endcomment %}
-  {% include 'public/retail/report/report-dimensions.inc.html' with class='dmb-u-m-b-l' %}
+  {% include 'public/retail/report/report-dimensions.inc.html' %}
+
+  <div class="dmb-report-page__appendix dmb-h-hidden--screen">
+    <h2 class="h-c-headline h-c-headline--three">Appendix</h2>
+  </div>
 </main>
 
-  {% comment %}
-  <div class="dmb-report-page__appendix dmb-h-mb--medium dmb-h-hidden--screen">
-    <div class="h-c-page">
-      <h2 class="h-c-headline h-c-headline--three dmb-print-page-header">Appendix</h2>
+<aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
+  <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+    <span class="dmb-fab__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <use xlink:href="#mi-close"></use>
+      </svg>
+    </span>
+  </button>
+  <div class="dmb-side-panel__inner">
+    <h1 class="h-c-headline h-c-headline--three">
+      Levels of data maturity
+    </h1>
+    <div
+        class="dmb-u-m-b-m"
+        ng-repeat="level in reportCtrl.levels">
+      <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
+        {[level]}
+      </h2>
+      <p>
+        {[reportCtrl.levelDescriptions[$index]]}
+      </p>
     </div>
   </div>
+</aside>
 
-  <aside id="dmb-report-left-side-panel-one" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
-    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
-      <span class="dmb-fab__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <use xlink:href="#mi-close"></use>
-        </svg>
-      </span>
-    </button>
-    <div class="dmb-side-panel__inner">
-      <h1 class="h-c-headline h-c-headline--three">
-        Levels of data maturity
-      </h1>
-      <div ng-repeat="level in reportCtrl.levels">
-        <h2 class="h-c-headline h-c-headline--three h-u-font-weight-medium">
-          {[level]}
-        </h2>
-        <p>
-          {[reportCtrl.levelDescriptions[$index]]}
-        </p>
-      </div>
-    </div>
-  </aside>
 
-  <aside id="dmb-report-left-side-panel-two" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
-    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
-      <span class="dmb-fab__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <use xlink:href="#mi-close"></use>
-        </svg>
-      </span>
-    </button>
-    <div class="dmb-side-panel__inner">
-      <h1 class="h-c-headline h-c-headline--three">
-        Benchmark calculations
-      </h1>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Industry average
-      </h2>
-      <p>
-        How retailers perform on average; calculated based on the Deloitte Digital Transformation through Data study.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Industry best
-      </h2>
-      <p>
-        This is the highest recorded score from a participant in the Deloitte Digital Transformation through Data study.
-      </p>
-    </div>
-  </aside>
+<aside
+    id="dmb-report-left-side-panel-two"
+    class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow"
+    dmb-side-panel>
+  <button
+      class="dmb-side-panel__fab dmb-fab"
+      dmb-side-panel-close>
+    <span class="dmb-fab__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <use xlink:href="#mi-close"></use>
+      </svg>
+    </span>
+  </button>
+  <div class="dmb-side-panel__inner">
+    <h1 class="h-c-headline h-c-headline--three">
+      Benchmark calculations
+    </h1>
+    <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+      Industry average
+    </h2>
+    <p class="dmb-u-m-b-m">
+      How retailers perform on average; calculated based on the Deloitte Digital Transformation through Data study.
+    </p>
+    <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+      Industry best
+    </h2>
+    <p class="dmb-u-m-b-m">
+      This is the highest recorded score from a participant in the Deloitte Digital Transformation through Data study.
+    </p>
+  </div>
+</aside>
 
-  <aside id="dmb-report-left-side-panel-three" class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow" dmb-side-panel>
-    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
-      <span class="dmb-fab__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <use xlink:href="#mi-close"></use>
-        </svg>
-      </span>
-    </button>
-    <div class="dmb-side-panel__inner">
-      <h1 class="h-c-headline h-c-headline--three">
-        Four dimensions of data maturity
-      </h1>
-      <p>
-        We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organization.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Strategic direction and data foundations
-      </h2>
-      <p>
-        Understand the role of data and the core capabilities required to successfully activate data within the organization.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        User experience
-      </h2>
-      <p>
-        Using customer data to enhance the overall online experience.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Core sales activities
-      </h2>
-      <p>
-        Critical capabilities that leverage customer data to improve a retailer’s ability to sell products and serve customers.
-      </p>
-      <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-        Emerging monetization opportunities
-      </h2>
-      <p>
-        New investment opportunities that retailers can implement to better monetize their digital media assets and provide online-to-offline support.
-      </p>
-    </div>
-  </aside>
-
-  {% endcomment %}
+<aside
+    id="dmb-report-left-side-panel-three"
+    class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow"
+    dmb-side-panel>
+  <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+    <span class="dmb-fab__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <use xlink:href="#mi-close"></use>
+      </svg>
+    </span>
+  </button>
+  <div class="dmb-side-panel__inner">
+    <h1 class="h-c-headline h-c-headline--three">
+      Four dimensions of data maturity
+    </h1>
+    <p class="dmb-u-m-b-m">
+      We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organization.
+    </p>
+    <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+      Strategic direction and data foundations
+    </h2>
+    <p class="dmb-u-m-b-m">
+      Understand the role of data and the core capabilities required to successfully activate data within the organization.
+    </p>
+    <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+      User experience
+    </h2>
+    <p class="dmb-u-m-b-m">
+      Using customer data to enhance the overall online experience.
+    </p>
+    <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+      Core sales activities
+    </h2>
+    <p class="dmb-u-m-b-m">
+      Critical capabilities that leverage customer data to improve a retailer’s ability to sell products and serve customers.
+    </p>
+    <h2 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+      Emerging monetization opportunities
+    </h2>
+    <p class="dmb-u-m-b-m">
+      New investment opportunities that retailers can implement to better monetize their digital media assets and provide online-to-offline support.
+    </p>
+  </div>
+</aside>
 
 {% endblock %}
 

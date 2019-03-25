@@ -59,6 +59,7 @@ const template = `
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular">
     <button
+        class="dmb-h-hidden--print"
         dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
         aria-label="Get more information about the industry average">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
@@ -69,6 +70,7 @@ const template = `
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-regular">
     <button
+        class="dmb-h-hidden--print"
         dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
         aria-label="Get more information about the industry best">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">

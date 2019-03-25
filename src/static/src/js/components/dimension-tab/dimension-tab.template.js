@@ -3,14 +3,13 @@ goog.module('dmb.components.dimensionTab.template');
 /* eslint-disable max-len */
 const dimensionTabTemplate = `
 <div
-    class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[dimensionTabCtrl.floorDMB]} dmb-u-p-t-m">
+    class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[dimensionTabCtrl.floorDMB]}">
 
-  <div class="dmb-u-m-b-m">
+  <div class="dmb-dimension-tabs__intro">
     <div class="h-c-grid">
-      <div class="h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
-        ICON
+      <div class="dmb-dimension-tabs__logo-col h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
         <img
-            ng-src="{[staticUrl]}/{[tenant]}/dimensions/{[dimensionClassNames[dmbDimensionTab]]}.svg"
+            ng-src="http://localhost:8000/devstatic/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
             alt="{[dmbDimensionTab]} logo"
             class="dmb-dimension-tabs__logo">
       </div>
@@ -44,7 +43,7 @@ const dimensionTabTemplate = `
     </div>
   </div>
 
-  <div class="dmb-u-m-b-m">
+  <div class="dmb-dimension-tabs__progress-grid">
     <dmb-progress-grid
         data-company-name="{[companyName]}"
         data-rating-main="dimensionTabCtrl.dmb"
@@ -57,7 +56,10 @@ const dimensionTabTemplate = `
 
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
-      <h4 class="h-c-headline h-c-headline--four">
+      <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four">
+        <img
+            ng-src="http://localhost:8000/devstatic/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
+            alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} logo">
         {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
       </h4>
       <h4 class="h-c-headline h-c-headline--two">
@@ -83,7 +85,7 @@ const dimensionTabTemplate = `
           <li
               class="dmb-dimension-tabs__recommendation"
               ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB]">
-            <h5 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+            <h5 class="dmb-dimension-tabs__recommendation-heading h-c-headline h-c-headline--subhead h-u-font-weight-medium">
               {[recommendation.header]}
             </h5>
             <p>
