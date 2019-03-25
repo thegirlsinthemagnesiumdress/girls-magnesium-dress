@@ -41,7 +41,7 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: https://google.qualtrics.com
 
-    - url: /static/(.*/qualtrics-survey-legacy\.(css|js))$
+- url: /static/(.*/qualtrics-survey-legacy\.(css|js))$
   static_files: static/dist/\1
   upload: static/dist/(.*/qualtrics-survey-legacy\.(css|js))$
   secure: always
