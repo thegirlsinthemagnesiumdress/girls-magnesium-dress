@@ -11,6 +11,7 @@ class DimensionTabController {
    * @param {!Object} reportService
    * @param {!Function} floorDmbFactory
    * @param {!Object} tenantConf
+   * @param {!string} dmbStaticUrl
    *
    * @ngInject
    */
