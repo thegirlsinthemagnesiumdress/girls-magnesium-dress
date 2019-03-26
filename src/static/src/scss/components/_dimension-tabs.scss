@@ -63,6 +63,10 @@
       background-color: $dmb-color-blue-solitude;
       font-weight: $h-font-weight-medium;
     }
+
+    @include dmb-mq($until: desktop) {
+      font-size: 14px;
+  }
   }
 
   &__icons {
@@ -77,6 +81,10 @@
 
     .glue-is-active {
       .glue-c-tabset__button {
+        &,
+        &:focus {
+          font-weight: $h-font-weight-medium;
+        }
         border-bottom: 4px solid $dmb-interactive-color;
         color: $dmb-text-color;
         font-weight: $h-font-weight-regular;
@@ -97,7 +105,7 @@
 
       &:focus {
         background: transparent;
-        outline: 2px solid $dmb-interactive-color;
+        outline: 4px solid $dmb-interactive-color;
       }
 
       // Quick win to make icon on top of the tab clickable.
