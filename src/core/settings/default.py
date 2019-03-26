@@ -301,7 +301,6 @@ QUALTRICS_BASE_SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{survey_id}'
 MIN_ITEMS_INDUSTRY_THRESHOLD = 25
 MIN_ITEMS_BEST_PRACTICE_THRESHOLD = 5
 
-CONTACT_EMAIL = "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id())
 
 SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
     '@google.com',
