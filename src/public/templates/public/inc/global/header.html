@@ -30,7 +30,7 @@
 
     <div class="h-c-header__lockup">
       <div class="h-c-header__company-logo">
-        <a href="/{{ tenant|ng_mark_safe }}"
+        <a href="/{{ slug|ng_mark_safe }}"
             class="h-c-header__company-logo-link" title="Google">
           <!-- Both the color and white versions of the google logo are
                included in code, and their display is controlled using BEM
@@ -50,7 +50,7 @@
       </div>
 
       <div class="h-c-header__product-logo">
-        <a href="/{{ tenant|ng_mark_safe }}"
+        <a href="/{{ slug|ng_mark_safe }}"
             class="h-c-header__product-logo-link">
           <span class="h-c-header__product-logo-text">{% if tenant|ng_mark_safe == 'ads' %}Digital{% else %}Data{% endif %} Maturity Benchmark</span>
         </a>
