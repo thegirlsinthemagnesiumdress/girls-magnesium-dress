@@ -18,7 +18,14 @@ class DimensionTabController {
     $scope,
     reportService,
     floorDmbFactory,
-    tenantConf) {
+    tenantConf,
+    dmbStaticUrl) {
+    /**
+     * @export
+     * @type {string}
+     */
+    this.dmbStaticUrl = dmbStaticUrl;
+
     /**
      * @type {!Object}
      * @export

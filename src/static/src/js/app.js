@@ -61,12 +61,16 @@ try {
   console.warn('Not valid json');
 }
 
+
 const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
 const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
-
-// Detect CSS Grid support
-const cssGridSupport = typeof document.getElementById('bootstrap-data').style.grid === 'string';
 module.constant('csrfToken', csrfToken);
+
+const bootstrapDataElement = document.getElementById('bootstrap-data');
+// Add static url as constant
+module.constant('dmbStaticUrl', bootstrapDataElement.dataset['staticUrl']);
+// Detect CSS Grid support
+const cssGridSupport = typeof bootstrapDataElement.style.grid === 'string';
 module.constant('cssGridSupport', cssGridSupport);
 
 // Conditionally start the app if it's a supported browser.

@@ -9,7 +9,7 @@ const dimensionTabTemplate = `
     <div class="h-c-grid">
       <div class="dmb-dimension-tabs__logo-col h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
         <img
-            ng-src="http://localhost:8000/devstatic/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
+            ng-src="{[dimensionTabCtrl.dmbStaticUrl]}/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
             alt="{[dmbDimensionTab]} logo"
             class="dmb-dimension-tabs__logo">
       </div>
@@ -58,7 +58,7 @@ const dimensionTabTemplate = `
     <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
       <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four">
         <img
-            ng-src="http://localhost:8000/devstatic/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
+            ng-src="{[dimensionTabCtrl.dmbStaticUrl]}/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
             alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} logo">
         {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
       </h4>
