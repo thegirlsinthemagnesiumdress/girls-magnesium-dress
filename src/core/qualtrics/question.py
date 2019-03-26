@@ -192,17 +192,18 @@ def get_question_dimension(question_id, dimensions):
             return dimension_key
 
 
-def discard_scores(survey_data):
+def discard_scores(survey_data, threshold):
     """
     Returns `True` if survey data should be discarded from best practice.
 
     :param survey_data: dictionary object representing survey response data.
-    :returns: `True` if time to give the `survey_data` answers took less than 5
-    minutes, `False` otherwise
+    :param threshold: the duration to exclude results in minutes.
+    :returns: `True` if time to give the `survey_data` answers took less than
+    `threshold` minutes, `False` otherwise
     """
     start_date = datetime.strptime(survey_data.get('StartDate'), DATE_FORMAT)
     end_date = datetime.strptime(survey_data.get('EndDate'), DATE_FORMAT)
-    return end_date - start_date < timedelta(minutes=5)
+    return end_date - start_date < timedelta(minutes=threshold)
 
 
 def get_question(question_key, response_data):

@@ -91,12 +91,12 @@
 @import 'components/footer';
 @import 'components/home-hero';
 @import 'components/home-tabs';
+@import 'components/collaboration';
 @import 'components/cta-banner';
 @import 'components/icon-text-cta';
 @import 'components/img-text';
 @import 'components/img-text-collage';
 @import 'components/outline-button';
-@import 'components/partnership-logo';
 @import 'components/product-hero';
 @import 'components/progress-circle';
 @import 'components/progress-table';
@@ -109,7 +109,6 @@
 
 // Pages
 @import 'pages/landing';
-// @import 'pages/report';
 
 // Tenants
 @import 'tenants/news';

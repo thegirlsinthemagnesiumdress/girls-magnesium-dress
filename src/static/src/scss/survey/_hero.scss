@@ -39,10 +39,10 @@
   }
 
   &__panel-button {
-    @include dmb-mq($until: desktop) {
-      &.h-c-button {
-        margin-bottom: 20px;
-      }
+    display: block;
+
+    &.h-c-button {
+      margin-bottom: 30px;
     }
   }
 
