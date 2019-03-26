@@ -1,0 +1,92 @@
+{% load angular %}
+<div class="dmb-dimension-tabs">
+  <div data-ng-if="reportCtrl.showTabs">
+    <div class="dmb-dimension-tabs__icons">
+      <!-- Tab Icons -->
+      <div class="dmb-dimension-tabs__icon h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+        <div
+          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[progressCircleCtrl.level]}"
+          data-progress="reportCtrl.result.dmb_d[dimension]">
+          <svg class="dmb-progress-circle__prog-svg" dmb-progress-circle="reportCtrl.result.dmb_d[dimension]"
+            viewbox="0 0 120 120">
+            <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
+            <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
+          </svg>
+          <div class="dmb-progress-circle__text">
+            <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
+              {[reportCtrl.result.dmb_d[dimension]|number:1]}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="reportCtrl.renderTabset">
+      <!-- sticky nav -->
+      <div class="dmb-dimension-tabs__sticky-nav" aria-hidden="true" dmb-pin-top>
+        <div class="h-c-page">
+          <ul>
+            <li ng-repeat="dimension in reportCtrl.dimensions">
+              <button class="dmb-dimension-tabs__sticky-nav-btn"
+                ng-class="{'is-active': reportCtrl.model.activeEl == dimension}"
+                ng-click="reportCtrl.selectTab('dimension-tabs', dimension)" tabindex="-1">
+                {[reportCtrl.dimensionHeaders[dimension]]}
+              </button>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+
+      <div
+          class="dmb-dimension-tabs__tabby glue-tabset"
+          data-glue-tabset-state="['activeEl']"
+          data-glue-state-id="dimension-tabs"
+          data-glue-tabset-model="reportCtrl.model"
+          data-glue-tabset-enable-arrow-nav ng-cloak>
+        <ul>
+          <li ng-repeat="dimension in reportCtrl.dimensions" data-glue-label="{[dimension]}" id="{[dimension]}">
+            <h3>
+              {[reportCtrl.dimensionHeaders[dimension]]}
+            </h3>
+            <div>
+              <div company-name="{[reportCtrl.survey.company_name]}" dmb-dimension-tab="{[dimension]}"
+                tenant="{{tenant|ng_mark_safe}}">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% comment %}
+  We need to duplicate the tabset and zippy ( instead of just taking advantage of the tabby controller), because we have a
+  bug where, if 2 way data binding is enabled (to be able to build the sticky nav,) when closing the a panel the page
+  scrolls to the top ( probably # left at the end of the url). Unfortunately I coulnd't find the reason why this happens.
+  The issue is related to the tabby using deeplinking (unfortunately that is enabled by default when using 2 way data
+  binding)
+  {% endcomment %}
+  <div class="dmb-dimension-tabs__zippy" data-ng-if="!reportCtrl.showTabs">
+    <div class="glue-zippy-set h-t-hercules" ng-cloak>
+      <ul class="h-c-expansion-panels__list">
+        <li class="glue-zippy glue-a-zippy--v-smooth-expand dmb-dimension-tabs__zippy-container"
+          ng-repeat="dimension in reportCtrl.dimensions" ng-attr-id="{[ dimension ]}">
+          <div class="glue-zippy-btn">
+            <h4 class="h-c-expansion-panels__button-header dmb-dimension-tabs__zippy-btn">
+              {[ reportCtrl.dimensionHeaders[dimension] ]}
+            </h4>
+            <svg role="img" aria-hidden="true" class="h-c-icon--18px h-c-expansion-panels__button-arrow">
+              <use xlink:href="#mi-arrow-item"></use>
+            </svg>
+          </div>
+          <div class="glue-zippy-content">
+            <div company-name="{[reportCtrl.survey.company_name]}" dmb-dimension-tab="{[dimension]}"
+              tenant="{{tenant|ng_mark_safe}}">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

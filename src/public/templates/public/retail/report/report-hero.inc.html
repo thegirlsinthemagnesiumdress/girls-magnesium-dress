@@ -33,7 +33,10 @@
       <span ng-if="reportCtrl.floorDmb >= 3">
         Congratulations, you're in the top group for data maturity</strong>
       </span>
-      <button dmb-side-panel-trigger="#dmb-report-left-side-panel-one" aria-label="Get more informations about what your maturity represents">
+      <button
+          class="dmb-u-hide-mobile"
+          dmb-side-panel-trigger="#dmb-levels-side-panel"
+          aria-label="Get more informations about what your maturity represents">
         {% include 'core/inc/svg.html' with id='info' inline=True only %}
       </button>
     </div>
