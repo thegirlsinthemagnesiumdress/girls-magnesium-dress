@@ -66,7 +66,7 @@
 
     @include dmb-mq($until: desktop) {
       font-size: 14px;
-  }
+    }
   }
 
   &__icons {
@@ -85,9 +85,11 @@
         &:focus {
           font-weight: $h-font-weight-medium;
         }
-        border-bottom: 4px solid $dmb-interactive-color;
-        color: $dmb-text-color;
-        font-weight: $h-font-weight-regular;
+
+        @include screen-styles() {
+          border-bottom: 4px solid $dmb-interactive-color;
+          color: $dmb-text-color;
+        }
       }
     }
 
@@ -95,13 +97,16 @@
       @extend .h-c-headline;
       @extend .h-c-headline--subhead;
       border: 0;
-      border-bottom: 4px solid $dmb-color-grey-zircon;
       color: $dmb-color-grey-shuttle;
       font-weight: $h-font-weight-regular;
       height: 100%;
       margin: 0 0 10px;
       padding: 10px 25px;
       width: 100%;
+
+      @include screen-styles() {
+        border-bottom: 4px solid $dmb-color-grey-zircon;
+      }
 
       &:focus {
         background: transparent;
@@ -131,6 +136,12 @@
     flex: 1 0 0;
   }
 
+  .glue-o-pagination__page {
+    @include print-styles {
+      display: block;
+    }
+  }
+
   &__content {
     @include dmb-resp-prop(padding-top, 20px, 30px, 40px);
   }
@@ -139,12 +150,26 @@
   &__results {
     @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
 
+    @include print-styles {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__logo-col {
+    @include screen-styles {
+      text-align: center;
+    }
+  }
+
   &__logo {
     @include dmb-mq($until: tablet) {
       margin-bottom: 20px;
       width: 140px;
-  }
+    }
 
+    @include print-styles {
+      width: 50px;
+    }
   }
 
   &__results-heading,

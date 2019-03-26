@@ -33,6 +33,13 @@ button {
   font-weight: $h-font-weight-medium;
 }
 
+.dmb-header {
+  @include print-styles {
+    display: none;
+  }
+}
+
+
 // ZIPPY/TABBY RESETS
 // Reset unwanted mobile (zippy) and desktop (tabby) glue tab styles for report page dimensions
 

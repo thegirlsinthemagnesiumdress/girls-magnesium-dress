@@ -12,6 +12,7 @@ $block: '.dmb-progress-grid';
 .dmb-progress-grid {
   display: grid;
   grid-template-columns: repeat(length($sources), 1fr);
+  page-break-inside: avoid;
 
   &__heading {
     border: 0 !important;
@@ -62,8 +63,16 @@ $block: '.dmb-progress-grid';
       font-size: 12px;
       left: 50%;
       text-align: center;
-      top: 0;
-      transform: translate(-50%, calc(-100% - 8px));
+
+      @include screen-styles {
+        top: 0;
+        transform: translate(-50%, calc(-100% - 8px));
+      }
+
+      @include print-styles {
+        bottom: 0;
+        transform: translate(-50%, calc(100% + 45px));
+      }
     }
   }
 
@@ -124,6 +133,10 @@ $block: '.dmb-progress-grid';
       &--overflow-v {
         @include dmb-mq($until: $progress-grid-switch-bp) {
           margin-top: $dmb-prog-grid-overflow-v-margin; //to accommodate nearly full bar labels
+        }
+
+        @include print-styles {
+          margin-top: 50px;
         }
       }
 

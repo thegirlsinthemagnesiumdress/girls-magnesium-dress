@@ -32,11 +32,19 @@
       align-items: baseline;
       display: flex;
       justify-content: space-between;
+
+      @include print-styles {
+        display: block;
+      }
     }
   }
 
   &__date {
     @include dmb-resp-prop(margin-bottom, 60px, 40px, 45px);
+
+    @include print-styles {
+      margin-bottom: 20px;
+    }
   }
 
   &__subheading {
@@ -55,6 +63,10 @@
     svg {
       margin: 0;
     }
+
+    @include dmb-mq($until: desktop) {
+      display: none;
+    }
   }
 
   &__next {
@@ -67,6 +79,18 @@
     @include dmb-mq($from: desktop) {
       padding-left: 20px 60px;
     }
+  }
+
+  &__current,
+  &__next {
+    @include print-styles {
+      color: $dmb-text-color;
+      padding: 30px 0 0;
+    }
+  }
+
+  *:focus {
+    outline-color: #fff;
   }
 
   @each $tenant, $value in $tenants {
