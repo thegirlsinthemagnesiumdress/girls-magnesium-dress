@@ -59,10 +59,8 @@ MULTI_ANSWER_QUESTIONS = [
 DIMENSIONS_WEIGHTS_QUESTION_ID = None
 
 DIMENSIONS_WEIGHTS = {
-    1: {
-        'strategic_direction': 0.4,
-        'user_engagement': 0.18,
-        'core_sales': 0.3,
-        'emerging_monetization': 0.12,
-    }
+    'strategic_direction': 0.4,
+    'user_engagement': 0.18,
+    'core_sales': 0.3,
+    'emerging_monetization': 0.12,
 }
