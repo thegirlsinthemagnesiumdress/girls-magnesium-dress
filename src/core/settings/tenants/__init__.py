@@ -56,6 +56,7 @@ TENANTS = {
         'DIMENSIONS_WEIGHTS': retail_conf.DIMENSIONS_WEIGHTS,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
     },
 }
 
