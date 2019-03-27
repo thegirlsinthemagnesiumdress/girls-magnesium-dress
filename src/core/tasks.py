@@ -167,7 +167,7 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
 
             raw_data = question.to_raw(questions, questions_text)
             dmb, dmb_d = _response_benchmark(questions, response_data, tenant)
-            excluded_from_best_practice = question.discard_scores(response_data)
+            excluded_from_best_practice = question.discard_scores(response_data, tenant['EXCLUDED_TIME_THRESHOLD'])
             survey_result = SurveyResult.objects.create(
                 survey_id=response_data.get('sid'),
                 response_id=response_id,
