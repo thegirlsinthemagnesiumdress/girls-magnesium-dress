@@ -31,7 +31,7 @@ class ProgressGridController {
      * @export
      * type {Object}
      */
-    this.levelsTotal = Object.keys(this.levels).length;
+    this.levelsTotal = tenantConf.levelsTotal;
   }
 
   /**
