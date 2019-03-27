@@ -51,10 +51,8 @@ class DimensionTabController {
      */
     this.dimensionClassNames = {};
 
-    tenantConf.dimensions.map((dimension) => {
-      const dimensionHyphenatedName = dimension.replace(/_/g, '-');
-      this.dimensionClassNames[dimension] = dimensionHyphenatedName;
-      this.logoUrls[dimension] = `devstatic/img/${$scope.tenant}/dimensions/${dimensionHyphenatedName}.svg`;
+    tenantConf.dimensions.forEach((dimension) => {
+      this.dimensionClassNames[dimension] = dimension.replace(/_/g, '-');
     });
 
     /**
