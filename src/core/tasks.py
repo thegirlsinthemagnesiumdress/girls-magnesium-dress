@@ -229,10 +229,12 @@ def send_emails_for_new_reports(email_list):
                 html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
                 text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
+                sender = settings.TENANTS[tenant]['CONTACT_EMAIL']
+
                 email_kwargs = {
                     'to': [to],
                     'subject': subject_template.render(context).split("\n")[0],
-                    'sender': settings.CONTACT_EMAIL,
+                    'sender': sender,
                     'body': text_message_template.render(context),
                     'html': html_message_template.render(context),
                 }
@@ -247,7 +249,7 @@ def send_emails_for_new_reports(email_list):
 
                 message.send()
 
-                logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
+                logging.info("Email sent to {} from {} for Survey with sid={}".format(to, sender, sid))
         except Survey.DoesNotExist:
             # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
