@@ -1,6 +1,8 @@
 import ads as advertisers_conf
 import news as news_conf
 import retail as retail_conf
+from djangae.environment import application_id
+
 
 ADS = 'ads'
 NEWS = 'news'
@@ -20,6 +22,7 @@ TENANTS = {
         'MULTI_ANSWER_QUESTIONS': advertisers_conf.MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': advertisers_conf.WEIGHTS,
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'CONTACT_EMAIL': "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
     },
     NEWS: {
         'key': NEWS,
@@ -36,6 +39,7 @@ TENANTS = {
         'DIMENSIONS_WEIGHTS': news_conf.DIMENSIONS_WEIGHTS,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 2,
+        'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
     },
     RETAIL: {
         'key': RETAIL,
@@ -48,7 +52,11 @@ TENANTS = {
         'DIMENSION_TITLES': retail_conf.DIMENSION_TITLES,
         'MULTI_ANSWER_QUESTIONS': retail_conf.MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': retail_conf.WEIGHTS,
+        'DIMENSIONS_WEIGHTS_QUESTION_ID': retail_conf.DIMENSIONS_WEIGHTS_QUESTION_ID,
+        'DIMENSIONS_WEIGHTS': retail_conf.DIMENSIONS_WEIGHTS,
         'FORCED_INDUSTRY': 'ic-bnpj',
+        'EXCLUDED_TIME_THRESHOLD': 5,
+        'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
     },
 }
 

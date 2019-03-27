@@ -166,13 +166,7 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
             questions_text = question.data_to_questions_text(response_text, dimensions, multianswers)
 
             raw_data = question.to_raw(questions, questions_text)
-            dmb, dmb_d = None, None
-            if tenant['key'] == settings.NEWS:
-                answer_value = question.get_question(tenant['DIMENSIONS_WEIGHTS_QUESTION_ID'], response_data)
-                dimensions_weights = tenant['DIMENSIONS_WEIGHTS'][answer_value]
-            else:
-                dimensions_weights = None
-            dmb, dmb_d = benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
+            dmb, dmb_d = _response_benchmark(questions, response_data, tenant)
             excluded_from_best_practice = question.discard_scores(response_data, tenant['EXCLUDED_TIME_THRESHOLD'])
             survey_result = SurveyResult.objects.create(
                 survey_id=response_data.get('sid'),
@@ -194,6 +188,17 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
     except IntegrityError:
         logging.info('SurveyResult with response_id: {} has already been saved.'.format(response_id))
     return new_survey_result
+
+
+def _response_benchmark(questions, response_data, tenant):
+    if tenant['key'] == settings.NEWS:
+        answer_value = question.get_question(tenant['DIMENSIONS_WEIGHTS_QUESTION_ID'], response_data)
+        dimensions_weights = tenant['DIMENSIONS_WEIGHTS'][answer_value]
+    elif tenant['key'] == settings.RETAIL:
+        dimensions_weights = tenant['DIMENSIONS_WEIGHTS']
+    else:
+        dimensions_weights = None
+    return benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
 
 
 def send_emails_for_new_reports(email_list):
@@ -229,10 +234,12 @@ def send_emails_for_new_reports(email_list):
                 html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
                 text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
+                sender = settings.TENANTS[tenant]['CONTACT_EMAIL']
+
                 email_kwargs = {
                     'to': [to],
                     'subject': subject_template.render(context).split("\n")[0],
-                    'sender': settings.CONTACT_EMAIL,
+                    'sender': sender,
                     'body': text_message_template.render(context),
                     'html': html_message_template.render(context),
                 }
@@ -247,7 +254,7 @@ def send_emails_for_new_reports(email_list):
 
                 message.send()
 
-                logging.info("Email sent to {} from {} for Survey with sid={}".format(to, settings.CONTACT_EMAIL, sid))
+                logging.info("Email sent to {} from {} for Survey with sid={}".format(to, sender, sid))
         except Survey.DoesNotExist:
             # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
