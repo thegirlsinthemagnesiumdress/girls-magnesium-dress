@@ -48,6 +48,8 @@ TENANTS = {
         'DIMENSION_TITLES': retail_conf.DIMENSION_TITLES,
         'MULTI_ANSWER_QUESTIONS': retail_conf.MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': retail_conf.WEIGHTS,
+        'DIMENSIONS_WEIGHTS_QUESTION_ID': retail_conf.DIMENSIONS_WEIGHTS_QUESTION_ID,
+        'DIMENSIONS_WEIGHTS': retail_conf.DIMENSIONS_WEIGHTS,
         'FORCED_INDUSTRY': 'ic-bnpj',
     },
 }
