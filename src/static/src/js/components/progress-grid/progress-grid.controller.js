@@ -32,18 +32,6 @@ class ProgressGridController {
      * type {Object}
      */
     this.levelsTotal = Object.keys(this.levels).length;
-
-    /**
-     * @export
-     * type {boolean}
-     */
-    this.verticalOverflow = null;
-
-    /**
-     * @export
-     * type {boolean}
-     */
-    this.horizontalOverflow = null;
   }
 
   /**
@@ -75,8 +63,6 @@ class ProgressGridController {
    */
   getProgress(value) {
     const prog = value * 100;
-    this.verticalOverflow = this.verticalOverflow || value > 3.2;
-    this.horizontalOverflow = this.horizontalOverflow || value > 3.83;
     return `${prog}%`;
   }
 }

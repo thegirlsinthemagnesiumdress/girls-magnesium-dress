@@ -122,28 +122,14 @@ $block: '.dmb-progress-grid';
 
       @include dmb-mq($until: $progress-grid-switch-bp) {
         border-top: 1px solid $dmb-prog-grid-line-color;
+        margin: $dmb-prog-grid-overflow-v-margin 0; //to accommodate nearly full bar labels
       }
 
       @include dmb-mq($from: $progress-grid-switch-bp) {
         border-right: 1px solid $dmb-prog-grid-line-color;
         grid-template-columns: auto repeat($tenant-levels-total, 1fr);
         grid-template-rows: auto repeat(length($sources), auto) 15px;
-      }
-
-      &--overflow-v {
-        @include dmb-mq($until: $progress-grid-switch-bp) {
-          margin-top: $dmb-prog-grid-overflow-v-margin; //to accommodate nearly full bar labels
-        }
-
-        @include print-styles {
-          margin-top: 50px;
-        }
-      }
-
-      &--overflow-h {
-        @include dmb-mq($from: $progress-grid-switch-bp) {
-          margin-right: $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
-        }
+        margin: 0 $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
       }
 
       &__col-bg {

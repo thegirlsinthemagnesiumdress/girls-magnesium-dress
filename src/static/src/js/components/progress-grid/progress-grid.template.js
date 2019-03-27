@@ -2,11 +2,7 @@ goog.module('dmb.components.progressGrid.template');
 
 const template = `
 <div
-    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.floorDmbFactory_(ratingMain)]}"
-    ng-class="{
-      'dmb-progress-grid--overflow-v': progressGridCtrl.verticalOverflow,
-      'dmb-progress-grid--overflow-h': progressGridCtrl.horizontalOverflow
-    }">
+    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.floorDmbFactory_(ratingMain)]}">
 
     <!-- This list is visually hidden and only read out by screen readers -->
     <ul class="h-u-visually-hidden">
