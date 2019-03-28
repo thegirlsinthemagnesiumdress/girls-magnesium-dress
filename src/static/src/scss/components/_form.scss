@@ -1,0 +1,30 @@
+.dmb-form {
+  &__input,
+  &__select {
+    background: transparent;
+    border: 1px solid $dmb-color-grey-zircon;
+    border-radius: $dmb-border-radius;
+    height: 56px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  &__input {
+    &::placeholder {
+      color: $dmb-color-grey-mid;
+    }
+  }
+
+  &__select {
+    color: $dmb-color-grey-mid;
+  }
+
+  .h-c-button {
+    margin-top: 20px;
+
+    @include dmb-mq($from: desktop) {
+      margin-top: 40px;
+    }
+  }
+}

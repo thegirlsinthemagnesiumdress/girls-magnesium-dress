@@ -3,6 +3,10 @@
   font-family: $h-font-family-google-sans;
 }
 
+.dmb-u-no-margin {
+  margin: 0 !important;
+}
+
 .dmb-u-hide-mobile {
   @include dmb-mq($until: tablet) {
     display: none;

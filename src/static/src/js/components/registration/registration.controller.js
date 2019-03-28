@@ -103,9 +103,15 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      this.link = res['data']['link'];
-      this.companyName = res['data']['company_name'];
-    }, (res) => {
+      if (this.tenant === 'ads') {
+        // legacy for ads page, makes use of interstitial page where url can be copied from.
+        this.link = res['data']['link'];
+        this.companyName = res['data']['company_name'];
+      } else {
+        // redirect to qualtrics survey page
+        window.location.href = res['data']['link'];
+      }
+    }, () => {
       this.serverError = true;
     });
   }
