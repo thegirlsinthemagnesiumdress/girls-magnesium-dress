@@ -75,6 +75,12 @@ class RegistrationController {
      * @export
      */
     this.link = '';
+
+    /**
+     * @export
+     * @type {string}
+     */
+    this.page = null;
   }
 
   /**
@@ -103,8 +109,8 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      if (this.tenant === 'ads') {
-        // legacy for ads page, makes use of interstitial page where url can be copied from.
+      if (this.tenant === 'ads' || this.page === 'reports') {
+        // legacy for ads page, or for reports list page where no redirect is required
         this.link = res['data']['link'];
         this.companyName = res['data']['company_name'];
       } else {

@@ -70,7 +70,8 @@
 
     <div
         class="dmb-side-panel__inner"
-        ng-controller="RegistrationCtrl as registrationCtrl">
+        ng-controller="RegistrationCtrl as registrationCtrl"
+        ng-init="registrationCtrl.page = 'reports'">
       <div ng-if="!registrationCtrl.link">
         <h2 class="h-c-headline h-c-headline--three h-u-mt-xl h-u-mb-l">
           Create a new survey
