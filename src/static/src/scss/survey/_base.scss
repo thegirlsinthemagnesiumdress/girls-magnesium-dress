@@ -31,12 +31,14 @@
 // Common Components
 @import 'components/fab';
 @import 'components/collaboration';
+@import 'components/outline-button';
 @import 'components/side-panel';
 @import 'components/styled-list';
 
 // Qualtrics-Specific Components
 @import 'survey/qualtrics-overrides';
 @import 'survey/banner';
+@import 'survey/copy-url';
 @import 'survey/dimension-header';
 @import 'survey/footer';
 @import 'survey/hero';
