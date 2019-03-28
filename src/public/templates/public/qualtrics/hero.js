@@ -48,5 +48,5 @@ Qualtrics.SurveyEngine.addOnReady(function () {
 });
 
 Qualtrics.SurveyEngine.addOnUnload(function () {
-  jQuery("#Wrapper").removeClass("dmb-survey--start");
+  jQuery('#Wrapper').removeClass('dmb-survey--start');
 });
