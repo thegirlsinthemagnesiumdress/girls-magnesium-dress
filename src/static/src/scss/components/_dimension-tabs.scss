@@ -1,0 +1,264 @@
+.dmb-dimension-tabs {
+  $block: &;
+  $dmb-recommendation-spacing: 24px;
+
+  &__sticky-nav {
+    @include h-u-box-shadow-1();
+    background-color: $h-white;
+    display: none;
+    font-family: $h-font-family-google-sans;
+    font-weight: $h-font-weight-regular;
+    height: $_h-header-height;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .3s, opacity 1ms .3s;
+    z-index: $_h-header-bar-z-index + 1;
+
+    @include dmb-mq($from: tablet) {
+      display: block;
+    }
+
+    @media (min-width: $h-header-breakpoint--full-size) {
+      height: $_h-header-height--full-size;
+    }
+
+    .h-c-page,
+    ul {
+      height: 100%;
+    }
+
+    ul {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    &.dmb-pinned {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform .3s;
+    }
+  }
+
+  &__sticky-nav-btn {
+    background: transparent;
+    border: 0;
+    border-radius: $dmb-border-radius;
+    color: $dmb-color-grey-shuttle;
+    padding: 8px 20px;
+
+    &:not(:focus) {
+      outline: 0;
+    }
+
+    &.is-active {
+      background-color: $dmb-color-blue-solitude;
+      font-weight: $h-font-weight-medium;
+    }
+
+    @include dmb-mq($until: desktop) {
+      font-size: 14px;
+    }
+  }
+
+  &__icons {
+    display: flex;
+  }
+
+  .glue-c-tabset {
+    &__tab {
+      margin: 0;
+      position: relative;
+    }
+
+    .glue-is-active {
+      .glue-c-tabset__button {
+        &,
+        &:focus {
+          font-weight: $h-font-weight-medium;
+        }
+
+        @include screen-styles() {
+          border-bottom: 4px solid $dmb-interactive-color;
+          color: $dmb-text-color;
+        }
+      }
+    }
+
+    &__button {
+      @extend .h-c-headline;
+      @extend .h-c-headline--subhead;
+      border: 0;
+      color: $dmb-color-grey-shuttle;
+      font-weight: $h-font-weight-regular;
+      height: 100%;
+      margin: 0 0 10px;
+      padding: 10px 25px;
+      width: 100%;
+
+      @include screen-styles() {
+        border-bottom: 4px solid $dmb-color-grey-zircon;
+      }
+
+      &:focus {
+        background: transparent;
+        outline: 4px solid $dmb-interactive-color;
+      }
+
+      // Quick win to make icon on top of the tab clickable.
+      &::after {
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        position: absolute;
+        top: -85px; // size of small progress circle and top and bottom padding, to overlap it
+        width: 100%;
+      }
+    }
+  }
+
+  .dmb-dimension-tabs__icons,
+  .glue-c-tabset__tablist {
+    display: flex;
+  }
+
+  .dmb-dimension-tabs__icon,
+  .glue-c-tabset__tab {
+    flex: 1 0 0;
+  }
+
+  .glue-o-pagination__page {
+    @include print-styles {
+      display: block;
+    }
+  }
+
+  &__content {
+    @include dmb-resp-prop(padding-top, 20px, 30px, 40px);
+  }
+
+  &__intro,
+  &__results {
+    @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
+
+    @include print-styles {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__logo-col {
+    @include screen-styles {
+      text-align: center;
+    }
+  }
+
+  &__logo {
+    @include dmb-mq($until: tablet) {
+      margin-bottom: 20px;
+      width: 140px;
+    }
+
+    @include print-styles {
+      width: 50px;
+    }
+  }
+
+  &__results-heading,
+  &__results-value {
+    margin: 0;
+  }
+
+  &__results-value {
+    @include dmb-mq($until: tablet) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__results-subheading {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  &__progress-grid {
+    @include dmb-resp-prop(margin-bottom, 40px, 60px, 80px);
+  }
+
+  &__recommendations-header {
+    display: flex;
+
+    img {
+      height: 1.5em;
+      margin: -3px 10px 0 0;
+    }
+  }
+
+  &__recommendation-list {
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+
+    @include dmb-mq($from: tablet) {
+      display: flex;
+      flex-direction: column;
+      flex-flow: wrap;
+    }
+  }
+
+  &__recommendation {
+    background: $dmb-color-blue-solitude;
+    border-radius: $dmb-border-radius;
+    display: block;
+    margin-bottom: $dmb-recommendation-spacing;
+    padding: $dmb-recommendation-spacing;
+
+    @include dmb-mq($from: tablet) {
+      width: calc(50% - (#{$dmb-recommendation-spacing} / 2));
+    }
+  }
+
+  &__recommendation-heading {
+    &.h-c-headline {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__recommendation-cta {
+    border: 1px solid $dmb-color-grey-zircon;
+    margin-top: 20px;
+
+    &.h-c-button.h-c-button--secondary {
+      background: #fff;
+      border-radius: $dmb-border-radius;
+      color: $dmb-interactive-color;
+
+      &:hover,
+      &:focus {
+        background: $dmb-color-grey-zircon;
+      }
+    }
+  }
+
+  // Change color of donut progress bar based on level
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
+
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      @each $level, $value in $tenant-levels {
+        &__content--level-#{$level} {
+          #{$block}__results-highlight {
+            color: map-get($value, color);
+          }
+        }
+      }
+    }
+  }
+}

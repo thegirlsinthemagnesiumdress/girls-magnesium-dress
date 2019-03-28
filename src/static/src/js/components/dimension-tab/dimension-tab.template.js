@@ -2,102 +2,112 @@ goog.module('dmb.components.dimensionTab.template');
 
 /* eslint-disable max-len */
 const dimensionTabTemplate = `
+<div
+    class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[dimensionTabCtrl.floorDMB]}">
 
-<div class="dmb-report-page__tab-content dmb-tab">
-
-  <div class="dmb-tab__header-grid h-c-grid">
-    <div class="dmb-report-page__tab-static-col h-c-grid__col  h-c-grid__col--12 h-c-grid__col-l--5">
-      <h2 class="dmb-print-page-header h-c-headline h-c-headline--one">
-        {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
-      </h2>
-      <p>
-        {[ dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab] ]}
-      </p>
-    </div>
-
-    <div class="dmb-report-page__tab-dynamic-col h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--7">
-      <div class="h-c-grid dmb-tab__subgrid">
-        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--4">
-            <div class="dmb-progress-circle dmb-progress-circle--dimension-main dmb-progress-circle--{[dmbDimensionTab]}"">
-              <svg
-                  dmb-progress-circle="dimensionTabCtrl.dmb"
-                  class="dmb-progress-circle__prog-svg"
-                  width="121" height="121" viewBox="0 0 120 120">
-                <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-                <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
-              </svg>
-              <div class="dmb-progress-circle__icon"></div>
-            </div>
-            <div class="dmb-report-page__tab-progress-circle-results dmb-progress-circle__results">
-              <span class="dmb-progress-circle__result">{[ dimensionTabCtrl.dmb|number : 1 ]}</span><span class="dmb-progress-circle__target">/<span class="dmb-progress-circle__target--value">{[dimensionTabCtrl.levelsTotal|number : 1]}</span>
-              </span>
-            </div>
-        </div>
-
-        <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--8">
-          <h3 class="dmb-h-alt-font">
-            <span class="dmb-report-page__headline-accent">You are </span><br><strong>{[ dimensionTabCtrl.floorDMB|dmbLevelText ]} </strong>
-          </h3>
-          <p>
-            {[ dimensionTabCtrl.dimensionLevelDescription[dmbDimensionTab][dimensionTabCtrl.floorDMB] ]}
-          </p>
-        </div>
+  <div class="dmb-dimension-tabs__intro">
+    <div class="h-c-grid">
+      <div class="dmb-dimension-tabs__logo-col h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
+        <img
+            ng-src="{[dimensionTabCtrl.dmbStaticUrl]}/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
+            alt="{[dmbDimensionTab]} logo"
+            class="dmb-dimension-tabs__logo">
       </div>
-    </div>
-  </div>
-
-  <dmb-progress-table
-    data-rating-main="dimensionTabCtrl.dmb"
-    data-industry-avg="dimensionTabCtrl.industryDmb"
-    data-industry-best="dimensionTabCtrl.industryDmb_bp"
-    data-company-name="{[company_name]}"
-    data-industry-ready="!!dimensionTabCtrl.industryResult"
-    >
-  </dmb-progress-table>
-
-  <div class="dmb-report-page__recommendation-block dmb-tab__recommendation-block">
-    <h3 class="h-c-headline h-c-headline--three">
-      <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span>
-      <strong ng-if="dimensionTabCtrl.floorDMB < 3">{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
-
-      <!-- TODO: The copy beneath should go in the tenant configuration instead (https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/195) -->
-
-      <div class="dmb-tab__recommendation-congrat--ads">
-        <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
-        <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top 2% for marketing maturity</strong>
-      </div>
-
-      <div class="dmb-tab__recommendation-congrat--news">
-        <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
-        <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top group for data maturity</strong>
-      </div>
-    </h3>
-
-    <p
-        ng-if="dimensionTabCtrl.floorDMB < 3"
-        class="h-c-headline h-c-headline--four">Here's how you get there:</p>
-    <p
-        ng-if="dimensionTabCtrl.floorDMB >= 3"
-        class="h-c-headline h-c-headline--four">Here's how to get even better:</p>
-
-    <ul class="dmb-report-page__recommendations dmb-tab__recommendations">
-
-      <li
-          class="dmb-report-page__recommendation dmb-tab__recommendation dmb-report-page__recommendation--{[ recommendation.cta.class ]}"
-          ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB ]">
-        <h4 class="h-c-headline h-c-headline--five h-u-font-weight-medium dmb-h-mb--small">{[ recommendation.header ]}</h4>
-        <p>
-          {[ recommendation.text ]}
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
+        <h3 class="h-c-headline h-c-headline--three">
+          {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
+        </h3>
+        <p class="h-c-headline h-c-headline--subhead">
+          {[dimensionTabCtrl.dimensionHeadersDescription[dmbDimensionTab]]}
         </p>
-        <a class="dmb-button dmb-button--secondary dmb-report-page__cta dmb-h-hidden--print" target="_blank" href="{[recommendation.cta.link]}" ng-if="recommendation.cta">
-          <div class="dmb-button__icon dmb-report-page__cta-icon"></div>
-          <div class="dmb-button__text dmb-report-page__cta-text">{[ recommendation.cta.text ]}</div>
-        </a>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 
-</div> <!-- .dmb-report-page__tab-content -->
+  <div class="dmb-dimension-tabs__results">
+    <div class="h-c-grid">
+      <div class="dmb-dimension-tabs__results-highlight h-c-grid__col h-c-grid__col--4 h-u-text-center">
+        <div class="dmb-dimension-tabs__results-heading h-c-headline h-c-headline--two">
+          {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB]]}
+        </div>
+        <div class="dmb-dimension-tabs__results-subheading h-u-font-weight-regular">
+          in this dimension
+        </div>
+        <div class="dmb-dimension-tabs__results-value h-c-headline h-c-headline--three">
+          {[dimensionTabCtrl.dmb|number:1]}/{[dimensionTabCtrl.levelsTotal]}
+        </div>
+      </div>
+      <div class="h-c-grid__col h-c-grid__col--7">
+        {[ dimensionTabCtrl.dimensionLevelDescription[dmbDimensionTab][dimensionTabCtrl.floorDMB]]}
+      </div>
+    </div>
+  </div>
+
+  <div class="dmb-dimension-tabs__progress-grid">
+    <dmb-progress-grid
+        data-company-name="{[companyName]}"
+        data-rating-main="dimensionTabCtrl.dmb"
+        data-industry-avg="dimensionTabCtrl.industryDmb"
+        data-industry-best="dimensionTabCtrl.industryDmb_bp"
+        data-industry-ready="!!dimensionTabCtrl.industryResult">
+    </dmb-progress-grid>
+  </div>
+
+
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
+      <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four">
+        <img
+            ng-src="{[dimensionTabCtrl.dmbStaticUrl]}/img/retail/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
+            alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} logo">
+        {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
+      </h4>
+      <h4 class="h-c-headline h-c-headline--two">
+        <span ng-if="dimensionTabCtrl.floorDMB < (dimensionTabCtrl.levelsTotal - 1)">
+          You could be {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB + 1]]}
+        </span>
+        <span ng-if="dimensionTabCtrl.floorDMB === (dimensionTabCtrl.levelsTotal - 1)">
+          Congratulations, you're in the top group for data maturity
+        </span>
+      </h4>
+
+      <div class="dmb-dimension-tabs__recommendations">
+        <h4 class="h-c-headline h-c-headline--four">
+          <span ng-if="dimensionTabCtrl.floorDMB < (dimensionTabCtrl.levelsTotal - 1)">
+            Here's how you get there:
+          </span>
+          <span ng-if="dimensionTabCtrl.floorDMB === (dimensionTabCtrl.levelsTotal - 1)">
+            Here's how to get even better:
+          </span>
+        </h4>
+
+        <ul class="dmb-dimension-tabs__recommendation-list">
+          <li
+              class="dmb-dimension-tabs__recommendation"
+              ng-repeat="recommendation in dimensionTabCtrl.dimensionLevelRecommendations[dmbDimensionTab][dimensionTabCtrl.floorDMB]">
+            <h5 class="dmb-dimension-tabs__recommendation-heading h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+              {[recommendation.header]}
+            </h5>
+            <p>
+              {[recommendation.text]}
+            </p>
+            <a
+                ng-if="recommendation.cta"
+                class="dmb-dimension-tabs__recommendation-cta dmb-h-hidden--print h-c-button h-c-button--secondary"
+                href="{[recommendation.cta.link]}"
+                target="_blank">
+              {[recommendation.cta.text]}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
 `;
 /* eslint-enable max-len */
 

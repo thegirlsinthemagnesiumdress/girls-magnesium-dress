@@ -2,11 +2,7 @@ goog.module('dmb.components.progressGrid.template');
 
 const template = `
 <div
-    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.floorDmbFactory_(ratingMain)]}"
-    ng-class="{
-      'dmb-progress-grid--overflow-v': progressGridCtrl.verticalOverflow,
-      'dmb-progress-grid--overflow-h': progressGridCtrl.horizontalOverflow
-    }">
+    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.floorDmbFactory_(ratingMain)]}">
 
     <!-- This list is visually hidden and only read out by screen readers -->
     <ul class="h-u-visually-hidden">
@@ -59,7 +55,8 @@ const template = `
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular">
     <button
-        dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
+        class="dmb-h-hidden--print"
+        dmb-side-panel-trigger="#dmb-industry-side-panel"
         aria-label="Get more information about the industry average">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
           <use xlink:href="#info"></use>
@@ -69,7 +66,8 @@ const template = `
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-regular">
     <button
-        dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
+        class="dmb-h-hidden--print"
+        dmb-side-panel-trigger="#dmb-industry-side-panel"
         aria-label="Get more information about the industry best">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
           <use xlink:href="#info"></use>
@@ -90,6 +88,7 @@ const template = `
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-avg"
       data-value="{[industryAvg|number:1]}"
       data-level-name="{[progressGridCtrl.getLevelName(industryAvg)]}"
+      ng-if="industryAvg"
       ng-style="{height: progressGridCtrl.getProgress(industryAvg)}"
       aria-hidden="true">
   </div>
@@ -97,6 +96,7 @@ const template = `
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-best"
       data-value="{[industryBest|number:1]}"
       data-level-name="{[progressGridCtrl.getLevelName(industryBest)]}"
+      ng-if="industryBest"
       ng-style="{height: progressGridCtrl.getProgress(industryBest)}"
       aria-hidden="true">
   </div>
@@ -111,12 +111,14 @@ const template = `
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-avg"
       data-value="{[industryAvg|number:1]}"
+      ng-if="industryAvg"
       ng-style="{width: progressGridCtrl.getProgress(industryAvg)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-best"
       data-value="{[industryBest|number:1]}"
+      ng-if="industryBest"
       ng-style="{width: progressGridCtrl.getProgress(industryBest)}"
       aria-hidden="true">
   </div>
@@ -124,12 +126,12 @@ const template = `
   <!-- "Not available" banners -->
   <div
       class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-avg h-u-font-weight-regular"
-      ng-if="industryReady && industryAvg">
+      ng-if="industryReady && !industryAvg">
     Not available yet
   </div>
   <div
       class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-best h-u-font-weight-regular"
-      ng-if="industryReady && industryBest">
+      ng-if="industryReady && !industryBest">
     Not available yet
   </div>
 </div>

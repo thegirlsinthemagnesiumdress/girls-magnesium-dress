@@ -12,6 +12,7 @@ $block: '.dmb-progress-grid';
 .dmb-progress-grid {
   display: grid;
   grid-template-columns: repeat(length($sources), 1fr);
+  page-break-inside: avoid;
 
   &__heading {
     border: 0 !important;
@@ -62,8 +63,16 @@ $block: '.dmb-progress-grid';
       font-size: 12px;
       left: 50%;
       text-align: center;
-      top: 0;
-      transform: translate(-50%, calc(-100% - 8px));
+
+      @include screen-styles {
+        top: 0;
+        transform: translate(-50%, calc(-100% - 8px));
+      }
+
+      @include print-styles {
+        bottom: 0;
+        transform: translate(-50%, calc(100% + 45px));
+      }
     }
   }
 
@@ -113,24 +122,14 @@ $block: '.dmb-progress-grid';
 
       @include dmb-mq($until: $progress-grid-switch-bp) {
         border-top: 1px solid $dmb-prog-grid-line-color;
+        margin: $dmb-prog-grid-overflow-v-margin 0; //to accommodate nearly full bar labels
       }
 
       @include dmb-mq($from: $progress-grid-switch-bp) {
         border-right: 1px solid $dmb-prog-grid-line-color;
         grid-template-columns: auto repeat($tenant-levels-total, 1fr);
         grid-template-rows: auto repeat(length($sources), auto) 15px;
-      }
-
-      &--overflow-v {
-        @include dmb-mq($until: $progress-grid-switch-bp) {
-          margin-top: $dmb-prog-grid-overflow-v-margin; //to accommodate nearly full bar labels
-        }
-      }
-
-      &--overflow-h {
-        @include dmb-mq($from: $progress-grid-switch-bp) {
-          margin-right: $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
-        }
+        margin: 0 $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
       }
 
       &__col-bg {
@@ -230,9 +229,8 @@ $block: '.dmb-progress-grid';
         @include dmb-mq($until: $progress-grid-switch-bp) {
           align-items: center;
           display: flex;
-          justify-content: center;
           grid-row: $tenant-levels-total;
-
+          justify-content: center;
 
           @each $source in $sources {
             $i: index($sources, #{$source});

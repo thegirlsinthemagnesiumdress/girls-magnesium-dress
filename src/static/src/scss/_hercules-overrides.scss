@@ -32,3 +32,84 @@ button {
   border: 0;
   font-weight: $h-font-weight-medium;
 }
+
+.dmb-header {
+  @include print-styles {
+    display: none;
+  }
+}
+
+
+// ZIPPY/TABBY RESETS
+// Reset unwanted mobile (zippy) and desktop (tabby) glue tab styles for report page dimensions
+
+$dmb-tab-mobile-padding: 15px;
+$dmb-tab-focus-color: $dmb-color-blue-solitude;
+
+// Zippy
+.glue-app-ready {
+  .glue-zippy-set {
+    &.h-t-hercules {
+      .glue-zippy {
+        border: 0;
+      }
+
+      .glue-zippy-btn {
+        padding: $dmb-tab-mobile-padding 0;
+
+        &,
+        &:active,
+        &:hover,
+        &:focus {
+          border: 0;
+
+          .h-c-expansion-panels__button-header {
+            color: inherit;
+          }
+
+          .h-c-expansion-panels__button-arrow {
+            fill: currentColor;
+          }
+        }
+      }
+
+      .h-c-expansion-panels__button-header {
+        color: inherit;
+      }
+
+      .h-c-expansion-panels__button-arrow {
+        fill: currentColor;
+      }
+    }
+  }
+}
+
+.glue-zippy-btn {
+  align-items: center;
+  display: flex;
+
+  &:focus {
+    background: $dmb-tab-focus-color;
+  }
+}
+
+.h-c-expansion-panels__button-header {
+  flex-grow: 1;
+}
+
+// Tabby
+.h-c-tabby__heading-container {
+  &:focus {
+    background: $dmb-tab-focus-color;
+  }
+}
+
+.glue-c-tabset__panel-container {
+  border: 0;
+}
+
+.glue-c-tabset__page {
+  > h3 {
+    display: none;
+  }
+}
