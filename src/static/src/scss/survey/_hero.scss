@@ -48,3 +48,28 @@
     }
   }
 }
+
+@each $tenant, $value in $tenants {
+  .dmb-#{$tenant} {
+    &#Wrapper.dmb-survey--start { // sass-lint:disable-line no-ids
+      background-image: url('../img/#{$tenant}/survey/survey-hero.jpg');
+      background-size: auto 193px;
+
+      @include dmb-mq(tablet) {
+        background-size: auto 250px;
+      }
+
+      @include dmb-mq($from: desktop) {
+        background-size: auto 330px;
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/#{$tenant}/survey/survey-hero@2x.jpg');
+      }
+    }
+
+    .dmb-primary-heading {
+      color: map-get($value, primary-color);
+    }
+  }
+}
