@@ -88,6 +88,7 @@ const template = `
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-avg"
       data-value="{[industryAvg|number:1]}"
       data-level-name="{[progressGridCtrl.getLevelName(industryAvg)]}"
+      ng-if="industryAvg"
       ng-style="{height: progressGridCtrl.getProgress(industryAvg)}"
       aria-hidden="true">
   </div>
@@ -95,6 +96,7 @@ const template = `
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-best"
       data-value="{[industryBest|number:1]}"
       data-level-name="{[progressGridCtrl.getLevelName(industryBest)]}"
+      ng-if="industryBest"
       ng-style="{height: progressGridCtrl.getProgress(industryBest)}"
       aria-hidden="true">
   </div>
@@ -109,12 +111,14 @@ const template = `
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-avg"
       data-value="{[industryAvg|number:1]}"
+      ng-if="industryAvg"
       ng-style="{width: progressGridCtrl.getProgress(industryAvg)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-best"
       data-value="{[industryBest|number:1]}"
+      ng-if="industryBest"
       ng-style="{width: progressGridCtrl.getProgress(industryBest)}"
       aria-hidden="true">
   </div>
