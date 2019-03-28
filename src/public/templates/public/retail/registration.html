@@ -3,6 +3,7 @@
 {% load angular %}
 
 {% block main %}
+
 <section
     class="dmb-survey"
     ng-controller="RegistrationCtrl as registrationCtrl"
@@ -69,8 +70,8 @@
                   id="prodId"
                   name="industry"
                   type="hidden"
-                  value="ic-bnpj"
-                  ng-init="registrationCtrl.industry='ic-bnpj'">
+                  value="rt-o"
+                  ng-init="registrationCtrl.industry='rt-o'">
             </div>
             <div class="dmb-input-wrp">
               <select
@@ -116,7 +117,5 @@
   </div>
 
 </section>
-
-
 
 {% endblock %}

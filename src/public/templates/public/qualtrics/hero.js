@@ -3,7 +3,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
 });
 
 Qualtrics.SurveyEngine.addOnReady(function () {
-  jQuery('#Wrapper').addClass('dmb-retail dmb-survey--start');
+  jQuery('#Wrapper').addClass('dmb-<tenant> dmb-survey--start');
 
   var urlBox = jQuery('#dmb-survey-url');
   urlBox.val(window.location.href);
