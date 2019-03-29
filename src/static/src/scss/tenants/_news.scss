@@ -1,41 +1,25 @@
-// TENANT STYLES
-//sass-lint:disable no-ids
-
-$level-colors: (
-  nascent: $dmb-color-green-eucalyptus,
-  developing: $dmb-color-green-salem,
-  mature: $dmb-color-green-jewel,
-  leading: $dmb-color-green-jewel-dark
-);
-
-
-// Try to only set colors, and background properties background-image, background-size and background-position
+// sass-lint:disable no-ids
 #dmb-news {
-  // PRIMARY HEADING COLOR
-  .dmb-primary-heading {
-    color: $dmb-news-primary-color;
-  }
-
-  // HOME HERO IMAGES
-  .dmb-home-hero {
-    &__bg-img {
-      background-image: url('../img/news/home/hero-mobile.jpg');
-
-      @include dmb-mq(tablet) {
-        background-image: url('../img/news/home/hero.jpg');
-      }
-
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/home/hero-mobile@2x.jpg');
+  #dmb-landing {
+    // HERO IMAGES
+    .dmb-home-hero {
+      &__bg-img {
+        background-image: url('../img/news/home/hero-mobile.jpg');
 
         @include dmb-mq(tablet) {
-          background-image: url('../img/news/home/hero@2x.jpg');
+          background-image: url('../img/news/home/hero.jpg');
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          background-image: url('../img/news/home/hero-mobile@2x.jpg');
+
+          @include dmb-mq(tablet) {
+            background-image: url('../img/news/home/hero@2x.jpg');
+          }
         }
       }
     }
-  }
 
-  #dmb-landing {
     // IMAGE TEXT COLLAGE IMAGES
     .dmb-img-text-collage {
       &__img--1 {
@@ -64,31 +48,7 @@ $level-colors: (
       }
     }
 
-    // Add dimension colors to tab text, tab borders and content mobile border
-    @each $level, $color in $level-colors {
-      .dmb-home-tabs {
-        .glue-pagination-tab[data-glue-pagination-label='#{$level}'] {
-          .glue-c-tabset__button {
-            color: $color; // tablet and desktop tab heading color
-          }
-
-          &.glue-is-active .glue-c-tabset__button {
-            border-color: $color; // tablet and desktop tab border color
-          }
-        }
-
-        .dmb-home-tabs__tab--#{$level} {
-          .h-c-tabby__heading {
-            color: $color; // mobile tab heading color
-          }
-
-          .dmb-home-tabs__tab-text {
-            border-color: $color; // mobile border color
-          }
-        }
-      }
-    }
-
+    // IMAGE TEXT IMAGE
     .dmb-img-text {
       @include dmb-mq(tablet) {
         background-image: url('../img/news/home/img-text-img.jpg');
@@ -103,48 +63,17 @@ $level-colors: (
         background-position: right top;
       }
     }
-  } //#dmb-landing
-
-  .dmb-report-hero {
-    @each $level, $color in $level-colors {
-      .dmb-report-hero__current--#{$level} {
-        background-color: $color;
-      }
-
-      .dmb-report-hero__next--#{$level} {
-        background-color: $color;
-      }
-    }
   }
 
-  .dmb-card-on-bg {
-    &__bg {
-      background-image: url('../img/news/survey/thankyou.jpg');
+  #dmb-survey-thank-you {
+    .dmb-card-on-bg {
+      &__bg {
+        background-image: url('../img/news/survey/thankyou.jpg');
 
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('../img/news/survey/thankyou@2x.jpg');
-      }
-    }
-  }
-
-  // Change color of progress bar fill based on level
-  @each $level, $color in $level-colors {
-    .dmb-report-overall--#{$level} {
-      .dmb-progress-circle__prog-bar {
-        stroke: $color;
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          background-image: url('../img/news/survey/thankyou@2x.jpg');
+        }
       }
     }
   }
 }
-
-// TODO(aabuelgasim): Remove when switching to news CSS
-#dmb-news {
-  .dmb-report-page {
-    .dmb-report-page__zippy-btn {
-      &::before {
-        display: none;
-      }
-    }
-  }
-}
-///////////

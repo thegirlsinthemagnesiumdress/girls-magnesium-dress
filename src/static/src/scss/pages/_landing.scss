@@ -1,12 +1,3 @@
-//sass-lint:disable no-ids
-#dmb-landing {
+#dmb-landing { // sass-lint:disable-line no-ids
   counter-reset: step-heading;
-
-  // TODO(aabuelgasim): replace
-  // MVP
-  .dmb-side-panel__list-item-bullet::after {
-    @include dmb-mq($from: tablet) {
-      top: 3px;
-    }
-  }
 }

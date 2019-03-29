@@ -1,0 +1,273 @@
+$dmb-prog-grid-line-color: $dmb-color-grey-zircon;
+$dmb-prog-grid-col-bg-color: $dmb-color-blue-solitude;
+$dmb-prog-grid-bar-color: $dmb-color-grey-chateau;
+$dmb-prog-grid-bar-size: 12px;
+$dmb-prog-grid-overflow-h-margin: 35px; //to accommodate full and nearly full bar labels
+$dmb-prog-grid-overflow-v-margin: 75px; //to accommodate full and nearly full bar labels
+$sources: company ind-avg ind-best;
+$elements: label bar;
+$block: '.dmb-progress-grid';
+
+// General styles
+.dmb-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(length($sources), 1fr);
+  page-break-inside: avoid;
+
+  &__heading {
+    border: 0 !important;
+    grid-row: 1;
+    margin: 20px 0 40px;
+    text-align: center;
+
+    @include dmb-mq($from: desktop) {
+      margin-bottom: 45px;
+    }
+  }
+
+  &__label {
+    align-self: start;
+    margin: 20px 8px 0;
+    text-align: center;
+  }
+
+  &__v-bar,
+  &__h-bar {
+    background: $dmb-prog-grid-bar-color;
+    position: relative;
+
+    &::after {
+      font-weight: $h-font-weight-regular;
+      line-height: 1.5;
+      position: absolute;
+    }
+  }
+
+  &__v-bar {
+    border-radius: $dmb-border-radius $dmb-border-radius 0 0;
+    height: 0;
+    place-self: end center;
+    transition: height $dmb-progress-trans-time $dmb-progress-trans-fn;
+    width: $dmb-prog-grid-bar-size;
+
+    @each $source in $sources {
+      $i: index($sources, #{$source});
+
+      &--#{$source} {
+        grid-column: #{$i};
+      }
+    }
+
+    &::after {
+      content: attr(data-value)'\A'attr(data-level-name);
+      font-size: 12px;
+      left: 50%;
+      text-align: center;
+
+      @include screen-styles {
+        top: 0;
+        transform: translate(-50%, calc(-100% - 8px));
+      }
+
+      @include print-styles {
+        bottom: 0;
+        transform: translate(-50%, calc(100% + 45px));
+      }
+    }
+  }
+
+  &__h-bar {
+    align-self: center;
+    border-radius: 0 $dmb-border-radius $dmb-border-radius 0;
+    grid-column: 2;
+    height: $dmb-prog-grid-bar-size;
+    transition: width $dmb-progress-trans-time $dmb-progress-trans-fn;
+    width: 0;
+
+    @each $source in $sources {
+      $i: index($sources, #{$source}) + 1;
+
+      &--#{$source} {
+        grid-row: #{$i};
+      }
+    }
+
+    &::after {
+      content: attr(data-value);
+      font-size: 14px;
+      right: 0;
+      top: 50%;
+      transform: translate(calc(+100% + 10px), -50%);
+
+      @include dmb-mq($from: desktop) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .dmb-svg {
+    position: relative;
+    top: 2px;
+  }
+
+  // Tenant-specific styles
+  // These are styles that rely on the tenant levels or the break-point at which the grid rotates ($progress-grid-switch-bp)
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
+    $tenant-levels-total: length($tenant-levels);
+    $progress-grid-switch-bp: map-get($value, progress-grid-switch-bp);
+
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      grid-template-rows: repeat($tenant-levels-total, 50px) auto;
+
+      @include dmb-mq($until: $progress-grid-switch-bp) {
+        border-top: 1px solid $dmb-prog-grid-line-color;
+        margin: $dmb-prog-grid-overflow-v-margin 0; //to accommodate nearly full bar labels
+      }
+
+      @include dmb-mq($from: $progress-grid-switch-bp) {
+        border-right: 1px solid $dmb-prog-grid-line-color;
+        grid-template-columns: auto repeat($tenant-levels-total, 1fr);
+        grid-template-rows: auto repeat(length($sources), auto) 15px;
+        margin: 0 $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
+      }
+
+      &__col-bg {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          border-bottom: 1px solid $dmb-prog-grid-line-color;
+          grid-column: 1 / -1;
+
+          @for $i from 0 to $tenant-levels-total {
+            $j: $tenant-levels-total - $i;
+
+            &--level-#{$i} {
+              grid-row: #{$j};
+            }
+          }
+        }
+
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          border-left: 1px solid $dmb-color-grey-zircon;
+          grid-row: 1 / -1;
+
+          @for $i from 0 to $tenant-levels-total {
+            $j: $i + 2;
+
+            &--level-#{$i} {
+              grid-column: #{$j};
+            }
+          }
+        }
+      }
+
+      &__heading {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          display: none;
+        }
+
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          @for $i from 0 to $tenant-levels-total {
+            $j: $i + 2;
+
+            &--level-#{$i} {
+              grid-column: #{$j};
+            }
+          }
+        }
+      }
+
+      &__label {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          display: flex;
+          flex-direction: column-reverse;
+          grid-row: -1;
+
+          @each $source in $sources {
+            $i: index($sources, #{$source});
+
+            &--#{$source} {
+              grid-column: #{$i};
+            }
+          }
+
+          button {
+            margin-top: 5px;
+          }
+        }
+
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          align-self: center;
+          grid-column: 1;
+          margin: 15px 20px 15px 0;
+          text-align: right;
+
+          @each $source in $sources {
+            $i: index($sources, #{$source}) + 1;
+
+            &--#{$source} {
+              grid-row: #{$i};
+            }
+          }
+        }
+      }
+
+      &__v-bar {
+        grid-row: $tenant-levels-total;
+
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          display: none;
+        }
+      }
+
+      &__h-bar {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          display: none;
+        }
+      }
+
+      &__banner {
+        @include dmb-mq($until: $progress-grid-switch-bp) {
+          align-items: center;
+          display: flex;
+          grid-row: $tenant-levels-total;
+          justify-content: center;
+
+          @each $source in $sources {
+            $i: index($sources, #{$source});
+
+            &--#{$source} {
+              grid-column: #{$i};
+            }
+          }
+        }
+
+        @include dmb-mq($from: $progress-grid-switch-bp) {
+          grid-column-end: -1;
+          grid-column-start: 2;
+          margin: 15px 10px;
+
+          @each $source in $sources {
+            $i: index($sources, #{$source}) + 1;
+
+            &--#{$source} {
+              grid-row: #{$i};
+            }
+          }
+        }
+      }
+
+      @each $level, $value in $tenant-levels {
+        &--level-#{$level} {
+          #{$block}__col-bg--level-#{$level} {
+            background-color: $dmb-prog-grid-col-bg-color;
+          }
+
+          #{$block}__v-bar--company,
+          #{$block}__h-bar--company {
+            background-color: map-get($value, color);
+          }
+        }
+      }
+    }
+  }
+}

@@ -86,6 +86,7 @@
     max-width: 90%;
   }
 
+  .h-c-headline--three,
   &__headline-underlined {
     border-bottom: 6px solid $dmb-color-grey-zircon;
     max-width: 90%;
@@ -93,6 +94,9 @@
     width: max-content;
   }
 
+  p {
+    @extend .dmb-u-m-b-m;
+  }
 }
 
 .dmb-backdrop {
