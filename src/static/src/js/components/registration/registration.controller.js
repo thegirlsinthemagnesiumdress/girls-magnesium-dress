@@ -1,4 +1,5 @@
 goog.module('dmb.components.registration.controller');
+const domSafe = goog.require('goog.dom.safe');
 
 const SURVEY_ENDPOINT = '/api/survey';
 
@@ -109,13 +110,14 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      if (this.tenant === 'ads' || this.page === 'reports') {
+      // TODO: remove once this ticket is merged https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/261
+      if (this.tenant === 'ads' || this.tenant === 'news' || this.page === 'reports') {
         // legacy for ads page, or for reports list page where no redirect is required
         this.link = res['data']['link'];
         this.companyName = res['data']['company_name'];
       } else {
         // redirect to qualtrics survey page
-        window.location.href = res['data']['link'];
+        domSafe.setLocationHref(document.location, res['data']['link']);
       }
     }, () => {
       this.serverError = true;
