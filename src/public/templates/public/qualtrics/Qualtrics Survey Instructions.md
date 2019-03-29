@@ -31,9 +31,9 @@ Production: `https://digitalmaturitybenchmark.withgoogle.com/static/css/qualtric
 
 ### Survey Options > Survey Termination
 **Redirect**:
-Development: `http://localhost:8000/<tenant>/thankyou`
-Staging: `https://news-dot-gweb-digitalmaturity-staging.appspot.com/<tenant-slug>/thankyou`
-Production: `https://digitalmaturitybenchmark.withgoogle.com/<tenant-slug>/thankyou`
+Development: `http://localhost:8000/<tenant>/thank-you`
+Staging: `https://news-dot-gweb-digitalmaturity-staging.appspot.com/<tenant-slug>/thank-you`
+Production: `https://digitalmaturitybenchmark.withgoogle.com/<tenant-slug>/thank-you`
 
 
 ## Question Components

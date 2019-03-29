@@ -104,6 +104,10 @@
           .dmb-home-tabs__tab-text {
             border-color: $color; // mobile border color
           }
+
+          .dmb-home-tabs__tab-title {
+            color: $color;
+          }
         }
       }
     }
