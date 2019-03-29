@@ -83,6 +83,7 @@ class TenantConfiguration {
     this.tenant = tenantDataElement.dataset['tenant'];
     const conf = confMap[this.tenant];
     this.levels = conf.levels;
+    this.levelsTotal = Object.keys(this.levels).length;
     this.levelDescriptions = conf.levelDescriptions;
     this.reportLevelDescriptions = conf.reportLevelDescriptions;
     this.dimensions = conf.dimensions;

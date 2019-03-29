@@ -87,16 +87,16 @@ class ReportController {
     this.levels = tenantConf.levels;
 
     /**
-     * @type {!string}
      * @export
+     * @type {number}
      */
-    this.currentLevel = '';
+    this.levelsTotal = tenantConf.levelsTotal;
 
     /**
-     * @type {!string}
      * @export
+     * @type {number}
      */
-    this.nextLevel = '';
+    this.nextLevel = null;
 
     /**
      * @type {!Object}
@@ -116,11 +116,6 @@ class ReportController {
      */
     this.dimensions = tenantConf.dimensions;
 
-    /**
-     * @export
-     * @type {string}
-     */
-    this.levelsTotal = Object.keys(this.levels).length;
 
     /**
      * @type {!Object}
@@ -128,7 +123,7 @@ class ReportController {
      */
     this.dimensionHeaders = tenantConf.dimensionHeaders;
 
-       /**
+    /**
      * @type {glue.ng.pagination.Model}
      * @export
      */
@@ -157,13 +152,6 @@ class ReportController {
      */
     this.industryBestSource = null;
 
-    /**
-     * Whether to render tabset of not
-     * @type {boolean}
-     * @export
-     */
-    this.renderTabset = false;
-
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
     // We're saving the results in a service since it's not possible to
@@ -178,17 +166,11 @@ class ReportController {
       this.result.dmb = parseFloat(this.result['dmb']);
 
       this.floorDmb = floorDmbFactory(this.result.dmb);
-
-      this.currentLevel = this.levels[this.floorDmb].toLowerCase();
-      if (this.floorDmb < 3) {
-        this.nextLevel = this.levels[(this.floorDmb + 1)].toLowerCase();
-      } else {
-        this.nextLevel = this.currentLevel;
-      }
+      this.nextLevel = floorDmbFactory(this.floorDmb + 1);
 
       reportService.dmb_d = this.result['dmb_d'];
 
-      // ENABLE FOR DEMO
+      // ENABLE TO DEMO A HIDDEN DIMENSION
       // reportService.dmb_d['reader_revenue'] = null;
 
       // TODO(aabuelgasim): remove this chunk once new tabby is used
@@ -237,7 +219,7 @@ class ReportController {
     return bpTabsEnabled.indexOf(size) > -1;
   }
 
-    /**
+  /**
    * Opens a specific tab if state is enabled. This is expected to be used with
    * something like ngClick.
    *

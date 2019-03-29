@@ -9,13 +9,13 @@
 
 .dmb-u-hide-mobile {
   @include dmb-mq($until: tablet) {
-    display: none;
+    display: none !important;
   }
 }
 
 .dmb-u-only-mobile {
   @include dmb-mq($from: tablet) {
-    display: none;
+    display: none !important;
   }
 }
 

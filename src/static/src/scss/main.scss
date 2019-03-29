@@ -78,35 +78,37 @@
 
 
 // DMB STYLES
-@import 'colors';
 @import 'mixins';
 @import 'variables';
 @import 'utils';
 @import 'hercules-overrides';
 @import 'grid-variables';
-
+@import 'tenants-variables';
 
 // DMB Components
 @import 'components/card-on-bg';
-@import 'components/footer';
-@import 'components/home-hero';
-@import 'components/home-tabs';
 @import 'components/collaboration';
 @import 'components/cta-banner';
+@import 'components/dimension-tabs';
+@import 'components/footer';
 @import 'components/form';
+@import 'components/home-hero';
+@import 'components/home-tabs';
 @import 'components/icon-text-cta';
 @import 'components/img-text';
 @import 'components/img-text-collage';
 @import 'components/outline-button';
 @import 'components/product-hero';
 @import 'components/progress-circle';
+@import 'components/progress-grid';
 @import 'components/progress-table';
 @import 'components/report-intro';
 @import 'components/report-hero';
 @import 'components/report-overall';
+@import 'components/side-panel';
 @import 'components/step-heading';
-@import 'components/svg';
 @import 'components/survey';
+@import 'components/svg';
 @import 'components/tile-carousel';
 
 // Pages

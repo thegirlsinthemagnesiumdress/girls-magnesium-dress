@@ -52,33 +52,24 @@ Production: `https://digitalmaturitybenchmark.withgoogle.com/<TENANT>/thankyou`
 
 ## Question Components
 ### Hero
-
 1. Use `./hero.html` as question HTML
 1. Use `./hero.js` as the question JS
 
-
 ### User Details
-
 Edit Question JavaScript and add `./user-details.js`
 
 
-
 ### Privacy Policy
-
 1. Use `./privacy-policy.html` as question HTML
 1. Use `./privacy-policy.js` as the question JS
 
 
-
 ### Banner
-
 1. Use `./banner.html` as question HTML
 1. Use `./banner.js` as the question JS
 1. Copy question to start of each subsequent block
 
-
 ### Dimension heading
-
 1. Use `./dimension-heading.html` as question HTML
 1. Replace `<!-- DIMENSION NAME GOES HERE -->` with dimension name
 1. Replace `<!-- QUESTION TEXT GOES HERE  -->` with question text
