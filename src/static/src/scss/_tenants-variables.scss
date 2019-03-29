@@ -19,20 +19,20 @@ $tenants: (
     )
   ),
   retail: (
-    primary-color: $h-gm-red-500,
-    progress-grid-switch-bp: 1024px,
+    primary-color: $dmb-text-color,
+    progress-grid-switch-bp: 800px,
     levels: (
       0: (
-        color: $h-gm-red-500
+        color: $dmb-color-green-eucalyptus
       ),
       1: (
-        color: $h-gm-red-600
+        color: $dmb-color-green-salem
       ),
       2: (
-        color: $h-gm-red-700
+        color: $dmb-color-green-jewel
       ),
       3: (
-        color: $h-gm-red-800
+        color: $dmb-color-green-jewel-dark
       )
     )
   )
