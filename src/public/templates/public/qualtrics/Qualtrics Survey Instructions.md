@@ -45,9 +45,9 @@ Production: `https://digitalmaturitybenchmark.withgoogle.com/static/css/qualtric
 
 **Redirects to full URL**:
 Cannot use embedded data here so these must be set manually. Use one of the following, changing `<TENANT>` to the correct tenant:
-Dev: `http://localhost:8000/<TENANT>/thankyou`
-Staging: `https://gweb-digitalmaturity-staging.appspot.com/<TENANT>/thankyou`
-Production: `https://digitalmaturitybenchmark.withgoogle.com/<TENANT>/thankyou`
+Dev: `http://localhost:8000/<TENANT>/thank-you`
+Staging: `https://gweb-digitalmaturity-staging.appspot.com/<TENANT>/thank-you`
+Production: `https://digitalmaturitybenchmark.withgoogle.com/<TENANT>/thank-you`
 
 
 ## Question Components
