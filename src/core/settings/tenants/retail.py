@@ -20,10 +20,10 @@ WEIGHTS = {
 }
 
 DIMENSION_TITLES = {
-    'strategic_direction': 'Strategic direction and data foundations',
-    'user_engagement': 'User engagement',
-    'core_sales': 'Core sales activities',
-    'emerging_monetization': 'Emerging monetization opportunities',
+    'strategic_direction': 'Strategic Direction and Data Foundations',
+    'user_engagement': 'User Experience',
+    'core_sales': 'Core Sales Activities',
+    'emerging_monetization': 'Emerging Monetization Opportunities',
 }
 
 DIMENSIONS = {
