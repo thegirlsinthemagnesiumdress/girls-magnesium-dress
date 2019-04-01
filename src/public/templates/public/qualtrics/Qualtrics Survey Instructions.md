@@ -37,12 +37,11 @@ Production: `${e://Field/base_url}/static`
 
 
 ### Style
-**Primary Color**: `#1a73e8`
-**Secondary Color**: `#1a73e8`
-**Question Spacing:** Comfortable
-**Question Text**: 16px
-**Answer Text**: 16px
-
+**Primary Color**: *#1a73e8*
+**Secondary Color**: *#1a73e8*
+**Question Spacing:** *Comfortable*
+**Question Text**: *16px*
+**Answer Text**: *16px*
 
 ## Survey Options
 ### Survey Termination
