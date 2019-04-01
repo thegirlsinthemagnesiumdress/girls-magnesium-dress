@@ -116,6 +116,12 @@ class ReportController {
      */
     this.dimensions = tenantConf.dimensions;
 
+    /**
+     * @export
+     * @type {boolean}
+     */
+    this.renderTabset = false;
+
 
     /**
      * @type {!Object}
