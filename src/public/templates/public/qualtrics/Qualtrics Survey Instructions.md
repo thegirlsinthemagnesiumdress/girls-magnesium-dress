@@ -52,6 +52,7 @@ Dev: `http://localhost:8000/<TENANT>/thank-you`
 Staging: `https://gweb-digitalmaturity-staging.appspot.com/<TENANT>/thank-you`
 Production: `https://digitalmaturitybenchmark.withgoogle.com/<TENANT>/thank-you`
 
+---
 
 ## Question Components
 ### Hero
@@ -80,6 +81,8 @@ Edit Question JavaScript and add `user-details.js`
 1. Replace `<SVG-FILENAME>`with appropriate svg.
 
 
+---
+
 # Copying survey between *Dev*, *Staging* and *Production*
 
 1. From control panel click on the survey's 3 dots and then on **Copy Project**, edit the name and click **Copy Project**
@@ -97,6 +100,5 @@ Edit Question JavaScript and add `user-details.js`
         Staging: `https://gweb-digitalmaturity-staging.appspot.com/api/company-name` <br>
         Production: `https://digitalmaturitybenchmark.withgoogle.com/api/company-name`
     * `Authorisation` value to the appropriate auth token used by Django REST framework, which can be obtained from the Google Cloud Platform `authtoken_token` from:<br>
-    [here](https://console.cloud.google.com/datastore/entities;kind=authtoken_token;ns=__$DEFAULT$__/query/kind?project=gweb-digitalmaturity-staging) for Staging<br>
-    [here](https://console.cloud.google.com/datastore/entities;kind=authtoken_token;ns=__$DEFAULT$__/query/kind?project=gweb-digitalmaturity) for Production
-1. Under the second **Set Embedded Data** block change the survey ID `dmb` to
+        [here](https://console.cloud.google.com/datastore/entities;kind=authtoken_token;ns=__$DEFAULT$__/query/kind?project=gweb-digitalmaturity-staging) for Staging<br>
+        [here](https://console.cloud.google.com/datastore/entities;kind=authtoken_token;ns=__$DEFAULT$__/query/kind?project=gweb-digitalmaturity) for Production
