@@ -5,25 +5,25 @@
 {% block main %}
 
 <section
-    class="dmb-survey"
+    class="dmb-registration"
     ng-controller="RegistrationCtrl as registrationCtrl"
-    ng-init="registrationCtrl.page = 'createsurvey'"
+    ng-init="registrationCtrl.showConfirmationPage = false"
     ng-cloak>
 
-  <div class="dmb-survey__header">
+  <div class="dmb-registration__header">
     <div class="h-c-page">
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
-          <h1 class="dmb-survey__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
+          <h1 class="dmb-registration__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
             Ready to benchmark your company’s data maturity?
           </h1>
         </div>
-        <div class="dmb-survey__bg h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1"></div>
+        <div class="dmb-registration__bg h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1"></div>
       </div>
     </div>
   </div>
 
-  <div class="dmb-survey__form-wrapper h-c-page">
+  <div class="dmb-registration__form-wrapper h-c-page">
     <div class="h-c-grid">
       <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-2">
         <h2 class="h-c-headline h-c-headline--four">
@@ -44,7 +44,7 @@
             novalidate
             autocomplete="off"
             ng-submit="registrationCtrl.submit()">
-          <div class="input-wrp">
+          <div class="dmb-form__wrapper">
             <div class="dmb-input-wrp">
               <input
                   id="tenant"
@@ -105,11 +105,11 @@
           </div>
           <button
               ng-disabled="!registration.$valid"
-              class="h-c-button h-c-button--primary">
+              class="dmb-form__submit h-c-button h-c-button--primary">
             Create assessment
           </button>
 
-          <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">
+          <div class="dmb-form__error" ng-hide="!registrationCtrl.serverError">
             Oops, something went wrong!
           </div>
         </form>

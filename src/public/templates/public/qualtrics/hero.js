@@ -11,7 +11,6 @@ Qualtrics.SurveyEngine.addOnReady(function () {
 
   jQuery('#dmb-copy-btn').click(function () {
     // Clear selection range in case user has text selected in page
-    console.log('clicked');
     if (window.getSelection) {
       if (window.getSelection().empty) {  // Chrome
         window.getSelection().empty();
