@@ -1,98 +1,122 @@
-{% extends "public/ads/base.html" %}
+{% extends 'public/base.html' %}
 {% load staticfiles %}
 {% load angular %}
 
 {% block main %}
-<div class="dmb-registration"
-    ng-controller="RegistrationCtrl as registrationCtrl"
-    ng-cloak>
-  <div class="h-c-page">
-    <div class="h-c-grid" ng-if="!registrationCtrl.link">
-      <div class="h-c-grid__col h-c-grid__col--12">
-        <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
-          Ready to benchmark your company’s data maturity?
-        </h1>
-        <p class="dmb-registration__subhead">
-          Let’s start with some details about your organization:
-        </p>
-        <a
-            class="dmb-button dmb-button--secondary dmb-button--external"
-            href="https://policies.google.com/privacy"
-            target="_blank"
-            >
-          <span class="dmb-button__text">How we keep your information safe</span>
-          <svg role="img" class="dmb-button__icon h-c-icon h-c-icon--18px" height="18px" width="18px">
-            <use xlink:href="#mi-arrow-sort"></use>
-          </svg>
-        </a>
-        <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()">
-          <div class="input-wrp">
-            <div class="dmb-input-wrp">
-              <input class="dmb-input" id="tenant" name="tenant" ng-model="registrationCtrl.tenant" type="hidden" required value="{{tenant|ng_mark_safe}}" ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'">
-            </div>
-            <div class="dmb-input-wrp">
-              <label for="companyName">Organization name:</label>
-              <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organization name">
-            </div>
-            <div class="dmb-input-wrp">
-              <input id="prodId" name="industry" type="hidden" value="rt-o" ng-init="registrationCtrl.industry='rt-o'">
-            </div>
-            <div class="dmb-input-wrp">
-              <label for="country">Country:</label>
-              <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
-                <option value="" disabled selected>Select a country</option>
-                {% for c_key, c_text in countries %}
-                <option value="{{c_key|ng_mark_safe}}">{{c_text|ng_mark_safe}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
-          </div>
-          <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
-            Progress to my assessment
-          </button>
-          <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">Oops, something went wrong!</div>
-        </form>
-      </div>
-    </div>
-    <div class="h-c-grid" ng-if="registrationCtrl.link">
-      <div class="h-c-grid__col h-c-grid__col--12">
-        <h2 class="h-c-headline h-c-headline--three"> Hello {[ registrationCtrl.companyName ]},</h2>
-        <h1 class="dmb-registration__title h-c-headline h-c-headline--one">
-          Your personalized assessment is ready to be completed
-        </h1>
 
-        <div class="dmb-registration__result-box">
-          <h3 class="dmb-registration__result-box-title">Before you begin...</h3>
-          <p>
-            You may want to share this assessment with other members of your team so you can collaborate on answering the questions.
-          </p>
-          <p>
-            Copy your unique assessment link using the button below now, and keep it somewhere safe.
-          </p>
-          <a
-              class="dmb-button dmb-button--secondary"
-              ngclipboard
-              ngclipboard-success="registrationCtrl.linkCopied=true"
-              data-clipboard-text="{[ registrationCtrl.link ]}">
-            <div class="dmb-button__text">
-              Copy my assessment link
-            </div>
-            <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg" class="dmb-button__icon">
-              <path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z"
-                fill-rule="nonzero" />
-            </svg>
-          </a>
-          <span class="dmb-registration__copied-text" ng-if="registrationCtrl.linkCopied"> Link copied to clipboard! </span>
+<section
+    class="dmb-registration"
+    ng-controller="RegistrationCtrl as registrationCtrl"
+    ng-init="registrationCtrl.hideConfirmationPage = true"
+    ng-cloak>
+
+  <div class="dmb-registration__header">
+    <div class="h-c-page">
+      <div class="h-c-grid">
+        <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
+          <h1 class="dmb-registration__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
+            Ready to benchmark your company’s data maturity?
+          </h1>
         </div>
-        <a ng-href="{[ registrationCtrl.link ]}" class="h-c-button h-c-button--primary" target="_blank">
-          Start my assessment now
-        </a>
+        <div class="dmb-registration__bg h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1"></div>
       </div>
     </div>
   </div>
-</div>
 
+  <div class="dmb-registration__form-wrapper h-c-page">
+    <div class="h-c-grid">
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-2">
+        <h2 class="h-c-headline h-c-headline--four">
+          Let’s start with some details about your organization:
+        </h2>
+        <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            class="h-c-button h-c-button--flat dmb-u-m-b-m">
+          How do we keep your information safe?
+        </a>
+      </div>
 
+      <div class="h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-2">
+        <form
+            class="dmb-form dmb-u-m-t-m dmb-u-m-b-l"
+            name="registration"
+            novalidate
+            autocomplete="off"
+            ng-submit="registrationCtrl.submit()">
+          <div class="dmb-form__wrapper">
+            <div class="dmb-input-wrp">
+              <input
+                  id="tenant"
+                  name="tenant"
+                  ng-model="registrationCtrl.tenant"
+                  type="hidden"
+                  required
+                  value="{{tenant|ng_mark_safe}}"
+                  ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
+                  aria-hidden="true">
+            </div>
+            <div class="dmb-input-wrp">
+              <input
+                  id="companyName"
+                  class="dmb-form__input"
+                  name="companyName"
+                  ng-model="registrationCtrl.companyName"
+                  type="text"
+                  required
+                  placeholder="Organization name">
+            </div>
+            <div class="dmb-input-wrp">
+              <input
+                  id="prodId"
+                  name="industry"
+                  type="hidden"
+                  value="rt-o"
+                  ng-init="registrationCtrl.industry='rt-o'">
+            </div>
+            <div class="dmb-input-wrp">
+              <select
+                  class="dmb-form__select"
+                  name="country"
+                  id="country"
+                  ng-model="registrationCtrl.country"
+                  required>
+                <option
+                    value=""
+                    disabled
+                    selected>
+                  Select a country
+                </option>
+                {% for c_key, c_text in countries %}
+                  <option
+                      value="{{c_key|ng_mark_safe}}">
+                    {{c_text|ng_mark_safe}}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- <div
+                class="input-wrp__error"
+                ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">
+              This field is required.
+            </div> -->
+
+          </div>
+          <button
+              ng-disabled="!registration.$valid"
+              class="dmb-form__submit h-c-button h-c-button--primary">
+            Create assessment
+          </button>
+
+          <div class="dmb-form__error" ng-hide="!registrationCtrl.serverError">
+            Oops, something went wrong!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
 
 {% endblock %}

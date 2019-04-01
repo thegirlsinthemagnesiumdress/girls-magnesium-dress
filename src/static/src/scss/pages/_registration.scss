@@ -1,0 +1,28 @@
+.dmb-registration {  // sass-lint:disable-line no-ids
+  position: relative;
+
+  &__header {
+    background: $dmb-color-blue-solitude;
+  }
+
+  &__bg {
+    background: #fff;
+    height: 30px;
+
+    @include dmb-mq($from: desktop) {
+      height: 40px;
+    }
+  }
+
+  &__heading {
+    &.h-c-headline {
+      @extend .dmb-u-m-b-m;
+    }
+  }
+
+  &__form-wrapper {
+    @include dmb-mq($until: tablet) {
+      padding: 0 40px;
+    }
+  }
+}
