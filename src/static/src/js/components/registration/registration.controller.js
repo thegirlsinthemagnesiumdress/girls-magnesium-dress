@@ -81,7 +81,7 @@ class RegistrationController {
      * @export
      * @type {boolean}
      */
-    this.showConfirmationPage = null;
+    this.hideConfirmationPage = false;
   }
 
   /**
@@ -110,17 +110,13 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      // TODO: remove once this ticket is merged https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/261
-      if (this.tenant === 'ads' || this.tenant === 'news') {
-        this.showConfirmationPage = true;
-      }
-      if (this.showConfirmationPage) {
+      if (this.hideConfirmationPage) {
+        // go redirect to qualtrics survey page
+        domSafe.setLocationHref(document.location, res['data']['link']);
+      } else {
         // legacy for ads page, or for reports list page where no redirect is required
         this.link = res['data']['link'];
         this.companyName = res['data']['company_name'];
-      } else {
-        // go redirect to qualtrics survey page
-        domSafe.setLocationHref(document.location, res['data']['link']);
       }
     }, () => {
       this.serverError = true;
