@@ -2,7 +2,7 @@ goog.module('dmb.components.progressGrid.template');
 
 const template = `
 <div
-    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.floorDmbFactory_(ratingMain)]}">
+    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.getLevel(ratingMain)]}">
 
     <!-- This list is visually hidden and only read out by screen readers -->
     <ul class="h-u-visually-hidden">

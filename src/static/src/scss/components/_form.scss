@@ -1,0 +1,41 @@
+.dmb-form {
+  &__input,
+  &__select {
+    background: transparent;
+    border: 1px solid $dmb-color-grey-zircon;
+    border-radius: $dmb-border-radius;
+    font-size: 14px;
+    font-weight: $h-font-weight-regular;
+    height: 56px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    width: 100%;
+
+    @include dmb-mq($from: desktop) {
+      font-size: 16px;
+    }
+  }
+
+  &__input {
+    &::placeholder {
+      color: $dmb-color-grey-mid;
+    }
+  }
+
+  &__select {
+    color: $dmb-color-grey-mid;
+  }
+
+  &__submit {
+    margin-top: 20px;
+
+    @include dmb-mq($from: desktop) {
+      margin-top: 40px;
+    }
+  }
+
+  &__error {
+    color: $h-google-red-500;
+    padding-top: 8px;
+  }
+}

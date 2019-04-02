@@ -41,12 +41,6 @@ class DimensionTabController {
 
     /**
      * @export
-     * @type {string}
-     */
-    this.logoUrls = {};
-
-    /**
-     * @export
      * type {Object}
      */
     this.dimensionClassNames = {};

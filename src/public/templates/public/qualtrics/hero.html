@@ -44,13 +44,13 @@
     <div class="dmb-collaboration__logos">
       <img
           class="dmb-collaboration__img"
-          srcset="http://localhost:8000/devstatic/img/partners/deloitte-logo.png 1x,
-                    http://localhost:8000/devstatic/img/partners/deloitte-logo@2x.png 2x"
-          src="http://localhost:8000/devstatic/img/partners/deloitte-logo.png"
+          srcset="${e://Field/static_url}/img/partners/deloitte-logo.png 1x,
+                    ${e://Field/static_url}/img/partners/deloitte-logo@2x.png 2x"
+          src="${e://Field/static_url}/img/partners/deloitte-logo.png"
           alt="deloitte logo">
       <img
           class="dmb-collaboration__img dmb-collaboration__img--gni"
-          src="http://localhost:8000/devstatic/img/partners/google-news-initiative.svg"
+          src="${e://Field/static_url}/img/partners/google-news-initiative.svg"
           alt="google news initiative logo">
     </div>
   </div>
@@ -59,8 +59,23 @@
     <h2 class="h-c-headline h-c-headline--subhead">
       Filling out the assessment
     </h2>
-    <p>
+    <p class="dmb-u-m-b-s">
       Your answers are saved as you go. If you need to pause, or ask around for a particular answer, use this link to return immediately to where you left off. Just be sure to finish up and submit within 30 days of starting.
     </p>
+      <h2 class="h-c-headline h-c-headline--subhead">
+        Would you like to share this assessment?
+      </h2>
+      <p class="dmb-u-m-b-s">
+        You may want to share this assessment with other members of your team so they can help you answer it. Copy the unique assessment link below and keep it somewhere safe.
+      </p>
+      <div class="dmb-survey-copy-url">
+        <input id="dmb-survey-url" class="dmb-survey-copy-url__text">
+        <button id="dmb-copy-btn" class="dmb-survey-copy-url__button dmb-outline-button h-c-button" ng-click="registrationCtrl.copy()">
+          Copy
+        </button>
+        <p id="dmb-copy-message" class="dmb-survey-copy-url__message">
+          &#x200b;
+        </p >
+      </div>
   </div>
 </div>

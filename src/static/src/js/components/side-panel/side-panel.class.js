@@ -24,13 +24,13 @@ const classes = {
 class SidePanel {
   /**
    * Constructor
-   * @param  {Element} element The panel element to set up.
+   * @param  {HTMLElement} element The panel element to set up.
    * @param  {boolean} bindTriggers Whether events on the triggers or not.
    */
   constructor(element, bindTriggers=true) {
     /**
      * @const
-     * @type {Element}
+     * @type {HTMLElement}
      */
     this.el = element;
 
