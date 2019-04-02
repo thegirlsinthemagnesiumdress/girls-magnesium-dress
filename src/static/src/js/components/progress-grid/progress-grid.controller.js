@@ -7,20 +7,11 @@ class ProgressGridController {
   /**
    * ProgressGrid controller
    *
-   * @param {function (*): number|null} floorDmbFactory
    * @param {!Object} tenantConf
    *
    * @ngInject
    */
-  constructor(
-    floorDmbFactory,
-    tenantConf) {
-    /**
-     * @type {function (*): number|null}
-     * @private
-     */
-    this.floorDmbFactory_ = floorDmbFactory;
-
+  constructor(tenantConf) {
     /**
      * @export
      * type {Object}
