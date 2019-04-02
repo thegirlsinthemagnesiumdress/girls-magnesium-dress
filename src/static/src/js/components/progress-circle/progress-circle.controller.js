@@ -29,7 +29,7 @@ class ProgressCircleController {
    */
   constructor($element, $attrs, $scope, $filter, floorDmbFactory) {
     /**
-     * @type {number}
+     * @type {Object}
      */
     this.level = null;
 

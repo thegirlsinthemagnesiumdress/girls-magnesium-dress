@@ -30,50 +30,49 @@ class TenantConfiguration {
     this.tenant = '';
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.levels = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.levelDescriptions = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.reportLevelDescriptions = {};
 
     /**
-     * @param {Array}
+     * @type {Array}
      * @export
      */
     this.dimensions = [];
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionHeaders = {};
 
-
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionHeadersDescription = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionLevelDescription = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionLevelRecommendations = {};

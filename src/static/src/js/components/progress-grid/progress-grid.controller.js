@@ -37,7 +37,7 @@ class ProgressGridController {
   /**
    * Function to get a rounded level value from a value
    * @param {number} value
-   * @return {string}
+   * @return {number}
    * @export
    */
   getLevel(value) {
@@ -56,7 +56,7 @@ class ProgressGridController {
   }
 
   /**
-   * Function to get the progressw width/height for the horizontal and vertical bars
+   * Function to get the progress width/height for the horizontal and vertical bars
    * @param {number} value
    * @return {string}
    * @export
