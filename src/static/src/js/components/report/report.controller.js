@@ -88,13 +88,13 @@ class ReportController {
 
     /**
      * @export
-     * @type {number}
+     * @type {Object}
      */
     this.levelsTotal = tenantConf.levelsTotal;
 
     /**
      * @export
-     * @type {number}
+     * @type {Object}
      */
     this.nextLevel = null;
 
@@ -115,6 +115,12 @@ class ReportController {
      * @type {Array.<string>}
      */
     this.dimensions = tenantConf.dimensions;
+
+    /**
+     * @export
+     * @type {boolean}
+     */
+    this.renderTabset = false;
 
 
     /**
@@ -140,14 +146,14 @@ class ReportController {
 
     /**
      * Industry best rating source industry.
-     * @const {string}
+     * @type {Object}
      * @export
      */
     this.industryAvgSource = null;
 
     /**
      * Industry average source industry.
-     * @const {string}
+     * @type {Object}
      * @export
      */
     this.industryBestSource = null;

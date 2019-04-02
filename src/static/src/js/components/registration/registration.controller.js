@@ -1,4 +1,5 @@
 goog.module('dmb.components.registration.controller');
+const domSafe = goog.require('goog.dom.safe');
 
 const SURVEY_ENDPOINT = '/api/survey';
 
@@ -75,6 +76,12 @@ class RegistrationController {
      * @export
      */
     this.link = '';
+
+    /**
+     * @export
+     * @type {boolean}
+     */
+    this.hideConfirmationPage = false;
   }
 
   /**
@@ -103,9 +110,15 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      this.link = res['data']['link'];
-      this.companyName = res['data']['company_name'];
-    }, (res) => {
+      if (this.hideConfirmationPage) {
+        // go redirect to qualtrics survey page
+        domSafe.setLocationHref(document.location, res['data']['link']);
+      } else {
+        // legacy for ads page, or for reports list page where no redirect is required
+        this.link = res['data']['link'];
+        this.companyName = res['data']['company_name'];
+      }
+    }, () => {
       this.serverError = true;
     });
   }
