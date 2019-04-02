@@ -1,5 +1,4 @@
 @import 'legacy/all';
-@import 'tenants/ads';
 
 
 // TODO(aabuelgasim): Remove once we switch to news CSS for news report page
@@ -13,7 +12,7 @@
 @import 'components/report-intro';
 @import 'components/report-hero';
 @import 'components/svg';
-@import 'tenants/news';
+@import 'legacy/tenants/news';
 
 button {
   background: transparent;
