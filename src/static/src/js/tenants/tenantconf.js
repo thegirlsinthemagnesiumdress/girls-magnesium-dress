@@ -86,7 +86,7 @@ class TenantConfiguration {
     this.levelDescriptions = conf.levelDescriptions;
     this.reportLevelDescriptions = conf.reportLevelDescriptions;
     this.dimensions = conf.dimensions;
-    this.dimensionHeaders = JSON.parse(tenantDataElement.dataset['dimensions']);
+    this.dimensionHeaders = /** @type {Object} */ (JSON.parse(tenantDataElement.dataset['dimensions']));
     this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
     this.dimensionLevelDescription = conf.dimensionLevelDescription;
     this.dimensionLevelRecommendations = conf.dimensionLevelRecommendations;
