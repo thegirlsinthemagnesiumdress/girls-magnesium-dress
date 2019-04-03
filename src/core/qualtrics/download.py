@@ -85,7 +85,7 @@ def fetch_results(survey_id, file_format='json', started_after=None, text=False)
         raise FetchResultException(export_generation_response)
 
     # Step 2: Checking on Data Export Progress and waiting until export is ready
-    while request_check_progress < 100 and progress_status is not 'complete':
+    while request_check_progress < 100 and progress_status != 'complete':
         request_check_url = ''.join((settings.RESPONSE_EXPORT_BASE_URL, progress_id))
         request_check_response = urlfetch.fetch(
             method=urlfetch.GET,
@@ -120,7 +120,7 @@ def fetch_results(survey_id, file_format='json', started_after=None, text=False)
             qualtrics_data = [response for response in _unpack_zip(in_memory_buffer)]
             qualtrics_data = qualtrics_data[0]
 
-        except zipfile.BadZipfile as e:
+        except zipfile.BadZipfile:
             raise FetchResultException(json.loads(request_download.content))
     return json.loads(qualtrics_data)
 
