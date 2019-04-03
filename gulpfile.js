@@ -149,6 +149,10 @@ gulp.task('clean-dist', function() {
   ]);
 });
 
+gulp.task('html-reload', function() {
+  return gulp.src('.')
+    .pipe(livereload())
+});
 
 gulp.task('sass-dev', function() {
   // Fill out the line below with the path to your main Sass file.
@@ -258,6 +262,7 @@ gulp.task('watch', function() {
     'js-dev'
   ));
 
+  gulp.watch(`./src/**/*.html`, gulp.parallel('html-reload'));
   gulp.watch(`${SRC_STATIC_DIR}/svg/*.svg`, gulp.parallel('svg-symbols'));
   gulp.watch(`${SRC_STATIC_DIR}/img/**/*.{jpg,png,svg,gif}`, gulp.parallel('images-dev'));
   gulp.watch(`${SRC_STATIC_DIR}/fonts/**/*.{otf,ttf,svg,woff,eot}`, gulp.parallel('fonts-dev'));
