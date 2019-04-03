@@ -1,4 +1,4 @@
-from core.models import Survey, IndustryBenchmark
+from core.models import IndustryBenchmark
 from django.conf import settings
 from collections import defaultdict
 

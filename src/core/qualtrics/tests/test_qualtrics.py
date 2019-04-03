@@ -699,7 +699,11 @@ class CalculateBestPracticeWeightedTest(TestCase):
             10.0
         ]
 
-        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list, self.dimensions, dmb_values=dmb_values)
+        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(
+            dmb_d_list,
+            self.dimensions,
+            dmb_values=dmb_values
+        )
         self.assertIsInstance(dmb_d_max_dictionary, dict)
         self.assertEqual(len(dmb_d_max_dictionary), len(self.dimensions))
 
@@ -740,7 +744,11 @@ class CalculateBestPracticeWeightedTest(TestCase):
             8.0
         ]
 
-        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(dmb_d_list, self.dimensions, dmb_values=dmb_values)
+        dmb, dmb_d_max_dictionary = benchmark.calculate_best_practice(
+            dmb_d_list,
+            self.dimensions,
+            dmb_values=dmb_values
+        )
         self.assertIsInstance(dmb_d_max_dictionary, dict)
         self.assertEqual(len(dmb_d_max_dictionary), len(self.dimensions))
 

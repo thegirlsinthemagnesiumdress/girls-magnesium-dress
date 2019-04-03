@@ -1,0 +1,30 @@
+be-test:
+  image: node:11.12.0
+  script:
+  - apt-get update -qy
+  - apt-get install -y python-pip
+  - ./bin/install_deps --python-only
+  - python manage.py test
+
+be-lint:
+  image: node:11.12.0
+  script:
+  - apt-get update -qy
+  - apt-get install -y python-pip
+  - pip install tox
+  - ./bin/install_deps --python-only
+  - tox
+
+fe-lint:
+  image: node:11.12.0
+  variables:
+    SSH_VAR: "ssh://git@gitlab.com:"
+    GLUE_URL: "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"
+
+  script:
+  - apt-get update -qy
+  - apt-get install -y python-pip
+  - sed -i "s#$SSH_VAR#$GLUE_URL#g" package.json
+  - npm install
+  - ./bin/install_deps
+  - npm run js-lint && npm run sass-lint
