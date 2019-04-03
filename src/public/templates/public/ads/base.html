@@ -1,6 +1,8 @@
 {% load staticfiles %}
 {% load static_rev %}
 {% load angular %}
+{% load i18n %}
+{% trans "Digital Maturity Benchmark" as digital_maturity %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +44,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500,200|Product+Sans:400&lang=en" rel="stylesheet">
 
-    <title>Digital Maturity Benchmark</title>
+    <title>{{ digital_maturity }}</title>
 </head>
 <body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
