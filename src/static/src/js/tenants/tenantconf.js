@@ -48,6 +48,18 @@ class TenantConfiguration {
     this.reportLevelDescriptions = {};
 
     /**
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgDescription = null;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryBestDescription = null;
+
+    /**
      * @type {Array}
      * @export
      */
@@ -85,6 +97,8 @@ class TenantConfiguration {
     this.levelsTotal = Object.keys(this.levels).length;
     this.levelDescriptions = conf.levelDescriptions;
     this.reportLevelDescriptions = conf.reportLevelDescriptions;
+    this.industryAvgDescription = conf.industryAvgDescription;
+    this.industryBestDescription = conf.industryBestDescription;
     this.dimensions = conf.dimensions;
     this.dimensionHeaders = /** @type {Object} */ (JSON.parse(tenantDataElement.dataset['dimensions']));
     this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
