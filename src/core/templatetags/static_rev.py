@@ -36,4 +36,3 @@ def static_rev(path):
         return urljoin(settings.STATIC_URL, path)
 
     return urljoin(settings.STATIC_URL, manifest[path])
-

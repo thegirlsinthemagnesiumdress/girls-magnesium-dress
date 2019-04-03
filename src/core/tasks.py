@@ -161,7 +161,7 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
-            dimensions, multianswers, weights = tenant['DIMENSIONS'], tenant['MULTI_ANSWER_QUESTIONS'], tenant['WEIGHTS']
+            dimensions, multianswers, weights = tenant['DIMENSIONS'], tenant['MULTI_ANSWER_QUESTIONS'], tenant['WEIGHTS']  # noqa
             questions = question.data_to_questions(response_data, dimensions, multianswers, weights)
             questions_text = question.data_to_questions_text(response_text, dimensions, multianswers)
 

@@ -2,9 +2,25 @@
 import mock
 
 from core.models import Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
-from core.tasks import _get_results, send_emails_for_new_reports, is_valid_email, _create_survey_results, generate_csv_export, _update_responses_with_text, _get_definition, sync_qualtrics, calculate_industry_benchmark
+from core.tasks import (
+    _get_results,
+    send_emails_for_new_reports,
+    is_valid_email,
+    _create_survey_results,
+    generate_csv_export,
+    _update_responses_with_text,
+    _get_definition,
+    sync_qualtrics,
+    calculate_industry_benchmark,
+)
 from djangae.test import TestCase
-from mocks import get_mocked_results, MOCKED_DIMENSIONS, get_mocked_results_unfished, get_survey_definition, MOCKED_TENANTS
+from mocks import (
+    get_mocked_results,
+    MOCKED_DIMENSIONS,
+    get_mocked_results_unfished,
+    get_survey_definition,
+    MOCKED_TENANTS,
+)
 from mommy_recepies import make_survey, make_survey_result, make_survey_definition, make_survey_with_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
