@@ -1,3 +1,4 @@
+# flake8: noqa
 from djangae.settings_base import * #Set up some AppEngine specific stuff
 from djangae.contrib.gauth.settings import *
 

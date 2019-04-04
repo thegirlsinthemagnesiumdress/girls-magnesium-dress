@@ -1,5 +1,5 @@
 from core.models import Survey, SurveyResult
-from rest_framework.serializers import ModelSerializer, CharField, IntegerField
+from rest_framework.serializers import ModelSerializer, CharField
 
 
 class AdminSurveyResultSerializer(ModelSerializer):

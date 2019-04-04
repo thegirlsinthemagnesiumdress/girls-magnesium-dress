@@ -1,3 +1,4 @@
+# flake8: noqa
 import os
 from core.settings.default import *
 

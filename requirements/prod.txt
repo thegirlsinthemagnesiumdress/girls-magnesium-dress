@@ -10,6 +10,5 @@ django-inline-svg==0.1.1
 GoogleAppEngineCloudStorageClient==1.9.22.1
 djangorestframework==3.7.7
 urllib3==1.23
-numpy==1.14.5
 git+https://github.com/potatolondon/django-angular-protect.git@dd6aa0a1ae7db88264d5e38517cc752a679aca12
 unicodecsv==0.14.1

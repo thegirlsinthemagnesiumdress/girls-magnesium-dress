@@ -1,4 +1,5 @@
-from core.settings.live import *  # noqa
+# flake8: noqa
+from core.settings.live import *
 import os
 
 MIDDLEWARE_CLASSES = tuple(

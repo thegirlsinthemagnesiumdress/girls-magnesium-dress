@@ -1,8 +1,6 @@
 from core.qualtrics import question
-from core.qualtrics.exceptions import InvalidResponseData
 from djangae.test import TestCase
 import mock
-from django.conf import settings
 
 
 class DataToQuestionTest(TestCase):
@@ -300,10 +298,6 @@ class CleanDataTest(TestCase):
     def test_survey_clean(self):
         """Should return the expected cleaned dictionary"""
 
-        weights = {
-            'Q1': 2,
-            'Q3': 3,
-        }
         dimensions = {
             'activation': ['Q3', 'Q4'],
             'audience': ['Q5_1', 'Q13'],
@@ -482,7 +476,7 @@ class CleanDataTest(TestCase):
         }
         multi_answer_questions = ['Q13']
 
-        data = question.clean_survey_data(survey_result,dimensions, multi_answer_questions)
+        data = question.clean_survey_data(survey_result, dimensions, multi_answer_questions)
         self.assertIsNone(data.get('Q1_1_TEXT'))
 
 

@@ -1,7 +1,14 @@
 {
+  "name": "dmb",
+  "version": "0.0.0",
+  "scripts": {
+    "js-lint": "gulp js-lint",
+    "sass-lint": "gulp sass-lint"
+  },
+  "private": true,
   "dependencies": {
     "clipboard": "2.0.1",
-    "glue": "git+https://webmaster.googlesource.com/bs/glue#v18.0.3",
+    "glue": "git+ssh://git@gitlab.com:potato/google/digital-maturity-benchmark/glue.git#v18.0.3",
     "google-closure-compiler": "20180716.0.1",
     "google-closure-library": "20180716.0.0",
     "ngclipboard": "2.0.0"
