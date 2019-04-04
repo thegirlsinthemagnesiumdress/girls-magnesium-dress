@@ -4,27 +4,47 @@
   <section class="h-c-footer__global">
     <div class="dmb-footer__tenant-footer">
       <p class="dmb-footer__tenant-footer-title h-c-headline h-c-headline--subhead">
-        {% if tenant|ng_mark_safe == 'ads' %}Digital{% else %}Data{% endif %} Maturity Benchmark
+        Looking to benchmark digital maturity for a different challenge or industry?
       </p>
-      <ul class="dmb-footer__tenant-footer-list">
-        <!-- TODO(aabuelgasim,mazzalin): make this dynamic -->
+      <input
+          id="dmb-read-more-1"
+          class="dmb-footer__tenant-footer-checkbox dmb-read-more__checkbox"
+          type="checkbox"
+          aria-hidden="true">
+      <label
+          class="dmb-footer__tenant-footer-label dmb-read-more__label"
+          for="dmb-read-more-1"
+          aria-hidden="true">
+        Read
+        <span class="dmb-read-more__more">more</span>
+        <span class="dmb-read-more__less">less</span>
+      </label>
+      <ul
+          class="dmb-footer__tenant-footer-list dmb-read-more__content">
+        {% if tenant|ng_mark_safe != 'ads' %}
         <li class="dmb-footer__tenant-footer-list-item">
           <a href="/advertisers">
-            Advertisers
+            Advertisers Marketing Maturity
           </a>
         </li>
-        <li class="dmb-footer__tenant-footer-list-item">
-          <a href="/news">
-            News
-          </a>
-        </li>
-        <li class="dmb-footer__tenant-footer-list-item">
-          <a href="/retail">
-            Retail
-          </a>
-        </li>
+        {% endif %}
+        {% if tenant|ng_mark_safe != 'news' %}
+          <li class="dmb-footer__tenant-footer-list-item">
+            <a href="/news">
+              News Publisher Data Transformation
+            </a>
+          </li>
+        {% endif %}
+        {% if tenant|ng_mark_safe != 'retail' %}
+          <li class="dmb-footer__tenant-footer-list-item">
+            <a href="/retail">
+              Retail Data Transformation
+            </a>
+          </li>
+        {% endif %}
       </ul>
     </div>
+
     <div class="h-c-footer__logo">
       <a href="https://www.google.com" title="Google">
         <svg role="img" class="h-c-footer__logo-img">
