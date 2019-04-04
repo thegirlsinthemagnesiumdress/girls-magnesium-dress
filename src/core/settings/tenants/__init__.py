@@ -44,7 +44,7 @@ TENANTS = {
     RETAIL: {
         'key': RETAIL,
         'label': 'Retail',
-        'slug': 'retail',
+        'slug': 'retaildatatransformation',
         'QUALTRICS_SURVEY_ID': 'SV_b1OV8m7xVD337rD',
         'EMAIL_TO': 'Q1_4_TEXT',
         'EMAIL_BCC': 'Q1_5_TEXT',
