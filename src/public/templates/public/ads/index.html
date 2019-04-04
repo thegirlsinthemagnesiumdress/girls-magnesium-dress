@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block main %}
-  {% trans "Digital Maturity Benchmark" as digital_maturity %}
   <div class="dmb-landing">
 
   {% include 'public/inc/home/hero.html' %}
@@ -89,16 +88,12 @@
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4 h-c-grid__col-l--offset-2">
           <p>
-            {% blocktrans %}
-            The <strong>{{ digital_maturity }}</strong> is a diagnostic tool developed based on our in-depth research with BCG. The tool analyses where your business sits on the path to full data-driven marketing and attribution.
-            {% endblocktrans %}
+            {% trans "The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG. The tool analyses where your business sits on the path to full data-driven marketing and attribution." %}
           </p>
         </div>
         <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--4">
           <p>
-            {% blocktrans %}
-            Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up.
-            {% endblocktrans %}
+            {% trans "Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up." %}
           </p>
         </div>
       </div>
@@ -294,12 +289,10 @@
   </div>
 
   <div class="dmb-landing__footnote h-c-page">
-      {% blocktrans %}
-      <sup>*</sup>BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries -
+      <sup>*</sup>{% trans "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries -" %}
       <a class="" href="https://www.thinkwithgoogle.com/intl/en-gb/marketing-resources/data-measurement/delivering-meaningful-moments/" target="_blank">
-        read more.
+        {% trans "read more." %}
       </a>
-      {% endblocktrans %}
     </div>
 
   </div>
@@ -315,26 +308,20 @@
     </button>
 
     <div class="dmb-side-panel__inner">
-      <h1 class="dmb-side-panel__heading h-c-headline h-c-headline--one h-u-font-weight-medium">{% trans "Why digital maturity
-        matters" %}</h1>
+      <h1 class="dmb-side-panel__heading h-c-headline h-c-headline--one h-u-font-weight-medium">{% trans "Why digital maturity matters" %}</h1>
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--4">
           <h2 class="h-c-headline h-c-headline--four">
-            Consumer shift
+            {% trans "Consumer shift" %}
           </h2>
         </div>
         <div class="h-c-grid__col h-c-grid__col--8">
           <div class="dmb-side-panel__left-block">
             <p>
-              {% trans "Today, more and more of our lives are powered by mobile and digital. We love our devices, but what we
-              really love is
-              the power our devices give us. The power to get exactly what we want, instantly and effortlessly. To have
-              our needs not
-              just met, but anticipated." %}
+              {% trans "Today, more and more of our lives are powered by mobile and digital. We love our devices, but what we really love is the power our devices give us. The power to get exactly what we want, instantly and effortlessly. To have our needs not just met, but anticipated." %}
             </p>
             <p>
-              {% trans "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as
-              these expectations ratchet up, so do the requirements (and opportunities) for marketers." %}
+              {% trans "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as these expectations ratchet up, so do the requirements (and opportunities) for marketers." %}
             </p>
           </div>
         </div>
@@ -359,21 +346,14 @@
                     {% trans "Curious" %}
                   </h3>
                   <p>
-                    {% trans "They turn to Google Search more and more often looking to get useful advice and answers - even
-                    for the small stuff - so every decision they make is an informed one." %}
+                    {% trans "They turn to Google Search more and more often looking to get useful advice and answers - even for the small stuff - so every decision they make is an informed one." %}
                   </p>
                   <ul>
                     <li>
-                      {% blocktrans %}
-                      In the last 2 years, mobile searches have risen 239% for best travel accessories, 208% for best
-                      face powder and 156% for best wet weather gear.&nbsp;<sup>1</sup>
-                      {% endblocktrans %}
+                      {% trans "In the last 2 years, mobile searches have risen 239% for best travel accessories, 208% for best face powder and 156% for best wet weather gear.&nbsp;" %}<sup>1</sup>
                     </li>
                     <li>
-                      {% blocktrans %}
-                      Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180% in the last 2
-                      years.&nbsp;<sup>2</sup>
-                      {% endblocktrans %}
+                      {% trans "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180% in the last 2 years.&nbsp;" %}<sup>2</sup>
                     </li>
                   </ul>
                 </div>
@@ -387,21 +367,14 @@
                     {% trans "Demanding" %}
                   </h3>
                   <p>
-                    {% trans "They want relevant and tailor-made experiences and expect brands to understand and meet their intent
-                    with useful information in the moment." %}
+                    {% trans "They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment." %}
                   </p>
                   <ul>
                     <li>
-                      {% blocktrans %}
-                      "Near me" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2
-                      years in EMEA.&nbsp;<sup>3</sup>
-                      {% endblocktrans %}
+                      {% trans '"Near me" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;' %}<sup>3</sup>
                     </li>
                     <li>
-                      {% blocktrans %}
-                      89% of marketers say anticipating customer needs and providing helpful experiences along the
-                      consumer journey is critical to their brand’s growth.&nbsp;<sup>4</sup>
-                      {% endblocktrans %}
+                      {% trans "89% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;" %}<sup>4</sup>
                     </li>
                   </ul>
                 </div>
@@ -415,14 +388,11 @@
                     {% trans "Impatient" %}
                   </h3>
                   <p>
-                    {% trans "People are making decisions faster than ever before, and they expect to be able to act on those
-                    decisions instantly." %}
+                    {% trans "People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly." %}
                   </p>
                   <ul>
                     <li>
-                      {% blocktrans %}
-                      1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;<sup>5</sup>
-                      {% endblocktrans %}
+                      {% trans "1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;" %}<sup>5</sup>
                     </li>
                   </ul>
                 </div>
@@ -442,8 +412,7 @@
               {% trans "Be there" %}
             </h4>
             <p class="h-u-font-weight-light">
-              {% trans "Use the power of technology and insights to deliver relevant, real-time messages at scale, whenever each
-              consumer is ready for them." %}
+              {% trans "Use the power of technology and insights to deliver relevant, real-time messages at scale, whenever each consumer is ready for them." %}
             </p>
           </div>
           <div class="dmb-side-panel__advice-item">
@@ -467,15 +436,10 @@
 
       <div class="dmb-side-panel__research">
         <p class="h-c-headline h-c-headline--subhead">
-          {% blocktrans %}
-          <strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all
-          into practice. Our research with BCG shows only 2% of brands are realising the full potential of data-driven
-          marketing.
-          {% endblocktrans %}
+          {% trans "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2% of brands are realising the full potential of data-driven marketing." %}
         </p>
         <p class="h-u-font-weight-light">
-          {% trans "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer
-          expectations in your interactive Digital Marketing Maturity report." %}
+          {% trans "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report." %}
         </p>
       </div>
 
@@ -494,10 +458,7 @@
         </p>
         <p>
           <span>4</span>
-          <span>{% trans "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement
-            executives at North American companies with over $250M in revenues; n=133 leading marketers who reported
-            marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the
-            sample)." %}</span>
+          <span>{% trans "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)." %}</span>
         </p>
         <p>
           <span>5</span>
