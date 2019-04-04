@@ -1,0 +1,654 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-04 11:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/public/templates/public/ads/base.html:5
+#: src/public/templates/public/ads/index.html:13
+#: src/public/templates/public/inc/global/footer.html:3
+#: src/public/templates/public/inc/global/header.html:3
+msgid "Digital Maturity Benchmark"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:28
+#: src/public/templates/public/ads/report-static.html:107
+#: src/public/templates/public/ads/report-static.html:437
+msgid "Why digital maturity matters"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:37
+msgid "Everyday there are hundreds of chances to engage with customers digitally"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:40
+#, python-format
+msgid "But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2%% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:60
+msgid "These businesses have a sustainable competitive advantage"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:63
+#, python-format
+msgid "Companies leading the way in multi-moment marketing see 30%% cost efficiency savings and a 20%% increase in revenue."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:70
+msgid "Find out more"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:85
+msgid "Your roadmap to digital marketing maturity"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:92
+#, python-format
+msgid ""
+"\n"
+"            The <strong>%(digital_maturity)s</strong> is a diagnostic tool developed based on our in-depth research with BCG. The tool analyses where your business sits on the path to full data-driven marketing and attribution.\n"
+"            "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:99
+msgid ""
+"\n"
+"            Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up.\n"
+"            "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:112
+#: src/public/templates/public/ads/index.html:148
+#: src/public/templates/public/ads/index.html:251
+msgid "How it works"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:115
+msgid "Benchmark which stage your organisation is at on our digital maturity scale."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:123
+#: src/public/templates/public/ads/report-static.html:298
+msgid "Nascent"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:124
+msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:127
+#: src/public/templates/public/ads/report-static.html:304
+msgid "Emerging"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:128
+msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:132
+msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:135
+#: src/public/templates/public/ads/report-static.html:316
+msgid "Multi-moment"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:136
+msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:151
+msgid "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:160
+#: src/public/templates/public/ads/report-static.html:419
+msgid "Organisation"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:162
+msgid "Improve decision-making and results by working collaboratively across teams and with specialised partners"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:174
+#: src/public/templates/public/ads/report-static.html:389
+msgid "Attribution"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:177
+msgid "Accurately measure and value customer touchpoints"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:189
+#: src/public/templates/public/ads/report-static.html:395
+msgid "Assets and ads"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:192
+msgid "Deliver attention-driving, intuitive experiences across digital touchpoints"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:204
+#: src/public/templates/public/ads/report-static.html:401
+msgid "Audience"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:207
+msgid "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:219
+#: src/public/templates/public/ads/report-static.html:407
+msgid "Access"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:222
+msgid "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:234
+#: src/public/templates/public/ads/report-static.html:413
+msgid "Automation"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:237
+msgid "Optimise marketing operations to drive profitability and growth"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:254
+msgid "Use the insights from your report to identify how to drive your organisation to the next level, and work with others in your company and your partners to achieve this."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:274
+msgid "Benchmark your business now"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:278
+msgid "Discover how your marketing maturity measures up, plan your progress, reach more customers."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:281
+msgid "This in-depth assessment takes around 30-minutes to complete."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:285
+msgid "Start the assessment now"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:297
+msgid ""
+"\n"
+"      <sup>*</sup>BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries -\n"
+"      <a class=\"\" href=\"https://www.thinkwithgoogle.com/intl/en-gb/marketing-resources/data-measurement/delivering-meaningful-moments/\" target=\"_blank\">\n"
+"        read more.\n"
+"      </a>\n"
+"      "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:347
+#: src/public/templates/public/ads/report-static.html:463
+msgid "Today’s consumers are:"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:359
+#: src/public/templates/public/ads/report-static.html:475
+msgid "Curious"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:367
+#, python-format
+msgid ""
+"\n"
+"                      In the last 2 years, mobile searches have risen 239%% for best travel accessories, 208%% for best\n"
+"                      face powder and 156%% for best wet weather gear.&nbsp;<sup>1</sup>\n"
+"                      "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:373
+#, python-format
+msgid ""
+"\n"
+"                      Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2\n"
+"                      years.&nbsp;<sup>2</sup>\n"
+"                      "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:387
+#: src/public/templates/public/ads/report-static.html:496
+msgid "Demanding"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:395
+msgid ""
+"\n"
+"                      \"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2\n"
+"                      years in EMEA.&nbsp;<sup>3</sup>\n"
+"                      "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:401
+#, python-format
+msgid ""
+"\n"
+"                      89%% of marketers say anticipating customer needs and providing helpful experiences along the\n"
+"                      consumer journey is critical to their brand’s growth.&nbsp;<sup>4</sup>\n"
+"                      "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:415
+#: src/public/templates/public/ads/report-static.html:517
+msgid "Impatient"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:423
+msgid ""
+"\n"
+"                      1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;<sup>5</sup>\n"
+"                      "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:437
+#: src/public/templates/public/ads/report-static.html:536
+msgid "So, how can you be digitally mature and so anticipate the needs of your customers today?"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:442
+#: src/public/templates/public/ads/report-static.html:541
+msgid "Be there"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:451
+#: src/public/templates/public/ads/report-static.html:549
+msgid "Be helpful"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:454
+#: src/public/templates/public/ads/report-static.html:552
+msgid "Build a strategy driven by assistance, reorienting to become more relevant across the customer experience."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:459
+#: src/public/templates/public/ads/report-static.html:557
+msgid "Be quick"
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:462
+#: src/public/templates/public/ads/report-static.html:560
+msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:470
+#, python-format
+msgid ""
+"\n"
+"          <strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all\n"
+"          into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven\n"
+"          marketing.\n"
+"          "
+msgstr ""
+
+#: src/public/templates/public/ads/index.html:485
+#: src/public/templates/public/ads/index.html:489
+#: src/public/templates/public/ads/index.html:493
+#: src/public/templates/public/ads/index.html:504
+#: src/public/templates/public/ads/report-static.html:580
+#: src/public/templates/public/ads/report-static.html:584
+#: src/public/templates/public/ads/report-static.html:588
+#: src/public/templates/public/ads/report-static.html:596
+msgid "Source: Google Data, EMEA, Jan - Dec 2015 vs. Jan - Dec 2017"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:14
+msgid "Ready to benchmark your company’s digital maturity?"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:17
+msgid "Let’s start with some details about your organisation:"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:24
+msgid "How we keep your information safe"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:35
+msgid "Organisation name:"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:39
+msgid "Industry:"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:41
+msgid "Select an industry"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:48
+msgid "Country:"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:50
+msgid "Select a country"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:56
+msgid "This field is required."
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:59
+msgid "Progress to my assessment"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:61
+msgid "Oops, something went wrong!"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:67
+msgid "Hello"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:69
+msgid "Your personalised assessment is ready to be completed"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:73
+msgid "Before you begin..."
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:75
+msgid "You may want to share this assessment with other members of your team so you can collaborate on answering the questions."
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:78
+msgid "Copy your unique assessment link using the button below now, and keep it somewhere safe."
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:86
+msgid "Copy my assessment link"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:93
+msgid "Link copied to clipboard!"
+msgstr ""
+
+#: src/public/templates/public/ads/registration.html:96
+msgid "Start my assessment now"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:15
+msgid "Your digital maturity benchmark"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:41
+msgid "You are"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:47
+msgid "This report will show you where you are weakest and strongest, and what to do to get to the next level,"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:50
+msgid "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:55
+msgid ""
+"\n"
+"            You are <strong>above average</strong> for your industry, and <strong>behind</strong> the industry best practice. This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>connected</strong>.\n"
+"            "
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:76
+msgid "View your results"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:114
+msgid "Your overall digital maturity"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:138
+msgid "Your maturity is"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:144
+msgid "This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:147
+msgid "This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:150
+msgid "This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:153
+msgid "This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:167
+msgid "6 dimensions of digital marketing maturity"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:173
+msgid "Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:177
+msgid "Learn more"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:177
+msgid "about why these matter"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:280
+msgid "Appendix"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:295
+msgid "Levels of digital marketing maturity"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:301
+msgid "Marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:307
+msgid "Some use of owned data in automated buying with single-channel optimisation and testing."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:310
+msgid "Connected"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:313
+msgid "Data integrated and activated across channels with demonstrated link to ROI or sales proxies."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:319
+msgid "Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:334
+msgid "Benchmark calculations"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:337
+msgid "Industry average & industry best"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:340
+msgid "These two metrics show how your company compares to the average and top performers in your industry globally."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:343
+msgid "If your specific industry (e.g. “Retail trade - Household goods”) doesn’t yet have enough responses to form a reliable average, you will be shown an average based on the wider industry (e.g. “Retail trade”)."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:346
+msgid "If there aren’t enough responses in the wider industry either, you will be shown results across all industries globally instead."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:349
+msgid "In case the scores you are seeing do not refer to your specific industry yet, you can check back later as the scores are being continuously updated."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:353
+msgid "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:356
+msgid "Your “Industry average” is currently based on global responses from all industries."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:362
+msgid "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:365
+msgid "Your “Industry best” is currently based on global responses from all industries."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:381
+msgid "6 dimensions of marketing maturity"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:392
+msgid "The capability to accurately measure and value customer touchpoints."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:398
+msgid "The capability to deliver attention-driving, intuitive experiences across digital touchpoints."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:404
+msgid "The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:410
+msgid "The capability to reach and deliver across all inventory types and channels."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:416
+msgid "The capability to optimise marketing operations to drive profitability and growth."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:422
+msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:441
+msgid "Consumer shift"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:478
+msgid "They turn to Google Search more and more often looking to get useful advice and answers - even for the small stuff - so every decision they make is an informed one."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:482
+#, python-format
+msgid "In the last 2 years, mobile searches have risen 239%% for best travel accessories, 208%% for best face powder and 156%% for best wet weather gear.&nbsp;"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:485
+#, python-format
+msgid "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2 years.&nbsp;"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:499
+msgid "They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:503
+msgid "\\"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:506
+#, python-format
+msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;"
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:520
+msgid "People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:544
+msgid "Use the power of technology and insights to deliver relevant, real-time messages at scale, whenever each consumer is ready for them."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:568
+#, python-format
+msgid ""
+"\n"
+"          <strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing.\n"
+"          "
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:573
+msgid "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report."
+msgstr ""
+
+#: src/public/templates/public/ads/report-static.html:592
+msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:4
+#: src/public/templates/public/inc/global/header.html:4
+msgid "Data Maturity Benchmark"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:17
+msgid "Advertisers"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:22
+msgid "News"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:36
+msgid "Privacy"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:39
+msgid "Terms"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:42
+msgid "About Google"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:45
+msgid "Google Products"
+msgstr ""
+
+#: src/public/templates/public/inc/global/footer.html:57
+msgid "Contact us"
+msgstr ""
+
+#: src/public/templates/public/inc/global/header.html:68
+msgid "Skip to content"
+msgstr ""
+
+#: src/public/templates/public/inc/global/header.html:136
+msgid "Start now"
+msgstr ""
+
+#: src/public/templates/public/inc/global/partnership-with-bcg.html:5
+msgid "In partnership with"
+msgstr ""
