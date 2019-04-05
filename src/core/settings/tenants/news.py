@@ -463,7 +463,7 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
 }
 
 
-RECOMMENDATIONS_DATA = {
+CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,

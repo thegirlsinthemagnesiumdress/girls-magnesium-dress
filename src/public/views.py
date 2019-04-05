@@ -21,17 +21,17 @@ INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
-def _recommandation_data(tenant):
-    recommendations_data = settings.TENANTS[tenant]['RECOMMENDATIONS_DATA']
+def _dump_tenant_content_data(tenant):
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
 
     data = {
-        'levels': recommendations_data['levels'],
-        'level_descriptions': recommendations_data['level_descriptions'],
-        'dimensions': recommendations_data['dimensions'],
-        'dimension_labels': recommendations_data['dimension_labels'],
-        'dimension_headers_descriptions': recommendations_data['dimension_headers_descriptions'],
-        'dimension_level_description': recommendations_data['dimension_level_description'],
-        'dimension_level_recommendations': recommendations_data['dimension_level_recommendations'],
+        'levels': content_data['levels'],
+        'level_descriptions': content_data['level_descriptions'],
+        'dimensions': content_data['dimensions'],
+        'dimension_labels': content_data['dimension_labels'],
+        'dimension_headers_descriptions': content_data['dimension_headers_descriptions'],
+        'dimension_level_description': content_data['dimension_level_description'],
+        'dimension_level_recommendations': content_data['dimension_level_recommendations'],
     }
 
     return json.dumps(data)
@@ -41,7 +41,7 @@ def registration(request, tenant):
     return render(request, 'public/{}/registration.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
     })
@@ -55,7 +55,7 @@ def report_static(request, tenant, sid):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
     })
 
 
@@ -67,7 +67,7 @@ def report_static_news(request, tenant, sid):
 
     return render(request, 'public/{}/report-static-news.html'.format(tenant), {
         'tenant': tenant,
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
     })
 
 
@@ -76,7 +76,7 @@ def report_result_static(request, tenant, response_id):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
     })
 
 
@@ -84,7 +84,7 @@ def index_static(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
         'slug': slug,
     })
 
@@ -93,7 +93,7 @@ def thank_you(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/thank-you.html'.format(tenant), {
         'tenant': tenant,
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
         'slug': slug,
     })
 
@@ -112,7 +112,7 @@ def reports_admin(request, tenant):
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
@@ -137,7 +137,7 @@ def result_detail(request, tenant, response_id):
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _recommandation_data(tenant),
+        'recommendations': _dump_tenant_content_data(tenant),
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
