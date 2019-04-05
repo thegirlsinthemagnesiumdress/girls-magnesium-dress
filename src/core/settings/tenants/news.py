@@ -40,7 +40,7 @@ DIMENSION_TITLES = {
 }
 
 
-DIMENSIONS_ORDER = [
+DIMENSION_ORDER = [
     DIMENSION_STRATEGIC_DIRECTION,
     DIMENSION_READER_ENGAGEMENT,
     DIMENSION_READER_REVENUE,
@@ -473,7 +473,7 @@ CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
-    'dimensions': DIMENSIONS_ORDER,
+    'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
