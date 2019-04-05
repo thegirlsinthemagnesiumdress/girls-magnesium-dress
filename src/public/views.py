@@ -42,7 +42,7 @@ def registration(request, tenant):
     return render(request, 'public/{}/registration.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
     })
@@ -56,7 +56,7 @@ def report_static(request, tenant, sid):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
     })
 
 
@@ -68,7 +68,7 @@ def report_static_news(request, tenant, sid):
 
     return render(request, 'public/{}/report-static-news.html'.format(tenant), {
         'tenant': tenant,
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
     })
 
 
@@ -77,7 +77,7 @@ def report_result_static(request, tenant, response_id):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
     })
 
 
@@ -85,7 +85,7 @@ def index_static(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
     })
 
@@ -94,7 +94,7 @@ def thank_you(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/thank-you.html'.format(tenant), {
         'tenant': tenant,
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
     })
 
@@ -113,7 +113,7 @@ def reports_admin(request, tenant):
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
@@ -138,7 +138,7 @@ def result_detail(request, tenant, response_id):
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'recommendations': _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
@@ -153,7 +153,7 @@ def handler404(request, *args, **kwargs):
         'cta': _('Return to homepage'),
         'tenant': '',
         'slug': '',
-        'recommendations': '',
+        'content_data': '',
     }, status=404)
 
 
@@ -165,5 +165,5 @@ def handler500(request, *args, **kwargs):
         'cta': _('Return to homepage'),
         'tenant': '',
         'slug': '',
-        'recommendations': '',
+        'content_data': '',
     }, status=500)

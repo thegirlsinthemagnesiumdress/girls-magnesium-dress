@@ -87,7 +87,7 @@ class TenantConfiguration {
     const tenantDataElement = document.getElementById(tenantDataElementName);
     this.tenant = tenantDataElement.dataset['tenant'];
 
-    this.contentData = JSON.parse(tenantDataElement.dataset['recommendations']);
+    this.contentData = JSON.parse(tenantDataElement.dataset['contentData']);
 
     this.dimensionHeaders = this.contentData['dimension_labels'];
     this.dimensions = this.contentData['dimensions'];

@@ -51,7 +51,7 @@ DIMENSION_TITLES = {
     DIMENSION_ORGANIZATION: _('Organization'),
 }
 
-DIMENSIONS_ORDER = [
+DIMENSION_ORDER = [
     DIMENSION_ATTRIBUTION,
     DIMENSION_ADS,
     DIMENSION_ACCESS,
@@ -568,7 +568,7 @@ CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': None,
-    'dimensions': DIMENSIONS_ORDER,
+    'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
