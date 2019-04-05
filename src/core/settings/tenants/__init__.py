@@ -1,7 +1,7 @@
 import ads as advertisers_conf
 import news as news_conf
 from djangae.environment import application_id
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 ADS = 'ads'

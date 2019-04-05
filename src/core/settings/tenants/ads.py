@@ -1,6 +1,6 @@
 # coding=utf-8
 # flake8: noqa
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 DIMENSION_ADS = 'ads'
 DIMENSION_ACCESS = 'access'

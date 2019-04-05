@@ -2,7 +2,6 @@
 from djangae.settings_base import * #Set up some AppEngine specific stuff
 from djangae.contrib.gauth.settings import *
 
-from django.utils.translation import ugettext_lazy as _
 from djangae.environment import application_id
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
