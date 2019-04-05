@@ -49,7 +49,7 @@ DIMENSION_TITLES = {
     DIMENSION_ORGANIZATION: 'Organization',
 }
 
-DIMENSIONS_ORDER = [
+DIMENSION_ORDER = [
     DIMENSION_ATTRIBUTION,
     DIMENSION_ADS,
     DIMENSION_ACCESS,
@@ -288,7 +288,6 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
             'text': 'Use web analytics tools and A/B testing tools to continually improve the performance of your assets.',
         }, {
             'header': 'Improve the speed of your mobile assets',
-            'text': 'Take the mobile speed test and get recommendations to implement right away.',
             'cta': {
                 'text': 'Mobile speed test',
                 'link': 'https://testmysite.withgoogle.com/',
@@ -566,7 +565,7 @@ CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': None,
-    'dimensions': DIMENSIONS_ORDER,
+    'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
