@@ -15,6 +15,7 @@ from core.response_detail import get_response_detail
 from core.conf.utils import flatten, get_tenant_slug
 import json
 from django.utils.translation import ugettext as _
+from core.encoders import LazyEncoder
 
 
 INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
@@ -34,7 +35,7 @@ def _dump_tenant_content_data(tenant):
         'dimension_level_recommendations': content_data['dimension_level_recommendations'],
     }
 
-    return json.dumps(data)
+    return json.dumps(data, cls=LazyEncoder)
 
 
 def registration(request, tenant):
