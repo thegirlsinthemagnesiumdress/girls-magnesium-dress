@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% load get %}
 {% load angular %}
+{% load i18n %}
+
 {% block main %}
 <div class="h-c-page result-detail">
   {% djangoblock %}
@@ -57,8 +59,8 @@
                   {% endfor %}
                   {% if question.not_in_schema_text %}
                     <div class="result-page__choices_no_match">
-                      The definition has probably changed and we could not match user response with the definition.
-                      Here's the user answer(s).
+                      {% trans "The definition has probably changed and we could not match user response with the definition.
+                      Here's the user answer(s)." %}
                       <ul>
                         {% for not_in_schema_c in question.not_in_schema_text %}
                         <li>
@@ -82,7 +84,7 @@
                   {% endif %}
                 {% else %}
                   <div class="response-detail__missing-question">
-                    The definition has probably changed and we could not find any answer for this question.
+                    {% trans "The definition has probably changed and we could not find any answer for this question." %}
                   </div>
                 {% endif %}
               </div>
