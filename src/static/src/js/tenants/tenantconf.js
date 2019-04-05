@@ -1,6 +1,5 @@
 goog.module('dmb.components.tenant');
 
-const confMap = goog.require('dmb.components.tenant.confMap');
 const tenantDataElementName = 'bootstrap-data';
 
 /** @const {string} */
@@ -78,18 +77,26 @@ class TenantConfiguration {
      */
     this.dimensionLevelRecommendations = {};
 
+    /**
+     * @param {Object}
+     * @export
+     */
+    this.recommendationsData = {};
+
 
     const tenantDataElement = document.getElementById(tenantDataElementName);
     this.tenant = tenantDataElement.dataset['tenant'];
-    const conf = confMap[this.tenant];
-    this.levels = conf.levels;
-    this.levelDescriptions = conf.levelDescriptions;
-    this.reportLevelDescriptions = conf.reportLevelDescriptions;
-    this.dimensions = conf.dimensions;
-    this.dimensionHeaders = JSON.parse(tenantDataElement.dataset['dimensions']);
-    this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
-    this.dimensionLevelDescription = conf.dimensionLevelDescription;
-    this.dimensionLevelRecommendations = conf.dimensionLevelRecommendations;
+
+    this.recommendationsData = JSON.parse(tenantDataElement.dataset['recommendations']);
+
+    this.dimensionHeaders = this.recommendationsData['dimension_labels'];
+    this.dimensions = this.recommendationsData['dimensions'];
+    this.levels = this.recommendationsData['levels'];
+    this.levelDescriptions = this.recommendationsData['level_descriptions'];
+    this.reportLevelDescriptions = this.recommendationsData['report_level_descriptions'];
+    this.dimensionHeadersDescription = this.recommendationsData['dimension_headers_descriptions'];
+    this.dimensionLevelDescription = this.recommendationsData['dimension_level_description'];
+    this.dimensionLevelRecommendations = this.recommendationsData['dimension_level_recommendations'];
   }
 }
 

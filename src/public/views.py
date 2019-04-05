@@ -20,11 +20,27 @@ INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
+def _recommandation_data(tenant):
+    recommendations_data = settings.TENANTS[tenant]['RECOMMENDATIONS_DATA']
+
+    data = {
+        'levels': recommendations_data['levels'],
+        'level_descriptions': recommendations_data['level_descriptions'],
+        'dimensions': recommendations_data['dimensions'],
+        'dimension_labels': recommendations_data['dimension_labels'],
+        'dimension_headers_descriptions': recommendations_data['dimension_headers_descriptions'],
+        'dimension_level_description': recommendations_data['dimension_level_description'],
+        'dimension_level_recommendations': recommendations_data['dimension_level_recommendations'],
+    }
+
+    return json.dumps(data)
+
+
 def registration(request, tenant):
     return render(request, 'public/{}/registration.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
     })
@@ -38,7 +54,7 @@ def report_static(request, tenant, sid):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
     })
 
 
@@ -50,7 +66,7 @@ def report_static_news(request, tenant, sid):
 
     return render(request, 'public/{}/report-static-news.html'.format(tenant), {
         'tenant': tenant,
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
     })
 
 
@@ -59,7 +75,7 @@ def report_result_static(request, tenant, response_id):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
     })
 
 
@@ -67,7 +83,7 @@ def index_static(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
         'slug': slug,
     })
 
@@ -76,7 +92,7 @@ def thank_you(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/thank-you.html'.format(tenant), {
         'tenant': tenant,
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
         'slug': slug,
     })
 
@@ -95,7 +111,7 @@ def reports_admin(request, tenant):
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'industries': INDUSTRIES_TUPLE,
         'countries': COUNTRIES_TUPLE,
@@ -114,13 +130,13 @@ def result_detail(request, tenant, response_id):
     result_detail = get_response_detail(
         survey_result.survey_definition.content,
         survey_result.raw,
-        settings.TENANTS[tenant]['DIMENSIONS'],
+        settings.TENANTS[tenant]['recommendations'],
         settings.TENANTS[tenant]['DIMENSION_TITLES']
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'recommendations': _recommandation_data(tenant),
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
@@ -135,7 +151,7 @@ def handler404(request, *args, **kwargs):
         'cta': 'Return to homepage',
         'tenant': '',
         'slug': '',
-        'dimensions': '',
+        'recommendations': '',
     }, status=404)
 
 
@@ -147,5 +163,5 @@ def handler500(request, *args, **kwargs):
         'cta': 'Return to homepage',
         'tenant': '',
         'slug': '',
-        'dimensions': '',
+        'recommendations': '',
     }, status=500)

@@ -48,13 +48,14 @@ MOCKED_DIMENSIONS_WEIGHTS = {
     }
 }
 
-MOCKED_DIMENSION_TITLES = {
-    'ads': 'Assets and ads',
-    'access': 'Access',
-    'audience': 'Audience',
-    'attribution': 'Attribution',
-    'automation': 'Automation',
-    'organization': 'Organization',
+MOCKED_RECOMMENDATIONS_DATA = {
+    'levels': {},
+    'level_descriptions': {},
+    'dimensions': [],
+    'dimension_labels': {},
+    'dimension_headers_descriptions': {},
+    'dimension_level_description': {},
+    'dimension_level_recommendations': {},
 }
 
 qualtrics_export = {
@@ -233,7 +234,7 @@ MOCKED_TENANTS = {
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': MOCKED_WEIGHTS,
-        'DIMENSION_TITLES': MOCKED_DIMENSION_TITLES,
+        'RECOMMENDATIONS_DATA': MOCKED_RECOMMENDATIONS_DATA,
         'EXCLUDED_TIME_THRESHOLD': 5,
     },
     'tenant2': {
@@ -248,7 +249,7 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': 'Q4',
         'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS,
-        'DIMENSION_TITLES': MOCKED_DIMENSION_TITLES,
+        'RECOMMENDATIONS_DATA': MOCKED_RECOMMENDATIONS_DATA,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
     }
