@@ -30,10 +30,10 @@ Working branches are organized as follows:
 In order for the backend to be able to call Qualtrics APIs, a valid token needs to be configured, all information needed can be found on [DMB Wiki page](https://wiki.p.ota.to/Digital_Maturity_Benchmark).
 
 # Add locale
-Before a new locale can work correctly it needs to be explicitly called for that language. For instance, if we want to configure a `it` as  new language, we should run:
+Before a new locale can work correctly it needs to be explicitly called for that language. For instance, if we want to configure `it` as a new language, we should run:
   ```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local -l it```
 
-Once the previous command has been run, all the existing locales can be maintaned running:
+Once the previous command has been run, all the existing locales can be maintained by running:
 ```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local --all```
 
 this will update the existing locales, generating new `.po` files containing the new translations.
