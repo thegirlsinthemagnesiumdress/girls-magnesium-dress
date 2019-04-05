@@ -95,9 +95,9 @@ def flatten(industries, parent_label='', leaf_only=True):
 
         if not leaf_only or not children:
             if parent_label:
-                result.append((key, ' - '.join((parent_label, label))))
+                result.append((key, ' - '.join((str(parent_label), str(label)))))
             else:
-                result.append((key, label))
+                result.append((key, str(label)))
 
     return result
 
