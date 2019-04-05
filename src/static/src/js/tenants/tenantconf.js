@@ -81,22 +81,22 @@ class TenantConfiguration {
      * @param {Object}
      * @export
      */
-    this.recommendationsData = {};
+    this.contentData = {};
 
 
     const tenantDataElement = document.getElementById(tenantDataElementName);
     this.tenant = tenantDataElement.dataset['tenant'];
 
-    this.recommendationsData = JSON.parse(tenantDataElement.dataset['recommendations']);
+    this.contentData = JSON.parse(tenantDataElement.dataset['recommendations']);
 
-    this.dimensionHeaders = this.recommendationsData['dimension_labels'];
-    this.dimensions = this.recommendationsData['dimensions'];
-    this.levels = this.recommendationsData['levels'];
-    this.levelDescriptions = this.recommendationsData['level_descriptions'];
-    this.reportLevelDescriptions = this.recommendationsData['report_level_descriptions'];
-    this.dimensionHeadersDescription = this.recommendationsData['dimension_headers_descriptions'];
-    this.dimensionLevelDescription = this.recommendationsData['dimension_level_description'];
-    this.dimensionLevelRecommendations = this.recommendationsData['dimension_level_recommendations'];
+    this.dimensionHeaders = this.contentData['dimension_labels'];
+    this.dimensions = this.contentData['dimensions'];
+    this.levels = this.contentData['levels'];
+    this.levelDescriptions = this.contentData['level_descriptions'];
+    this.reportLevelDescriptions = this.contentData['report_level_descriptions'];
+    this.dimensionHeadersDescription = this.contentData['dimension_headers_descriptions'];
+    this.dimensionLevelDescription = this.contentData['dimension_level_description'];
+    this.dimensionLevelRecommendations = this.contentData['dimension_level_recommendations'];
   }
 }
 

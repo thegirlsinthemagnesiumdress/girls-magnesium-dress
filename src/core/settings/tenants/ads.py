@@ -51,6 +51,15 @@ DIMENSION_TITLES = {
     DIMENSION_ORGANIZATION: _('Organization'),
 }
 
+DIMENSIONS_ORDER = [
+    DIMENSION_ATTRIBUTION,
+    DIMENSION_ADS,
+    DIMENSION_ACCESS,
+    DIMENSION_AUDIENCE,
+    DIMENSION_AUTOMATION,
+    DIMENSION_ORGANIZATION,
+]
+
 # If a question ID is not added to this list the question won't be considered for the final score
 DIMENSIONS = {
     DIMENSION_ADS: [
@@ -559,7 +568,7 @@ CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': None,
-    'dimensions': DIMENSION_TITLES.keys(),
+    'dimensions': DIMENSIONS_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
