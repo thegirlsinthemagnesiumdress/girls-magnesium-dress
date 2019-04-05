@@ -17,6 +17,7 @@ const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 const rev = require('gulp-rev');
 const svgSymbols = require('gulp-svg-symbols');
+var gulpif = require('gulp-if');
 
 const STATIC_DIR = './src/static';
 const SRC_STATIC_DIR = './src/static/src';
@@ -38,6 +39,8 @@ const PATHS = {
   },
   manifest: path.join('src', 'rev-manifest.json'),
 };
+
+let dev = false;
 
 
 const TEMPLATE_SRC = [
@@ -191,7 +194,8 @@ gulp.task('js-lint', function() {
     `!${PATHS.src.js}/legacy/**/*.js`,
   ])
     .pipe(eslint())
-    .pipe(eslint.format());
+    .pipe(eslint.format())
+    .pipe(gulpif(!dev, eslint.failAfterError()));
 });
 
 gulp.task('sass-lint', function() {
@@ -200,7 +204,8 @@ gulp.task('sass-lint', function() {
     `!${PATHS.src.scss}/legacy/**/*.scss`,
   ])
     .pipe(sassLint())
-    .pipe(sassLint.format());
+    .pipe(sassLint.format())
+    .pipe(gulpif(!dev, sassLint.failOnError()));
 });
 
 function copy(src, dest) {
@@ -289,17 +294,23 @@ gulp.task('build',
   )
 );
 
-gulp.task('default', gulp.series(
-  'clean-dev',
-  gulp.parallel(
-    'js-lint',
-    'sass-lint',
-    'js-templates',
-    'js-dev',
-    'sass-dev',
-    'fonts-dev',
-    'svg-symbols',
-    'images-dev'
-  ),
-  'watch'
-));
+gulp.task('default', (done)=>{
+  dev = true;
+
+  const task = gulp.series(
+    'clean-dev',
+    gulp.parallel(
+      'js-lint',
+      'sass-lint',
+      'js-templates',
+      'js-dev',
+      'sass-dev',
+      'fonts-dev',
+      'svg-symbols',
+      'images-dev'
+    ),
+    'watch'
+  );
+  return task(done);
+});
+
