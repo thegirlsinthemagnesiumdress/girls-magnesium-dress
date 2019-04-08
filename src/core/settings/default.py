@@ -1,6 +1,7 @@
 # flake8: noqa
 from djangae.settings_base import * #Set up some AppEngine specific stuff
 from djangae.contrib.gauth.settings import *
+from django.utils.translation import gettext_lazy as _
 
 from djangae.environment import application_id
 
@@ -63,11 +64,11 @@ CACHES = {
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'djangae.contrib.gauth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'csp.middleware.CSPMiddleware',
     'session_csrf.CsrfMiddleware',
     'djangae.contrib.security.middleware.AppEngineSecurityMiddleware',
@@ -163,7 +164,8 @@ NOSE_PLUGINS = [
 LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
-    ('en-us', 'English'),
+    ('en-us', _('English')),
+    ('es', _('Spanish')),
 ]
 
 TIME_ZONE = 'UTC'
