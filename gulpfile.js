@@ -1,5 +1,4 @@
 
-
 const sass = require('gulp-sass');
 
 const gulp = require('gulp');
@@ -17,7 +16,7 @@ const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 const rev = require('gulp-rev');
 const svgSymbols = require('gulp-svg-symbols');
-var gulpif = require('gulp-if');
+const gulpif = require('gulp-if');
 
 const STATIC_DIR = './src/static';
 const SRC_STATIC_DIR = './src/static/src';
