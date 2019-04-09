@@ -23,6 +23,10 @@ const reportLevelDescriptions = {
   3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 };
 
+const industryAvgDescription = 'How news organizations perform on average; calculated based on the Deloitte Digital Transformation through Data study.';
+
+const industryBestDescription = 'This is the highest recorded score from a participant in the Deloitte Digital Transformation through Data study.';
+
 const dimensions = [
   'strategic_direction',
   'reader_engagement',
@@ -451,6 +455,8 @@ const conf = {
   levels,
   levelDescriptions,
   reportLevelDescriptions,
+  industryAvgDescription,
+  industryBestDescription,
   dimensions,
   dimensionHeadersDescription,
   dimensionLevelDescription,

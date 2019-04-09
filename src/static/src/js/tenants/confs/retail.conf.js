@@ -23,6 +23,10 @@ const reportLevelDescriptions = {
   3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 };
 
+const industryAvgDescription = 'How retailers perform on average; dynamically calculated based on the results of those who have completed this survey.';
+
+const industryBestDescription = 'This is the highest recorded score from a participant who has taken this data maturity survey.';
+
 const dimensions = [
   'strategic_direction',
   'user_engagement',
@@ -412,6 +416,8 @@ const conf = {
   levels,
   levelDescriptions,
   reportLevelDescriptions,
+  industryAvgDescription,
+  industryBestDescription,
   dimensions,
   dimensionHeadersDescription,
   dimensionLevelDescription,

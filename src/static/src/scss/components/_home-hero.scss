@@ -59,4 +59,10 @@ $dmb-home-hero-card-bg: #fff;
       width: calc(100% - (#{$h-grid-col-max-width} / 2));
     }
   }
+
+  &__footnote {
+    @include dmb-mq(#{$h-site-width-desktop}) {
+      margin-left: calc(#{$h-grid-col-max-width} / 2);
+    }
+  }
 }
