@@ -1,6 +1,7 @@
 import ads as advertisers_conf
 import news as news_conf
 from djangae.environment import application_id
+from django.utils.translation import gettext_lazy as _
 
 
 ADS = 'ads'
@@ -10,7 +11,7 @@ NEWS = 'news'
 TENANTS = {
     ADS: {
         'key': ADS,
-        'label': 'Advertise',
+        'label': _('Advertise'),
         'slug': 'advertisers',
         'QUALTRICS_SURVEY_ID': 'SV_beH0HTFtnk4A5rD',
         'EMAIL_TO': 'Q97_4_TEXT',
@@ -24,7 +25,7 @@ TENANTS = {
     },
     NEWS: {
         'key': NEWS,
-        'label': 'News',
+        'label': _('News'),
         'slug': 'news',
         'QUALTRICS_SURVEY_ID': 'SV_4JxgntrYg5uiMyp',
         'EMAIL_TO': 'Q1_4_TEXT',

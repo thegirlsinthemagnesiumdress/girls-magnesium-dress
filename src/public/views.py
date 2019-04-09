@@ -14,6 +14,8 @@ from django.http import Http404
 from core.response_detail import get_response_detail
 from core.conf.utils import flatten, get_tenant_slug
 import json
+from django.utils.translation import ugettext as _
+from core.encoders import LazyEncoder
 
 
 INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
@@ -33,7 +35,7 @@ def _dump_tenant_content_data(tenant):
         'dimension_level_recommendations': content_data['dimension_level_recommendations'],
     }
 
-    return json.dumps(data)
+    return json.dumps(data, cls=LazyEncoder)
 
 
 def registration(request, tenant):
@@ -146,9 +148,9 @@ def result_detail(request, tenant, response_id):
 def handler404(request, *args, **kwargs):
     return render(request, 'public/error.html', {
         'title': '404',
-        'subtitle': "Woops.. that page doesn't seem to exist, or the link is broken.",
-        'text': 'Try returning to the homepage.',
-        'cta': 'Return to homepage',
+        'subtitle': _('Woops.. that page doesn\'t seem to exist, or the link is broken.'),
+        'text': _('Try returning to the homepage.'),
+        'cta': _('Return to homepage'),
         'tenant': '',
         'slug': '',
         'content_data': '',
@@ -158,9 +160,9 @@ def handler404(request, *args, **kwargs):
 def handler500(request, *args, **kwargs):
     return render(request, 'public/error.html', {
         'title': '500',
-        'subtitle': 'Woops.. there was an internal server error.',
-        'text': 'Try returning to the homepage.',
-        'cta': 'Return to homepage',
+        'subtitle': _('Woops.. there was an internal server error.'),
+        'text': _('Try returning to the homepage.'),
+        'cta': _('Return to homepage'),
         'tenant': '',
         'slug': '',
         'content_data': '',
