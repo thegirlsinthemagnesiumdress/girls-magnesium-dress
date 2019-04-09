@@ -31,7 +31,6 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     url(r'', include('public.urls', namespace="legacy")),  # handle all the old links before the introduction of tenants concept  # noqa
     url(r'^(?P<tenant>{})/'.format(settings.ALLOWED_TENANTS), include('public.urls')),
-    prefix_default_language=False,
     )
 
 handler404 = 'public.views.handler404'
