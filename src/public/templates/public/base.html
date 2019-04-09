@@ -63,7 +63,7 @@
   {% include 'core/inc/_svg.inc.html' %}
   {% include 'core/inc/_dmb-svgs.inc.html' %}
 </div>
-<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant|ng_mark_safe }}" data-dimensions="{{ dimensions|ng_mark_safe }}"></div>
+<div id="bootstrap-data" class="ng-non-bindable" data-bootstrap-data="{% block bootstrap_data %}{% endblock %}" data-tenant="{{ tenant|ng_mark_safe }}" data-content-data="{{ content_data|ng_mark_safe }}"></div>
 
 {% if debug %}
 
