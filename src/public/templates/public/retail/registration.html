@@ -72,7 +72,8 @@
                   name="industry"
                   type="hidden"
                   value="rt-o"
-                  ng-init="registrationCtrl.industry='rt-o'">
+                  ng-init="registrationCtrl.industry='rt-o'"
+                  aria-hidden="true">
             </div>
             <div class="dmb-input-wrp">
               <select
@@ -81,10 +82,7 @@
                   id="country"
                   ng-model="registrationCtrl.country"
                   required>
-                <option
-                    value=""
-                    disabled
-                    selected>
+                <option value="" selected>
                   Select a country
                 </option>
                 {% for c_key, c_text in countries %}
@@ -106,7 +104,7 @@
           <button
               ng-disabled="!registration.$valid"
               class="dmb-form__submit h-c-button h-c-button--primary">
-            Start the assessment now
+            Progress to my assessment
           </button>
 
           <div class="dmb-form__error" ng-hide="!registrationCtrl.serverError">

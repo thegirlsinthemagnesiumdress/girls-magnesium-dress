@@ -18,7 +18,7 @@ function DimensionTabDirective() {
       'tenant': '@',
     },
     template: function(tElem, tAttrs) {
-      return tAttrs.tenant === 'retail' ? dimensionTabTemplate : dimensionTabLegacyTemplate;
+      return tAttrs.tenant === 'ads' ? dimensionTabLegacyTemplate : dimensionTabTemplate;
     },
     controller: dimensionTabCtrl.main,
     controllerAs: dimensionTabCtrl.CONTROLLER_AS_NAME,
