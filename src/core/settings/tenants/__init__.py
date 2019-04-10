@@ -22,6 +22,7 @@ TENANTS = {
         'WEIGHTS': advertisers_conf.WEIGHTS,
         'EXCLUDED_TIME_THRESHOLD': 5,
         'CONTACT_EMAIL': "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
+        'i18n': True,
     },
     NEWS: {
         'key': NEWS,
@@ -39,12 +40,15 @@ TENANTS = {
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 2,
         'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
+        'i18n': False,
     },
 }
 
 
 DEFAULT_TENANT = ADS
 
-ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items()])
+I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if v['i18n']])
+NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if not v['i18n']])
+
 TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in TENANTS.items()}
 TENANTS_CHOICES = [(k, v['label']) for k, v in TENANTS.items()]

@@ -25,12 +25,13 @@ urlpatterns = [
     url(r'^migrations/migrate_to_default_tenant_task/$', views.migrate_to_default_tenant_task, name="migrate_to_default_tenant_task"),  # noqa
     url(r'^migrations/migrate_to_tenant_task/$', views.migrate_to_tenant_task, name="migrate_to_tenant_task"),
     url(r'^migrations/migrate_deloitte_data_task/$', views.migrate_deloitte_data_task, name="migrate_deloitte_data_task"),  # noqa
+    url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
 ]
 
 
 urlpatterns += i18n_patterns(
     url(r'', include('public.urls', namespace="legacy")),  # handle all the old links before the introduction of tenants concept  # noqa
-    url(r'^(?P<tenant>{})/'.format(settings.ALLOWED_TENANTS), include('public.urls')),
+    url(r'^(?P<tenant>{})/'.format(settings.I18N_TENANTS), include('public.urls')),
     )
 
 handler404 = 'public.views.handler404'

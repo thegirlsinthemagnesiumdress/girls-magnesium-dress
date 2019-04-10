@@ -236,6 +236,7 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'CONTENT_DATA': MOCKED_CONTENT_DATA,
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'i18n': True,
     },
     'tenant2': {
         'key': 'tenant2',
@@ -252,9 +253,12 @@ MOCKED_TENANTS = {
         'CONTENT_DATA': MOCKED_CONTENT_DATA,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'i18n': False,
     }
 }
-MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])
+MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])
+MOCKED_NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if not v['i18n']])
+
 MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 qualtrics_text_export = {
