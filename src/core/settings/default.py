@@ -1,4 +1,5 @@
 # flake8: noqa
+# coding=utf-8
 from djangae.settings_base import * #Set up some AppEngine specific stuff
 from djangae.contrib.gauth.settings import *
 from django.utils.translation import gettext_lazy as _
@@ -164,8 +165,8 @@ NOSE_PLUGINS = [
 LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
-    ('en', _('English')),
-    ('es', _('Spanish')),
+    ('en', 'English'),
+    ('es', 'Español'),
 ]
 
 TIME_ZONE = 'UTC'
