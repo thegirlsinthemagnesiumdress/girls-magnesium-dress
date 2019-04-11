@@ -22,6 +22,7 @@ const dimensionTab = goog.require('dmb.components.dimensionTab');
 const forceReflow = goog.require('dmb.components.forceReflow');
 const tenant = goog.require('dmb.components.tenant');
 const configureAdditionalSortTypes = goog.require('dmb.tableCustomSort');
+const languageSelector = goog.require('dmb.components.languageSelector');
 
 // Custom tablesort date configuration.
 tableSort.module.config(configureAdditionalSortTypes);
@@ -47,6 +48,7 @@ const module = angular.module('dmb', [
   tableSort.module.name,
   forceReflow.module.name,
   tenant.module.name,
+  languageSelector.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);

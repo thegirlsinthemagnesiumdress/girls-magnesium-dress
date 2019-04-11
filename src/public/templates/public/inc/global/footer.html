@@ -58,4 +58,22 @@
       </a>
     </div>
   </section>
+
+{% get_language_info_list for LANGUAGES as languages %}
+
+<form
+    action="{% url 'set_language' %}"
+    method="post"
+    ng-controller="LanguageSelectorCtrl as languageSelectorCtrl">
+    {% csrf_token %}
+    <select name="language" ng-model="language" ng-change="languageSelectorCtrl.changeLanguage()" ng-init="language = '{{LANGUAGE_CODE}}'">
+      {% for language in languages %}
+        <option value="{{ language.code }}"
+            {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
+            {{ language.name_local }}
+        </option>
+      {% endfor %}
+    </select>
+</form>
+
 </footer>

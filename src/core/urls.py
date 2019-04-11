@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^migrations/migrate_to_tenant_task/$', views.migrate_to_tenant_task, name="migrate_to_tenant_task"),
     url(r'^migrations/migrate_deloitte_data_task/$', views.migrate_deloitte_data_task, name="migrate_deloitte_data_task"),  # noqa
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
 
