@@ -27,4 +27,4 @@ fe-lint:
   - sed -i "s#$SSH_VAR#$GLUE_URL#g" package.json
   - npm install
   - ./bin/install_deps
-  - npm run js-lint && npm run sass-lint
+  - npm run lint
