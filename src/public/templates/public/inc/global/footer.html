@@ -45,17 +45,47 @@
         <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/products/">{% trans "Google Products" %}</a>
       </li>
     </ul>
-    <div>
-      <a
-          class="dmb-footer__feedback-link dmb-h-alt-font"
-          href="mailto:{% if tenant|ng_mark_safe == 'ads' %}digital{% else %}data{% endif %}-maturity@google.com"
-          target="_blank">
-      <svg width="20px" height="16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M18 0H2C.9 0 .01.9.01 2L0 14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L2.4 4.25a.85.85 0 1 1     .9-1.44L10 7l6.7-4.19a.85.85 0 1 1 .9 1.44z"
-          fill-rule="nonzero" />
-      </svg>{% trans "Contact us" %}
-      </a>
-    </div>
+
+
+    <ul class="h-c-footer__global-links h-c-footer__global-links--extra h-no-bullet">
+      <li class="dmb-footer__feedback-link-wrapper h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
+        <a
+            class="dmb-footer__feedback-link h-c-footer__link"
+            href="mailto:{% if tenant|ng_mark_safe == 'ads' %}digital{% else %}data{% endif %}-maturity@google.com"
+            target="_blank"
+          >
+          <svg width="20px" height="16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 0H2C.9 0 .01.9.01 2L0 14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L2.4 4.25a.85.85 0 1 1     .9-1.44L10 7l6.7-4.19a.85.85 0 1 1 .9 1.44z"
+              fill-rule="nonzero" />
+          </svg>{% trans "Contact us" %}
+        </a>
+      </li>
+      {% if tenant|ng_mark_safe == 'ads' %}
+      <li class="h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
+        <label for="lang-selector" class="h-u-visually-hidden">Change language or region</label>
+          {% get_language_info_list for LANGUAGES as languages %}
+          <form
+              action="{% url 'set_language' %}"
+              method="post"
+              ng-controller="LanguageSelectorCtrl as languageSelectorCtrl">
+            {% csrf_token %}
+            <select
+                name="language"
+                ng-model="language"
+                ng-change="languageSelectorCtrl.changeLanguage()"
+                ng-init="language = '{{LANGUAGE_CODE}}'"
+                class="h-c-form__dropdown h-c-footer__lang-dropdown">
+              {% for language in languages %}
+                <option value="{{ language.code }}"
+                    {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
+                    {{ language.name_local|title }}
+                </option>
+              {% endfor %}
+            </select>
+          </form>
+      </li>
+      {% endif %}
+    </ul>
   </section>
 </footer>

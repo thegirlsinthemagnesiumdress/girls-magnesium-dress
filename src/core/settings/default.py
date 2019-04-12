@@ -1,6 +1,8 @@
 # flake8: noqa
+# coding=utf-8
 from djangae.settings_base import * #Set up some AppEngine specific stuff
 from djangae.contrib.gauth.settings import *
+from django.utils.translation import gettext_lazy as _
 
 from djangae.environment import application_id
 
@@ -63,13 +65,13 @@ CACHES = {
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'djangae.contrib.gauth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'csp.middleware.CSPMiddleware',
-    'session_csrf.CsrfMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'djangae.contrib.security.middleware.AppEngineSecurityMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
@@ -160,10 +162,11 @@ NOSE_PLUGINS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
-    ('en-us', 'English'),
+    ('en', 'English'),
+    ('es', 'Español'),
 ]
 
 TIME_ZONE = 'UTC'
@@ -244,7 +247,6 @@ TEMPLATES = [{
             "django.template.context_processors.tz",
             "django.template.context_processors.request",
             "django.contrib.messages.context_processors.messages",
-            "session_csrf.context_processor",
             "django.template.context_processors.request",
         )
     },
@@ -310,3 +312,5 @@ SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
 REVISIONED_STATIC = False
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+CSRF_USE_SESSIONS = True
