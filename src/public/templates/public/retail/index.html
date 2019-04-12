@@ -11,9 +11,11 @@
 {% block main %}
   <main id="dmb-landing">
 
+    {% url 'registration' slug|ng_mark_safe as create_url %}
+
     {% include 'public/retail/home/home-hero.inc.html' %}
 
-    {% include 'public/retail/home/cta-banner.inc.html' with cta='Start the assessment now' footnote='This assessment takes around 10 minutes to complete.' class='dmb-u-m-b-l dmb-u-only-mobile' url='/retaildatatransformation/createsurvey/' %}
+    {% include 'public/retail/home/cta-banner.inc.html' with cta='Start the assessment now' footnote='This assessment takes around 10 minutes to complete.' class='dmb-u-m-b-l dmb-u-only-mobile' url=create_url %}
 
     {% include 'public/retail/home/image-text-collage.inc.html' with class='dmb-u-m-b-l' %}
 
@@ -29,7 +31,7 @@
 
     {% include 'public/retail/home/image-text.inc.html' %}
 
-    {% include 'public/retail/home/cta-banner.inc.html' with cta='Start the assessment now' footnote='This assessment takes around 10 minutes to complete.' class='dmb-u-m-t-l' url='/retaildatatransformation/createsurvey/' %}
+    {% include 'public/retail/home/cta-banner.inc.html' with cta='Start the assessment now' footnote='This assessment takes around 10 minutes to complete.' class='dmb-u-m-t-l' url=create_url %}
 
     <div class="h-c-page dmb-u-m-t-l h-c-footnote">
       For the purpose of this study, “data” is defined as user data that encompasses first-, second-, and third-party data collected on user characteristics (such as location and demographic), user engagement (such as page views and click-through rates) and transaction history (as it pertains to paying for content or other ancillary products and services). The use of data is under the assumption that retailers and their technology providers have received consent from users as defined by local policies and regulations.
