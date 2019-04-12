@@ -70,14 +70,9 @@ const dimensionLevelDescription = {
   },
 };
 
-const dataFoundationsGuideCta = {
+const dataActivationGuideCta = {
   'text': 'Data Activation Guide',
-  'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=7',
-};
-
-const activatingUseCasesGuideCta = {
-  'text': 'Data Activation Guide',
-  'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
+  'link': 'https://www2.deloitte.com/content/dam/Deloitte/us/Documents/consumer-business/us-digital-transformation-through-data-for-retail.pdf',
 };
 
 const dimensionLevelRecommendations = {
@@ -98,7 +93,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     1: [
@@ -117,7 +112,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     2: [
@@ -136,7 +131,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature retailers have a well-established data strategy but want to see what other retailers are doing. Start with the Data Foundations section of the Data Activation Guide to see how some Leading retailers have developed their cultural, skills-based, data-related, and technological foundations.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     3: [
@@ -155,7 +150,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading retailers have a well-established data strategy but want to see what other retailers are doing. Start with the Data Foundations section of the Data Activation Guide to see how other Leading retailers have developed their cultural, skills-based, data-related, and technological foundations.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
   },
@@ -180,7 +175,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     1: [
@@ -203,7 +198,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     2: [
@@ -225,8 +220,8 @@ const dimensionLevelRecommendations = {
       },
       {
         'header': 'Data Activation Guide',
-  'text': 'Many Mature retailers have sophisticated approaches to improving the user experience but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading retailers have approached improving the user experience.',
-        'cta': activatingUseCasesGuideCta,
+        'text': 'Many Mature retailers have sophisticated approaches to improving the user experience but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading retailers have approached improving the user experience.',
+        'cta': dataActivationGuideCta,
       },
     ],
     3: [
@@ -245,7 +240,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading retailers have a sophisticated approach to enhancing the user experience but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading retailers have approached enhancing core sales activities.',
-        'cta': activatingUseCasesGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
   },
@@ -270,7 +265,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     1: [
@@ -289,7 +284,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide details how some Leading retailers have approached enhancing core sales activities.',
-        'cta': activatingUseCasesGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     2: [
@@ -308,7 +303,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature retailers have created significant revenue from enhancing core sales activities but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading retailers have approached enhancing core sales activities.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     3: [
@@ -327,7 +322,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading retailers have a sophisticated approach to enhancing core sales activities but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading retailers have approached enhancing core sales activities.',
-        'cta': activatingUseCasesGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
   },
@@ -348,7 +343,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Nascent retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     1: [
@@ -367,7 +362,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Developing retailers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     2: [
@@ -386,7 +381,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Mature retailers have generated revenue through engaging in emerging monetisation opportunities but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading retailers have approached engaging in emerging monetisation opportunities.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
     3: [
@@ -405,7 +400,7 @@ const dimensionLevelRecommendations = {
       {
         'header': 'Data Activation Guide',
         'text': 'Many Leading retailers have a sophisticated approach to engaging in emerging monetisation opportunities but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading retailers have approached engaging in emerging monetization opportunities.',
-        'cta': dataFoundationsGuideCta,
+        'cta': dataActivationGuideCta,
       },
     ],
   },
