@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
-    'session_csrf.CsrfMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'djangae.contrib.security.middleware.AppEngineSecurityMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
@@ -247,7 +247,6 @@ TEMPLATES = [{
             "django.template.context_processors.tz",
             "django.template.context_processors.request",
             "django.contrib.messages.context_processors.messages",
-            "session_csrf.context_processor",
             "django.template.context_processors.request",
         )
     },
@@ -313,3 +312,5 @@ SURVEY_ADMIN_AUTHORIZED_DOMAINS = (
 REVISIONED_STATIC = False
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+CSRF_USE_SESSIONS = True

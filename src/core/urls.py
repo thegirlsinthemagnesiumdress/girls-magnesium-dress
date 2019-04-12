@@ -4,11 +4,10 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.views import serve
 from djangae.environment import is_production_environment
 from core import views
-import session_csrf
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 
-session_csrf.monkeypatch()
+
 admin.autodiscover()
 
 
