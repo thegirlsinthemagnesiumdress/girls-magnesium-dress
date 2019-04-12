@@ -72,7 +72,7 @@ const dimensionLevelDescription = {
 
 const dataActivationGuideCta = {
   'text': 'Data Activation Guide',
-  'link': 'https://www2.deloitte.com/content/dam/Deloitte/us/Documents/consumer-industrial-products/us-digital-transformation-through-data-for-retail.pdf',
+  'link': 'https://www2.deloitte.com/content/dam/Deloitte/us/Documents/consumer-business/us-digital-transformation-through-data-for-retail.pdf',
 };
 
 const dimensionLevelRecommendations = {
