@@ -41,8 +41,12 @@
     }
   }
 
+  &__feedback-link-wrapper {
+    align-self: center;
+  }
 
   &__feedback-link {
+    align-self: center;
     align-items: center;
     display: flex;
     font-weight: 400;
