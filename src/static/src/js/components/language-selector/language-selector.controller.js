@@ -1,7 +1,5 @@
-        //{% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
 goog.module('dmb.components.languageSelector.controller');
 
-const FORM_ELEMENT = 'language-form';
 
 /**
  * LanguageSelector class controller.
@@ -22,7 +20,6 @@ class LanguageSelectorController {
    * @export
    */
   changeLanguage() {
-    console.log('submitting');
     this.form.submit();
   }
 }
@@ -32,8 +29,7 @@ class LanguageSelectorController {
 LanguageSelectorController.CONTROLLER_NAME = 'LanguageSelectorCtrl';
 
 
-
 exports = {
   main: LanguageSelectorController,
-  CONTROLLER_NAME: LanguageSelectorController.CONTROLLER_NAME
+  CONTROLLER_NAME: LanguageSelectorController.CONTROLLER_NAME,
 };
