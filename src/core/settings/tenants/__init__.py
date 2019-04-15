@@ -60,6 +60,7 @@ TENANTS = {
         'FORCED_INDUSTRY': 'rt-o',
         'EXCLUDED_TIME_THRESHOLD': 2,
         'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
+        'i18n': False,
     },
 }
 
