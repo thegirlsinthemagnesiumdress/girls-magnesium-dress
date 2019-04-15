@@ -91,6 +91,7 @@
 @import 'components/cta-banner';
 @import 'components/dimension-tabs';
 @import 'components/footer';
+@import 'components/form';
 @import 'components/home-hero';
 @import 'components/home-tabs';
 @import 'components/icon-text-cta';
@@ -101,6 +102,7 @@
 @import 'components/progress-circle';
 @import 'components/progress-grid';
 @import 'components/progress-table';
+@import 'components/read-more';
 @import 'components/report-intro';
 @import 'components/report-hero';
 @import 'components/report-overall';
@@ -111,7 +113,5 @@
 
 // Pages
 @import 'pages/landing';
-
-// Tenants
-@import 'tenants/news';
-@import 'tenants/retail';
+@import 'pages/registration';
+@import 'pages/thank-you';

@@ -1,7 +1,7 @@
 import mock
 import copy
 
-from core.tests.mocks import survey_definition_dict, MOCKED_DIMENSIONS, survey_def_no_choices_page_break_dict
+from core.tests.mocks import survey_definition_dict, survey_def_no_choices_page_break_dict
 from core.response_detail import SurveyDefinition, get_response_detail
 from djangae.test import TestCase
 
@@ -16,11 +16,11 @@ result_data = {
     },
     "Q104": {
         "values": [4],
-        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
     },
     "Q128": {
         "values": [1.33, 1.33],
-        "choices_text": ['Upper funnel targeting (e.g. to drive awareness).', 'Lower funnel targeting (e.g. to drive sales).'],
+        "choices_text": ['Upper funnel targeting (e.g. to drive awareness).', 'Lower funnel targeting (e.g. to drive sales).'],  # noqa
     },
 }
 
@@ -145,8 +145,8 @@ class SurveyDefinitionTestCase(TestCase):
         choice_id = 1
         input_choice = {
             "recode": "4",
-            "description": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",
-            "choiceText": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",
+            "description": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",  # noqa
+            "choiceText": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",  # noqa
             "imageDescription": None,
             "variableName": None,
             "analyze": True,
@@ -170,8 +170,8 @@ class SurveyDefinitionTestCase(TestCase):
         choice_id = 1
         input_choice = {
             "recode": "050.1",
-            "description": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",
-            "choiceText": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",
+            "description": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",  # noqa
+            "choiceText": "Creatives are based on insights from digital and non-digital channels, balanced with brand and product principles.",  # noqa
             "imageDescription": None,
             "variableName": None,
             "analyze": True,
@@ -202,7 +202,7 @@ class SurveyDefinitionTestCase(TestCase):
         self.assertEqual(choice_def, {
             "id": "Q102",
             "type": 'radio',
-            "text": 'Which of the following best describes the extent to which your organisation uses data to inform creative development?',
+            "text": 'Which of the following best describes the extent to which your organisation uses data to inform creative development?',  # noqa
             "choices_map": {
                 choice_1_text: {
                     'id': '1',
@@ -216,7 +216,7 @@ class SurveyDefinitionTestCase(TestCase):
                 },
 
             },
-            "choices": ["Creatives are based mainly on brand and product principles.", "Creatives are based mainly on insights from a specific digital channel and advanced analytics."],
+            "choices": ["Creatives are based mainly on brand and product principles.", "Creatives are based mainly on insights from a specific digital channel and advanced analytics."],  # noqa
         })
 
     def test_get_questions(self):
@@ -245,7 +245,7 @@ class SurveyDefinitionTestCase(TestCase):
         self.assertEqual(questions['questions_by_dimension']['ads'], ['Q102', 'Q103', 'Q104'])
         self.assertEqual(questions['questions_by_dimension']['audience'], ['Q128'])
 
-    @mock.patch.object(SurveyDefinition, '_get_question', side_effect=[{'id': 'not_taken'}, {'id': 'not_taken'}, {'id': 'Q102'}, {'id': 'Q103'}, {'id': 'Q104'}, {'id': 'Q128'}])
+    @mock.patch.object(SurveyDefinition, '_get_question', side_effect=[{'id': 'not_taken'}, {'id': 'not_taken'}, {'id': 'Q102'}, {'id': 'Q103'}, {'id': 'Q104'}, {'id': 'Q128'}])  # noqa
     def test_get_question_definition_sets_the_right_questions_definitions(self, mock_get_question):
         questions = self.survey_definition.get_questions()
 
@@ -277,9 +277,9 @@ class GetSurveyDetailTestCase(TestCase):
         Q128_choices_map = detail['definitions']['Q128']['choices_map']
 
         self.assertTrue(Q102_choices_map['Creatives are based mainly on brand and product principles.']['selected'])
-        self.assertFalse(Q102_choices_map['Creatives are based mainly on insights from a specific digital channel and advanced analytics.'].get('selected', False))
+        self.assertFalse(Q102_choices_map['Creatives are based mainly on insights from a specific digital channel and advanced analytics.'].get('selected', False))  # noqa
         self.assertTrue(Q103_choices_map['Coordinated across online channels without shared timeline.']['selected'])
-        self.assertTrue(Q104_choices_map['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).']['selected'])
+        self.assertTrue(Q104_choices_map['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).']['selected'])  # noqa
         self.assertTrue(Q128_choices_map['Upper funnel targeting (e.g. to drive awareness).']['selected'])
         self.assertTrue(Q128_choices_map['Lower funnel targeting (e.g. to drive sales).']['selected'])
 

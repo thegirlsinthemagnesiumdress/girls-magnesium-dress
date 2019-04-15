@@ -1,5 +1,7 @@
 goog.module('dmb.components.dimensionTab.controller');
 
+const tenantDataElementName = 'bootstrap-data';
+
 /**
  * DimensionTab class controller.
  */
@@ -28,6 +30,12 @@ class DimensionTabController {
     this.dmbStaticUrl = dmbStaticUrl;
 
     /**
+     * @type string
+     * @export
+     */
+    this.tenant = '';
+
+    /**
      * @type {!Object}
      * @export
      */
@@ -38,12 +46,6 @@ class DimensionTabController {
      * @type {string}
      */
     this.levelsTotal = tenantConf.levelsTotal;
-
-    /**
-     * @export
-     * @type {string}
-     */
-    this.logoUrls = {};
 
     /**
      * @export
@@ -113,6 +115,9 @@ class DimensionTabController {
     * type {!Object}
       */
     this.reportService = reportService;
+
+    const tenantDataElement = document.getElementById(tenantDataElementName);
+    this.tenant = tenantDataElement.dataset['tenant'];
 
     $scope.$watch(() => (reportService.dmb_d), (nVal)=> {
       this.dmb = nVal ? nVal[$scope['dmbDimensionTab']] : null;

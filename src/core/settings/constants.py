@@ -1,4 +1,5 @@
 # coding=utf-8
+# flake8: noqa
 from collections import OrderedDict
 from core.conf.utils import map_industries
 

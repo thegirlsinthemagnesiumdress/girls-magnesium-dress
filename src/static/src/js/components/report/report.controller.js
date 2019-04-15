@@ -88,13 +88,13 @@ class ReportController {
 
     /**
      * @export
-     * @type {number}
+     * @type {Object}
      */
     this.levelsTotal = tenantConf.levelsTotal;
 
     /**
      * @export
-     * @type {number}
+     * @type {Object}
      */
     this.nextLevel = null;
 
@@ -111,10 +111,28 @@ class ReportController {
     this.reportLevelDescriptions = tenantConf.reportLevelDescriptions;
 
     /**
+     * @type {!Object}
+     * @export
+     */
+    this.industryAvgDescription = tenantConf.industryAvgDescription;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.industryBestDescription = tenantConf.industryBestDescription;
+
+    /**
      * @export
      * @type {Array.<string>}
      */
     this.dimensions = tenantConf.dimensions;
+
+    /**
+     * @export
+     * @type {boolean}
+     */
+    this.renderTabset = false;
 
 
     /**
@@ -140,14 +158,14 @@ class ReportController {
 
     /**
      * Industry best rating source industry.
-     * @const {string}
+     * @type {Object}
      * @export
      */
     this.industryAvgSource = null;
 
     /**
      * Industry average source industry.
-     * @const {string}
+     * @type {Object}
      * @export
      */
     this.industryBestSource = null;
@@ -170,7 +188,7 @@ class ReportController {
 
       reportService.dmb_d = this.result['dmb_d'];
 
-      // ENABLE TO DEMO A HIDDEN DIMENSION
+      // ENABLE TO TEST OPTIONAL DIMENSION
       // reportService.dmb_d['reader_revenue'] = null;
 
       // TODO(aabuelgasim): remove this chunk once new tabby is used
