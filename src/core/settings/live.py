@@ -68,6 +68,7 @@ REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ('rest_framework.renderers.JSONRend
 # override QUALTRICS_SURVEY_ID for production environment
 TENANTS[ADS]['QUALTRICS_SURVEY_ID'] = 'SV_bPdoqhAPJnqMZwh'
 TENANTS[NEWS]['QUALTRICS_SURVEY_ID'] = 'SV_elGBArRfIATLYwt2'
+TENANTS[RETAIL]['QUALTRICS_SURVEY_ID'] = 'SV_abpqjuBRjJ9iy6F'
 
 
 # Lock prod for now.
