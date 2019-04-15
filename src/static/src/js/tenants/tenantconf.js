@@ -29,50 +29,61 @@ class TenantConfiguration {
     this.tenant = '';
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.levels = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.levelDescriptions = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.reportLevelDescriptions = {};
 
     /**
-     * @param {Array}
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgDescription = null;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryBestDescription = null;
+
+    /**
+     * @type {Array}
      * @export
      */
     this.dimensions = [];
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionHeaders = {};
 
-
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionHeadersDescription = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionLevelDescription = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionLevelRecommendations = {};
@@ -82,7 +93,6 @@ class TenantConfiguration {
      * @export
      */
     this.contentData = {};
-
 
     const tenantDataElement = document.getElementById(tenantDataElementName);
     this.tenant = tenantDataElement.dataset['tenant'];
@@ -97,6 +107,9 @@ class TenantConfiguration {
     this.dimensionHeadersDescription = this.contentData['dimension_headers_descriptions'];
     this.dimensionLevelDescription = this.contentData['dimension_level_description'];
     this.dimensionLevelRecommendations = this.contentData['dimension_level_recommendations'];
+    // CHANGE THIS
+    this.industryAvgDescription = 'Industry Average Description';
+    this.industryBestDescription = 'Industry Best Description';
   }
 }
 

@@ -18,6 +18,7 @@ Working branches are organized as follows:
 
 - `master`: contains production code
 - `news-master`: main branch for Publishers client `news` workflow
+- `retail-master`: main branch for Retail client `retail` stream
 
 # Installation
 

@@ -87,16 +87,16 @@ class ReportController {
     this.levels = tenantConf.levels;
 
     /**
-     * @type {!string}
      * @export
+     * @type {Object}
      */
-    this.currentLevel = '';
+    this.levelsTotal = tenantConf.levelsTotal;
 
     /**
-     * @type {!string}
      * @export
+     * @type {Object}
      */
-    this.nextLevel = '';
+    this.nextLevel = null;
 
     /**
      * @type {!Object}
@@ -111,6 +111,18 @@ class ReportController {
     this.reportLevelDescriptions = tenantConf.reportLevelDescriptions;
 
     /**
+     * @type {!Object}
+     * @export
+     */
+    this.industryAvgDescription = tenantConf.industryAvgDescription;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.industryBestDescription = tenantConf.industryBestDescription;
+
+    /**
      * @export
      * @type {Array.<string>}
      */
@@ -118,9 +130,10 @@ class ReportController {
 
     /**
      * @export
-     * @type {string}
+     * @type {boolean}
      */
-    this.levelsTotal = Object.keys(this.levels).length;
+    this.renderTabset = false;
+
 
     /**
      * @type {!Object}
@@ -128,7 +141,7 @@ class ReportController {
      */
     this.dimensionHeaders = tenantConf.dimensionHeaders;
 
-       /**
+    /**
      * @type {glue.ng.pagination.Model}
      * @export
      */
@@ -145,24 +158,17 @@ class ReportController {
 
     /**
      * Industry best rating source industry.
-     * @const {string}
+     * @type {Object}
      * @export
      */
     this.industryAvgSource = null;
 
     /**
      * Industry average source industry.
-     * @const {string}
+     * @type {Object}
      * @export
      */
     this.industryBestSource = null;
-
-    /**
-     * Whether to render tabset of not
-     * @type {boolean}
-     * @export
-     */
-    this.renderTabset = false;
 
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
@@ -178,17 +184,11 @@ class ReportController {
       this.result.dmb = parseFloat(this.result['dmb']);
 
       this.floorDmb = floorDmbFactory(this.result.dmb);
-
-      this.currentLevel = this.levels[this.floorDmb].toLowerCase();
-      if (this.floorDmb < 3) {
-        this.nextLevel = this.levels[(this.floorDmb + 1)].toLowerCase();
-      } else {
-        this.nextLevel = this.currentLevel;
-      }
+      this.nextLevel = floorDmbFactory(this.floorDmb + 1);
 
       reportService.dmb_d = this.result['dmb_d'];
 
-      // ENABLE FOR DEMO
+      // ENABLE TO TEST OPTIONAL DIMENSION
       // reportService.dmb_d['reader_revenue'] = null;
 
       // TODO(aabuelgasim): remove this chunk once new tabby is used
@@ -237,7 +237,7 @@ class ReportController {
     return bpTabsEnabled.indexOf(size) > -1;
   }
 
-    /**
+  /**
    * Opens a specific tab if state is enabled. This is expected to be used with
    * something like ngClick.
    *

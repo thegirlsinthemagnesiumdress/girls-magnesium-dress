@@ -254,6 +254,23 @@ MOCKED_TENANTS = {
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
         'i18n': False,
+    },
+    'tenant3': {
+        'key': 'tenant3',
+        'label': 'Tenant 3 label',
+        'slug': 'tenant3-slug',
+        'QUALTRICS_SURVEY_ID': 'SV_bbxxxxxxxx',
+        'EMAIL_TO': 'Q97_4_TEXT',
+        'EMAIL_BCC': 'Q97_5_TEXT',
+        'DIMENSIONS': MOCKED_DIMENSIONS,
+        'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
+        'WEIGHTS': MOCKED_WEIGHTS,
+        'DIMENSIONS_WEIGHTS_QUESTION_ID': None,
+        'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS[1],
+        'DIMENSION_TITLES': MOCKED_DIMENSION_TITLES,
+        'FORCED_INDUSTRY': 'ic-bnpj',
+        'EXCLUDED_TIME_THRESHOLD': 5,
+        'i18n': False,
     }
 }
 MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])

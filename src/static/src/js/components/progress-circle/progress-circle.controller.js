@@ -23,10 +23,17 @@ class ProgressCircleController {
    * @param {!angular.Attributes} $attrs
    * @param {!angular.Scope} $scope
    * @param {!angular.$filter} $filter
+   * @param {!Function} floorDmbFactory
    *
    * @ngInject
    */
-  constructor($element, $attrs, $scope, $filter) {
+  constructor($element, $attrs, $scope, $filter, floorDmbFactory) {
+    /**
+     * @export
+     * @type {Object}
+     */
+    this.level = null;
+
     /**
      * @type {angular.JQLite}
      * @private
@@ -40,6 +47,7 @@ class ProgressCircleController {
     this.progressBar_ = $element[0].querySelector(DOM_SELECTORS.progressBar);
 
     $scope.$watch($attrs['dmbProgressCircle'], (nVal) => {
+      this.level = floorDmbFactory(nVal);
       const prog = $filter('dmbPercentageNumber')(nVal);
       this.setProgressCircle(prog);
     });

@@ -1,0 +1,54 @@
+.dmb-read-more {
+  $block: &;
+  $content-height-trans-time: .6s;
+  $content-height-trans-fn: ease-in-out;
+
+  &__checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+
+  &__label {
+    @extend .h-c-footnote;
+    @extend .h-c-button;
+    @extend .h-c-button--flat;
+    margin-bottom: 10px;
+
+    &:hover {
+      color: inherit;
+      cursor: pointer;
+    }
+  }
+
+  &__less {
+    display: none;
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $content-height-trans-time $content-height-trans-fn;
+  }
+
+  &__checkbox:focus {
+    & + #{$block}__label {
+      outline: 1px solid $dmb-interactive-color;
+    }
+  }
+
+  &__checkbox:checked {
+    & + #{$block}__label {
+      #{$block}__more {
+        display: none;
+      }
+
+      #{$block}__less {
+        display: inline;
+      }
+    }
+
+    & ~ #{$block}__content {
+      max-height: 1000px;
+    }
+  }
+}

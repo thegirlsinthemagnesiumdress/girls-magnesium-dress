@@ -1,4 +1,5 @@
 .dmb-report-hero {
+  $block: &;
   color: #fff;
   position: relative;
   @include dmb-resp-prop(margin-bottom, 50px, 60px, 80px);
@@ -31,11 +32,19 @@
       align-items: baseline;
       display: flex;
       justify-content: space-between;
+
+      @include print-styles {
+        display: block;
+      }
     }
   }
 
   &__date {
     @include dmb-resp-prop(margin-bottom, 60px, 40px, 45px);
+
+    @include print-styles {
+      margin-bottom: 20px;
+    }
   }
 
   &__subheading {
@@ -54,6 +63,10 @@
     svg {
       margin: 0;
     }
+
+    @include dmb-mq($until: desktop) {
+      display: none;
+    }
   }
 
   &__next {
@@ -68,14 +81,33 @@
     }
   }
 
-  // TODO(aabuelgasim): remove when switching to news CSS
-  .h-c-headline {
-    color: inherit;
+  &__current,
+  &__next {
+    @include print-styles {
+      color: $dmb-text-color;
+      padding: 30px 0 0;
+    }
   }
 
-  button {
-    background: transparent;
-    border: 0;
+  *:focus {
+    outline-color: #fff;
+  }
 
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
+
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      @each $level, $value in $tenant-levels {
+        $color: map-get($value, color);
+
+        &__current--level-#{$level} {
+          background-color: $color;
+        }
+
+        &__next--level-#{$level} {
+          background-color: $color;
+        }
+      }
+    }
   }
 }

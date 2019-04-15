@@ -1,0 +1,48 @@
+// TENANTS VARIABLES
+$tenants: (
+  news: (
+    primary-color: $dmb-color-green-eucalyptus,
+    progress-grid-switch-bp: 800px,
+    levels: (
+      0: (
+        color: $dmb-color-green-eucalyptus
+      ),
+      1: (
+        color: $dmb-color-green-salem
+      ),
+      2: (
+        color: $dmb-color-green-jewel
+      ),
+      3: (
+        color: $dmb-color-green-jewel-dark
+      )
+    )
+  ),
+  retail: (
+    primary-color: $dmb-text-color,
+    progress-grid-switch-bp: 800px,
+    levels: (
+      0: (
+        color: $dmb-color-green-eucalyptus
+      ),
+      1: (
+        color: $dmb-color-green-salem
+      ),
+      2: (
+        color: $dmb-color-green-jewel
+      ),
+      3: (
+        color: $dmb-color-green-jewel-dark
+      )
+    )
+  )
+);
+
+// Set primary heading color for each tenant
+@each $key, $value in $tenants {
+  #dmb-#{$key} { // sass-lint:disable-line no-ids
+    .dmb-primary-heading {
+      color: map-get($value, primary-color);
+    }
+  }
+}
