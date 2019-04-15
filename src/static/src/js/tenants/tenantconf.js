@@ -30,50 +30,61 @@ class TenantConfiguration {
     this.tenant = '';
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.levels = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.levelDescriptions = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.reportLevelDescriptions = {};
 
     /**
-     * @param {Array}
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgDescription = null;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryBestDescription = null;
+
+    /**
+     * @type {Array}
      * @export
      */
     this.dimensions = [];
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionHeaders = {};
 
-
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionHeadersDescription = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionLevelDescription = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.dimensionLevelRecommendations = {};
@@ -83,10 +94,13 @@ class TenantConfiguration {
     this.tenant = tenantDataElement.dataset['tenant'];
     const conf = confMap[this.tenant];
     this.levels = conf.levels;
+    this.levelsTotal = Object.keys(this.levels).length;
     this.levelDescriptions = conf.levelDescriptions;
     this.reportLevelDescriptions = conf.reportLevelDescriptions;
+    this.industryAvgDescription = conf.industryAvgDescription;
+    this.industryBestDescription = conf.industryBestDescription;
     this.dimensions = conf.dimensions;
-    this.dimensionHeaders = JSON.parse(tenantDataElement.dataset['dimensions']);
+    this.dimensionHeaders = /** @type {Object} */ (JSON.parse(tenantDataElement.dataset['dimensions']));
     this.dimensionHeadersDescription = conf.dimensionHeadersDescription;
     this.dimensionLevelDescription = conf.dimensionLevelDescription;
     this.dimensionLevelRecommendations = conf.dimensionLevelRecommendations;

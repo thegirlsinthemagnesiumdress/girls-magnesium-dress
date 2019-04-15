@@ -36,6 +36,9 @@ const template = `
           <span class="dmb-progress-table__company">
             <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
                 aria-label="Get more informations about the industry average">
+              <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
+                <use xlink:href="#info-dark"></use>
+              </svg>
             </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">Industry average</span>
           </span>
           <span class="dmb-progress-table__rating" aria-label="industry average rating">{[industryAvg|number:1]}</span>
@@ -57,6 +60,9 @@ const template = `
           <span class="dmb-progress-table__company">
             <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
                 aria-label="Get more informations about the Industry best">
+              <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
+                <use xlink:href="#info-dark"></use>
+              </svg>
             </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">Industry best</span>
           </span>
           <span class="dmb-progress-table__rating" aria-label="industry best rating">{[industryBest|number:1]}</span>

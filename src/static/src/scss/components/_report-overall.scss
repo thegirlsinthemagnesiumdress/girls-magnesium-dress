@@ -1,6 +1,8 @@
 .dmb-report-overall {
-  &__table-container {
-    @include dmb-resp-prop(margin-top, 50px, 60px, 80px);
+  &__intro {
+    @include screen-styles {
+      text-align: center;
+    }
   }
 
   &__link {
@@ -17,5 +19,9 @@
     @include dmb-mq($from: tablet) {
       margin-top: -90px;
     }
+  }
+
+  &__table-container {
+    @include dmb-resp-prop(margin-top, 50px, 60px, 80px);
   }
 }

@@ -1,10 +1,11 @@
 {% extends "public/ads/base.html" %}
 {% load staticfiles %}
+{% load angular %}
 
 {% block body_class %}dmb-report-page{% endblock %}
 
 {% block main %}
-<div dmb-report ng-cloak>
+<div dmb-report ng-cloak id="dmb-ads">
   <header class="dmb-report-page__hero">
     <div class="h-c-page dmb-report-page__hero-h-c-page">
       <div class="h-c-grid">
@@ -217,6 +218,7 @@
                     </h3>
                     <div>
                       <div
+                        tenant="{{tenant|ng_mark_safe}}"
                         dmb-dimension-tab="{[dimension]}"
                         company-name="{[ reportCtrl.survey.company_name ]}">
                       </div>

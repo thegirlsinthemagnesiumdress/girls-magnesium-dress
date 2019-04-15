@@ -151,7 +151,6 @@ gulp.task('clean-dist', function() {
   ]);
 });
 
-
 gulp.task('sass-dev', function() {
   // Fill out the line below with the path to your main Sass file.
   return gulp.src(`${PATHS.src.scss}/**/*.scss`)

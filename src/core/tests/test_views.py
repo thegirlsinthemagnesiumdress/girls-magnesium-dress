@@ -58,13 +58,17 @@ class UpdateIndustriesBenchmarksTask(TestCase):
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(mock_defer.call_count, 2)
+        self.assertEqual(mock_defer.call_count, 3)
 
         args, kwargs = mock_defer.call_args_list[0]
         self.assertEqual(args[0], tasks.calculate_industry_benchmark)
         self.assertTrue(args[1] in MOCKED_TENANTS.keys())
 
         args, kwargs = mock_defer.call_args_list[1]
+        self.assertEqual(args[0], tasks.calculate_industry_benchmark)
+        self.assertTrue(args[1] in MOCKED_TENANTS.keys())
+
+        args, kwargs = mock_defer.call_args_list[2]
         self.assertEqual(args[0], tasks.calculate_industry_benchmark)
         self.assertTrue(args[1] in MOCKED_TENANTS.keys())
 
