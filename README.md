@@ -39,6 +39,9 @@ Once the previous command has been run, all the existing locales can be maintain
 
 this will update the existing locales, generating new `.po` files containing the new translations.
 
+After the messages for the locale have been mapped with `makemessages` command, it can be sent out for translation. Once the translation is done, we need to compile the messages in order for django to be using the new translation efficiently. To compile the translations for a specific locale:
+```./manage.py compilemessages -l it```
+
 # Frontend Setup
 
 The frontend uses gulp for building assets, however it is linked to Django via management commands which pass additional information (e.g. STATIC_ROOT, DEBUG) down to Gulp.
