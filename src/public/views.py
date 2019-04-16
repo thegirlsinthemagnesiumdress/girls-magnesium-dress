@@ -18,7 +18,6 @@ from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
 
 
-INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
