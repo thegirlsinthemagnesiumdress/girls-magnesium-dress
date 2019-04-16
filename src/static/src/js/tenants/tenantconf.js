@@ -107,9 +107,8 @@ class TenantConfiguration {
     this.dimensionHeadersDescription = this.contentData['dimension_headers_descriptions'];
     this.dimensionLevelDescription = this.contentData['dimension_level_description'];
     this.dimensionLevelRecommendations = this.contentData['dimension_level_recommendations'];
-    // CHANGE THIS
-    this.industryAvgDescription = 'Industry Average Description';
-    this.industryBestDescription = 'Industry Best Description';
+    this.industryAvgDescription = this.contentData['industry_avg_description'];
+    this.industryBestDescription = this.contentData['industry_best_description'];
   }
 }
 

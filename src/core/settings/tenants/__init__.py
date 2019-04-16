@@ -52,7 +52,7 @@ TENANTS = {
         'EMAIL_TO': 'Q1_4_TEXT',
         'EMAIL_BCC': 'Q1_5_TEXT',
         'DIMENSIONS': retail_conf.DIMENSIONS,
-        'DIMENSION_TITLES': retail_conf.DIMENSION_TITLES,
+        'CONTENT_DATA': retail_conf.CONTENT_DATA,
         'MULTI_ANSWER_QUESTIONS': retail_conf.MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': retail_conf.WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': retail_conf.DIMENSIONS_WEIGHTS_QUESTION_ID,
