@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-16 11:03+0000\n"
+"POT-Creation-Date: 2019-04-16 13:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1428,6 +1428,30 @@ msgstr ""
 msgid "Digital Maturity Benchmark"
 msgstr ""
 
+msgid "Your results are ready!"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "Industry"
+msgstr ""
+
+msgid "We've finished analysing your survey responses to find out where you can improve your marketing strategy."
+msgstr ""
+
+msgid "Click the button below to access your digital maturity report and see the results of your survey."
+msgstr ""
+
+msgid "Access your report"
+msgstr ""
+
+msgid "Connect with Google"
+msgstr ""
+
+msgid "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email."
+msgstr ""
+
 msgid "Why digital maturity matters"
 msgstr ""
 
@@ -1602,6 +1626,9 @@ msgstr ""
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
 msgstr ""
 
+msgid "Enter the organisation name"
+msgstr ""
+
 msgid "Ready to benchmark your company’s digital maturity?"
 msgstr ""
 
@@ -1773,6 +1800,15 @@ msgstr ""
 msgid "Looking to benchmark digital maturity for a different challenge or industry?"
 msgstr ""
 
+msgid "Read"
+msgstr ""
+
+msgid "more"
+msgstr ""
+
+msgid "less"
+msgstr ""
+
 msgid "Advertiser Marketing Maturity"
 msgstr ""
 
@@ -1797,6 +1833,9 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
+msgid "Change language or region"
+msgstr ""
+
 msgid "Data Maturity Benchmark"
 msgstr ""
 
@@ -1806,7 +1845,16 @@ msgstr ""
 msgid "Start now"
 msgstr ""
 
+msgid "In partnership with The Boston Consulting Group"
+msgstr ""
+
 msgid "In partnership with"
+msgstr ""
+
+msgid "Never miss a moment to connect with customers"
+msgstr ""
+
+msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
 msgstr ""
 
 msgid "Woops.. that page doesn't seem to exist, or the link is broken."
