@@ -1,11 +1,12 @@
 {% load staticfiles %}
 {% load i18n %}
 
+{% trans "In partnership with The Boston Consulting Group" as alt_text %}
 <div class="dmb-partnership-with-bcg{% if invert %} dmb-partnership-with-bcg--invert{% endif %}">
   <p>{% trans "In partnership with" %}</p>
   {% if invert %}
-    <img src="{% static 'img/bcg-logo-white.png' %}" alt="In partnership with The Boston Consulting Group">
+    <img src="{% static 'img/bcg-logo-white.png' %}" alt="{{alt_text}}">
   {% else %}
-    <img src="{% static 'img/bcg-logo-new.png' %}" alt="In partnership with The Boston Consulting Group">
+    <img src="{% static 'img/bcg-logo-new.png' %}" alt="{{alt_text}}">
   {% endif %}
 </div>

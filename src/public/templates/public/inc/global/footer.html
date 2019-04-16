@@ -17,9 +17,9 @@
           class="dmb-footer__tenant-footer-label dmb-read-more__label"
           for="dmb-read-more-1"
           aria-hidden="true">
-        Read
-        <span class="dmb-read-more__more">more</span>
-        <span class="dmb-read-more__less">less</span>
+        {% trans "Read" %}
+        <span class="dmb-read-more__more">{% trans "more" %}</span>
+        <span class="dmb-read-more__less">{% trans "less" %}</span>
       </label>
       <ul
           class="dmb-footer__tenant-footer-list dmb-read-more__content">
@@ -85,7 +85,7 @@
       </li>
       {% if tenant|ng_mark_safe == 'ads' %}
       <li class="h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
-        <label for="lang-selector" class="h-u-visually-hidden">Change language or region</label>
+        <label for="lang-selector" class="h-u-visually-hidden">{% trans "Change language or region" %}</label>
           {% get_language_info_list for LANGUAGES as languages %}
           <form
               action="{% url 'set_language' %}"

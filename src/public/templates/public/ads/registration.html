@@ -4,6 +4,7 @@
 {% load i18n %}
 
 {% block main %}
+{% trans "Enter the organisation name" as organisation_placeholder %}
 <div class="dmb-registration"
     ng-controller="RegistrationCtrl as registrationCtrl"
     ng-cloak>
@@ -33,7 +34,7 @@
             </div>
             <div class="dmb-input-wrp">
               <label for="companyName">{% trans "Organisation name:" %}</label>
-              <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
+              <input class="dmb-input" id="companyName" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="{{organisation_placeholder}}">
             </div>
             <div class="dmb-input-wrp">
               <label for="industry">{% trans "Industry:" %}</label>
