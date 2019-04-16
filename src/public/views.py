@@ -39,11 +39,12 @@ def _dump_tenant_content_data(tenant):
 
 
 def registration(request, tenant):
+    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
     return render(request, 'public/{}/registration.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
-        'industries': INDUSTRIES_TUPLE,
+        'industries': industries,
         'countries': COUNTRIES_TUPLE,
     })
 
@@ -90,6 +91,7 @@ def thank_you(request, tenant):
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
+    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
 
     surveys = Survey.objects.filter(tenant=tenant)
     if not request.user.is_super_admin:
@@ -103,7 +105,7 @@ def reports_admin(request, tenant):
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
-        'industries': INDUSTRIES_TUPLE,
+        'industries': industries,
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
         'bootstrap_data': JSONRenderer().render({
