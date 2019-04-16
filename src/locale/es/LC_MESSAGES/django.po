@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-08 10:22+0000\n"
+"POT-Creation-Date: 2019-04-16 11:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,12 +906,6 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-msgid "English"
-msgstr ""
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Advertise"
 msgstr ""
 
@@ -1431,369 +1425,6 @@ msgstr ""
 msgid "Regularly evaluate collaboration between all relevant agencies and help them to be more impactful and efficient. Continue to review your ability to work in agile ways, for example evaluate how you allocate budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
 msgstr ""
 
-msgid "Strategic direction and data foundations"
-msgstr ""
-
-msgid "Reader Engagement"
-msgstr ""
-
-msgid "Reader Revenue"
-msgstr ""
-
-msgid "Advertising Revenue"
-msgstr ""
-
-msgid "Developing"
-msgstr ""
-
-msgid "Mature"
-msgstr ""
-
-msgid "Leading"
-msgstr ""
-
-msgid "Organizations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making."
-msgstr ""
-
-msgid "These organizations are able to drive value from data in some pockets of their business. Leadership recognises data as a priority, but is unclear on how to unlock the best returns."
-msgstr ""
-
-msgid "Data-informed decision making is the standard across much of the business. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual."
-msgstr ""
-
-msgid "These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward."
-msgstr ""
-
-msgid "This is the most basic of the four levels of maturity. You have the basic tools, but often face cultural challenges to truly embracing data-supported decision-making."
-msgstr ""
-
-msgid "This is the second of the four levels of maturity. You are able to drive value from data in some pockets of the business. Leadership recognises data as a priority, but is unclear on how to unlock the best returns."
-msgstr ""
-
-msgid "This is the third of the four levels of maturity. Data-informed decision-making is the standard across much of your organization. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual."
-msgstr ""
-
-msgid "This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward."
-msgstr ""
-
-msgid "Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place."
-msgstr ""
-
-msgid "Reader engagement is crucial to acquiring and retaining readers and increasing share of attention. Without an engaged readership, a news company cannot secure the subscription and advertising opportunities it needs to survive and thrive."
-msgstr ""
-
-msgid "News companies that successfully build valuable direct-to-consumer relationships with their readers not only see the near-term benefits of increased revenue but also reduce operating volatility through long-term, recurring revenue streams."
-msgstr ""
-
-msgid "Leading news companies know their readers better than anyone, and they create content to attract and retain those readers. They act as advisors in the creative and campaign development process to deliver high-impact, relevant advertising that does not diminish the reader experience."
-msgstr ""
-
-msgid "You have limited strategy in connecting data with your overarching business goals."
-msgstr ""
-
-msgid "Leadership have provided an initial articulation of specific and well-defined data initiatives, but there is limited continued focus on this."
-msgstr ""
-
-msgid "There is widespread knowledge and respect for the role data plays in achieving the overall business strategy."
-msgstr ""
-
-msgid "There is universal understanding of how data underpins the overarching business strategy, at all levels."
-msgstr ""
-
-msgid "You collect basic engagement data (i.e., page views), but do not translate it into audience insights. Content decisions are primarily based on instinct and editorial experience."
-msgstr ""
-
-msgid "You know what the broad audience segments are and start to uncover discrete audience insights using basic web analytics tools. However, reader experience and content decisions are still driven by “gut instinct.”"
-msgstr ""
-
-msgid "You understand how different segments engage with content and use these insights to improve engagement. Meanwhile, the editorial team actively use engagement insights and data to improve content format (i.e., headlines, length)."
-msgstr ""
-
-msgid "You clearly understand the context of the full reader journey and why audiences engage. You tailor the reader experience for different segments and occasions. Meanwhile, editorial decisions are generally data-informed."
-msgstr ""
-
-msgid "Your paid content offering is limited to one size fits all."
-msgstr ""
-
-msgid "You use metrics to develop promotions or price tiers for paid content offerings. You understand conversion triggers such as registration, login, and subscription."
-msgstr ""
-
-msgid "You use different products to improve the reader’s journey and determine how to bundle these products for different audiences. Your business is starting to explore using LTV-focused metrics and beginning to understand subscription and churn drivers."
-msgstr ""
-
-msgid "You have differentiated products that are relevant to readers across their life cycles. The portfolio of products are mutually reinforcing and drive loyalty and LTV. You understand the needs and behaviors of readers at different stages in their life cycles."
-msgstr ""
-
-msgid "You have basic segments (demographics, location) in place for audience-based advertising."
-msgstr ""
-
-msgid "You use combinations of pre-built segments to assemble campaigns for advertisers. Meanwhile, you use exchanges / PMPs in a reactive way, primarily to monetize remnant inventory."
-msgstr ""
-
-msgid "You use different data sets to build interest and intent-based segments. You share insights and equip the sales team to clearly communicate the value of different segments to advertisers. You use exchanges / PMPs in a strategic way to optimize yield."
-msgstr ""
-
-msgid "You build unique segments using enriched first party data that gets to the heart of reader interest & intent. You proactively collaborate with advertisers & agencies to craft campaigns that incorporate unique audience insights."
-msgstr ""
-
-msgid "Data Activation Guide"
-msgstr ""
-
-msgid "Broadcast a thoughtful data strategy"
-msgstr ""
-
-msgid "Articulate your broader organizational mission, and identify areas in which data may be able to support or drive efforts to meet the mission."
-msgstr ""
-
-msgid "Foster collaboration and cross-functional teamwork"
-msgstr ""
-
-msgid "Identify opportunities to align data functions with the centers of influence in the organization."
-msgstr ""
-
-msgid "Embed data-informed decision making"
-msgstr ""
-
-msgid "Institute systems to evaluate decisions based on empirical analysis. Reward evidence-based rationale for operational decision-making."
-msgstr ""
-
-msgid "Many Nascent publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges."
-msgstr ""
-
-msgid "Craft messaging that captures your organization`s approach to handling and activating data. Encourage leadership at all levels to communicate this message to team members."
-msgstr ""
-
-msgid "Establish educational sessions in which representatives from the data team provide information and training on key aspects of the data operation to team members throughout the organization."
-msgstr ""
-
-msgid "Provide access to tools that enable and encourage colleagues to analyze decision criteria and execute data-supported decisions."
-msgstr ""
-
-msgid "Many Developing publishers still need to get their cultural, skills-based, data-related, and technological foundations right. The Data Foundations section of the Data Activation Guide provides tips and best practices to overcome some of these challenges."
-msgstr ""
-
-msgid "Incorporate data strategy messaging in team meetings. Establish key performance indicators (KPIs) that drive collaboration across organizational silos and incentivise cross-functional performance."
-msgstr ""
-
-msgid "Democratize your data"
-msgstr ""
-
-msgid "Create intuitive tools and portals that enable access to relevant audience data for all team members. Provide trainings and educational resources to team members and encourage use of available resources."
-msgstr ""
-
-msgid "Many Mature publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how some Leading publishers have developed their cultural, skills-based, data-related, and technological foundations."
-msgstr ""
-
-msgid "Continue regular cadence of cross-functional team meetings and craft incentives to encourage further collaboration across the organization."
-msgstr ""
-
-msgid "Attract the right talent"
-msgstr ""
-
-msgid "Communicate the unique emphasis your organization places on being data-informed, and establish recruiting partnerships to maintain a strong pipeline of technical professionals."
-msgstr ""
-
-msgid "Many Leading publishers have a well-established data strategy but want to see what other publishers are doing. Start with the Data Foundations section of the Data Activation Guide to see how other Leading publishers have developed their cultural, skills-based, data-related, and technological foundations."
-msgstr ""
-
-msgid "Measure it to improve it"
-msgstr ""
-
-msgid "Drive collaboration amongst data teams and business leaders to prioritize data collection activities and measurement capabilities."
-msgstr ""
-
-msgid "Understand what makes your audience tick"
-msgstr ""
-
-msgid "Develop basic segmentation processes that capture high-level interest-based or behavioral segments for analysis. Understand your different segments of readers and how they engage with your content and your platform."
-msgstr ""
-
-msgid "Connect data to your content"
-msgstr ""
-
-msgid "Deploy a content tagging technology system and develop a common taxonomy to improve the searchability of your content library."
-msgstr ""
-
-msgid "Make the experience intuitive"
-msgstr ""
-
-msgid "Build your team`s skills in web analytics to better understand and improve pain points in the reader journey."
-msgstr ""
-
-msgid "Unlock insights from your Google Analytics data"
-msgstr ""
-
-msgid "Understand your different segments of readers and how they engage with your site"
-msgstr ""
-
-msgid "News Consumer Insights"
-msgstr ""
-
-msgid "Identify organizational objectives and tie key performance metrics to those objectives."
-msgstr ""
-
-msgid "Build technical teams to enhance segmentation practices and improve on foundational understandings of how audiences engage with your platform."
-msgstr ""
-
-msgid "Deploy technology solutions to support cross-functional collaboration between data and editorial teams and help guide content decisions."
-msgstr ""
-
-msgid "Capture and organize audience on-site behavioral data to inform user interface and design decisions."
-msgstr ""
-
-msgid "Understand your different segments of readers and how they engage with your site."
-msgstr ""
-
-msgid "Make analytics and reporting accessible to relevant team members, so everyone in the organization can understand the health and performance of the digital platform."
-msgstr ""
-
-msgid "Build new audience segments and enhance reader profiles to better tailor content and user interface decisions to satisfy specific reader preferences."
-msgstr ""
-
-msgid "Organize your content for future opportunities"
-msgstr ""
-
-msgid "Maintain your content catalog and provide intuitive tools to editorial teams to help surface insights that can inform content planning activities."
-msgstr ""
-
-msgid "Promote experimentation"
-msgstr ""
-
-msgid "Use A/B and multivariate tests to frequently identify areas to improve user interface and content options for readers. Promote a culture of testing and learning to drive continual improvement."
-msgstr ""
-
-msgid "Many Mature publishers have sophisticated approaches to improving overall reader engagement but want to see what other publishers are doing.The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached improving overall reader engagement."
-msgstr ""
-
-msgid "Continue to roll out analytics and reporting tools to support cross-functional and performance-based decision-making."
-msgstr ""
-
-msgid "Enhance technological capabilities and data collection efforts to refine the understanding of specific audience segments and individual reader profiles. Continue to uncover insights that inform best ways to serve readers."
-msgstr ""
-
-msgid "Focus on optimizing the impact of your content"
-msgstr ""
-
-msgid "Continue to integrate relevant audience insights and tools with the editorial and product teams to serve your readers what they want, while maintaining the integrity of your editorial mission."
-msgstr ""
-
-msgid "Many Leading publishers have a sophisticated approach to improving overall reader engagement but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached improving overall reader engagement."
-msgstr ""
-
-msgid "Understand the value of your readers"
-msgstr ""
-
-msgid "Understand your different segments of readers and how they engage with your content and your platform. Implement simple plug-in tools to help you measure and visualize these reader segments and how much value they bring."
-msgstr ""
-
-msgid "Tailor your subscription approach"
-msgstr ""
-
-msgid "Understand the needs and behaviors of your readers and collaborate cross-functionally to develop strategies to convert them into subscribers."
-msgstr ""
-
-msgid "Identify new revenue models"
-msgstr ""
-
-msgid "Identify engaged segments of your audience and explore new offerings that they may want. These might be opportunities that you develop on your own, or you may need to seek partners to support."
-msgstr ""
-
-msgid "Start to layer in more behavioral data that tells you how readers behave online and how those behaviors can translate to publisher value. Use reader insights to identify new ways to increase reader value (i.e., tailored communications, recommendations, and subscription offers)."
-msgstr ""
-
-msgid "Segment your readers based on their behavior and measure how effective your subscription promotions are with different reader types. Tailor how you communicate with them based on the feedback."
-msgstr ""
-
-msgid "Integrate your different revenue models"
-msgstr ""
-
-msgid "Integrate your data across different product or service offerings to get an understanding of reader behavior across the whole businesses. Develop the capability to identify readers and structure opportunities to cross-sell."
-msgstr ""
-
-msgid "Understand the value of your readers "
-msgstr ""
-
-msgid "Integrate a view of reader lifetime value (LTV) into core business decision-making. Ensure that core functions in the marketing, editorial, and product teams consider the impact on reader LTV when making key decisions."
-msgstr ""
-
-msgid "Employ sophisticated techniques (e.g., dynamic pricing) to tailor subscription offers and match them to specific segments based on their behavior on your platform. Create a feedback loop to analyze the results and understand points of improvement."
-msgstr ""
-
-msgid "Develop reinforcing revenue models"
-msgstr ""
-
-msgid "Actively cross-promote different titles or businesses based on reader interests or characteristics. Start to understand the relative value of decisions to direct readers between sites and products."
-msgstr ""
-
-msgid "Many Mature publishers have created significant revenue from increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached increasing direct-paying reader relationships."
-msgstr ""
-
-msgid "Continue to refine the approach to quantifying reader lifetime value (LTV). Leverage reader LTV data to inform operational improvements and identify strategic growth opportunities."
-msgstr ""
-
-msgid "Continually improve the approach to converting and retaining subscribers based on updates to predictive models and subscription pricing strategies."
-msgstr ""
-
-msgid "Pursue attractive adjacent business opportunities"
-msgstr ""
-
-msgid "Leverage your unique audience insights to identify and support strategic decisions to pursue opportunities that can generate new revenue for the business."
-msgstr ""
-
-msgid "Many Leading publishers have a sophisticated approach to increasing direct-paying reader relationships but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached increasing direct-paying reader relationships."
-msgstr ""
-
-msgid "Build and enhance the understanding of your audience "
-msgstr ""
-
-msgid "Start to layer in data that tells you how readers behave online and how this impacts the value they bring.  Build technical teams to enhance segmentation practices and improve on foundational understandings of how audiences engage with your platform."
-msgstr ""
-
-msgid "Connect the right audience to the right advertiser"
-msgstr ""
-
-msgid "Collaborate with your advertisers to identify the audiences they want to reach.  Start incorporating advertiser input into audience segmentation practices."
-msgstr ""
-
-msgid "Know the value of your audience"
-msgstr ""
-
-msgid "Monitor the performance of different audiences across your sales mix. Analyze and record insights across segments to develop a long-term understanding of audience segment performance."
-msgstr ""
-
-msgid "Make the most of your platform mix"
-msgstr ""
-
-msgid "Review historical performance of advertising sales across channels to begin developing a successful sales mix strategy."
-msgstr ""
-
-msgid "Integrate a view of reader lifetime value (LTV) into core business decision-making. Experiment to test the relative value and performance of audience segments to refine high demand segments. Develop systems to effectively price audience segments based on historical performance and perceived value."
-msgstr ""
-
-msgid "Continue to foster relationships with key advertisers, and collaborate to proactively identify ways to support their future advertising strategies."
-msgstr ""
-
-msgid "Bring campaigns to life"
-msgstr ""
-
-msgid "Think about advertising holistically and drive value through the strategic combination of relevant context, creative, advertising placement, and advertising format."
-msgstr ""
-
-msgid "Many Mature publishers generate significant revenue through advertising but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how some Leading publishers have approached driving revenue from advertisers."
-msgstr ""
-
-msgid "Continue to foster relationships with key advertisers, and collaborate to proactively identify ways to support their future advertising strategies through the strategic combination of relevant context, creative, advertising placement, and advertising format."
-msgstr ""
-
-msgid "Use technology to scale "
-msgstr ""
-
-msgid "Enhance technological capabilities, including focusing on direct programmatic, to effectively serve advertisers at scale without sacrificing quality of content or reader experience."
-msgstr ""
-
-msgid "Many Leading publishers have a sophisticated approach to driving revenue from advertisers but want to see what other publishers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading publishers have approached driving revenue from advertisers."
-msgstr ""
-
 msgid "Digital Maturity Benchmark"
 msgstr ""
 
@@ -2139,10 +1770,16 @@ msgstr ""
 msgid "The definition has probably changed and we could not find any answer for this question."
 msgstr ""
 
-msgid "Data Maturity Benchmark"
+msgid "Looking to benchmark digital maturity for a different challenge or industry?"
 msgstr ""
 
-msgid "Advertisers"
+msgid "Advertiser Marketing Maturity"
+msgstr ""
+
+msgid "News Publisher Data Transformation"
+msgstr ""
+
+msgid "Retail Data Transformation"
 msgstr ""
 
 msgid "Privacy"
@@ -2158,6 +1795,9 @@ msgid "Google Products"
 msgstr ""
 
 msgid "Contact us"
+msgstr ""
+
+msgid "Data Maturity Benchmark"
 msgstr ""
 
 msgid "Skip to content"
