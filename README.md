@@ -32,10 +32,10 @@ In order for the backend to be able to call Qualtrics APIs, a valid token needs 
 
 # Add locale
 Before a new locale can work correctly it needs to be explicitly called for that language. For instance, if we want to configure `it` as a new language, we should run:
-  ```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local -l it```
+  ```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local -l  --no-wrap --no-location```
 
 Once the previous command has been run, all the existing locales can be maintained by running:
-```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local --all```
+```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local --all --no-wrap --no-location```
 
 this will update the existing locales, generating new `.po` files containing the new translations.
 
