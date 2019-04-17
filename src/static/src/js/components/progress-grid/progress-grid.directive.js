@@ -1,8 +1,8 @@
 goog.module('dmb.components.progressGrid.directive');
 
 const progressGridCtrl = goog.require('dmb.components.progressGrid.controller');
-const progressGridTemplate = goog.require('dmb.components.progressGrid.template');
-const progressGridFallbackTemplate = goog.require('dmb.components.progressGridFallback.template');
+const progressGridTemplateUrl = '/angular/progress-grid';
+const progressGridFallbackTemplateUrl = '/angular/progress-grid-fallback';
 
 /**
  * Side panel directive.
@@ -22,8 +22,8 @@ function ProgressGridDirective(cssGridSupport) {
     },
     controller: progressGridCtrl.main,
     controllerAs: progressGridCtrl.CONTROLLER_AS_NAME,
-    template: () => {
-      return cssGridSupport ? progressGridTemplate : progressGridFallbackTemplate;
+    templateUrl: () => {
+      return cssGridSupport ? progressGridTemplateUrl : progressGridFallbackTemplateUrl;
     },
   };
 }

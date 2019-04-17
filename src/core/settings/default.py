@@ -319,6 +319,7 @@ ANGULAR_TEMPLATES = [
     'dimension-tab',
     'progress-grid',
     'progress-grid-fallback',
+    'progress-table',
 ]
 
 ALLOWED_ANGULAR_TEMPLATES = '|'.join(ANGULAR_TEMPLATES)
