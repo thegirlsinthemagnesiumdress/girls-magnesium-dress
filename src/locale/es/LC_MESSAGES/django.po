@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-16 13:31+0000\n"
+"POT-Creation-Date: 2019-04-17 10:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1795,6 +1795,21 @@ msgid "The capability to improve decision-making and results by working collabor
 msgstr ""
 
 msgid "The definition has probably changed and we could not find any answer for this question."
+msgstr ""
+
+msgid "in this dimension"
+msgstr ""
+
+msgid "You could be"
+msgstr ""
+
+msgid "Congratulations, you're in the top group for data maturity"
+msgstr ""
+
+msgid "Here's how you get there:"
+msgstr ""
+
+msgid "Here's how to get even better:"
 msgstr ""
 
 msgid "Looking to benchmark digital maturity for a different challenge or industry?"

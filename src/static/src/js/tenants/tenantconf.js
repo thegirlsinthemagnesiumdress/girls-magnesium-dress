@@ -102,6 +102,7 @@ class TenantConfiguration {
     this.dimensionHeaders = this.contentData['dimension_labels'];
     this.dimensions = this.contentData['dimensions'];
     this.levels = this.contentData['levels'];
+    this.levelsTotal = Object.keys(this.levels).length;
     this.levelDescriptions = this.contentData['level_descriptions'];
     this.reportLevelDescriptions = this.contentData['report_level_descriptions'];
     this.dimensionHeadersDescription = this.contentData['dimension_headers_descriptions'];

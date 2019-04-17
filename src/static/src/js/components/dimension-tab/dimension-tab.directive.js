@@ -1,8 +1,8 @@
 goog.module('dmb.components.dimensionTab.directive');
 
 const dimensionTabCtrl = goog.require('dmb.components.dimensionTab.controller');
-const dimensionTabLegacyTemplate = goog.require('dmb.components.dimensionTab.legacyTemplate');
-const dimensionTabTemplate = goog.require('dmb.components.dimensionTab.template');
+const dimensionTabLegacyTemplateUrl = '/angular/dimension-tab-legacy/';
+const dimensionTabTemplateUrl = '/angular/dimension-tab/';
 
 /**
  * Dimension tab directive.
@@ -17,8 +17,8 @@ function DimensionTabDirective() {
       'dmbDimensionTab': '@',
       'tenant': '@',
     },
-    template: function(tElem, tAttrs) {
-      return tAttrs.tenant === 'ads' ? dimensionTabLegacyTemplate : dimensionTabTemplate;
+    templateUrl: function(tElem, tAttrs) {
+      return tAttrs.tenant === 'ads' ? dimensionTabLegacyTemplateUrl : dimensionTabTemplateUrl;
     },
     controller: dimensionTabCtrl.main,
     controllerAs: dimensionTabCtrl.CONTROLLER_AS_NAME,

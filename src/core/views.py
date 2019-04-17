@@ -9,6 +9,7 @@ from core.management import migrations
 from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
 from django.conf import settings
 from core.models import Survey
+from django.shortcuts import render
 
 
 @task_or_admin_only
@@ -160,3 +161,8 @@ def update_industries_benchmarks_task(request):
         )
 
     return HttpResponse(msg)
+
+
+def angular_templates(request, template_name):
+    print(">>>> ", template_name)
+    return render(request, 'public/angular/{}.html'.format(template_name))
