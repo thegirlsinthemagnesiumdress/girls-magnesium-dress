@@ -1,4 +1,5 @@
 {% load i18n %}
+{% trans "logo" as logo_alt_text %}
 <div
     class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[dimensionTabCtrl.floorDMB]}">
 
@@ -7,7 +8,7 @@
       <div class="dmb-dimension-tabs__logo-col h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
         <img
             ng-src="{[dimensionTabCtrl.dmbStaticUrl]}img/{[dimensionTabCtrl.tenant]}/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
-            alt="{[dmbDimensionTab]} logo"
+            alt="{[dmbDimensionTab]} {{logo_alt_text}}"
             class="dmb-dimension-tabs__logo">
       </div>
       <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
@@ -56,7 +57,7 @@
       <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four">
         <img
             ng-src="{[dimensionTabCtrl.dmbStaticUrl]}img/{[dimensionTabCtrl.tenant]}/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
-            alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} logo">
+            alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} {{logo_alt_text}}">
         {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
       </h4>
       <h4 class="h-c-headline h-c-headline--two">

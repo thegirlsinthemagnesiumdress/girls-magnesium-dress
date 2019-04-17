@@ -10,6 +10,8 @@
 {% endblock %}
 
 {% block main %}
+  {% trans "photo of devices" as photo_device_alt_text %}
+  {% trans "shield icon" as shield_alt_text %}
   <div class="dmb-landing">
 
   {% include 'public/inc/home/hero.html' %}
@@ -255,7 +257,7 @@
           {% include 'public/inc/global/partnership-with-bcg.html' %}
         </div>
         <div class="dmb-landing__devices-col h-c-grid__col h-c-grid__col-l--8">
-          <img class="dmb-landing__devices-image" src="{% static 'img/home/dynamic.png' %}" alt="photo of devices">
+          <img class="dmb-landing__devices-image" src="{% static 'img/home/dynamic.png' %}" alt="{{photo_device_alt_text}}">
         </div>
       </div>
     </div>
@@ -341,7 +343,7 @@
                 <div class="dmb-side-panel__list-item-content">
                   <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
                     <div class="dmb-side-panel__list-item-bullet">
-                      <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon" />
+                      <img src="{% static 'img/icons/shield.svg' %}" alt="{{shield_alt_text}}" />
                     </div>
                     {% trans "Curious" %}
                   </h3>
@@ -362,7 +364,7 @@
                 <div class="dmb-side-panel__list-item-content">
                   <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
                     <div class="dmb-side-panel__list-item-bullet">
-                      <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon" />
+                      <img src="{% static 'img/icons/shield.svg' %}" alt="{{shield_alt_text}}" />
                     </div>
                     {% trans "Demanding" %}
                   </h3>
@@ -383,7 +385,7 @@
                 <div class="dmb-side-panel__list-item-content">
                   <h3 class="dmb-side-panel__list-item-heading h-c-headline h-c-headline--four h-u-font-weight-medium">
                     <div class="dmb-side-panel__list-item-bullet">
-                      <img src="{% static 'img/icons/shield.svg' %}" alt="shield icon" />
+                      <img src="{% static 'img/icons/shield.svg' %}" alt="{{shield_alt_text}}" />
                     </div>
                     {% trans "Impatient" %}
                   </h3>
