@@ -317,6 +317,8 @@ CSRF_USE_SESSIONS = True
 ANGULAR_TEMPLATES = [
     'dimension-tab-legacy',
     'dimension-tab',
+    'progress-grid',
+    'progress-grid-fallback',
 ]
 
 ALLOWED_ANGULAR_TEMPLATES = '|'.join(ANGULAR_TEMPLATES)
