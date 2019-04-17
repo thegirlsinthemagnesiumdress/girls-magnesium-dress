@@ -1,0 +1,25 @@
+{% extends 'public/base.html' %}
+{% load i18n %}
+{% block main %}
+<div id="dmb-survey-thank-you" class="dmb-card-on-bg">
+  <div class="dmb-card-on-bg__bg"></div>
+  <div class="dmb-card-on-bg__card">
+    <h1 class="dmb-primary-heading h-c-headline h-c-headline--two">
+      {% trans "Nice Work!" %}
+    </h1>
+    <h2  class="h-c-headline h-c-headline--four">
+      {% trans "Your response has been submitted and your report is being generated." %}
+    </h2>
+    <p class="dmb-u-m-b-s">
+      {% trans "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>." %}
+    </p>
+    <a href="https://www2.deloitte.com/us/en/pages/consulting/articles/digital-transformation-through-data-for-news.html?id=us:2el:3dp:gda:awa:cons:032616" target="_blank" class="h-c-link h-c-link--internal">
+      {% trans "View the study while you wait" %}
+    </a>
+    <br>
+    <a href="/retail" class="h-c-button h-c-button--primary">
+      {% trans "Back to website" %}
+    </a>
+  </div>
+</div>
+{% endblock main %}

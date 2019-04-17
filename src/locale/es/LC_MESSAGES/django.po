@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-17 15:31+0000\n"
+"POT-Creation-Date: 2019-04-17 17:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1804,6 +1804,21 @@ msgid "The capability to improve decision-making and results by working collabor
 msgstr ""
 
 msgid "The definition has probably changed and we could not find any answer for this question."
+msgstr ""
+
+msgid "Nice Work!"
+msgstr ""
+
+msgid "Your response has been submitted and your report is being generated."
+msgstr ""
+
+msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgstr ""
+
+msgid "View the study while you wait"
+msgstr ""
+
+msgid "Back to website"
 msgstr ""
 
 msgid "You could be"
