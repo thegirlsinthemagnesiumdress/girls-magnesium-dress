@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="dmb-report-page__tab-content dmb-tab">
 
   <div class="dmb-tab__header-grid h-c-grid">
@@ -31,7 +32,7 @@
 
         <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--8">
           <h3 class="dmb-h-alt-font">
-            <span class="dmb-report-page__headline-accent">You are </span><br><strong>{[ dimensionTabCtrl.floorDMB|dmbLevelText ]} </strong>
+            <span class="dmb-report-page__headline-accent">{% trans "You are" %}</span><br><strong>{[ dimensionTabCtrl.floorDMB|dmbLevelText ]} </strong>
           </h3>
           <p>
             {[ dimensionTabCtrl.dimensionLevelDescription[dmbDimensionTab][dimensionTabCtrl.floorDMB] ]}
@@ -52,18 +53,18 @@
 
   <div class="dmb-report-page__recommendation-block dmb-tab__recommendation-block">
     <h3 class="h-c-headline h-c-headline--three">
-      <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">You could be</span>
+      <span ng-if="dimensionTabCtrl.floorDMB < 3" class="dmb-report-page__headline-accent">{% trans "You could be" %}</span>
       <strong ng-if="dimensionTabCtrl.floorDMB < 3">{[ (dimensionTabCtrl.dmb + 1)|dmbLevelText ]}</strong>
-      <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">Congratulations,</span>
-      <strong ng-if="dimensionTabCtrl.floorDMB >= 3">you're in the top 2% for marketing maturity</strong>
+      <span ng-if="dimensionTabCtrl.floorDMB >= 3" class="dmb-report-page__headline-accent">{% trans "Congratulations" %},</span>
+      <strong ng-if="dimensionTabCtrl.floorDMB >= 3">{% trans "you're in the top 2% for marketing maturity" %}</strong>
     </h3>
 
     <p
         ng-if="dimensionTabCtrl.floorDMB < 3"
-        class="h-c-headline h-c-headline--four">Here's how you get there:</p>
+        class="h-c-headline h-c-headline--four">{% trans "Here's how you get there:" %}</p>
     <p
         ng-if="dimensionTabCtrl.floorDMB >= 3"
-        class="h-c-headline h-c-headline--four">Here's how to get even better:</p>
+        class="h-c-headline h-c-headline--four">{% trans "Here's how to get even better:" %}</p>
 
     <ul class="dmb-report-page__recommendations dmb-tab__recommendations">
 
