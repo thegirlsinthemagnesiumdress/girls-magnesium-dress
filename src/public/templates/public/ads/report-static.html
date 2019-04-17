@@ -6,7 +6,7 @@
 {% block body_class %}dmb-report-page{% endblock %}
 
 {% block main %}
-  {% trans "photo of devices" as photo_device_alt_text %}
+  {% trans "question mark" as question_mark_alt_text %}
   {% trans "shield icon" as shield_alt_text %}
 <div dmb-report ng-cloak id="dmb-ads">
   <header class="dmb-report-page__hero">
@@ -138,7 +138,7 @@
               <h3 class="dmb-report-page__content-title">
                 <span class="dmb-report-page__headline-accent">{% trans "Your maturity is" %}</span> <strong>{[reportCtrl.result.dmb|dmbLevelText]}</strong>
                 <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-one" aria-label="Get more informations about what your maturity represents">
-                  <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+                  <img src="{% static 'img/icons/info.svg' %}" alt="{{question_mark_alt_text}}" />
                 </button>
               </h3>
               <p class="dmb-report-page__maturity-intro" ng-if="reportCtrl.floorDmb == 0">
@@ -167,7 +167,7 @@
           <h2 class="h-c-eyebrow h-c-eyebrow--wide">
             {% trans "6 dimensions of digital marketing maturity" %}
             <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-three" aria-label="Get more informations about the 6 dimensions">
-              <img src="{% static 'img/icons/info.svg' %}" alt="question mark" />
+              <img src="{% static 'img/icons/info.svg' %}" alt="{{question_mark_alt_text}}" />
             </button>
           </h2>
           <p class="dmb-report-page__dimensions-intro">
