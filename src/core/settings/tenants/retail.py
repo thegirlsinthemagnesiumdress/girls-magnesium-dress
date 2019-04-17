@@ -273,17 +273,17 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
         },
         ],
         LEVEL_3: [{
-            'header': 'Understand the value of your customers',
-            'text': 'Continue to refine the approach to quantifying customer lifetime value (LTV). Leverage customer LTV data to inform operational improvements and identify strategic growth opportunities.',
+            'header': 'Measure it to improve it',
+            'text': 'Continue to roll out analytics and reporting tools to support cross-functional and performance-based decision-making.',
         }, {
-            'header': 'Tailor your product strategy',
-            'text': 'Continually improve the approach to converting customers to purchasers based on updates to predictive models and product promotion strategies.',
+            'header': 'Understand what makes your customers tick',
+            'text': 'Enhance technological capabilities and data collection efforts to refine the understanding of customer segments and individual customer profiles. Continue to uncover insights that inform best ways to serve customers.',
         }, {
-            'header': 'Individualize experiences for loyal customers',
-            'text': 'Leverage your unique customer insights, and Individualize shopper experiences for loyal customers by using persistent customer identifiers and serving them tailored experiences based on their needs and preferences.',
+            'header': 'Individualize customer experiences',
+            'text': 'Use customer profile data to inform user interface and navigation decisions for individual customers, based on their needs and preferences; use unique insights to provide a tailored look and feel for loyal customers.',
         }, {
             'header': 'Data Activation Guide',
-            'text': 'Many Leading retailers have a sophisticated approach to enhancing the user experience but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading retailers have approached enhancing core sales activities.',
+            'text': 'Many Leading retailers have a sophisticated approach to improving the user experience but want to see what other retailers are doing. The Activating Use Cases section of the Data Activation Guide details how other Leading retailers have approached improving the user experience.',
             'cta': DATA_ACTIVATION_GUIDE_CTA,
         },
         ],
