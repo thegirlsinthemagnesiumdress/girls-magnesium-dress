@@ -164,5 +164,4 @@ def update_industries_benchmarks_task(request):
 
 
 def angular_templates(request, template_name):
-    print(">>>> ", template_name)
     return render(request, 'public/angular/{}.html'.format(template_name))
