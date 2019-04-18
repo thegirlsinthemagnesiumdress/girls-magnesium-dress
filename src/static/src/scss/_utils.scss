@@ -87,3 +87,18 @@ $positions: (top, bottom);
     }
   }
 }
+
+.dmb-dropdown-arrow {
+  appearance: none;
+  background-image: url('../img/dropdown-arrow.svg') !important;
+  background-position: right 10px center !important;
+  background-repeat: no-repeat !important;
+  background-size: 1em !important;
+  text-indent: 1px; // Hide default arrow Firefox
+  text-overflow: '';  // Hide default arrow Firefox
+
+  &--left {
+    background-position: left 10px center !important;
+    padding-left: calc(1em + 20px) !important;
+  }
+}
