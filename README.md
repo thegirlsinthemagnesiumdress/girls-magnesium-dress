@@ -88,11 +88,11 @@ Authentication will most likely be your @potatolondon.com account
 We're versioning js and css files, that's automatically handled by static_rev template tag. However we're generaring survey-{hash-of-content}.min.js and survey-{hash-of-content}.min.css that are fed to the Qualtrics Survey page. Please make sure to update the references there if there are any changes to those files ( through Qualtrics Look&Feel panel).
 
 # Qualtrics surveys
-We have a base survey **DMB Base Survey** to be used as a template. Make a copy of it for a new tenant staging survey, change the **Splash Page** block copy and the questions then copy it to create the production survey. Detailed instructions are below:
+We have a base survey **DMB Template Survey** to be used as a template. Make a copy of it for a new tenant staging survey, change the **Splash Page** block copy and the questions then copy it to create the production survey. Detailed instructions are below:
 
 ## Creating staging survey for new tenant
-1. From control panel click on the 3 dots of `DMB Base Survey`, then on **Copy Project**
-1. Change name to `<Tenant> Survey - Staging` and click **Copy Project**
+1. From control panel click on the 3 dots of **DMB Template Survey**, then on **Copy Project**
+1. Change name to `<Tenant> - Staging` and click **Copy Project**
 1. Open the survey and go to **Survey Flow**
 1. In **Set Embedded Data** change **tenant** & **tenant_slug** to the correct values
 1. Click **Save Flow** and go back to the survey edit view
