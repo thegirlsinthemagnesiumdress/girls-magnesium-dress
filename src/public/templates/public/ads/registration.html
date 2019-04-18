@@ -5,6 +5,7 @@
 {% block main %}
 <div class="dmb-registration"
     ng-controller="RegistrationCtrl as registrationCtrl"
+    ng-init="registrationCtrl.hideConfirmationPage = true"
     ng-cloak>
   <div class="h-c-page">
     <div class="h-c-grid" ng-if="!registrationCtrl.link">
