@@ -80,6 +80,10 @@
   .Separator {
     border-top: 1px solid $dmb-color-grey-zircon;
     display: block;
+
+    &:first-of-type {
+      display: none;
+    }
   }
 
 
