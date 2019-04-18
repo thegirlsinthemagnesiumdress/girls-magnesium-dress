@@ -1,3 +1,13 @@
+.dmb-survey-banner-container {
+  &.QuestionOuter {
+    padding-bottom: 0;
+
+    & + .Separator {
+      display: none;
+    }
+  }
+}
+
 .dmb-survey-banner {
   align-items: flex-start;
   display: flex;
@@ -22,10 +32,6 @@
   &-container {
     .InnerInner {
       padding-bottom: 0;
-    }
-
-    &.QuestionOuter + .Separator {
-      display: none;
     }
   }
 }

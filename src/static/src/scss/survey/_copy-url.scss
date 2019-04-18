@@ -38,6 +38,10 @@
     font-weight: 500;
     margin-top: 10px;
     width: 100%;
+  }
+
+  &__message-text {
+    display: none;
 
     &--success {
       color: $dmb-color-green-salem;
