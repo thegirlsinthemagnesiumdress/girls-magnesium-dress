@@ -216,4 +216,3 @@ For example, SVG file `src/static/src/svg/print-button.svg` can be used in the f
     ...
     </svg>
     ```
-
