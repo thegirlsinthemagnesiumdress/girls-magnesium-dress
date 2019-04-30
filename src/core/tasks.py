@@ -99,7 +99,12 @@ def _get_results(tenant, survey_definition):
         new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant)
         new_response_ids = [result.response_id for result in new_survey_results]
 
-        email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid'), item.get('Q_Language')) for item in responses
+        langs_dict = settings.QUALTRICS_LANGS
+
+        email_list = [(item.get(email_to),
+                       item.get(email_bcc),
+                       item.get('sid'),
+                       langs_dict.get(item.get('Q_Language'), langs_dict['EN'])) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
             send_emails_for_new_reports(email_list)
@@ -267,7 +272,10 @@ def render_email_template(tenant, context, language):
         html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
         text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
-        subject_rendered = subject_template.render(context).split("\n")[0]
+        try:
+            subject_rendered = subject_template.render(context).split("\n")[1]
+        except IndexError:
+            subject_rendered = subject_template.render(context).split("\n")[0]
         text_message_rendered = text_message_template.render(context)
         html_message_rendered = html_message_template.render(context)
     finally:

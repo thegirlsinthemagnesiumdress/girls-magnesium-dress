@@ -1296,3 +1296,37 @@ class RenderEmailTemplateTestCase(TestCase):
 
         self.assertEqual(first_call_args[0], 'es')
         self.assertEqual(second_call_args[0], 'en')
+
+    def test_render_email_template_english_rendered(self):
+        """When the template is rendered in another language, it's ativated first,
+        and later the english (default) is activated back again."""
+        survey = make_survey(sid='3', tenant='ads')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+        subject, text, html = render_email_template(survey.tenant, context, 'es')
+
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(text)
+        self.assertIsNotNone(html)
+
+    def test_render_email_template_not_existent_lanaguage_rendered(self):
+        """When the template is rendered in another language, it's ativated first,
+        and later the english (default) is activated back again."""
+        survey = make_survey(sid='3', tenant='ads')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        subject, text, html = render_email_template(survey.tenant, context, 'wrong')
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(text)
+        self.assertIsNotNone(html)
