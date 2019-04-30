@@ -12,7 +12,8 @@ from public.middleware import RedirectToDefaultTenant
 
 @override_settings(
     TENANTS=mocks.MOCKED_TENANTS,
-    ALLOWED_TENANTS=mocks.MOCKED_ALLOWED_TENANTS,
+    I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
+    NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
     TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
     DEFAULT_TENANT='tenant1',
 )

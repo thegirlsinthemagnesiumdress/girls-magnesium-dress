@@ -1,4 +1,8 @@
 {% load angular %}
+{% load i18n %}
+{% trans "Digital Maturity Benchmark" as digital_maturity %}
+{% trans "Data Maturity Benchmark" as data_maturity %}
+
 <div class="dmb-header glue-header h-c-header h-c-header--product-marketing-one-tier">
   <div class="h-c-header__bar">
     <!-- Both the first- and second-tier variants of the hamburger icon are
@@ -52,13 +56,15 @@
       <div class="h-c-header__product-logo">
         <a href="/{{ slug|ng_mark_safe }}"
             class="h-c-header__product-logo-link">
-          <span class="h-c-header__product-logo-text">{% if tenant|ng_mark_safe == 'ads' %}Digital{% else %}Data{% endif %} Maturity Benchmark</span>
+          <span class="h-c-header__product-logo-text">
+            {% if tenant|ng_mark_safe == 'ads' %}{{digital_maturity}}{% else %}{{data_maturity}}{% endif %}
+          </span>
         </a>
       </div>
 
       <a href="#jump-content" class="h-c-header__jump-to-content"
           data-glue-jump-link>
-        <span class="h-c-header__jump-to-content-text">Skip to content</span>
+        <span class="h-c-header__jump-to-content-text">{% trans "Skip to content" %}</span>
       </a>
     </div>
     {% comment %}
@@ -124,7 +130,7 @@
         <li class="h-c-header__cta-li h-c-header__cta-li--primary">
           <a href="{% url 'registration' slug|ng_mark_safe %}" class="h-c-header__cta-li-link
               h-c-header__cta-li-link--primary">
-            Start now
+            {% trans "Start now" %}
           </a>
         </li>
         {% endif %}
@@ -149,7 +155,7 @@
 
           <div class="h-c-header__drawer-product-logo">
             <div class="h-c-header__drawer-product-logo-link">
-              <span class="h-c-header__drawer-product-logo-text">Digital Maturity Benchmark</span>
+              <span class="h-c-header__drawer-product-logo-text">{% trans "Digital Maturity Benchmark" %}</span>
             </div>
           </div>
         </div>

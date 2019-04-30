@@ -58,8 +58,13 @@
     }
   }
 
+  &__feedback-link-wrapper {
+    align-self: center;
+  }
+
   &__feedback-link {
     align-items: center;
+    align-self: center;
     display: flex;
     font-weight: 400;
 

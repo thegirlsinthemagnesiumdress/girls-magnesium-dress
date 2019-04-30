@@ -67,7 +67,7 @@
                         <img alt="Google" src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" width="74" style="display: block; border: 0px;"/>
                       </td>
                       <td align="left" style="padding-left: 6px; color: #5F6368; font-family: Arial,Helvetica,sans-serif; font-size: 22px; font-style: normal; font-weight: 400;">
-                        Digital Maturity Benchmark
+                        {% trans "Digital Maturity Benchmark" %}
                       </td>
                     </tr>
                   </table>
@@ -83,7 +83,7 @@
 
                     <tr>
                       <td align="left" style="font-family: Google Sans, Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 28px; font-weight: 700; line-height: 32px; color: #444444; padding-top: 50px; padding-bottom: 40px; text-align: center;" class="headline">
-                          Your results are ready!
+                          {% trans "Your results are ready!" %}
                       </td>
                     </tr>
 
@@ -94,22 +94,22 @@
 
                     <tr>
                       <td align="center" style="font-family: Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 16px;line-height: 24px; color: #5F6368; font-style: 400; letter-spacing: 0px;padding-bottom: 40px;" class="body-line">
-                        <b>Country:</b> {{country}}<br />
-                        <b>Industry:</b> {{industry}}
+                        <b>{% trans "Country" %}:</b> {{country}}<br />
+                        <b>{% trans "Industry" %}:</b> {{industry}}
                     </tr>
 
                     <tr>
                       <td align="center" style="font-family: Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 16px;line-height: 24px; color: #5F6368; font-style: 400; letter-spacing: 0px;padding-bottom: 46px;" class="body-line">
-                        We've finished analysing your survey responses to find out where you can improve your marketing strategy.
+                        {% trans "We've finished analysing your survey responses to find out where you can improve your marketing strategy." %}
                         <br /><br />
-                        Click the button below to access your digital maturity report and see the results of your survey.
+                        {% trans "Click the button below to access your digital maturity report and see the results of your survey." %}
                       </td>
                     </tr>
 
                     <!-- CTA -->
                     <tr>
                         <td align="center" style="padding: 6px 0 40px;" class="btn-line">
-                          <table border="0" cellspacing="0" cellpadding="0" width="75%"><tr><td align="center" style="background-color: #1A73E8; border-radius: 2px;" bgcolor="#1A73E8" height="50"><a href="{{url}}" target="_blank" style="display: block; font-family: Roboto, Arial, Helvetica, sans-serif; color: #ffffff; font-weight: 500; font-size: 13pt; padding: 8px 22px; text-decoration: none; letter-spacing: 0.5px;"><span contenteditable="false">Access your report</span></a></td></tr></table>
+                          <table border="0" cellspacing="0" cellpadding="0" width="75%"><tr><td align="center" style="background-color: #1A73E8; border-radius: 2px;" bgcolor="#1A73E8" height="50"><a href="{{url}}" target="_blank" style="display: block; font-family: Roboto, Arial, Helvetica, sans-serif; color: #ffffff; font-weight: 500; font-size: 13pt; padding: 8px 22px; text-decoration: none; letter-spacing: 0.5px;"><span contenteditable="false">{% trans "Access your report" %}</span></a></td></tr></table>
                         </td>
                     </tr>
                     <!-- CTA -->
@@ -121,7 +121,7 @@
                     </tr>
                     <tr>
                       <td align="center" style="font-family: Robto, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; color: #444444; padding-bottom: 8px;"  class="body-line">
-                        Connect with Google
+                        {% trans "Connect with Google" %}
                       </td>
                     </tr>
                     <tr>
@@ -161,7 +161,7 @@
 
                         <tr>
                             <td class="footnote" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 16px; color: #999999; font-style: 400; letter-spacing: 0px; padding-bottom: 15px;" align="center">
-                               You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email.
+                               {% trans "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email." %}
                              </td>
                         </tr>
 

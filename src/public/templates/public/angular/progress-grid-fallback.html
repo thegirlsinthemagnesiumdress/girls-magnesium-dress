@@ -1,6 +1,6 @@
-goog.module('dmb.components.progressGridFallback.template');
-
-const template = `
+{% load i18n %}
+{% trans "Get more information about the industry average" as industry_avg_aria_text %}
+{% trans "Get more information about the industry best" as industry_best_aria_text %}
 <div class="dmb-progress-table">
   <div class="dmb-progress-table__col"></div>
   <div class="dmb-progress-table__col dmb-progress-table__col--level-0">
@@ -22,7 +22,7 @@ const template = `
     </div>
     <div class="dmb-progress-table__row-wrp">
       <div ng-if="industryReady && !industryAvg" class="dmb-progress-table__banner">
-        Industry average is not available yet, sorry!
+        {% trans "Industry average is not available yet, sorry!" %}
       </div>
       <div
         class="dmb-progress-table__row dmb-progress-table__row--ind-avg"
@@ -35,11 +35,11 @@ const template = `
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
             <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-                aria-label="Get more informations about the industry average">
+                aria-label="{{industry_avg_aria_text}}">
               <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
                 <use xlink:href="#info-dark"></use>
               </svg>
-            </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">Industry average</span>
+            </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">{% trans "Industry average" %}</span>
           </span>
           <span class="dmb-progress-table__rating" aria-label="industry average rating">{[industryAvg|number:1]}</span>
         </div>
@@ -47,7 +47,7 @@ const template = `
     </div>
     <div class="dmb-progress-table__row-wrp">
       <div ng-if="industryReady && !industryBest" class="dmb-progress-table__banner">
-        Industry best is not available yet, sorry!
+        {% trans "Industry best is not available yet, sorry!" %}
       </div>
       <div class="dmb-progress-table__row dmb-progress-table__row--ind-best"
           ng-class="{
@@ -59,11 +59,11 @@ const template = `
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
             <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-                aria-label="Get more informations about the Industry best">
+                aria-label="{{industry_best_aria_text}}">
               <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
                 <use xlink:href="#info-dark"></use>
               </svg>
-            </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">Industry best</span>
+            </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">{% trans "Industry best" %}</span>
           </span>
           <span class="dmb-progress-table__rating" aria-label="industry best rating">{[industryBest|number:1]}</span>
         </div>
@@ -80,6 +80,3 @@ const template = `
     <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressGridCtrl.levels[3]]}</h3>
   </div>
 </div>
-`;
-
-exports = template;

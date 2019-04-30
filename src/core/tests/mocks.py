@@ -48,13 +48,14 @@ MOCKED_DIMENSIONS_WEIGHTS = {
     }
 }
 
-MOCKED_DIMENSION_TITLES = {
-    'ads': 'Assets and ads',
-    'access': 'Access',
-    'audience': 'Audience',
-    'attribution': 'Attribution',
-    'automation': 'Automation',
-    'organization': 'Organization',
+MOCKED_CONTENT_DATA = {
+    'levels': {},
+    'level_descriptions': {},
+    'dimensions': [],
+    'dimension_labels': {},
+    'dimension_headers_descriptions': {},
+    'dimension_level_description': {},
+    'dimension_level_recommendations': {},
 }
 
 qualtrics_export = {
@@ -233,8 +234,9 @@ MOCKED_TENANTS = {
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': MOCKED_WEIGHTS,
-        'DIMENSION_TITLES': MOCKED_DIMENSION_TITLES,
+        'CONTENT_DATA': MOCKED_CONTENT_DATA,
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'i18n': True,
     },
     'tenant2': {
         'key': 'tenant2',
@@ -248,9 +250,10 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': 'Q4',
         'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS,
-        'DIMENSION_TITLES': MOCKED_DIMENSION_TITLES,
+        'CONTENT_DATA': MOCKED_CONTENT_DATA,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'i18n': False,
     },
     'tenant3': {
         'key': 'tenant3',
@@ -264,12 +267,14 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': None,
         'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS[1],
-        'DIMENSION_TITLES': MOCKED_DIMENSION_TITLES,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'i18n': False,
     }
 }
-MOCKED_ALLOWED_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()])
+MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])
+MOCKED_NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if not v['i18n']])
+
 MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 qualtrics_text_export = {

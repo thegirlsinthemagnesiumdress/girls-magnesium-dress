@@ -30,6 +30,18 @@ Working branches are organized as follows:
 
 In order for the backend to be able to call Qualtrics APIs, a valid token needs to be configured, all information needed can be found on [DMB Wiki page](https://wiki.p.ota.to/Digital_Maturity_Benchmark).
 
+# Add locale
+Before a new locale can work correctly it needs to be explicitly called for that language. For instance, if we want to configure `it` as a new language, we should run:
+  ```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local -l  --no-wrap --no-location```
+
+Once the previous command has been run, all the existing locales can be maintained by running:
+```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local --all --no-wrap --no-location```
+
+this will update the existing locales, generating new `.po` files containing the new translations.
+
+After the messages for the locale have been mapped with `makemessages` command, it can be sent out for translation. Once the translation is done, we need to compile the messages in order for django to be using the new translation efficiently. To compile the translations for a specific locale:
+```./manage.py compilemessages -l it```
+
 # Frontend Setup
 
 The frontend uses gulp for building assets, however it is linked to Django via management commands which pass additional information (e.g. STATIC_ROOT, DEBUG) down to Gulp.

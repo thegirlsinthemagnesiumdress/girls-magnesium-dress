@@ -1,6 +1,6 @@
-goog.module('dmb.components.progressGrid.template');
-
-const template = `
+{% load i18n %}
+{% trans "Get more information about the industry average" as industry_avg_aria_text %}
+{% trans "Get more information about the industry best" as industry_best_aria_text %}
 <div
     class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.getLevel(ratingMain)]}">
 
@@ -8,29 +8,29 @@ const template = `
     <ul class="h-u-visually-hidden">
       <li>
         <span ng-if="!ratingMain">
-          Fetching your company rating...
+          {% trans "Fetching your company rating..." %]
         </span>
         <span ng-if="ratingMain">
-          Your company, {[companyName]}, has a rating of {[ratingMain|number:1]},
-          which is a maturity level of {[progressGridCtrl.getLevelName(ratingMain)]}.
+          {% trans "Your company, {[companyName]}, has a rating of {[ratingMain|number:1]},
+          which is a maturity level of {[progressGridCtrl.getLevelName(ratingMain)]}." %}
         </span>
       </li>
       <li>
         <span ng-if="!industryReady">
-          Fetching industry average...
+          {% trans "Fetching industry average..." %}
         </span>
         <span ng-if="industryReady">
-          The industry average is {[industryAvg|number:1]},
-          which is a maturity level of {[progressGridCtrl.getLevelName(industryAvg)]}.
+          {% trans "The industry average is {[industryAvg|number:1]},
+          which is a maturity level of {[progressGridCtrl.getLevelName(industryAvg)]}." %}
         </span>
       </li>
       <li>
         <span ng-if="!industryReady">
-          Fetching industry best...
+          {% trans "Fetching industry best..." %}
         </span>
         <span ng-if="industryReady">
-          The industry best is {[industryBest|number:1]},
-          which is a maturity level of {[progressGridCtrl.getLevelName(industryBest)]}.
+          {% trans "The industry best is {[industryBest|number:1]},
+                    which is a maturity level of {[progressGridCtrl.getLevelName(industryBest)]}." %}
         </span>
       </li>
     </ul>
@@ -57,23 +57,23 @@ const template = `
     <button
         class="dmb-h-hidden--print"
         dmb-side-panel-trigger="#dmb-industry-side-panel"
-        aria-label="Get more information about the industry average">
+        aria-label="{{industry_avg_aria_text}}">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
           <use xlink:href="#info"></use>
         </svg>
     </button>
-    <span aria-hidden="true">Industry average</span>
+    <span aria-hidden="true">{% trans "Industry average" %}</span>
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-best h-u-font-weight-regular">
     <button
         class="dmb-h-hidden--print"
         dmb-side-panel-trigger="#dmb-industry-side-panel"
-        aria-label="Get more information about the industry best">
+        aria-label="{{industry_best_aria_text}}">
        <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
           <use xlink:href="#info"></use>
         </svg>
     </button>
-    <span aria-hidden="true">Industry best</span>
+    <span aria-hidden="true">{% trans "Industry best" %}</span>
   </div>
 
   <!-- vertical bars -->
@@ -127,25 +127,11 @@ const template = `
   <div
       class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-avg h-u-font-weight-regular"
       ng-if="industryReady && !industryAvg">
-    Not available yet
+    {% trans "Not available yet" %}
   </div>
   <div
       class="dmb-progress-grid__banner dmb-progress-grid__banner--ind-best h-u-font-weight-regular"
       ng-if="industryReady && !industryBest">
-    Not available yet
+    {% trans "Not available yet" %}
   </div>
 </div>
-`;
-
-exports = template;
-
-/* EXAMPLE HTML
-
-<dmb-progress-grid
-    data-company-name="{[reportCtrl.survey.company_name]}"
-    data-rating-main="reportCtrl.result.dmb"
-    data-industry-avg="reportCtrl.industryResult.dmb"
-    data-industry-best="reportCtrl.industryResult.dmb_bp"
-    data-industry-ready="!!reportCtrl.industryResult">
-</dmb-progress-grid>
-*/

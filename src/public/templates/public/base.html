@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load static_rev %}
 {% load angular %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en" id="dmb-{{tenant|ng_mark_safe}}">
 <head ng-csp>
@@ -41,7 +42,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500,200|Product+Sans:400&lang=en" rel="stylesheet">
 
-    <title>Data Maturity Benchmark</title>
+    <title>{% trans "Digital Maturity Benchmark" %}</title>
 </head>
 <body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}
@@ -67,9 +68,9 @@
     id="bootstrap-data"
     class="ng-non-bindable"
     data-bootstrap-data="{% block bootstrap_data %}{% endblock %}"
-    data-tenant="{{ tenant|ng_mark_safe }}"
-    data-dimensions="{{ dimensions|ng_mark_safe }}"
-    data-static-url="{% static '' %}">
+    data-content-data="{{ content_data|ng_mark_safe }}"
+    data-static-url="{% static '' %}"
+    data-tenant="{{ tenant|ng_mark_safe }}">
 </div>
 
 {% if debug %}

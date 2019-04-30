@@ -5,7 +5,6 @@ git+https://github.com/potatolondon/django-gulpify.git
 django>=1.11,<2.0
 django-secure==1.0.1
 django-csp==2.0.3
-django-session-csrf==0.7.1
 django-inline-svg==0.1.1
 GoogleAppEngineCloudStorageClient==1.9.22.1
 djangorestframework==3.7.7

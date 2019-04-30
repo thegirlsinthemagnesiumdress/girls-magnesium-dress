@@ -1,7 +1,7 @@
 goog.module('dmb.components.progressTable.directive');
 
 const progTableCtrl = goog.require('dmb.components.progressTable.controller');
-const progressTableTemplate = goog.require('dmb.components.progressTable.template');
+const progressTableTemplateUrl = '/angular/progress-table';
 
 /**
  * Side panel directive.
@@ -20,7 +20,7 @@ function ReportDirective() {
     },
     controller: progTableCtrl.main,
     controllerAs: progTableCtrl.CONTROLLER_AS_NAME,
-    template: progressTableTemplate,
+    templateUrl: progressTableTemplateUrl,
   };
 }
 

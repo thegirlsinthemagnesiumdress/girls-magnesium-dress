@@ -1,7 +1,5 @@
-goog.module('dmb.components.dimensionTab.template');
-
-/* eslint-disable max-len */
-const dimensionTabTemplate = `
+{% load i18n %}
+{% trans "logo" as logo_alt_text %}
 <div
     class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[dimensionTabCtrl.floorDMB]}">
 
@@ -10,7 +8,7 @@ const dimensionTabTemplate = `
       <div class="dmb-dimension-tabs__logo-col h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
         <img
             ng-src="{[dimensionTabCtrl.dmbStaticUrl]}img/{[dimensionTabCtrl.tenant]}/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
-            alt="{[dmbDimensionTab]} logo"
+            alt="{[dmbDimensionTab]} {{logo_alt_text}}"
             class="dmb-dimension-tabs__logo">
       </div>
       <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
@@ -31,7 +29,7 @@ const dimensionTabTemplate = `
           {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB]]}
         </div>
         <div class="dmb-dimension-tabs__results-subheading h-u-font-weight-regular">
-          in this dimension
+          {% trans "in this dimension" %}
         </div>
         <div class="dmb-dimension-tabs__results-value h-c-headline h-c-headline--three">
           {[dimensionTabCtrl.dmb|number:1]}/{[dimensionTabCtrl.levelsTotal]}
@@ -59,25 +57,25 @@ const dimensionTabTemplate = `
       <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four">
         <img
             ng-src="{[dimensionTabCtrl.dmbStaticUrl]}img/{[dimensionTabCtrl.tenant]}/dimensions/{[dimensionTabCtrl.dimensionClassNames[dmbDimensionTab]]}.svg"
-            alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} logo">
+            alt="{[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]} {{logo_alt_text}}">
         {[dimensionTabCtrl.dimensionHeaders[dmbDimensionTab]]}
       </h4>
       <h4 class="h-c-headline h-c-headline--two">
         <span ng-if="dimensionTabCtrl.floorDMB < (dimensionTabCtrl.levelsTotal - 1)">
-          You could be {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB + 1]]}
+          {% trans "You could be" %} {[dimensionTabCtrl.levels[dimensionTabCtrl.floorDMB + 1]]}
         </span>
         <span ng-if="dimensionTabCtrl.floorDMB === (dimensionTabCtrl.levelsTotal - 1)">
-          Congratulations, you're in the top group for data maturity
+          {% trans "Congratulations, you're in the top group for data maturity" %}
         </span>
       </h4>
 
       <div class="dmb-dimension-tabs__recommendations">
         <h4 class="h-c-headline h-c-headline--four">
           <span ng-if="dimensionTabCtrl.floorDMB < (dimensionTabCtrl.levelsTotal - 1)">
-            Here's how you get there:
+            {% trans "Here's how you get there:" %}
           </span>
           <span ng-if="dimensionTabCtrl.floorDMB === (dimensionTabCtrl.levelsTotal - 1)">
-            Here's how to get even better:
+            {% trans "Here's how to get even better:" %}
           </span>
         </h4>
 
@@ -108,7 +106,3 @@ const dimensionTabTemplate = `
 
 
 </div>
-`;
-/* eslint-enable max-len */
-
-exports = dimensionTabTemplate;

@@ -1,10 +1,12 @@
 {% load angular %}
+{% load i18n %}
+
 <footer class="dmb-footer h-c-footer h-c-footer--topmargin h-c-footer--simple {{footerClass}}"
     id="footer-simple" {{footerAttribute}}>
   <section class="h-c-footer__global">
     <div class="dmb-footer__tenant-footer">
       <p class="dmb-footer__tenant-footer-title h-c-headline h-c-headline--subhead">
-        Looking to benchmark digital maturity for a different challenge or industry?
+        {% trans "Looking to benchmark digital maturity for a different challenge or industry?" %}
       </p>
       <input
           id="dmb-read-more-1"
@@ -15,30 +17,30 @@
           class="dmb-footer__tenant-footer-label dmb-read-more__label"
           for="dmb-read-more-1"
           aria-hidden="true">
-        Read
-        <span class="dmb-read-more__more">more</span>
-        <span class="dmb-read-more__less">less</span>
+        {% trans "Read" %}
+        <span class="dmb-read-more__more">{% trans "more" %}</span>
+        <span class="dmb-read-more__less">{% trans "less" %}</span>
       </label>
       <ul
           class="dmb-footer__tenant-footer-list dmb-read-more__content">
         {% if tenant|ng_mark_safe != 'ads' %}
         <li class="dmb-footer__tenant-footer-list-item">
           <a href="/advertisers">
-            Advertiser Marketing Maturity
+            {% trans "Advertiser Marketing Maturity" %}
           </a>
         </li>
         {% endif %}
         {% if tenant|ng_mark_safe != 'news' %}
-          <li class="dmb-footer__tenant-footer-list-item">
-            <a href="/news">
-              News Publisher Data Transformation
-            </a>
-          </li>
+        <li class="dmb-footer__tenant-footer-list-item">
+          <a href="/news">
+            {% trans "News Publisher Data Transformation" %}
+          </a>
+        </li>
         {% endif %}
         {% if tenant|ng_mark_safe != 'retail' %}
           <li class="dmb-footer__tenant-footer-list-item">
             <a href="/retaildatatransformation">
-              Retail Data Transformation
+              {% trans "Retail Data Transformation" %}
             </a>
           </li>
         {% endif %}
@@ -54,29 +56,58 @@
     </div>
     <ul class="dmb-footer__link-list h-c-footer__global-links h-no-bullet">
       <li class="h-c-footer__global-links-list-item">
-        <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/privacy/">Privacy</a>
+        <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/privacy/">{% trans "Privacy" %}</a>
       </li>
       <li class="h-c-footer__global-links-list-item">
-        <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/terms/">Terms</a>
+        <a class="h-c-footer__link" href="https://www.google.com/intl/en/policies/terms/">{% trans "Terms" %}</a>
       </li>
       <li class="h-c-footer__global-links-list-item">
-        <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/">About Google</a>
+        <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/">{% trans "About Google" %}</a>
       </li>
       <li class="h-c-footer__global-links-list-item">
-        <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/products/">Google Products</a>
+        <a class="h-c-footer__link" href="https://www.google.com/intl/en/about/products/">{% trans "Google Products" %}</a>
       </li>
     </ul>
-    <div>
-      <a
-          class="dmb-footer__feedback-link dmb-h-alt-font"
-          href="mailto:{% if tenant|ng_mark_safe == 'ads' %}digital{% else %}data-{% endif %}maturity@google.com"
-          target="_blank">
-      <svg width="20px" height="16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M18 0H2C.9 0 .01.9.01 2L0 14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L2.4 4.25a.85.85 0 1 1     .9-1.44L10 7l6.7-4.19a.85.85 0 1 1 .9 1.44z"
-          fill-rule="nonzero" />
-      </svg>Contact us
-      </a>
-    </div>
+
+    <ul class="h-c-footer__global-links h-c-footer__global-links--extra h-no-bullet">
+      <li class="dmb-footer__feedback-link-wrapper h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
+        <a
+            class="dmb-footer__feedback-link h-c-footer__link"
+            href="mailto:{% if tenant|ng_mark_safe == 'ads' %}digital{% else %}data{% endif %}-maturity@google.com"
+            target="_blank"
+          >
+          <svg width="20px" height="16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 0H2C.9 0 .01.9.01 2L0 14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L2.4 4.25a.85.85 0 1 1     .9-1.44L10 7l6.7-4.19a.85.85 0 1 1 .9 1.44z"
+              fill-rule="nonzero" />
+          </svg>{% trans "Contact us" %}
+        </a>
+      </li>
+      {% if tenant|ng_mark_safe == 'ads' %}
+      <li class="h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
+        <label for="lang-selector" class="h-u-visually-hidden">{% trans "Change language or region" %}</label>
+          {% get_language_info_list for LANGUAGES as languages %}
+          <form
+              action="{% url 'set_language' %}"
+              method="post"
+              ng-controller="LanguageSelectorCtrl as languageSelectorCtrl">
+            {% csrf_token %}
+            <select
+                name="language"
+                ng-model="language"
+                ng-change="languageSelectorCtrl.changeLanguage()"
+                ng-init="language = '{{LANGUAGE_CODE}}'"
+                class="h-c-form__dropdown h-c-footer__lang-dropdown">
+              {% for language in languages %}
+                <option value="{{ language.code }}"
+                    {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
+                    {{ language.name_local|title }}
+                </option>
+              {% endfor %}
+            </select>
+          </form>
+      </li>
+      {% endif %}
+    </ul>
   </section>
 </footer>

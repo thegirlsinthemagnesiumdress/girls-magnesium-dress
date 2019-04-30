@@ -6,7 +6,7 @@ import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
-from core.tests.mocks import INDUSTRIES, MOCKED_ALLOWED_TENANTS, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
+from core.tests.mocks import INDUSTRIES, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
 from core.test import reload_urlconf
 
 
@@ -219,7 +219,6 @@ class CreateSurveyTest(APITestCase):
 @override_settings(
     INDUSTRIES=INDUSTRIES,
     TENANTS=MOCKED_TENANTS,
-    ALLOWED_TENANTS=MOCKED_ALLOWED_TENANTS,
     TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
     MIN_ITEMS_INDUSTRY_THRESHOLD=1,
     MIN_ITEMS_BEST_PRACTICE_THRESHOLD=2

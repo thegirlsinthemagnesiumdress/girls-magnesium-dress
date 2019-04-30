@@ -14,18 +14,36 @@ from django.http import Http404
 from core.response_detail import get_response_detail
 from core.conf.utils import flatten, get_tenant_slug
 import json
+from django.utils.translation import ugettext as _
+from core.encoders import LazyEncoder
 
 
-INDUSTRIES_TUPLE = flatten(settings.HIERARCHICAL_INDUSTRIES)
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
 
+def _dump_tenant_content_data(tenant):
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+
+    data = {
+        'levels': content_data['levels'],
+        'level_descriptions': content_data['level_descriptions'],
+        'dimensions': content_data['dimensions'],
+        'dimension_labels': content_data['dimension_labels'],
+        'dimension_headers_descriptions': content_data['dimension_headers_descriptions'],
+        'dimension_level_description': content_data['dimension_level_description'],
+        'dimension_level_recommendations': content_data['dimension_level_recommendations'],
+    }
+
+    return json.dumps(data, cls=LazyEncoder)
+
+
 def registration(request, tenant):
+    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
     return render(request, 'public/{}/registration.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
-        'industries': INDUSTRIES_TUPLE,
+        'content_data': _dump_tenant_content_data(tenant),
+        'industries': industries,
         'countries': COUNTRIES_TUPLE,
     })
 
@@ -38,7 +56,7 @@ def report_static(request, tenant, sid):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'content_data': _dump_tenant_content_data(tenant),
     })
 
 
@@ -47,7 +65,7 @@ def report_result_static(request, tenant, response_id):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'content_data': _dump_tenant_content_data(tenant),
     })
 
 
@@ -55,7 +73,7 @@ def index_static(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
     })
 
@@ -64,7 +82,7 @@ def thank_you(request, tenant):
     slug = get_tenant_slug(tenant)
     return render(request, 'public/{}/thank-you.html'.format(tenant), {
         'tenant': tenant,
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
     })
 
@@ -72,6 +90,7 @@ def thank_you(request, tenant):
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
+    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
 
     surveys = Survey.objects.filter(tenant=tenant)
     if not request.user.is_super_admin:
@@ -83,9 +102,9 @@ def reports_admin(request, tenant):
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
-        'industries': INDUSTRIES_TUPLE,
+        'industries': industries,
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
         'bootstrap_data': JSONRenderer().render({
@@ -102,13 +121,13 @@ def result_detail(request, tenant, response_id):
     result_detail = get_response_detail(
         survey_result.survey_definition.content,
         survey_result.raw,
-        settings.TENANTS[tenant]['DIMENSIONS'],
+        settings.TENANTS[tenant]['recommendations'],
         settings.TENANTS[tenant]['DIMENSION_TITLES']
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'dimensions': json.dumps(settings.TENANTS[tenant]['DIMENSION_TITLES']),
+        'content_data': _dump_tenant_content_data(tenant),
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
@@ -118,22 +137,22 @@ def result_detail(request, tenant, response_id):
 def handler404(request, *args, **kwargs):
     return render(request, 'public/error.html', {
         'title': '404',
-        'subtitle': "Woops.. that page doesn't seem to exist, or the link is broken.",
-        'text': 'Try returning to the homepage.',
-        'cta': 'Return to homepage',
+        'subtitle': _('Woops.. that page doesn\'t seem to exist, or the link is broken.'),
+        'text': _('Try returning to the homepage.'),
+        'cta': _('Return to homepage'),
         'tenant': '',
         'slug': '',
-        'dimensions': '',
+        'content_data': '',
     }, status=404)
 
 
 def handler500(request, *args, **kwargs):
     return render(request, 'public/error.html', {
         'title': '500',
-        'subtitle': 'Woops.. there was an internal server error.',
-        'text': 'Try returning to the homepage.',
-        'cta': 'Return to homepage',
+        'subtitle': _('Woops.. there was an internal server error.'),
+        'text': _('Try returning to the homepage.'),
+        'cta': _('Return to homepage'),
         'tenant': '',
         'slug': '',
-        'dimensions': '',
+        'content_data': '',
     }, status=500)
