@@ -12,6 +12,7 @@ from core.tasks import (
     _get_definition,
     sync_qualtrics,
     calculate_industry_benchmark,
+    render_email_template,
 )
 from djangae.test import TestCase
 from mocks import (
@@ -532,7 +533,7 @@ class SendEmailTestCase(TestCase):
     def test_email_not_send_to_invalid(self, email_mock):
         """`SurveyResult` email is not sent, because `to` field is invalid."""
         email_list = [
-            ('invalidemail', 'test@example.com', '1')
+            ('invalidemail', 'test@example.com', '1', 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -540,7 +541,7 @@ class SendEmailTestCase(TestCase):
 
         # if 'to' is not set, then don't send email
         email_list = [
-            (None, 'test@example.com', '1')
+            (None, 'test@example.com', '1', 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -550,7 +551,7 @@ class SendEmailTestCase(TestCase):
     def test_email_is_correctly_sent_bcc_invalid(self, email_mock):
         """`SurveyResult` email is sent to `to` recipient, but not to `bbc` because `bcc` field is invalid."""
         email_list = [
-            ('test@example.com', 'invalidemail', '1')
+            ('test@example.com', 'invalidemail', '1', 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -560,7 +561,7 @@ class SendEmailTestCase(TestCase):
     def test_email_is_correctly_sent_with_bcc(self, email_mock):
         """`SurveyResult` email is sent correctly."""
         email_list = [
-            ('test@example.com', 'test@example.com', '1')
+            ('test@example.com', 'test@example.com', '1', 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -570,7 +571,7 @@ class SendEmailTestCase(TestCase):
     def test_email_is_correctly_sent_no_bcc(self, email_mock):
         """`SurveyResult` email is sent to `to` recipient, but not to `bbc` because `bcc` field is invalid."""
         email_list = [
-            ('test@example.com', None, '1')
+            ('test@example.com', None, '1', 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -580,8 +581,8 @@ class SendEmailTestCase(TestCase):
     def test_email_is_correctly_sent_multiple_emails(self, email_mock):
         """`SurveyResult` email is sent correctly, when email_list has more than one element."""
         email_list = [
-            ('test@example.com', 'test@example.com', '1'),
-            ('test2@example.com', 'test3@example.com', '2')
+            ('test@example.com', 'test@example.com', '1', 'en'),
+            ('test2@example.com', 'test3@example.com', '2', 'es')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -591,7 +592,7 @@ class SendEmailTestCase(TestCase):
     def test_email_is_not_sent_if_surevy_does_not_exist(self, email_mock):
         """`SurveyResult` email is not sent, when `Survey` object does not exist."""
         email_list = [
-            ('test@example.com', 'test@example.com', '3')
+            ('test@example.com', 'test@example.com', '3', 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -602,7 +603,7 @@ class SendEmailTestCase(TestCase):
     def test_email_is_sent_using_tenant_specific_templates(self, get_template_mock, email_mock):
         survey = make_survey(sid='3', tenant='ads')
         email_list = [
-            ('test@example.com', 'test@example.com', survey.sid)
+            ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
 
         send_emails_for_new_reports(email_list)
@@ -613,13 +614,41 @@ class SendEmailTestCase(TestCase):
 
         survey = make_survey(sid='4', tenant='news')
         email_list = [
-            ('test@example.com', 'test@example.com', survey.sid)
+            ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
 
         send_emails_for_new_reports(email_list)
         for call in get_template_mock.call_args_list[3:]:
             template_name = call[0][0]
             self.assertIn('news', template_name)
+
+    @mock.patch('google.appengine.api.mail.EmailMessage.send')
+    @mock.patch('core.tasks.render_email_template',
+                return_value=('subject', 'text vesion', '<html>html version</html>'))
+    def test_email_is_sent_using_language_specific_templates(self, render_email_template_mock, email_mock):
+        survey = make_survey(sid='3', tenant='ads')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid, 'en')
+        ]
+
+        send_emails_for_new_reports(email_list)
+
+        args, kwargs = render_email_template_mock.call_args
+        tenant, context, lang = args
+        self.assertEqual(tenant, 'ads')
+        self.assertEqual(lang, 'en')
+
+        survey = make_survey(sid='4', tenant='news')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid, 'es')
+        ]
+
+        send_emails_for_new_reports(email_list)
+
+        args, kwargs = render_email_template_mock.call_args
+        tenant, context, lang = args
+        self.assertEqual(tenant, 'news')
+        self.assertEqual(lang, 'es')
 
 
 @override_settings(
@@ -1209,3 +1238,61 @@ class CalculateIndustryBenchmark(TestCase):
         self.assertAlmostEqual(float(ib.dmb_value), 2.5, places=2)
         # max of survey result dmb
         self.assertAlmostEqual(float(ib.dmb_bp_value), 3.9, places=2)
+
+
+class RenderEmailTemplateTestCase(TestCase):
+
+    @mock.patch('django.utils.translation.activate')
+    @mock.patch('core.tasks.get_template')
+    def test_render_email_template_english_language(self, get_template_mock, translation_mock):
+
+        survey = make_survey(sid='3', tenant='ads')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        render_email_template(survey.tenant, context, 'en')
+
+        for call in get_template_mock.call_args_list:
+            template_name = call[0][0]
+            self.assertIn('ads', template_name)
+
+        all_calls = translation_mock.call_args_list
+
+        first_call_args, _ = all_calls[0]
+        second_call_args, _ = all_calls[1]
+
+        self.assertEqual(first_call_args[0], 'en')
+        self.assertEqual(second_call_args[0], 'en')
+
+    @mock.patch('django.utils.translation.activate')
+    @mock.patch('core.tasks.get_template')
+    def test_render_email_template_other_language(self, get_template_mock, translation_mock):
+        """When the template is rendered in another language, it's ativated first,
+        and later the english (default) is activated back again."""
+        survey = make_survey(sid='3', tenant='ads')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        render_email_template(survey.tenant, context, 'es')
+
+        for call in get_template_mock.call_args_list:
+            template_name = call[0][0]
+            self.assertIn('ads', template_name)
+
+        all_calls = translation_mock.call_args_list
+
+        first_call_args, _ = all_calls[0]
+        second_call_args, _ = all_calls[1]
+
+        self.assertEqual(first_call_args[0], 'es')
+        self.assertEqual(second_call_args[0], 'en')
