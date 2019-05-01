@@ -8,7 +8,7 @@ from django.urls import reverse
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.managers import NotExcludedFromBestPracticeManager
-from core.conf.utils import flatten, get_tenant_slug
+from core.conf.utils import flatten, get_tenant_slug, version_info
 
 
 class User(GaeAbstractDatastoreUser):
@@ -56,8 +56,19 @@ class Survey(models.Model):
         it to match the data against companies.
         """
         qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
-        survey_url = settings.QUALTRICS_BASE_SURVEY_URL.format(survey_id=qualtrics_survey_id)
-        return '{}?sid={}'.format(survey_url, self.sid)
+        version, is_nightly = version_info(settings.HTTP_HOST)
+
+        if is_nightly:
+            survey_url = settings.QUALTRICS_BASE_SURVEY_PREVIEW_URL.format(survey_id=qualtrics_survey_id)
+        else:
+            survey_url = settings.QUALTRICS_BASE_SURVEY_URL.format(survey_id=qualtrics_survey_id)
+
+        survey_link = '{}?sid={}'.format(survey_url, self.sid)
+
+        if version:
+            survey_link = '{}&ver={}'.format(survey_link, version)
+
+        return survey_link
 
     @property
     def link_sponsor(self):

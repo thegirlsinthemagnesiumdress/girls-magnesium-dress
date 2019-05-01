@@ -1,17 +1,4 @@
-## Survey Flow
-**Set Embedded Data**:
-
-`base_url`:
-Dev: `http://localhost:8000`
-Staging: `https://gweb-digitalmaturity-staging.appspot.com`
-Production: `https://digitalmaturitybenchmark.withgoogle.com`
-
-`static_url`:
-Dev: `http://localhost:8000/devstatic`
-Staging: `https://gweb-digitalmaturity-staging.appspot.com/static`
-Production: `https://digitalmaturitybenchmark.withgoogle.com/static`
-
-
+# Survey settings
 ## Look & Feel
 ### Theme
 **Dynamic Themes**: Select *Google* from dropdown list then select *Blank* theme
@@ -19,9 +6,13 @@ Production: `https://digitalmaturitybenchmark.withgoogle.com/static`
 ### Layout
 **Layout**: *Flat*
 
+
 ### General
-**Header**: Add the following script tag:
-`<script src="${e://Field/base_url}/static/js/qualtrics-survey.min.js"></script>`
+**Header**: Add the following HTML:
+```html
+<link rel="stylesheet" href="${e://Field/static_url}/css/qualtrics-survey.css" />
+<script src="${e://Field/base_url}/static/js/qualtrics-survey.min.js"></script>`
+```
 
 **Footer**: Use `./footer.html`
 
@@ -32,45 +23,74 @@ Production: `https://digitalmaturitybenchmark.withgoogle.com/static`
 **Question Spacing:** *Comfortable*
 **Question Text**: *16px*
 **Answer Text**: *16px*
+**Custom CSS**:
+```
+#LogoContainer {
+  display: none
+}
+```
 
-**External CSS**
-Cannot use embedded data here so these must be set manually. Use one of the following:
-Dev: `http://localhost:8000/devstatic/css/qualtrics-survey.css`
-Staging: `https://gweb-digitalmaturity-staging.appspot.com/static/css/qualtrics-survey.css`
-Production: `https://digitalmaturitybenchmark.withgoogle.com/static/css/qualtrics-survey.css`
+
+## Survey Flow
+**Set Embedded Data blocks**:
+First **Set Embedded Data** block:
+`base_url`: `https://digitalmaturitybenchmark.withgoogle.com`
+`static_url`: `${e://Field/base_url}/static`
+
+Second **Set Embedded Data** block
+`base_url`: `https://${e://Field/ver}-dot-gweb-digitalmaturity-staging.appspot.com`
+`static_url`: `${e://Field/base_url}/static`
+
+Third **Set Embedded Data** block
+`base_url`: `https://gweb-digitalmaturity-staging.appspot.com`
+`static_url`: `${e://Field/base_url}/static`
+
+Fourth **Set Embedded Data** block
+`base_url`: `http://localhost:3000`
+`static_url`: `${e://Field/base_url}/devstatic`
 
 
-## Survey Options
-### Survey Termination
+**Web Service block**
+`URL`: `https://gweb-digitalmaturity-staging.appspot.com`
+`Authorization`: `Token <token>`
+where `<token>` is the auth token used by Django REST framework that can be obtained from the Google Cloud Platform `authtoken_token` from [here](https://console.cloud.google.com/datastore/entities;kind=authtoken_token;ns=__$DEFAULT$__/query/kind?project=gweb-digitalmaturity)
 
-**Redirects to full URL**:
-Cannot use embedded data here so these must be set manually. Use one of the following, changing `<TENANT>` to the correct tenant:
-Dev: `http://localhost:8000/<TENANT>/thank-you`
-Staging: `https://gweb-digitalmaturity-staging.appspot.com/<TENANT>/thank-you`
-Production: `https://digitalmaturitybenchmark.withgoogle.com/<TENANT>/thank-you`
 
+**End of Survey block**
+Select **Customise**, check **Override Survey Options** and select **Redirect to a URL** and add
+`${e://Field/base_url}/thank-you`
 
 ## Question Components
 ### Hero
 1. Use `./hero.html` as question HTML
-1. Use `./hero.js` as the question JS
+1. Edit question JavaScript and add `./hero.js`
 
 ### User Details
-Edit Question JavaScript and add `./user-details.js`
+Edit question JavaScript and add `user-details.js`
 
 
 ### Privacy Policy
-1. Use `./privacy-policy.html` as question HTML
-1. Use `./privacy-policy.js` as the question JS
+1. Use `privacy-policy.html` as question HTML
+1. Edit question JavaScript and add `privacy-policy.js`
 
 
 ### Banner
-1. Use `./banner.html` as question HTML
-1. Use `./banner.js` as the question JS
+1. Use `banner.html` as question HTML
+1. Edit Question JavaScript and add `banner.js`
 1. Copy question to start of each subsequent block
 
+
 ### Dimension heading
-1. Use `./dimension-heading.html` as question HTML
+1. Use `dimension-heading.html` as question HTML
 1. Replace `<!-- DIMENSION NAME GOES HERE -->` with dimension name
 1. Replace `<!-- QUESTION TEXT GOES HERE  -->` with question text
-1. Replace `<SVG-FILENAME>`with appropriate svg.
+1. Replace `<SVG-FILENAME>`with appropriate svg file name.
+
+
+# Copying survey between *Staging* and *Production*
+1. From control panel click on the survey's 3 dots and then on **Copy Project**, edit the name and click **Copy Project**
+1. Open the survey and go to **Survey Flow**
+1. Delete the Group called `Version Group
+1. Under **Web Service** change:
+    * `URL` value to `https://digitalmaturitybenchmark.withgoogle.com/api/company-name`
+    * `Authorisation` value to the appropriate auth token used by Django REST framework, which can be obtained from the Google Cloud Platform `authtoken_token` from [here](https://console.cloud.google.com/datastore/entities;kind=authtoken_token;ns=__$DEFAULT$__/query/kind?project=gweb-digitalmaturity)
