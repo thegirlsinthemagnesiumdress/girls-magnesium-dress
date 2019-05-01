@@ -23,6 +23,7 @@ from collections import defaultdict
 from core.aggregate import updatable_industries
 
 from core.conf.utils import get_tenant_slug
+from django.utils import translation
 
 
 def sync_qualtrics():
@@ -98,7 +99,12 @@ def _get_results(tenant, survey_definition):
         new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant)
         new_response_ids = [result.response_id for result in new_survey_results]
 
-        email_list = [(item.get(email_to), item.get(email_bcc), item.get('sid')) for item in responses
+        langs_dict = settings.QUALTRICS_LANGS
+
+        email_list = [(item.get(email_to),
+                       item.get(email_bcc),
+                       item.get('sid'),
+                       langs_dict.get(item.get('Q_Language'), langs_dict['EN'])) for item in responses
                       if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
         if email_list:
             send_emails_for_new_reports(email_list)
@@ -204,12 +210,12 @@ def _response_benchmark(questions, response_data, tenant):
 def send_emails_for_new_reports(email_list):
     """Send an email for every element of `email_list`.
 
-    :param email_list: tuple of element (to, bcc, sid)
+    :param email_list: tuple of element (to, bcc, sid, Q_Language)
     """
     domain = getattr(settings, 'LIVE_DOMAIN', os.environ['HTTP_HOST'])
 
     for email_data in email_list:
-        to, bcc, sid = email_data
+        to, bcc, sid, q_lang = email_data
         logging.info("Preparing to send email for: sid: {} to: {} bcc: {}".format(sid, to, bcc))
 
         # Last minute change, we should refactor this and pass the object in
@@ -220,9 +226,9 @@ def send_emails_for_new_reports(email_list):
             country = s.get_country_display()
             tenant = s.tenant
             if is_valid_email(to):
-                slug = get_tenant_slug(tenant)
-                link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
                 bcc = [bcc] if is_valid_email(bcc) else None
+                slug = get_tenant_slug(tenant)
+                link = _localised_link(q_lang, slug, sid)
                 context = {
                     'url': "http://{}{}".format(domain, link),
                     'company_name': company_name,
@@ -230,18 +236,15 @@ def send_emails_for_new_reports(email_list):
                     'country': country,
                 }
 
-                subject_template = get_template("public/{}/email/response_ready_email_subject.txt".format(tenant))
-                html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
-                text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
-
+                subject, text_message, html_message = render_email_template(tenant, context, q_lang)
                 sender = settings.TENANTS[tenant]['CONTACT_EMAIL']
 
                 email_kwargs = {
                     'to': [to],
-                    'subject': subject_template.render(context).split("\n")[0],
+                    'subject': subject,
                     'sender': sender,
-                    'body': text_message_template.render(context),
-                    'html': html_message_template.render(context),
+                    'body': text_message,
+                    'html': html_message,
                 }
 
                 if getattr(settings, 'REPLY_TO_EMAIL', None):
@@ -258,6 +261,37 @@ def send_emails_for_new_reports(email_list):
         except Survey.DoesNotExist:
             # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
+
+
+def _localised_link(language, slug, sid):
+    cur_language = translation.get_language()
+    try:
+        translation.activate(language)
+        link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
+    finally:
+        translation.activate(cur_language)
+
+    return link
+
+
+def render_email_template(tenant, context, language):
+    cur_language = translation.get_language()
+    try:
+        translation.activate(language)
+
+        subject_template = get_template("public/{}/email/response_ready_email_subject.txt".format(tenant))
+        html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+        text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
+
+        try:
+            subject_rendered = subject_template.render(context).split("\n")[1]
+        except IndexError:
+            subject_rendered = subject_template.render(context).split("\n")[0]
+        text_message_rendered = text_message_template.render(context)
+        html_message_rendered = html_message_template.render(context)
+    finally:
+        translation.activate(cur_language)
+    return subject_rendered, text_message_rendered, html_message_rendered
 
 
 def is_valid_email(email):

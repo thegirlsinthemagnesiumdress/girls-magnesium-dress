@@ -1,1 +1,2 @@
-Response is ready!
+{% load i18n %}
+{% trans "Response is ready!" %}

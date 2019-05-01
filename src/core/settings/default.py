@@ -323,3 +323,8 @@ ANGULAR_TEMPLATES = [
 ]
 
 ALLOWED_ANGULAR_TEMPLATES = '|'.join(ANGULAR_TEMPLATES)
+
+QUALTRICS_LANGS = {
+    'EN': 'en',
+    'ES-ES': 'es',
+}
