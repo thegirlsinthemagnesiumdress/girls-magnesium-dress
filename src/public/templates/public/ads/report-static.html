@@ -250,8 +250,9 @@
                   </div>
                   <div class="glue-zippy-content">
                     <div
+                        company-name="{[ reportCtrl.survey.company_name ]}"
                         dmb-dimension-tab="{[dimension]}"
-                        company-name="{[ reportCtrl.survey.company_name ]}">
+                        tenant="{{tenant|ng_mark_safe}}">
                     </div>
                   </div>
                 </li>
