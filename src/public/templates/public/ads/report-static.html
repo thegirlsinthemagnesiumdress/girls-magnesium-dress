@@ -357,7 +357,7 @@
         {% trans "These two metrics show how your company compares to the average and top performers in your industry globally." %}
       </p>
 
-      <p>
+      <p ng-if="reportCtrl.industryAvgSource">
         <span ng-if="reportCtrl.industryAvgSource!=='all'">
           {% trans "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category." %}
         </span>
@@ -366,7 +366,7 @@
         </span>
       </p>
 
-      <p>
+      <p ng-if="reportCtrl.industryBestSource">
         <span ng-if="reportCtrl.industryBestSource!=='all'">
           {% trans "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category." %}
         </span>
