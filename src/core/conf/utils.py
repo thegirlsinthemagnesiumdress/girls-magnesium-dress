@@ -1,4 +1,8 @@
 from django.conf import settings
+from djangae import environment
+import re
+
+VERSION_RE = re.compile(r'^(?P<version>.*)(\-dot|\:\d+)')
 
 
 def map_industries(industries, parent, result):
@@ -108,3 +112,23 @@ def get_tenant_key(slug):
 
 def get_tenant_slug(tenant):
     return settings.TENANTS[tenant]['slug']
+
+
+def version_info(domain):
+    """Returns version to be set on Qualtrics, based on domain parameter.
+    :param domain:
+    :returns: Tuple of two element (version, is_nightly), where the first one is the version name
+    which need to be set on Qualtrics, and the second element is a flag identifying a nightly version.
+    `version` is `None` in case a version is not applicable (for instance in production),
+    and `is_nightly` is gonna be `True` if `nightly` word is in `domain`, `False` otherwise.
+    """
+    version = None
+    is_nightly = False
+    if not environment.is_production_environment():
+        version_match = VERSION_RE.search(domain)
+        if version_match:
+            version = version_match.group('version')
+        else:
+            version = 'staging'
+        is_nightly = 'nightly' in version
+    return (version, is_nightly)
