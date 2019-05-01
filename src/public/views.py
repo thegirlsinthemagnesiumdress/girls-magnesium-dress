@@ -34,7 +34,6 @@ def _dump_tenant_content_data(tenant):
         'dimension_level_recommendations': content_data['dimension_level_recommendations'],
         'industry_avg_description': content_data.get('industry_avg_description'),
         'industry_best_description': content_data.get('industry_best_description'),
-
     }
 
     return json.dumps(data, cls=LazyEncoder)
