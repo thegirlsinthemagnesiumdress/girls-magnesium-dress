@@ -228,7 +228,7 @@ def send_emails_for_new_reports(email_list):
             if is_valid_email(to):
                 bcc = [bcc] if is_valid_email(bcc) else None
                 slug = get_tenant_slug(tenant)
-                link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
+                link = _localised_link(q_lang, slug, sid)
                 context = {
                     'url': "http://{}{}".format(domain, link),
                     'company_name': company_name,
@@ -261,6 +261,17 @@ def send_emails_for_new_reports(email_list):
         except Survey.DoesNotExist:
             # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
+
+
+def _localised_link(language, slug, sid):
+    cur_language = translation.get_language()
+    try:
+        translation.activate(language)
+        link = reverse('report', kwargs={'tenant': slug, 'sid': sid})
+    finally:
+        translation.activate(cur_language)
+
+    return link
 
 
 def render_email_template(tenant, context, language):

@@ -626,7 +626,35 @@ class SendEmailTestCase(TestCase):
     @mock.patch('core.tasks.render_email_template',
                 return_value=('subject', 'text vesion', '<html>html version</html>'))
     def test_email_is_sent_using_language_specific_templates(self, render_email_template_mock, email_mock):
-        survey = make_survey(sid='3', tenant='ads')
+        survey = make_survey(sid='3', tenant='news')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid, 'en')
+        ]
+
+        send_emails_for_new_reports(email_list)
+
+        args, kwargs = render_email_template_mock.call_args
+        tenant, context, lang = args
+        self.assertEqual(tenant, 'news')
+        self.assertEqual(lang, 'en')
+        # news is not a translated tenant, we should not have localised link
+        self.assertFalse('/en/' in context['url'])
+
+        survey = make_survey(sid='4', tenant='ads')
+        email_list = [
+            ('test@example.com', 'test@example.com', survey.sid, 'es')
+        ]
+
+        send_emails_for_new_reports(email_list)
+
+        args, kwargs = render_email_template_mock.call_args
+        tenant, context, lang = args
+        self.assertEqual(tenant, 'ads')
+        self.assertEqual(lang, 'es')
+        # ads is a translated tenant, we're expecting to have url localised
+        self.assertTrue('/es/' in context['url'])
+
+        survey = make_survey(sid='5', tenant='ads')
         email_list = [
             ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
@@ -637,18 +665,8 @@ class SendEmailTestCase(TestCase):
         tenant, context, lang = args
         self.assertEqual(tenant, 'ads')
         self.assertEqual(lang, 'en')
-
-        survey = make_survey(sid='4', tenant='news')
-        email_list = [
-            ('test@example.com', 'test@example.com', survey.sid, 'es')
-        ]
-
-        send_emails_for_new_reports(email_list)
-
-        args, kwargs = render_email_template_mock.call_args
-        tenant, context, lang = args
-        self.assertEqual(tenant, 'news')
-        self.assertEqual(lang, 'es')
+        # ads is a translated tenant, we're expecting to have url localised
+        self.assertTrue('/en/' in context['url'])
 
 
 @override_settings(
