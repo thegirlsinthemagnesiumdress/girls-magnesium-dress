@@ -124,7 +124,7 @@ def version_info(domain):
     """
     version = None
     is_nightly = False
-    if not environment.is_production_environment():
+    if not environment.is_production_environment() and "staging" in environment.application_id():
         version_match = VERSION_RE.search(domain)
         if version_match:
             version = version_match.group('version')
