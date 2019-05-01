@@ -164,7 +164,7 @@ class FlatIndustriesTest(TestCase):
 class VersionInfoTest(TestCase):
     """Test for `core.utils.version_info` function."""
 
-    @mock.patch('djangae.environment.is_production_environment', return_value=True)
+    @mock.patch('djangae.environment.is_development_environment', return_value=False)
     def production_domain_test(self, is_prod_mock):
         version, is_nightly = version_info('somedomain')
 
