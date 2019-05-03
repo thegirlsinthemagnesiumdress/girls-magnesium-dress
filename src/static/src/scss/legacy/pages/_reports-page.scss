@@ -217,23 +217,11 @@ $dmb-eyebrow-border-color: $dmb-color-grey-zircon-old;
   }
 
   &__hero-subhead {
+    font-size: 14px;
     @include dmb-responsive(margin-top, 40, 52);
 
-    p, li {
-      font-size: inherit;
-    }
-
-    ul {
-      margin-bottom: 32px;
-    }
-
-    p:first-of-type() {
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-
     @include bp(s) {
-      font-size: 18px;
+      font-size: 20px;
     }
 
     @include bp(m) {
