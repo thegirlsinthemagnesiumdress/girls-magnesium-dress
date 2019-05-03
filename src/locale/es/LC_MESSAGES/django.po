@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-17 17:47+0000\n"
+"POT-Creation-Date: 2019-05-01 16:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1450,6 +1450,12 @@ msgid "Connect with Google"
 msgstr ""
 
 msgid "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email."
+msgstr ""
+
+msgid "We've finished analyzing your survey responses to find out where you can improve your marketing strategy. Here's the link to access your report:"
+msgstr ""
+
+msgid "Response is ready!"
 msgstr ""
 
 msgid "photo of devices"

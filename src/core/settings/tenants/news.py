@@ -127,6 +127,12 @@ REPORT_LEVEL_DESCRIPTIONS = {
     LEVEL_3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 }
 
+
+INDUSTRY_AVG_DESCRIPTION = 'How news organizations perform on average; calculated based on the Deloitte Digital Transformation through Data study.'
+
+INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participant in the Deloitte Digital Transformation through Data study.'
+
+
 DIMENSION_HEADER_DESCRIPTION = {
     DIMENSION_STRATEGIC_DIRECTION: 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
     DIMENSION_READER_ENGAGEMENT: 'Reader engagement is crucial to acquiring and retaining readers and increasing share of attention. Without an engaged readership, a news company cannot secure the subscription and advertising opportunities it needs to survive and thrive.',
@@ -479,4 +485,6 @@ CONTENT_DATA = {
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
+    'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
 }
