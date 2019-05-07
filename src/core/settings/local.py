@@ -49,5 +49,7 @@ CSP_SCRIPT_SRC += (
     "'unsafe-inline'",  # we need this because of Google Closure Library.
 )
 PROJ_BASE = os.path.join(BASE_DIR, "..")
-# KEYFILE_PATH = os.path.join(PROJ_BASE, "keys", "gweb-digitalmaturity-staging-2851ce4c062f.p12")
-KEYFILE_PATH = os.path.join(PROJ_BASE, "keys", "gweb-digitalmaturity-staging-97507ee19968.json")
+
+SHARE_LOCAL_EXPORT = [
+    "marco.azzalin@potatolondon.com",
+]
