@@ -29,7 +29,7 @@ def drive_api_factory(scope=_DRIVE_SCOPE):
     return discovery.build('drive', 'v3', http=http)
 
 
-def export_data(title, headers, rows):
+def export_data(title, headers, rows, share_with):
     sheets_api = sheets_api_factory()
     spreadsheet = {
         'properties': {
@@ -40,8 +40,7 @@ def export_data(title, headers, rows):
     sheet = _clear_sheets_and_create_new_one(spreadsheet)
     _write_headers_to_sheet(spreadsheet, sheet, headers)
     _write_rows_to_sheet(spreadsheet, sheet, rows)
-    if environment.is_development_environment():
-        _share_with(spreadsheet, settings.SHARE_LOCAL_EXPORT)
+    _share_with(spreadsheet, share_with)
 
     return spreadsheet['spreadsheetUrl']
 
@@ -100,7 +99,6 @@ def _share_with(spreadsheet, emails):
     for email in emails:
         drive_api.permissions().create(
             fileId=spreadsheet['spreadsheetId'],
-            sendNotificationEmail=False,
             body={
                 "type": "user",
                 "emailAddress": "marco.azzalin@potatolondon.com",

@@ -194,6 +194,7 @@ def generate_spreadsheet_export(request, tenant):
         data,
         survey_fields_mappings,
         survey_result_fields_mapping,
+        request.user.email,
         _queue='default',
     )
 

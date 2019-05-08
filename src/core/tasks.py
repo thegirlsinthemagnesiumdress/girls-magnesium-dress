@@ -420,7 +420,7 @@ def calculate_industry_benchmark(tenant):
         )
 
 
-def export_tenant_data(title, data, survey_fields, survey_result_fields, dateformat="%Y/%m/%d %H:%M:%S"):
+def export_tenant_data(title, data, survey_fields, survey_result_fields, share_with, dateformat="%Y/%m/%d %H:%M:%S"):
     """Export tenant data to Google Spreadsheet."""
     def _format_type(value):
         if isinstance(value, datetime):
@@ -447,5 +447,5 @@ def export_tenant_data(title, data, survey_fields, survey_result_fields, datefor
             pass
         export_data.append(survey_data + survey_result_data)
 
-    sheet_url = sheets.export_data(title, survey_names + survey_result_names, export_data)
+    sheet_url = sheets.export_data(title, survey_names + survey_result_names, export_data, share_with)
     logging.info("Export created {}".format(sheet_url))

@@ -279,7 +279,7 @@ class GenerateExportPage(TestCase):
         mock_defer.assert_called_once()
 
         args, kwargs = mock_defer.call_args
-        got_func, got_title, got_data, got_headers, got_rows = args
+        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
         self.assertEqual(got_title, "Export for tenant1")
         self.assertEqual(len(got_data), 0)
@@ -300,5 +300,6 @@ class GenerateExportPage(TestCase):
         mock_defer.assert_called_once()
 
         args, kwargs = mock_defer.call_args
-        got_func, got_title, got_data, got_headers, got_rows = args
+        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(len(got_data), 2)
+        self.assertEqual(got_share_with, response.wsgi_request.user.email)

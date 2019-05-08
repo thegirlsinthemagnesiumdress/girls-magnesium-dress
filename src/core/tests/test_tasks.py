@@ -1355,7 +1355,7 @@ class ExportTenantData(TestCase):
     """Tests for export_tenant_data function"""
 
     def setUp(self):
-        pass
+        self.share_with = "share_with@email.com"
 
     @override_settings(
         TENANTS=MOCKED_TENANTS,
@@ -1387,10 +1387,16 @@ class ExportTenantData(TestCase):
         title = "A meaningful title"
 
         surveys_data = Survey.objects.filter(tenant='tenant1')
-        export_tenant_data(title, surveys_data, survey_fields_mappings, survey_result_fields_mapping)
+        export_tenant_data(
+            title,
+            surveys_data,
+            survey_fields_mappings,
+            survey_result_fields_mapping,
+            self.share_with,
+        )
         expected_headers = survey_fields_mappings.values() + survey_result_fields_mapping.values()
         args, kwargs = mocked_export.call_args
-        got_title, got_headers, got_rows = args
+        got_title, got_headers, got_rows, got_share_with = args
 
         # check that is has been called with 2 items
         self.assertEqual(title, got_title)
@@ -1428,10 +1434,16 @@ class ExportTenantData(TestCase):
         title = "A meaningful title"
 
         surveys_data = Survey.objects.filter(tenant='tenant2')
-        export_tenant_data(title, surveys_data, survey_fields_mappings, survey_result_fields_mapping)
+        export_tenant_data(
+            title,
+            surveys_data,
+            survey_fields_mappings,
+            survey_result_fields_mapping,
+            self.share_with,
+        )
         expected_headers = survey_fields_mappings.values() + survey_result_fields_mapping.values()
         args, kwargs = mocked_export.call_args
-        got_title, got_headers, got_rows = args
+        got_title, got_headers, got_rows, got_share_with = args
 
         # check that is has been called with 3 items
         self.assertEqual(title, got_title)
@@ -1473,10 +1485,11 @@ class ExportTenantData(TestCase):
             surveys_data,
             tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
             tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'],
+            self.share_with,
         )
         expected_headers = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'].values() + tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'].values()  # noqa
         args, kwargs = mocked_export.call_args
-        got_title, got_headers, got_rows = args
+        got_title, got_headers, got_rows, got_share_with = args
 
         # check that is has been called with 3 items
         self.assertEqual("Ads Export", got_title)
@@ -1501,10 +1514,11 @@ class ExportTenantData(TestCase):
             surveys_data,
             tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
             tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'],
+            self.share_with,
         )
         expected_headers = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'].values() + tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'].values()  # noqa
         args, kwargs = mocked_export.call_args
-        got_title, got_headers, got_rows = args
+        got_title, got_headers, got_rows, got_share_with = args
 
         # check that is has been called with 3 items
         self.assertEqual("News Export", got_title)
@@ -1529,10 +1543,11 @@ class ExportTenantData(TestCase):
             surveys_data,
             tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
             tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'],
+            self.share_with,
         )
         expected_headers = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'].values() + tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'].values()  # noqa
         args, kwargs = mocked_export.call_args
-        got_title, got_headers, got_rows = args
+        got_title, got_headers, got_rows, got_share_with = args
 
         # check that is has been called with 3 items
         self.assertEqual("Retail Export", got_title)
