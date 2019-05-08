@@ -179,7 +179,7 @@ def generate_spreadsheet_export(request, tenant):
     if not engagement_lead:
         msg = _MISSING_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
         logging.warning(msg)
-        return HttpResponse(msg)
+        return HttpResponse(msg, status=400)
 
     tenant_conf = settings.TENANTS[tenant]
     survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
