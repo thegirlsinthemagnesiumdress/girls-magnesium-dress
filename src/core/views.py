@@ -6,7 +6,7 @@ from djangae import deferred
 from djangae.environment import task_or_admin_only
 
 from core.management import migrations
-from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
+from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark, export_tenant_data
 from django.conf import settings
 from core.models import Survey
 from django.shortcuts import render
@@ -159,6 +159,45 @@ def update_industries_benchmarks_task(request):
             tenant,
             _queue='default',
         )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def generate_spreadsheet_export(request):
+    """Generate a spreadsheet export for tenant data."""
+
+    survey_fields_mappings = {
+        'id': 'Id',
+        'company_name': 'Company Name',
+        'country': 'Country',
+        'industry': 'Industry',
+        'created_at': 'Creation Date',
+        'dmb': 'Overall DMB',
+        'excluded_from_best_practice': 'Excluded from Benchmark',
+        'link': 'Report link',
+    }
+
+    engagement_lead = request.GET.get('engagement_lead')
+    tenant = request.GET.get('tenant')
+
+    if not engagement_lead or not tenant:
+        msg = "Missing information for generating spreadsheet export for Enagagement Lead: {}, Tenant: {}".format(engagement_lead, tenant)
+        logging.warning(msg)
+        return HttpResponse(msg)
+
+    msg = "Generate spreadsheet export for Enagagement Lead: {}, Tenant: {}".format(engagement_lead, tenant)
+    logging.info(msg)
+
+    data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
+
+    deferred.defer(
+        export_tenant_data,
+        "Export for {}".format(tenant),
+        survey_fields_mappings,
+        data,
+        _queue='default',
+    )
 
     return HttpResponse(msg)
 

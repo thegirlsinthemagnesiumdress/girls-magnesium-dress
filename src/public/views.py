@@ -16,6 +16,10 @@ from core.conf.utils import flatten, get_tenant_slug
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
+from core import tasks
+from django.http import HttpResponse
+import logging
+from djangae import deferred
 
 
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
@@ -158,3 +162,39 @@ def handler500(request, *args, **kwargs):
         'slug': '',
         'content_data': '',
     }, status=500)
+
+
+@login_required
+@survey_admin_required
+def generate_spreadsheet_export(request, tenant):
+    """Generate a spreadsheet export for tenant data."""
+    _MISSING_INFO_MSG = ("Missing information for generating spreadsheet export for "
+                         "Enagagement Lead: {engagement_lead}, Tenant: {tenant}")
+
+    _GENERATED_INFO_MSG = ("Generate spreadsheet export for Enagagement Lead: "
+                           "{engagement_lead}, Tenant: {tenant}")
+
+    engagement_lead = request.GET.get('engagement_lead')
+
+    if not engagement_lead:
+        msg = _MISSING_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
+        logging.warning(msg)
+        return HttpResponse(msg)
+
+    tenant_conf = settings.TENANTS[tenant]
+    survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
+    survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
+    data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
+
+    msg = _GENERATED_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
+    logging.info(msg)
+    deferred.defer(
+        tasks.export_tenant_data,
+        "Export for {}".format(tenant),
+        data,
+        survey_fields_mappings,
+        survey_result_fields_mapping,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

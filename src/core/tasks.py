@@ -24,6 +24,9 @@ from core.aggregate import updatable_industries
 
 from core.conf.utils import get_tenant_slug
 from django.utils import translation
+from core.googleapi import sheets
+from django.utils.functional import Promise
+from django.utils.encoding import force_text
 
 
 def sync_qualtrics():
@@ -415,3 +418,34 @@ def calculate_industry_benchmark(tenant):
                 'dmb_d_bp_value': dmb_d_bp,
             }
         )
+
+
+def export_tenant_data(title, data, survey_fields, survey_result_fields, dateformat="%Y/%m/%d %H:%M:%S"):
+    """Export tenant data to Google Spreadsheet."""
+    def _format_type(value):
+        if isinstance(value, datetime):
+            return value.strftime(dateformat)
+        if isinstance(value, Promise):
+            return force_text(value)
+        return value
+
+    export_data = []
+    survey_columns = survey_fields.keys()
+    survey_result_columns = survey_result_fields.keys()
+    survey_names = [_format_type(survey_fields.get(col)) for col in survey_columns]
+    survey_result_names = [_format_type(survey_result_fields.get(col)) for col in survey_result_columns]
+
+    for v in data:
+        survey_data = [_format_type(getattr(v, col)) for col in survey_columns]
+        survey_result_data = [''] * len(survey_result_columns)
+        try:
+            if v.last_survey_result:
+                dim_dict = v.last_survey_result.dmb_d
+                survey_result_data = [dim_dict.get(col) for col in survey_result_columns]
+        except SurveyResult.DoesNotExist:
+            # In case we have a survey, but has not been completed yet
+            pass
+        export_data.append(survey_data + survey_result_data)
+
+    sheet_url = sheets.export_data(title, survey_names + survey_result_names, export_data)
+    logging.info("Export created {}".format(sheet_url))
