@@ -1,6 +1,4 @@
 """Handles interacting with the Google Sheets API."""
-from djangae import environment
-from django.conf import settings
 from google.appengine.api import memcache, urlfetch
 
 import httplib2
@@ -94,14 +92,14 @@ def _write_rows_to_sheet(spreadsheet, sheet, rows):
     ).execute()
 
 
-def _share_with(spreadsheet, emails):
+def _share_with(spreadsheet, email):
     drive_api = drive_api_factory()
-    for email in emails:
-        drive_api.permissions().create(
-            fileId=spreadsheet['spreadsheetId'],
-            body={
-                "type": "user",
-                "emailAddress": "marco.azzalin@potatolondon.com",
-                "role": WRITER_ROLE,
-            }
-        ).execute()
+    drive_api.permissions().create(
+        fileId=spreadsheet['spreadsheetId'],
+        sendNotificationEmail=False,
+        body={
+            "type": "user",
+            "emailAddress": email,
+            "role": WRITER_ROLE,
+        }
+    ).execute()

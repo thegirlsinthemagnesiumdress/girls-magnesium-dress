@@ -48,8 +48,3 @@ CSP_SCRIPT_SRC += (
     "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
     "'unsafe-inline'",  # we need this because of Google Closure Library.
 )
-PROJ_BASE = os.path.join(BASE_DIR, "..")
-
-SHARE_LOCAL_EXPORT = [
-    "marco.azzalin@potatolondon.com",
-]
