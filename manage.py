@@ -19,18 +19,25 @@ from core.boot import fix_path, patch_sdk_logging
 fix_path()
 patch_sdk_logging()
 
+_SERVICE_ACCOUNT_MISSING_CONF_MESSAGE = (
+    "==============================================================\n"
+    "WARNING: No keyfile found for the service account. See README.\n"
+    "Spreadsheet functionality will be unavailable.\n"
+    "==============================================================\n"
+)
+
+_SERVICE_ACCOUNT_INFO_MESSAGE = (
+    "==============================================================\n"
+    "Service account {service_email} enabled!\n"
+    "NEVER STORE PII IN THIS SERVICE ACCOUNT! YOU HAVE BEEN WARNED!\n"
+    "==============================================================\n"
+)
 
 
 def _configure_service_account():
     PEM_FILE = os.path.join(THIS_DIR, "keys", "secret.pem")
     if not os.path.exists(PEM_FILE):
-        print("""
-=============================================================
-WARNING: No keyfile found for the service account. See README.
-
-Spreadsheet functionality will be unavailable.
-=============================================================
-""")
+        print(_SERVICE_ACCOUNT_MISSING_CONF_MESSAGE)
         return {}
 
     EMAIL_ARG = "--appidentity_email_address"
@@ -50,13 +57,7 @@ Spreadsheet functionality will be unavailable.
     if KEY_ARG not in param_search:
         kwargs[KEY_ARG.lstrip("-")] = "./keys/secret.pem"
 
-    print("""
-=============================================================
-Service account {} enabled!
-
-NEVER STORE PII IN THIS SERVICE ACCOUNT! YOU HAVE BEEN WARNED!
-=============================================================
-""".format(SERVICE_EMAIL))
+    print(_SERVICE_ACCOUNT_INFO_MESSAGE.format(service_email=SERVICE_EMAIL))
     return kwargs
 
 
