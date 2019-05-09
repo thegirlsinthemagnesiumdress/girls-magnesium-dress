@@ -41,11 +41,9 @@
         Send your survey referral link to allow clients to create their own unique survey.<br>
         Any surveys created with this link will be associated with your account.
       </p>
-
       {% with url=create_survey_url|ng_mark_safe el=engagement_lead|ng_mark_safe %}
         {% include 'public/inc/global/copy-comp.inc.html' with id="referral-link" value=url|add:"#el="|add:el %}
       {% endwith %}
-
     </li>
   </ul>
 
