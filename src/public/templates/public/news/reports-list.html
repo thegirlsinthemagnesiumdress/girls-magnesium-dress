@@ -41,18 +41,11 @@
         Send your survey referral link to allow clients to create their own unique survey.<br>
         Any surveys created with this link will be associated with your account.
       </p>
-      <div class="dmb-referral-copy-row">
-        <a href="{{create_survey_url|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}" target="_blank" id="reference-link">
-            {{create_survey_url|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}
-        </a>
-        <button
-            class="h-c-button h-c-button--flat"
-            ngclipboard
-            data-clipboard-target="#reference-link"
-            aria-label="Copy to clipboard">
-          <svg width="19" height="22" viewBox="0 0 19 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M-2-1h24v24H-2z"/><path d="M14 0H2C.9 0 0 .9 0 2v14h2V2h12V0zm3 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H6V6h11v14z" fill="currentColor" fill-rule="nonzero"/></g></svg>
-        </button>
-      </div>
+
+      {% with url=create_survey_url|ng_mark_safe el=engagement_lead|ng_mark_safe %}
+        {% include 'public/inc/global/copy-comp.inc.html' with id="referral-link" value=url|add:"#el="|add:el %}
+      {% endwith %}
+
     </li>
   </ul>
 
@@ -116,17 +109,9 @@
           Your custom survey link is below.
           Send this link to your client so that they can get started.
         </p>
-        <div class="dmb-registration__link">
-          <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
-            {[ registrationCtrl.link ]}
-          </a>
-          <button
-              class="h-c-link"
-              ngclipboard
-              data-clipboard-target="#survey-link">
-            Copy
-          </button>
-        </div>
+
+        {% include 'public/inc/global/copy-comp.inc.html' with id="survey-link" value='{[ registrationCtrl.link ]}' %}
+
         <button class="h-c-button h-c-button--primary" ng-click="registrationCtrl.reset()">
           Create another assessment
         </button>
