@@ -29,52 +29,9 @@
 @import 'hercules/lib/components/tabby/tabby';
 @import 'hercules/lib/components/tiles/tiles';
 @import 'hercules/lib/components/type/type';
-// @import 'hercules/lib/components/icons/icons';
-// @import 'hercules/lib/components/social/social';
-// @import 'hercules/lib/components/table/settings';
-// @import 'hercules/lib/components/table/tools';
-// @import 'hercules/lib/components/table/table';
-// @import 'hercules/lib/components/carousel/carousel';
 @import 'hercules/lib/components/expansion-panels/expansion-panels';
 
 @import 'hercules/lib/global/scss/trumps/all';
-
-////////////////////////////////////////
-// DMB SASS:
-////////////////////////////////////////
-// Shared
-// @import 'legacy/shared/hero';
-// @import 'legacy/shared/partnership-with-bcg';
-// @import 'legacy/shared/buttons';
-
-// Components
-// @import 'legacy/components/form';
-// @import 'legacy/components/footer';
-// @import 'legacy/components/admin';
-// @import 'legacy/components/box';
-// @import 'legacy/components/dimensions-tiles';
-// @import 'legacy/components/dimensions-tab';
-// @import 'legacy/components/header';
-// @import 'legacy/components/hero';
-// @import 'legacy/components/hiw';
-// @import 'legacy/components/infographic';
-// @import 'legacy/components/input';
-// @import 'legacy/components/mobile-overflow-wrapper';
-// @import 'legacy/components/panel-trigger';
-// @import 'legacy/components/progress-circle';
-// @import 'legacy/components/progress-table';
-// @import 'legacy/components/registration';
-// @import 'legacy/components/roadmap-section';
-// @import 'legacy/components/section';
-// @import 'legacy/components/section-with-media';
-// @import 'legacy/components/svg';
-
-//Pages
-// @import 'legacy/pages/landing';
-// @import 'legacy/pages/reports-page';
-// @import 'legacy/pages/reports-admin';
-// @import 'legacy/pages/error-page';
-
 
 
 // DMB STYLES
@@ -103,7 +60,6 @@
 @import 'components/progress-grid';
 @import 'components/progress-table';
 @import 'components/read-more';
-@import 'components/report-intro';
 @import 'components/report-hero';
 @import 'components/report-overall';
 @import 'components/side-panel';
@@ -114,4 +70,5 @@
 // Pages
 @import 'pages/landing';
 @import 'pages/registration';
+@import 'pages/report';
 @import 'pages/thank-you';
