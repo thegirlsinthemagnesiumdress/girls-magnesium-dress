@@ -46,6 +46,7 @@
 @import 'tenants-variables';
 
 // DMB Components
+@import 'components/card';
 @import 'components/card-on-bg';
 @import 'components/collaboration';
 @import 'components/cta-banner';
@@ -72,6 +73,7 @@
 @import 'components/tile-carousel';
 
 // Pages
+@import 'pages/admin-reports';
 @import 'pages/landing';
 @import 'pages/registration';
 @import 'pages/report';

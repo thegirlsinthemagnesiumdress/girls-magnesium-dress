@@ -1,0 +1,31 @@
+// sass-lint:disable no-ids
+.dmb-admin-reports {
+  $spacing: 24px;
+  $switch-bp: 1200px;
+
+  &__card:first-of-type {
+    @include dmb-mq($until: desktop) {
+      margin-bottom: $spacing;
+    }
+  }
+
+  &__create-survey {
+    @include dmb-mq($from: $switch-bp) {
+      display: flex;
+    }
+  }
+
+  &__create-survey-step {
+    &:first-of-type {
+      @include dmb-mq($until: $switch-bp) {
+        margin-bottom: $spacing;
+      }
+
+      @include dmb-mq($from: $switch-bp) {
+        border-right: 1px solid $dmb-color-grey-zircon;
+        margin-right: $spacing;
+        padding-right: $spacing;
+      }
+    }
+  }
+}
