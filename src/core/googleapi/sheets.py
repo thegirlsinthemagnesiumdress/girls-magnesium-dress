@@ -96,7 +96,7 @@ def _share_with(spreadsheet, email):
     drive_api = drive_api_factory()
     drive_api.permissions().create(
         fileId=spreadsheet['spreadsheetId'],
-        sendNotificationEmail=False,
+        sendNotificationEmail=True,
         body={
             "type": "user",
             "emailAddress": email,
