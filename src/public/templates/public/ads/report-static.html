@@ -337,6 +337,14 @@
         {% trans "Benchmark calculations" %}
       </h1>
 
+      <h2 class="h-c-headline h-c-headline--four">
+        {% trans "Industry average & industry best" %}
+      </h2>
+
+      <p>
+        {% trans "These two metrics show how your company compares to the average and top performers in your industry globally." %}
+      </p>
+
       <p ng-if="reportCtrl.industryAvgSource">
         <span ng-if="reportCtrl.industryAvgSource!=='all'">
           {% trans "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category." %}
@@ -356,16 +364,7 @@
       </p>
 
       <p>
-        {% trans "The industry average and industry best show how your company compares to the average and top performers in your industry globally." %}
-      </p>
-      <p>
-        {% trans "If your specific industry (e.g. “Retail trade - Household goods”) doesn’t yet have enough responses to form a reliable average, you will be shown an average based on the wider industry (e.g. “Retail trade”)." %}
-      </p>
-      <p>
-        {% trans "If there aren’t enough responses in the wider industry either, you will be shown results across all industries globally instead." %}
-      </p>
-      <p>
-        {% trans "In case the scores you are seeing do not refer to your specific industry yet or if you don't see any benchmark scores at all, you can check back later as the scores are being continuously updated." %}
+        {% trans "If the scores above do not refer to your specific industry, not enough people have yet filled in the assessment to produce a reliable average. Check back later as the scores are continuously updated!" %}
       </p>
     </div>
   </aside>
