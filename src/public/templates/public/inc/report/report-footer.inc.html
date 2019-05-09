@@ -1,0 +1,40 @@
+{% load i18n %}
+
+<section class="dmb-report-footer dmb-u-p-t-l dmb-u-p-b-l">
+  <div class="h-c-page">
+    <div class="h-c-grid">
+      <div class="h-c-grid__col h-c-grid__col--10">
+        <h1 class="h-c-headline h-c-headline--two">
+          {% trans "Next steps" %}
+        </h1>
+        <h2 class="h-c-headline h-c-headline--subhead">
+          {% trans "Review your recommendations and consider these four steps:" %}
+        </h2>
+        <ul class="dmb-u-m-b-s">
+          <li>
+            {% trans "Define which areas are strongly linked to your business goals" %}
+          </li>
+          <li>
+            {% trans "Create a roadmap outlining what you intend to do over the next 12 months" %}
+          </li>
+          <li>
+            {% trans "Decide who will own each action and how to track progress over this period" %}
+          </li>
+          <li>
+            {% trans "Identify the right partners outside of your company to support you at each stage" %}
+          </li>
+        </ul>
+
+        <h2 class="h-c-headline h-c-headline--subhead">
+          {% trans "Share this report with your colleagues" %}
+        </h2>
+        <p>
+          {% trans "To share this report, copy the link and send it to your colleagues. It is not available as a pdf report as it is live, with the industry benchmarks constantly updating." %}
+        </p>
+        {% comment %}
+          {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri %}
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</section>
