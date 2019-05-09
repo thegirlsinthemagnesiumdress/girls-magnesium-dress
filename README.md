@@ -32,9 +32,8 @@ In order for the backend to be able to call Qualtrics APIs, a valid token needs 
 
 ### Generate a service account private key
 
-1. Go to https://console.cloud.google.com/iam-admin/serviceaccounts/project?project=gweb-digitalmaturity-staging and select "Create key" on the default account and download the `.p12` keyfile
-2. Run `cat {downloaded-file}.p12 | openssl pkcs12 -nodes -nocerts -passin pass:notasecret | openssl rsa > secret.pem` and move the generated `.pem` file to the `./keys` directory in the project
-
+1. Go [here](https://console.cloud.google.com/iam-admin/serviceaccounts/project?project=gweb-digitalmaturity-staging) and for `gweb-digitalmaturity-staging@appspot.gserviceaccount.com` select the 3 dots, click **Create key** and download the `.p12` keyfile
+1. `cd` to the directory where you downloaded the file and run `cat {downloaded-file}.p12 | openssl pkcs12 -nodes -nocerts -passin pass:notasecret | openssl rsa > secret.pem` then move the generated `.pem` file to the `./keys` directory in the project.
 
 # Troubleshooting
 1. I get an authentication error when trying to run `manage.py bootstrap`:
