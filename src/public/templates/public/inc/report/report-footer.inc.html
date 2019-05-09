@@ -31,9 +31,9 @@
         <p>
           {% trans "To share this report, copy the link and send it to your colleagues. It is not available as a pdf report as it is live, with the industry benchmarks constantly updating." %}
         </p>
-        {% comment %}
-          {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri %}
-        {% endcomment %}
+
+        {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri %}
+
       </div>
     </div>
   </div>
