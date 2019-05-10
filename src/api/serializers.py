@@ -17,6 +17,15 @@ class SurveySerializer(ModelSerializer):
         )
 
 
+class SurveyAccountIdSerializer(ModelSerializer):
+
+    class Meta:
+        model = Survey
+        fields = (
+            'account_id',
+        )
+
+
 class SurveyCompanyNameSerializer(ModelSerializer):
     class Meta:
         model = Survey
