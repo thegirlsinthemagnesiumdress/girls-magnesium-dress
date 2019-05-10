@@ -4,7 +4,7 @@
   'cta_text': Optional text to use for CTA, if ommited text will be "Copy" (optional)
 {% endcomment %}
 <div
-    class="dmb-copy-comp{% if class %} {{class}}{% endif %}"
+    class="dmb-copy-comp{% if light %} dmb-copy-comp--light{% endif %}{% if class %} {{class}}{% endif %}"
     ng-controller="CopyComponentCtrl as copyCtrl">
   {% if not hide_input %}
   <input
@@ -15,7 +15,7 @@
   {% endif %}
   <button
       aria-label="Copy to clipboard"
-      class="dmb-copy-comp__button dmb-outline-button h-c-button"
+      class="dmb-copy-comp__button{% if light %} h-c-button--primary h-c-button--reversed{% else %} dmb-outline-button{% endif %} h-c-button"
       {% if hide_input %}
       data-clipboard-text="{{value}}"
       {% else %}
