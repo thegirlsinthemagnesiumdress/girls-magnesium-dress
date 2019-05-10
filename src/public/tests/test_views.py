@@ -273,7 +273,7 @@ class GenerateExportPage(TestCase):
         """If engagement_lead has no surveys, it should return empty dataset"""
         engagement_lead = '1234'
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        url = '{}?engagement_lead={}'.format(url, engagement_lead)
+        url = '{}?el={}'.format(url, engagement_lead)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
@@ -294,7 +294,7 @@ class GenerateExportPage(TestCase):
         self.survey_1.save()
         self.survey_2.save()
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        url = '{}?engagement_lead={}'.format(url, engagement_lead)
+        url = '{}?el={}'.format(url, engagement_lead)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
