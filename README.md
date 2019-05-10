@@ -111,15 +111,55 @@ Authentication will most likely be your @potatolondon.com account
 
 We're versioning js and css files, that's automatically handled by static_rev template tag. However we're generaring survey-{hash-of-content}.min.js and survey-{hash-of-content}.min.css that are fed to the Qualtrics Survey page. Please make sure to update the references there if there are any changes to those files ( through Qualtrics Look&Feel panel).
 
-# Qualtrics
-We have two different surveys, one for the `production` environment and the other one used for `development` and `staging`
+# Qualtrics surveys
+We have a base survey **DMB Template Survey** to be used as a template. Make a copy of it for a new tenant staging survey, change the **Splash Page** block copy and the questions then copy it to create the production survey. Detailed instructions are below:
 
-* [Production](https://google.co1.qualtrics.com/ControlPanel/?ClientAction=EditSurvey&Section=SV_ebQG3AGFIgVzCFT&SubSection=&SubSubSection=&PageActionOptions=&TransactionID=2&Repeatable=0)
-* [Staging/Development](https://google.co1.qualtrics.com/ControlPanel/?ClientAction=EditSurvey&Section=SV_beH0HTFtnk4A5rD&SubSection=&SubSubSection=&PageActionOptions=&TransactionID=4&Repeatable=0)
+## Creating staging survey for new tenant
+1. From control panel click on the 3 dots of **DMB Template Survey**, then on **Copy Project**
+1. Change name to `<Tenant> - Staging` and click **Copy Project**
+1. Open the survey and go to **Survey Flow**
+1. In **Set Embedded Data** change **tenant** & **tenant_slug** to the correct values
+1. Click **Save Flow** and go back to the survey edit view
+1. Change the copy for the questions in the **Splash Page** block
+1. Use a new block for each dimension to force a page break
+1. Make sure the first question of each subsequent block (not the first) has the following HTML to show the banner on each page (do not change the alignment or spacing, it makes it easier for translators to find the text):
+    ```html
+    <div class="dmb-survey-banner"><div class="dmb-survey-banner__logo"><svg width="68px" height="22px" viewBox="0 0 68 22" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z" fill="#4285F4"></path><path d="M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413" fill="#EA4335"></path><path d="M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413" fill="#FBBC05"></path><path d="M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z" fill="#4285F4"></path><path fill="#34A853" d="M53.75 16.486h2.379V.574h-2.38z"></path><path d="M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496" fill="#EA4335"></path></g></svg></div><div class="dmb-survey-banner__title">${e://Field/company_name} <br>
 
-Unfortunately they're not linked, that means every change has to manually done in both.
 
-## Add(modify) a question
+    Data maturity assessment
+
+
+    </div></div>
+    ```
+
+1. Make sure the first question of each  subsequent block (not the first) has the following JS:
+    ```js
+    Qualtrics.SurveyEngine.addOnload(function () {
+    jQuery('#' + this.questionId).addClass('dmb-survey-banner-container');
+    });
+
+    Qualtrics.SurveyEngine.addOnReady(function () {
+    jQuery('#Wrapper').addClass('dmb-survey--in-progress');
+    });
+    ```
+
+1. Make sure the second question of each subsequent block (not the first) has the following HTML to show the dimension name and logo, replacing `<DIMENSION-SVG-FILENAME>` and `<QUESTION-TEXT>` with the appropritate values (do not change the alignment or spacing, it makes it easier for translators to find the text):
+    ```html
+    <h2 class="dmb-dimension-header h-c-headline h-c-headline--two"><img class="dmb-dimension-header__icon dmb-u-m-b-s" src="${e://Field/static_url}/img/${e://Field/tenant}/dimensions/<DIMENSION-SVG-FILENAME>">
+
+
+    Strategic direction and data foundations
+
+
+    </h2>
+
+    <QUESTION-TEXT>
+    ```
+1. Add the remaining questions to the dimensions
+
+
+## Adding/modifying questions
 
 * Create question in Qualtrics (remember that we have 2 different surveys for development and production)
 * Assign a score to each question - Check the Scoring section for more detail
@@ -155,11 +195,20 @@ score = 1.33
 score = 0.5
 ```
 
+## Creating production survey for new tenant
+1. From control panel click on 3 dots of the tenant's staging survey, then on **Copy Project**
+1. Change the name to `<TENANT> Survey - Production` and click **Copy Project**
+1. Open the survey and go to **Survey Flow**
+1. Delete the Group called `Version Group`
+1. Delete the **Then Branch If**: `If ver` Is Not Empty: branch with the second **Web Service**
+1. In **Set Embedded Data** delete the `ver` variable
+
+
 # Using SVGs
 
-To use an SVG put the .svg file in `src/static/src/svg/` and then reference it in a template using `{% include 'core/inc/svg.html' with id='<filename>' %}`, where `id` is the filename without the '.svg' extension. This will generate an svg with classes `dmb-svg` and `dmb-svg--<filename>`, and width and height HTML attributes set to 100% (can be overridden by CSS `width` and `height` properties). You can also add additional classes to it by setting the `class` variable in the include, e.g. `{% include 'core/inc/svg.html' with id='print-button' class='dmb-addtional-class' %}`.
+To use an SVG put the .svg file in `src/static/src/svg/` and then reference it in a template using `{% include 'core/inc/svg.html' with id='<filename>' %}`, where `id` is the filename without the '.svg' extension. This will generate an svg with classes `dmb-svg` and `dmb-svg--<filename>`, and width and height HTML attributes set to 100% (can be overridden by CSS `width` and `height` properties). You can also add additional classes to it by setting the `class` variable in the include, e.g. `{% include 'core/inc/svg.html' with id='print-button' class='dmb-addtional-class1 dmb-addtional-class2' %}`.
 
-The `{% include %}` also accepts one of two optional arguments; `size`, which accepts any valid size with units and sets the `width` and `height` attributes, or `inline`, which is a Boolean that adds a `dmb-svg--inline` class making the size, and left and right margins proportional to font size:
+The `{% include %}` also accepts one of two optional arguments; `size`, which can be any valid size with units that is applied to the `width` and `height` HTML attributes, or `inline`, which is a Boolean that adds a `dmb-svg--inline` class making the size, and left and right margins proportional to font size:
 ```scss
 .dmb-svg--inline {
   height: .75em;

@@ -1,4 +1,4 @@
-{% extends "public/ads/base.html" %}
+{% extends "public/base.html" %}
 {% load staticfiles %}
 {% load angular %}
 {% load i18n %}
@@ -7,6 +7,7 @@
 {% trans "Enter the organisation name" as organisation_placeholder %}
 <div class="dmb-registration"
     ng-controller="RegistrationCtrl as registrationCtrl"
+    ng-init="registrationCtrl.hideConfirmationPage = true"
     ng-cloak>
   <div class="h-c-page">
     <div class="h-c-grid" ng-if="!registrationCtrl.link">

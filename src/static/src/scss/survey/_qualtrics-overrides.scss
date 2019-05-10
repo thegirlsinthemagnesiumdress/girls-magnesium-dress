@@ -51,11 +51,16 @@
   .q-checked + .TextEntryBox {
     display: inline-block;
   }
+
+  .LanguageSelectorContainer + .Separator {
+    display: none;
+  }
 }
 
 // Skin styles
 .Skin {
   color: $dmb-text-color;
+  display: block;
   font-family: inherit;
   overflow-x: hidden;
 
@@ -72,6 +77,15 @@
     @include dmb-resp-prop(padding-top, 0, 10px, 20px);
   }
 
+  .Separator {
+    border-top: 1px solid $dmb-color-grey-zircon;
+    display: block;
+
+    &:first-of-type {
+      display: none;
+    }
+  }
+
 
   // Header styles
   #HeaderContainer {
@@ -83,7 +97,6 @@
     padding: 0;
   }
 
-
   // Question styles
   .MC .QuestionBody,
   .QuestionBody,
@@ -92,11 +105,8 @@
   }
 
   .QuestionOuter {
-    padding: 0;
-  }
-
-  .MC li .LabelWrapper {
-    @include dmb-resp-prop(margin-bottom, 10px, 20px, 20px);
+    @extend .dmb-u-p-b-m;
+    @extend .dmb-u-p-t-m;
   }
 
   .QuestionText {
@@ -114,12 +124,6 @@
   fieldset {
     width: auto;
   }
-
-  .Separator {
-    border-top: 1px solid $dmb-color-grey-zircon;
-    @include dmb-resp-prop(margin, '0', '30px 0' '40px 0');
-  }
-
 
   // Text Input
   .TE .FORM .InputText {
@@ -172,13 +176,6 @@
     margin: 0;
     padding: 0;
   }
-
-  #Plug {
-    height: 0;
-    position: relative;
-    visibility: hidden;
-    z-index: -1000;
-  }
 }
 
 .LabelWrapper {
@@ -199,16 +196,34 @@
   @include dmb-resp-prop(padding, 20px, 30px, '40px 80px');
 }
 
-#LogoContainer {
-  display: none;
-}
-
 .InnerInner {
-  padding: 20px 16px;
+  padding: 0 16px;
 }
 
 fieldset {
   border: 0 none;
   margin: 0;
   padding: 0;
+}
+
+.dmb-button-text {
+  display: none;
+}
+
+.LanguageSelectorContainer {
+  display: inline-block;
+}
+
+#Q_lang {
+  @extend .h-c-footnote;
+  @extend .dmb-dropdown-arrow;
+  @extend .dmb-dropdown-arrow--left;
+  background-color: transparent;
+  border: 1px solid $dmb-color-grey-zircon;
+  padding-left: calc(1em + 15px) !important;
+  padding-right: 10px;
+
+  &:focus {
+    outline: 1px solid $dmb-interactive-color;
+  }
 }

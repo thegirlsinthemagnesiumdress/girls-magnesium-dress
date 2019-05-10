@@ -1,0 +1,37 @@
+{% comment %}
+  'value': Value that will be copied when button is clicked (required)
+	'hide_input': Boolean to hide input box and attach 'value' to the CTA (see ngclipboard documentation for more details) (optional)
+  'cta_text': Optional text to use for CTA, if ommited text will be "Copy" (optional)
+{% endcomment %}
+<div
+    class="dmb-copy-comp{% if class %} {{class}}{% endif %}"
+    ng-controller="CopyComponentCtrl as copyCtrl">
+  {% if not hide_input %}
+  <input
+      class="dmb-copy-comp__text"
+      id="{{id}}"
+      type="text"
+      value="{{value}}">
+  {% endif %}
+  <button
+      aria-label="Copy to clipboard"
+      class="dmb-copy-comp__button dmb-outline-button h-c-button"
+      {% if hide_input %}
+      data-clipboard-text="{{value}}"
+      {% else %}
+      data-clipboard-target="#{{id}}"
+      {% endif %}
+      ngclipboard-error="copyCtrl.copyError()"
+      ngclipboard-success="copyCtrl.copySuccess()"
+      ngclipboard>
+    {{cta_text|default:'Copy'}}
+  </button>
+  <p class="dmb-copy-comp__message">
+    <span class="dmb-copy-comp__message-text dmb-copy-comp__message-text--success">
+      Copied to clipboard!
+    </span>
+    <span class="dmb-copy-comp__message-text dmb-copy-comp__message-text--error">
+      Sorry, unable to copy.
+    </span>
+  </p>
+</div>

@@ -114,7 +114,7 @@ class RegistrationController {
         // go redirect to qualtrics survey page
         domSafe.setLocationHref(document.location, res['data']['link']);
       } else {
-        // legacy for ads page, or for reports list page where no redirect is required
+        // legacy for reports list page where no redirect is required
         this.link = res['data']['link'];
         this.companyName = res['data']['company_name'];
       }

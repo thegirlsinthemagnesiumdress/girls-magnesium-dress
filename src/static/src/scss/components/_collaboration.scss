@@ -20,6 +20,10 @@
 
   &__logos {
     flex-grow: 1;
+
+    &--large {
+      flex-basis: 100%;
+    }
   }
 
   &__img {
@@ -29,6 +33,10 @@
     &--gni {
       height: 1.4em !important;
       margin-top: .1em;
+    }
+
+    &--large {
+      height: 40px !important;
     }
   }
 }

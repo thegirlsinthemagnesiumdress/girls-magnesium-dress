@@ -1,10 +1,13 @@
 .dmb-survey-user-details {
-  &.QuestionOuter + .Separator,
-  td:not(.ControlContainer) {
-    display: none;
+  &.QuestionOuter {
+    padding-bottom: 0;
+
+    & + .Separator {
+      display: none;
+    }
   }
 
-  .InnerInner {
-    padding-bottom: 0;
+  td:not(.ControlContainer) {
+    display: none;
   }
 }

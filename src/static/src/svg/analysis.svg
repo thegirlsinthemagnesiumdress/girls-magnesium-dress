@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Group 4</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M26,34.4 L32,34.4 L32,54 L26,54 L26,34.4 Z M37.2,26 L42.8,26 L42.8,54 L37.2,54 L37.2,26 Z M48.4,42 L54,42 L54,54 L48.4,54 L48.4,42 Z" id="path-1"></path>
-    </defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group-4">
-            <circle id="circle-container" fill="#FFFFFF" fill-rule="nonzero" cx="40" cy="40" r="40"></circle>
-            <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-            </mask>
-            <use id="Shape" fill="#959CA5" fill-rule="nonzero" xlink:href="#path-1"></use>
-        </g>
-    </g>
-</svg>
+<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><circle fill="#FFF" cx="40" cy="40" r="40"/><path fill="#959CA5" d="M26 34.4h6V54h-6V34.4zM37.2 26h5.6v28h-5.6V26zm11.2 16H54v12h-5.6V42z"/></svg>
