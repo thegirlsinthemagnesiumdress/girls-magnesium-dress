@@ -194,9 +194,9 @@ score = 0.5
 
 # Using SVGs
 
-To use an SVG put the .svg file in `src/static/src/svg/` and then reference it in a template using `{% include 'core/inc/svg.html' with id='<filename>' %}`, where `id` is the filename without the '.svg' extension. This will generate an svg with classes `dmb-svg` and `dmb-svg--<filename>`, and width and height HTML attributes set to 100% (can be overridden by CSS `width` and `height` properties). You can also add additional classes to it by setting the `class` variable in the include, e.g. `{% include 'core/inc/svg.html' with id='print-button' class='dmb-addtional-class' %}`.
+To use an SVG put the .svg file in `src/static/src/svg/` and then reference it in a template using `{% include 'core/inc/svg.html' with id='<filename>' %}`, where `id` is the filename without the '.svg' extension. This will generate an svg with classes `dmb-svg` and `dmb-svg--<filename>`, and width and height HTML attributes set to 100% (can be overridden by CSS `width` and `height` properties). You can also add additional classes to it by setting the `class` variable in the include, e.g. `{% include 'core/inc/svg.html' with id='print-button' class='dmb-addtional-class1 dmb-addtional-class2' %}`.
 
-The `{% include %}` also accepts one of two optional arguments; `size`, which accepts any valid size with units and sets the `width` and `height` attributes, or `inline`, which is a Boolean that adds a `dmb-svg--inline` class making the size, and left and right margins proportional to font size:
+The `{% include %}` also accepts one of two optional arguments; `size`, which can be any valid size with units that is applied to the `width` and `height` HTML attributes, or `inline`, which is a Boolean that adds a `dmb-svg--inline` class making the size, and left and right margins proportional to font size:
 ```scss
 .dmb-svg--inline {
   height: .75em;
