@@ -1,0 +1,64 @@
+.dmb-copy-comp {
+  $block: &;
+  $dmb-survey-url-height: 56px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  &__text {
+    border: 1px solid $dmb-color-grey-zircon;
+    border-radius: $dmb-border-radius 0 0 $dmb-border-radius;
+    border-right: 0;
+    flex: 1 1 0;
+    height: $dmb-survey-url-height;
+    overflow: hidden;
+    padding: 15px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    #{$block} & {
+      color: $dmb-text-color;
+      font-size: 14px;
+    }
+  }
+
+  &__button {
+    flex: 0 0 0;
+    margin: 0;
+    padding: 15px 50px;
+
+    &.h-c-button {
+      border-radius: 0 $dmb-border-radius $dmb-border-radius 0;
+      color: $dmb-interactive-color;
+      height: $dmb-survey-url-height;
+    }
+  }
+
+  &__message-text {
+    display: none;
+    font-weight: 500;
+
+    &--success {
+      color: $dmb-color-green-salem;
+    }
+
+    &--error {
+      color: $dmb-color-red-fire-engine;
+    }
+  }
+
+  &__message {
+    margin-top: 10px;
+    min-height: 2em;
+    width: 100%;
+
+    $states: (success, error);
+    @each $state in $states {
+      &--#{$state} {
+        #{$block}__message-text--#{$state} {
+          display: block;
+        }
+      }
+    }
+  }
+}
