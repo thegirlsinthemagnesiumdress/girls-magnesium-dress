@@ -1,5 +1,23 @@
 // TENANTS VARIABLES
 $tenants: (
+  ads: (
+    primary-color: $dmb-text-color,
+    progress-grid-switch-bp: 800px,
+    levels: (
+      0: (
+        color: $h-gm-red-500
+      ),
+      1: (
+        color: $h-gm-red-700
+      ),
+      2: (
+        color: $h-gm-red-800
+      ),
+      3: (
+        color: $h-gm-red-900
+      )
+    )
+  ),
   news: (
     primary-color: $dmb-color-green-eucalyptus,
     progress-grid-switch-bp: 800px,
