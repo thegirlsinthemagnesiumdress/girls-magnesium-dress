@@ -7,7 +7,7 @@
         <h1 class="h-c-headline h-c-headline--two">
           {% trans "Next steps" %}
         </h1>
-        <h2 class="h-c-headline h-c-headline--subhead">
+        <h2 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
           {% trans "Review your recommendations and consider these four steps:" %}
         </h2>
         <ul class="dmb-u-m-b-s">
@@ -25,14 +25,14 @@
           </li>
         </ul>
 
-        <h2 class="h-c-headline h-c-headline--subhead">
+        <h2 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
           {% trans "Share this report with your colleagues" %}
         </h2>
-        <p>
+        <p class="dmb-u-m-b-xs">
           {% trans "To share this report, copy the link and send it to your colleagues. It is not available as a pdf report as it is live, with the industry benchmarks constantly updating." %}
         </p>
 
-        {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri %}
+        {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri light=True %}
 
       </div>
     </div>
