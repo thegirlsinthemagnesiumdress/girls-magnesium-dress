@@ -24,11 +24,7 @@
       ngclipboard-error="copyCtrl.copyError()"
       ngclipboard-success="copyCtrl.copySuccess()"
       ngclipboard>
-    {% if cta_text %}
-    {{cta_text}}
-    {% else %}
-    Copy
-    {% endif %}
+    {{cta_text|default:'Copy'}}
   </button>
   <p class="dmb-copy-comp__message">
     <span class="dmb-copy-comp__message-text dmb-copy-comp__message-text--success">
