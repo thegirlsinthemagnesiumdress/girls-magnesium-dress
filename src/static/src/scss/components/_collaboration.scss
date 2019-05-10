@@ -1,6 +1,6 @@
 .dmb-collaboration {
   $block: &;
-  align-items: baseline;
+  align-items: flex-end;
   display: flex;
   flex-wrap: wrap;
 
@@ -17,6 +17,11 @@
   &__text,
   &__img {
     margin: 0 10px 10px 0;
+  }
+
+  &__text {
+    position: relative;
+    top: 2px;
   }
 
   &__img--bcg {
