@@ -54,7 +54,7 @@
                 {% include 'public/inc/global/copy-comp.inc.html' with id="referral-link" value=url|add:"#el="|add:el %}
               {% endwith %}
 
-        </div>
+            </div>
           </div>
         </div>
 
@@ -63,14 +63,66 @@
             {% include 'core/inc/svg.html' with id='export' inline=True %}Export
           </h2>
           <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-            Lorem ipsum dolor sit amet
+            Export the data from all your surveys
           </h3>
           <p class="dmb-u-m-b-s">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius corrupti earum iure ullam omnis porro repellat aliquid fuga, nisi, eveniet provident sint blanditiis aut eos.
+            Your data will be saved as a Google Sheet. <strong>Check your inbox</strong> for a link. This may take up to 5 minutes.
           </p>
-          <button class="h-c-button h-c-button--primary">
-            Export
-          </button>
+          <div
+              class="dmb-admin-reports__export-actions h-u-text-center"
+              ng-controller="ExportReportsCtrl as exportsCtrl">
+
+            <form
+                action="{% url 'reports_export' slug|ng_mark_safe %}"
+                method="post"
+                name="export"
+                ng-if="!exportsCtrl.exportSuccess && !exportsCtrl.exportError"
+                ng-submit="exportsCtrl.export($event, '{{engagement_lead|ng_mark_safe}}')"
+                novalidate>
+              <button
+                  class="h-c-button h-c-button--primary"
+                  id="dmb-export-btn"
+                  type="submit">
+                Export data
+              </button>
+            </form>
+
+            <div
+                class="dmb-admin-reports__export-sucess"
+                ng-if="exportsCtrl.exportSuccess">
+              {% include 'core/inc/svg.html' with id='success' size='46px' only %}
+              <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-xs">
+                Export sent
+              </h3>
+              <p class="h-c-footnote h-u-font-weight-medium">
+                If you don’t recieve an email within 5 minutes
+                <a
+                    class="h-c-button h-c-button--flat h-c-footnote h-u-font-weight-medium"
+                    ng-click="exportsCtrl.resetExport()">
+                      try again
+                </a>
+              </p>
+            </div>
+
+            <div
+                class="dmb-admin-reports__export-error"
+                ng-if="exportsCtrl.exportError">
+              {% include 'core/inc/svg.html' with id='error' size='46px' only %}
+              <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-xs">
+                Export error
+              </h3>
+              <p class="h-c-footnote h-u-font-weight-medium">
+                Sorry there was an error please
+                <button
+                    class="h-c-button h-c-button--flat h-c-footnote h-u-font-weight-medium"
+                    ng-click="exportsCtrl.resetExport()">
+                      try again
+                </button>
+              </p>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>

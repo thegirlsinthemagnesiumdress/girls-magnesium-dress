@@ -2,7 +2,13 @@
 @import 'variables';
 @import 'breakpoints';
 @import 'mixins';
+@import 'utils';
+
+@import 'components/card';
 @import 'components/copy-comp';
 @import 'components/outline-button';
 @import 'components/footer';
 @import 'components/read-more';
+@import 'components/table';
+
+@import 'pages/admin-reports';

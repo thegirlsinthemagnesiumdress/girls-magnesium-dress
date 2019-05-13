@@ -28,4 +28,26 @@
       }
     }
   }
+
+  &__export {
+    display: flex;
+    flex-direction: column;
+
+    &-actions {
+      align-items: center;
+      border-top: 1px solid $dmb-color-grey-zircon;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      padding-top: 24px;
+    }
+  }
+
+}
+
+#dmb-admin-reports {
+  // TODO(https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/339): remove once this ticket is complete
+  .h-c-headline {
+    @extend .dmb-u-m-b-s;
+  }
 }
