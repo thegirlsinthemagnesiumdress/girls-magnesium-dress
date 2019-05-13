@@ -7,82 +7,35 @@
 
 {% block main %}
 <div id="dmb-admin-reports" dmb-reports-admin ng-cloak>
+  <ul class="dmb-reports-admin__create-survey">
+    <li>
+      <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
+        Create a custom Survey
+      </h3>
+      <p class="dmb-reports-admin__survey-creation-text">
+        Create a custom survey for your client using the button below.<br>
+        You’ll be able to set the company name, industry and location.
+      </p>
+      <button
+          class="dmb-right-panel-trigger h-c-button h-c-button--primary"
+          dmb-side-panel-trigger="#dmb-create-survey">
+        Create new survey
+      </button>
+    </li>
+    <li class="dmb-reports-admin__referral-wrp">
+      <h3 class="h-c-headline h-c-headline--five h-u-font-weight-medium">
+        Send a referral link
+      </h3>
+      <p class="dmb-reports-admin__survey-creation-text">
+        Send your survey referral link to allow clients to create their own unique survey.<br>
+        Any surveys created with this link will be associated with your account.
+      </p>
 
-  <section class="dmb-color-bg dmb-u-p-t-m dmb-u-p-b-m">
-    <div class="h-c-page">
-
-      <div class="h-c-eyebrow">
-        {{ tenant|ng_mark_safe }}
-      </div>
-
-      <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium">
-        {% if tenant|ng_mark_safe == 'ads' %}Digital {% else %}Data {% endif %}
-        Maturity Admin Dashboard
-      </h1>
-
-      <div class="h-c-grid">
-        <div class="dmb-admin-reports__card dmb-card h-c-grid__col h-c-grid__col-l--8">
-          <h2 class="h-c-headline h-c-headline--three">
-            {% include 'core/inc/svg.html' with id='clipboard' inline=True %}Create survey
-          </h2>
-          <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-            You can create a new survey in two ways:
-          </h3>
-          <div class="dmb-admin-reports__create-survey">
-            <div class="dmb-admin-reports__create-survey-step">
-              <h4 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-xs">
-                Create a custom survey
-              </h4>
-              <p class="dmb-u-m-b-s">
-                Create a custom survey for your client using the button below. You’ll be able to set the company name, industry and location.
-              </p>
-              <button
-                  class="dmb-right-panel-trigger h-c-button h-c-button--primary"
-                  dmb-side-panel-trigger="#dmb-create-survey">
-                Create a new survey
-              </button>
-            </div>
-            <div class="dmb-admin-reports__create-survey-step">
-              <h4 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-xs">
-                Send a referral link
-              </h4>
-              <p class="dmb-u-m-b-s">
-                Send your survey referral link to allow clients to create their own unique survey. Any surveys created with this link will be associated with your account.
-              </p>
-              <input
-                id="reference-link"
-                type="text"
-                value="{{create_survey_url|ng_mark_safe}}#el={{engagement_lead|ng_mark_safe}}">
-              <button
-                  aria-label="Copy to clipboard"
-                  class="h-c-button h-c-button--flat"
-                  data-clipboard-target="#reference-link"
-                  ngclipboard>
-                Copy
-              </button>
-            </div>
-          </div>
-
-
-        </div>
-        <div class="dmb-admin-reports__card dmb-card h-c-grid__col h-c-grid__col-l--4">
-          <h2 class="h-c-headline h-c-headline--three">
-            {% include 'core/inc/svg.html' with id='export' inline=True %}Export
-          </h2>
-          <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-            Lorem ipsum dolor sit amet
-          </h3>
-          <p class="dmb-u-m-b-s">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius corrupti earum iure ullam omnis porro repellat aliquid fuga, nisi, eveniet provident sint blanditiis aut eos.
-          </p>
-          <button class="h-c-button h-c-button--primary">
-            Export
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
+      {% with url=create_survey_url|ng_mark_safe el=engagement_lead|ng_mark_safe %}
+        {% include 'public/inc/global/copy-comp.inc.html' with id="referral-link" value=url|add:"#el="|add:el %}
+      {% endwith %}
+    </li>
+  </ul>
 
   <div
       class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--right"
@@ -232,20 +185,10 @@
         <p>
           Your custom survey link is below. Send this link to your client so that they can get started.
         </p>
-        <div class="dmb-registration__link">
-          <a ng-href="{[ registrationCtrl.link ]}" target="_blank" id="survey-link">
-            {[ registrationCtrl.link ]}
-          </a>
-          <button
-              class="h-c-link"
-              ngclipboard
-              data-clipboard-target="#survey-link">
-            Copy
-          </button>
-        </div>
-        <button
-            class="h-c-button h-c-button--primary"
-            ng-click="registrationCtrl.reset()">
+
+        {% include 'public/inc/global/copy-comp.inc.html' with id="survey-link" value='{[ registrationCtrl.link ]}' %}
+
+        <button class="h-c-button h-c-button--primary" ng-click="registrationCtrl.reset()">
           Create another assessment
         </button>
         <p class="h-c-footnote">

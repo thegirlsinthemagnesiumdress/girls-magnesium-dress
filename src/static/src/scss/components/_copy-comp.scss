@@ -1,9 +1,10 @@
-.dmb-survey-copy-url {
+.dmb-copy-comp {
   $block: &;
   $dmb-survey-url-height: 56px;
 
   display: flex;
   flex-wrap: wrap;
+  max-width: 500px;
 
   &__text {
     border: 1px solid $dmb-color-grey-zircon;
@@ -34,14 +35,9 @@
     }
   }
 
-  &__message {
-    font-weight: 500;
-    margin-top: 10px;
-    width: 100%;
-  }
-
   &__message-text {
     display: none;
+    font-weight: 500;
 
     &--success {
       color: $dmb-color-green-salem;
@@ -49,6 +45,21 @@
 
     &--error {
       color: $dmb-color-red-fire-engine;
+    }
+  }
+
+  &__message {
+    margin-top: 10px;
+    min-height: 2em;
+    width: 100%;
+
+    $states: (success, error);
+    @each $state in $states {
+      &--#{$state} {
+        #{$block}__message-text--#{$state} {
+          display: block;
+        }
+      }
     }
   }
 }
