@@ -255,15 +255,22 @@ class GenerateExportPage(TestCase):
     def test_user_not_logged_in(self):
         """If a user is not logged in, it should return 302."""
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
+
+    @with_appengine_user("test@google.com")
+    def test_get_not_allowed(self):
+        """Method GET should not be allowed, it returns 405."""
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 405)
 
     @mock.patch('djangae.deferred.defer')
     @with_appengine_user("test@google.com")
     def test_engagement_lead_missing(self, mock_defer):
         """If enagagement lead parameter is missing, it returns an error."""
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 400)
         mock_defer.assert_not_called()
 
@@ -272,9 +279,11 @@ class GenerateExportPage(TestCase):
     def test_engagement_lead_ok_no_data(self, mock_defer):
         """If engagement_lead has no surveys, it should return empty dataset"""
         engagement_lead = '1234'
+        data = {
+            'el': engagement_lead
+        }
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        url = '{}?el={}'.format(url, engagement_lead)
-        response = self.client.get(url)
+        response = self.client.post(url, data=data)
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
 
@@ -289,13 +298,17 @@ class GenerateExportPage(TestCase):
     def test_engagement_lead_ok_data(self, mock_defer):
         """All data belonging to engagement lead should be returned."""
         engagement_lead = '1234'
+
+        data = {
+            'el': engagement_lead
+        }
+
         self.survey_1.engagement_lead = engagement_lead
         self.survey_2.engagement_lead = engagement_lead
         self.survey_1.save()
         self.survey_2.save()
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        url = '{}?el={}'.format(url, engagement_lead)
-        response = self.client.get(url)
+        response = self.client.post(url, data=data)
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
 
