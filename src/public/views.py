@@ -27,6 +27,7 @@ def _dump_tenant_content_data(tenant):
     data = {
         'levels': content_data['levels'],
         'level_descriptions': content_data['level_descriptions'],
+        'report_level_descriptions': content_data.get('report_level_descriptions'),
         'dimensions': content_data['dimensions'],
         'dimension_labels': content_data['dimension_labels'],
         'dimension_headers_descriptions': content_data['dimension_headers_descriptions'],
