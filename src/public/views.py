@@ -204,9 +204,7 @@ def generate_spreadsheet_export(request, tenant):
             _queue='default',
         )
 
-    except ValueError as e:
-        print('>>>>>> ', request.body)
-        print('>>>>>> ', e)
+    except ValueError:
         return HttpResponse(status=500)
 
     return HttpResponse(msg)
