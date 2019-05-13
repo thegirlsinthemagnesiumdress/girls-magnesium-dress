@@ -8,19 +8,11 @@ class ExportReportsController {
    *
    * @param {!angular.$http} $http
    * @param {!Object} csrfToken
-   * @param {!Object} tenantConf
    * @ngInject
    */
-  constructor($http, csrfToken, tenantConf) {
+  constructor($http, csrfToken) {
     this._ngHttp = $http;
     this._csrfToken = csrfToken;
-
-    /**
-     * Tenant
-     * @export
-     * @type {String}
-     */
-    this.tenant = tenantConf.tenant;
 
     /**
      * @export
@@ -38,6 +30,7 @@ class ExportReportsController {
   /**
    * Export report data
    * @export
+   * @param {!Object} event
    * @param {String} engagementLead
    */
   export(event, engagementLead) {
@@ -45,7 +38,6 @@ class ExportReportsController {
 
     let data = {
       'engagement_lead': engagementLead,
-      'tenant': this.tenant,
     };
 
     this._ngHttp.post(

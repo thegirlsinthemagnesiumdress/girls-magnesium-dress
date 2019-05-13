@@ -270,7 +270,7 @@ class GenerateExportPage(TestCase):
     def test_engagement_lead_missing(self, mock_defer):
         """If enagagement lead parameter is missing, it returns an error."""
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        response = self.client.post(url)
+        response = self.client.post(url, data=json.dumps({}), content_type="application/json")
         self.assertEqual(response.status_code, 400)
         mock_defer.assert_not_called()
 
@@ -280,10 +280,10 @@ class GenerateExportPage(TestCase):
         """If engagement_lead has no surveys, it should return empty dataset"""
         engagement_lead = '1234'
         data = {
-            'el': engagement_lead
+            'engagement_lead': engagement_lead
         }
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        response = self.client.post(url, data=data)
+        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
 
@@ -300,7 +300,7 @@ class GenerateExportPage(TestCase):
         engagement_lead = '1234'
 
         data = {
-            'el': engagement_lead
+            'engagement_lead': engagement_lead
         }
 
         self.survey_1.engagement_lead = engagement_lead
@@ -308,7 +308,7 @@ class GenerateExportPage(TestCase):
         self.survey_1.save()
         self.survey_2.save()
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        response = self.client.post(url, data=data)
+        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
 

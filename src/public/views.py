@@ -178,28 +178,35 @@ def generate_spreadsheet_export(request, tenant):
     if request.method != "POST":
         return HttpResponse(status=405)
 
-    engagement_lead = request.POST.get('el')
+    try:
+        json_body = json.loads(request.body)
+        engagement_lead = json_body.get('engagement_lead')
 
-    if not engagement_lead:
-        msg = _MISSING_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
-        logging.warning(msg)
-        return HttpResponse(msg, status=400)
+        if not engagement_lead:
+            msg = _MISSING_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
+            logging.warning(msg)
+            return HttpResponse(msg, status=400)
 
-    tenant_conf = settings.TENANTS[tenant]
-    survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
-    survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
-    data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
+        tenant_conf = settings.TENANTS[tenant]
+        survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
+        survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
+        data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
 
-    msg = _GENERATED_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
-    logging.info(msg)
-    deferred.defer(
-        tasks.export_tenant_data,
-        "Export for {}".format(tenant),
-        data,
-        survey_fields_mappings,
-        survey_result_fields_mapping,
-        request.user.email,
-        _queue='default',
-    )
+        msg = _GENERATED_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
+        logging.info(msg)
+        deferred.defer(
+            tasks.export_tenant_data,
+            "Export for {}".format(tenant),
+            data,
+            survey_fields_mappings,
+            survey_result_fields_mapping,
+            request.user.email,
+            _queue='default',
+        )
+
+    except ValueError as e:
+        print('>>>>>> ', request.body)
+        print('>>>>>> ', e)
+        return HttpResponse(status=500)
 
     return HttpResponse(msg)
