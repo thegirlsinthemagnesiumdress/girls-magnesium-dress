@@ -175,7 +175,10 @@ def generate_spreadsheet_export(request, tenant):
     _GENERATED_INFO_MSG = ("Generate spreadsheet export for Enagagement Lead: "
                            "{engagement_lead}, Tenant: {tenant}")
 
-    engagement_lead = request.GET.get('el')
+    if request.method != "POST":
+        return HttpResponse(status=405)
+
+    engagement_lead = request.POST.get('el')
 
     if not engagement_lead:
         msg = _MISSING_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
