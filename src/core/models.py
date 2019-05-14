@@ -9,7 +9,6 @@ from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.managers import NotExcludedFromBestPracticeManager
 from core.conf.utils import flatten, get_tenant_slug, version_info
-from djangae.contrib.pagination import paginated_model
 
 
 class User(GaeAbstractDatastoreUser):
@@ -31,9 +30,6 @@ class User(GaeAbstractDatastoreUser):
         return m.hexdigest()
 
 
-@paginated_model(orderings=[
-    "created_at",
-])
 class Survey(models.Model):
     """
     DMB_overall_average_by_dimension:
