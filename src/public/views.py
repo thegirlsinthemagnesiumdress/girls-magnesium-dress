@@ -16,7 +16,6 @@ from core.conf.utils import flatten, get_tenant_slug
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
-from djangae.contrib import pagination
 
 
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
@@ -93,10 +92,10 @@ def thank_you(request, tenant):
 
 @login_required
 @survey_admin_required
-def reports_admin_OLD(request, tenant):
+def reports_admin(request, tenant):
     industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
 
-    surveys = Survey.objects.filter(tenant=tenant)
+    surveys = Survey.objects.prefetch_related('survey_results', 'last_survey_result').filter(tenant=tenant)
     if not request.user.is_super_admin:
         surveys = surveys.filter(engagement_lead=request.user.engagement_lead)
 
@@ -116,46 +115,6 @@ def reports_admin_OLD(request, tenant):
         }),
     })
 
-
-@login_required
-@survey_admin_required
-def reports_admin(request, tenant):
-    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
-
-    surveys_list = Survey.objects.filter(tenant=tenant)
-    if not request.user.is_super_admin:
-        surveys_list = surveys_list.filter(engagement_lead=request.user.engagement_lead)
-
-    surveys_list = Survey.objects.order_by("created_at")
-    paginator = pagination.Paginator(surveys_list, 25, readahead=10)
-
-    page = request.GET.get('page')
-    try:
-        # Under the hood this will instead order and filter by the magically generated field for
-        # first_name, allowing you to efficiently jump to a specific page
-        surveys = paginator.page(page)
-    except pagination.PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        surveys = paginator.page(1)
-    except pagination.EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        surveys = paginator.page(paginator.num_pages)
-
-    slug = get_tenant_slug(tenant)
-
-    serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
-    return render(request, 'public/{}/reports-list.html'.format(tenant), {
-        'tenant': tenant,
-        'slug': get_tenant_slug(tenant),
-        'content_data': _dump_tenant_content_data(tenant),
-        'engagement_lead': request.user.engagement_lead,
-        'industries': industries,
-        'countries': COUNTRIES_TUPLE,
-        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
-        'bootstrap_data': JSONRenderer().render({
-            'surveys': serialized_data.data
-        }),
-    })
 
 @login_required
 @survey_admin_required
