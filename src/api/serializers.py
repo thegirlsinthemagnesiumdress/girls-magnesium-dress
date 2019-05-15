@@ -7,6 +7,7 @@ class SurveySerializer(ModelSerializer):
     class Meta:
         model = Survey
         fields = (
+            'account_id',
             'company_name',
             'link',
             'link_sponsor',

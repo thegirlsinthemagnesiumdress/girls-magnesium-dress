@@ -24,6 +24,12 @@ class RegistrationController {
      * @export
      * @type{string}
      */
+    this.accountId;
+
+    /**
+     * @export
+     * @type{string}
+     */
     this.companyName= '';
 
     /**
@@ -89,7 +95,10 @@ class RegistrationController {
    * @export
    */
   submit() {
+    this.serverError = false;
+
     let data = {
+      'account_id': this.accountId,
       'company_name': this.companyName,
       'industry': this.industry,
       'country': this.country,
@@ -100,8 +109,6 @@ class RegistrationController {
     if (this.elId && !data['engagement_lead']) {
       data['engagement_lead'] = this.elId;
     }
-
-    this.serverError = false;
 
     this._ngHttp.post(
       SURVEY_ENDPOINT,
