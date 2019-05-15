@@ -331,3 +331,8 @@ QUALTRICS_LANGS = {
 }
 
 HTTP_HOST = os.environ['HTTP_HOST']
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}

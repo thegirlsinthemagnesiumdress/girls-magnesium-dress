@@ -80,7 +80,7 @@ class Survey(models.Model):
 
     @property
     def last_survey_result_link(self):
-        return reverse('report', kwargs={'tenant': self.slug, 'sid': self.sid}) if self.last_survey_result else None
+        return reverse('report', kwargs={'tenant': self.slug, 'sid': self.sid}) if self.last_survey_result_pk else None
 
     @property
     def slug(self):
@@ -137,6 +137,9 @@ class SurveyResult(models.Model):
                 'response_id': self.response_id,
             },
         )
+
+    class Meta:
+        ordering = ('-started_at',)
 
 
 class SurveyDefinition(models.Model):

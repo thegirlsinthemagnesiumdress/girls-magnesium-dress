@@ -9,11 +9,12 @@ from django.conf import settings
 from django.http import Http404
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.generics import (
     CreateAPIView,
     RetrieveAPIView,
     get_object_or_404,
+    ListAPIView,
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -128,3 +129,20 @@ class SurveyResultsIndustryDetail(APIView):
             'dmb_d_bp': dmb_d_bp,
         }
         return Response(data)
+
+
+class AdminSurveyListView(ListAPIView):
+    authentication_classes = (SessionAuthentication,)
+    serializer_class = SurveyWithResultSerializer
+
+    def get_queryset(self):
+        """
+            Return a list of all the surveys that the authenticated
+            user has ever sponsored, filtered by `tenant`.
+        """
+        tenant = self.kwargs['tenant']
+        user = self.request.user
+        queryset = Survey.objects.filter(tenant=tenant)
+        if not user.is_super_admin:
+            queryset = queryset.filter(engagement_lead=user.engagement_lead)
+        return queryset

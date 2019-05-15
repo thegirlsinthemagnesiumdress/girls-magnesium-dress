@@ -69,6 +69,8 @@ DEFAULT_TENANT = ADS
 
 I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if v['i18n']])
 NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if not v['i18n']])
+ENABLED_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items()])
+
 
 TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in TENANTS.items()}
 TENANTS_CHOICES = [(k, v['label']) for k, v in TENANTS.items()]
