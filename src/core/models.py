@@ -80,7 +80,7 @@ class Survey(models.Model):
 
     @property
     def last_survey_result_link(self):
-        return reverse('report', kwargs={'tenant': self.slug, 'sid': self.sid}) if self.last_survey_result_pk else None
+        return reverse('report', kwargs={'tenant': self.slug, 'sid': self.sid}) if self.last_survey_result_id else None
 
     @property
     def slug(self):
@@ -127,7 +127,7 @@ class SurveyResult(models.Model):
         if not self.raw:
             return None
 
-        if not self.survey_definition:
+        if not self.survey_definition_id:
             return None
 
         return reverse(
