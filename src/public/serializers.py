@@ -19,6 +19,8 @@ class AdminSurveyResultsSerializer(ModelSerializer):
     class Meta:
         model = Survey
         fields = (
+            'account_id',
+            'sid',
             'company_name',
             'industry',
             'industry_name',
