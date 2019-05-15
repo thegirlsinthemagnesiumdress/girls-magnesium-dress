@@ -420,24 +420,27 @@ def calculate_industry_benchmark(tenant):
         )
 
 
+def _format_type(value, dateformat="%Y/%m/%d %H:%M:%S"):
+    if isinstance(value, datetime):
+        return value.strftime(dateformat)
+    if isinstance(value, Promise):
+        return force_text(value)
+    return str(value)
+
+
 def export_tenant_data(title, data, survey_fields, survey_result_fields, share_with, dateformat="%Y/%m/%d %H:%M:%S"):
     """Export tenant data to Google Spreadsheet."""
-    def _format_type(value):
-        if isinstance(value, datetime):
-            return value.strftime(dateformat)
-        if isinstance(value, Promise):
-            return force_text(value)
-        return str(value)
 
     export_data = []
     survey_columns = sorted(survey_fields.keys())
     survey_result_columns = sorted(survey_result_fields.keys())
 
-    survey_names = [_format_type(survey_fields.get(col)) for col in survey_columns]
-    survey_result_names = [_format_type(survey_result_fields.get(col)) for col in survey_result_columns]
+    survey_names = [_format_type(survey_fields.get(col), dateformat=dateformat) for col in survey_columns]
+    survey_result_names = [_format_type(survey_result_fields.get(col), dateformat=dateformat)
+                           for col in survey_result_columns]
 
     for v in data:
-        survey_data = [_format_type(getattr(v, col)) for col in survey_columns]
+        survey_data = [_format_type(getattr(v, col), dateformat=dateformat) for col in survey_columns]
         survey_result_data = [''] * len(survey_result_columns)
         try:
             if v.last_survey_result:
@@ -450,7 +453,7 @@ def export_tenant_data(title, data, survey_fields, survey_result_fields, share_w
                         if dim:
                             survey_result_data.append(dim)
                         else:
-                            survey_result_data.append(_format_type(getattr(survey_result, col)))
+                            survey_result_data.append(_format_type(getattr(survey_result, col), dateformat=dateformat))
         except SurveyResult.DoesNotExist:
             # In case we have a survey, but has not been completed yet
             pass
