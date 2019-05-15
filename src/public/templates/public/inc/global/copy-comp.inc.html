@@ -3,6 +3,9 @@
 	'hide_input': Boolean to hide input box and attach 'value' to the CTA (see ngclipboard documentation for more details) (optional)
   'cta_text': Optional text to use for CTA, if ommited text will be "Copy" (optional)
 {% endcomment %}
+
+{% load i18n %}
+{% trans 'Copy' as cta_default %}
 <div
     class="dmb-copy-comp{% if light %} dmb-copy-comp--light{% endif %}{% if class %} {{class}}{% endif %}"
     ng-controller="CopyComponentCtrl as copyCtrl">
@@ -14,7 +17,7 @@
       value="{{value}}">
   {% endif %}
   <button
-      aria-label="Copy to clipboard"
+      aria-label="{% trans 'Copy to clipboard' %}"
       class="dmb-copy-comp__button{% if light %} h-c-button--primary h-c-button--reversed{% else %} dmb-outline-button{% endif %} h-c-button"
       {% if hide_input %}
       data-clipboard-text="{{value}}"
@@ -24,14 +27,14 @@
       ngclipboard-error="copyCtrl.copyError()"
       ngclipboard-success="copyCtrl.copySuccess()"
       ngclipboard>
-    {{cta_text|default:'Copy'}}
+    {{ cta_text|default:cta_default }}
   </button>
   <p class="dmb-copy-comp__message">
     <span class="dmb-copy-comp__message-text dmb-copy-comp__message-text--success">
-      Copied to clipboard!
+      {% trans 'Copied to clipboard!' %}
     </span>
     <span class="dmb-copy-comp__message-text dmb-copy-comp__message-text--error">
-      Sorry, unable to copy.
+      {% trans 'Sorry, unable to copy.' %}
     </span>
   </p>
 </div>

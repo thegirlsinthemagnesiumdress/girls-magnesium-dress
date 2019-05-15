@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-01 16:32+0000\n"
+"POT-Creation-Date: 2019-05-13 09:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -810,7 +810,7 @@ msgstr ""
 msgid "Syrian Arab Republic"
 msgstr ""
 
-msgid "Taiwan, Province of China"
+msgid "Taiwan"
 msgstr ""
 
 msgid "Tajikistan"
@@ -1821,10 +1821,10 @@ msgstr ""
 msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
 msgstr ""
 
-msgid "View the study while you wait"
+msgid "Back to website"
 msgstr ""
 
-msgid "Back to website"
+msgid "You are "
 msgstr ""
 
 msgid "You could be"
@@ -1883,6 +1883,18 @@ msgid "Your Company is"
 msgstr ""
 
 msgid "Your company rating"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Copied to clipboard!"
+msgstr ""
+
+msgid "Sorry, unable to copy."
 msgstr ""
 
 msgid "Looking to benchmark digital maturity for a different challenge or industry?"

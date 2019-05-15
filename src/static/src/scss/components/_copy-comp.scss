@@ -4,6 +4,7 @@
 
   display: flex;
   flex-wrap: wrap;
+  max-width: 500px;
 
   &__text {
     border: 1px solid $dmb-color-grey-zircon;
