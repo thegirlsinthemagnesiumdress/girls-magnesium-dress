@@ -27,6 +27,7 @@ from django.utils import translation
 from core.googleapi import sheets
 from django.utils.functional import Promise
 from django.utils.encoding import force_text
+from djangae.deferred import PermanentTaskFailure
 
 
 def sync_qualtrics():
@@ -431,33 +432,37 @@ def _format_type(value, dateformat="%Y/%m/%d %H:%M:%S"):
 def export_tenant_data(title, data, survey_fields, survey_result_fields, share_with, dateformat="%Y/%m/%d %H:%M:%S"):
     """Export tenant data to Google Spreadsheet."""
 
-    export_data = []
-    survey_columns = sorted(survey_fields.keys())
-    survey_result_columns = sorted(survey_result_fields.keys())
+    try:
+        export_data = []
+        survey_columns = sorted(survey_fields.keys())
+        survey_result_columns = sorted(survey_result_fields.keys())
 
-    survey_names = [_format_type(survey_fields.get(col), dateformat=dateformat) for col in survey_columns]
-    survey_result_names = [_format_type(survey_result_fields.get(col), dateformat=dateformat)
-                           for col in survey_result_columns]
+        survey_names = [_format_type(survey_fields.get(col), dateformat=dateformat) for col in survey_columns]
+        survey_result_names = [_format_type(survey_result_fields.get(col), dateformat=dateformat)
+                               for col in survey_result_columns]
 
-    for v in data:
-        survey_data = [_format_type(getattr(v, col), dateformat=dateformat) for col in survey_columns]
-        survey_result_data = [''] * len(survey_result_columns)
-        try:
-            if v.last_survey_result:
-                survey_result = v.last_survey_result
-                dim_dict = survey_result.dmb_d
-                if dim_dict:
-                    survey_result_data = []
-                    for col in survey_result_columns:
-                        dim = dim_dict.get(col)
-                        if dim:
-                            survey_result_data.append(dim)
-                        else:
-                            survey_result_data.append(_format_type(getattr(survey_result, col), dateformat=dateformat))
-        except SurveyResult.DoesNotExist:
-            # In case we have a survey, but has not been completed yet
-            pass
-        export_data.append(survey_data + survey_result_data)
+        for v in data:
+            survey_data = [_format_type(getattr(v, col), dateformat=dateformat) for col in survey_columns]
+            survey_result_data = [''] * len(survey_result_columns)
+            try:
+                if v.last_survey_result:
+                    survey_result = v.last_survey_result
+                    dim_dict = survey_result.dmb_d
+                    if dim_dict:
+                        survey_result_data = []
+                        for col in survey_result_columns:
+                            dim = dim_dict.get(col)
+                            if dim:
+                                survey_result_data.append(dim)
+                            else:
+                                survey_result_data.append(_format_type(getattr(survey_result, col), dateformat=dateformat))
+            except SurveyResult.DoesNotExist:
+                # In case we have a survey, but has not been completed yet
+                pass
+            export_data.append(survey_data + survey_result_data)
 
-    sheet_url = sheets.export_data(title, survey_names + survey_result_names, export_data, share_with)
-    logging.info("Export created {} and shared with: {}".format(sheet_url, share_with))
+        sheet_url = sheets.export_data(title, survey_names + survey_result_names, export_data, share_with)
+        logging.info("Export created {} and shared with: {}".format(sheet_url, share_with))
+
+    except Exception:
+        raise PermanentTaskFailure
