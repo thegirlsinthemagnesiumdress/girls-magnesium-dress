@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^report/company/(?P<sid>[0-9a-f]{32})/$', SurveyDetailView.as_view(), name='survey_report'),
     url(r'^report/result/(?P<response_id>\w+)/$', SurveyResultDetailView.as_view(), name='survey_result_report'),
     url(r'^report/industry/(?P<industry>[\w-]+)/$', SurveyResultsIndustryDetail.as_view(), name='survey_industry'),
-    url(r'^(?P<tenant>{})/admin/surveys/$'.format(settings.ENABLED_TENANTS), AdminSurveyListView.as_view(), name='admin_surveys'),
+    url(r'^(?P<tenant>{})/admin/surveys/$'.format(settings.ENABLED_TENANTS), AdminSurveyListView.as_view(), name='admin_surveys'),  # noqa
 ]

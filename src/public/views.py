@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from angular.shortcuts import render
-from public.serializers import AdminSurveyResultsSerializer
 
 from core.auth import survey_admin_required
 from core.models import Survey, SurveyResult
