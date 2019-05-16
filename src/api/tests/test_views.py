@@ -7,8 +7,8 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
 from core.tests.mocks import INDUSTRIES, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
-from core.test import reload_urlconf
-
+from core.test import reload_urlconf, with_appengine_user
+from core.conf.utils import get_tenant_slug
 
 User = get_user_model()
 
@@ -376,3 +376,22 @@ class SurveyResultDetailView(APITestCase):
         url = reverse('survey_result_report', kwargs={'response_id': survey_result.response_id})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class AdminSurveyListViewTest(APITestCase):
+    """Tests for `api.views.AdminSurveyListView` view."""
+
+    def setUp(self):
+        slug = get_tenant_slug('ads')
+        self.url = reverse('admin_surveys', kwargs={'tenant': slug})
+
+    def test_fail_not_authenticated(self):
+        """Ensure we can't hit the api if not authenticated."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_user("test@google.com")
+    def test_survey_exists(self):
+        """Should return the `company_name` related to `sid` provided."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
