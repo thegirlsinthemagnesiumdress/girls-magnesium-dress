@@ -135,6 +135,7 @@ class SurveyResultsIndustryDetail(APIView):
 class AdminSurveyListView(ListAPIView):
     authentication_classes = (SessionAuthentication,)
     serializer_class = AdminSurveyResultsSerializer
+    ordering_fields = ('-created_at')
 
     def get_queryset(self):
         """
