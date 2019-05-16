@@ -37,6 +37,8 @@ class Survey(models.Model):
         [category]: benchmark
     }
     """
+    class Meta:
+        ordering = ('-created_at',)
 
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)

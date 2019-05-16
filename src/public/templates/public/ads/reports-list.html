@@ -127,10 +127,7 @@
   </div>
 
   <div class="dmb-reports-admin__table h-c-table__overflowcontainer">
-    <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows glue-table-sort"
-      data-glue-table-sort-ascending-text="ascending"
-      data-glue-table-sort-descending-text="descending"
-      data-glue-table-sort-unsorted-text="unsorted"
+    <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows"
       role="table"
       summary="List of reports"
       width="100%"
@@ -139,34 +136,27 @@
         <tr role="row">
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by organisation name alphabetically"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Organisation name
             </span>
           </th>
             <th
               scope="col"
-              role="columnheader"
-              title="Sort by date created chronologically"
-              data-glue-table-sort-type="datetime-custom">
+              role="columnheader">
             <span>
               Date created
             </span>
           </th>
           <th
           scope="col"
-          role="columnheader"
-          title="Sort by survey completions numerically"
-          data-glue-table-sort-type="numeric">
+          role="columnheader">
           <span>
             Survey completions
           </span>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by survey link">
+              role="columnheader">
             <span>
               Survey link
             </span>
@@ -174,18 +164,14 @@
           </th>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by report link"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Report link
             </span>
           </th>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by country"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Detail
             </span>
@@ -193,18 +179,14 @@
           <th
               scope="col"
               role="columnheader"
-              title="Sort by industry"
-              class="dmb-reports-admin__industry-col"
-              data-glue-table-sort-type="alpha">
+              class="dmb-reports-admin__industry-col">
             <span>
               Industry
             </span>
           </th>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by country"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Country
             </span>
@@ -290,5 +272,30 @@
     </table>
     <div class="glue-js-table__caption"></div>
   </div>
+
+  <div
+      class="dmb-u-m-t-m h-c-grid"
+      ng-if="
+          reportAdminCtrl.bootstrapData.previous ||
+          reportAdminCtrl.bootstrapData.next">
+    <div class="h-c-grid__col h-c-grid__col--6">
+      <a
+          class="h-c-button h-c-button--primary"
+          href="{[reportAdminCtrl.bootstrapData.previous]}"
+          ng-if="reportAdminCtrl.bootstrapData.previous">
+        Prev Page
+      </a>
+    </div>
+    <div class="h-c-grid__col h-c-grid__col--6 h-u-text-right">
+      <a
+          class="h-c-button h-c-button--primary"
+          href="{[reportAdminCtrl.bootstrapData.next]}"
+          ng-if="reportAdminCtrl.bootstrapData.next">
+        Next Page
+      </a>
+    </div>
+  </div>
+
+
 </div>
 {% endblock %}
