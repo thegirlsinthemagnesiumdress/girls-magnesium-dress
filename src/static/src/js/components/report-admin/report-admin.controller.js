@@ -20,10 +20,16 @@ class ReportAdminController {
     this.expandedRows = {};
 
     /**
+     * @type {Object}
+     * @export
+     */
+    this.bootstrapData = bootstrapData;
+
+    /**
      * @type {Array.<Object>}
      * @export
      */
-    this.surveys = bootstrapData['surveys'];
+    this.surveys = this.bootstrapData['results'];
   }
 
 

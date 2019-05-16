@@ -107,9 +107,7 @@ def reports_admin(request, tenant):
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
-        'bootstrap_data': JSONRenderer().render({
-            'surveys': api_data
-        }),
+        'bootstrap_data': JSONRenderer().render(api_data),
     })
 
 
