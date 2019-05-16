@@ -455,7 +455,9 @@ def export_tenant_data(title, data, survey_fields, survey_result_fields, share_w
                             if dim:
                                 survey_result_data.append(dim)
                             else:
-                                survey_result_data.append(_format_type(getattr(survey_result, col), dateformat=dateformat))
+                                survey_result_data.append(
+                                    _format_type(getattr(survey_result, col), dateformat=dateformat)
+                                )
             except SurveyResult.DoesNotExist:
                 # In case we have a survey, but has not been completed yet
                 pass
