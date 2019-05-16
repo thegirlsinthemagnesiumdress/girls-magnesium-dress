@@ -135,7 +135,6 @@ class SurveyResultsIndustryDetail(APIView):
 class AdminSurveyListView(ListAPIView):
     authentication_classes = (SessionAuthentication,)
     serializer_class = AdminSurveyResultsSerializer
-    ordering_fields = ('-created_at')
 
     def get_queryset(self):
         """
@@ -144,7 +143,7 @@ class AdminSurveyListView(ListAPIView):
         """
         tenant = self.kwargs['tenant']
         user = self.request.user
-        queryset = Survey.objects.prefetch_related('survey_results', 'last_survey_result').filter(tenant=tenant)
+        queryset = Survey.objects.order_by('-created_at').prefetch_related('survey_results', 'last_survey_result').filter(tenant=tenant)  # noqa
         if not user.is_super_admin:
             queryset = queryset.filter(engagement_lead=user.engagement_lead)
         return queryset
