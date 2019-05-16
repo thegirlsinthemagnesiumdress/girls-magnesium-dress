@@ -290,5 +290,30 @@
     </table>
     <div class="glue-js-table__caption"></div>
   </div>
+
+  <div
+      class="dmb-u-m-t-m h-c-grid"
+      ng-if="
+          reportAdminCtrl.bootstrapData.previous ||
+          reportAdminCtrl.bootstrapData.next">
+    <div class="h-c-grid__col h-c-grid__col--6">
+      <a
+          class="h-c-button h-c-button--primary"
+          href="{[reportAdminCtrl.bootstrapData.previous]}"
+          ng-if="reportAdminCtrl.bootstrapData.previous">
+        Prev Page
+      </a>
+    </div>
+    <div class="h-c-grid__col h-c-grid__col--6 h-u-text-right">
+      <a
+          class="h-c-button h-c-button--primary"
+          href="{[reportAdminCtrl.bootstrapData.next]}"
+          ng-if="reportAdminCtrl.bootstrapData.next">
+        Next Page
+      </a>
+    </div>
+  </div>
+
+
 </div>
 {% endblock %}
