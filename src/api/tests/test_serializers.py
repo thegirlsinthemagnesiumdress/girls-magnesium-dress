@@ -1,5 +1,5 @@
 from django.test import TestCase
-from public.serializers import AdminSurveyResultsSerializer
+from api.serializers import AdminSurveyResultsSerializer
 from core.tests.mommy_recepies import make_survey, make_survey_result
 from django.utils import dateparse
 

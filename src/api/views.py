@@ -4,7 +4,7 @@ from api.serializers import (
     SurveySerializer,
     SurveyWithResultSerializer,
 )
-from public.serializers import AdminSurveyResultsSerializer
+from api.serializers import AdminSurveyResultsSerializer
 from core.models import Survey, SurveyResult
 from django.conf import settings
 from django.http import Http404
