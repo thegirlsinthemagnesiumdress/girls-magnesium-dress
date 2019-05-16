@@ -204,6 +204,8 @@ class CreateSurveyTest(APITestCase):
 
         response = self.client.post(self.url, self.data)
         response_data_keys = response.json().keys()
+
+        self.assertEqual(response.status_code, 201)
         self.assertEqual(set(response_data_keys), {
             'company_name',
             'link',
@@ -212,8 +214,29 @@ class CreateSurveyTest(APITestCase):
             'industry',
             'country',
             'tenant',
+            'account_id',
         })
         self.assertEqual(Survey.objects.count(), survey_count + 1)
+
+    def test_survey_is_created_correctly(self):
+        """Posting valid data should create survey"""
+        data = {
+            'company_name': 'test company',
+            'industry': 'ic-o',
+            'country': 'GB',
+            'tenant': 'ads',
+            'account_id': '123123',
+        }
+
+        response = self.client.post(self.url, data)
+        response_data = response.json()
+        self.assertEqual(response.status_code, 201)
+
+        survey = Survey.objects.first()
+
+        self.assertEqual(response_data['company_name'], survey.company_name)
+        self.assertEqual(response_data['account_id'], survey.account_id)
+        self.assertEqual(response_data['tenant'], survey.tenant)
 
 
 @override_settings(
