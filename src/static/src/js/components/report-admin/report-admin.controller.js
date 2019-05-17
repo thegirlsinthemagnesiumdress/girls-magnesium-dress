@@ -77,7 +77,7 @@ class ReportAdminController {
    * @param {String} rowIndex
    * @export
    */
-  editAccountID(rowIndex) {
+  editAccountID(event, rowIndex) {
     const index = parseInt(rowIndex, 10);
     this.rowToEdit = rowIndex;
 
@@ -87,10 +87,11 @@ class ReportAdminController {
     this.newAccountIds[index] = this.surveys[index].account_id;
 
     // Give focus to input box. Need to wait until the edit account ID form is visible before focussing on the input.
-    const accountIdInput = document.querySelectorAll(accountIdInputClass)[index];
+    const accountIdInput = event.currentTarget.parentElement.querySelectorAll(accountIdInputClass)[0];
+
     window.setTimeout(() => {
       accountIdInput.focus();
-    }, 500);
+    });
   }
 
   /**

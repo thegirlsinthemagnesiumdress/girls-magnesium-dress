@@ -250,7 +250,7 @@
               <button
                   aria-label="Edit account ID"
                   class="dmb-reports-admin__table-account-edit-btn h-c-button h-c-button--flat"
-                  ng-click="reportAdminCtrl.editAccountID($index)"
+                  ng-click="reportAdminCtrl.editAccountID($event, $index)"
                   ng-disabled="reportAdminCtrl.submitting">
                 {% include 'core/inc/svg.html' with id='edit' size='20px' only %}
               </button>
