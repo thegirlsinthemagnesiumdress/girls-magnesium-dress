@@ -153,6 +153,15 @@
             <th
               scope="col"
               role="columnheader"
+              title="Sort by account ID"
+              data-glue-table-sort-type="alpha">
+            <span>
+              Account ID
+            </span>
+          </th>
+          <th
+              scope="col"
+              role="columnheader"
               title="Sort by date created chronologically"
               data-glue-table-sort-type="datetime-custom">
             <span>
@@ -198,7 +207,6 @@
               scope="col"
               role="columnheader"
               title="Sort by industry"
-              class="dmb-reports-admin__industry-col"
               data-glue-table-sort-type="alpha">
             <span>
               Industry
@@ -220,9 +228,66 @@
             role="row"
             ng-repeat="survey in reportAdminCtrl.surveys"
             data-index={[$index]}
-            ng-class="{'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRows[$index]}"
-        >
-          <td role="rowheader" title="{[survey.company_name]}">{[survey.company_name]}</td>
+            ng-class="{
+              'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRows[$index],
+              'dmb-reports-admin__table-editing-account-row': reportAdminCtrl.rowToEdit == $index
+            }">
+          <td
+              class="dmb-reports-admin__table-org-td"
+              role="rowheader"
+              title="{[survey.company_name]}">
+            {[survey.company_name]}
+          </td>
+
+          <td
+              role="rowheader"
+              title="{[survey.account_id]}">
+            <div class="dmb-reports-admin__table-account-wrapper">
+              &#x200b;
+              <span class="dmb-reports-admin__table-account-text">
+                {[survey.account_id]}
+              </span>
+              <button
+                  aria-label="Edit account ID"
+                  class="dmb-reports-admin__table-account-edit-btn h-c-button h-c-button--flat"
+                  ng-click="reportAdminCtrl.editAccountID($index)"
+                  ng-disabled="reportAdminCtrl.submitting">
+                {% include 'core/inc/svg.html' with id='edit' size='20px' only %}
+              </button>
+
+              <form
+                  class="dmb-reports-admin__table-account-form"
+                  data-url="/api/survey/{[survey.sid]}/"
+                  method="put"
+                  ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
+                <input
+                    aria-label="Enter account ID"
+                    class="dmb-reports-admin__table-account-input"
+                    name="account-id"
+                    ng-model="reportAdminCtrl.newAccountIds[$index]"
+                    type="text">
+
+                <button
+                    aria-label="Submit account ID change"
+                    class="dmb-reports-admin__table-account-submit h-c-button h-c-button--flat"
+                    ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
+                    type="submit">
+                  {% include 'core/inc/svg.html' with id='success' size='24px' only %}
+                </button>
+
+                <button
+                    aria-label="Cancel account ID change"
+                    class="dmb-reports-admin__table-account-cancel h-c-button h-c-button--flat"
+                    type="button"
+                    ng-click="reportAdminCtrl.cancelAccountIDEdit()"
+                    ng-if="!reportAdminCtrl.submitting">
+                  {% include 'core/inc/svg.html' with id='error' size='24px' only %}
+                </button>
+
+                <div class="dmb-spinner" ng-if="reportAdminCtrl.submitting"></div>
+              </form>
+            </div>
+          </td>
           <td role="gridcell" ng-attr-title="{[survey.created_at|date:'d/M/yyyy hh:mm']}">
               {[survey.created_at|date:"d/M/yyyy"]}
               {% comment %} This is used by tablesort-utility.js module to sort by date, please update it if this changes {% endcomment %}
@@ -231,7 +296,7 @@
           <td role="gridcell">
             {[ survey.survey_results.length ]}
             <button
-                class="dmb-reports-admin__table-history-btn"
+                class="dmb-reports-admin__table-history-btn h-c-button h-c-button--flat"
                 ng-if="survey.survey_results.length > 1"
                 ng-click="reportAdminCtrl.viewHistory($index)"
               >
@@ -273,21 +338,21 @@
           <td role="gridcell">
             <a class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell" ng-if="survey.last_survey_result.detail_link"
               ng-href="{[survey.last_survey_result.detail_link]}" target="_blank">
-              Detail
+              Details
             </a>&nbsp;
             <span ng-if="!survey.last_survey_result.detail_link">
               -
             </span>
             <div class="dmb-reports-admin__table-subcell" ng-repeat="r in survey.survey_results">
               <a ng-if="r.detail_link" class="h-c-button h-c-button--flat" ng-href="{[r.detail_link]}" target="_blank">
-                Detail
+                Details
               </a>
               <span ng-if="!r.detail_link">
                 -
               </span>
             </div>
           </td>
-          <td role="gridcell" class="dmb-reports-admin__industry-col" ng-attr-title="{[survey.industry_name]}">{[survey.industry_name]}</td>
+          <td role="gridcell" class="dmb-reports-admin__table-ind-td" ng-attr-title="{[survey.industry_name]}">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
         </tr>
       </tbody>
