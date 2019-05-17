@@ -27,10 +27,10 @@
       </h2>
     </div>
     <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--level-{[reportCtrl.nextLevel]}">
-      <span ng-if="reportCtrl.nextLevel < (reportCtrl.levelsTotal -1)">
+      <span ng-if="reportCtrl.floorDmb !== reportCtrl.nextLevel">
         Next level: <strong>{[reportCtrl.levels[reportCtrl.floorDmb + 1]]}</strong>
       </span>
-      <span ng-if="reportCtrl.nextLevel >= (reportCtrl.levelsTotal -1)">
+      <span ng-if="reportCtrl.floorDmb === reportCtrl.nextLevel">
         Congratulations, you're in the top group for data maturity
       </span>
       <button
