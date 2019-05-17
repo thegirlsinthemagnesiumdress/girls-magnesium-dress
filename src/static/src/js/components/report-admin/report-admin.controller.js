@@ -74,6 +74,7 @@ class ReportAdminController {
   /**
    * Show the form for editing the account ID and focus on the input
    *
+   * @param {!Object} event
    * @param {String} rowIndex
    * @export
    */
