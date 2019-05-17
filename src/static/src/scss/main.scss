@@ -27,9 +27,6 @@
 @import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
 @import 'hercules/lib/components/tabby/tabby';
-@import 'hercules/lib/components/table/settings';
-@import 'hercules/lib/components/table/tools';
-@import 'hercules/lib/components/table/table';
 @import 'hercules/lib/components/tiles/tiles';
 @import 'hercules/lib/components/type/type';
 @import 'hercules/lib/components/expansion-panels/expansion-panels';
@@ -46,7 +43,6 @@
 @import 'tenants-variables';
 
 // DMB Components
-@import 'components/card';
 @import 'components/card-on-bg';
 @import 'components/collaboration';
 @import 'components/copy-comp';
@@ -70,11 +66,9 @@
 @import 'components/side-panel';
 @import 'components/step-heading';
 @import 'components/svg';
-@import 'components/table';
 @import 'components/tile-carousel';
 
 // Pages
-@import 'pages/admin-reports';
 @import 'pages/landing';
 @import 'pages/registration';
 @import 'pages/report';
