@@ -1,5 +1,5 @@
  // sass-lint:disable no-ids
-#dmb-landing {
+#dmb-home {
   counter-reset: step-heading;
 
   @each $tenant, $value in $tenants {
