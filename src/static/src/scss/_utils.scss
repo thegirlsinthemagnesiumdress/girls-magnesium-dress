@@ -92,6 +92,10 @@ $positions: (top, bottom);
   }
 }
 
+.dmb-color-bg {
+  background: $dmb-color-blue-solitude !important;
+}
+
 .dmb-dropdown-arrow {
   appearance: none;
   background-image: url('../img/dropdown-arrow.svg') !important;

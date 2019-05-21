@@ -1,68 +1,48 @@
 .dmb-reports-admin {
-  margin: 0 16px;
-  @include dmb-responsive(padding-top, 32, 66);
+  $spacing: 24px;
+  $block: &;
+  $table: '.dmb-reports-admin__table';
 
-  @include bp(m) {
-    margin: 0 50px;
+  &__card:first-of-type {
+    @include dmb-mq($until: 1280px) {
+      margin-bottom: $spacing;
+    }
   }
 
-  @include bp(l) {
-    margin: 0 100px;
-  }
-
-  &__intro {
-    padding: 0 24px;
-  }
-
-  &__title {
-    margin-top: 20px;
-    @include dmb-responsive(margin-bottom, 16, 48);
-  }
-
-  &__subtitle {
-    margin-bottom: 16px;
-  }
+  $create-survey-switch-bp: 1200px;
 
   &__create-survey {
-    background: $dmb-color-blue-solitude;
-    list-style: none;
-    margin: 0 0 64px;
-    max-width: 1280px;
-    padding: 24px;
-
-    li {
-      @include bp(m) {
-        flex-basis: 50%;
-        max-width: 50%;
-      }
-    }
-
-    @include bp(m) {
+    @include dmb-mq($from: $create-survey-switch-bp) {
       display: flex;
     }
+  }
 
-    .dmb-right-panel-trigger {
-      margin: 0;
+  &__create-survey-step {
+    &:first-of-type {
+      @include dmb-mq($until: $create-survey-switch-bp) {
+        margin-bottom: $spacing;
+      }
+
+      @include dmb-mq($from: $create-survey-switch-bp) {
+        border-right: 1px solid $dmb-color-grey-zircon;
+        margin-right: $spacing;
+        padding-right: $spacing;
+      }
     }
   }
 
-  &__survey-creation-text {
-    padding: 16px 0 24px;
-  }
+  &__export {
+    display: flex;
+    flex-direction: column;
 
-  &__referral-wrp {
-    margin-top: 32px;
-
-    @include bp(m) {
-      margin-left: 32px;
-      margin-top: 0;
+    &-actions {
+      align-items: center;
+      border-top: 1px solid $dmb-color-grey-zircon;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      padding-top: 24px;
     }
-  }
-
-  #survey-link {  // sass-lint:disable-line no-ids
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   &__table {
@@ -90,20 +70,14 @@
       }
     }
 
-    .dmb-reports-admin__table-small-text {
-      font-size: 14px;
-    }
-
-    th:first-of-type,
-    td:first-of-type {
+    &-org-td {
       max-width: 20ch;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    th.dmb-reports-admin__industry-col,
-    td.dmb-reports-admin__industry-col {
-      max-width: 45ch;
+    &-ind-td {
+      max-width: 35ch;
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -113,9 +87,9 @@
     }
 
     &-history-btn {
-      background: transparent;
-      border: 0;
-      white-space: nowrap;
+      &.h-c-button {
+        margin-left: 5px;
+      }
 
       svg {
         height: 12px;
@@ -153,20 +127,79 @@
     }
 
     &-expanded-row {
-      $block: '.dmb-reports-admin__table';
-
-      #{$block}-subcell {
+      #{$table}-subcell {
         display: block;
       }
 
-      #{$block}-top-report-cell {
+      #{$table}-top-report-cell {
         display: none;
       }
 
-      #{$block}-history-btn {
+      #{$table}-history-btn {
         svg {
           transform: rotate(0);
         }
+      }
+    }
+
+    &-account-wrapper {
+      align-items: center;
+      display: flex;
+      position: relative;
+
+      .h-c-button.h-c-button--flat {
+        line-height: 0;
+        margin-left: 10px;
+      }
+    }
+
+    &-account-text {
+      flex-grow: 1;
+    }
+
+    &-account-edit-btn {
+      &.h-c-button {
+        margin-left: 10px;
+      }
+    }
+
+    &-account-form {
+      align-items: center;
+      display: none;
+      left: -11px;
+      position: absolute;
+
+      .dmb-spinner {
+        border-top-width: 4px;
+        height: 24px;
+        margin-left: 10px;
+        width: 24px;
+      }
+    }
+
+    &-account-input {
+      // TODO(aabuelgasim): use the 3 varibales below once this ticket is merged https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/339
+      // border: 1px solid $dmb-color-interactive;
+      border: 1px solid #1a73e8;
+      // border-radius: $dmb-border-radius;
+      border-radius: 2px;
+      padding: 5px 10px;
+      width: 7ch;
+
+      &:focus {
+        // border: 1px solid $dmb-color-blue-dark-cerulean;
+        border: 1px solid #053975;
+      }
+    }
+
+    &-editing-account-row {
+      #{$table}-account-text,
+      #{$table}-account-edit-btn {
+        display: none;
+      }
+
+      #{$table}-account-form {
+        display: flex;
       }
     }
   }

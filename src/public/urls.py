@@ -5,6 +5,7 @@ urlpatterns = [
     url(r'^$', views.index_static, name="index"),
     url(r'^createsurvey/$', views.registration, name="registration"),
     url(r'^reports/$', views.reports_admin, name="reports"),
+    url(r'^reports/export$', views.generate_spreadsheet_export, name="reports_export"),
     url(r'^reports/(?P<sid>[\w]+)/$', views.report_static, name="report"),
     url(r'^reports/result/(?P<response_id>[\w]+)/$', views.report_result_static, name="report_result"),
     url(r'^result-detail/(?P<response_id>[\w]+)/$', views.result_detail, name="result-detail"),

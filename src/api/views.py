@@ -3,6 +3,7 @@ from api.serializers import (
     SurveyCompanyNameSerializer,
     SurveySerializer,
     SurveyWithResultSerializer,
+    SurveyAccountIdSerializer,
 )
 from api.serializers import AdminSurveyResultsSerializer
 from core.models import Survey, SurveyResult
@@ -16,6 +17,7 @@ from rest_framework.generics import (
     RetrieveAPIView,
     get_object_or_404,
     ListAPIView,
+    UpdateAPIView,
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -32,6 +34,17 @@ class CreateSurveyView(CreateAPIView):
     authentication_classes = ()
     permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
+    queryset = Survey.objects.all()
+
+
+class UpdateAccountIdView(UpdateAPIView):
+    """
+    Internal API endpoint to update `Account Id` (also called Green Tea Id) for a given survey.
+    """
+    authentication_classes = (SessionAuthentication, )
+    serializer_class = SurveyAccountIdSerializer
+    lookup_field = 'sid'
+    lookup_url_kwarg = 'sid'
     queryset = Survey.objects.all()
 
 

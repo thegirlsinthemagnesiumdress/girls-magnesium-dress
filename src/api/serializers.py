@@ -7,6 +7,7 @@ class SurveySerializer(ModelSerializer):
     class Meta:
         model = Survey
         fields = (
+            'account_id',
             'company_name',
             'link',
             'link_sponsor',
@@ -14,6 +15,15 @@ class SurveySerializer(ModelSerializer):
             'industry',
             'country',
             'tenant',
+        )
+
+
+class SurveyAccountIdSerializer(ModelSerializer):
+
+    class Meta:
+        model = Survey
+        fields = (
+            'account_id',
         )
 
 
@@ -66,6 +76,8 @@ class AdminSurveyResultsSerializer(ModelSerializer):
     class Meta:
         model = Survey
         fields = (
+            'account_id',
+            'sid',
             'company_name',
             'industry',
             'industry_name',

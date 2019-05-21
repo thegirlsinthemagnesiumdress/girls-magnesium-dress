@@ -31,7 +31,9 @@ class AdminSurveyResultsSerializerTests(TestCase):
                  'survey_results',
                  'link_sponsor',
                  'link',
-                 'engagement_lead'])
+                 'engagement_lead',
+                 'sid',
+                 'account_id'])
         )
 
     def test_serializer_return_correct_serializerd_data(self):

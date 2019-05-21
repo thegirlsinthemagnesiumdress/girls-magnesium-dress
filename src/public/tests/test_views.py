@@ -4,12 +4,14 @@ from django.shortcuts import reverse
 from django.test import override_settings
 
 from core.test import with_appengine_admin, with_appengine_user
-from core.tests.mommy_recepies import make_survey, make_survey_result
+from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_with_result
 from core.tests import mocks
 from django.conf import settings
 import os
 from core.test import reload_urlconf, TempTemplateFolder
 import json
+import mock
+from core import tasks
 
 
 @override_settings(
@@ -214,3 +216,102 @@ class ThankyouPage(TestCase):
         url = reverse('thank-you', kwargs={'tenant': 'tenant2-slug'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+
+@override_settings(
+    TENANTS=mocks.MOCKED_TENANTS,
+    I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
+    NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
+    TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
+)
+class GenerateExportPage(TestCase):
+    """Tests for `generate_spreadsheet_export` view."""
+
+    def setUp(self):
+        reload_urlconf()
+        self.tenant_slug = 'tenant1-slug'
+        self.survey_1 = make_survey_with_result(industry='ic-o', tenant='tenant1')
+        self.survey_2 = make_survey_with_result(industry='ic-o', tenant='tenant1')
+        self.survey_1.last_survey_result.dmb_d = {
+            'access': 1.5,
+            'audience': 1.3,
+            'attribution': 1.6,
+            'ads': 1.5,
+            'organization': 2.0,
+            'automation': 3.0,
+        }
+        self.survey_1.save()
+
+        self.survey_2.last_survey_result.dmb_d = {
+            'access': 2.5,
+            'audience': 2.3,
+            'attribution': 2.6,
+            'ads': 2.5,
+            'organization': 4.0,
+            'automation': 3.0,
+        }
+        self.survey_2.save()
+
+    def test_user_not_logged_in(self):
+        """If a user is not logged in, it should return 302."""
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+
+    @with_appengine_user("test@google.com")
+    def test_get_not_allowed(self):
+        """Method GET should not be allowed, it returns 405."""
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 405)
+
+    @mock.patch('djangae.deferred.defer')
+    @with_appengine_user("test@google.com")
+    def test_engagement_lead_missing(self, mock_defer):
+        """If enagagement lead parameter is missing, it returns an error."""
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.post(url, data=json.dumps({}), content_type="application/json")
+        self.assertEqual(response.status_code, 400)
+        mock_defer.assert_not_called()
+
+    @mock.patch('djangae.deferred.defer')
+    @with_appengine_user("test@google.com")
+    def test_engagement_lead_ok_no_data(self, mock_defer):
+        """If engagement_lead has no surveys, it should return empty dataset"""
+        engagement_lead = '1234'
+        data = {
+            'engagement_lead': engagement_lead
+        }
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        mock_defer.assert_called_once()
+        args, kwargs = mock_defer.call_args
+        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
+        self.assertEqual(got_func, tasks.export_tenant_data)
+        self.assertTrue("DMB - Admin export for Tenant 1 label" in got_title)
+        self.assertEqual(len(got_data), 0)
+
+    @mock.patch('djangae.deferred.defer')
+    @with_appengine_user("test@google.com")
+    def test_engagement_lead_ok_data(self, mock_defer):
+        """All data belonging to engagement lead should be returned."""
+        engagement_lead = '1234'
+
+        data = {
+            'engagement_lead': engagement_lead
+        }
+
+        self.survey_1.engagement_lead = engagement_lead
+        self.survey_2.engagement_lead = engagement_lead
+        self.survey_1.save()
+        self.survey_2.save()
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        mock_defer.assert_called_once()
+
+        args, kwargs = mock_defer.call_args
+        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
+        self.assertEqual(len(got_data), 2)
+        self.assertEqual(got_share_with, response.wsgi_request.user.email)

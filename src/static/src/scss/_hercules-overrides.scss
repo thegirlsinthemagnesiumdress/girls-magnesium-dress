@@ -10,10 +10,13 @@ strong {
 }
 
 .h-c-eyebrow {
-  border-bottom: 5px solid $dmb-color-grey-zircon;
-  display: inline-block;
-  padding-bottom: 20px;
   @include dmb-resp-prop(margin-bottom, 20px, 30px, 40px);
+
+  &--underlined {
+    border-bottom: 5px solid $dmb-color-grey-zircon;
+    display: inline-block;
+    padding-bottom: 20px;
+  }
 }
 
 .h-c-header__product-logo-text {
@@ -117,4 +120,12 @@ $dmb-tab-focus-color: $dmb-color-blue-solitude;
 .h-c-button {
   height: auto;
   text-align: center;
+}
+
+.h-c-button.h-c-button--flat {
+  line-height: inherit;
+}
+
+.h-c-table th {
+  word-break: keep-all;
 }
