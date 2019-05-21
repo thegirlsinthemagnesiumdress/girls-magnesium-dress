@@ -1,6 +1,6 @@
 .dmb-collaboration {
   $block: &;
-  align-items: baseline;
+  align-items: flex-end;
   display: flex;
   flex-wrap: wrap;
 
@@ -14,21 +14,17 @@
     }
   }
 
-  &__text {
-    margin: 0 10px 10px 0;
-  }
-
-  &__logos {
-    flex-grow: 1;
-  }
-
+  &__text,
   &__img {
-    height: 1em !important;
     margin: 0 10px 10px 0;
+  }
 
-    &--gni {
-      height: 1.4em !important;
-      margin-top: .1em;
-    }
+  &__text {
+    position: relative;
+    top: 2px;
+  }
+
+  &__img--bcg {
+    height: 2em;
   }
 }
