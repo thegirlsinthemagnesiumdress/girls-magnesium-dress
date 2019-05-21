@@ -46,6 +46,7 @@ class Survey(models.Model):
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
+    account_id = models.CharField(max_length=64, blank=True, null=True)
 
     @property
     def link(self):

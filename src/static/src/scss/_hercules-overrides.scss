@@ -125,3 +125,7 @@ $dmb-tab-focus-color: $dmb-color-blue-solitude;
 .h-c-button.h-c-button--flat {
   line-height: inherit;
 }
+
+.h-c-table th {
+  word-break: keep-all;
+}
