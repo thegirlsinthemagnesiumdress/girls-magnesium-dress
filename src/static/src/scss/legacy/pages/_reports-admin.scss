@@ -3,9 +3,6 @@
   $block: &;
   $table: '.dmb-reports-admin__table';
 
-  margin: 0 16px;
-  @include dmb-responsive(padding-top, 32, 66);
-
   &__card:first-of-type {
     @include dmb-mq($until: 1280px) {
       margin-bottom: $spacing;
