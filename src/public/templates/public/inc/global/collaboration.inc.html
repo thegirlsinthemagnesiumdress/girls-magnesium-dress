@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<div class="dmb-collaboration{% if invert %} dmb-collaboration--invert{% endif %}">
+  <div class="dmb-collaboration__text h-c-footnote">
+    {{ text|default:'In collaboration with' }}
+  </div>
+  <div class="dmb-collaboration__logos">
+    <img
+        class="dmb-collaboration__img dmb-collaboration__img--{{partner1}}"
+        srcset="{% static 'img/partners/'|add:partner1|add:'-logo' %}{% if invert %}-light{% endif %}.png 1x,
+                {% static 'img/partners/'|add:partner1|add:'-logo' %}{% if invert %}-light{% endif %}@2x.png 2x"
+        src="{% static 'img/partners/'|add:partner1|add:'-logo' %}{% if invert %}-light{% endif %}.png"
+        alt="{{partner1}} logo">
+    {% if partner2 %}
+    <img
+        class="dmb-collaboration__img dmb-collaboration__img--{{partner2}}"
+        srcset="{% static 'img/partners/'|add:partner2|add:'-logo' %}{% if invert %}-light{% endif %}.png 1x,
+                {% static 'img/partners/'|add:partner2|add:'-logo' %}{% if invert %}-light{% endif %}@2x.png 2x"
+        src="{% static 'img/partners/'|add:partner2|add:'-logo' %}{% if invert %}-light{% endif %}.png"
+        alt="{{partner2}} logo">
+    {% endif %}
+  </div>
+</div>
