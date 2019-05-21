@@ -10,7 +10,7 @@ class ReportAdminController {
    * ReportAdmin controller
    *
    * @param {!angular.$http} $http
-   * @param {!Object} csrfToken
+   * @param {String} csrfToken
    * @param {Object} bootstrapData
    * @ngInject
    */
@@ -126,7 +126,7 @@ class ReportAdminController {
 
     // prevent 'Enter' key from submitting form when no change has been made
     if (this.newAccountIds[index] === this.surveys[index].account_id) {
-      this.rowToEdit = null;
+      cancelAccountIDEdit();
       return;
     }
 
@@ -142,7 +142,7 @@ class ReportAdminController {
       this.surveys[index].account_id = newAccountId;
     }, (err) => {
       this.serverError = true;
-      window['alert']('Account ID not change due to server error!');
+      window['alert']('Account ID not changed due to server error!');
       console.error(err.data);
     }).then(() => {
       this.rowToEdit = null;

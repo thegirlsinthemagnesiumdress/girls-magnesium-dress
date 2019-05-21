@@ -450,7 +450,7 @@ class UpdateAccountIdSurveyTest(APITestCase):
         self.assertEqual(self.survey_2.company_name, 'test company 2')
 
     @with_appengine_user("test@example.com")
-    def test_fields_other_then_account_id_are_ignored_invalid_key(self):
+    def test_fields_other_than_account_id_are_ignored_invalid_key(self):
         """Updating data with random keys should return 200 and ignore invalid keys."""
         response = self.client.put(self.url_1, {'randomkey': 'randomvalue'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -465,7 +465,7 @@ class UpdateAccountIdSurveyTest(APITestCase):
         self.assertEqual(content.get('account_id'), '111111')
 
     @with_appengine_user("test@example.com")
-    def test_fields_other_then_account_id_are_ignored_invalid_value(self):
+    def test_fields_other_than_account_id_are_ignored_invalid_value(self):
         """Updating data with invalid values for fields, it still succedes."""
         invalid_data = {
             'industry': 'invalid'
