@@ -52,7 +52,6 @@ class ExportReportsController {
       this.exportSuccess = true;
     }, (err) => {
       this.exportError = true;
-      console.error(`${err.data}`);
     });
   }
 
