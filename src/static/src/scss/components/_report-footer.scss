@@ -1,0 +1,12 @@
+.dmb-report-footer {
+  background: $dmb-interactive-color;
+  color: $dmb-light-text-color;
+
+  .h-c-headline {
+    color: $dmb-light-text-color;
+
+    &--subhead {
+      margin-bottom: 20px !important;
+    }
+  }
+}
