@@ -30,7 +30,6 @@
 
     &.h-c-button {
       border-radius: 0 $dmb-border-radius $dmb-border-radius 0;
-      color: $dmb-interactive-color;
       height: $dmb-survey-url-height;
     }
   }
@@ -59,6 +58,15 @@
         #{$block}__message-text--#{$state} {
           display: block;
         }
+      }
+    }
+  }
+
+  &--light {
+    #{$block}__message-text {
+      &--success,
+      &--error {
+        color: $dmb-light-text-color;
       }
     }
   }
