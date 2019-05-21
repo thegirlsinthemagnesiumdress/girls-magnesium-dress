@@ -118,3 +118,7 @@ $dmb-tab-focus-color: $dmb-color-blue-solitude;
   height: auto;
   text-align: center;
 }
+
+.h-c-table th {
+  word-break: keep-all;
+}

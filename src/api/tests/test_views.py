@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
 from core.tests.mocks import INDUSTRIES, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
-from core.test import reload_urlconf
+from core.test import reload_urlconf, with_appengine_user, with_appengine_anon
 
 
 User = get_user_model()
@@ -204,6 +204,8 @@ class CreateSurveyTest(APITestCase):
 
         response = self.client.post(self.url, self.data)
         response_data_keys = response.json().keys()
+
+        self.assertEqual(response.status_code, 201)
         self.assertEqual(set(response_data_keys), {
             'company_name',
             'link',
@@ -212,8 +214,29 @@ class CreateSurveyTest(APITestCase):
             'industry',
             'country',
             'tenant',
+            'account_id',
         })
         self.assertEqual(Survey.objects.count(), survey_count + 1)
+
+    def test_survey_is_created_correctly(self):
+        """Posting valid data should create survey"""
+        data = {
+            'company_name': 'test company',
+            'industry': 'ic-o',
+            'country': 'GB',
+            'tenant': 'ads',
+            'account_id': '123123',
+        }
+
+        response = self.client.post(self.url, data)
+        response_data = response.json()
+        self.assertEqual(response.status_code, 201)
+
+        survey = Survey.objects.first()
+
+        self.assertEqual(response_data['company_name'], survey.company_name)
+        self.assertEqual(response_data['account_id'], survey.account_id)
+        self.assertEqual(response_data['tenant'], survey.tenant)
 
 
 @override_settings(
@@ -376,3 +399,86 @@ class SurveyResultDetailView(APITestCase):
         url = reverse('survey_result_report', kwargs={'response_id': survey_result.response_id})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+@override_settings(
+    INDUSTRIES=INDUSTRIES
+)
+class UpdateAccountIdSurveyTest(APITestCase):
+    """Tests for `api.views.UpdateAccountIdSurvey` view."""
+
+    def setUp(self):
+
+        self.survey_1 = make_survey(company_name='test company', country="IT")
+        self.survey_2 = make_survey(company_name='test company 2', country="IT", account_id='111111')
+
+        self.data = {
+            'account_id': '123456'
+        }
+
+        self.url_1 = reverse('update_survey', kwargs={'sid': self.survey_1.sid})
+        self.url_2 = reverse('update_survey', kwargs={'sid': self.survey_2.sid})
+
+    @with_appengine_anon
+    def test_unauthenticated_user(self):
+        """Unauthenticated users should return 403 Forbidden."""
+        response = self.client.put(self.url_1, self.data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_user("test@example.com")
+    def test_post_is_not_allowed(self):
+        """Post method should not be allowed, it should return 405."""
+        response = self.client.post(self.url_1, self.data)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @with_appengine_user("test@example.com")
+    def test_only_account_id_is_updated(self):
+        """Updating data matching required parameters should succed."""
+        self.data["company_name"] = "New company name"
+        response = self.client.put(self.url_1, self.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        content = response.json()
+        # account id should still be null
+        self.assertEqual(content.get('account_id'), '123456')
+        self.assertEqual(self.survey_1.company_name, 'test company')
+
+        response = self.client.put(self.url_2, self.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        content = response.json()
+        # account id should still be the odl value
+        self.assertEqual(content.get('account_id'), '123456')
+        self.assertEqual(self.survey_2.company_name, 'test company 2')
+
+    @with_appengine_user("test@example.com")
+    def test_fields_other_than_account_id_are_ignored_invalid_key(self):
+        """Updating data with random keys should return 200 and ignore invalid keys."""
+        response = self.client.put(self.url_1, {'randomkey': 'randomvalue'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        content = response.json()
+        # account id should still be null
+        self.assertIsNone(content.get('account_id'))
+
+        response = self.client.put(self.url_2, {'randomkey': 'randomvalue'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        content = response.json()
+        # account id should still be the odl value
+        self.assertEqual(content.get('account_id'), '111111')
+
+    @with_appengine_user("test@example.com")
+    def test_fields_other_than_account_id_are_ignored_invalid_value(self):
+        """Updating data with invalid values for fields, it still succedes."""
+        invalid_data = {
+            'industry': 'invalid'
+        }
+
+        response = self.client.put(self.url_1, invalid_data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        content = response.json()
+        # account id should still be null
+        self.assertIsNone(content.get('account_id'))
+
+        response = self.client.put(self.url_2, invalid_data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        content = response.json()
+        # account id should still be the odl value
+        self.assertEqual(content.get('account_id'), '111111')

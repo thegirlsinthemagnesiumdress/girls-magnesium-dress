@@ -89,7 +89,7 @@ class TenantConfiguration {
     this.dimensionLevelRecommendations = {};
 
     /**
-     * @param {Object}
+     * @type {Object}
      * @export
      */
     this.contentData = {};
