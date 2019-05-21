@@ -286,11 +286,10 @@ class GenerateExportPage(TestCase):
         response = self.client.post(url, data=json.dumps(data), content_type="application/json")
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
-
         args, kwargs = mock_defer.call_args
         got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
-        self.assertEqual(got_title, "Export for tenant1")
+        self.assertTrue("DMB - Admin export for Tenant 1 label" in got_title)
         self.assertEqual(len(got_data), 0)
 
     @mock.patch('djangae.deferred.defer')
