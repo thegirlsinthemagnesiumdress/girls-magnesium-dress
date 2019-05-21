@@ -3,17 +3,19 @@ from api.serializers import (
     SurveyCompanyNameSerializer,
     SurveySerializer,
     SurveyWithResultSerializer,
+    SurveyAccountIdSerializer,
 )
 from core.models import Survey, SurveyResult
 from django.conf import settings
 from django.http import Http404
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.generics import (
     CreateAPIView,
     RetrieveAPIView,
     get_object_or_404,
+    UpdateAPIView,
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -30,6 +32,17 @@ class CreateSurveyView(CreateAPIView):
     authentication_classes = ()
     permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
+    queryset = Survey.objects.all()
+
+
+class UpdateAccountIdView(UpdateAPIView):
+    """
+    Internal API endpoint to update `Account Id` (also called Green Tea Id) for a given survey.
+    """
+    authentication_classes = (SessionAuthentication, )
+    serializer_class = SurveyAccountIdSerializer
+    lookup_field = 'sid'
+    lookup_url_kwarg = 'sid'
     queryset = Survey.objects.all()
 
 
