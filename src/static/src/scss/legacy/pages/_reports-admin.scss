@@ -43,57 +43,6 @@
     }
   }
 
-  // &__title {
-  //   margin-top: 20px;
-  //   @include dmb-responsive(margin-bottom, 16, 48);
-  // }
-
-  // &__subtitle {
-  //   margin-bottom: 16px;
-  // }
-
-  // &__create-survey {
-  //   background: $dmb-color-blue-solitude;
-  //   list-style: none;
-  //   margin: 0 0 64px;
-  //   max-width: 1280px;
-  //   padding: 24px;
-
-  //   li {
-  //     @include bp(m) {
-  //       flex-basis: 50%;
-  //       max-width: 50%;
-  //     }
-  //   }
-
-  //   @include bp(m) {
-  //     display: flex;
-  //   }
-
-  //   .dmb-right-panel-trigger {
-  //     margin: 0;
-  //   }
-  // }
-
-  // &__survey-creation-text {
-  //   padding: 16px 0 24px;
-  // }
-
-  // &__referral-wrp {
-  //   margin-top: 32px;
-
-  //   @include bp(m) {
-  //     margin-left: 32px;
-  //     margin-top: 0;
-  //   }
-  // }
-
-  // #survey-link {  // sass-lint:disable-line no-ids
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  //   white-space: nowrap;
-  // }
-
   &__table {
     background: none;
 
