@@ -421,7 +421,6 @@ class AdminSurveyListViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-
 @override_settings(
     INDUSTRIES=INDUSTRIES
 )
