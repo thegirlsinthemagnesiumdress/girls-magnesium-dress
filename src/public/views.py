@@ -20,6 +20,7 @@ from core import tasks
 from django.http import HttpResponse
 import logging
 from djangae import deferred
+import datetime
 
 
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
@@ -191,12 +192,13 @@ def generate_spreadsheet_export(request, tenant):
         survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
         survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
         data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
+        now = datetime.datetime.now()
 
         msg = _GENERATED_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
         logging.info(msg)
         deferred.defer(
             tasks.export_tenant_data,
-            "Export for {}".format(tenant),
+            "DMB - Admin export for {} - {} ".format(tenant_conf['label'], now.strftime("%d-%m-%Y %H:%M")),
             data,
             survey_fields_mappings,
             survey_result_fields_mapping,
