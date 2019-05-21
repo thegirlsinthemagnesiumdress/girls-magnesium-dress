@@ -25,6 +25,7 @@ const tenant = goog.require('dmb.components.tenant');
 const configureAdditionalSortTypes = goog.require('dmb.tableCustomSort');
 const languageSelector = goog.require('dmb.components.languageSelector');
 const copyComponent = goog.require('dmb.components.copyComponent');
+const exportReports = goog.require('dmb.components.exportReports');
 
 // Custom tablesort date configuration.
 tableSort.module.config(configureAdditionalSortTypes);
@@ -53,6 +54,7 @@ const module = angular.module('dmb', [
   tenant.module.name,
   languageSelector.module.name,
   copyComponent.module.name,
+  exportReports.module.name,
   'hercules_template_bundle',
   'ngclipboard',
 ]);

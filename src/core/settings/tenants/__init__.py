@@ -1,3 +1,20 @@
+# flake8: noqa
+#####  GOOGLE SHEETS EXPORT FOR TENANTS #####
+GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
+    'company_name': 'Company Name',
+    'country': 'Country',
+    'industry': 'Industry',
+    'created_at': 'Creation Date',
+    'link': 'Report link',
+}
+
+GOOGLE_SHEET_BASE_RESULT_FIELDS = {
+    'dmb': 'Overall DMB',
+    'excluded_from_best_practice': 'Excluded from Benchmark',
+}
+#####  END OF GOOGLE SHEETS EXPORT FOR TENANTS #####
+
+
 import ads as advertisers_conf
 import news as news_conf
 import retail as retail_conf
@@ -25,6 +42,8 @@ TENANTS = {
         'EXCLUDED_TIME_THRESHOLD': 5,
         'CONTACT_EMAIL': "Digital Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
         'i18n': True,
+        'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
+        'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
     },
     NEWS: {
         'key': NEWS,
@@ -43,6 +62,8 @@ TENANTS = {
         'EXCLUDED_TIME_THRESHOLD': 2,
         'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
         'i18n': False,
+        'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
+        'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
     },
     RETAIL: {
         'key': RETAIL,
@@ -61,6 +82,8 @@ TENANTS = {
         'EXCLUDED_TIME_THRESHOLD': 2,
         'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
         'i18n': False,
+        'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
+        'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
     },
 }
 

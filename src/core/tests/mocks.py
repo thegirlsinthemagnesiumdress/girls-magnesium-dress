@@ -42,17 +42,38 @@ MOCKED_WEIGHTS = {
 
 MOCKED_DIMENSIONS_WEIGHTS = {
     1: {
-        'asd': 0.2,
+        'ads': 0.2,
         'automation': 0.4,
         'attribution': 0.0,
     }
 }
 
-MOCKED_CONTENT_DATA = {
+MOCKED_DIMENSION_TITLES_TENANT_1 = {
+    'dim1': 'Dimension 1',
+    'dim2': 'Dimension 2'
+}
+
+MOCKED_DIMENSION_TITLES_TENANT_2 = {
+    'dim11': 'Dimension 11',
+    'dim22': 'Dimension 22'
+}
+
+MOCKED_CONTENT_DATA_TENANT_1 = {
     'levels': {},
     'level_descriptions': {},
     'dimensions': [],
-    'dimension_labels': {},
+    'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_1,
+    'dimension_headers_descriptions': {},
+    'dimension_level_description': {},
+    'dimension_level_recommendations': {},
+}
+
+
+MOCKED_CONTENT_DATA_TENANT_2 = {
+    'levels': {},
+    'level_descriptions': {},
+    'dimensions': [],
+    'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_2,
     'dimension_headers_descriptions': {},
     'dimension_level_description': {},
     'dimension_level_recommendations': {},
@@ -223,6 +244,27 @@ INDUSTRIES = {
     'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
 }
 
+MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
+    'company_name': 'Company Name',
+    'country': 'Country',
+    'industry': 'Industry',
+    'created_at': 'Creation Date',
+    'link': 'Report link',
+}
+MOCKED_GOOGLE_SHEET_BASE_RESULT_FIELDS = {
+    'dmb': 'Overall DMB',
+    'excluded_from_best_practice': 'Excluded from Benchmark',
+}
+
+GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_1 = MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
+GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_1 = MOCKED_GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
+GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_1.update(MOCKED_DIMENSION_TITLES_TENANT_1)
+
+GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_2 = MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
+GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_2 = MOCKED_GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
+GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_2.update(MOCKED_DIMENSION_TITLES_TENANT_2)
+
+
 MOCKED_TENANTS = {
     'tenant1': {
         'key': 'tenant1',
@@ -234,9 +276,11 @@ MOCKED_TENANTS = {
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'MULTI_ANSWER_QUESTIONS': MOCKED_MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': MOCKED_WEIGHTS,
-        'CONTENT_DATA': MOCKED_CONTENT_DATA,
+        'CONTENT_DATA': MOCKED_CONTENT_DATA_TENANT_1,
         'EXCLUDED_TIME_THRESHOLD': 5,
         'i18n': True,
+        'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_1,
+        'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_1,
     },
     'tenant2': {
         'key': 'tenant2',
@@ -250,10 +294,12 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'DIMENSIONS_WEIGHTS_QUESTION_ID': 'Q4',
         'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS,
-        'CONTENT_DATA': MOCKED_CONTENT_DATA,
+        'CONTENT_DATA': MOCKED_CONTENT_DATA_TENANT_2,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
         'i18n': False,
+        'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_2,
+        'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_2,
     },
     'tenant3': {
         'key': 'tenant3',

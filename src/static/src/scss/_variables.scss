@@ -30,7 +30,10 @@ $dmb-color-green-jewel-dark: #0a4e22;
 
 // VARIABLES
 $dmb-border-radius: 2px;
-$dmb-alt-font-family: $h-font-family-google-sans;
+
+// TODO(aabuelgasim) Switch $dmb-alt-font-family back to $h-font-family-google-sans; after this ticket is merged https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/205
+// $dmb-alt-font-family: $h-font-family-google-sans;
+$dmb-alt-font-family: 'Google Sans';
 
 
 // Vertical spacing
