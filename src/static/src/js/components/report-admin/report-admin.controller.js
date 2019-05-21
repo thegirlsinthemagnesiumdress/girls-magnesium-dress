@@ -126,7 +126,7 @@ class ReportAdminController {
 
     // prevent 'Enter' key from submitting form when no change has been made
     if (this.newAccountIds[index] === this.surveys[index].account_id) {
-      cancelAccountIDEdit();
+      this.cancelAccountIDEdit();
       return;
     }
 
