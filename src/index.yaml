@@ -85,6 +85,11 @@ indexes:
   properties:
   - name: survey_id
   - name: started_at
+
+- kind: core_surveyresult
+  properties:
+  - name: survey_id
+  - name: started_at
     direction: desc
 
 - kind: core_user

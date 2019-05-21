@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from angular.shortcuts import render
-from public.serializers import AdminSurveyResultsSerializer
 
 from core.auth import survey_admin_required
 from core.models import Survey, SurveyResult
@@ -16,6 +15,7 @@ from core.conf.utils import flatten, get_tenant_slug
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
+from api.views import AdminSurveyListView
 from core import tasks
 from django.http import HttpResponse
 import logging
@@ -100,13 +100,10 @@ def thank_you(request, tenant):
 def reports_admin(request, tenant):
     industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
 
-    surveys = Survey.objects.filter(tenant=tenant)
-    if not request.user.is_super_admin:
-        surveys = surveys.filter(engagement_lead=request.user.engagement_lead)
-
     slug = get_tenant_slug(tenant)
 
-    serialized_data = AdminSurveyResultsSerializer(surveys, many=True)
+    api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
+
     return render(request, 'public/{}/reports-list.html'.format(tenant), {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
@@ -115,9 +112,7 @@ def reports_admin(request, tenant):
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
-        'bootstrap_data': JSONRenderer().render({
-            'surveys': serialized_data.data
-        }),
+        'bootstrap_data': JSONRenderer().render(api_data),
     })
 
 

@@ -78,7 +78,7 @@ class ReportsAdminTestCase(TestCase):
             self.assertEqual(response.status_code, 200)
 
             bootstrap_data = self._get_bootstrap_data(response.context)
-            surveys = bootstrap_data.get('surveys')
+            surveys = bootstrap_data.get('results')
 
             self.assertTrue(surveys)
             self.assertEqual(len(surveys), 1)
@@ -92,7 +92,7 @@ class ReportsAdminTestCase(TestCase):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
             bootstrap_data = self._get_bootstrap_data(response.context)
-            surveys = bootstrap_data.get('surveys')
+            surveys = bootstrap_data.get('results')
 
             engagement_lead_ids = [el['engagement_lead'] for el in surveys]
 
@@ -110,7 +110,7 @@ class ReportsAdminTestCase(TestCase):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
             bootstrap_data = self._get_bootstrap_data(response.context)
-            surveys = bootstrap_data.get('surveys')
+            surveys = bootstrap_data.get('results')
 
             self.assertTrue(surveys)
             self.assertEqual(len(surveys), 1)
