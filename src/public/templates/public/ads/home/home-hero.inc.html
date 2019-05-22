@@ -1,4 +1,5 @@
 {% load i18n %}
+
 <section class="dmb-home-hero h-c-page{% if class %} {{class}}{% endif %}">
   <div class="dmb-home-hero__bg-img"></div>
   <div class="h-c-grid">
@@ -9,10 +10,7 @@
       <p class="dmb-u-m-b-s">
         {% trans "See how your data-driven marketing measures up, and discover your roadmap to digital maturity." %}
       </p>
-      {% comment %}
-        TODO(aabuelgasim): remove above include and these comments once this ticket is merged: https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/337
-        {% include 'public/inc/global/collaboration.inc.html' with partner1='bcg' %}
-      {% endcomment %}
+      {% include 'public/inc/global/collaboration.inc.html' with partner1='bcg' text=collab_text %}
     </div>
   </div>
 </section>
