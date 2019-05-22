@@ -14,12 +14,14 @@
   </button>
 
   <div class="dmb-side-panel__inner">
-    <h1 class="h-c-headline h-c-headline--three">
-      {% if tenant|ng_mark_safe == 'ads' %}
-        {% trans "Dimensions of marketing maturity" %}
-      {% else %}
-        Four dimensions of data maturity
-      {% endif %}
+    <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
+      <span>
+        {% if tenant|ng_mark_safe == 'ads' %}
+          {% trans "Dimensions of marketing maturity" %}
+        {% else %}
+          Four dimensions of data maturity
+        {% endif %}
+      </span>
     </h1>
     <p class="dmb-u-m-b-s">
       {[reportCtrl.dimensionSidepanelHeading]}
