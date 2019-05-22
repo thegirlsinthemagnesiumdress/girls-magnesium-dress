@@ -1,0 +1,28 @@
+// sass-lint:disable no-ids
+#dmb-ads {
+  .dmb-home-hero__bg-img {
+    background-position: right top;
+  }
+
+  #dmb-home {
+    .dmb-panel-trigger {
+      &-wrapper {
+        @include dmb-mq($from: tablet) {
+          height: 160px;
+        }
+      }
+
+      &__button {
+        top: 40px; //button position from top of container (mobile)
+
+        @include dmb-mq($from: tablet) {
+          top: 60px;  //button position from top of container
+        }
+      }
+
+      @include dmb-mq($from: tablet) {
+        @include dmb-pannel-trigger-wide; //show the text next to the icon
+      }
+    }
+  }
+}

@@ -14,14 +14,14 @@
     </span>
   </button>
   <div class="dmb-side-panel__inner">
-    <h1 class="h-c-headline h-c-headline--three">
+    <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
       {% trans "Levels of data maturity" %}
     </h1>
     <div ng-repeat="level in reportCtrl.levels">
       <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
         {[level]}
       </h2>
-      <p>
+      <p ng-class="{'dmb-u-m-b-m':!$last}">
         {[reportCtrl.levelDescriptions[$index]]}
       </p>
     </div>
