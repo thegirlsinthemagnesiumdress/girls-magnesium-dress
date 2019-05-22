@@ -3,6 +3,7 @@
 from django.utils.translation import gettext_lazy as _
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
+TENANT_DISPLAY_NAME = _('Advertisers')
 
 DIMENSION_ADS = 'ads'
 DIMENSION_ACCESS = 'access'
@@ -133,7 +134,6 @@ DIMENSIONS = {
         'Q155',
     ],
 }
-
 
 MULTI_ANSWER_QUESTIONS = [
     'Q128',
@@ -573,6 +573,17 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
     },
 }
 
+DIMENSION_SIDEPANEL_HEADING = _('We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands.')
+
+DIMENSION_SIDEPANEL_DESCRIPTIONS = {
+    DIMENSION_ATTRIBUTION: _('The capability to accurately measure and value customer touchpoints.'),
+    DIMENSION_ADS: _('The capability to deliver attention-driving, intuitive experiences across digital touchpoints.'),
+    DIMENSION_AUDIENCE: _('The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel.'),
+    DIMENSION_ACCESS: _('The capability to reach and deliver across all inventory types and channels.'),
+    DIMENSION_AUTOMATION: _('The capability to optimise marketing operations to drive profitability and growth.'),
+    DIMENSION_ORGANIZATION: _('The capability to improve decision-making and results by working collaboratively across teams and with specialised partners.'),
+}
+
 CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
@@ -582,6 +593,8 @@ CONTENT_DATA = {
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
+    'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
 }
 
 #####  GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
