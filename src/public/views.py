@@ -124,8 +124,8 @@ def result_detail(request, tenant, response_id):
     result_detail = get_response_detail(
         survey_result.survey_definition.content,
         survey_result.raw,
-        settings.TENANTS[tenant]['recommendations'],
-        settings.TENANTS[tenant]['DIMENSION_TITLES']
+        settings.TENANTS[tenant]['DIMENSIONS'],
+        settings.TENANTS[tenant]['CONTENT_DATA']['dimension_labels']
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
