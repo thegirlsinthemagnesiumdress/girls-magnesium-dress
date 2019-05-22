@@ -14,11 +14,11 @@
       &::after {
         color: #fff;
         content: counter(step-heading);
-        font-size: 13px;
-        font-weight: 700;
+        font-size: .8em;
+        font-weight: 500;
         left: 50%;
         position: absolute;
-        top: 2px;
+        top: 3px;
         transform: translateX(-50%);
       }
     }
