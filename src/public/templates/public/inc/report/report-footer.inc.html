@@ -25,14 +25,16 @@
           </li>
         </ul>
 
-        <h2 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
-          {% trans "Share this report with your colleagues" %}
-        </h2>
-        <p class="dmb-u-m-b-xs">
-          {% trans "To share this report, copy the link and send it to your colleagues. It is not available as a pdf report as it is live, with the industry benchmarks constantly updating." %}
-        </p>
+        <div class="dmb-h-hidden--print">
+          <h2 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
+            {% trans "Share this report with your colleagues" %}
+          </h2>
+          <p class="dmb-u-m-b-xs">
+            {% trans "To share this report, copy the link and send it to your colleagues. It is not available as a pdf report as it is live, with the industry benchmarks constantly updating." %}
+          </p>
 
-        {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri light=True %}
+          {% include 'public/inc/global/copy-comp.inc.html' with id="report-link" value=request.build_absolute_uri light=True %}
+        </div>
 
       </div>
     </div>
