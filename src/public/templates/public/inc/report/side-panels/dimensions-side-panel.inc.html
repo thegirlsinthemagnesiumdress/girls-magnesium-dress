@@ -15,13 +15,11 @@
 
   <div class="dmb-side-panel__inner">
     <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
-      <span>
-        {% if tenant|ng_mark_safe == 'ads' %}
-          {% trans "Dimensions of marketing maturity" %}
-        {% else %}
-          Four dimensions of data maturity
-        {% endif %}
-      </span>
+      {% if tenant|ng_mark_safe == 'ads' %}
+        {% trans "Dimensions of marketing maturity" %}
+      {% else %}
+        Four dimensions of data maturity
+      {% endif %}
     </h1>
     <p class="dmb-u-m-b-s">
       {[reportCtrl.dimensionSidepanelHeading]}
@@ -31,7 +29,7 @@
       <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
         {[reportCtrl.dimensionHeaders[dimension]]}
       </h2>
-      <p>
+      <p ng-class="{'dmb-u-m-b-m':!$last}">
         {[reportCtrl.dimensionSidepanelDescriptions[dimension]]}
       </p>
     </div>
