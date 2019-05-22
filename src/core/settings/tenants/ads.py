@@ -157,6 +157,13 @@ LEVELS_DESCRIPTIONS = {
     LEVEL_3: _('Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
 }
 
+REPORT_LEVEL_DESCRIPTIONS = {
+    LEVEL_0: _('This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.'),
+    LEVEL_1: _('This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.'),
+    LEVEL_2: _('This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.'),
+    LEVEL_3: _('This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
+}
+
 DIMENSION_HEADER_DESCRIPTION = {
     DIMENSION_ATTRIBUTION: _('Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.'),
     DIMENSION_ADS: _('Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.'),
@@ -569,7 +576,7 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
-    'report_level_descriptions': None,
+    'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
