@@ -8,11 +8,15 @@
     <ul class="h-u-visually-hidden">
       <li>
         <span ng-if="!ratingMain">
-          {% trans "Fetching your company rating..." %]
+          {% trans "Fetching your company rating..." %}
         </span>
         <span ng-if="ratingMain">
-          {% trans "Your company, {[companyName]}, has a rating of {[ratingMain|number:1]},
-          which is a maturity level of {[progressGridCtrl.getLevelName(ratingMain)]}." %}
+          {% trans "Your company, " %}
+          {[companyName]},
+          {% trans " has a rating of " %}
+          {[ratingMain|number:1]},
+          {% trans " which is a maturity level of " %}
+          {[progressGridCtrl.getLevelName(ratingMain)]}.
         </span>
       </li>
       <li>
@@ -20,8 +24,10 @@
           {% trans "Fetching industry average..." %}
         </span>
         <span ng-if="industryReady">
-          {% trans "The industry average is {[industryAvg|number:1]},
-          which is a maturity level of {[progressGridCtrl.getLevelName(industryAvg)]}." %}
+          {% trans "The industry average is " %}
+          {[industryAvg|number:1]},
+          {% trans "which is a maturity level of " %}
+          {[progressGridCtrl.getLevelName(industryAvg)]}.
         </span>
       </li>
       <li>
@@ -29,8 +35,10 @@
           {% trans "Fetching industry best..." %}
         </span>
         <span ng-if="industryReady">
-          {% trans "The industry best is {[industryBest|number:1]},
-                    which is a maturity level of {[progressGridCtrl.getLevelName(industryBest)]}." %}
+          {% trans "The industry best is " %}
+          {[industryBest|number:1]},
+          {% trans " which is a maturity level of " %}
+          {[progressGridCtrl.getLevelName(industryBest)]}.
         </span>
       </li>
     </ul>
