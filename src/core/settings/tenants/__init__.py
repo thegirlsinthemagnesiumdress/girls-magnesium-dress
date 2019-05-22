@@ -30,7 +30,7 @@ RETAIL = 'retail'
 TENANTS = {
     ADS: {
         'key': ADS,
-        'label': _('Advertise'),
+        'label': _('Advertisers'),
         'slug': 'advertisers',
         'QUALTRICS_SURVEY_ID': 'SV_beH0HTFtnk4A5rD',
         'EMAIL_TO': 'Q97_4_TEXT',

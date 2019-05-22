@@ -3,8 +3,6 @@
 from django.utils.translation import gettext_lazy as _
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
-TENANT_DISPLAY_NAME = _('Advertisers')
-
 DIMENSION_ADS = 'ads'
 DIMENSION_ACCESS = 'access'
 DIMENSION_AUDIENCE = 'audience'
