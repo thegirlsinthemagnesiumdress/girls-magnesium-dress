@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <aside
     id="dmb-levels-side-panel"
     class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow"
@@ -13,7 +15,7 @@
   </button>
   <div class="dmb-side-panel__inner">
     <h1 class="h-c-headline h-c-headline--three">
-      Levels of data maturity
+      {% trans "Levels of data maturity" %}
     </h1>
     <div ng-repeat="level in reportCtrl.levels">
       <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
