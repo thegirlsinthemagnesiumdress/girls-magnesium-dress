@@ -30,6 +30,18 @@ Working branches are organized as follows:
 
 In order for the backend to be able to call Qualtrics APIs, a valid token needs to be configured, all information needed can be found on [DMB Wiki page](https://wiki.p.ota.to/Digital_Maturity_Benchmark).
 
+### Generate a service account private key
+
+1. Go [here](https://console.cloud.google.com/iam-admin/serviceaccounts/project?project=gweb-digitalmaturity-staging) and for `gweb-digitalmaturity-staging@appspot.gserviceaccount.com` select the 3 dots, click **Create key** and download the `.p12` keyfile
+1. `cd` to the directory where you downloaded the file and run `cat {downloaded-file}.p12 | openssl pkcs12 -nodes -nocerts -passin pass:notasecret | openssl rsa > secret.pem` then move the generated `.pem` file to the `./keys` directory in the project.
+
+# Troubleshooting
+1. I get an authentication error when trying to run `manage.py bootstrap`:
+
+    > googleapiclient.errors.HttpError: <HttpError 401 when requesting https://sheets.googleapis.com/v4/spreadsheets?alt=json returned "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.">
+
+    To fix this follow the steps under `Generate a service account private key` above.
+
 # Add locale
 Before a new locale can work correctly it needs to be explicitly called for that language. For instance, if we want to configure `it` as a new language, we should run:
   ```./manage.py makemessages -i node_modules -i third_party -i src/sitepackages -i src/sitepackages_local -l  --no-wrap --no-location```

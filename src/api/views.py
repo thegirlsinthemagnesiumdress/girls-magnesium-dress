@@ -5,6 +5,7 @@ from api.serializers import (
     SurveyWithResultSerializer,
     SurveyAccountIdSerializer,
 )
+from api.serializers import AdminSurveyResultsSerializer
 from core.models import Survey, SurveyResult
 from django.conf import settings
 from django.http import Http404
@@ -15,6 +16,7 @@ from rest_framework.generics import (
     CreateAPIView,
     RetrieveAPIView,
     get_object_or_404,
+    ListAPIView,
     UpdateAPIView,
 )
 from rest_framework.permissions import AllowAny
@@ -141,3 +143,20 @@ class SurveyResultsIndustryDetail(APIView):
             'dmb_d_bp': dmb_d_bp,
         }
         return Response(data)
+
+
+class AdminSurveyListView(ListAPIView):
+    authentication_classes = (SessionAuthentication,)
+    serializer_class = AdminSurveyResultsSerializer
+
+    def get_queryset(self):
+        """
+        Return a list of all the surveys that the authenticated
+        user has ever sponsored, filtered by `tenant`.
+        """
+        tenant = self.kwargs['tenant']
+        user = self.request.user
+        queryset = Survey.objects.order_by('-created_at').prefetch_related('survey_results', 'last_survey_result').filter(tenant=tenant)  # noqa
+        if not user.is_super_admin:
+            queryset = queryset.filter(engagement_lead=user.engagement_lead)
+        return queryset

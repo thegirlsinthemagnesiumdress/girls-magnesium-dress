@@ -30,16 +30,8 @@
 @import 'hercules/lib/components/tabby/tabby';
 @import 'hercules/lib/components/tiles/tiles';
 @import 'hercules/lib/components/type/type';
-// @import 'hercules/lib/components/icons/icons';
-// @import 'hercules/lib/components/social/social';
-// @import 'hercules/lib/components/table/settings';
-// @import 'hercules/lib/components/table/tools';
-// @import 'hercules/lib/components/table/table';
-// @import 'hercules/lib/components/carousel/carousel';
 @import 'hercules/lib/components/expansion-panels/expansion-panels';
 @import 'hercules/lib/global/scss/trumps/all';
-
-
 
 
 // DMB STYLES
@@ -72,7 +64,6 @@
 @import 'components/read-more';
 @import 'components/report-footer';
 @import 'components/report-hero';
-@import 'components/report-intro';
 @import 'components/report-overall';
 @import 'components/side-panel';
 @import 'components/step-heading';
@@ -82,6 +73,7 @@
 // Pages
 @import 'pages/home';
 @import 'pages/registration';
+@import 'pages/report';
 @import 'pages/thank-you';
 
 // Tenant Overrides

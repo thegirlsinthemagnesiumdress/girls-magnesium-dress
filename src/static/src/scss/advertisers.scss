@@ -1,8 +1,10 @@
-@import 'legacy/all';
 @import 'variables';
 @import 'breakpoints';
 @import 'mixins';
+@import 'legacy/all';
 @import 'utils';
+
+@import 'components/card';
 @import 'components/copy-comp';
 @import 'components/footer';
 @import 'components/outline-button';

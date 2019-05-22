@@ -26,16 +26,22 @@ class ReportAdminController {
     this.expandedRows = {};
 
     /**
-     * @type {Array.<Object>}
+     * @type {Object}
      * @export
      */
-    this.newAccountIds = [];
+    this.bootstrapData = bootstrapData;
 
     /**
      * @type {Array.<Object>}
      * @export
      */
-    this.surveys = bootstrapData['surveys'];
+    this.surveys = this.bootstrapData['results'];
+
+    /**
+     * @type {Array.<Object>}
+     * @export
+     */
+    this.newAccountIds = [];
 
     this.surveys.forEach((survey) => {
       this.newAccountIds.push(survey.account_id);

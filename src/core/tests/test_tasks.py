@@ -13,6 +13,7 @@ from core.tasks import (
     sync_qualtrics,
     calculate_industry_benchmark,
     render_email_template,
+    export_tenant_data,
 )
 from djangae.test import TestCase
 from mocks import (
@@ -1348,3 +1349,210 @@ class RenderEmailTemplateTestCase(TestCase):
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
+
+
+class ExportTenantData(TestCase):
+    """Tests for export_tenant_data function"""
+
+    def setUp(self):
+        self.share_with = "share_with@email.com"
+
+    @override_settings(
+        TENANTS=MOCKED_TENANTS,
+    )
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_all_surveys_no_results(self, mocked_export):
+        """When there are no SurveyResults, the underlying function is still called with the correct data"""
+        make_survey(tenant='tenant1')
+        make_survey(tenant='tenant1')
+
+        survey_fields_mappings = {
+            'company_name': 'Company Name',
+            'country': 'Country',
+            'industry': 'Industry',
+            'created_at': 'Creation Date',
+            'link': 'Report link',
+        }
+
+        survey_result_fields_mapping = {
+            'dmb': 'Overall DMB',
+            'excluded_from_best_practice': 'Excluded from Benchmark',
+            'access': 'Access',
+            'audience': 'Audience',
+            'attribution': 'Attribution',
+            'ads': 'Ads',
+            'organization': 'Organization',
+            'automation': 'Automation',
+        }
+        title = "A meaningful title"
+
+        surveys_data = Survey.objects.filter(tenant='tenant1')
+        export_tenant_data(
+            title,
+            surveys_data,
+            survey_fields_mappings,
+            survey_result_fields_mapping,
+            self.share_with,
+        )
+        expected_headers = survey_fields_mappings.values() + survey_result_fields_mapping.values()
+        args, kwargs = mocked_export.call_args
+        got_title, got_headers, got_rows, got_share_with = args
+
+        # check that is has been called with 2 items
+        self.assertEqual(title, got_title)
+        self.assertItemsEqual(got_headers, expected_headers)
+        self.assertEqual(len(got_rows), 2)
+
+    @override_settings(
+        TENANTS=MOCKED_TENANTS,
+    )
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_survey_results(self, mocked_export):
+        """When there are no SurveyResults, the underlying function is still called with the correct data"""
+        make_survey_with_result(industry='ic-bnpj', tenant='tenant2')
+        make_survey_with_result(industry='ic-bnpj', tenant='tenant2')
+        make_survey_with_result(industry='ic-bnpj', tenant='tenant2')
+
+        survey_fields_mappings = {
+            'company_name': 'Company Name',
+            'country': 'Country',
+            'industry': 'Industry',
+            'created_at': 'Creation Date',
+            'link': 'Report link',
+        }
+
+        survey_result_fields_mapping = {
+            'dmb': 'Overall DMB',
+            'excluded_from_best_practice': 'Excluded from Benchmark',
+            'access': 'Access',
+            'audience': 'Audience',
+            'attribution': 'Attribution',
+            'ads': 'Ads',
+            'organization': 'Organization',
+            'automation': 'Automation',
+        }
+        title = "A meaningful title"
+
+        surveys_data = Survey.objects.filter(tenant='tenant2')
+        export_tenant_data(
+            title,
+            surveys_data,
+            survey_fields_mappings,
+            survey_result_fields_mapping,
+            self.share_with,
+        )
+        expected_headers = survey_fields_mappings.values() + survey_result_fields_mapping.values()
+        args, kwargs = mocked_export.call_args
+        got_title, got_headers, got_rows, got_share_with = args
+
+        # check that is has been called with 3 items
+        self.assertEqual(title, got_title)
+        self.assertItemsEqual(got_headers, expected_headers)
+        self.assertEqual(len(got_rows), 3)
+
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_export_ads_tenant(self, mocked_export):
+        """When tenant is advertisers, it's exported with the correct configured keys."""
+        tenant = 'ads'
+        s1 = make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+        s2 = make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+
+        s1.last_survey_result.dmb_d = {
+            'access': 1.5,
+            'audience': 1.3,
+            'attribution': 1.6,
+            'ads': 1.5,
+            'organization': 2.0,
+            'automation': 3.0,
+        }
+        s1.save()
+
+        s2.last_survey_result.dmb_d = {
+            'access': 2.5,
+            'audience': 2.3,
+            'attribution': 2.6,
+            'ads': 2.5,
+            'organization': 4.0,
+            'automation': 3.0,
+        }
+        s2.save()
+
+        tenant_conf = settings.TENANTS[tenant]
+        ads_title = "Ads Export"
+        surveys_data = Survey.objects.filter(tenant=tenant)
+        export_tenant_data(
+            ads_title,
+            surveys_data,
+            tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
+            tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'],
+            self.share_with,
+        )
+        expected_headers = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'].values() + tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'].values()  # noqa
+        args, kwargs = mocked_export.call_args
+        got_title, got_headers, got_rows, got_share_with = args
+
+        # check that is has been called with 3 items
+        self.assertEqual("Ads Export", got_title)
+        self.assertItemsEqual(got_headers, expected_headers)
+        self.assertEqual(len(got_rows), 2)
+
+        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+            self.assertTrue(dim in got_headers, "{} error".format(dim))
+
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_export_news_tenant(self, mocked_export):
+        """When tenant is publishers, it's exported with the correct configured keys."""
+        tenant = 'news'
+        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+
+        tenant_conf = settings.TENANTS[tenant]
+        ads_title = "News Export"
+        surveys_data = Survey.objects.filter(tenant=tenant)
+        export_tenant_data(
+            ads_title,
+            surveys_data,
+            tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
+            tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'],
+            self.share_with,
+        )
+        expected_headers = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'].values() + tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'].values()  # noqa
+        args, kwargs = mocked_export.call_args
+        got_title, got_headers, got_rows, got_share_with = args
+
+        # check that is has been called with 3 items
+        self.assertEqual("News Export", got_title)
+        self.assertItemsEqual(got_headers, expected_headers)
+        self.assertEqual(len(got_rows), 2)
+
+        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+            self.assertTrue(dim in got_headers, "{} error".format(dim))
+
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_export_retail_tenant(self, mocked_export):
+        """When tenant is retail, it's exported with the correct configured keys."""
+        tenant = 'retail'
+        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+
+        tenant_conf = settings.TENANTS[tenant]
+        ads_title = "Retail Export"
+        surveys_data = Survey.objects.filter(tenant=tenant)
+        export_tenant_data(
+            ads_title,
+            surveys_data,
+            tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
+            tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'],
+            self.share_with,
+        )
+        expected_headers = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'].values() + tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS'].values()  # noqa
+        args, kwargs = mocked_export.call_args
+        got_title, got_headers, got_rows, got_share_with = args
+
+        # check that is has been called with 3 items
+        self.assertEqual("Retail Export", got_title)
+        self.assertItemsEqual(got_headers, expected_headers)
+        self.assertEqual(len(got_rows), 2)
+
+        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+            self.assertTrue(dim in got_headers, "{} error".format(dim))
