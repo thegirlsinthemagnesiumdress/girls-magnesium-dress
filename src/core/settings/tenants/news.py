@@ -2,7 +2,7 @@
 # flake8: noqa
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
-TENANT_DISPLAY_NAME = 'News'
+TENANT_DISPLAY_NAME = "News"
 
 DIMENSION_STRATEGIC_DIRECTION = "strategic_direction"
 DIMENSION_READER_ENGAGEMENT = "reader_engagement"
@@ -478,7 +478,7 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
     },
 }
 
-DIMENSION_SIDEPANEL_HEADING = 'We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organization.',
+DIMENSION_SIDEPANEL_HEADING = "We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organization."
 
 DIMENSION_SIDEPANEL_DESCRIPTIONS = {
     DIMENSION_STRATEGIC_DIRECTION: 'Understand the role of data and the core capabilities required to successfully activate data within the organization.',

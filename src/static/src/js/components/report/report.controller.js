@@ -142,7 +142,7 @@ class ReportController {
     this.dimensionHeaders = tenantConf.dimensionHeaders;
 
     /**
-     * @type {!Object}
+     * @type {string}
      * @export
      */
     this.dimensionSidepanelHeading = tenantConf.dimensionSidepanelHeading;
