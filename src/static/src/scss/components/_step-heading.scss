@@ -9,8 +9,6 @@
     position: relative;
 
     #{$block} & {
-      counter-increment: step-heading;
-
       &::after {
         color: #fff;
         content: counter(step-heading);
@@ -22,5 +20,9 @@
         transform: translateX(-50%);
       }
     }
+  }
+
+  &--numbered {
+    counter-increment: step-heading;
   }
 }
