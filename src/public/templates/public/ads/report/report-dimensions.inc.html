@@ -9,9 +9,12 @@
       </h2>
       <p class="dmb-u-m-b-m">
         {% trans "Together with BCG, we identified the " %}
-        <button class="h-c-link" dmb-side-panel-trigger="#dmb-dimensions-side-panel">
+        <button
+            class="h-c-link dmb-h-hidden--print"
+            dmb-side-panel-trigger="#dmb-dimensions-side-panel">
           {% trans "key dimensions" %}
         </button>
+        <span class="dmb-h-hidden--screen">{% trans "key dimensions" %}</span>
         {% trans " that drive data-driven marketing maturity. Click the icons below to see how you perform in each." %}
       </p>
     </div>
