@@ -2,6 +2,7 @@
 #####  GOOGLE SHEETS EXPORT FOR TENANTS #####
 GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
     'company_name': 'Company Name',
+    'account_id': 'Account ID',
     'country': 'Country',
     'industry': 'Industry',
     'created_at': 'Creation Date',
@@ -30,7 +31,7 @@ RETAIL = 'retail'
 TENANTS = {
     ADS: {
         'key': ADS,
-        'label': _('Advertise'),
+        'label': _('Advertisers'),
         'slug': 'advertisers',
         'QUALTRICS_SURVEY_ID': 'SV_beH0HTFtnk4A5rD',
         'EMAIL_TO': 'Q97_4_TEXT',
@@ -67,7 +68,7 @@ TENANTS = {
     },
     RETAIL: {
         'key': RETAIL,
-        'label': 'Retail',
+        'label': _('Retail'),
         'slug': 'retaildatatransformation',
         'QUALTRICS_SURVEY_ID': 'SV_b1OV8m7xVD337rD',
         'EMAIL_TO': 'Q1_4_TEXT',
@@ -86,7 +87,6 @@ TENANTS = {
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
     },
 }
-
 
 DEFAULT_TENANT = ADS
 

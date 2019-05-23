@@ -289,7 +289,8 @@ class GenerateExportPage(TestCase):
         args, kwargs = mock_defer.call_args
         got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
-        self.assertTrue("DMB - Admin export for Tenant 1 label" in got_title)
+        print got_title
+        self.assertTrue("DMB - Tenant 1 label admin export" in got_title)
         self.assertEqual(len(got_data), 0)
 
     @mock.patch('djangae.deferred.defer')

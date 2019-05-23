@@ -1,0 +1,10 @@
+{% load i18n %}
+<section class="dmb-icon-text-cta h-u-text-center dmb-u-p-t-m dmb-u-p-b-m{% if class %} {{class}}{% endif %}">
+  <div class="h-c-page">
+    {% include 'core/inc/svg.html' with id='analysis' size='80px' class='dmb-u-m-b-s' only %}
+
+    <p class="dmb-icon-text-cta__text h-c-headline h-c-headline--subhead">
+      {% trans "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up." %}
+    </p>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load staticfiles %}
+<section class="dmb-text-image-split dmb-u-color-bg h-c-page{% if class %} {{class}}{% endif %}">
+  <div class="h-c-grid">
+    <div class="dmb-text-image-split__text-col h-c-grid__col h-c-grid__col--5 h-c-grid__col--align-middle">
+      <h2 class="h-c-headline h-c-headline--three">
+        {% trans "These businesses have a sustainable competitive advantage" %}
+      </h2>
+      <p class="dmb-u-m-b-s">
+        {% trans "Companies leading the way in multi-moment marketing see 30% cost efficiency savings and a 20% increase in revenue." %}<sup>*</sup>
+      </p>
+      <button
+          class="h-c-button dmb-outline-button"
+          dmb-side-panel-trigger="#dmb-home-side-panel">
+        {% trans "Find out more" %}
+      </button>
+    </div>
+    <div class="dmb-text-image-split__img-col h-c-grid__col h-c-grid__col--6 h-c-grid__col--offset-1">
+      {% trans "image of person using the app on a mobile" as text_image_split_img_alt_text %}
+      {% include 'public/inc/global/responsive-image.inc.html' with img='img/ads/home/text-image-split-img' ext='jpg' alt=text_image_split_img_alt_text only %}
+    </div>
+  </div>
+</section>

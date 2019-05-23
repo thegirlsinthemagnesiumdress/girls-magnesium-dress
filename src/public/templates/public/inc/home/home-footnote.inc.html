@@ -1,0 +1,9 @@
+<div class="h-c-page dmb-u-m-t-l h-c-footnote">
+  <sup>*</sup> {{ footnote }}
+  {% if url %}
+    &nbsp;-&nbsp;
+    <a href="{{url}}" {% if external_link %}target="_blank"{% endif %}>
+      {{ link_text }}.
+    </a>
+  {% endif %}
+</div>

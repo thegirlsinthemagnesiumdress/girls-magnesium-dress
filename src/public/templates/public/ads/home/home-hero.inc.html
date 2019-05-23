@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<section class="dmb-home-hero h-c-page{% if class %} {{class}}{% endif %}">
+  <div class="dmb-home-hero__bg-img"></div>
+  <div class="h-c-grid">
+    <div class="dmb-home-hero__card h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5">
+      <h1 class="dmb-primary-heading h-c-headline h-c-headline--two">
+        {% trans "Never miss a moment to connect with customers" %}
+      </h1>
+      <p class="dmb-u-m-b-s">
+        {% trans "See how your data-driven marketing measures up, and discover your roadmap to digital maturity." %}
+      </p>
+      {% include 'public/inc/global/collaboration.inc.html' with partner1='bcg' text=collab_text %}
+    </div>
+  </div>
+</section>
