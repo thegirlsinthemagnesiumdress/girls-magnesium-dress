@@ -1,0 +1,116 @@
+/* to use add this HTML
+
+  <div class="dmb-panel-trigger" dmb-pin-top>
+    <button class="dmb-panel-trigger__button dmb-h-hidden--print" dmb-side-panel-trigger="#dmb-side-panel">
+      <div class="dmb-panel-trigger__icon">
+        <svg role="img" class=π"h-c-icon">
+          <use xlink:href="#mi-chevron"></use>
+        </svg>
+      </div>
+      <div class="dmb-panel-trigger__label h-c-headline h-c-headline--subhead h-u-font-weight-regular">
+        Why digital maturity matters
+      </div>
+    </button>
+  </div>
+
+  then in page SASS file add
+
+  .dmb-panel-trigger {
+    &__button {
+      top: 40px; //button position from top of container (mobile)
+
+      @include bp(s) {
+        top: 100px;  //button position from top of container
+      }
+    }
+
+    @include bp(s) {
+      @include dmb-pannel-trigger-wide; //show the text next to the icon
+    }
+  }
+
+*/
+
+.dmb-panel-trigger {
+  z-index: 1;
+
+  &-wrapper {
+    position: relative;
+  }
+
+  &.dmb-pinned {
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: transform .3s;
+
+    .dmb-panel-trigger__button:not(:hover) {
+      @include bp(s) {
+        transform: translateX(175px);
+      }
+    }
+  }
+
+  &__button {
+    $dmb-panel-trigger-bg-color: $dmb-color-blue-solitude;
+    $dmb-panel-trigger-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .29);
+
+    align-items: center;
+    background: $dmb-panel-trigger-bg-color;
+    border: 0;
+    border-radius: 50px 0 0 50px;
+    box-shadow: $dmb-panel-trigger-box-shadow;
+    // color: $dmb-text-color;
+    display: inline-flex;
+    font-family: $dmb-alt-font-family;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 17px 17px 17px 14px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    transition: transform .3s;
+
+    &--sticky {
+      position: fixed;
+    }
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      height: 17px;
+      transform: rotate(-90deg);
+      width: 17px;
+    }
+
+    @include bp(s) {
+      svg {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+  &__label {
+    display: none;
+  }
+}
+
+@mixin dmb-pannel-trigger-wide {
+  &__button {
+    padding-left: 30px;
+    width: 240px;
+  }
+
+  &__icon {
+    margin-right: 30px;
+  }
+
+  &__label {
+    display: block;
+  }
+}

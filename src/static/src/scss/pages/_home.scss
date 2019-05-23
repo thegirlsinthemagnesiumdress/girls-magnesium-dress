@@ -1,7 +1,5 @@
-// sass-lint:disable no-ids
-#dmb-landing {
-  counter-reset: step-heading;
-
+ // sass-lint:disable no-ids
+#dmb-home {
   @each $tenant, $value in $tenants {
     #dmb-#{$tenant} & {
       // HERO IMAGES

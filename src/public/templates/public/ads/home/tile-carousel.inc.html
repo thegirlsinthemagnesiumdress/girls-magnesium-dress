@@ -1,0 +1,101 @@
+{% load i18n %}
+{% load staticfiles %}
+
+<section class="dmb-tile-carousel{% if class %} {{class}}{% endif %} dmb-u-p-t-m dmb-u-p-b-m">
+  <div class="h-c-page">
+    {% trans "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability." as step_heading %}
+    {% include 'public/inc/global/step-heading.inc.html' with text=step_heading svg='shield' numbered=True only %}
+
+    <div class="dmb-tile-carousel__intro h-u-text-center dmb-u-p-t-s">
+      <img
+          alt="{% trans "organization dimension logo" %}"
+          class="dmb-tile-carousel__intro-img dmb-u-m-b-xs"
+          src="{% static 'img/ads/dimensions/organization.svg' %}">
+      <h3 class="h-c-headline h-c-headline--three">
+        {% trans "Organisation" %}
+      </h3>
+      <p class="h-u-font-weight-medium">
+        {% trans "Improve decision-making and results by working collaboratively across teams and with specialised partners" %}
+      </p>
+    </div>
+
+    <div class="dmb-tile-carousel__tiles">
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/ads/dimensions/attribution.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="{% trans "attribution dimension logo" %}">
+          <h4 class="h-c-tile__headline">
+            {% trans "Attribution" %}
+          </h4>
+          <p class="h-c-tile__description">
+            {% trans "Accurately measure and value customer touchpoints" %}
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/ads/dimensions/ads.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="{% trans "assets and ads dimension logo" %}">
+          <h4 class="h-c-tile__headline">
+            {% trans "Assets and ads" %}
+          </h4>
+          <p class="h-c-tile__description">
+            {% trans "Deliver attention-driving, intuitive experiences across digital touchpoints" %}
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/ads/dimensions/audience.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="{% trans "audience dimension logo" %}">
+          <h4 class="h-c-tile__headline">
+            {% trans "Audience" %}
+          </h4>
+          <p class="h-c-tile__description">
+            {% trans "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel" %}
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/ads/dimensions/access.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="{% trans "access dimension logo" %}">
+          <h4 class="h-c-tile__headline">
+            {% trans "Access" %}
+          </h4>
+          <p class="h-c-tile__description">
+            {% trans "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control" %}
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/ads/dimensions/automation.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="{% trans "automation dimension logo" %}">
+          <h4 class="h-c-tile__headline">
+            {% trans "Automation" %}
+          </h4>
+          <p class="h-c-tile__description">
+            {% trans "Optimise marketing operations to drive profitability and growth" %}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

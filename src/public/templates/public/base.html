@@ -22,11 +22,7 @@
     <!-- End Google Analytics -->
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
 
-    {% if tenant|ng_mark_safe == 'ads' %}
-      <link rel="stylesheet" href="{% static_rev 'css/advertisers.css' %}">
-    {% else %}
     <link rel="stylesheet" href="{% static_rev 'css/main.css' %}">
-    {% endif %}
 
     {% if debug %}
       <link rel="stylesheet" href="/node_modules/angular/angular-csp.css">
