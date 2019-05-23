@@ -183,7 +183,7 @@ class VersionInfoTest(TestCase):
         self.assertFalse(is_nightly)
 
     @mock.patch('djangae.environment.is_development_environment', return_value=True)
-    def localhost_domain_test(self, is_prod_mock):
+    def localhost_domain_test_different_domain(self, is_prod_mock):
         domain = '0.0.0.0:8000'
         expected_version = 'localhost'
         version, is_nightly, is_development = version_info(domain)
