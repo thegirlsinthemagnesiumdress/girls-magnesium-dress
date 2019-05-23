@@ -3,7 +3,6 @@
 from django.utils.translation import gettext_lazy as _
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
-
 DIMENSION_ADS = 'ads'
 DIMENSION_ACCESS = 'access'
 DIMENSION_AUDIENCE = 'audience'
@@ -134,7 +133,6 @@ DIMENSIONS = {
     ],
 }
 
-
 MULTI_ANSWER_QUESTIONS = [
     'Q128',
     'Q140',
@@ -155,6 +153,13 @@ LEVELS_DESCRIPTIONS = {
     LEVEL_1: _('Some use of owned data in automated buying with single-channel optimisation and testing.'),
     LEVEL_2: _('Data integrated and activated across channels with demonstrated link to ROI or sales proxies.'),
     LEVEL_3: _('Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
+}
+
+REPORT_LEVEL_DESCRIPTIONS = {
+    LEVEL_0: _('This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.'),
+    LEVEL_1: _('This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing.'),
+    LEVEL_2: _('This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.'),
+    LEVEL_3: _('This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
 }
 
 DIMENSION_HEADER_DESCRIPTION = {
@@ -566,15 +571,28 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
     },
 }
 
+DIMENSION_SIDEPANEL_HEADING = _('We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands.')
+
+DIMENSION_SIDEPANEL_DESCRIPTIONS = {
+    DIMENSION_ATTRIBUTION: _('The capability to accurately measure and value customer touchpoints.'),
+    DIMENSION_ADS: _('The capability to deliver attention-driving, intuitive experiences across digital touchpoints.'),
+    DIMENSION_AUDIENCE: _('The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel.'),
+    DIMENSION_ACCESS: _('The capability to reach and deliver across all inventory types and channels.'),
+    DIMENSION_AUTOMATION: _('The capability to optimise marketing operations to drive profitability and growth.'),
+    DIMENSION_ORGANIZATION: _('The capability to improve decision-making and results by working collaboratively across teams and with specialised partners.'),
+}
+
 CONTENT_DATA = {
     'levels': LEVELS,
     'level_descriptions': LEVELS_DESCRIPTIONS,
-    'report_level_descriptions': None,
+    'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
+    'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
 }
 
 #####  GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####

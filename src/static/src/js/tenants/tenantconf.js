@@ -110,6 +110,8 @@ class TenantConfiguration {
     this.dimensionLevelRecommendations = this.contentData['dimension_level_recommendations'];
     this.industryAvgDescription = this.contentData['industry_avg_description'];
     this.industryBestDescription = this.contentData['industry_best_description'];
+    this.dimensionSidepanelHeading = this.contentData['dimension_sidepanel_heading'];
+    this.dimensionSidepanelDescriptions = this.contentData['dimension_sidepanel_descriptions'];
   }
 }
 

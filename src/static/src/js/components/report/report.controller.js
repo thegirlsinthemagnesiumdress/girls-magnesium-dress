@@ -142,6 +142,18 @@ class ReportController {
     this.dimensionHeaders = tenantConf.dimensionHeaders;
 
     /**
+     * @type {string}
+     * @export
+     */
+    this.dimensionSidepanelHeading = tenantConf.dimensionSidepanelHeading;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.dimensionSidepanelDescriptions = tenantConf.dimensionSidepanelDescriptions;
+
+    /**
      * @type {glue.ng.pagination.Model}
      * @export
      */
