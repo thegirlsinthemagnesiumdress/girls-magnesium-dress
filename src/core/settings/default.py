@@ -297,8 +297,8 @@ from .tenants import *
 
 QUALTRICS_API_TOKEN = get_app_config().qualtrics_api_token
 
-QUALTRICS_BASE_SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{survey_id}'
-QUALTRICS_BASE_SURVEY_PREVIEW_URL = 'https://google.qualtrics.com/jfe/preview/{survey_id}'
+QUALTRICS_BASE_SURVEY_URL = 'https://google.qualtrics.com/jfe/form/{survey_id}?sid={sid}'
+QUALTRICS_BASE_SURVEY_PREVIEW_URL = 'https://google.qualtrics.com/jfe/preview/{survey_id}?sid={sid}&Q_SurveyVersionID=current'
 
 MIN_ITEMS_INDUSTRY_THRESHOLD = 25
 MIN_ITEMS_BEST_PRACTICE_THRESHOLD = 5
