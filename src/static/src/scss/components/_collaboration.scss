@@ -1,8 +1,11 @@
 .dmb-collaboration {
   $block: &;
-  align-items: flex-end;
-  display: flex;
-  flex-wrap: wrap;
+
+  @include dmb-mq($from: tablet) {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   &:not(&--invert) {
     color: $dmb-color-grey-mid !important;
