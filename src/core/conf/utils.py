@@ -126,9 +126,10 @@ def version_info(domain):
     version = None
     is_nightly = False
     is_development = environment.is_development_environment()
+    # if it's local environment
     if is_development:
         version = 'localhost'
-    # if it's local dev or staging
+    # if it's staging environment
     elif "staging" in environment.application_id():
         version_match = VERSION_RE.search(domain)
         if version_match:
