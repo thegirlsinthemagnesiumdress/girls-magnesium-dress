@@ -44,7 +44,7 @@ class ReportAdminController {
     this.newAccountIds = [];
 
     this.surveys.forEach((survey) => {
-      this.newAccountIds.push(survey.account_id);
+      this.newAccountIds.push(survey['account_id']);
     });
 
     /**
@@ -91,7 +91,7 @@ class ReportAdminController {
     // this.newAccountIds used to link value of each input box used for editing account ID with the account ID.
     // This means they can be edited in the input box without chaging the view in the table.
     // The table view is only changed upon successful PUT request
-    this.newAccountIds[index] = this.surveys[index].account_id;
+    this.newAccountIds[index] = this.surveys[index]['account_id'];
 
     // Give focus to input box. Need to wait until the edit account ID form is visible before focussing on the input.
     const accountIdInput = event.currentTarget.parentElement.querySelectorAll(accountIdInputClass)[0];
@@ -131,7 +131,7 @@ class ReportAdminController {
     };
 
     // prevent 'Enter' key from submitting form when no change has been made
-    if (this.newAccountIds[index] === this.surveys[index].account_id) {
+    if (this.newAccountIds[index] === this.surveys[index]['account_id']) {
       this.cancelAccountIDEdit();
       return;
     }
@@ -145,7 +145,7 @@ class ReportAdminController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then(() => {
-      this.surveys[index].account_id = newAccountId;
+      this.surveys[index]['account_id'] = newAccountId;
     }, (err) => {
       this.serverError = true;
       window['alert']('Account ID not changed due to server error!');
