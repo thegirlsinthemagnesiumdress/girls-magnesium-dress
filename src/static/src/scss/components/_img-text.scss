@@ -6,6 +6,10 @@
     padding-top: 60px;
   }
 
+  @include dmb-mq($until: 800px) {
+    background-size: 55%;
+  }
+
   &__heading {
     @include dmb-mq($from: tablet) {
       margin: 175px 0 120px;
@@ -21,10 +25,7 @@
   }
 
   &__img {
+    margin-top: map-get(map-get($dmb-vertical-spacings, 'm'), 'mobile');
     width: 100%;
-
-    @include dmb-mq($from: tablet) {
-      display: none;
-    }
   }
 }
