@@ -193,7 +193,7 @@ def generate_spreadsheet_export(request, tenant):
         logging.info(msg)
         deferred.defer(
             tasks.export_tenant_data,
-            "DMB - Admin export for {} - {} ".format(tenant_conf['label'], now.strftime("%d-%m-%Y %H:%M")),
+            "DMB - {} admin export - {} ".format(tenant_conf['label'], now.strftime("%d-%m-%Y %H:%M")),
             data,
             survey_fields_mappings,
             survey_result_fields_mapping,
