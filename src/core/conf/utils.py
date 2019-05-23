@@ -122,14 +122,19 @@ def version_info(domain):
     `version` is `None` in case a version is not applicable (for instance in production),
     and `is_nightly` is gonna be `True` if `nightly` word is in `domain`, `False` otherwise.
     """
+
     version = None
     is_nightly = False
-    # if it's local dev or staging
-    if environment.is_development_environment() or "staging" in environment.application_id():
+    is_development = environment.is_development_environment()
+    # if it's local environment
+    if is_development:
+        version = 'localhost'
+    # if it's staging environment
+    elif "staging" in environment.application_id():
         version_match = VERSION_RE.search(domain)
         if version_match:
             version = version_match.group('version')
         else:
             version = 'staging'
         is_nightly = 'nightly' in version
-    return (version, is_nightly)
+    return (version, is_nightly, is_development)

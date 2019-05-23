@@ -33,7 +33,7 @@ TENANTS = {
         'key': ADS,
         'label': _('Advertisers'),
         'slug': 'advertisers',
-        'QUALTRICS_SURVEY_ID': 'SV_beH0HTFtnk4A5rD',
+        'QUALTRICS_SURVEY_ID': 'SV_6igS0eu8kjbqV5H',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
         'DIMENSIONS': advertisers_conf.DIMENSIONS,

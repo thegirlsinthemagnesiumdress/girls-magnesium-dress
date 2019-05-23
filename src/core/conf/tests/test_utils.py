@@ -166,36 +166,57 @@ class VersionInfoTest(TestCase):
 
     @mock.patch('djangae.environment.is_development_environment', return_value=False)
     def production_domain_test(self, is_prod_mock):
-        version, is_nightly = version_info('somedomain')
+        version, is_nightly, is_development = version_info('somedomain')
 
         is_prod_mock.assert_called()
+        self.assertFalse(is_development)
         self.assertIsNone(version)
         self.assertFalse(is_nightly)
 
-    def localhost_domain_test(self):
+    @mock.patch('djangae.environment.is_development_environment', return_value=True)
+    def localhost_domain_test(self, is_prod_mock):
         domain = 'localhost:8000'
         expected_version = 'localhost'
-        version, is_nightly = version_info(domain)
+        version, is_nightly, is_development = version_info(domain)
         self.assertEqual(version, expected_version)
+        self.assertTrue(is_development)
         self.assertFalse(is_nightly)
 
-    def staging_domain_test(self):
+    @mock.patch('djangae.environment.is_development_environment', return_value=True)
+    def localhost_domain_test_different_domain(self, is_prod_mock):
+        domain = '0.0.0.0:8000'
+        expected_version = 'localhost'
+        version, is_nightly, is_development = version_info(domain)
+        self.assertEqual(version, expected_version)
+        self.assertTrue(is_development)
+        self.assertFalse(is_nightly)
+
+    @mock.patch('djangae.environment.is_development_environment', return_value=False)
+    @mock.patch('djangae.environment.application_id', return_value='dmb-staging')
+    def staging_domain_test(self, app_id_mock, is_prod_mock):
         domain = 'gweb-digitalmaturity-staging.appspot.com'
         expected_version = 'staging'
-        version, is_nightly = version_info(domain)
+        version, is_nightly, is_development = version_info(domain)
         self.assertEqual(version, expected_version)
+        self.assertFalse(is_development)
         self.assertFalse(is_nightly)
 
-    def nightly_domain_test(self):
+    @mock.patch('djangae.environment.is_development_environment', return_value=False)
+    @mock.patch('djangae.environment.application_id', return_value='dmb-staging')
+    def nightly_domain_test(self, app_id_mock, is_prod_mock):
         domain = 'ads-nightly-dot-gweb-digitalmaturity-staging.appspot.com'
         expected_version = 'ads-nightly'
-        version, is_nightly = version_info(domain)
-        self.assertEqual(version, expected_version)
+        version, is_nightly, is_development = version_info(domain)
+        self.assertFalse(is_development)
         self.assertTrue(is_nightly)
+        self.assertEqual(version, expected_version)
 
-    def tenant_not_nightly_domain_test(self):
+    @mock.patch('djangae.environment.is_development_environment', return_value=False)
+    @mock.patch('djangae.environment.application_id', return_value='dmb-staging')
+    def tenant_not_nightly_domain_test(self, app_id_mock, is_prod_mock):
         domain = 'ads-dot-gweb-digitalmaturity-staging.appspot.com'
         expected_version = 'ads'
-        version, is_nightly = version_info(domain)
+        version, is_nightly, is_development = version_info(domain)
         self.assertEqual(version, expected_version)
         self.assertFalse(is_nightly)
+        self.assertFalse(is_development)
