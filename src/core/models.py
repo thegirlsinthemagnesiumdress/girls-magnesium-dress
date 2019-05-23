@@ -64,7 +64,6 @@ class Survey(models.Model):
         else:
             survey_link = settings.QUALTRICS_BASE_SURVEY_URL.format(survey_id=qualtrics_survey_id, sid=self.sid)
 
-
         if version:
             survey_link = '{}&ver={}'.format(survey_link, version)
 
