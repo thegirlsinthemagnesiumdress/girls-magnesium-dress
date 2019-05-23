@@ -112,8 +112,7 @@ $positions: (top, bottom);
 }
 
 .dmb-u-underlined-heading {
-  span {
-    border-bottom: 6px solid $dmb-color-grey-zircon;
-    padding-bottom: 15px;
-  }
+  border-bottom: 6px solid $dmb-color-grey-zircon;
+  max-width: 500px;
+  padding-bottom: 15px;
 }

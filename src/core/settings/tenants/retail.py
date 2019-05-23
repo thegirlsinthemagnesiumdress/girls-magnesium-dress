@@ -34,10 +34,10 @@ WEIGHTS = {
 }
 
 DIMENSION_TITLES = {
-    DIMENSION_STRATEGIC_DIRECTION: 'Strategic Direction and Data Foundations',
-    DIMENSION_USER_ENGAGEMENT: 'User Experience',
-    DIMENSION_CORE_SALES: 'Core Sales Activities',
-    DIMENSION_EMERGING_MONETIZATION: 'Emerging Monetization Opportunities',
+    DIMENSION_STRATEGIC_DIRECTION: 'Strategic direction and data foundations',
+    DIMENSION_USER_ENGAGEMENT: 'User experience',
+    DIMENSION_CORE_SALES: 'Core sales activities',
+    DIMENSION_EMERGING_MONETIZATION: 'Emerging monetization opportunities',
 }
 
 DIMENSION_ORDER = [
@@ -94,7 +94,6 @@ LEVELS = {
     LEVEL_3: 'Leading',
 }
 
-
 LEVELS_DESCRIPTIONS = {
     LEVEL_0: 'Organizations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.',
     LEVEL_1: 'These organizations are able to drive value from data in some pockets of their business. Leadership recognises data as a priority, but is unclear on how to unlock the best returns.',
@@ -109,9 +108,11 @@ REPORT_LEVEL_DESCRIPTIONS = {
     LEVEL_3: 'This is the most advanced of the four levels of maturity. These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.',
 }
 
+
 INDUSTRY_AVG_DESCRIPTION = 'How retailers perform on average; dynamically calculated based on the results of those who have completed this survey.'
 
 INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participant who has taken this data maturity survey.'
+
 
 DIMENSION_HEADER_DESCRIPTION = {
     DIMENSION_STRATEGIC_DIRECTION: 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
@@ -419,6 +420,15 @@ DIMENSION_LEVEL_RECOMMENDATIONS = {
     },
 }
 
+DIMENSION_SIDEPANEL_HEADING = 'We measure data maturity across four different dimensions. Enabling advanced capabilities across these dimensions helps set leaders apart from the rest and gives them a disproportionate ability to drive value with their audience data. Based on your strategic choices, not all of the dimensions may be applicable to your organization.'
+
+DIMENSION_SIDEPANEL_DESCRIPTIONS = {
+    DIMENSION_STRATEGIC_DIRECTION: 'Understand the role of data and the core capabilities required to successfully activate data within the organization.',
+    DIMENSION_USER_ENGAGEMENT: 'Understanding critical audience segments and how to satisfy their preferences.',
+    DIMENSION_CORE_SALES: 'Driving financial value directly from readers, whether through subscriptions or net new revenue opportunities.',
+    DIMENSION_EMERGING_MONETIZATION: 'Reaching the right audiences and delivering high-impact advertising campaigns that do not diminish the reader experience.',
+}
+
 
 CONTENT_DATA = {
     'levels': LEVELS,
@@ -431,6 +441,8 @@ CONTENT_DATA = {
     'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
+    'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
+    'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
 }
 
 #####  GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####

@@ -1,0 +1,47 @@
+{% load i18n %}
+
+<aside
+    id="dmb-industry-side-panel"
+    class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow"
+    dmb-side-panel>
+  <button
+      class="dmb-side-panel__fab dmb-fab"
+      dmb-side-panel-close>
+    <span class="dmb-fab__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <use xlink:href="#mi-close"></use>
+      </svg>
+    </span>
+  </button>
+
+  <div class="dmb-side-panel__inner">
+    <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
+        {% trans "Benchmark calculations" %}
+    </h1>
+    <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
+      {% trans "Industry average & industry best" %}
+    </h2>
+    <p class="dmb-u-m-b-s">
+      {% trans "These two metrics show how your company compares to the average and top performers in your industry globally." %}
+    </p>
+    <p class="dmb-u-m-b-s" ng-if="reportCtrl.industryAvgSource">
+      <span ng-if="reportCtrl.industryAvgSource!=='all'">
+        {% trans "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category." %}
+      </span>
+      <span ng-if="reportCtrl.industryAvgSource=='all'">
+        {% trans "Your “Industry average” is currently based on global responses from all industries." %}
+      </span>
+    </p>
+    <p class="dmb-u-m-b-s" ng-if="reportCtrl.industryBestSource">
+      <span ng-if="reportCtrl.industryBestSource!=='all'">
+        {% trans "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category." %}
+      </span>
+      <span ng-if="reportCtrl.industryBestSource=='all'">
+        {% trans "Your “Industry best” is currently based on global responses from all industries." %}
+      </span>
+    </p>
+    <p class="dmb-u-m-b-s">
+      {% trans "If the scores above do not refer to your specific industry, not enough people have yet filled in the assessment to produce a reliable average. Check back later as the scores are continuously updated!" %}
+    </p>
+  </div>
+</aside>

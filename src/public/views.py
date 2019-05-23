@@ -40,6 +40,8 @@ def _dump_tenant_content_data(tenant):
         'dimension_level_recommendations': content_data['dimension_level_recommendations'],
         'industry_avg_description': content_data.get('industry_avg_description'),
         'industry_best_description': content_data.get('industry_best_description'),
+        'dimension_sidepanel_heading': content_data.get('dimension_sidepanel_heading'),
+        'dimension_sidepanel_descriptions': content_data.get('dimension_sidepanel_descriptions'),
     }
 
     return json.dumps(data, cls=LazyEncoder)
@@ -193,7 +195,7 @@ def generate_spreadsheet_export(request, tenant):
         logging.info(msg)
         deferred.defer(
             tasks.export_tenant_data,
-            "DMB - Admin export for {} - {} ".format(tenant_conf['label'], now.strftime("%d-%m-%Y %H:%M")),
+            "DMB - {} admin export - {} ".format(tenant_conf['label'], now.strftime("%d-%m-%Y %H:%M")),
             data,
             survey_fields_mappings,
             survey_result_fields_mapping,

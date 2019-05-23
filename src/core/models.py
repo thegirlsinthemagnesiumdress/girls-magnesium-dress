@@ -57,9 +57,9 @@ class Survey(models.Model):
         it to match the data against companies.
         """
         qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
-        version, is_nightly = version_info(settings.HTTP_HOST)
+        version, is_nightly, is_development = version_info(settings.HTTP_HOST)
 
-        if is_nightly:
+        if is_nightly or is_development:
             survey_url = settings.QUALTRICS_BASE_SURVEY_PREVIEW_URL.format(survey_id=qualtrics_survey_id)
         else:
             survey_url = settings.QUALTRICS_BASE_SURVEY_URL.format(survey_id=qualtrics_survey_id)
