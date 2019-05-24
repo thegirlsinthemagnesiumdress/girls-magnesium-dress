@@ -426,7 +426,7 @@ def _format_type(value, dateformat="%Y/%m/%d %H:%M:%S"):
         return value.strftime(dateformat)
     if isinstance(value, Promise):
         return force_text(value)
-    return str(value)
+    return force_text(value)
 
 
 def export_tenant_data(title, data, survey_fields, survey_result_fields, share_with, dateformat="%Y/%m/%d %H:%M:%S"):
