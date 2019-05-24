@@ -48,6 +48,12 @@
   &__table {
     background: none;
 
+    th {
+      span {
+        overflow-wrap: normal;
+      }
+    }
+
     td {
       white-space: nowrap;
     }
