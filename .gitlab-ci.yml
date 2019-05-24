@@ -28,3 +28,38 @@ fe-lint:
   - npm install
   - ./bin/install_deps
   - npm run lint
+
+
+# Hidden task, extended by other deploy tasks
+.deploy:
+  image: trion/ng-cli-karma:7.2.3
+  stage: deploy
+  variables:
+    SSH_VAR: "ssh://git@gitlab.com:"
+    GLUE_URL: "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/"
+  before_script:
+    - echo "deb http://packages.cloud.google.com/apt cloud-sdk-jessie main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+    - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+    - apt-get update
+    - apt-get -y install google-cloud-sdk nasm python-pip default-jdk
+    - sed -i "s#$SSH_VAR#$GLUE_URL#g" package.json
+    - ./bin/install_deps
+    - ./manage.py gulp build --settings=core.settings.live
+    - python manage.py collectstatic --settings=core.settings.live --noinput
+    - cd src
+  after_script:
+    - rm /tmp/$CI_PIPELINE_ID.json
+
+
+
+deploy_ads_nightly:
+  extends: .deploy
+  only:
+    - ads-master
+  environment:
+    name: Nightly
+    url: https://ads-nightly-dot-gweb-digitalmaturity-staging.appspot.com
+  script:
+    - echo $DEPLOY_KEY_NIGHTLY > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud --quiet --project gweb-digitalmaturity-staging app deploy --no-promote -v ads-nightly
