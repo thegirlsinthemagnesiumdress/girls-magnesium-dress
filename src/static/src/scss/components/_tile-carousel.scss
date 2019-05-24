@@ -13,12 +13,33 @@
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
+    padding-bottom: 10px;
   }
 
   &__tile {
-    flex: 1 0 240px;
-    max-width: 300px;
+    flex-basis: 60%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    max-width: 315px;
+    min-width: 220px;
     padding: 24px;
+    // always show part of a card so the user know to scroll (max 5 cards)
+
+    @include dmb-mq($from: 600px) {
+      flex-basis: 45%;
+    }
+
+    @include dmb-mq($from: 850px) {
+      flex-basis: 30%;
+    }
+
+    @include dmb-mq($from: 1200px) {
+      flex-basis: 20%;
+    }
+
+    @include dmb-mq($from: 1350px) {
+      flex-basis: 19%;
+    }
 
     & + & {
       margin-left: 16px;
