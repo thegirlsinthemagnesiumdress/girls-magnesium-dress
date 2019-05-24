@@ -18,7 +18,7 @@
           {[reportCtrl.levels[reportCtrl.floorDmb]]}
         </span>
         <button
-            class="dmb-report-hero__print-btn"
+            class="dmb-report-hero__print-btn dmb-u-hide-mobile dmb-h-hidden--print"
             aria-label="Print report button"
             data-tooltip-text="This page is designed to be printable"
             ng-click ="reportCtrl.print()">
@@ -34,7 +34,7 @@
         Congratulations, you're in the top group for data maturity
       </span>
       <button
-          class="dmb-u-hide-mobile"
+          class="dmb-h-hidden--print"
           dmb-side-panel-trigger="#dmb-levels-side-panel"
           aria-label="Get more informations about what your maturity represents">
         {% include 'core/inc/svg.html' with id='info' inline=True only %}

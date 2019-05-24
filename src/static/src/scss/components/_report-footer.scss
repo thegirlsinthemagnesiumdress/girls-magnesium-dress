@@ -2,8 +2,16 @@
   background: $dmb-interactive-color;
   color: $dmb-light-text-color;
 
+  @include print-styles {
+    color: #000;
+  }
+
   .h-c-headline {
     color: $dmb-light-text-color;
+
+    @include print-styles {
+      color: #000;
+    }
 
     &--subhead {
       margin-bottom: 20px !important;
