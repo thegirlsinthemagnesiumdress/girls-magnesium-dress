@@ -464,7 +464,7 @@ def export_tenant_data(title, data, survey_fields, survey_result_fields, share_w
             export_data.append(survey_data + survey_result_data)
         sheet_url = sheets.export_data(title, survey_names + survey_result_names, export_data, share_with)
         logging.info("Export created {} and shared with: {}".format(sheet_url, share_with))
-        survey_data['asd']=1
+        survey_data['asd'] = 1
 
     except Exception as e:
         logging.error(e, exc_info=True)
