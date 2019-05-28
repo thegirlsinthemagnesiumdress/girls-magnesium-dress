@@ -13,6 +13,8 @@ GOOGLE_SHEET_BASE_RESULT_FIELDS = {
     'dmb': 'Overall DMB',
     'excluded_from_best_practice': 'Excluded from Benchmark',
 }
+
+GOOGLE_SHEET_SURVEY_CHOICE_FIELDS = ('industry', 'country',)
 #####  END OF GOOGLE SHEETS EXPORT FOR TENANTS #####
 
 
