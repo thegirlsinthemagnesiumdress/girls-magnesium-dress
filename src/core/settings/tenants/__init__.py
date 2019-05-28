@@ -6,12 +6,13 @@ GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
     'country': 'Country',
     'industry': 'Industry',
     'created_at': 'Creation Date',
-    'link': 'Report link',
 }
 
 GOOGLE_SHEET_BASE_RESULT_FIELDS = {
     'dmb': 'Overall DMB',
     'excluded_from_best_practice': 'Excluded from Benchmark',
+    'absolute_report_link': 'Report link',
+    'absolute_detail_link': 'Detail link',
 }
 
 GOOGLE_SHEET_SURVEY_CHOICE_FIELDS = ('industry', 'country',)
