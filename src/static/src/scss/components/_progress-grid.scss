@@ -10,6 +10,7 @@ $block: '.dmb-progress-grid';
 
 // General styles
 .dmb-progress-grid {
+  -webkit-print-color-adjust: exact !important;
   display: grid;
   grid-template-columns: repeat(length($sources), 1fr);
   page-break-inside: avoid;
