@@ -139,7 +139,7 @@ class SurveyResult(models.Model):
 
     @property
     def absolute_report_link(self):
-        return "http://{}{}".format(settings.DOMAIN, self.detail_link)
+        return "http://{}{}".format(settings.DOMAIN, self.report_link)
 
     @property
     def absolute_detail_link(self):
