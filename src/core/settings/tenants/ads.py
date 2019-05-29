@@ -49,7 +49,7 @@ DIMENSION_TITLES = {
     DIMENSION_AUDIENCE: _('Audience'),
     DIMENSION_ATTRIBUTION: _('Attribution'),
     DIMENSION_AUTOMATION: _('Automation'),
-    DIMENSION_ORGANIZATION: _('Organization'),
+    DIMENSION_ORGANIZATION: _('Organisation'),
 }
 
 DIMENSION_ORDER = [
