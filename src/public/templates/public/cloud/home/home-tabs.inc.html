@@ -1,0 +1,82 @@
+<section class="dmb-home-tabs h-c-page{% if class %} {{class}}{% endif %}">
+  <h1 class="h-c-eyebrow h-c-eyebrow--underlined">
+    How it works
+  </h1>
+
+  {% include 'public/inc/global/step-heading.inc.html' with text='Find out where your retail organization is on the data maturity scale' svg='shield' numbered=True only %}
+
+  <div
+      class="dmb-home-tabs__tabs glue-tabby glue-zippy-style h-t-hercules"
+      data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']"
+      ng-cloak>
+    <ul class="glue-zippy-set-single">
+      <li
+          id="level-0"
+          class="dmb-home-tabs__tab--level-0 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-0">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Nascent
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title='Nascent' text='Organizations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.' %}
+        </div>
+      </li>
+
+      <li
+          id="level-1"
+          class="dmb-home-tabs__tab--level-1 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-1">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Developing
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title='Developing' text='These organizations are able to drive value from data in some pockets of their business. Leadership recognizes data as a priority, but is unclear on how to unlock the best returns.' %}
+        </div>
+      </li>
+
+      <li
+          id="level-2"
+          class="dmb-home-tabs__tab--level-2 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-2">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Mature
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title='Mature' text='Data-informed decision making is the standard across much of the business. While the technology and tools support various use cases, they are mostly on a project basis and not business as usual.' %}
+        </div>
+      </li>
+
+      <li
+          id="level-3"
+          class="dmb-home-tabs__tab--level-3 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-3">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Leading
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title='Leading' text='These organizations see data as an integral part of achieving their strategic objectives. They experiment with innovative, data-oriented projects and technologies that help drive the industry forward.' %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
