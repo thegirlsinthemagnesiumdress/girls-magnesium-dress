@@ -6,6 +6,7 @@ GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
     'country': 'Country',
     'industry': 'Industry',
     'created_at': 'Creation Date',
+    'link': 'Survey link',
 }
 
 GOOGLE_SHEET_BASE_RESULT_FIELDS = {
