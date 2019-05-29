@@ -16,7 +16,7 @@ ALLOWED_AUTH_DOMAINS = [
 
 DJANGAE_CREATE_UNKNOWN_USER = True
 
-LIVE_DOMAIN = os.environ['HTTP_HOST']
+DOMAIN = os.environ['HTTP_HOST']
 
 # override QUALTRICS_SURVEY_ID for staging environment
 TENANTS[ADS]['QUALTRICS_SURVEY_ID'] = 'SV_6igS0eu8kjbqV5H'

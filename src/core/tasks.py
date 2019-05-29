@@ -216,7 +216,6 @@ def send_emails_for_new_reports(email_list):
 
     :param email_list: tuple of element (to, bcc, sid, Q_Language)
     """
-    domain = getattr(settings, 'LIVE_DOMAIN', os.environ['HTTP_HOST'])
 
     for email_data in email_list:
         to, bcc, sid, q_lang = email_data
@@ -234,7 +233,7 @@ def send_emails_for_new_reports(email_list):
                 slug = get_tenant_slug(tenant)
                 link = _localised_link(q_lang, slug, sid)
                 context = {
-                    'url': "http://{}{}".format(domain, link),
+                    'url': "http://{}{}".format(settings.DOMAIN, link),
                     'company_name': company_name,
                     'industry': industry,
                     'country': country,
@@ -429,6 +428,19 @@ def _format_type(value, dateformat="%Y/%m/%d %H:%M:%S"):
     return force_text(value)
 
 
+def get_survey_data(survey, survey_columns, dateformat):
+    survey_data = []
+    for col in survey_columns:
+        if col in settings.GOOGLE_SHEET_SURVEY_CHOICE_FIELDS:
+            repr_func = getattr(survey, 'get_' + col + '_display')
+            value = _format_type(repr_func())
+        else:
+            value = _format_type(getattr(survey, col))
+        survey_data.append(value)
+
+    return survey_data
+
+
 def export_tenant_data(title, data, survey_fields, survey_result_fields, share_with, dateformat="%Y/%m/%d %H:%M:%S"):
     """Export tenant data to Google Spreadsheet."""
 
@@ -442,7 +454,7 @@ def export_tenant_data(title, data, survey_fields, survey_result_fields, share_w
                                for col in survey_result_columns]
 
         for v in data:
-            survey_data = [_format_type(getattr(v, col), dateformat=dateformat) for col in survey_columns]
+            survey_data = get_survey_data(v, survey_columns, dateformat=dateformat)
             survey_result_data = [''] * len(survey_result_columns)
             try:
                 if v.last_survey_result:
@@ -451,8 +463,8 @@ def export_tenant_data(title, data, survey_fields, survey_result_fields, share_w
                     if dim_dict:
                         survey_result_data = []
                         for col in survey_result_columns:
-                            dim = dim_dict.get(col)
-                            if dim:
+                            dim = dim_dict.get(col, None)
+                            if dim is not None:
                                 survey_result_data.append(dim)
                             else:
                                 survey_result_data.append(
