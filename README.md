@@ -240,3 +240,71 @@ For example, SVG file `src/static/src/svg/print-button.svg` can be used in the f
     ...
     </svg>
     ```
+
+# Tenant configuration
+
+To configure a new tenant, a dictionary containing few configuration needs to be added to TENANT settings into tenant module
+
+
+
+tenant : {
+    ...
+}
+
+
+Mandatory settings:
+    - `key`: represent the tenant key, that is used across the platform to uniquely identify the tenant
+    - `label`: the translatable string used to describe the tenant
+    - `slug`: used in the url to navigate tenant pages
+    - `QUALTRICS_SURVEY_ID`: survey id used to pull results and data from the tenant survey
+    - `EMAIL_TO`: email to question id in the survey, used to send an email when the result is ready
+    - `EMAIL_BCC`: email bcc question id in the survey, used to send an email when the result is ready
+    - `DIMENSIONS`: dictionary of dimensions for this specific tenant. Each element of the dictionary is a
+        list of question ids belonging to that specific dimension. **Important!:** If a question ID is not
+        added to this list the question won't be considered for the final score
+    - `CONTENT_DATA`: dictionary of data used to populate content for the tenant, this include: levels,
+        report level descriptions, dimensions labels, headers (more details in `Content Data` section).
+    - `MULTI_ANSWER_QUESTIONS`: list of question ids that where can be selected more than one value.
+    - `WEIGHTS`: dictionary of question_id, weight for each question within a dimension. If there is no
+        such concept as weighted question, this configuration need to list all the question ids with
+        weight equal to 1.
+    - `DIMENSIONS_WEIGHTS`: **Optional** If the dimesions are weighted, then this configuration
+        is a dictionary of weights:
+        ```
+        DIMENSIONS_WEIGHTS = {
+            DIMENSION_1: 0.4,
+            DIMENSION_2: 0.18,
+            DIMENSION_3: 0.3,
+            DIMENSION_4: 0.12,
+        }
+        ```
+        When there is no concept of weighted dimension, then this configuration is not specified.
+    - `DIMENSIONS_WEIGHTS_QUESTION_ID`: If the weight for each dimension depends on a question answer,
+        then this configuration need to be set to the question id, it needs to be set to `None` otherwise
+
+    - `FORCED_INDUSTRY`: **Optional**. If the tenant is not allowed to select an industry from a list, it needs
+        to be forced to a specific value, that can be specified through this paramenter.
+    - `EXCLUDED_TIME_THRESHOLD`: threshold from which the surveyt result is excluded from the benchmark
+        calculation
+    - `CONTACT_EMAIL`: the contact email that is used for this specific tenant
+    - `i18n`: wether the tenant is using translations or not. If set to `True` the tenant is enabled for
+        being used multilanguage, `False` if not.
+    - `GOOGLE_SHEET_EXPORT_SURVEY_FIELDS`: list of fields that needs to be exported for survey model
+    - `GOOGLE_SHEET_EXPORT_RESULT_FIELDS`: list of fields that needs to be exported for survey result model
+
+
+
+## Content data
+
+Since the site has been translated for a tenant, we thought it was easier to have all the tanslatable strings
+in the BE. This will include:
+    - `levels`
+    - `level_descriptions`
+    - `report_level_descriptions`
+    - `dimensions`
+    - `dimension_labels`
+    - `dimension_headers_descriptions`
+    - `dimension_level_description`
+    - `dimension_level_recommendations`
+    - `dimension_sidepanel_heading`
+    - `dimension_sidepanel_descriptions`
