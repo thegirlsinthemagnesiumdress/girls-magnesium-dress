@@ -44,6 +44,13 @@
             </a>
           </li>
         {% endif %}
+        {% if tenant|ng_mark_safe != 'cloud' %}
+          <li class="dmb-footer__tenant-footer-list-item">
+            <a href="/cloud">
+              {% trans "Cloud" %}
+            </a>
+          </li>
+        {% endif %}
       </ul>
     </div>
 

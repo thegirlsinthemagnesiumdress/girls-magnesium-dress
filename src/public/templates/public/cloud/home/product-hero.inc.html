@@ -3,10 +3,10 @@
 <section class="dmb-product-hero h-u-text-center{% if class %} {{class}}{% endif %}">
   <img
       class="dmb-product-hero__bg-img"
-      src="{% static 'img/retail/home/product-hero-bg.svg' %}"
+      src="{% static 'img/'|add:tenant|add:'/home/product-hero-bg.svg' %}"
       alt="background image">
 
-  {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img' img='img/retail/home/laptop' ext='png' alt='laptop screen demo' %}
+  {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img' img='img/'|add:tenant|add:'/home/laptop' ext='png' alt='laptop screen demo' %}
 
   <div class="dmb-product-hero__color-bg"></div>
 </section>
