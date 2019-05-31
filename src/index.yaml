@@ -45,13 +45,13 @@ indexes:
 - kind: core_survey
   properties:
   - name: engagement_lead
-  - name: tenant
   - name: created_at
     direction: desc
 
 - kind: core_survey
   properties:
   - name: engagement_lead
+  - name: tenant
   - name: created_at
     direction: desc
 
