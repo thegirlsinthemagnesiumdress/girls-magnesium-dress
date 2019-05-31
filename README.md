@@ -111,10 +111,136 @@ Authentication will most likely be your @potatolondon.com account
 
 We're versioning js and css files, that's automatically handled by static_rev template tag. However we're generaring survey-{hash-of-content}.min.js and survey-{hash-of-content}.min.css that are fed to the Qualtrics Survey page. Please make sure to update the references there if there are any changes to those files ( through Qualtrics Look&Feel panel).
 
-# Qualtrics surveys
+
+
+# Adding a New Tenant
+## Back-end
+### Create tenant config file
+1. Copy `src/core/settings/tenants/tenant-template.py` and rename it as `<tenant>.py`, e.g. for a tenant `cloud` use `cloud.py`.
+1. In the "`# DIMENSIONS`" section change the `<dimension_id>`'s to id's that match the dimension names, eg:
+    ```
+    DIMENSION_1 = 'strategic_direction'
+    DIMENSION_2 = 'user_engagement'
+    DIMENSION_3 = 'core_sales'
+    DIMENSION_4 = 'emerging_monetization'
+    ```
+1. If the tenant levels map to scores other than the default values then change the values of the `LEVEL_(n)` variabes in the "`# LEVELS`" section. e.g. if level 3 is reached with scores greater than `5.0` then change it to this:
+    ```
+    LEVEL_3 = 5
+    ```
+    If the tenant has more than the default 4 levels, add the additional levels add them as well. e.g. to add a fifth level that is reached for scores greater than `10` add this:
+    ```
+    LEVEL_5 = 10
+    ```
+1. For weighted questions change the weights in the `WEIGHTS` object.
+
+
+### Import the tenant config file
+
+1. Import the tenant config file into `src/core/settings/tenants/__init__.py`:
+    ```
+    import <tenant> as <tenant>_conf
+    ```
+1. Add new tenant configuration settings: Add a tenant variable and set it equal to the slug in `src/core/settings/tenants/__init__.py`:
+    ```
+    NEWTENANT = 'tenant-slug'
+    ```
+    Then add that tenant variable as a property of the TENANTS object:
+    ```
+    TENANTS = {
+        ...,
+        NEWTENANT : {
+            ...
+        }
+    }
+    ```
+1. Add the following **mandatory fields**:
+    - `key`: represent the tenant key, that is used across the platform to uniquely identify the tenant
+    - `label`: the translatable string used to describe the tenant
+    - `slug`: used in the url to navigate tenant pages
+    - `QUALTRICS_SURVEY_ID`: survey id used to pull results and data from the tenant survey
+    - `EMAIL_TO`: email to question id in the survey, used to send an email when the result is ready
+    - `EMAIL_BCC`: email bcc question id in the survey, used to send an email when the result is ready
+    - `DIMENSIONS`: dictionary of dimensions for this specific tenant. Each element of the dictionary is a list of question ids belonging to that specific dimension. **Important!:** If a question ID is not added to this list the question won't be considered for the final score.
+    - `CONTENT_DATA`: dictionary of data used to populate content for the tenant, this include: levels, report level descriptions, dimensions labels, headers (more details in `Content Data` section).
+    - `MULTI_ANSWER_QUESTIONS`: list of question ids that where can be selected more than one value.
+    - `WEIGHTS`: dictionary of question_id, weight for each question within a dimension. If there is no such concept as weighted question, this configuration need to list all the question ids with weight equal to 1.
+    - `EXCLUDED_TIME_THRESHOLD`: threshold from which the surveyt result is excluded from the benchmark calculation
+    - `CONTACT_EMAIL`: the contact email that is used for this specific tenant
+    - `i18n`: wether the tenant is using translations or not. If set to `True` the tenant is enabled for being used multilanguage, `False` if not.
+    - `GOOGLE_SHEET_EXPORT_SURVEY_FIELDS`: list of fields that needs to be exported for survey model
+    - `GOOGLE_SHEET_EXPORT_RESULT_FIELDS`: list of fields that needs to be exported for survey result model
+1. Add the following **optional fields** as needed:
+    - `DIMENSIONS_WEIGHTS_QUESTION_ID`: If the weight for each dimension depends on a question answer, then this property needs to be set to the question id.
+    - `DIMENSIONS_WEIGHTS`: If the dimesions are weighted, then this configuration is a dictionary of weights:
+        ```
+        DIMENSIONS_WEIGHTS = {
+            DIMENSION_1: 0.4,
+            DIMENSION_2: 0.18,
+            DIMENSION_3: 0.3,
+            DIMENSION_4: 0.12,
+        }
+        ```
+    - `FORCED_INDUSTRY`: If the tenant is not allowed to select an industry from a list, it needs to be forced to a specific value, that can be specified through this paramenter.
+
+
+## Front-end
+### HTML Templates
+1. Copy an existing tenant directory e.g. `src/public/templates/public/retail/` and rename it as`<tenant>`. Then update the copy accordingly.
+
+1. Add the tenant to the `<ul>` of `<div class="dmb-footer__tenant-footer">` in `src/public/templates/public/inc/global/footer.html` as follows:
+    ```
+    {% if tenant|ng_mark_safe != '<tenant>' %}
+        <li class="dmb-footer__tenant-footer-list-item">
+        <a href="/<tenant-slug>">
+            {% trans "<tenant-footer-name>" %}
+        </a>
+        </li>
+    {% endif %}
+    ```
+    replacing `<tenant>`, `<tenant-slug>` & `<tenant-footer-name>` with the appropriate values.
+
+### Images
+1. Copy an exiting images directory e.g. `src/static/src/img/ads/` and rename it as `<tenant>`. 1. Replace the images with the appropriate ones.
+
+### Partner logos
+1. Add inline versions of any partner logos to `src/static/src/img/` as `<partner>-logo.png` & `<partner>-logo@2x.png`.
+1. If there is a light (e.g. white) version of the logo add them as `<partner>-logo-light.png` & `
+<partner>-logo-light@2x.png` otherwise make copies of the normal logos and rename them to these names.
+
+
+### Add SCSS Tenant Variables
+1. Add an entry for the tenant in `$tenants` in `src/static/src/scss/_tenants-variables.scss`
+    ```
+    $tenants: (
+    ...
+    cloud: (
+        primary-color: $dmb-text-color,
+        progress-grid-switch-bp: 800px,
+        levels: (
+        0: (
+            color: $h-gm-yellow-600
+        ),
+        1: (
+            color: $h-gm-yellow-700
+        ),
+        2: (
+            color: $h-gm-yellow-800
+        ),
+        3: (
+            color: $h-gm-yellow-900
+        )
+        )
+    )
+    ```
+    where `progress-grid-switch-bp` is the breakpoint at which the progress grid in the report rotates. This is determined by the number of levels and the length of the level title strings so should be adjusted per tenant if the default value is too small.
+
+
+## Qualtrics Survey
+
+### Creating staging survey for new tenant
 We have a base survey **DMB Template Survey** to be used as a template. Make a copy of it for a new tenant staging survey, change the **Splash Page** block copy and the questions then copy it to create the production survey. Detailed instructions are below:
 
-## Creating staging survey for new tenant
 1. From control panel click on the 3 dots of **DMB Template Survey**, then on **Copy Project**
 1. Change name to `<Tenant> - Staging` and click **Copy Project**
 1. Open the survey and go to **Survey Flow**
@@ -241,70 +367,16 @@ For example, SVG file `src/static/src/svg/print-button.svg` can be used in the f
     </svg>
     ```
 
-# Tenant configuration
-
-To configure a new tenant, a dictionary containing few configuration needs to be added to TENANT settings into tenant module
-
-
-
-tenant : {
-    ...
-}
-
-
-Mandatory settings:
-    - `key`: represent the tenant key, that is used across the platform to uniquely identify the tenant
-    - `label`: the translatable string used to describe the tenant
-    - `slug`: used in the url to navigate tenant pages
-    - `QUALTRICS_SURVEY_ID`: survey id used to pull results and data from the tenant survey
-    - `EMAIL_TO`: email to question id in the survey, used to send an email when the result is ready
-    - `EMAIL_BCC`: email bcc question id in the survey, used to send an email when the result is ready
-    - `DIMENSIONS`: dictionary of dimensions for this specific tenant. Each element of the dictionary is a
-        list of question ids belonging to that specific dimension. **Important!:** If a question ID is not
-        added to this list the question won't be considered for the final score
-    - `CONTENT_DATA`: dictionary of data used to populate content for the tenant, this include: levels,
-        report level descriptions, dimensions labels, headers (more details in `Content Data` section).
-    - `MULTI_ANSWER_QUESTIONS`: list of question ids that where can be selected more than one value.
-    - `WEIGHTS`: dictionary of question_id, weight for each question within a dimension. If there is no
-        such concept as weighted question, this configuration need to list all the question ids with
-        weight equal to 1.
-    - `DIMENSIONS_WEIGHTS`: **Optional** If the dimesions are weighted, then this configuration
-        is a dictionary of weights:
-        ```
-        DIMENSIONS_WEIGHTS = {
-            DIMENSION_1: 0.4,
-            DIMENSION_2: 0.18,
-            DIMENSION_3: 0.3,
-            DIMENSION_4: 0.12,
-        }
-        ```
-        When there is no concept of weighted dimension, then this configuration is not specified.
-    - `DIMENSIONS_WEIGHTS_QUESTION_ID`: If the weight for each dimension depends on a question answer,
-        then this configuration need to be set to the question id, it needs to be set to `None` otherwise
-
-    - `FORCED_INDUSTRY`: **Optional**. If the tenant is not allowed to select an industry from a list, it needs
-        to be forced to a specific value, that can be specified through this paramenter.
-    - `EXCLUDED_TIME_THRESHOLD`: threshold from which the surveyt result is excluded from the benchmark
-        calculation
-    - `CONTACT_EMAIL`: the contact email that is used for this specific tenant
-    - `i18n`: wether the tenant is using translations or not. If set to `True` the tenant is enabled for
-        being used multilanguage, `False` if not.
-    - `GOOGLE_SHEET_EXPORT_SURVEY_FIELDS`: list of fields that needs to be exported for survey model
-    - `GOOGLE_SHEET_EXPORT_RESULT_FIELDS`: list of fields that needs to be exported for survey result model
-
-
-
 ## Content data
 
-Since the site has been translated for a tenant, we thought it was easier to have all the tanslatable strings
-in the BE. This will include:
-    - `levels`
-    - `level_descriptions`
-    - `report_level_descriptions`
-    - `dimensions`
-    - `dimension_labels`
-    - `dimension_headers_descriptions`
-    - `dimension_level_description`
-    - `dimension_level_recommendations`
-    - `dimension_sidepanel_heading`
-    - `dimension_sidepanel_descriptions`
+Since the site has been translated for a tenant, we thought it was easier to have all the tanslatable strings in the BE. This will include:
+- `levels`
+- `level_descriptions`
+- `report_level_descriptions`
+- `dimensions`
+- `dimension_labels`
+- `dimension_headers_descriptions`
+- `dimension_level_description`
+- `dimension_level_recommendations`
+- `dimension_sidepanel_heading`
+- `dimension_sidepanel_descriptions`
