@@ -2,16 +2,19 @@
 # flake8: noqa
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
-DIMENSION_LEARN = "learn"
-DIMENSION_LEAD = "lead"
-DIMENSION_SCALE = "scale"
-DIMENSION_SECURE = "secure"
+# DIMENSIONS
+DIMENSION_1 = 'learn'
+DIMENSION_2 = 'lead'
+DIMENSION_3 = 'scale'
+DIMENSION_4 = 'secure'
 
+# LEVELS
 LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
 
+# WEIGHTS
 WEIGHTS = {
     'Q1': 1,
     'Q2': 1,
@@ -41,28 +44,28 @@ WEIGHTS = {
 }
 
 DIMENSION_TITLES = {
-    DIMENSION_LEARN: 'Learn',
-    DIMENSION_LEAD: 'Lead',
-    DIMENSION_SCALE: 'Scale',
-    DIMENSION_SECURE: 'Secure',
+    DIMENSION_1: 'Learn',
+    DIMENSION_2: 'Lead',
+    DIMENSION_3: 'Scale',
+    DIMENSION_4: 'Secure',
 }
 
 DIMENSION_ORDER = [
-    DIMENSION_LEARN,
-    DIMENSION_LEAD,
-    DIMENSION_SCALE,
-    DIMENSION_SECURE,
+    DIMENSION_1,
+    DIMENSION_2,
+    DIMENSION_3,
+    DIMENSION_4,
 ]
 
 DIMENSIONS = {
-    DIMENSION_LEARN: [
+    DIMENSION_1: [
         'Q1',
         'Q2',
         'Q3',
         'Q4',
         'Q5',
     ],
-    DIMENSION_LEAD: [
+    DIMENSION_2: [
         'Q6',
         'Q7',
         'Q8',
@@ -70,7 +73,7 @@ DIMENSIONS = {
         'Q10',
         'Q11',
     ],
-    DIMENSION_SCALE: [
+    DIMENSION_3: [
         'Q12',
         'Q13',
         'Q14',
@@ -78,7 +81,7 @@ DIMENSIONS = {
         'Q16',
         'Q17',
     ],
-    DIMENSION_SECURE: [
+    DIMENSION_4: [
         'Q18',
         'Q19',
         'Q20',
@@ -94,108 +97,380 @@ MULTI_ANSWER_QUESTIONS = []
 
 
 LEVELS = {
-    LEVEL_0: 'Nascent',
-    LEVEL_1: 'Developing',
-    LEVEL_2: 'Mature',
-    LEVEL_3: 'Leading',
+    LEVEL_0: 'Level 0',
+    LEVEL_1: 'Level 1',
+    LEVEL_2: 'Level 2',
+    LEVEL_3: 'Level 3',
 }
 
 LEVELS_DESCRIPTIONS = {
-    LEVEL_0: '',
-    LEVEL_1: '',
-    LEVEL_2: '',
-    LEVEL_3: '',
+    LEVEL_0: 'LEVEL 0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    LEVEL_1: 'LEVEL 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    LEVEL_2: 'LEVEL 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    LEVEL_3: 'LEVEL 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 }
 
 REPORT_LEVEL_DESCRIPTIONS = {
-    LEVEL_0: '',
-    LEVEL_1: '',
-    LEVEL_2: '',
-    LEVEL_3: '',
+    LEVEL_0: 'LEVEL 0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    LEVEL_1: 'LEVEL 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    LEVEL_2: 'LEVEL 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    LEVEL_3: 'LEVEL 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 }
 
 
-INDUSTRY_AVG_DESCRIPTION = ''
+INDUSTRY_AVG_DESCRIPTION = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
-INDUSTRY_BEST_DESCRIPTION = ''
+INDUSTRY_BEST_DESCRIPTION = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
 
 DIMENSION_HEADER_DESCRIPTION = {
-    DIMENSION_LEARN: '',
-    DIMENSION_LEAD: '',
-    DIMENSION_SCALE: '',
-    DIMENSION_SECURE: '',
+    DIMENSION_1: 'LEARN - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    DIMENSION_2: 'LEAD - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    DIMENSION_3: 'SCALE - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    DIMENSION_4: 'SECURE - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 }
 
 
 DIMENSION_LEVEL_DESCRIPTION = {
-    DIMENSION_LEARN: {
-        LEVEL_0: '',
-        LEVEL_1: '',
-        LEVEL_2: '',
-        LEVEL_3: '',
+    DIMENSION_1: {
+        LEVEL_0: 'LEVEL 0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_1: 'LEVEL 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_2: 'LEVEL 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_3: 'LEVEL 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
-    DIMENSION_LEAD: {
-        LEVEL_0: '',
-        LEVEL_1: '',
-        LEVEL_2: '',
-        LEVEL_3: '',
+    DIMENSION_2: {
+        LEVEL_0: 'LEVEL 0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_1: 'LEVEL 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_2: 'LEVEL 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_3: 'LEVEL 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
-    DIMENSION_SCALE: {
-        LEVEL_0: '',
-        LEVEL_1: '',
-        LEVEL_2: '',
-        LEVEL_3: '',
+    DIMENSION_3: {
+        LEVEL_0: 'LEVEL 0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_1: 'LEVEL 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_2: 'LEVEL 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_3: 'LEVEL 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
-    DIMENSION_SECURE: {
-        LEVEL_0: '',
-        LEVEL_1: '',
-        LEVEL_2: '',
-        LEVEL_3: '',
+    DIMENSION_4: {
+        LEVEL_0: 'LEVEL 0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_1: 'LEVEL 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_2: 'LEVEL 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        LEVEL_3: 'LEVEL 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
 }
 
 
-DATA_ACTIVATION_GUIDE_CTA = {
-    'text': '',
-    'link': '',
-}
+# DATA_ACTIVATION_GUIDE_CTA = {
+#     'text': '',
+#     'link': '',
+# }
 
 
 DIMENSION_LEVEL_RECOMMENDATIONS = {
-    DIMENSION_LEARN: {
-        LEVEL_0: [],
-        LEVEL_1: [],
-        LEVEL_2: [],
-        LEVEL_3: [],
+    DIMENSION_1: {
+        LEVEL_0: [
+            {
+                'header': 'LEARN - Level 0 - Recommendation 1',
+                'text': 'LEARN - Level 0 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 0 - Recommendation 2',
+                'text': 'LEARN - Level 0 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 0 - Recommendation 3',
+                'text': 'LEARN - Level 0 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 0 - Recommendation 4',
+                'text': 'LEARN - Level 0 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_1: [
+            {
+                'header': 'LEARN - Level 1 - Recommendation 1',
+                'text': 'LEARN - Level 1 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 1 - Recommendation 2',
+                'text': 'LEARN - Level 1 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 1 - Recommendation 3',
+                'text': 'LEARN - Level 1 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 1 - Recommendation 4',
+                'text': 'LEARN - Level 1 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_2: [
+            {
+                'header': 'LEARN - Level 2 - Recommendation 1',
+                'text': 'LEARN - Level 2 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 2 - Recommendation 2',
+                'text': 'LEARN - Level 2 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 2 - Recommendation 3',
+                'text': 'LEARN - Level 2 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 2 - Recommendation 4',
+                'text': 'LEARN - Level 2 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_3: [
+            {
+                'header': 'LEARN - Level 3 - Recommendation 1',
+                'text': 'LEARN - Level 3 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 3 - Recommendation 2',
+                'text': 'LEARN - Level 3 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 3 - Recommendation 3',
+                'text': 'LEARN - Level 3 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEARN - Level 3 - Recommendation 4',
+                'text': 'LEARN - Level 3 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
     },
-    DIMENSION_LEAD: {
-        LEVEL_0: [],
-        LEVEL_1: [],
-        LEVEL_2: [],
-        LEVEL_3: [],
+    DIMENSION_2: {
+        LEVEL_0: [
+            {
+                'header': 'LEAD - Level 0 - Recommendation 1',
+                'text': 'LEAD - Level 0 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 0 - Recommendation 2',
+                'text': 'LEAD - Level 0 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 0 - Recommendation 3',
+                'text': 'LEAD - Level 0 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 0 - Recommendation 4',
+                'text': 'LEAD - Level 0 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_1: [
+            {
+                'header': 'LEAD - Level 1 - Recommendation 1',
+                'text': 'LEAD - Level 1 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 1 - Recommendation 2',
+                'text': 'LEAD - Level 1 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 1 - Recommendation 3',
+                'text': 'LEAD - Level 1 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 1 - Recommendation 4',
+                'text': 'LEAD - Level 1 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_2: [
+            {
+                'header': 'LEAD - Level 2 - Recommendation 1',
+                'text': 'LEAD - Level 2 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 2 - Recommendation 2',
+                'text': 'LEAD - Level 2 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 2 - Recommendation 3',
+                'text': 'LEAD - Level 2 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 2 - Recommendation 4',
+                'text': 'LEAD - Level 2 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_3: [
+            {
+                'header': 'LEAD - Level 3 - Recommendation 1',
+                'text': 'LEAD - Level 3 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 3 - Recommendation 2',
+                'text': 'LEAD - Level 3 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 3 - Recommendation 3',
+                'text': 'LEAD - Level 3 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'LEAD - Level 3 - Recommendation 4',
+                'text': 'LEAD - Level 3 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
     },
-    DIMENSION_SCALE: {
-        LEVEL_0: [],
-        LEVEL_1: [],
-        LEVEL_2: [],
-        LEVEL_3: [],
+    DIMENSION_3: {
+        LEVEL_0: [
+            {
+                'header': 'SECURE - Level 0 - Recommendation 1',
+                'text': 'SECURE - Level 0 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 0 - Recommendation 2',
+                'text': 'SECURE - Level 0 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 0 - Recommendation 3',
+                'text': 'SECURE - Level 0 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 0 - Recommendation 4',
+                'text': 'SECURE - Level 0 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_1: [
+            {
+                'header': 'SECURE - Level 1 - Recommendation 1',
+                'text': 'SECURE - Level 1 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 1 - Recommendation 2',
+                'text': 'SECURE - Level 1 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 1 - Recommendation 3',
+                'text': 'SECURE - Level 1 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 1 - Recommendation 4',
+                'text': 'SECURE - Level 1 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_2: [
+            {
+                'header': 'SECURE - Level 2 - Recommendation 1',
+                'text': 'SECURE - Level 2 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 2 - Recommendation 2',
+                'text': 'SECURE - Level 2 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 2 - Recommendation 3',
+                'text': 'SECURE - Level 2 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 2 - Recommendation 4',
+                'text': 'SECURE - Level 2 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_3: [
+            {
+                'header': 'SECURE - Level 3 - Recommendation 1',
+                'text': 'SECURE - Level 3 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 3 - Recommendation 2',
+                'text': 'SECURE - Level 3 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 3 - Recommendation 3',
+                'text': 'SECURE - Level 3 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 3 - Recommendation 4',
+                'text': 'SECURE - Level 3 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
     },
-    DIMENSION_SECURE: {
-        LEVEL_0: [],
-        LEVEL_1: [],
-        LEVEL_2: [],
-        LEVEL_3: [],
+    DIMENSION_4: {
+        LEVEL_0: [
+            {
+                'header': 'SECURE - Level 0 - Recommendation 1',
+                'text': 'SECURE - Level 0 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 0 - Recommendation 2',
+                'text': 'SECURE - Level 0 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 0 - Recommendation 3',
+                'text': 'SECURE - Level 0 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 0 - Recommendation 4',
+                'text': 'SECURE - Level 0 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_1: [
+            {
+                'header': 'SECURE - Level 1 - Recommendation 1',
+                'text': 'SECURE - Level 1 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 1 - Recommendation 2',
+                'text': 'SECURE - Level 1 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 1 - Recommendation 3',
+                'text': 'SECURE - Level 1 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 1 - Recommendation 4',
+                'text': 'SECURE - Level 1 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_2: [
+            {
+                'header': 'SECURE - Level 2 - Recommendation 1',
+                'text': 'SECURE - Level 2 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 2 - Recommendation 2',
+                'text': 'SECURE - Level 2 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 2 - Recommendation 3',
+                'text': 'SECURE - Level 2 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 2 - Recommendation 4',
+                'text': 'SECURE - Level 2 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
+        LEVEL_3: [
+            {
+                'header': 'SECURE - Level 3 - Recommendation 1',
+                'text': 'SECURE - Level 3 - Recommendation 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 3 - Recommendation 2',
+                'text': 'SECURE - Level 3 - Recommendation 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 3 - Recommendation 3',
+                'text': 'SECURE - Level 3 - Recommendation 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+            {
+                'header': 'SECURE - Level 3 - Recommendation 4',
+                'text': 'SECURE - Level 3 - Recommendation 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            },
+        ],
     },
 }
 
-DIMENSION_SIDEPANEL_HEADING = ''
+DIMENSION_SIDEPANEL_HEADING = 'DIMENSIONS - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
 DIMENSION_SIDEPANEL_DESCRIPTIONS = {
-    DIMENSION_LEARN: '',
-    DIMENSION_LEAD: '',
-    DIMENSION_SCALE: '',
-    DIMENSION_SECURE: '',
+    DIMENSION_1: 'LEARN - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    DIMENSION_2: 'LEAD - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    DIMENSION_3: 'SCALE - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    DIMENSION_4: 'SECURE - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 }
 
 
