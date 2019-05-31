@@ -1,0 +1,72 @@
+{% load staticfiles %}
+
+<section class="dmb-tile-carousel{% if class %} {{class}}{% endif %} dmb-u-p-t-m dmb-u-p-b-m">
+  <div class="h-c-page">
+    {% include 'public/inc/global/step-heading.inc.html' with svg='shield' numbered=True text="To help drive sales, profit and customer satisfaction - dig deeper into how your retail organization prioritizes data across four key dimensions" only %}
+
+    <div class="dmb-tile-carousel__tiles">
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/'|add:tenant|add:'/dimensions/strategic-direction.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="strategic direction icon">
+          <h4 class="h-c-tile__headline">
+            Strategic Direction and Data Foundations
+          </h4>
+          <p class="h-c-tile__description">
+            Understand the role of data and the core capabilities required to successfully activate data within the organization.
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/'|add:tenant|add:'/dimensions/user-engagement.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="user engagement icon">
+          <h4 class="h-c-tile__headline">
+            User Experience
+          </h4>
+          <p class="h-c-tile__description">
+            Use customer data to enhance the overall online experience.
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/'|add:tenant|add:'/dimensions/core-sales.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="core sales icon">
+          <h4 class="h-c-tile__headline">
+            Core Sales Activities
+          </h4>
+          <p class="h-c-tile__description">
+            Leverage data to increase product sales and improve customer experience.
+          </p>
+        </div>
+      </div>
+
+      <div class="dmb-tile-carousel__tile h-c-tile h-c-tile--border h-c-tile--small-height">
+        <div class="h-c-tile__body">
+          <img
+              src="{% static 'img/'|add:tenant|add:'/dimensions/emerging-monetization.svg' %}"
+              class="dmb-tile-carousel__tile-icon dmb-u-m-b-m"
+              alt="Emerging monetization icon">
+          <h4 class="h-c-tile__headline">
+            Emerging Monetization Opportunities
+          </h4>
+          <p class="h-c-tile__description">
+            Enhance customer experience by serving relevant advertisements and supplier promotions online and in-store.
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>

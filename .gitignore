@@ -124,3 +124,6 @@ _dmb-svgs.inc.html
 
 # secret files
 *.pem
+
+# Makefiles
+Makefile

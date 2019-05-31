@@ -23,6 +23,7 @@ GOOGLE_SHEET_SURVEY_CHOICE_FIELDS = ('industry', 'country',)
 import ads as advertisers_conf
 import news as news_conf
 import retail as retail_conf
+import cloud as cloud_conf
 from djangae.environment import application_id
 from django.utils.translation import gettext_lazy as _
 
@@ -30,6 +31,7 @@ from django.utils.translation import gettext_lazy as _
 ADS = 'ads'
 NEWS = 'news'
 RETAIL = 'retail'
+CLOUD = 'cloud'
 
 
 TENANTS = {
@@ -89,6 +91,23 @@ TENANTS = {
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
+    },
+    CLOUD: {
+        'key': CLOUD,
+        'label': _('Cloud'),
+        'slug': 'cloud',
+        'QUALTRICS_SURVEY_ID': '',
+        'EMAIL_TO': '',
+        'EMAIL_BCC': '',
+        'DIMENSIONS': cloud_conf.DIMENSIONS,
+        'CONTENT_DATA': cloud_conf.CONTENT_DATA,
+        'MULTI_ANSWER_QUESTIONS': cloud_conf.MULTI_ANSWER_QUESTIONS,
+        'WEIGHTS': cloud_conf.WEIGHTS,
+        'EXCLUDED_TIME_THRESHOLD': 2,
+        'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
+        'i18n': False,
+        'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
+        'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
     },
 }
 
