@@ -2,6 +2,14 @@
   &.QuestionOuter {
     padding: 0;
   }
+
+  fieldset {
+    transform: none !important;
+  }
+
+  .dmb-side-panel {
+    background: #fff;
+  }
 }
 
 .dmb-body--has-modal {
