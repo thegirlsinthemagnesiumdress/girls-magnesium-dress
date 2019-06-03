@@ -106,7 +106,7 @@ def reports_admin(request, tenant):
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
-    return render(request, 'public/{}/reports-list.html'.format(tenant), {
+    return render(request, 'public/reports-list.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),

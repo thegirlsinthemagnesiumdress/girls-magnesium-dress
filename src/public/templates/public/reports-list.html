@@ -1,9 +1,8 @@
-{% extends "public/ads/base.html" %}
+{% extends 'public/base.html' %}
 {% load staticfiles %}
 {% load angular %}
 
-
-{# Marking this safe because is not not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
+{# Marking this safe because is not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
 {% block bootstrap_data %}{{bootstrap_data|ng_mark_safe}}{% endblock %}
 
 {% block main %}
@@ -13,18 +12,17 @@
       <div class="h-c-eyebrow">
         {{ tenant|ng_mark_safe }}
       </div>
-      <!-- TODO(aabuelgasim): Remove `dmb-u-m-b-s` class from elements with `h-c-headline` class (since it's built into `h-c-headline` in the new styles) once this ticket is merged https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/339 -->
-      <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium dmb-u-m-b-s">
+      <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium">
         {% if tenant|ng_mark_safe == 'ads' %}Digital {% else %}Data {% endif %}
         Maturity Admin Dashboard
       </h1>
 
       <div class="h-c-grid">
         <div class="dmb-reports-admin__card dmb-card h-c-grid__col h-c-grid__col-l--8">
-          <h2 class="h-c-headline h-c-headline--three dmb-u-m-b-s">
+          <h2 class="h-c-headline h-c-headline--three">
             {% include 'core/inc/svg.html' with id='clipboard' inline=True %}Create survey
           </h2>
-          <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-s">
+          <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
             You can create a new survey in two ways:
           </h3>
           <div class="dmb-reports-admin__create-survey">
@@ -120,6 +118,8 @@
               </p>
             </div>
           </div>
+
+
         </div>
       </div>
     </div>
@@ -153,12 +153,24 @@
               <input class="dmb-input" id="tenant" name="tenant" ng-model="registrationCtrl.tenant" type="hidden" required value="{{tenant|ng_mark_safe}}" ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'">
             </div>
             <div class="dmb-input-wrp">
-              <label for="companyName">Organization name:</label>
-              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organization name">
+              <label for="companyName">Organisation name:</label>
+              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
-              {% comment %} TODO: use news industry here {% endcomment %}
-              <input id="prodId" name="industry" type="hidden" value="ic-bnpj" ng-init="registrationCtrl.industry='ic-bnpj'">
+              <label for="accountId">Account ID:</label>
+              <input class="dmb-input" id="accountId" name="accountId" ng-model="registrationCtrl.accountId" type="text" required placeholder="Enter the account ID">
+              <div class="h-c-footnote">
+                This can be changed at any time from the Admin Dashboard.
+              </div>
+            </div>
+            <div class="dmb-input-wrp">
+              <label for="industry">Industry:</label>
+              <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
+                <option value="" disabled selected>Select an industry</option>
+                {% for i_key, i_text in industries %}
+                <option value="{{i_key|ng_mark_safe}}">{{i_text|ng_mark_safe}}</option>
+                {% endfor %}
+              </select>
             </div>
             <div class="dmb-input-wrp">
               <label for="country">Country:</label>
@@ -198,11 +210,8 @@
     </div>
   </div>
 
-  <div class="dmb-reports-admin__table h-c-table__overflowcontainer">
-    <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows glue-table-sort"
-      data-glue-table-sort-ascending-text="ascending"
-      data-glue-table-sort-descending-text="descending"
-      data-glue-table-sort-unsorted-text="unsorted"
+  <div class="dmb-table h-c-table__overflowcontainer">
+    <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows"
       role="table"
       summary="List of reports"
       width="100%"
@@ -211,34 +220,34 @@
         <tr role="row">
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by organization name alphabetically"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
-              Organization name
+              Organisation name
             </span>
           </th>
             <th
               scope="col"
-              role="columnheader"
-              title="Sort by date created chronologically"
-              data-glue-table-sort-type="datetime-custom">
+              role="columnheader">
+            <span>
+              Account ID
+            </span>
+          </th>
+          <th
+              scope="col"
+              role="columnheader">
             <span>
               Date created
             </span>
           </th>
           <th
           scope="col"
-          role="columnheader"
-          title="Sort by survey completions numerically"
-          data-glue-table-sort-type="numeric">
+          role="columnheader">
           <span>
             Survey completions
           </span>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by survey link">
+              role="columnheader">
             <span>
               Survey link
             </span>
@@ -246,18 +255,14 @@
           </th>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by report link"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Report link
             </span>
           </th>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by country"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Detail
             </span>
@@ -265,18 +270,14 @@
           <th
               scope="col"
               role="columnheader"
-              title="Sort by industry"
-              class="dmb-reports-admin__industry-col"
-              data-glue-table-sort-type="alpha">
+              class="dmb-reports-admin__industry-col">
             <span>
               Industry
             </span>
           </th>
           <th
               scope="col"
-              role="columnheader"
-              title="Sort by country"
-              data-glue-table-sort-type="alpha">
+              role="columnheader">
             <span>
               Country
             </span>
@@ -288,18 +289,75 @@
             role="row"
             ng-repeat="survey in reportAdminCtrl.surveys"
             data-index={[$index]}
-            ng-class="{'dmb-reports-admin__table-expanded-row': reportAdminCtrl.expandedRows[$index]}"
-        >
-          <td role="rowheader" title="{[survey.company_name]}">{[survey.company_name]}</td>
+            ng-class="{
+              'dmb-table__expanded-row': reportAdminCtrl.expandedRows[$index],
+              'dmb-table__editing-account-row': reportAdminCtrl.rowToEdit == $index
+            }">
+          <td
+              class="dmb-table__org-td"
+              role="rowheader"
+              title="{[survey.company_name]}">
+            {[survey.company_name]}
+          </td>
+
+          <td
+              role="rowheader"
+              title="{[survey.account_id]}">
+            <div class="dmb-table__account-wrapper">
+              &#x200b;
+              <span class="dmb-table__account-text">
+                {[survey.account_id]}
+              </span>
+              <button
+                  aria-label="Edit account ID"
+                  class="dmb-table__account-edit-btn h-c-button h-c-button--flat"
+                  ng-click="reportAdminCtrl.editAccountID($event, $index)"
+                  ng-disabled="reportAdminCtrl.submitting">
+                {% include 'core/inc/svg.html' with id='edit' size='20px' only %}
+              </button>
+
+              <form
+                  class="dmb-table__account-form"
+                  data-url="/api/survey/{[survey.sid]}/"
+                  method="put"
+                  ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
+                <input
+                    aria-label="Enter account ID"
+                    class="dmb-table__account-input"
+                    name="account-id"
+                    ng-model="reportAdminCtrl.newAccountIds[$index]"
+                    type="text">
+
+                <button
+                    aria-label="Submit account ID change"
+                    class="dmb-table__account-submit h-c-button h-c-button--flat"
+                    ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
+                    type="submit">
+                  {% include 'core/inc/svg.html' with id='success' size='24px' only %}
+                </button>
+
+                <button
+                    aria-label="Cancel account ID change"
+                    class="dmb-table__account-cancel h-c-button h-c-button--flat"
+                    type="button"
+                    ng-click="reportAdminCtrl.cancelAccountIDEdit()"
+                    ng-if="!reportAdminCtrl.submitting">
+                  {% include 'core/inc/svg.html' with id='error' size='24px' only %}
+                </button>
+
+                <div class="dmb-spinner" ng-if="reportAdminCtrl.submitting"></div>
+              </form>
+            </div>
+          </td>
           <td role="gridcell" ng-attr-title="{[survey.created_at|date:'d/M/yyyy hh:mm']}">
               {[survey.created_at|date:"d/M/yyyy"]}
               {% comment %} This is used by tablesort-utility.js module to sort by date, please update it if this changes {% endcomment %}
-              <span class="dmb-reports-admin__table-date">utc={[survey.created_at]}</span>
+              <span class="dmb-table__date">utc={[survey.created_at]}</span>
           </td>
           <td role="gridcell">
             {[ survey.survey_results.length ]}
             <button
-                class="dmb-reports-admin__table-history-btn"
+                class="dmb-table__history-btn h-c-button h-c-button--flat"
                 ng-if="survey.survey_results.length > 1"
                 ng-click="reportAdminCtrl.viewHistory($index)"
               >
@@ -309,7 +367,7 @@
               </svg>
             </button>
             <div
-                class="dmb-reports-admin__table-subcell dmb-reports-admin__table-subcell--first"
+                class="dmb-table__subcell dmb-table__subcell--first"
                 ng-repeat="r in survey.survey_results">
               {[r.started_at|date:"d/M/yyyy hh:mm"]}
             </div>
@@ -317,7 +375,7 @@
           <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
           <td role="gridcell">
             <a
-                class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell"
+                class="h-c-button h-c-button--flat dmb-table__top-report-cell"
                 ng-if="survey.survey_results.length > 0"
                 ng-href="{[survey.last_survey_result_link]}"
                 target="_blank">
@@ -328,7 +386,7 @@
               -
             </span>
             <div
-                class="dmb-reports-admin__table-subcell"
+                class="dmb-table__subcell"
                 ng-repeat="r in survey.survey_results">
               <a
                   class="h-c-button h-c-button--flat"
@@ -339,28 +397,53 @@
             </div>
           </td>
           <td role="gridcell">
-            <a class="h-c-button h-c-button--flat dmb-reports-admin__table-top-report-cell" ng-if="survey.last_survey_result.detail_link"
+            <a class="h-c-button h-c-button--flat dmb-table__top-report-cell" ng-if="survey.last_survey_result.detail_link"
               ng-href="{[survey.last_survey_result.detail_link]}" target="_blank">
-              Detail
+              Details
             </a>&nbsp;
             <span ng-if="!survey.last_survey_result.detail_link">
               -
             </span>
-            <div class="dmb-reports-admin__table-subcell" ng-repeat="r in survey.survey_results">
+            <div class="dmb-table__subcell" ng-repeat="r in survey.survey_results">
               <a ng-if="r.detail_link" class="h-c-button h-c-button--flat" ng-href="{[r.detail_link]}" target="_blank">
-                Detail
+                Details
               </a>
               <span ng-if="!r.detail_link">
                 -
               </span>
             </div>
           </td>
-          <td role="gridcell" class="dmb-reports-admin__industry-col" ng-attr-title="{[survey.industry_name]}">{[survey.industry_name]}</td>
+          <td role="gridcell" class="dmb-table__ind-td" ng-attr-title="{[survey.industry_name]}">{[survey.industry_name]}</td>
           <td role="gridcell">{[survey.country_name]}</td>
         </tr>
       </tbody>
     </table>
     <div class="glue-js-table__caption"></div>
   </div>
+
+  <div
+      class="dmb-u-m-t-m h-c-grid"
+      ng-if="
+          reportAdminCtrl.bootstrapData.previous ||
+          reportAdminCtrl.bootstrapData.next">
+    <div class="h-c-grid__col h-c-grid__col--6">
+      <a
+          class="h-c-button h-c-button--primary"
+          href="{[reportAdminCtrl.bootstrapData.previous]}"
+          ng-if="reportAdminCtrl.bootstrapData.previous">
+        Prev Page
+      </a>
+    </div>
+    <div class="h-c-grid__col h-c-grid__col--6 h-u-text-right">
+      <a
+          class="h-c-button h-c-button--primary"
+          href="{[reportAdminCtrl.bootstrapData.next]}"
+          ng-if="reportAdminCtrl.bootstrapData.next">
+        Next Page
+      </a>
+    </div>
+  </div>
+
+
 </div>
 {% endblock %}
