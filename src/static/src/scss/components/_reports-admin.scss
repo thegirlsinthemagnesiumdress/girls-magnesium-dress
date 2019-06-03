@@ -1,0 +1,45 @@
+.dmb-reports-admin {
+  $spacing: 24px;
+  $block: &;
+  $create-survey-switch-bp: 1200px;
+
+  &__card:first-of-type {
+    @include dmb-mq($until: 1280px) {
+      margin-bottom: $spacing;
+    }
+  }
+
+  &__create-survey {
+    @include dmb-mq($from: $create-survey-switch-bp) {
+      display: flex;
+    }
+  }
+
+  &__create-survey-step {
+    &:first-of-type {
+      @include dmb-mq($until: $create-survey-switch-bp) {
+        margin-bottom: $spacing;
+      }
+
+      @include dmb-mq($from: $create-survey-switch-bp) {
+        border-right: 1px solid $dmb-color-grey-zircon;
+        margin-right: $spacing;
+        padding-right: $spacing;
+      }
+    }
+  }
+
+  &__export {
+    display: flex;
+    flex-direction: column;
+
+    &-actions {
+      align-items: center;
+      border-top: 1px solid $dmb-color-grey-zircon;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      padding-top: 24px;
+    }
+  }
+}
