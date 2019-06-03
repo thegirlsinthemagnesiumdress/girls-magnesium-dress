@@ -96,7 +96,7 @@ TENANTS = {
         'key': CLOUD,
         'label': _('Cloud'),
         'slug': 'cloud',
-        'QUALTRICS_SURVEY_ID': '',
+        'QUALTRICS_SURVEY_ID': 'SV_eRioRXZ4UcKYpVj',
         'EMAIL_TO': '',
         'EMAIL_BCC': '',
         'DIMENSIONS': cloud_conf.DIMENSIONS,
