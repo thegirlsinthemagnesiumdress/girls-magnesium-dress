@@ -10,8 +10,7 @@
 
     <p class="h-c-headline h-c-headline--subhead dmb-u-m-b-s">
       <span ng-if="reportCtrl.floorDmb < (reportCtrl.levelsTotal - 1)">
-        {% trans "This report will show you where you are weakest and strongest, and what to do to get to the next level, " %}
-        {[reportCtrl.levels[reportCtrl.floorDmb + 1]]}.
+        {% trans "This report will show you where you are weakest and strongest, and what to do to get to the next level." %}
       </span>
       <span ng-if="reportCtrl.floorDmb >= (reportCtrl.levelsTotal - 1)">
         {% trans "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level." %}

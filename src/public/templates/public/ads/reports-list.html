@@ -64,7 +64,7 @@
             Export the data from all your surveys
           </h3>
           <p class="dmb-u-m-b-s">
-            Your data will be saved as a Google Sheet. <strong>Check your inbox</strong> for a link. This may take up to 5 minutes.
+            Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
           </p>
           <div
               class="dmb-reports-admin__export-actions h-u-text-center"
@@ -90,15 +90,10 @@
                 ng-if="exportsCtrl.exportSuccess">
               {% include 'core/inc/svg.html' with id='success' size='46px' only %}
               <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-xs">
-                Export sent
+                Data export requested
               </h3>
               <p class="h-c-footnote h-u-font-weight-medium">
-                If you don’t receive an email within 5 minutes
-                <a
-                    class="h-c-button h-c-button--flat h-c-footnote h-u-font-weight-medium"
-                    ng-click="exportsCtrl.resetExport()">
-                      try again
-                </a>
+                This may take up to 5 minutes. Please check your email inbox.
               </p>
             </div>
 
@@ -158,8 +153,8 @@
               <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
             </div>
             <div class="dmb-input-wrp">
-              <label for="accountId">Account ID:</label>
-              <input class="dmb-input" id="accountId" name="accountId" ng-model="registrationCtrl.accountId" type="text" required placeholder="Enter the account ID">
+              <label for="accountId">Greentea ID (division):</label>
+              <input class="dmb-input" id="accountId" name="accountId" ng-model="registrationCtrl.accountId" type="text" required placeholder="Enter Greentea ID (division)">
               <div class="h-c-footnote">
                 This can be changed at any time from the Admin Dashboard.
               </div>
@@ -230,7 +225,7 @@
               scope="col"
               role="columnheader">
             <span>
-              Account ID
+              Greentea ID
             </span>
           </th>
           <th
@@ -310,7 +305,7 @@
                 {[survey.account_id]}
               </span>
               <button
-                  aria-label="Edit account ID"
+                  aria-label="Edit Greentea ID (division)"
                   class="dmb-reports-admin__table-account-edit-btn h-c-button h-c-button--flat"
                   ng-click="reportAdminCtrl.editAccountID($event, $index)"
                   ng-disabled="reportAdminCtrl.submitting">
@@ -323,14 +318,14 @@
                   method="put"
                   ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
                 <input
-                    aria-label="Enter account ID"
+                    aria-label="Enter Greentea ID (division)"
                     class="dmb-reports-admin__table-account-input"
                     name="account-id"
                     ng-model="reportAdminCtrl.newAccountIds[$index]"
                     type="text">
 
                 <button
-                    aria-label="Submit account ID change"
+                    aria-label="Submit Greentea ID (division) change"
                     class="dmb-reports-admin__table-account-submit h-c-button h-c-button--flat"
                     ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
                     type="submit">
@@ -338,7 +333,7 @@
                 </button>
 
                 <button
-                    aria-label="Cancel account ID change"
+                    aria-label="Cancel Greentea ID (division) change"
                     class="dmb-reports-admin__table-account-cancel h-c-button h-c-button--flat"
                     type="button"
                     ng-click="reportAdminCtrl.cancelAccountIDEdit()"
