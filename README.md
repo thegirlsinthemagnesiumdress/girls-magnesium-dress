@@ -265,9 +265,9 @@ We're versioning js and css files, that's automatically handled by static_rev te
     });
     ```
 
-1. Make sure the second question of each new block (excluding **Splash Page**) has the following HTML to show the dimension name and logo, replacing "Dimension title" and "Question text." with the appropritate values (do not change the alignment or spacing, it makes it easier for translators to find the text):
+1. Make sure the second question of each new block (excluding **Splash Page**) has the following HTML to show the dimension name and logo, replacing `DIMENSION-LOGO-SVG-FILENAME`, `Dimension title` and `Question text` with the appropritate values (do not change the alignment or spacing, it makes it easier for translators to find the text):
     ```html
-    <h2 class="dmb-dimension-header h-c-headline h-c-headline--two"><img class="dmb-dimension-header__icon dmb-u-m-b-s" src="${e://Field/static_url}/img/${e://Field/tenant}/dimensions/strategic-direction.svg">
+    <h2 class="dmb-dimension-header h-c-headline h-c-headline--two"><img class="dmb-dimension-header__icon dmb-u-m-b-s" src="${e://Field/static_url}/img/${e://Field/tenant}/dimensions/DIMENSION-LOGO-SVG-FILENAME">
 
 
     Dimension title
@@ -275,13 +275,12 @@ We're versioning js and css files, that's automatically handled by static_rev te
 
     </h2>
 
-    Question text.
+    Question text
     ```
 
 1. Add the remaining questions to the appropriate dimension block
 1. Assign a score to each question - Check the *Survey Question Scoring* section below for more detail
-1. Every question is assigned to a dimension (a category). Unfortunately we can't set a dimension in Qualtrics. In `src/core/settings/constants.py`, the `QuestionId` (visible in Qualtrics) needs to be added
-to the `DIMENSIONS` dictionary. **IMPORTANT**: If a questions is not added to the `DIMENSIONS` object the question won't be used to calculate the final benchmark
+1. Every question is assigned to a dimension (a category). Unfortunately we can't set a dimension in Qualtrics. In `src/core/settings/constants.py`, the `QuestionId` (visible in Qualtrics) needs to be added to the `DIMENSIONS` dictionary. **IMPORTANT**: If a questions is not added to the `DIMENSIONS` object the question won't be used to calculate the final benchmark
 1. If the question is supposed to have a `weight` different from 1 it needs to be added to the `WEIGHTS` constant in `src/core/settings/constants.py`
 1. If the question is multi answer it needs to be added to the `MULTI_ANSWER_QUESTION` constant in `src/core/settings/constants.py`
 
