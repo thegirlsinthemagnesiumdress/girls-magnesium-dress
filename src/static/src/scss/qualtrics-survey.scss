@@ -1,9 +1,6 @@
 // DMB Variables
 @import 'breakpoints';
 
-// If you have Sass variable overrides, include them here and uncomment.
-@import 'legacy/hercules-variable-overrides';
-
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&lang=en'); // sass-lint:disable-line no-url-domains no-url-protocols
 
 // main.scss
@@ -30,22 +27,22 @@
 @import 'tenants-variables';
 
 // Common Components
-@import 'components/fab';
 @import 'components/collaboration';
 @import 'components/outline-button';
 @import 'components/side-panel';
-@import 'components/styled-list';
 
 // Qualtrics-Specific Components
 @import 'survey/qualtrics-overrides';
 @import 'survey/banner';
 @import 'survey/copy-url';
 @import 'survey/dimension-header';
+@import 'survey/fab';
 @import 'survey/footer';
 @import 'survey/hero';
 @import 'survey/privacy-policy';
 @import 'survey/progress-bar';
 @import 'survey/side-panel';
+@import 'survey/styled-list';
 @import 'survey/user-details';
 
 
