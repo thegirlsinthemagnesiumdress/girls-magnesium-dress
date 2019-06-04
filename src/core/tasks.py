@@ -261,6 +261,8 @@ def send_emails_for_new_reports(email_list):
                 message.send()
 
                 logging.info("Email sent to {} from {} for Survey with sid={}".format(to, sender, sid))
+            else:
+                logging.error("<to> should be a valid field for sending an email")
         except Survey.DoesNotExist:
             # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
