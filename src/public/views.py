@@ -49,7 +49,7 @@ def _dump_tenant_content_data(tenant):
 
 def registration(request, tenant):
     industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
-    return render(request, 'public/{}/registration.html'.format(tenant), {
+    return render(request, 'public/registration.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
