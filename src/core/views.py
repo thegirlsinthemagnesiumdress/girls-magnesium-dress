@@ -8,7 +8,6 @@ from djangae.environment import task_or_admin_only
 from core.management import migrations
 from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
 from django.conf import settings
-from core.models import Survey
 from django.shortcuts import render
 
 
