@@ -90,7 +90,7 @@ def index_static(request, tenant):
 
 def thank_you(request, tenant):
     slug = get_tenant_slug(tenant)
-    return render(request, 'public/{}/thank-you.html'.format(tenant), {
+    return render(request, 'public/thank-you.html', {
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
