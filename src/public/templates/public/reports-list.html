@@ -96,7 +96,7 @@
                 <a
                     class="h-c-button h-c-button--flat h-c-footnote h-u-font-weight-medium"
                     ng-click="exportsCtrl.resetExport()">
-                      try again
+                  try again
                 </a>
               </p>
             </div>
@@ -117,9 +117,8 @@
                 </button>
               </p>
             </div>
+
           </div>
-
-
         </div>
       </div>
     </div>
@@ -129,7 +128,9 @@
       dmb-side-panel
       class="dmb-side-panel dmb-side-panel--narrow dmb-side-panel--right"
       id="dmb-create-survey">
-    <button class="dmb-side-panel__fab dmb-fab" dmb-side-panel-close>
+    <button
+        class="dmb-side-panel__fab dmb-fab"
+        dmb-side-panel-close>
       <span class="dmb-fab__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <use xlink:href="#mi-close"></use>
@@ -147,48 +148,148 @@
         <p>
             Fill in these details to create a custom survey link for a specific company:
         </p>
-        <form name="registration" novalidate autocomplete="off" ng-submit="registrationCtrl.submit()" ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'">
+        <form
+            name="registration"
+            ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'"
+            ng-submit="registrationCtrl.submit()"
+            novalidate autocomplete="off">
           <div class="input-wrp">
+
             <div class="dmb-input-wrp">
-              <input class="dmb-input" id="tenant" name="tenant" ng-model="registrationCtrl.tenant" type="hidden" required value="{{tenant|ng_mark_safe}}" ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'">
+              <input
+                  class="dmb-input"
+                  id="tenant"
+                  name="tenant"
+                  ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
+                  ng-model="registrationCtrl.tenant"
+                  required
+                  type="hidden"
+                  value="{{tenant|ng_mark_safe}}">
             </div>
+
             <div class="dmb-input-wrp">
-              <label for="companyName">Organisation name:</label>
-              <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organisation name">
+              <label for="companyName">
+                {% if tenant|ng_mark_safe == 'ads' %}Organisation {% else %}Organization {% endif %} name:
+              </label>
+              <input
+                  class="dmb-input"
+                  name="companyName"
+                  ng-model="registrationCtrl.companyName"
+                  placeholder="{% if tenant|ng_mark_safe == 'ads' %}organisation {% else %}organization {% endif %} name"
+                  required
+                  type="text">
             </div>
-            <div class="dmb-input-wrp">
-              <label for="accountId">Account ID:</label>
-              <input class="dmb-input" id="accountId" name="accountId" ng-model="registrationCtrl.accountId" type="text" required placeholder="Enter the account ID">
-              <div class="h-c-footnote">
-                This can be changed at any time from the Admin Dashboard.
+
+            {% if tenant|ng_mark_safe == 'ads' %}
+              <div class="dmb-input-wrp">
+                <label for="accountId">Account ID:</label>
+                <input
+                    class="dmb-input"
+                    id="accountId"
+                    name="accountId"
+                    ng-model="registrationCtrl.accountId"
+                    placeholder="Account ID"
+                    required
+                    type="text">
+                <div class="h-c-footnote dmb-u-m-t-s">
+                  This can be changed at any time from the Admin Dashboard.
+                </div>
               </div>
-            </div>
+
+              <div class="dmb-input-wrp">
+                <label for="industry">Industry:</label>
+                <select
+                    class="dmb-input"
+                    id="industry"
+                    name="industry"
+                    ng-model="registrationCtrl.industry"
+                    required>
+                  <option
+                      disabled
+                      selected
+                      value="">
+                    Select an industry
+                  </option>
+                    {% for i_key, i_text in industries %}
+                      <option value="{{i_key|ng_mark_safe}}">
+                        {{i_text|ng_mark_safe}}
+                      </option>
+                    {% endfor %}
+                </select>
+              </div>
+            {% endif %}
+
+            {% if tenant|ng_mark_safe == 'news' %}
+              {% comment %} TODO: use news industry here {% endcomment %}
+              <div class="dmb-input-wrp">
+                <input
+                    id="prodId"
+                    name="industry"
+                    ng-init="registrationCtrl.industry='ic-bnpj'"
+                    type="hidden"
+                    value="ic-bnpj">
+              </div>
+            {% endif %}
+            {% if tenant|ng_mark_safe == 'retail' %}
+              <div class="dmb-input-wrp">
+                  <input
+                      id="prodId"
+                      name="industry"
+                      ng-init="registrationCtrl.industry='rt-o'"
+                      type="hidden"
+                      value="rt-o">
+              </div>
+            {% endif %}
+
             <div class="dmb-input-wrp">
-              <label for="industry">Industry:</label>
-              <select class="dmb-input" name="industry" id="industry" ng-model="registrationCtrl.industry" required>
-                <option value="" disabled selected>Select an industry</option>
-                {% for i_key, i_text in industries %}
-                <option value="{{i_key|ng_mark_safe}}">{{i_text|ng_mark_safe}}</option>
-                {% endfor %}
+              <label for="country">
+                Country:
+              </label>
+              <select
+                  class="dmb-input"
+                  id="country"
+                  name="country"
+                  ng-model="registrationCtrl.country"
+                  required>
+                <option
+                    disabled
+                    selected
+                    value="">
+                  Select a country
+                </option>
+                  {% for c_key, c_text in countries %}
+                    <option value="{{c_key|ng_mark_safe}}">
+                      {{c_text|ng_mark_safe}}
+                    </option>
+                  {% endfor %}
               </select>
             </div>
-            <div class="dmb-input-wrp">
-              <label for="country">Country:</label>
-              <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
-                <option value="" disabled selected>Select a country</option>
-                {% for c_key, c_text in countries %}
-                <option value="{{c_key|ng_mark_safe}}">{{c_text|ng_mark_safe}}</option>
-                {% endfor %}
-              </select>
+
+            <div
+                class="input-wrp__error"
+                ng-show="
+                    !registration.companyName.$pristine &&
+                    registration.companyName.$error.required">
+              This field is required.
             </div>
-            <div class="input-wrp__error" ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">This field is required.</div>
+
           </div>
-          <button ng-disabled="!registration.$valid" class="h-c-button h-c-button--primary">
+
+          <button
+              class="h-c-button h-c-button--primary"
+              ng-disabled="!registration.$valid">
             Create assessment
           </button>
-          <div class="input-wrp__error" ng-hide="!registrationCtrl.serverError">Oops, something went wrong!</div>
+
+          <div
+              class="input-wrp__error"
+              ng-hide="!registrationCtrl.serverError">
+            Oops, something went wrong!
+          </div>
+
         </form>
       </div>
+
       <div ng-if="registrationCtrl.link">
         <h2 class="h-c-headline h-c-headline--three h-c-headline--three h-u-mt-xl h-u-mb-l">
           Unique survey created
@@ -200,9 +301,12 @@
 
         {% include 'public/inc/global/copy-comp.inc.html' with id="survey-link" value='{[ registrationCtrl.link ]}' %}
 
-        <button class="h-c-button h-c-button--primary" ng-click="registrationCtrl.reset()">
+        <button
+            class="h-c-button h-c-button--primary"
+            ng-click="registrationCtrl.reset()">
           Create another assessment
         </button>
+
         <p class="h-c-footnote">
           Please reload the page to see the new survey in the list.
         </p>
@@ -211,73 +315,100 @@
   </div>
 
   <div class="dmb-table h-c-table__overflowcontainer">
-    <table class="h-c-table h-c-table--datatable h-c-table--datatable-altrows"
-      role="table"
-      summary="List of reports"
-      width="100%"
-    >
+    <table
+        class="h-c-table h-c-table--datatable h-c-table--datatable-altrows
+        {% if tenant|ng_mark_safe != 'ads' %} glue-table-sort{% endif %}"
+        role="table"
+        summary="List of reports"
+        width="100%"
+        {% if tenant|ng_mark_safe != 'ads' %}
+          data-glue-table-sort-ascending-text="ascending"
+          data-glue-table-sort-descending-text="descending"
+          data-glue-table-sort-unsorted-text="unsorted"
+        {% endif %}>
       <thead>
         <tr role="row">
           <th
+              role="columnheader"
               scope="col"
-              role="columnheader">
+              {% if tenant|ng_mark_safe != 'ads' %}
+                data-glue-table-sort-type="alpha"
+                title="Sort by organisation name alphabetically"
+              {% endif %}>
             <span>
-              Organisation name
+              {% if tenant|ng_mark_safe == 'ads' %}Organisation {% else %}Organization {% endif %}
+              name
             </span>
           </th>
+          {% if tenant|ng_mark_safe == 'ads' %}
             <th
-              scope="col"
-              role="columnheader">
-            <span>
-              Account ID
-            </span>
-          </th>
+                role="columnheader"
+                scope="col">
+              <span>
+                Account ID
+              </span>
+            </th>
+          {% endif %}
           <th
+              role="columnheader"
               scope="col"
-              role="columnheader">
+              {% if tenant|ng_mark_safe != 'ads' %}
+                data-glue-table-sort-type="datetime-custom"
+                title="Sort by date created chronologically"
+              {% endif %}>
             <span>
               Date created
             </span>
           </th>
           <th
-          scope="col"
-          role="columnheader">
-          <span>
-            Survey completions
-          </span>
-          <th
+              role="columnheader"
               scope="col"
-              role="columnheader">
+              {% if tenant|ng_mark_safe != 'ads' %}
+                data-glue-table-sort-type="numeric"
+                title="Sort by survey completions numerically"
+              {% endif %}>
+            <span>
+              Survey completions
+            </span>
+          <th
+              role="columnheader"
+              scope="col">
             <span>
               Survey link
             </span>
           </th>
-          </th>
           <th
-              scope="col"
-              role="columnheader">
+              role="columnheader"
+              scope="col">
             <span>
               Report link
             </span>
           </th>
           <th
-              scope="col"
-              role="columnheader">
+              role="columnheader"
+              scope="col">
             <span>
               Details
             </span>
           </th>
           <th
-              scope="col"
               role="columnheader"
-              class="dmb-reports-admin__industry-col">
+              scope="col"
+              {% if tenant|ng_mark_safe != 'ads' %}
+                data-glue-table-sort-type="alpha"
+                title="Sort by industry"
+              {% endif %}>
             <span>
               Industry
             </span>
           </th>
           <th
+              role="columnheader"
               scope="col"
-              role="columnheader">
+              {% if tenant|ng_mark_safe != 'ads' %}
+                data-glue-table-sort-type="alpha"
+                title="Sort by country"
+              {% endif %}>
             <span>
               Country
             </span>
@@ -286,13 +417,13 @@
       </thead>
       <tbody>
         <tr
-            role="row"
-            ng-repeat="survey in reportAdminCtrl.surveys"
             data-index={[$index]}
             ng-class="{
-              'dmb-table__expanded-row': reportAdminCtrl.expandedRows[$index],
-              'dmb-table__editing-account-row': reportAdminCtrl.rowToEdit == $index
-            }">
+                'dmb-table__expanded-row': reportAdminCtrl.expandedRows[$index],
+                'dmb-table__editing-account-row': reportAdminCtrl.rowToEdit == $index }"
+            ng-repeat="survey in reportAdminCtrl.surveys"
+            role="row">
+
           <td
               class="dmb-table__org-td"
               role="rowheader"
@@ -300,67 +431,77 @@
             {[survey.company_name]}
           </td>
 
+          {% if tenant|ng_mark_safe == 'ads' %}
+            <td
+                role="rowheader"
+                title="{[survey.account_id]}">
+              <div class="dmb-table__account-wrapper">
+                &#x200b;
+                <span class="dmb-table__account-text">
+                  {[survey.account_id]}
+                </span>
+                <button
+                    aria-label="Edit account ID"
+                    class="dmb-table__account-edit-btn h-c-button h-c-button--flat"
+                    ng-click="reportAdminCtrl.editAccountID($event, $index)"
+                    ng-disabled="reportAdminCtrl.submitting">
+                  {% include 'core/inc/svg.html' with id='edit' size='20px' only %}
+                </button>
+
+                <form
+                    class="dmb-table__account-form"
+                    data-url="/api/survey/{[survey.sid]}/"
+                    method="put"
+                    ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
+                  <input
+                      aria-label="Enter account ID"
+                      class="dmb-table__account-input"
+                      name="account-id"
+                      ng-model="reportAdminCtrl.newAccountIds[$index]"
+                      type="text">
+
+                  <button
+                      aria-label="Submit account ID change"
+                      class="dmb-table__account-submit h-c-button h-c-button--flat"
+                      ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
+                      type="submit">
+                    {% include 'core/inc/svg.html' with id='success' size='24px' only %}
+                  </button>
+
+                  <button
+                      aria-label="Cancel account ID change"
+                      class="dmb-table__account-cancel h-c-button h-c-button--flat"
+                      type="button"
+                      ng-click="reportAdminCtrl.cancelAccountIDEdit()"
+                      ng-if="!reportAdminCtrl.submitting">
+                    {% include 'core/inc/svg.html' with id='error' size='24px' only %}
+                  </button>
+
+                  <div class="dmb-spinner" ng-if="reportAdminCtrl.submitting"></div>
+
+                </form>
+              </div>
+            </td>
+          {% endif %}
+
           <td
-              role="rowheader"
-              title="{[survey.account_id]}">
-            <div class="dmb-table__account-wrapper">
-              &#x200b;
-              <span class="dmb-table__account-text">
-                {[survey.account_id]}
-              </span>
-              <button
-                  aria-label="Edit account ID"
-                  class="dmb-table__account-edit-btn h-c-button h-c-button--flat"
-                  ng-click="reportAdminCtrl.editAccountID($event, $index)"
-                  ng-disabled="reportAdminCtrl.submitting">
-                {% include 'core/inc/svg.html' with id='edit' size='20px' only %}
-              </button>
-
-              <form
-                  class="dmb-table__account-form"
-                  data-url="/api/survey/{[survey.sid]}/"
-                  method="put"
-                  ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
-                <input
-                    aria-label="Enter account ID"
-                    class="dmb-table__account-input"
-                    name="account-id"
-                    ng-model="reportAdminCtrl.newAccountIds[$index]"
-                    type="text">
-
-                <button
-                    aria-label="Submit account ID change"
-                    class="dmb-table__account-submit h-c-button h-c-button--flat"
-                    ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
-                    type="submit">
-                  {% include 'core/inc/svg.html' with id='success' size='24px' only %}
-                </button>
-
-                <button
-                    aria-label="Cancel account ID change"
-                    class="dmb-table__account-cancel h-c-button h-c-button--flat"
-                    type="button"
-                    ng-click="reportAdminCtrl.cancelAccountIDEdit()"
-                    ng-if="!reportAdminCtrl.submitting">
-                  {% include 'core/inc/svg.html' with id='error' size='24px' only %}
-                </button>
-
-                <div class="dmb-spinner" ng-if="reportAdminCtrl.submitting"></div>
-              </form>
-            </div>
+              ng-attr-title="{[survey.created_at|date:'d/M/yyyy hh:mm']}"
+              role="gridcell">
+            {[survey.created_at|date:"d/M/yyyy"]}
+            {% comment %}
+              This is used by tablesort-utility.js module to sort by date, please update it if this changes
+            {% endcomment %}
+            <span class="dmb-table__date">
+              utc={[survey.created_at]}
+            </span>
           </td>
-          <td role="gridcell" ng-attr-title="{[survey.created_at|date:'d/M/yyyy hh:mm']}">
-              {[survey.created_at|date:"d/M/yyyy"]}
-              {% comment %} This is used by tablesort-utility.js module to sort by date, please update it if this changes {% endcomment %}
-              <span class="dmb-table__date">utc={[survey.created_at]}</span>
-          </td>
+
           <td role="gridcell">
             {[ survey.survey_results.length ]}
             <button
                 class="dmb-table__history-btn h-c-button h-c-button--flat"
                 ng-if="survey.survey_results.length > 1"
-                ng-click="reportAdminCtrl.viewHistory($index)"
-              >
+                ng-click="reportAdminCtrl.viewHistory($index)">
               View history
               <svg role="img" class="h-c-icon">
                 <use xlink:href="#mi-chevron"></use>
@@ -372,7 +513,16 @@
               {[r.started_at|date:"d/M/yyyy hh:mm"]}
             </div>
           </td>
-          <td role="gridcell"><a href="{[survey.link]}" target="_blank" class="h-c-button h-c-button--flat">Survey</a></td>
+
+          <td role="gridcell">
+            <a
+                class="h-c-button h-c-button--flat"
+                href="{[survey.link]}"
+                target="_blank">
+              Survey
+            </a>
+          </td>
+
           <td role="gridcell">
             <a
                 class="h-c-button h-c-button--flat dmb-table__top-report-cell"
@@ -396,16 +546,26 @@
               </a>
             </div>
           </td>
+
           <td role="gridcell">
-            <a class="h-c-button h-c-button--flat dmb-table__top-report-cell" ng-if="survey.last_survey_result.detail_link"
-              ng-href="{[survey.last_survey_result.detail_link]}" target="_blank">
+            <a
+                class="h-c-button h-c-button--flat dmb-table__top-report-cell"
+                ng-href="{[survey.last_survey_result.detail_link]}"
+                ng-if="survey.last_survey_result.detail_link"
+                target="_blank">
               Details
             </a>&nbsp;
             <span ng-if="!survey.last_survey_result.detail_link">
               -
             </span>
-            <div class="dmb-table__subcell" ng-repeat="r in survey.survey_results">
-              <a ng-if="r.detail_link" class="h-c-button h-c-button--flat" ng-href="{[r.detail_link]}" target="_blank">
+            <div
+                class="dmb-table__subcell"
+                ng-repeat="r in survey.survey_results">
+              <a
+                  class="h-c-button h-c-button--flat"
+                  ng-href="{[r.detail_link]}"
+                  ng-if="r.detail_link"
+                  target="_blank">
                 Details
               </a>
               <span ng-if="!r.detail_link">
@@ -413,8 +573,18 @@
               </span>
             </div>
           </td>
-          <td role="gridcell" class="dmb-table__ind-td" ng-attr-title="{[survey.industry_name]}">{[survey.industry_name]}</td>
-          <td role="gridcell">{[survey.country_name]}</td>
+
+          <td
+              class="dmb-table__ind-td"
+              ng-attr-title="{[survey.industry_name]}"
+              role="gridcell">
+                {[survey.industry_name]}
+          </td>
+
+          <td role="gridcell">
+            {[survey.country_name]}
+          </td>
+
         </tr>
       </tbody>
     </table>
