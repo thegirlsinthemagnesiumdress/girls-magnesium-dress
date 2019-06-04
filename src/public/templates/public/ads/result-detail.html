@@ -7,7 +7,7 @@
 {% block main %}
 <div class="h-c-page dmb-result-detail">
   {% djangoblock %}
-  <div class="">
+  <div>
     <h1 class="h-c-headline h-c-headline--one h-u-mt-xl h-u-mb-std dmb-capitalize">
       {{survey.company_name}} - {{survey_result.dmb|floatformat:"-1"}}
     </h1>
@@ -18,6 +18,11 @@
     <ul class="h-u-mt-std">
     {% for d in result_detail.dimensions %}
     <li>
+      <img
+          alt="dimension icon"
+          class="dmb-u-m-b-xs"
+          src="{% static 'img/ads/dimensions/' %}{{d.id}}.svg"
+          width="20px">
       <a href="#dimension-{{d.id}}">
         {{d.title}} - {{survey_result.dmb_d|get_item:d.id|floatformat:"-1"}}
       </a>
@@ -28,6 +33,11 @@
 
   {% for d in result_detail.dimensions %}
     <div class="dmb-result-detail__section" id="dimension-{{d.id}}">
+      <img
+          alt="dimension icon"
+          class="dmb-u-m-b-s"
+          src="{% static 'img/ads/dimensions/' %}{{d.id}}.svg"
+          width="75px">
       <h2 class="dmb-result-detail__dimension-header h-c-headline h-c-headline--two">
         {{d.title}} - {{survey_result.dmb_d|get_item:d.id|floatformat:"-1"}}
       </h2>
