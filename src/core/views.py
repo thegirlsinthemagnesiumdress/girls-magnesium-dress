@@ -72,12 +72,9 @@ def generate_exports_task(request):
         'advertising_revenue',
     ]
 
-    advertisers_surveys = Survey.objects.filter(tenant=settings.ADS)
-    publishers_surveys = Survey.objects.filter(tenant=settings.NEWS)
-
     deferred.defer(
         generate_csv_export,
-        advertisers_surveys,
+        settings.ADS,
         advertisers_survey_fields,
         advertisers_survey_result_fields,
         settings.ADS,
@@ -86,7 +83,7 @@ def generate_exports_task(request):
 
     deferred.defer(
         generate_csv_export,
-        publishers_surveys,
+        settings.NEWS,
         publishers_survey_fields,
         publishers_survey_result_fields,
         settings.NEWS,
