@@ -63,7 +63,7 @@
             Export the data from all your surveys
           </h3>
           <p class="dmb-u-m-b-s">
-            Your data will be saved as a Google Sheet. <strong>Check your inbox</strong> for a link. This may take up to 5 minutes.
+            Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
           </p>
           <div
               class="dmb-reports-admin__export-actions h-u-text-center"
@@ -80,7 +80,7 @@
                   class="h-c-button h-c-button--primary"
                   id="dmb-export-btn"
                   type="submit">
-                Export data
+                 Data export requested
               </button>
             </form>
 
@@ -92,12 +92,7 @@
                 Export sent
               </h3>
               <p class="h-c-footnote h-u-font-weight-medium">
-                If you don’t receive an email within 5 minutes
-                <a
-                    class="h-c-button h-c-button--flat h-c-footnote h-u-font-weight-medium"
-                    ng-click="exportsCtrl.resetExport()">
-                  try again
-                </a>
+                This may take up to 5 minutes. Please check your email inbox.
               </p>
             </div>
 
@@ -182,13 +177,13 @@
 
             {% if tenant|ng_mark_safe == 'ads' %}
               <div class="dmb-input-wrp">
-                <label for="accountId">Account ID:</label>
+                <label for="accountId">Greentea ID (division):</label>
                 <input
                     class="dmb-input"
                     id="accountId"
                     name="accountId"
                     ng-model="registrationCtrl.accountId"
-                    placeholder="Account ID"
+                    placeholder="Enter Greentea ID (division)"
                     required
                     type="text">
                 <div class="h-c-footnote dmb-u-m-t-s">
@@ -345,7 +340,7 @@
                 role="columnheader"
                 scope="col">
               <span>
-                Account ID
+                Greentea ID
               </span>
             </th>
           {% endif %}
@@ -441,7 +436,7 @@
                   {[survey.account_id]}
                 </span>
                 <button
-                    aria-label="Edit account ID"
+                    aria-label="Edit Greentea ID (division)"
                     class="dmb-table__account-edit-btn h-c-button h-c-button--flat"
                     ng-click="reportAdminCtrl.editAccountID($event, $index)"
                     ng-disabled="reportAdminCtrl.submitting">
@@ -454,14 +449,14 @@
                     method="put"
                     ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
                   <input
-                      aria-label="Enter account ID"
+                      aria-label="Enter Greentea ID (division)"
                       class="dmb-table__account-input"
                       name="account-id"
                       ng-model="reportAdminCtrl.newAccountIds[$index]"
                       type="text">
 
                   <button
-                      aria-label="Submit account ID change"
+                      aria-label="Submit Greentea ID (division) change"
                       class="dmb-table__account-submit h-c-button h-c-button--flat"
                       ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
                       type="submit">
@@ -469,7 +464,7 @@
                   </button>
 
                   <button
-                      aria-label="Cancel account ID change"
+                      aria-label="Cancel Greentea ID (division) change"
                       class="dmb-table__account-cancel h-c-button h-c-button--flat"
                       type="button"
                       ng-click="reportAdminCtrl.cancelAccountIDEdit()"
