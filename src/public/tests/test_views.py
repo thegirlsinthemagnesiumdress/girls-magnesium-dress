@@ -289,7 +289,6 @@ class GenerateExportPage(TestCase):
         args, kwargs = mock_defer.call_args
         got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
-        print got_title
         self.assertTrue("Digital Maturity Benchmark | Data Export |" in got_title)
         self.assertEqual(len(got_data), 0)
 

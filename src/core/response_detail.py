@@ -26,18 +26,19 @@ class SurveyDefinition(object):
 
                 q_definition = self._get_question(def_q_id)
                 q_id = q_definition['id']
-                q_dimension = get_question_dimension(q_id, self.dimensions)
+                q_dimensions = get_question_dimension(q_id, self.dimensions)
 
-                if q_dimension:
-                    questions['definitions'][q_id] = q_definition
-                    questions['questions_by_dimension'][q_dimension].append(q_id)
+                if q_dimensions:
+                    for q_dimension in q_dimensions:
+                        questions['definitions'][q_id] = q_definition
+                        questions['questions_by_dimension'][q_dimension].append(q_id)
 
-                    dimension_obj = {
-                        'id': q_dimension,
-                        'title': self.dimensions_titles.get(q_dimension),
-                    }
-                    if dimension_obj not in questions['dimensions']:
-                        questions['dimensions'].append(dimension_obj)
+                        dimension_obj = {
+                            'id': q_dimension,
+                            'title': self.dimensions_titles.get(q_dimension),
+                        }
+                        if dimension_obj not in questions['dimensions']:
+                            questions['dimensions'].append(dimension_obj)
 
         return questions
 

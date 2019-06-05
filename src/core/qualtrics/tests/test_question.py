@@ -1,6 +1,7 @@
 from core.qualtrics import question
 from djangae.test import TestCase
 import mock
+from collections import defaultdict
 
 
 class DataToQuestionTest(TestCase):
@@ -42,11 +43,17 @@ class DataToQuestionTest(TestCase):
         multi_answer_questions = ['Q13']
 
         questions = question.data_to_questions(self.survey_result, dimensions, multi_answer_questions, weights)
-        self.question_dict = {item[0]: item for item in questions}
+        self.question_dict = defaultdict(list)
+        for item in questions:
+            self.question_dict[item[0]].append(item)
 
     def test_question_tuple_correctly_generated(self):
         """When weight and category are found, should be set."""
-        question, answer, weight, category = self.question_dict.get('Q3')
+        q3_list = self.question_dict.get('Q3')
+        self.assertEqual(len(q3_list), 1)
+        q3 = q3_list[0]
+
+        question, answer, weight, category = q3
 
         self.assertEqual(question, 'Q3')
         self.assertItemsEqual(answer, [1.0])
@@ -54,11 +61,15 @@ class DataToQuestionTest(TestCase):
         # weight should be applied to Q_3
         self.assertEqual(weight, 3)
         # category should be applied to Q_3
-        self.assertEqual(category, 'activation')
+        self.assertTrue(category in ['activation'])
 
     def test_question_tuple_use_default_weight(self):
         """When a weight is not found should be set to the default one."""
-        question, answer, weight, category = self.question_dict.get('Q12')
+        q12_list = self.question_dict.get('Q12')
+        self.assertEqual(len(q12_list), 1)
+
+        q12 = q12_list[0]
+        question, answer, weight, category = q12
 
         self.assertEqual(question, 'Q12')
         self.assertItemsEqual(answer, [4.0])
@@ -66,7 +77,11 @@ class DataToQuestionTest(TestCase):
         self.assertEqual(category, 'activation')
 
     def test_multiple_answer_question_tuple(self):
-        question, answer, weight, category = self.question_dict.get('Q13')
+        q13_list = self.question_dict.get('Q13')
+        self.assertEqual(len(q13_list), 1)
+        q13 = q13_list[0]
+
+        question, answer, weight, category = q13
         expected_answer = [1.33, 1, 0, 2.33]
         self.assertCountEqual(answer, expected_answer)
 
@@ -125,6 +140,41 @@ class DataToQuestionTest(TestCase):
             match = question.match_question_key(key)
             self.assertDictEqual(match, exp_match)
 
+    def test_question_tuple_correctly_generated_multi_dim(self):
+        """When weight and category are found, should be set."""
+
+        weights = {
+            'Q1': 2,
+            'Q3': 3,
+        }
+        dimensions = {
+            'activation': ['Q3', 'Q12'],
+            'audience': ['Q3'],
+        }
+        multi_answer_questions = ['Q13']
+
+        questions = question.data_to_questions(self.survey_result, dimensions, multi_answer_questions, weights)
+
+        self.question_dict = defaultdict(list)
+        for item in questions:
+            self.question_dict[item[0]].append(item)
+
+        q3_list = self.question_dict.get('Q3')
+
+        # Q3 appears in 2 dimensions, so the lenght should be 2
+        self.assertEqual(len(q3_list), 2)
+
+        for q3 in q3_list:
+            q, answer, weight, category = q3
+
+            self.assertEqual(q, 'Q3')
+            self.assertItemsEqual(answer, [1.0])
+
+            # weight should be applied to Q_3
+            self.assertEqual(weight, 3)
+            # category should be applied to Q_3
+            self.assertTrue(category in ['activation', 'audience'])
+
 
 class WeightedQuestionAverageTest(TestCase):
     """Test class for `core.qualtrics.question.weighted_questions_average` function."""
@@ -169,9 +219,26 @@ class GetQuestionDimensionTest(TestCase):
             'activation': ['Q3', 'Q4'],
             'audience': ['Q2'],
         }
-        dimension = question.get_question_dimension('Q3', dimensions)
+        dimension_list = question.get_question_dimension('Q3', dimensions)
 
-        self.assertEqual(dimension, 'activation')
+        self.assertTrue(dimension_list, list)
+        self.assertEqual(len(dimension_list), 1)
+        dimension = dimension_list[0]
+        self.assertTrue(dimension in ['activation'])
+
+    def test_question_with_dimension_multi_dim(self):
+        """
+        When question belongs to more than a dimension, all of them
+        should be returned
+        """
+        dimensions = {
+            'activation': ['Q3', 'Q4'],
+            'audience': ['Q3'],
+        }
+        dimension_list = question.get_question_dimension('Q3', dimensions)
+        self.assertEqual(len(dimension_list), 2)
+        for dimension in dimension_list:
+            self.assertTrue(dimension in ['activation', 'audience'])
 
 
 class DataReliableTest(TestCase):
