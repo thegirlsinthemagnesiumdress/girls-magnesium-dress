@@ -15,7 +15,7 @@
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
           <h1 class="dmb-registration__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
-            Ready to benchmark your company’s data maturity?
+            Ready to assess your organization's cloud maturity?
           </h1>
         </div>
         <div class="dmb-registration__bg h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1"></div>
@@ -67,15 +67,6 @@
                   placeholder="Organization name">
             </div>
             <div class="dmb-input-wrp">
-              <input
-                  id="prodId"
-                  name="industry"
-                  type="hidden"
-                  value="rt-o"
-                  ng-init="registrationCtrl.industry='rt-o'"
-                  aria-hidden="true">
-            </div>
-            <div class="dmb-input-wrp">
               <select
                   class="dmb-form__select dmb-dropdown-arrow"
                   name="country"
@@ -94,6 +85,25 @@
               </select>
             </div>
 
+            <div class="dmb-input-wrp">
+              <select
+                  aria-label="Select an industry"
+                  class="dmb-form__select dmb-dropdown-arrow"
+                  id="industry"
+                  name="industry"
+                  ng-model="registrationCtrl.industry"
+                  required>
+                <option selected value="">
+                  Select an industry
+                </option>
+                {% for i_key, i_text in industries %}
+                <option value="{{i_key|ng_mark_safe}}">
+                  {{i_text|ng_mark_safe}}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
             <!-- <div
                 class="input-wrp__error"
                 ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">
@@ -104,7 +114,7 @@
           <button
               ng-disabled="!registration.$valid"
               class="dmb-form__submit h-c-button h-c-button--primary">
-            Progress to my assessment
+            Continue to my assessment
           </button>
 
           <div class="dmb-form__error" ng-hide="!registrationCtrl.serverError">
