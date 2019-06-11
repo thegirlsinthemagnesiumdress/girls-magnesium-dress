@@ -80,7 +80,7 @@ class TenantConfiguration {
      * @type {Object}
      * @export
      */
-    this.dimensionHeadersDescription = {};
+    this.dimensionHeaderDescriptions = {};
 
     /**
      * @type {Object}
@@ -112,7 +112,7 @@ class TenantConfiguration {
     this.levelsTotal = Object.keys(this.levels).length;
     this.levelDescriptions = this.contentData['level_descriptions'];
     this.reportLevelDescriptions = this.contentData['report_level_descriptions'];
-    this.dimensionHeadersDescription = this.contentData['dimension_headers_descriptions'];
+    this.dimensionHeaderDescriptions = this.contentData['dimension_header_descriptions'];
     this.dimensionLevelDescription = this.contentData['dimension_level_description'];
     this.dimensionRecommendations = this.contentData['dimension_recommendations'];
     this.industryAvgDescription = this.contentData['industry_avg_description'];
