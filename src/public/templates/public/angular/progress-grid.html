@@ -2,7 +2,7 @@
 {% trans "Get more information about the industry average" as industry_avg_aria_text %}
 {% trans "Get more information about the industry best" as industry_best_aria_text %}
 <div
-    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.getLevel(ratingMain)]}">
+    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.getDmbLevels(ratingMain).current.value]}">
 
     <!-- This list is visually hidden and only read out by screen readers -->
     <ul class="h-u-visually-hidden">

@@ -5,8 +5,8 @@
       <!-- Tab Icons -->
       <div class="dmb-dimension-tabs__icon h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
         <div
-          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[progressCircleCtrl.level]}"
-          data-progress="reportCtrl.result.dmb_d[dimension]">
+          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[reportCtrl.dmbLevelsFactory(reportCtrl.result.dmb_d[dimension]).current.value]}"
+          data-progress="{[ reportCtrl.result.dmb_d[dimension] ]}">
           <svg class="dmb-progress-circle__prog-svg" dmb-progress-circle="reportCtrl.result.dmb_d[dimension]"
             viewbox="0 0 120 120">
             <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
