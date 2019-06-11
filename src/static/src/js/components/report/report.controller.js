@@ -23,6 +23,7 @@ class ReportController {
    * @param {!angular.$location} $location
    * @param {!glue.ng.state.StateService} glueState
    * @param {!angular.$timeout} $timeout
+   * @param {!angular.$sce} $sce
    * @param {!Object} reportService
    * @param {!Function} dmbLevelsFactory
    * @param {!Function} resultInTopLevel
@@ -38,6 +39,7 @@ class ReportController {
       $location,
       glueState,
       $timeout,
+      $sce,
       reportService,
       dmbLevelsFactory,
       resultInTopLevel,
@@ -212,6 +214,12 @@ class ReportController {
      */
     this.result = null;
 
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.trustAsHtml = $sce.trustAsHtml;
 
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
@@ -233,12 +241,12 @@ class ReportController {
       this.resultInTopLevel = resultInTopLevel(this.overallResult);
 
       // //////////////////////////////////
-      this.result['dmb_d'] = {
-        'learn': 2.3,
-        'lead': 3.5,
-        'scale': 4.5,
-        'secure': 5,
-      };
+      // this.result['dmb_d'] = {
+      //   'learn': 2.3,
+      //   'lead': 3.5,
+      //   'scale': 4.5,
+      //   'secure': 5,
+      // };
       // //////////////////////////////////
 
       reportService.dmb_d = this.result['dmb_d'];
