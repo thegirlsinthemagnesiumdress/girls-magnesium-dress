@@ -728,7 +728,7 @@ DIMENSION_RECOMMENDATIONS = {
     },
 }
 
-DIMENSION_SIDEPANEL_HEADING = 'We measure cloud maturity across four themes that define the foundation of cloud readiness. An organization\s readiness for success in the cloud is determined by current business practices in each of these four themes. More information on the themes of cloud maturity can be found in the Google Cloud Adoption Framework whitepaper.'
+DIMENSION_SIDEPANEL_HEADING = 'We measure cloud maturity across four themes that define the foundation of cloud readiness. An organization\s readiness for success in the cloud is determined by current business practices in each of these four themes. More information on the themes of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
 
 DIMENSION_SIDEPANEL_DESCRIPTIONS = {
     DIMENSION_1: 'The quality and scale of the learning programs in place to upskill technical teams, and the ability to augment IT staff with experienced partners.',

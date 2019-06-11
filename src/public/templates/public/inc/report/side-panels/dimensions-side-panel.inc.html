@@ -17,20 +17,22 @@
     <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
       {% if tenant|ng_mark_safe == 'ads' %}
         {% trans "Dimensions of marketing maturity" %}
+      {% elif tenant|ng_mark_safe == 'cloud' %}
+        Phases of Cloud Maturity
       {% else %}
         Dimensions of Data maturity
       {% endif %}
     </h1>
     <p class="dmb-u-m-b-s">
-      {[reportCtrl.dimensionSidepanelHeading]}
+      {[ reportCtrl.trustAsHtml(reportCtrl.dimensionSidepanelHeading) ]}
     </p>
 
     <div ng-repeat="dimension in reportCtrl.dimensions">
       <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
-        {[reportCtrl.dimensionHeaders[dimension]]}
+        {[ reportCtrl.dimensionHeaders[dimension] ]}
       </h2>
       <p ng-class="{'dmb-u-m-b-m':!$last}">
-        {[reportCtrl.dimensionSidepanelDescriptions[dimension]]}
+        {[ reportCtrl.dimensionSidepanelDescriptions[dimension] ]}
       </p>
     </div>
 
