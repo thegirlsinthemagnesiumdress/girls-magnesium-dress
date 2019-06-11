@@ -210,7 +210,7 @@ DIMENSION_LEVEL_DESCRIPTION = {
     },
 }
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_ATTRIBUTION: {
         LEVEL_0: [{
             'header': _('Measure the true value of your marketing activities'),
@@ -590,7 +590,7 @@ CONTENT_DATA = {
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
 }

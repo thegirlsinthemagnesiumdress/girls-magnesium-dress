@@ -13,6 +13,7 @@ LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
+LEVELS_MAX = 4
 
 # WEIGHTS
 WEIGHTS = {
@@ -165,7 +166,7 @@ DIMENSION_LEVEL_DESCRIPTION = {
 # }
 
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_1: {
         LEVEL_0: [
             {
@@ -482,7 +483,7 @@ CONTENT_DATA = {
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,

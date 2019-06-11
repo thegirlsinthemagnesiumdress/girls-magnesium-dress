@@ -9,11 +9,12 @@ DIMENSION_3 = 'scale'
 DIMENSION_4 = 'secure'
 
 # LEVELS
-LEVEL_0 = 0
-LEVEL_1 = 1
-LEVEL_2 = 2
-LEVEL_3 = 3
-LEVEL_4 = 4
+LEVEL_0 = 1
+LEVEL_1 = 2
+LEVEL_2 = 3
+LEVEL_3 = 4
+LEVEL_4 = 5
+LEVELS_MAX = 5
 
 # WEIGHTS
 WEIGHTS = {
@@ -261,7 +262,7 @@ CUSTOMER_ENCRYPTION_KEYS_CTA = {
 }
 
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_1: {
         LEVEL_0: [
             {
@@ -739,13 +740,14 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 
 CONTENT_DATA = {
     'levels': LEVELS,
+    'levels_max': LEVELS_MAX,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,

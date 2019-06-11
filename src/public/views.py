@@ -31,13 +31,14 @@ def _dump_tenant_content_data(tenant):
 
     data = {
         'levels': content_data['levels'],
+        'levels_max': content_data['levels_max'],
         'level_descriptions': content_data['level_descriptions'],
         'report_level_descriptions': content_data.get('report_level_descriptions'),
         'dimensions': content_data['dimensions'],
         'dimension_labels': content_data['dimension_labels'],
         'dimension_headers_descriptions': content_data['dimension_headers_descriptions'],
         'dimension_level_description': content_data['dimension_level_description'],
-        'dimension_level_recommendations': content_data['dimension_level_recommendations'],
+        'dimension_recommendations': content_data['dimension_recommendations'],
         'industry_avg_description': content_data.get('industry_avg_description'),
         'industry_best_description': content_data.get('industry_best_description'),
         'dimension_sidepanel_heading': content_data.get('dimension_sidepanel_heading'),

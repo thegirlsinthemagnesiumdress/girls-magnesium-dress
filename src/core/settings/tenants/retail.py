@@ -11,6 +11,7 @@ LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
+LEVELS_MAX = 4
 
 WEIGHTS = {
     'Q4': 0.2,
@@ -156,7 +157,7 @@ DATA_ACTIVATION_GUIDE_CTA = {
 }
 
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_STRATEGIC_DIRECTION: {
         LEVEL_0: [{
             'header': 'Broadcast a thoughtful data strategy',
@@ -432,13 +433,14 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 
 CONTENT_DATA = {
     'levels': LEVELS,
+    'levels_max': LEVELS_MAX,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
     'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,

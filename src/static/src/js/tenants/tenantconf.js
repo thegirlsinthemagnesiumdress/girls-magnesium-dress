@@ -35,6 +35,12 @@ class TenantConfiguration {
     this.levels = {};
 
     /**
+     * @type {String}
+     * @export
+     */
+    this.levelsMax = '';
+
+    /**
      * @type {Object}
      * @export
      */
@@ -86,7 +92,7 @@ class TenantConfiguration {
      * @type {Object}
      * @export
      */
-    this.dimensionLevelRecommendations = {};
+    this.dimensionRecommendations = {};
 
     /**
      * @type {Object}
@@ -102,12 +108,13 @@ class TenantConfiguration {
     this.dimensionHeaders = this.contentData['dimension_labels'];
     this.dimensions = this.contentData['dimensions'];
     this.levels = this.contentData['levels'];
+    this.levelsMax = this.contentData['levels_max'];
     this.levelsTotal = Object.keys(this.levels).length;
     this.levelDescriptions = this.contentData['level_descriptions'];
     this.reportLevelDescriptions = this.contentData['report_level_descriptions'];
     this.dimensionHeadersDescription = this.contentData['dimension_headers_descriptions'];
     this.dimensionLevelDescription = this.contentData['dimension_level_description'];
-    this.dimensionLevelRecommendations = this.contentData['dimension_level_recommendations'];
+    this.dimensionRecommendations = this.contentData['dimension_recommendations'];
     this.industryAvgDescription = this.contentData['industry_avg_description'];
     this.industryBestDescription = this.contentData['industry_best_description'];
     this.dimensionSidepanelHeading = this.contentData['dimension_sidepanel_heading'];
