@@ -36,7 +36,7 @@ def _dump_tenant_content_data(tenant):
         'report_level_descriptions': content_data.get('report_level_descriptions'),
         'dimensions': content_data['dimensions'],
         'dimension_labels': content_data['dimension_labels'],
-        'dimension_headers_descriptions': content_data['dimension_headers_descriptions'],
+        'dimension_header_descriptions': content_data['dimension_header_descriptions'],
         'dimension_level_description': content_data['dimension_level_description'],
         'dimension_recommendations': content_data['dimension_recommendations'],
         'industry_avg_description': content_data.get('industry_avg_description'),

@@ -125,7 +125,7 @@ INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participa
 
 
 
-DIMENSION_HEADER_DESCRIPTION = {
+DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_1: 'Your organization’s ability to continuously learn is determined by your efforts to upskill your IT staff while also taking advantage of the experiences shared by third-party contractors and partners. This two-pronged approach ensures that you apply cloud computing best practices idiomatically to Google Cloud Platform (or any other public cloud provider), tailored to your business needs and without having to climb the steep learning curve of doing things for the first time.<br>Your staff will be more familiar with your organization’s unique idiosyncrasies and understand its technical and cultural nuances, while supporting third parties will have the experience of having completed multiple prior cloud migrations across a broad spectrum of customer solutions.',
     DIMENSION_2: 'The effectiveness of your organization’s cloud adoption is determined by the visibility and value of the mandate issued top-down from your sponsors (which include C-level executives as well as middle management and team leaders) and the motivational momentum generated bottom-up from your teams’ cross-functional collaboration. These two counterparts together are responsible for clearly articulating objectives, making informed decisions, and executing them in concert with multiple functions.<br>Sponsors control which resources are allocated to your organization’s cloud adoption efforts and bring stakeholders from different business functions and reporting lines together. However, they must ultimately rely on an agile and cross-functional group of cloud early adopters to practically implement their strategy.',
     DIMENSION_3: 'Your organization’s ability to scale in the cloud is determined by the extent to which you abstract away your infrastructure with managed and serverless cloud services, as well as the quality of your CI/CD process chain and the programmable infrastructure code that runs through it.<br>Because everything is managed via an API, automation can pay greater dividends in the cloud than in any other environment. Not only does it reduce human toil and serve as automatic documentation, it is also instrumental in making change low risk and frequent - the key ingredient for innovation.',
@@ -745,7 +745,7 @@ CONTENT_DATA = {
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
-    'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
+    'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
