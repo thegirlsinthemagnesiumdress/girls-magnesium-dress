@@ -88,26 +88,6 @@ module.filter('dmbLevelText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory
   };
 }]);
 
-module.filter('dmbRangeText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory, tenantConf) => {
-  return (dmb) => {
-    if (!angular.isDefined(dmb)) {
-      return '';
-    }
-
-    const floor = floorDmbFactory(dmb);
-    const ceil = Math.min(Math.ceil(dmb), tenantConf.levelsTotal);
-    return `${floor}-${ceil}`;
-  };
-}]);
-
-module.filter('dmbPercentageNumber', ['tenantConf', (tenantConf)=> {
-  const levelsTotal = tenantConf.levelsTotal;
-  return (dmb) => {
-    return angular.isDefined(dmb) ? dmb / levelsTotal * 100 : 0;
-  };
-}]);
-
-
 /**
  * Report angular module.
  * @type {!angular.Module}
