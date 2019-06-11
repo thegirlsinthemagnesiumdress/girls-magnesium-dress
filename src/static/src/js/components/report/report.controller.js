@@ -24,7 +24,8 @@ class ReportController {
    * @param {!glue.ng.state.StateService} glueState
    * @param {!angular.$timeout} $timeout
    * @param {!Object} reportService
-   * @param {!Function} floorDmbFactory
+   * @param {!Function} dmbLevelsFactory
+   * @param {!Function} resultInTopLevel
    * @param {!Object} tenantConf
    * @param {!Object} glueBreakpoint
    *
@@ -38,7 +39,8 @@ class ReportController {
       glueState,
       $timeout,
       reportService,
-      floorDmbFactory,
+      dmbLevelsFactory,
+      resultInTopLevel,
       tenantConf,
       glueBreakpoint) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
@@ -53,25 +55,10 @@ class ReportController {
     this.ngTimeout_ = $timeout;
 
     /**
-     * Survey object.
-     * @type {Object}
      * @export
+     * @type {boolean}
      */
-    this.survey = null;
-
-    /**
-     * Survey result object.
-     * @type {Object}
-     * @export
-     */
-    this.result = null;
-
-    /**
-     * Floored dmb.
-     * @type {?number}
-     * @export
-     */
-    this.floorDmb = null;
+    this.renderTabset = false;
 
     /**
      *  Show dimensions tab (instead of the zippy).
@@ -80,23 +67,18 @@ class ReportController {
      */
     this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
 
+
     /**
-     * @type {!Object}
      * @export
+     * @type {Object}
      */
     this.levels = tenantConf.levels;
 
     /**
      * @export
-     * @type {Object}
+     * @type {String}
      */
-    this.levelsTotal = tenantConf.levelsTotal;
-
-    /**
-     * @export
-     * @type {Object}
-     */
-    this.nextLevel = null;
+    this.levelsMax = tenantConf.levelsMax;
 
     /**
      * @type {!Object}
@@ -123,6 +105,28 @@ class ReportController {
     this.industryBestDescription = tenantConf.industryBestDescription;
 
     /**
+     * Industry result object.
+     * @type {Object}
+     * @export
+     */
+    this.industryResult = null;
+
+    /**
+     * Industry best rating source industry.
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgSource = null;
+
+    /**
+     * Industry average source industry.
+     * @type {Object}
+     * @export
+     */
+    this.industryBestSource = null;
+
+
+    /**
      * @export
      * @type {Array.<string>}
      */
@@ -130,10 +134,9 @@ class ReportController {
 
     /**
      * @export
-     * @type {boolean}
+     * @type {Object}
      */
-    this.renderTabset = false;
-
+    this.dimensionsResults = {};
 
     /**
      * @type {!Object}
@@ -162,25 +165,53 @@ class ReportController {
     });
 
     /**
-     * Industry result object.
-     * @type {Object}
+     *
+     * @type {String}
      * @export
      */
-    this.industryResult = null;
+    this.overallResult = null;
 
     /**
-     * Industry best rating source industry.
-     * @type {Object}
      * @export
+     * @type {Object}
      */
-    this.industryAvgSource = null;
+    this.currentLevel = {};
 
     /**
-     * Industry average source industry.
+     * @export
+     * @type {Object}
+     */
+    this.nextLevel = {};
+
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
+
+    /**
+     *
+     * @type {Boolean}
+     * @export
+     */
+    this.resultInTopLevel = false;
+
+    /**
+     * Survey object.
      * @type {Object}
      * @export
      */
-    this.industryBestSource = null;
+    this.survey = null;
+
+    /**
+     * Survey result object.
+     * @type {Object}
+     * @export
+     */
+    this.result = null;
+
 
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
@@ -193,17 +224,28 @@ class ReportController {
 
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE.
-      this.result.dmb = parseFloat(this.result['dmb']);
+      // this.result.dmb = parseFloat(this.result['dmb']);
+      this.overallResult = this.result['dmb'];
 
-      this.floorDmb = floorDmbFactory(this.result.dmb);
-      this.nextLevel = floorDmbFactory(this.floorDmb + 1);
+      const dmbLevels = dmbLevelsFactory(this.overallResult);
+      this.currentLevel = dmbLevels.current;
+      this.nextLevel = dmbLevels.next;
+      this.resultInTopLevel = resultInTopLevel(this.overallResult);
+
+      // //////////////////////////////////
+      this.result['dmb_d'] = {
+        'learn': 2.3,
+        'lead': 3.5,
+        'scale': 4.5,
+        'secure': 5,
+      };
+      // //////////////////////////////////
 
       reportService.dmb_d = this.result['dmb_d'];
 
-      // ENABLE TO TEST OPTIONAL DIMENSION
+      // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
       // reportService.dmb_d['reader_revenue'] = null;
 
-      // TODO(aabuelgasim): remove this chunk once new tabby is used
       for (let key in reportService.dmb_d) {
         if (reportService.dmb_d[key] === null) {
           this.dimensions.splice(this.dimensions.indexOf(key), 1);
