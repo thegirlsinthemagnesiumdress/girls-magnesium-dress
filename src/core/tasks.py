@@ -261,6 +261,8 @@ def send_emails_for_new_reports(email_list):
                 message.send()
 
                 logging.info("Email sent to {} from {} for Survey with sid={}".format(to, sender, sid))
+            else:
+                logging.error("<to> should be a valid field for sending an email")
         except Survey.DoesNotExist:
             # if the survey does not exist, we should not send emails
             logging.warning('Could not find Survey with sid {} to get context string for email'.format(sid))
@@ -311,10 +313,10 @@ def _survey_completed(is_finished):
     return bool(is_finished)
 
 
-def generate_csv_export(surveys, survey_fields, survey_result_fields, prefix):
+def generate_csv_export(tenant, survey_fields, survey_result_fields, prefix):
     """Generate csv export for a list of surveys, and store it on configured bucket.
 
-    :param surveys: list of `core.models.Survey` to be exported to csv
+    :param tenant: tenant used to retrieve `core.models.Survey` to be exported to csv
     :param survey_fields: list of `core.models.Survey` fields to be exported
     :param survey_result_fields: list of `core.models.SurveyResult` fields to be exported
     :param prefix: filename prefix to use in addition of filename
@@ -336,6 +338,8 @@ def generate_csv_export(surveys, survey_fields, survey_result_fields, prefix):
         fieldnames = all_fields
         writer = csv.DictWriter(gcs_file, fieldnames=fieldnames, lineterminator='\n')
         writer.writeheader()
+
+        surveys = Survey.objects.filter(tenant=tenant)
 
         for survey in surveys:
             survey_data = {field: None for field in all_fields}

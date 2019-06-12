@@ -30,4 +30,9 @@
   &__choices_no_match {
     padding: 30px 0;
   }
+
+  // Hide questions that are used in qualtrics as headers headers.
+  .dmb-dimension-header {
+    display: none;
+  }
 }
