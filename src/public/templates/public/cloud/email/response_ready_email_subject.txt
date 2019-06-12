@@ -1,1 +1,1 @@
-Response is ready!
+{{ company_name }}: Cloud Maturity Assessment Report
