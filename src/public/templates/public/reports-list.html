@@ -307,25 +307,15 @@
 
   <div class="dmb-table h-c-table__overflowcontainer">
     <table
-        class="h-c-table h-c-table--datatable h-c-table--datatable-altrows
-        {% if tenant|ng_mark_safe != 'ads' %} glue-table-sort{% endif %}"
+        class="h-c-table h-c-table--datatable h-c-table--datatable-altrows"
         role="table"
         summary="List of reports"
-        width="100%"
-        {% if tenant|ng_mark_safe != 'ads' %}
-          data-glue-table-sort-ascending-text="ascending"
-          data-glue-table-sort-descending-text="descending"
-          data-glue-table-sort-unsorted-text="unsorted"
-        {% endif %}>
+        width="100%">
       <thead>
         <tr role="row">
           <th
               role="columnheader"
-              scope="col"
-              {% if tenant|ng_mark_safe != 'ads' %}
-                data-glue-table-sort-type="alpha"
-                title="Sort by organisation name alphabetically"
-              {% endif %}>
+              scope="col">
             <span>
               {% if tenant|ng_mark_safe == 'ads' %}Organisation {% else %}Organization {% endif %}
               name
@@ -342,22 +332,14 @@
           {% endif %}
           <th
               role="columnheader"
-              scope="col"
-              {% if tenant|ng_mark_safe != 'ads' %}
-                data-glue-table-sort-type="datetime-custom"
-                title="Sort by date created chronologically"
-              {% endif %}>
+              scope="col">
             <span>
               Date created
             </span>
           </th>
           <th
               role="columnheader"
-              scope="col"
-              {% if tenant|ng_mark_safe != 'ads' %}
-                data-glue-table-sort-type="numeric"
-                title="Sort by survey completions numerically"
-              {% endif %}>
+              scope="col">
             <span>
               Survey completions
             </span>
@@ -384,22 +366,14 @@
           </th>
           <th
               role="columnheader"
-              scope="col"
-              {% if tenant|ng_mark_safe != 'ads' %}
-                data-glue-table-sort-type="alpha"
-                title="Sort by industry"
-              {% endif %}>
+              scope="col">
             <span>
               Industry
             </span>
           </th>
           <th
               role="columnheader"
-              scope="col"
-              {% if tenant|ng_mark_safe != 'ads' %}
-                data-glue-table-sort-type="alpha"
-                title="Sort by country"
-              {% endif %}>
+              scope="col">
             <span>
               Country
             </span>
