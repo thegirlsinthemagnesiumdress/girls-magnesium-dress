@@ -56,7 +56,7 @@
               novalidate>
             <div class="dmb-form__wrapper">
 
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                 <input
                     aria-hidden="true"
                     id="tenant"
@@ -68,7 +68,7 @@
                     value="{{tenant|ng_mark_safe}}">
               </div>
 
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                 {% if tenant|ng_mark_safe == 'ads' %}
                   {% trans "Enter the organisation name" as org_label %}
                 {% else %}
@@ -85,7 +85,7 @@
                     placeholder="{{org_label}}">
               </div>
 
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
 
                 {% if tenant|ng_mark_safe == 'ads' %}
                   {% trans "Select an industry" as ind_label %}
@@ -128,7 +128,7 @@
 
               </div>
 
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                 {% trans "Select a country" as country_label %}
                 <select
                     aria-label="{{country_label}}"
@@ -148,12 +148,6 @@
                 </select>
               </div>
 
-              <!-- <div
-                  class="input-wrp__error"
-                  ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">
-                {% trans "This field is required!" %}
-              </div> -->
-
             </div>
             <button
                 class="dmb-form__submit h-c-button h-c-button--primary"
@@ -162,7 +156,7 @@
             </button>
 
             <div
-                class="dmb-form__error"
+                class="dmb-form__error dmb-form__input-wrapper"
                 ng-hide="!registrationCtrl.serverError">
               {% trans "Oops, something went wrong!" %}
             </div>

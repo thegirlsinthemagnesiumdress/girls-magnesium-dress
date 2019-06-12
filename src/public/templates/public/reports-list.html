@@ -140,20 +140,21 @@
         <h2 class="h-c-headline h-c-headline--three h-u-mt-xl h-u-mb-l">
           Create a new survey
         </h2>
-        <p>
+        <p class="dmb-u-m-b-s">
           Fill in these details to create a custom survey link for a specific company:
         </p>
         <form
             autocomplete="off"
+            class="dmb-form"
             name="registration"
             ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'"
             ng-submit="registrationCtrl.submit()"
             novalidate>
           <div class="input-wrp">
 
-            <div class="dmb-input-wrp">
+            <div class="dmb-form__input-wrapper">
               <input
-                  class="dmb-input"
+                  class="dmb-form__input"
                   id="tenant"
                   name="tenant"
                   ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
@@ -163,12 +164,12 @@
                   value="{{tenant|ng_mark_safe}}">
             </div>
 
-            <div class="dmb-input-wrp">
+            <div class="dmb-form__input-wrapper">
               <label for="companyName">
                 {% if tenant|ng_mark_safe == 'ads' %}Organisation {% else %}Organization {% endif %} name:
               </label>
               <input
-                  class="dmb-input"
+                  class="dmb-form__input"
                   name="companyName"
                   ng-model="registrationCtrl.companyName"
                   placeholder="Enter{% if tenant|ng_mark_safe == 'ads' %} organisation{% else %} organization{% endif %} name"
@@ -177,33 +178,30 @@
             </div>
 
             {% if tenant|ng_mark_safe == 'ads' %}
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                 <label for="accountId">Greentea ID (division):</label>
                 <input
-                    class="dmb-input"
+                    class="dmb-form__input dmb-u-m-b-xs"
                     id="accountId"
                     name="accountId"
                     ng-model="registrationCtrl.accountId"
                     placeholder="Enter Greentea ID (division)"
                     required
                     type="text">
-                <div class="h-c-footnote dmb-u-m-t-s">
+                <div class="h-c-footnote">
                   Check <a class="h-c-inline-link" href="http://go/dmb-userguide" target="_blank">go/dmb-userguide</a> for help on identifying the Greentea ID of your client.
                 </div>
               </div>
 
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                 <label for="industry">Industry:</label>
                 <select
-                    class="dmb-input"
+                    class="dmb-form__select dmb-dropdown-arrow"
                     id="industry"
                     name="industry"
                     ng-model="registrationCtrl.industry"
                     required>
-                  <option
-                      disabled
-                      selected
-                      value="">
+                  <option disabled selected value="">
                     Select an industry
                   </option>
                     {% for i_key, i_text in industries %}
@@ -217,7 +215,7 @@
 
             {% if tenant|ng_mark_safe == 'news' %}
               {% comment %} TODO: use news industry here {% endcomment %}
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                 <input
                     id="prodId"
                     name="industry"
@@ -227,7 +225,7 @@
               </div>
             {% endif %}
             {% if tenant|ng_mark_safe == 'retail' %}
-              <div class="dmb-input-wrp">
+              <div class="dmb-form__input-wrapper">
                   <input
                       id="prodId"
                       name="industry"
@@ -237,20 +235,17 @@
               </div>
             {% endif %}
 
-            <div class="dmb-input-wrp">
+            <div class="dmb-form__input-wrapper">
               <label for="country">
                 Country:
               </label>
               <select
-                  class="dmb-input"
+                  class="dmb-form__select dmb-dropdown-arrow"
                   id="country"
                   name="country"
                   ng-model="registrationCtrl.country"
                   required>
-                <option
-                    disabled
-                    selected
-                    value="">
+                <option disabled selected value="">
                   Select a country
                 </option>
                   {% for c_key, c_text in countries %}
