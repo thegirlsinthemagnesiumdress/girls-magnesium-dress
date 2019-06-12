@@ -80,7 +80,7 @@
                   class="h-c-button h-c-button--primary"
                   id="dmb-export-btn"
                   type="submit">
-                 Data export requested
+                Export sent
               </button>
             </form>
 
@@ -89,7 +89,7 @@
                 ng-if="exportsCtrl.exportSuccess">
               {% include 'core/inc/svg.html' with id='success' size='46px' only %}
               <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-xs">
-                Export sent
+                Data export requested
               </h3>
               <p class="h-c-footnote h-u-font-weight-medium">
                 This may take up to 5 minutes. Please check your email inbox.
@@ -141,13 +141,14 @@
           Create a new survey
         </h2>
         <p>
-            Fill in these details to create a custom survey link for a specific company:
+          Fill in these details to create a custom survey link for a specific company:
         </p>
         <form
+            autocomplete="off"
             name="registration"
             ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'"
             ng-submit="registrationCtrl.submit()"
-            novalidate autocomplete="off">
+            novalidate>
           <div class="input-wrp">
 
             <div class="dmb-input-wrp">
@@ -170,7 +171,7 @@
                   class="dmb-input"
                   name="companyName"
                   ng-model="registrationCtrl.companyName"
-                  placeholder="{% if tenant|ng_mark_safe == 'ads' %}organisation {% else %}organization {% endif %} name"
+                  placeholder="Enter{% if tenant|ng_mark_safe == 'ads' %} organisation{% else %} organization{% endif %} name"
                   required
                   type="text">
             </div>
@@ -187,7 +188,7 @@
                     required
                     type="text">
                 <div class="h-c-footnote dmb-u-m-t-s">
-                  This can be changed at any time from the Admin Dashboard.
+                  Check <a class="h-c-inline-link" href="http://go/dmb-userguide" target="_blank">go/dmb-userguide</a> for help on identifying the Greentea ID of your client.
                 </div>
               </div>
 
