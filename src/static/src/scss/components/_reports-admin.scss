@@ -4,7 +4,7 @@
   $create-survey-switch-bp: 1200px;
 
   &__card:first-of-type {
-    @include dmb-mq($until: 1280px) {
+    @include dmb-mq($until: 1024px) {
       margin-bottom: $spacing;
     }
   }
