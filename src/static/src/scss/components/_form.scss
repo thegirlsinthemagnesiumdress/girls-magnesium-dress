@@ -1,4 +1,13 @@
 .dmb-form {
+  &__input-wrapper {
+    margin-bottom: 30px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   &__input,
   &__select {
     background: transparent;
@@ -7,7 +16,6 @@
     font-size: 14px;
     font-weight: $h-font-weight-regular;
     height: 56px;
-    margin-top: 20px;
     padding: 10px 15px;
     width: 100%;
 
@@ -16,27 +24,12 @@
     }
   }
 
-  &__input {
-    &::placeholder {
-      color: $dmb-color-grey-shuttle;
-    }
-  }
-
+  &__input::placeholder,
   &__select {
     color: $dmb-color-grey-shuttle;
   }
 
-  &__submit {
-    margin-top: 20px;
-
-    @include dmb-mq($from: desktop) {
-      margin-top: 40px;
-    }
-  }
-
   &__error {
-    color: $h-google-red-500;
-    margin-top: 20px;
-    padding-top: 8px;
+    color: $dmb-color-red-fire-engine;
   }
 }
