@@ -13,18 +13,17 @@
       <div class="h-c-eyebrow">
         {{ tenant|ng_mark_safe }}
       </div>
-      <!-- TODO(aabuelgasim): Remove `dmb-u-m-b-s` class from elements with `h-c-headline` class (since it's built into `h-c-headline` in the new styles) once this ticket is merged https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/339 -->
-      <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium dmb-u-m-b-s">
+      <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium">
         {% if tenant|ng_mark_safe == 'ads' %}Digital {% else %}Data {% endif %}
         Maturity Admin Dashboard
       </h1>
 
       <div class="h-c-grid">
         <div class="dmb-reports-admin__card dmb-card h-c-grid__col h-c-grid__col-l--8">
-          <h2 class="h-c-headline h-c-headline--three dmb-u-m-b-s">
+          <h2 class="h-c-headline h-c-headline--three">
             {% include 'core/inc/svg.html' with id='clipboard' inline=True %}Create survey
           </h2>
-          <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-s">
+          <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
             You can create a new survey in two ways:
           </h3>
           <div class="dmb-reports-admin__create-survey">
@@ -161,14 +160,29 @@
               <input class="dmb-input" name="companyName" ng-model="registrationCtrl.companyName" type="text" required placeholder="Enter the organization name">
             </div>
             <div class="dmb-input-wrp">
-              <input id="prodId" name="industry" type="hidden" value="rt-o" ng-init="registrationCtrl.industry='rt-o'">
-            </div>
-            <div class="dmb-input-wrp">
               <label for="country">Country:</label>
               <select class="dmb-input" name="country" id="country" ng-model="registrationCtrl.country" required>
                 <option value="" disabled selected>Select a country</option>
                 {% for c_key, c_text in countries %}
                 <option value="{{c_key|ng_mark_safe}}">{{c_text|ng_mark_safe}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="dmb-input-wrp">
+              <label for="industry">Industry:</label>
+              <select
+                  class="dmb-input"
+                  id="industry"
+                  name="industry"
+                  ng-model="registrationCtrl.industry"
+                  required>
+                <option selected value="">
+                  Select an industry
+                </option>
+                {% for i_key, i_text in industries %}
+                <option value="{{i_key|ng_mark_safe}}">
+                  {{i_text|ng_mark_safe}}
+                </option>
                 {% endfor %}
               </select>
             </div>

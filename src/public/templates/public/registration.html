@@ -1,0 +1,169 @@
+{% extends 'public/base.html' %}
+{% load angular %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block main %}
+  <section
+      class="dmb-registration"
+      ng-controller="RegistrationCtrl as registrationCtrl"
+      ng-init="registrationCtrl.hideConfirmationPage = true"
+      ng-cloak>
+
+    <div class="dmb-registration__header">
+      <div class="h-c-page">
+        <div class="h-c-grid">
+          <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
+            <h1 class="dmb-registration__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
+              {% trans "Ready to benchmark your company’s "%}
+              {% if tenant|ng_mark_safe == 'ads' %}
+                {% trans "digital maturity?" %}
+              {% else %}
+                {% trans "data maturity?" %}
+              {% endif %}
+            </h1>
+          </div>
+          <div class="dmb-registration__bg h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dmb-registration__form-wrapper h-c-page">
+      <div class="h-c-grid">
+        <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-2">
+          <h2 class="h-c-headline h-c-headline--four">
+            {% trans "Let’s start with some details about your " %}
+            {% if tenant|ng_mark_safe == 'ads' %}
+              {% trans "organisation:" %}
+            {% else %}
+              {% trans "organization:" %}
+            {% endif %}
+          </h2>
+          <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              class="h-c-button h-c-button--flat dmb-u-m-b-s">
+            {% trans "How we keep your information safe" %}
+          </a>
+        </div>
+
+        <div class="h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-2">
+          <form
+              autocomplete="off"
+              class="dmb-form dmb-u-m-b-l"
+              name="registration"
+              ng-submit="registrationCtrl.submit()"
+              novalidate>
+            <div class="dmb-form__wrapper">
+
+              <div class="dmb-form__input-wrapper">
+                <input
+                    aria-hidden="true"
+                    id="tenant"
+                    name="tenant"
+                    ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
+                    ng-model="registrationCtrl.tenant"
+                    required
+                    type="hidden"
+                    value="{{tenant|ng_mark_safe}}">
+              </div>
+
+              <div class="dmb-form__input-wrapper">
+                {% if tenant|ng_mark_safe == 'ads' %}
+                  {% trans "Enter the organisation name" as org_label %}
+                {% else %}
+                  {% trans "Enter the organization name" as org_label %}
+                {% endif %}
+                <input
+                    aria-label="{{org_label}}"
+                    class="dmb-form__input"
+                    id="companyName"
+                    name="companyName"
+                    ng-model="registrationCtrl.companyName"
+                    required
+                    type="text"
+                    placeholder="{{org_label}}">
+              </div>
+
+              <div class="dmb-form__input-wrapper">
+
+                {% if tenant|ng_mark_safe == 'ads' %}
+                  {% trans "Select an industry" as ind_label %}
+                  <select
+                      aria-label="{{ind_label}}"
+                      class="dmb-form__select dmb-dropdown-arrow"
+                      id="industry"
+                      name="industry"
+                      ng-model="registrationCtrl.industry"
+                      required>
+                    <option selected value="">
+                      {{ind_label}}
+                    </option>
+                    {% for i_key, i_text in industries %}
+                    <option value="{{i_key|ng_mark_safe}}">
+                      {{i_text|ng_mark_safe}}
+                    </option>
+                    {% endfor %}
+                  </select>
+                {% elif tenant|ng_mark_safe == 'news' %}
+                  {% comment %}
+                    TODO: use news industry here https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/129
+                  {% endcomment %}
+                  <input
+                      aria-hidden="true"
+                      id="prodId"
+                      name="industry"
+                      ng-init="registrationCtrl.industry='ic-bnpj'"
+                      type="hidden"
+                      value="ic-bnpj">
+                {% elif tenant|ng_mark_safe == 'retail' %}
+                  <input
+                      aria-hidden="true"
+                      id="prodId"
+                      name="industry"
+                      ng-init="registrationCtrl.industry='rt-o'"
+                      type="hidden"
+                      value="rt-o">
+                {% endif %}
+
+              </div>
+
+              <div class="dmb-form__input-wrapper">
+                {% trans "Select a country" as country_label %}
+                <select
+                    aria-label="{{country_label}}"
+                    class="dmb-form__select dmb-dropdown-arrow"
+                    name="country"
+                    id="country"
+                    ng-model="registrationCtrl.country"
+                    required>
+                  <option selected value="">
+                    {{country_label}}
+                  </option>
+                  {% for c_key, c_text in countries %}
+                    <option value="{{c_key|ng_mark_safe}}">
+                      {{c_text|ng_mark_safe}}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+            </div>
+            <button
+                class="dmb-form__submit h-c-button h-c-button--primary"
+                ng-disabled="!registration.$valid">
+              {% trans "Progress to my assessment" %}
+            </button>
+
+            <div
+                class="dmb-form__error dmb-form__input-wrapper"
+                ng-hide="!registrationCtrl.serverError">
+              {% trans "Oops, something went wrong!" %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-13 09:19+0000\n"
+"POT-Creation-Date: 2019-06-04 15:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,10 +906,13 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-msgid "Advertise"
+msgid "Advertisers"
 msgstr ""
 
 msgid "News"
+msgstr ""
+
+msgid "Retail"
 msgstr ""
 
 msgid "Assets and ads"
@@ -927,7 +930,7 @@ msgstr ""
 msgid "Automation"
 msgstr ""
 
-msgid "Organization"
+msgid "Organisation"
 msgstr ""
 
 msgid "Nascent"
@@ -952,6 +955,18 @@ msgid "Data integrated and activated across channels with demonstrated link to R
 msgstr ""
 
 msgid "Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
+msgstr ""
+
+msgid "This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr ""
+
+msgid "This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing."
+msgstr ""
+
+msgid "This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr ""
+
+msgid "This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
 msgstr ""
 
 msgid "Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences."
@@ -1425,6 +1440,27 @@ msgstr ""
 msgid "Regularly evaluate collaboration between all relevant agencies and help them to be more impactful and efficient. Continue to review your ability to work in agile ways, for example evaluate how you allocate budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
 msgstr ""
 
+msgid "We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands."
+msgstr ""
+
+msgid "The capability to accurately measure and value customer touchpoints."
+msgstr ""
+
+msgid "The capability to deliver attention-driving, intuitive experiences across digital touchpoints."
+msgstr ""
+
+msgid "The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel."
+msgstr ""
+
+msgid "The capability to reach and deliver across all inventory types and channels."
+msgstr ""
+
+msgid "The capability to optimise marketing operations to drive profitability and growth."
+msgstr ""
+
+msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
+msgstr ""
+
 msgid "Digital Maturity Benchmark"
 msgstr ""
 
@@ -1458,39 +1494,16 @@ msgstr ""
 msgid "Response is ready!"
 msgstr ""
 
-msgid "photo of devices"
-msgstr ""
-
-msgid "shield icon"
-msgstr ""
-
-msgid "Why digital maturity matters"
-msgstr ""
-
-msgid "Everyday there are hundreds of chances to engage with customers digitally"
-msgstr ""
-
-#, python-format
-msgid "But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2%% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey."
-msgstr ""
-
-msgid "These businesses have a sustainable competitive advantage"
-msgstr ""
-
-#, python-format
-msgid "Companies leading the way in multi-moment marketing see 30%% cost efficiency savings and a 20%% increase in revenue."
-msgstr ""
-
-msgid "Find out more"
-msgstr ""
-
 msgid "Your roadmap to digital marketing maturity"
 msgstr ""
 
-msgid "The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG. The tool analyses where your business sits on the path to full data-driven marketing and attribution."
+msgid "The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG."
 msgstr ""
 
-msgid "Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
+msgid "Never miss a moment to connect with customers"
+msgstr ""
+
+msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
 msgstr ""
 
 msgid "How it works"
@@ -1511,49 +1524,192 @@ msgstr ""
 msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
 msgstr ""
 
-msgid "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability."
+msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
 msgstr ""
 
-msgid "Organisation"
+msgid "Everyday there are hundreds of chances to engage with customers digitally"
 msgstr ""
 
-msgid "Improve decision-making and results by working collaboratively across teams and with specialised partners"
-msgstr ""
-
-msgid "Accurately measure and value customer touchpoints"
-msgstr ""
-
-msgid "Deliver attention-driving, intuitive experiences across digital touchpoints"
-msgstr ""
-
-msgid "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel"
-msgstr ""
-
-msgid "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control"
-msgstr ""
-
-msgid "Optimise marketing operations to drive profitability and growth"
+#, python-format
+msgid "But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2%% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey."
 msgstr ""
 
 msgid "Use the insights from your report to identify how to drive your organisation to the next level, and work with others in your company and your partners to achieve this."
 msgstr ""
 
-msgid "Benchmark your business now"
+msgid "devices running the tool"
 msgstr ""
 
-msgid "Discover how your marketing maturity measures up, plan your progress, reach more customers."
+msgid "laptop screen demo"
 msgstr ""
 
-msgid "This in-depth assessment takes around 30-minutes to complete."
+msgid "These businesses have a sustainable competitive advantage"
+msgstr ""
+
+#, python-format
+msgid "Companies leading the way in multi-moment marketing see 30%% cost efficiency savings and a 20%% increase in revenue."
+msgstr ""
+
+msgid "Find out more"
+msgstr ""
+
+msgid "image of person using the app on a mobile"
+msgstr ""
+
+msgid "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability."
+msgstr ""
+
+msgid "organization dimension logo"
+msgstr ""
+
+msgid "Improve decision-making and results by working collaboratively across teams and with specialised partners"
+msgstr ""
+
+msgid "attribution dimension logo"
+msgstr ""
+
+msgid "Accurately measure and value customer touchpoints"
+msgstr ""
+
+msgid "assets and ads dimension logo"
+msgstr ""
+
+msgid "Deliver attention-driving, intuitive experiences across digital touchpoints"
+msgstr ""
+
+msgid "audience dimension logo"
+msgstr ""
+
+msgid "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel"
+msgstr ""
+
+msgid "access dimension logo"
+msgstr ""
+
+msgid "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control"
+msgstr ""
+
+msgid "automation dimension logo"
+msgstr ""
+
+msgid "Optimise marketing operations to drive profitability and growth"
+msgstr ""
+
+msgid "In partnership with"
+msgstr ""
+
+msgid "Why digital maturity matters"
 msgstr ""
 
 msgid "Start the assessment now"
 msgstr ""
 
-msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries -"
+msgid "This in-depth assessment takes around 30 minutes to complete."
 msgstr ""
 
-msgid "read more."
+msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
+msgstr ""
+
+msgid "read more"
+msgstr ""
+
+msgid "Ready to benchmark your company’s digital maturity?"
+msgstr ""
+
+msgid "Let’s start with some details about your organisation:"
+msgstr ""
+
+msgid "How we keep your information safe"
+msgstr ""
+
+msgid "Enter the organisation name"
+msgstr ""
+
+msgid "Select an industry"
+msgstr ""
+
+msgid "Select a country"
+msgstr ""
+
+msgid "This field is required!"
+msgstr ""
+
+msgid "Progress to my assessment"
+msgstr ""
+
+msgid "Oops, something went wrong!"
+msgstr ""
+
+msgid "Appendix"
+msgstr ""
+
+msgid "Benchmark calculations"
+msgstr ""
+
+msgid "Industry average & industry best"
+msgstr ""
+
+msgid "These two metrics show how your company compares to the average and top performers in your industry globally."
+msgstr ""
+
+msgid "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category."
+msgstr ""
+
+msgid "Your “Industry average” is currently based on global responses from all industries."
+msgstr ""
+
+msgid "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category."
+msgstr ""
+
+msgid "Your “Industry best” is currently based on global responses from all industries."
+msgstr ""
+
+msgid "If the scores above do not refer to your specific industry, not enough people have yet filled in the assessment to produce a reliable average. Check back later as the scores are continuously updated!"
+msgstr ""
+
+msgid "Six dimensions of digital marketing maturity"
+msgstr ""
+
+msgid "Together with BCG, we identified the "
+msgstr ""
+
+msgid "key dimensions"
+msgstr ""
+
+msgid " that drive data-driven marketing maturity. Click the icons below to see how you perform in each."
+msgstr ""
+
+msgid "Your Digital Maturity level is"
+msgstr ""
+
+msgid "Next level: "
+msgstr ""
+
+msgid "Congratulations, you're in the top group for digital maturity"
+msgstr ""
+
+msgid "Digital Maturity report"
+msgstr ""
+
+msgid "This report will show you where you are weakest and strongest, and what to do to get to the next level."
+msgstr ""
+
+msgid "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level."
+msgstr ""
+
+msgid "Why Digital Maturity matters"
+msgstr ""
+
+msgid "Your overall digital maturity"
+msgstr ""
+
+msgid "Learn more about levels"
+msgstr ""
+
+msgid "Dimensions"
+msgstr ""
+
+msgid "The definition has probably changed and we could not find any answer for this question."
 msgstr ""
 
 msgid "Consumer shift"
@@ -1638,180 +1794,6 @@ msgstr ""
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
 msgstr ""
 
-msgid "Enter the organisation name"
-msgstr ""
-
-msgid "Ready to benchmark your company’s digital maturity?"
-msgstr ""
-
-msgid "Let’s start with some details about your organisation:"
-msgstr ""
-
-msgid "How we keep your information safe"
-msgstr ""
-
-msgid "Organisation name:"
-msgstr ""
-
-msgid "Industry:"
-msgstr ""
-
-msgid "Select an industry"
-msgstr ""
-
-msgid "Country:"
-msgstr ""
-
-msgid "Select a country"
-msgstr ""
-
-msgid "This field is required."
-msgstr ""
-
-msgid "Progress to my assessment"
-msgstr ""
-
-msgid "Oops, something went wrong!"
-msgstr ""
-
-msgid "Hello"
-msgstr ""
-
-msgid "Your personalised assessment is ready to be completed"
-msgstr ""
-
-msgid "Before you begin..."
-msgstr ""
-
-msgid "You may want to share this assessment with other members of your team so you can collaborate on answering the questions."
-msgstr ""
-
-msgid "Copy your unique assessment link using the button below now, and keep it somewhere safe."
-msgstr ""
-
-msgid "Copy my assessment link"
-msgstr ""
-
-msgid "Link copied to clipboard!"
-msgstr ""
-
-msgid "Start my assessment now"
-msgstr ""
-
-msgid "question mark"
-msgstr ""
-
-msgid "Your digital maturity benchmark"
-msgstr ""
-
-msgid "You are"
-msgstr ""
-
-msgid "This report will show you where you are weakest and strongest, and what to do to get to the next level,"
-msgstr ""
-
-msgid "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level."
-msgstr ""
-
-msgid "You are <strong>above average</strong> for your industry, and <strong>behind</strong> the industry best practice. This report will show you where you are weakest and strongest, and what to do to get to the next level, <strong>connected</strong>."
-msgstr ""
-
-msgid "View your results"
-msgstr ""
-
-msgid "Your overall digital maturity"
-msgstr ""
-
-msgid "Your maturity is"
-msgstr ""
-
-msgid "This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales."
-msgstr ""
-
-msgid "This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing."
-msgstr ""
-
-msgid "This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
-msgstr ""
-
-msgid "This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
-msgstr ""
-
-msgid "6 dimensions of digital marketing maturity"
-msgstr ""
-
-msgid "Together with BCG, we identified the capabilities that drive data-driven marketing maturity. Click the icons below to see how you perform in each."
-msgstr ""
-
-msgid "Learn more"
-msgstr ""
-
-msgid "about why these matter"
-msgstr ""
-
-msgid "Appendix"
-msgstr ""
-
-msgid "Levels of digital marketing maturity"
-msgstr ""
-
-msgid "Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions"
-msgstr ""
-
-msgid "Benchmark calculations"
-msgstr ""
-
-msgid "Industry average & industry best"
-msgstr ""
-
-msgid "These two metrics show how your company compares to the average and top performers in your industry globally."
-msgstr ""
-
-msgid "If your specific industry (e.g. “Retail trade - Household goods”) doesn’t yet have enough responses to form a reliable average, you will be shown an average based on the wider industry (e.g. “Retail trade”)."
-msgstr ""
-
-msgid "If there aren’t enough responses in the wider industry either, you will be shown results across all industries globally instead."
-msgstr ""
-
-msgid "In case the scores you are seeing do not refer to your specific industry yet, you can check back later as the scores are being continuously updated."
-msgstr ""
-
-msgid "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category."
-msgstr ""
-
-msgid "Your “Industry average” is currently based on global responses from all industries."
-msgstr ""
-
-msgid "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category."
-msgstr ""
-
-msgid "Your “Industry best” is currently based on global responses from all industries."
-msgstr ""
-
-msgid "6 dimensions of marketing maturity"
-msgstr ""
-
-msgid "The capability to accurately measure and value customer touchpoints."
-msgstr ""
-
-msgid "The capability to deliver attention-driving, intuitive experiences across digital touchpoints."
-msgstr ""
-
-msgid "The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel."
-msgstr ""
-
-msgid "The capability to reach and deliver across all inventory types and channels."
-msgstr ""
-
-msgid "The capability to optimise marketing operations to drive profitability and growth."
-msgstr ""
-
-msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
-msgstr ""
-
-msgid "The definition has probably changed and we could not find any answer for this question."
-msgstr ""
-
 msgid "Nice Work!"
 msgstr ""
 
@@ -1870,10 +1852,31 @@ msgstr ""
 msgid "Industry best"
 msgstr ""
 
+msgid "Fetching your company rating..."
+msgstr ""
+
+msgid "Your company, "
+msgstr ""
+
+msgid " has a rating of "
+msgstr ""
+
+msgid " which is a maturity level of "
+msgstr ""
+
 msgid "Fetching industry average..."
 msgstr ""
 
+msgid "The industry average is "
+msgstr ""
+
+msgid "which is a maturity level of "
+msgstr ""
+
 msgid "Fetching industry best..."
+msgstr ""
+
+msgid "The industry best is "
 msgstr ""
 
 msgid "Not available yet"
@@ -1933,9 +1936,6 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
-msgid "Change language or region"
-msgstr ""
-
 msgid "Data Maturity Benchmark"
 msgstr ""
 
@@ -1948,13 +1948,34 @@ msgstr ""
 msgid "In partnership with The Boston Consulting Group"
 msgstr ""
 
-msgid "In partnership with"
+msgid "Next steps"
 msgstr ""
 
-msgid "Never miss a moment to connect with customers"
+msgid "Review your recommendations and consider these four steps:"
 msgstr ""
 
-msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
+msgid "Define which areas are strongly linked to your business goals"
+msgstr ""
+
+msgid "Create a roadmap outlining what you intend to do over the next 12 months"
+msgstr ""
+
+msgid "Decide who will own each action and how to track progress over this period"
+msgstr ""
+
+msgid "Identify the right partners outside of your company to support you at each stage"
+msgstr ""
+
+msgid "Share this report with your colleagues"
+msgstr ""
+
+msgid "To share this report, copy the link and send it to your colleagues."
+msgstr ""
+
+msgid "Dimensions of marketing maturity"
+msgstr ""
+
+msgid "Levels of data maturity"
 msgstr ""
 
 msgid "Woops.. that page doesn't seem to exist, or the link is broken."
