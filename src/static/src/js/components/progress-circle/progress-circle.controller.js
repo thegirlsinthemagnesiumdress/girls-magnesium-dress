@@ -29,9 +29,17 @@ class ProgressCircleController {
      */
     this.progressBar_ = $element[0].querySelector(progressBarClass);
 
+        /**
+     * @type {Object}
+     * @export
+     */
+    this.firstLevel = tenantConf.levelsArray[0];
+
     $scope.$watch($attrs['dmbProgressCircle'], (nVal) => {
-      const percentComplete = nVal / tenantConf.levelsMax * 100;
-      this.setProgressCircle(percentComplete);
+      if (nVal) {
+        const percentComplete = ((nVal - this.firstLevel) / (tenantConf.levelsMax - this.firstLevel)) * 100;
+        this.setProgressCircle(percentComplete);
+      }
     });
   }
 

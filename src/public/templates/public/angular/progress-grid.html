@@ -1,9 +1,7 @@
 {% load i18n %}
 {% trans "Get more information about the industry average" as industry_avg_aria_text %}
 {% trans "Get more information about the industry best" as industry_best_aria_text %}
-<div
-    class="dmb-progress-grid dmb-progress-grid--level-{[progressGridCtrl.getDmbLevels(ratingMain).current.value]}">
-
+<div class="dmb-progress-grid dmb-progress-grid--level-{[ progressGridCtrl.dmbLevelsFactory(ratingMain).current.value ]}">
     <!-- This list is visually hidden and only read out by screen readers -->
     <ul class="h-u-visually-hidden">
       <li>
@@ -12,11 +10,11 @@
         </span>
         <span ng-if="ratingMain">
           {% trans "Your company, " %}
-          {[companyName]},
+          {[ companyName ]},
           {% trans " has a rating of " %}
-          {[ratingMain|number:1]},
+          {[ ratingMain|number:1 ]},
           {% trans " which is a maturity level of " %}
-          {[progressGridCtrl.getLevelName(ratingMain)]}.
+          {[ progressGridCtrl.dmbLevelsFactory(ratingMain).current.mapValue ]}.
         </span>
       </li>
       <li>
@@ -25,9 +23,9 @@
         </span>
         <span ng-if="industryReady">
           {% trans "The industry average is " %}
-          {[industryAvg|number:1]},
+          {[ industryAvg|number:1 ]},
           {% trans "which is a maturity level of " %}
-          {[progressGridCtrl.getLevelName(industryAvg)]}.
+          {[ progressGridCtrl.dmbLevelsFactory(industryAvg).current.mapValue ]}.
         </span>
       </li>
       <li>
@@ -36,30 +34,30 @@
         </span>
         <span ng-if="industryReady">
           {% trans "The industry best is " %}
-          {[industryBest|number:1]},
+          {[ industryBest|number:1 ]},
           {% trans " which is a maturity level of " %}
-          {[progressGridCtrl.getLevelName(industryBest)]}.
+          {[ progressGridCtrl.dmbLevelsFactory(industryBest).current.mapValue ]}.
         </span>
       </li>
     </ul>
 
   <!-- col-bg -->
   <div
-      class="dmb-progress-grid__col-bg dmb-progress-grid__col-bg--level-{[$index]}"
-      ng-repeat="level in progressGridCtrl.levels">
+      class="dmb-progress-grid__col-bg dmb-progress-grid__col-bg--level-{[ key ]}"
+      ng-repeat="(key, level) in progressGridCtrl.levels">
   </div>
 
   <!-- grid headings -->
   <div
-      class="dmb-progress-grid__heading dmb-progress-grid__heading--level-{[$index]} h-c-eyebrow h-c-eyebrow--underlined"
-      ng-repeat="level in progressGridCtrl.levels"
+      class="dmb-progress-grid__heading dmb-progress-grid__heading--level-{[ key ]} h-c-eyebrow h-c-eyebrow--underlined"
+      ng-repeat="(key, level) in progressGridCtrl.levels"
       aria-hidden="true">
-    {[level]}
+    {[ level ]}
   </div>
 
   <!-- bar labels -->
   <div class="dmb-progress-grid__label dmb-progress-grid__label--company h-u-font-weight-medium">
-    {[companyName]}
+    {[ companyName ]}
   </div>
   <div class="dmb-progress-grid__label dmb-progress-grid__label--ind-avg h-u-font-weight-regular">
     <button
@@ -87,23 +85,23 @@
   <!-- vertical bars -->
   <div
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--company"
-      data-value="{[ratingMain|number:1]}"
-      data-level-name="{[progressGridCtrl.getLevelName(ratingMain)]}"
+      data-value="{[ ratingMain|number:1 ]}"
+      data-level-name="{[ progressGridCtrl.dmbLevelsFactory(ratingMain).current.mapValue ]}"
       ng-style="{height: progressGridCtrl.getProgress(ratingMain)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-avg"
-      data-value="{[industryAvg|number:1]}"
-      data-level-name="{[progressGridCtrl.getLevelName(industryAvg)]}"
+      data-value="{[ industryAvg|number:1 ]}"
+      data-level-name="{[ progressGridCtrl.dmbLevelsFactory(industryAvg).current.mapValue ]}"
       ng-if="industryAvg"
       ng-style="{height: progressGridCtrl.getProgress(industryAvg)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-best"
-      data-value="{[industryBest|number:1]}"
-      data-level-name="{[progressGridCtrl.getLevelName(industryBest)]}"
+      data-value="{[ industryBest|number:1 ]}"
+      data-level-name="{[ progressGridCtrl.dmbLevelsFactory(industryBest).current.mapValue ]}"
       ng-if="industryBest"
       ng-style="{height: progressGridCtrl.getProgress(industryBest)}"
       aria-hidden="true">
@@ -112,20 +110,20 @@
   <!-- horizontal bars -->
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--company"
-      data-value="{[ratingMain|number:1]}"
+      data-value="{[ ratingMain|number:1 ]}"
       ng-style="{width: progressGridCtrl.getProgress(ratingMain)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-avg"
-      data-value="{[industryAvg|number:1]}"
+      data-value="{[ industryAvg|number:1 ]}"
       ng-if="industryAvg"
       ng-style="{width: progressGridCtrl.getProgress(industryAvg)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__h-bar dmb-progress-grid__h-bar--ind-best"
-      data-value="{[industryBest|number:1]}"
+      data-value="{[ industryBest|number:1 ]}"
       ng-if="industryBest"
       ng-style="{width: progressGridCtrl.getProgress(industryBest)}"
       aria-hidden="true">

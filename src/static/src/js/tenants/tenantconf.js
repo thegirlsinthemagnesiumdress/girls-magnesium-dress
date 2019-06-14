@@ -109,7 +109,9 @@ class TenantConfiguration {
     this.dimensions = this.contentData['dimensions'];
     this.levels = this.contentData['levels'];
     this.levelsMax = this.contentData['levels_max'];
-    this.levelsTotal = Object.keys(this.levels).length;
+    const levelKeys = Object.keys(this.levels);
+    this.levelsTotal = levelKeys.length;
+    this.levelsArray = levelKeys.sort();
     this.levelDescriptions = this.contentData['level_descriptions'];
     this.reportLevelDescriptions = this.contentData['report_level_descriptions'];
     this.dimensionHeaderDescriptions = this.contentData['dimension_header_descriptions'];

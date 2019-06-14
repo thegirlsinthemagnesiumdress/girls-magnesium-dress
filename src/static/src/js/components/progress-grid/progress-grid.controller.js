@@ -8,42 +8,35 @@ class ProgressGridController {
    * ProgressGrid controller
    *
    * @param {!Object} tenantConf
+   * @param {!Function} dmbLevelsFactory
    *
    * @ngInject
    */
-  constructor(tenantConf) {
+  constructor(tenantConf, dmbLevelsFactory) {
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.levels = tenantConf.levels;
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
-    this.levelsTotal = tenantConf.levelsTotal;
-  }
+    this.levelsMax = tenantConf.levelsMax;
 
-  /**
-   * Function to get a rounded level value from a value
-   * @param {number} value
-   * @return {number}
-   * @export
-   */
-  getLevel(value) {
-    return Math.min(Math.floor(value), (this.levelsTotal - 1));
-  }
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.levelsArray = tenantConf.levelsArray;
 
-  /**
-   * Function to get the level name from the value
-   * @param {number} value
-   * @return {string}
-   * @export
-   */
-  getLevelName(value) {
-    const level = this.getLevel(value);
-    return this.levels[level];
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
   }
 
   /**
@@ -53,8 +46,17 @@ class ProgressGridController {
    * @export
    */
   getProgress(value) {
-    const prog = value * 100;
-    return `${prog}%`;
+    if (value) {
+      const firstLevel = this.levelsArray[0];
+      const firstLevelRange = this.levelsArray[1] - firstLevel;
+
+      // normalise value to 0 by subtracting the firstLevel
+      value -= firstLevel;
+
+      // calculate the percetage of bar based on the first level's range
+      const prog = (value / firstLevelRange) * 100;
+      return `${prog}%`;
+    }
   }
 }
 

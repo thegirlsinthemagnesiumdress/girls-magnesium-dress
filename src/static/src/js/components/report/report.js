@@ -28,27 +28,16 @@ module.factory('dmbLevelsFactory', ['tenantConf', (tenantConf) => {
     }
 
     if (!sourceMap) {
-      // Default to `tenantConf.levels` if no map given
+      // Default to `tenantConf.levels` if no map given as this is most common use case
       sourceMap = tenantConf.levels;
     }
 
-    const sourceKeys = Object.keys(sourceMap).sort();
-    for (const [index, val] of sourceKeys.entries()) {
-      // If last element
-      if (index == sourceKeys.length - 1) {
-        return {
-          current: {
-            value: val,
-            mapValue: sourceMap[val],
-          },
-          next: {
-            value: val,
-            mapValue: sourceMap[val],
-          },
-        };
-      } else if (value >= val && value < sourceKeys[index + 1]) {
-        const nextLevel = sourceKeys[index + 1];
-        // Including the return twice for early break when condition met
+    // Get source keys which are the levels
+    const levelKeys = Object.keys(sourceMap).sort();
+    for (const [index, val] of levelKeys.entries()) {
+      let nextLevel = levelKeys[index + 1];
+      if (value >= val && (value < nextLevel || !nextLevel)) {
+        nextLevel = nextLevel || val;
         return {
           current: {
             value: val,
@@ -65,12 +54,13 @@ module.factory('dmbLevelsFactory', ['tenantConf', (tenantConf) => {
 }]);
 
 module.factory('resultInTopLevel', ['tenantConf', (tenantConf) => {
+  const levelsArray = Object.keys(tenantConf.levels).sort();
+
   return (value) => {
     if (!angular.isDefined(value)) {
       return '';
     }
 
-    const levelsArray = Object.keys(tenantConf.levels).sort();
     return value >= levelsArray[levelsArray.length - 1];
   };
 }]);
