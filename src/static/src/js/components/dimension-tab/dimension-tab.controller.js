@@ -59,14 +59,20 @@ class DimensionTabController {
     this.currentLevel = {};
 
     /**
-     * @export
      * @type {Object}
+     * @export
      */
     this.nextLevel = {};
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
+     */
+    this.dimensions = tenantConf.dimensions;
+
+    /**
+     * @type {Object}
+     * @export
      */
     this.dimensionClassNames = {};
 
@@ -75,55 +81,55 @@ class DimensionTabController {
     });
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.dimensionHeader = '';
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.dimensionHeaderDescription = '';
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.dimensionLevelDescription = '';
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.recommendations = {};
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.dmb = null;
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.industryDmb = null;
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.industryDmb_bp = null;
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.industryResult = null;
 
     /**
-     * type {!Object}
+     * @type {!Object}
      */
     this.reportService = reportService;
 
@@ -141,25 +147,27 @@ class DimensionTabController {
     $scope.$watch(() => (reportService.dmb_d), (nVal)=> {
       const dimension = $scope['dmbDimensionTab'];
       this.dmb = nVal ? nVal[dimension] : null;
-      const dmbLevels = dmbLevelsFactory(this.dmb);
-      this.currentLevel = dmbLevels.current;
-      this.nextLevel = dmbLevels.next;
-      this.resultInTopLevel = resultInTopLevel(this.dmb);
 
       this.dimensionHeader = tenantConf.dimensionHeaders[dimension];
       this.dimensionDescription = $sce.trustAsHtml(tenantConf.dimensionHeaderDescriptions[dimension]);
 
-      this.dimensionLevelDescription = $sce.trustAsHtml(
-        dmbLevelsFactory(
-          this.dmb,
-          tenantConf.dimensionLevelDescription[dimension]
-        ).current.mapValue
-      );
+      if (this.dmb) {
+        const dmbLevels = dmbLevelsFactory(this.dmb);
+        this.currentLevel = dmbLevels.current;
+        this.nextLevel = dmbLevels.next;
+        this.resultInTopLevel = resultInTopLevel(this.dmb);
+        this.dimensionLevelDescription = $sce.trustAsHtml(
+          dmbLevelsFactory(
+            this.dmb,
+            tenantConf.dimensionLevelDescription[dimension]
+          ).current.mapValue
+        );
 
-      this.recommendations = dmbLevelsFactory(
-        this.dmb,
-        tenantConf.dimensionRecommendations[dimension]
-      ).current.mapValue;
+        this.recommendations = dmbLevelsFactory(
+          this.dmb,
+          tenantConf.dimensionRecommendations[dimension]
+        ).current.mapValue;
+      }
     });
 
     $scope.$watch(() => (reportService.industryDmb_d), (nVal)=> {
