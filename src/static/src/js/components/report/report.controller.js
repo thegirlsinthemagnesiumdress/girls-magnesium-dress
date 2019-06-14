@@ -222,12 +222,13 @@ class ReportController {
       this.overallResult = parseFloat(this.result['dmb']);
 
       // //////////////////////////////////
-      this.result['dmb_d'] = {
-        'learn': 1,
-        'lead': 2,
-        'scale': 3,
-        'secure': 4,
-      };
+      // REMOVE THIS ONCE BE PROVIDES CLOUD DIMENSIONS
+      // this.result['dmb_d'] = {
+      //   'learn': 1,
+      //   'lead': 2,
+      //   'scale': 3,
+      //   'secure': 4,
+      // };
       // //////////////////////////////////
 
       reportService.dmb_d = this.result['dmb_d'];
