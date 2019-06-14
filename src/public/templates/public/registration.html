@@ -15,11 +15,12 @@
         <div class="h-c-grid">
           <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
             <h1 class="dmb-registration__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
-              {% trans "Ready to benchmark your company’s "%}
               {% if tenant|ng_mark_safe == 'ads' %}
-                {% trans "digital maturity?" %}
+                {% trans "Ready to benchmark your company’s digital maturity?" %}
+              {% elif tenant|ng_mark_safe == 'cloud' %}
+                Ready to assess your organization’s cloud maturity?
               {% else %}
-                {% trans "data maturity?" %}
+                Ready to benchmark your company’s data maturity?
               {% endif %}
             </h1>
           </div>
@@ -36,7 +37,7 @@
             {% if tenant|ng_mark_safe == 'ads' %}
               {% trans "organisation:" %}
             {% else %}
-              {% trans "organization:" %}
+              organization:
             {% endif %}
           </h2>
           <a
@@ -87,7 +88,7 @@
 
               <div class="dmb-form__input-wrapper">
 
-                {% if tenant|ng_mark_safe == 'ads' %}
+                {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
                   {% trans "Select an industry" as ind_label %}
                   <select
                       aria-label="{{ind_label}}"
@@ -152,7 +153,12 @@
             <button
                 class="dmb-form__submit h-c-button h-c-button--primary"
                 ng-disabled="!registration.$valid">
+            {% if tenant|ng_mark_safe == 'cloud' %}
+              Continue to my assessment
+            {% else %}
               {% trans "Progress to my assessment" %}
+            {% endif %}
+
             </button>
 
             <div
