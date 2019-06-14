@@ -5,12 +5,12 @@
     </h1>
     <p
         class="h-c-headline h-c-headline--subhead dmb-u-m-b-s"
-        ng-if="!reportCtrl.resultInTopLevel">
-      This report will show you how you score across the key dimensions, and what to do to get to the next level, {[ reportCtrl.currentLevel.mapValue ]}.
+        ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+      This report will show you how you score across the key dimensions, and what to do to get to the next level, {[ reportCtrl.dmbLevelsFactory(reportCtrl.overallResult).current.mapValue ]}.
     </p>
     <p
         class="h-c-headline h-c-headline--subhead dmb-u-m-b-s"
-        ng-if="reportCtrl.resultInTopLevel">
+        ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
       Congratulations! You're in the top group for overall data maturity. This report will show you how you score across the key dimensions, and how to get even better.
     </p>
 

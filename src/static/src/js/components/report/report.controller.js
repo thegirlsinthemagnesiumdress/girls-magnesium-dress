@@ -174,19 +174,6 @@ class ReportController {
     this.overallResult = null;
 
     /**
-     * @export
-     * @type {Object}
-     */
-    this.currentLevel = {};
-
-    /**
-     * @export
-     * @type {Object}
-     */
-    this.nextLevel = {};
-
-
-    /**
      *
      * @type {Function}
      * @export
@@ -195,10 +182,10 @@ class ReportController {
 
     /**
      *
-     * @type {Boolean}
+     * @type {Function}
      * @export
      */
-    this.resultInTopLevel = false;
+    this.resultInTopLevel = resultInTopLevel;
 
     /**
      * Survey object.
@@ -231,22 +218,16 @@ class ReportController {
       this.result = this.survey['survey_result'];
 
       // DRF returns decimal fields as strings. We should probably look into this
-      // on the BE but until we do let's fix this on the FE.
-      // this.result.dmb = parseFloat(this.result['dmb']);
-      this.overallResult = this.result['dmb'];
-
-      const dmbLevels = dmbLevelsFactory(this.overallResult);
-      this.currentLevel = dmbLevels.current;
-      this.nextLevel = dmbLevels.next;
-      this.resultInTopLevel = resultInTopLevel(this.overallResult);
+      // on the BE but until we do let's fix this on the FE
+      this.overallResult = parseFloat(this.result['dmb']);
 
       // //////////////////////////////////
-      // this.result['dmb_d'] = {
-      //   'learn': 2.3,
-      //   'lead': 3.5,
-      //   'scale': 4.5,
-      //   'secure': 5,
-      // };
+      this.result['dmb_d'] = {
+        'learn': 1,
+        'lead': 2,
+        'scale': 3,
+        'secure': 4,
+      };
       // //////////////////////////////////
 
       reportService.dmb_d = this.result['dmb_d'];

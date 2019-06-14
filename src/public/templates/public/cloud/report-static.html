@@ -8,6 +8,10 @@
   {% include 'public/cloud/report/report-hero.inc.html' %}
   {% include 'public/cloud/report/report-overall.inc.html' %}
   {% include 'public/cloud/report/report-dimensions.inc.html' %}
+
+  {% if debug %}
+    {% include 'public/inc/report/debug.inc.html' %}
+  {% endif %}
 </main>
 
 <div class="dmb-report-page__appendix dmb-h-hidden--screen">
@@ -19,6 +23,7 @@
 {% include 'public/inc/report/side-panels/levels-side-panel.inc.html' %}
 {% include 'public/inc/report/side-panels/industry-side-panel.inc.html' %}
 {% include 'public/inc/report/side-panels/dimensions-side-panel.inc.html' %}
+
 
 {% endblock %}
 

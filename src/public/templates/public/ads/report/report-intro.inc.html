@@ -7,12 +7,12 @@
     </h1>
     <p
         class="h-c-headline h-c-headline--subhead dmb-u-m-b-s"
-        ng-if="!reportCtrl.resultInTopLevel">
+        ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
       {% trans "This report will show you where you are weakest and strongest, and what to do to get to the next level." %}
     </p>
     <p
         class="h-c-headline h-c-headline--subhead dmb-u-m-b-s"
-        ng-if="reportCtrl.resultInTopLevel">
+        ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
       {% trans "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level." %}
     </p>
 
