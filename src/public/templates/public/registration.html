@@ -18,9 +18,9 @@
               {% if tenant|ng_mark_safe == 'ads' %}
                 {% trans "Ready to benchmark your company’s digital maturity?" %}
               {% elif tenant|ng_mark_safe == 'cloud' %}
-               {% trans "Ready to assess your organization’s cloud maturity?" %}
+                Ready to assess your organization’s cloud maturity?
               {% else %}
-                {% trans "Ready to benchmark your company’s data maturity?" %}
+                Ready to benchmark your company’s data maturity?
               {% endif %}
             </h1>
           </div>
@@ -37,7 +37,7 @@
             {% if tenant|ng_mark_safe == 'ads' %}
               {% trans "organisation:" %}
             {% else %}
-              {% trans "organization:" %}
+              organization:
             {% endif %}
           </h2>
           <a
@@ -153,10 +153,10 @@
             <button
                 class="dmb-form__submit h-c-button h-c-button--primary"
                 ng-disabled="!registration.$valid">
-            {% if tenant|ng_mark_safe == 'ads' %}
-              {% trans "Progress to my assessment" %}
+            {% if tenant|ng_mark_safe == 'cloud' %}
+              Continue to my assessment
             {% else %}
-              {% trans "Continue to my assessment" %}
+              {% trans "Progress to my assessment" %}
             {% endif %}
 
             </button>

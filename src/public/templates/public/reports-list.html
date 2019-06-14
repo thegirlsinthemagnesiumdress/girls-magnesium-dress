@@ -198,8 +198,9 @@
                   Check <a class="h-c-inline-link" href="http://go/dmb-userguide" target="_blank">go/dmb-userguide</a> for help on identifying the Greentea ID of your client.
                 </div>
               </div>
-              {% endif %}
-              {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
+            {% endif %}
+
+            {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
               <div class="dmb-form__input-wrapper">
                 <label for="industry">Industry:</label>
                 <select
