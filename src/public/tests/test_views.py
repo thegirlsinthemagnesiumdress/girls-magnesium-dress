@@ -211,11 +211,11 @@ class ThankyouPage(TestCase):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
-    def test_custom_thank_you_page_template_does_not_exist(self):
-        """If template exists should return 400."""
+    def test_thank_you_page_exists(self):
+        """Thank you page should always exist, and return 200."""
         url = reverse('thank-you', kwargs={'tenant': 'tenant2-slug'})
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
 
 @override_settings(

@@ -127,3 +127,5 @@ _dmb-svgs.inc.html
 
 # Makefiles
 Makefile
+
+.gitattributes

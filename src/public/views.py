@@ -50,7 +50,7 @@ def _dump_tenant_content_data(tenant):
 
 def registration(request, tenant):
     industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
-    return render(request, 'public/{}/registration.html'.format(tenant), {
+    return render(request, 'public/registration.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
@@ -91,7 +91,7 @@ def index_static(request, tenant):
 
 def thank_you(request, tenant):
     slug = get_tenant_slug(tenant)
-    return render(request, 'public/{}/thank-you.html'.format(tenant), {
+    return render(request, 'public/thank-you.html', {
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
@@ -107,7 +107,7 @@ def reports_admin(request, tenant):
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
-    return render(request, 'public/{}/reports-list.html'.format(tenant), {
+    return render(request, 'public/reports-list.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
