@@ -220,17 +220,6 @@ class ReportController {
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE
       this.overallResult = parseFloat(this.result['dmb']);
-
-      // //////////////////////////////////
-      // REMOVE THIS ONCE BE PROVIDES CLOUD DIMENSIONS
-      // this.result['dmb_d'] = {
-      //   'learn': 1,
-      //   'lead': 2,
-      //   'scale': 3,
-      //   'secure': 4,
-      // };
-      // //////////////////////////////////
-
       reportService.dmb_d = this.result['dmb_d'];
 
       // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
@@ -244,7 +233,6 @@ class ReportController {
       this.ngTimeout_(() => {
         this.renderTabset = true;
       }, 0, true);
-      // //////////////
 
 
       $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {

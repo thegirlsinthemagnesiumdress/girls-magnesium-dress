@@ -58,17 +58,14 @@ $tenants: (
     primary-color: $dmb-text-color,
     progress-grid-switch-bp: 800px,
     levels: (
-      1: (
+      0: (
         color: $h-gm-red-700,
-        range: 2
       ),
-      3: (
+      1: (
         color: $h-gm-yellow-700,
-        range: 2
       ),
-      5: (
+      2: (
         color: $h-gm-green-700,
-        range: 1
       )
     )
   )
