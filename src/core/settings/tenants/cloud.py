@@ -569,6 +569,8 @@ CONTENT_DATA = {
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
+    'subdimensions': SUBDIMENSION_ORDER,
+    'subdimension_labels': SUBDIMENSION_TITLES,
 }
 
 #####  GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
