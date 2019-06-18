@@ -48,6 +48,10 @@ class Survey(models.Model):
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
 
+    def get_industry_display(self, *args, **kwargs):
+        t = settings.TENANTS[self.tenant]
+        return t['INDUSTRIES'][self.industry]
+
     @property
     def link(self):
         """
@@ -95,6 +99,7 @@ class Survey(models.Model):
 
         assert self.country in settings.COUNTRIES.keys(), "%r is not in set of configured COUNTRIES" % self.country
         assert self.tenant in settings.TENANTS.keys(), "%r is not in set of configured TENANTS" % self.tenant
+
         industry_list = settings.TENANTS[self.tenant]['INDUSTRIES'].keys()
         assert self.industry in industry_list, "%r is not in set of configured INDUSTRIES" % self.industry
 

@@ -7,33 +7,33 @@ from core.models import SurveyResult
 from core.tests import mocks
 
 
-@override_settings(
-    INDUSTRIES={
-        'co': ('Construction', None),
-        'edu': ('Education', None),
-        'edu-fe': ('Further education', 'edu'),
-        'edu-o': ('Other', 'edu'),
-        'edu-pe': ('Primary education', 'edu'),
-        'edu-se': ('Secondary education', 'edu'),
-        'egsw': ('Electricity, gas, steam, water', None),
-        'fi': ('Financial and Insurance', None),
-        'fi-b': ('Banking', 'fi'),
-        'fi-i': ('Insurance', 'fi'),
-        'fi-o': ('Other', 'fi'),
-    }
-)
 class GetPathTest(TestCase):
     """Test class for `core.aggregate.get_path` function."""
 
+    def setUp(self):
+        self.industries_list = {
+            'co': ('Construction', None),
+            'edu': ('Education', None),
+            'edu-fe': ('Further education', 'edu'),
+            'edu-o': ('Other', 'edu'),
+            'edu-pe': ('Primary education', 'edu'),
+            'edu-se': ('Secondary education', 'edu'),
+            'egsw': ('Electricity, gas, steam, water', None),
+            'fi': ('Financial and Insurance', None),
+            'fi-b': ('Banking', 'fi'),
+            'fi-i': ('Insurance', 'fi'),
+            'fi-o': ('Other', 'fi'),
+        }
+
     def test_get_path_leaf_element(self):
-        path = aggregate.get_path('co', settings.INDUSTRIES)
+        path = aggregate.get_path('co', self.industries_list)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 2)
         self.assertIn('co', path)
         self.assertIn(None, path)
 
     def test_get_path_nested_leaf_element(self):
-        path = aggregate.get_path('fi-i', settings.INDUSTRIES)
+        path = aggregate.get_path('fi-i', self.industries_list)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 3)
         self.assertIn('fi-i', path)
@@ -41,20 +41,20 @@ class GetPathTest(TestCase):
         self.assertIn(None, path)
 
     def test_get_path_intermediate_element(self):
-        path = aggregate.get_path('fi', settings.INDUSTRIES)
+        path = aggregate.get_path('fi', self.industries_list)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 2)
         self.assertIn('fi', path)
         self.assertIn(None, path)
 
     def test_get_path_root_element(self):
-        path = aggregate.get_path(None, settings.INDUSTRIES)
+        path = aggregate.get_path(None, self.industries_list)
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 1)
         self.assertIn(None, path)
 
     def test_get_path_root_element_custom(self):
-        path = aggregate.get_path('fi', settings.INDUSTRIES, root_element='ROOT')
+        path = aggregate.get_path('fi', self.industries_list, root_element='ROOT')
         self.assertIsInstance(path, list)
         self.assertEqual(len(path), 2)
         self.assertIn('fi', path)

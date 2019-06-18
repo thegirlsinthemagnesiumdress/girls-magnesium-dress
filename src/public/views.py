@@ -11,7 +11,7 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug
+from core.conf.utils import get_tenant_slug, flatten
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
@@ -50,7 +50,9 @@ def _dump_tenant_content_data(tenant):
 
 
 def registration(request, tenant):
-    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
+
+    tenant_conf = settings.TENANTS[tenant]
+    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
     return render(request, 'public/registration.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
@@ -102,7 +104,8 @@ def thank_you(request, tenant):
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
-    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
+    tenant_conf = settings.TENANTS[tenant]
+    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
 
     slug = get_tenant_slug(tenant)
 
