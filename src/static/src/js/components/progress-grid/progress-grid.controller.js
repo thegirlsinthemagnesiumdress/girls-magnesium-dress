@@ -32,11 +32,57 @@ class ProgressGridController {
     this.levelsArray = tenantConf.levelsArray;
 
     /**
+     * @type {Object}
+     * @export
+     */
+    this.ratingMainData = {};
+
+    /**
+    * @type {Object}
+    * @export
+    */
+    this.industryBestData = {};
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgData = {};
+
+    /**
      *
      * @type {Function}
      * @export
      */
     this.dmbLevelsFactory = dmbLevelsFactory;
+
+    // Bind for external use
+    this.updateLevelsData = this.updateLevelsData.bind(this);
+  }
+
+  /**
+   * On scope initialisation update the values
+   */
+  $onInit() {
+    console.log('[ProgressGridController] $onInit');
+    this.updateLevelsData();
+  }
+
+  /**
+   * Respond to property changes and update the values
+   */
+  $onChanges() {
+    console.log('[ProgressGridController] $onChanges');
+    this.updateLevelsData();
+  }
+
+  /**
+   * updates the levels data for from dmbLevelsFactory
+   */
+  updateLevelsData() {
+    this.ratingMainData = this.dmbLevelsFactory(this.ratingMain);
+    this.industryBestData = this.dmbLevelsFactory(this.ratingMain);
+    this.industryAvgData = this.dmbLevelsFactory(this.industryAvg);
   }
 
   /**

@@ -8,7 +8,8 @@
     <input
         style="border: 1px solid #000;"
         id="overall"
-        ng-model="reportCtrl.overallResult"
+        ng-model="debugOverallResult"
+        ng-change="reportCtrl.setOverallResult(debugOverallResult)"
         type="number">
   </div>
 </div>

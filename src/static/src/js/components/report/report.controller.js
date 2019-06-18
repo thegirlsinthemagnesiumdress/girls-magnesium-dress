@@ -175,6 +175,27 @@ class ReportController {
 
     /**
      *
+     * @type {object}
+     * @export
+     */
+    this.currentLevelData = {};
+
+    /**
+     *
+     * @type {object}
+     * @export
+     */
+    this.nextLevelData = {};
+
+    /**
+     *
+     * @type {object}
+     * @export
+     */
+    this.currentLevelDescription = {};
+
+    /**
+     *
      * @type {Function}
      * @export
      */
@@ -208,6 +229,9 @@ class ReportController {
      */
     this.trustAsHtml = $sce.trustAsHtml;
 
+    // Allows use from other contexts
+    this.setOverallResult = this.setOverallResult.bind(this);
+
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
     // We're saving the results in a service since it's not possible to
@@ -219,8 +243,9 @@ class ReportController {
 
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE
-      this.overallResult = parseFloat(this.result['dmb']);
+      this.setOverallResult(parseFloat(this.result['dmb']));
       reportService.dmb_d = this.result['dmb_d'];
+
 
       // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
       // reportService.dmb_d['reader_revenue'] = null;
@@ -250,6 +275,19 @@ class ReportController {
       this.showTabs= this.showTabs_(size);
       $scope.$apply();
     });
+  }
+
+  /**
+   * Sets values for overall result
+   * @param {float} overallResult
+   */
+  setOverallResult(overallResult) {
+    this.overallResult = overallResult;
+    const levelData = this.dmbLevelsFactory(this.overallResult);
+    this.currentLevelData = levelData.current;
+    this.nextLevelData = levelData.next;
+    const levelDescriptions = this.dmbLevelsFactory(this.reportLevelDescription, this.reportLevelDescriptions);
+    this.currentLevelDescription = levelDescriptions.current;
   }
 
   /**

@@ -22,6 +22,7 @@ function ProgressGridDirective(cssGridSupport) {
     },
     controller: progressGridCtrl.main,
     controllerAs: progressGridCtrl.CONTROLLER_AS_NAME,
+    bindToController: true,
     templateUrl: () => {
       return cssGridSupport ? progressGridTemplateUrl : progressGridFallbackTemplateUrl;
     },
