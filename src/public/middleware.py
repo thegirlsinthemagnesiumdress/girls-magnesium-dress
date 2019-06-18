@@ -4,6 +4,7 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.template.exceptions import TemplateDoesNotExist
 from core.conf.utils import get_tenant_key, get_tenant_slug
+from djangae.environment import is_production_environment
 
 
 class RedirectToDefaultTenant(object):
@@ -20,7 +21,3 @@ class RedirectToDefaultTenant(object):
     def process_view(self, request, view_func, view_args, view_kwargs):
         if 'tenant' in view_kwargs:
             view_kwargs.update({'tenant': get_tenant_key(view_kwargs['tenant'])})
-
-    def process_exception(self, request, exception):
-        if isinstance(exception, TemplateDoesNotExist):
-            raise Http404

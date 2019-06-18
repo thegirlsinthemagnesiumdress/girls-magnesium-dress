@@ -49,9 +49,3 @@ class TestRedirectToDefaultTenantMiddleware(TestCase):
         response = self.middleware.process_request(request)
 
         self.assertIsNone(response)
-
-    def test_process_exception_returns_404_on_template_does_not_exist(self):
-        request = self.factory.get('/')
-
-        with self.assertRaises(Http404):
-            self.middleware.process_exception(request, TemplateDoesNotExist(''))
