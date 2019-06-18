@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, Http404
-from django.template.exceptions import TemplateDoesNotExist
+from django.http import HttpResponseRedirect
 from django.test.client import RequestFactory
 
 from djangae.test import TestCase

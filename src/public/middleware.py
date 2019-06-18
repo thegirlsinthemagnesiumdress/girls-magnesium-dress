@@ -1,10 +1,7 @@
 from django.core.urlresolvers import resolve
 from django.conf import settings
-from django.http import Http404
 from django.shortcuts import redirect
-from django.template.exceptions import TemplateDoesNotExist
 from core.conf.utils import get_tenant_key, get_tenant_slug
-from djangae.environment import is_production_environment
 
 
 class RedirectToDefaultTenant(object):
