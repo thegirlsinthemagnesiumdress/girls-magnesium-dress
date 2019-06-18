@@ -117,21 +117,28 @@ We're versioning js and css files, that's automatically handled by static_rev te
 ## Back-end
 ### Create tenant config file
 1. Copy `src/core/settings/tenants/tenant-template.py` and rename it as `<tenant>.py`, e.g. for a tenant `cloud` use `cloud.py`.
-1. In the "`# DIMENSIONS`" section change the `<dimension_id>`'s to id's that match the dimension names, eg:
+1. In the "`# DIMENSIONS`" section change `DIMENSION_(N)` and `<dimension_id>` to the appropriate values to match the dimension names eg:
     ```
-    DIMENSION_1 = 'strategic_direction'
-    DIMENSION_2 = 'user_engagement'
-    DIMENSION_3 = 'core_sales'
-    DIMENSION_4 = 'emerging_monetization'
+    DIMENSION_STRATEGIC_DIRECTION = 'strategic_direction'
+    DIMENSION_USER_ENGAGEMENT = 'user_engagement'
+    DIMENSION_CORE_SALES = 'core_sales'
+    DIMENSION_EMERGING_MONETIZATION = 'emerging_monetization'
     ```
-1. If the tenant levels map to scores other than the default values then change the values of the `LEVEL_(n)` variabes in the "`# LEVELS`" section. e.g. if level 3 is reached with scores greater than `5.0` then change it to this:
+1. Change all instances of `DIMENSION_(N)` with the values created in the previous step, for example the change all instances of `DIMENSION_1` to `DIMENSION_STRATEGIC_DIRECTION`.
+
+1. If the tenant levels map to scores other than the default values then change the values of the `LEVEL_(n)` variabes in the "`# LEVELS`" section. e.g. if level 3 is reached with scores greater than `5.0` then change it to:
     ```
     LEVEL_3 = 5
     ```
-    If the tenant has more than the default 4 levels, add the additional levels add them as well. e.g. to add a fifth level that is reached for scores greater than `10` add this:
+    If the tenant has more than the default 4 levels, add the additional levels, e.g. to add a fifth level that is reached for scores of `10.0` or more add this:
     ```
     LEVEL_5 = 10
     ```
+1. If the maximum level value is different from the default of 5, change `LEVELS_MAX` to that value. e.g. if the highest level has a range of 3.0 - 10 add this:
+    ```
+    LEVEL_MAX = 10
+    ```
+
 1. For weighted questions change the weights in the `WEIGHTS` object.
 
 
@@ -200,13 +207,18 @@ We're versioning js and css files, that's automatically handled by static_rev te
     ```
     replacing `<tenant>`, `<tenant-slug>` & `<tenant-footer-name>` with the appropriate values.
 
+
 ### Images
-1. Copy an exiting images directory e.g. `src/static/src/img/ads/` and rename it as `<tenant>`. 1. Replace the images with the appropriate ones.
+1. Copy an exiting images directory e.g. `src/static/src/img/ads/` and rename it as `<tenant>`.
+1. Replace the images with the appropriate ones for the tenant.
+
+
 
 ### Partner logos
-1. Add inline versions of any partner logos to `src/static/src/img/` as `<partner>-logo.png` & `<partner>-logo@2x.png`.
+1. Add inline logo for any partners to `src/static/src/img/partners` as `<partner>-logo.png` & `<partner>-logo@2x.png`.
 1. If there is a light (e.g. white) version of the logo add them as `<partner>-logo-light.png` & `
 <partner>-logo-light@2x.png` otherwise make copies of the normal logos and rename them to these names.
+
 
 
 ### Add SCSS Tenant Variables
@@ -218,22 +230,32 @@ We're versioning js and css files, that's automatically handled by static_rev te
         primary-color: $dmb-text-color,
         progress-grid-switch-bp: 800px,
         levels: (
-        0: (
-            color: $h-gm-yellow-600
-        ),
-        1: (
-            color: $h-gm-yellow-700
-        ),
-        2: (
-            color: $h-gm-yellow-800
-        ),
-        3: (
-            color: $h-gm-yellow-900
-        )
+            0: (
+                color: $h-gm-yellow-600
+            ),
+            1: (
+                color: $h-gm-yellow-700
+            ),
+            2: (
+                color: $h-gm-yellow-800
+            ),
+            3: (
+                color: $h-gm-yellow-900
+            )
         )
     )
     ```
     where `progress-grid-switch-bp` is the breakpoint at which the progress grid in the report rotates. This is determined by the number of levels and the length of the level title strings so should be adjusted per tenant if the default value is too small.
+
+    If the range for a level is not the default value of 1 then add a range property to the level, e.g. if level 0 has a range of 3 (0.0 - 2.9) use this:
+
+    ```
+    levels: (
+    0: (
+        color: $h-gm-yellow-600
+        range: 3
+    ),
+    ```
 
 
 ## Qualtrics Survey
@@ -360,6 +382,7 @@ For example, SVG file `src/static/src/svg/print-button.svg` can be used in the f
 
 Since the site has been translated for a tenant, we thought it was easier to have all the tanslatable strings in the BE. This will include:
 - `levels`
+- `levels_max`
 - `level_descriptions`
 - `report_level_descriptions`
 - `dimensions`
@@ -369,3 +392,5 @@ Since the site has been translated for a tenant, we thought it was easier to hav
 - `dimension_level_recommendations`
 - `dimension_sidepanel_heading`
 - `dimension_sidepanel_descriptions`
+- `industry_avg_description`
+- `industry_best_description`
