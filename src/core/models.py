@@ -41,7 +41,7 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, blank=True, null=True)
-    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
+    industry = models.CharField(max_length=128)
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -93,9 +93,10 @@ class Survey(models.Model):
         if not self.pk:
             self.sid = uuid4().hex
 
-        assert self.industry in settings.INDUSTRIES.keys(), "%r is not in set of configured INDUSTRIES" % self.industry
         assert self.country in settings.COUNTRIES.keys(), "%r is not in set of configured COUNTRIES" % self.country
         assert self.tenant in settings.TENANTS.keys(), "%r is not in set of configured TENANTS" % self.tenant
+        industry_list = settings.TENANTS[self.tenant]['INDUSTRIES'].keys()
+        assert self.industry in industry_list, "%r is not in set of configured INDUSTRIES" % self.industry
 
         super(Survey, self).save(*args, **kwargs)
 
@@ -156,7 +157,7 @@ class SurveyDefinition(models.Model):
 
 
 class IndustryBenchmark(models.Model):
-    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
+    industry = models.CharField(max_length=128)
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     initial_dmb = models.DecimalField(max_digits=4, decimal_places=2, null=True)
     initial_dmb_d = JSONField(null=True)

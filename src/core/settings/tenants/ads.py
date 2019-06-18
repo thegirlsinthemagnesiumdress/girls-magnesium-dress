@@ -1,6 +1,8 @@
 # coding=utf-8
 # flake8: noqa
 from django.utils.translation import gettext_lazy as _
+from collections import OrderedDict
+from core.conf import utils
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
 DIMENSION_ADS = 'ads'
@@ -600,3 +602,90 @@ GOOGLE_SHEET_EXPORT_SURVEY_FIELDS = GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS = GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
+
+HIERARCHICAL_INDUSTRIES = OrderedDict([
+    ('afs', (_('Accommodation and food service'), None)),
+    ('aer', (_('Arts, entertainment & recreation'), None)),
+    ('co', (_('Construction'), None)),
+    ('edu', (_('Education'), OrderedDict([
+        ('edu-fe', (_('Further education'), None)),
+        ('edu-o', (_('Other'), None)),
+        ('edu-pe', (_('Primary education'), None)),
+        ('edu-se', (_('Secondary education'), None)),
+    ]))),
+    ('egsw', (_('Electricity, gas, steam, water'), None)),
+    ('fi', (_('Financial and Insurance'), OrderedDict([
+        ('fi-b', (_('Banking'), None)),
+        ('fi-i', (_('Insurance'), None)),
+        ('fi-o', (_('Other'), None)),
+    ]))),
+    ('hh&sw', (_('Human health & social work'), None)),
+    ('ic', (_('Information and Communication'), OrderedDict([
+        ('ic-bnpj', (_('Books, news, periodicals, journals'), None)),
+        ('ic-o', (_('Other'), None)),
+        ('ic-s', (_('Software'), None)),
+        ('ic-trmvm', (_('TV, radio, movies, video, music'), None)),
+        ('ic-t', (_('Telecommunications'), None)),
+    ]))),
+    ('ma', (_('Manufacturing'), OrderedDict([
+        ('ma-c', (_('Chemicals'), None)),
+        ('ma-ctd', (_('Cosmetics, toiletries, detergents'), None)),
+        ('ma-e', (_('Electronics'), None)),
+        ('ma-fb', (_('Food & beverages'), None)),
+        ('ma-f', (_('Furniture'), None)),
+        ('ma-me', (_('Machinery & equipment'), None)),
+        ('ma-o', (_('Other'), None)),
+        ('ma-p', (_('Pharmaceuticals'), None)),
+        ('ma-tfa', (_('Textiles, footwear & apparel'), None)),
+        ('ma-tg', (_('Toys & games'), None)),
+        ('ma-v', (_('Vehicles'), None)),
+    ]))),
+    ('other', (_('Other service activities - Other'), None)),
+    ('os-p', (_('Other service activities - Printing'), None)),
+    ('pa', (_('Professional activities'), OrderedDict([
+        ('pa-c', (_('Consultancy'), None)),
+        ('pa-l', (_('Legal'), None)),
+        ('pa-o', (_('Other'), None)),
+        ('pa-r', (_('Research'), None)),
+    ]))),
+    ('papo', (_('Public administration & political organisations'), None)),
+    ('re', (_('Real estate'), None)),
+    ('rt', (_('Retail trade'), OrderedDict([
+        ('r-mc', (_('Multi-category'), None)),
+        ('rt-bmv', (_('Books, music, video'), None)),
+        ('rt-c', (_('Chemicals'), None)),
+        ('rt-ctd', (_('Cosmetics, toiletries, detergents'), None)),
+        ('rt-e', (_('Electronics'), None)),
+        ('rt-fb', (_('Food and beverages'), None)),
+        ('rt-f', (_('Furniture'), None)),
+        ('rt-hg', (_('Household goods'), None)),
+        ('rt-me', (_('Machinery & equipment'), None)),
+        ('rt-o', (_('Other'), None)),
+        ('rt-p', (_('Pharmaceuticals'), None)),
+        ('rt-tfa', (_('Textiles, footwear & apparel'), None)),
+        ('rt-tg', (_('Toys & games'), None)),
+        ('rt-v', (_('Vehicles'), None)),
+    ]))),
+    ('tt', (_('Transportation and Travel'), OrderedDict([
+        ('tt-o', (_('Other'), None)),
+        ('tt-rflw', (_('Railway, flight, land & water transport'), None)),
+        ('tt-tato', (_('Travel agency & tour operator'), None)),
+    ]))),
+    ('wt', (_('Wholesale trade'), OrderedDict([
+        ('wt-bmv', (_('Books, music, video'), None)),
+        ('wt-c', (_('Chemicals'), None)),
+        ('wt-ctd', (_('Cosmetics, toiletries, detergents'), None)),
+        ('wt-e', (_('Electronics'), None)),
+        ('wt-fb', (_('Food and beverages'), None)),
+        ('wt-f', (_('Furniture'), None)),
+        ('wt-hg', (_('Household goods'), None)),
+        ('wt-me', (_('Machinery & equipment'), None)),
+        ('wt-o', (_('Other'), None)),
+        ('wt-p', (_('Pharmaceuticals'), None)),
+        ('wt-tfa', (_('Textiles, footwear & apparel'), None)),
+        ('wt-tg', (_('Toys & games'), None)),
+        ('wt-v', (_('Vehicles'), None)),
+    ]))),
+])
+
+INDUSTRIES = utils.map_industries(HIERARCHICAL_INDUSTRIES, None, {})
