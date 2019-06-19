@@ -1,0 +1,36 @@
+{% load angular %}
+{% load i18n %}
+
+<aside
+    id="dmb-subdimension-side-panel"
+    class="dmb-side-panel dmb-side-panel--left dmb-side-panel--narrow"
+    dmb-side-panel>
+  <button
+      class="dmb-side-panel__fab dmb-fab"
+      dmb-side-panel-close>
+    <span class="dmb-fab__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <use xlink:href="#mi-close"></use>
+      </svg>
+    </span>
+  </button>
+
+  <div class="dmb-side-panel__inner">
+    <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
+      {{ description }}
+    </h1>
+    <p class="dmb-u-m-b-s">
+      {[ dimensionTabCtrl.subdimensionDescription ]}
+    </p>
+
+    <div ng-repeat="subdimension in dimensionTabCtrl.subdimensions[dmbDimensionTab]">
+      <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
+        {[ dimensionTabCtrl.subdimensionHeasders[subdimension] ]}
+      </h2>
+      <p ng-class="{'dmb-u-m-b-m':!$last}">
+        {[ dimensionTabCtrl.dimensionDescriptions[subdimension] ]}
+      </p>
+    </div>
+
+  </div>
+</aside>
