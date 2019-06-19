@@ -141,6 +141,18 @@ class ReportController {
     this.dimensionsResults = {};
 
     /**
+     * @export
+     * @type {Object}
+     */
+    this.dimensionsIndAvgs = {};
+
+    /**
+     * @export
+     * @type {Object}
+     */
+    this.dimensionsIndBests = {};
+
+    /**
      * @type {!Object}
      * @export
      */
@@ -244,17 +256,11 @@ class ReportController {
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE
       this.setOverallResult(parseFloat(this.result['dmb']));
-      reportService.dmb_d = this.result['dmb_d'];
+      this.dimensionsResults = this.result['dmb_d'];
 
+      // // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
+      // // reportService.dmb_d['reader_revenue'] = null;
 
-      // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
-      // reportService.dmb_d['reader_revenue'] = null;
-
-      for (let key in reportService.dmb_d) {
-        if (reportService.dmb_d[key] === null) {
-          this.dimensions.splice(this.dimensions.indexOf(key), 1);
-        }
-      }
       this.ngTimeout_(() => {
         this.renderTabset = true;
       }, 0, true);
@@ -264,10 +270,9 @@ class ReportController {
         this.industryResult = res.data;
         this.industryAvgSource = this.industryResult['dmb_industry'];
         this.industryBestSource = this.industryResult['dmb_bp_industry'];
-        reportService.industryResult = this.industryResult;
-        reportService.industryDmb_d = this.industryResult['dmb_d'];
-        reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
-        $rootScope.$broadcast('content-updated');
+
+        this.dimensionsIndAvgs = this.industryResult['dmb_d'];
+        this.dimensionsIndBests = this.industryResult['dmb_d_bp'];
       });
     });
 
@@ -282,12 +287,29 @@ class ReportController {
    * @param {float} overallResult
    */
   setOverallResult(overallResult) {
+    if (!overallResult) {
+      return
+    }
+
     this.overallResult = overallResult;
     const levelData = this.dmbLevelsFactory(this.overallResult);
     this.currentLevelData = levelData.current;
     this.nextLevelData = levelData.next;
-    const levelDescriptions = this.dmbLevelsFactory(this.reportLevelDescription, this.reportLevelDescriptions);
-    this.currentLevelDescription = levelDescriptions.current;
+    const levelDescriptions = this.dmbLevelsFactory(this.overallResult, this.reportLevelDescriptions);
+    this.currentLevelDescription = levelDescriptions.current.mapValue;
+  }
+
+  /**
+   * Sets values for overall result
+   * @param {string} dimension
+   * @param {float} newValue
+   */
+  setDimensionsResult(dimension, newValue) {
+    if (!newValue) {
+      return
+    }
+
+    this.dimensionsResults[dimension] = newValue;
   }
 
   /**
