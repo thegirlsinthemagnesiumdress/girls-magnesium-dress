@@ -78,6 +78,12 @@ module.filter('dmbLevelText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory
   };
 }]);
 
+module.filter('underscoreToHyphen', () => {
+  return (stringToConvert) => {
+    return angular.isDefined(stringToConvert) ? stringToConvert.replace(/_/g, '-') : '';
+  };
+});
+
 /**
  * Report angular module.
  * @type {!angular.Module}

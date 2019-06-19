@@ -52,9 +52,13 @@
             </h3>
             <div>
               <div
-                  company-name="{[reportCtrl.survey.company_name]}"
-                  dmb-dimension-tab="{[dimension]}"
-                  tenant="{{tenant|ng_mark_safe}}">
+                  data-company-name="reportCtrl.survey['company_name']"
+                  data-dmb-dimension-tab="{[ dimension ]}"
+                  data-dimension-result="reportCtrl.dimensionsResults[dimension]"
+                  data-dimension-ind-avg="reportCtrl.dimensionsIndAvgs[dimension]"
+                  data-dimension-ind-best="reportCtrl.dimensionsIndBests[dimension]"
+                  data-dimension-ind-ready="!!reportCtrl.industryResult"
+                  data-tenant="{{ tenant|ng_mark_safe }}">
               </div>
             </div>
           </li>
