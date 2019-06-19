@@ -32,8 +32,6 @@ module.factory('dmbLevelsFactory', ['tenantConf', (tenantConf) => {
       sourceMap = tenantConf.levels;
     }
 
-    console.log('[dmbLevelsFactory] Called');
-
     // Get source keys which are the levels
     const levelKeys = Object.keys(sourceMap).sort();
     for (const [index, val] of levelKeys.entries()) {

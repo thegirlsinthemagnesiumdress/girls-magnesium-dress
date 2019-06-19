@@ -64,7 +64,6 @@ class ProgressGridController {
    * On scope initialisation update the values
    */
   $onInit() {
-    console.log('[ProgressGridController] $onInit');
     this.updateLevelsData();
   }
 
@@ -72,7 +71,6 @@ class ProgressGridController {
    * Respond to property changes and update the values
    */
   $onChanges() {
-    console.log('[ProgressGridController] $onChanges');
     this.updateLevelsData();
   }
 
@@ -81,7 +79,7 @@ class ProgressGridController {
    */
   updateLevelsData() {
     this.ratingMainData = this.dmbLevelsFactory(this.ratingMain);
-    this.industryBestData = this.dmbLevelsFactory(this.ratingMain);
+    this.industryBestData = this.dmbLevelsFactory(this.industryBest);
     this.industryAvgData = this.dmbLevelsFactory(this.industryAvg);
   }
 
