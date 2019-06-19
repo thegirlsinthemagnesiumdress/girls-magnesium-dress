@@ -1,6 +1,6 @@
 goog.module('dmb.components.headerFix');
 
-const HeaderFoundation = goog.require('glue.ui.header.HeaderFoundation');
+import {cssClasses as headerCssClasses} from '@google/glue/lib/ui/header/constants';
 
 
 /** @const {string} */
@@ -39,7 +39,7 @@ function headerFixRun(scrollService) {
       return;
     }
 
-    headerEl.classList.remove(HeaderFoundation.cssClasses.IS_WHOLLY_SCROLLED);
+    headerEl.classList.remove(headerCssClasses.IS_WHOLLY_SCROLLED);
   }
 }
 

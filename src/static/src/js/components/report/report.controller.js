@@ -1,7 +1,7 @@
 goog.module('dmb.components.report.controller');
 
-const BreakpointService = goog.require('glue.ng.common.Breakpoint');
-const PaginationModel = goog.require('glue.ng.pagination.Model');
+import * as BreakpointService from '@google/glue/lib/ng/common/breakpoint-service';
+import * as PaginationModel from '@google/glue/lib/ng/pagination/model';
 
 const surveyEndpoint = '/api/report/company/';
 const resultEndpoint = '/api/report/result/';
@@ -226,7 +226,7 @@ class ReportController {
       });
     });
 
-    $scope.$on(BreakpointService.service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
+    $scope.$on(BreakpointService.Service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
       this.showTabs= this.showTabs_(size);
       $scope.$apply();
     });

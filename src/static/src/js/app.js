@@ -1,13 +1,10 @@
 // In src/app.js
-goog.module('dmb.app');
-
-const glueApp = goog.require('glue.app');
-const glueCommon = goog.require('glue.ng.common');
-const glueZippy = goog.require('glue.ng.zippy');
-const header = goog.require('glue.ng.ui.header');
-const smoothScroll = goog.require('glue.ng.smoothScroll');
-const tabby = goog.require('glue.ng.tabby');
-const tableSort = goog.require('glue.ng.tableSort');
+import * as glueApp from '@google/glue/lib/app/app';
+import * as glueCommon from '@google/glue/lib/ng/common/common';
+import * as glueZippy from '@google/glue/lib/ng/zippy/zippy';
+import * as header from '@google/glue/lib/ng/ui/header/header';
+import * as smoothScroll from '@google/glue/lib/ng/smoothscroll/smoothscroll';
+import * as tabby from '@google/glue/lib/ng/tabby/tabby';
 
 const focusControl = goog.require('dmb.components.focusControl');
 const headerFix = goog.require('dmb.components.headerFix');
@@ -22,13 +19,9 @@ const progressTable = goog.require('dmb.components.progressTable');
 const dimensionTab = goog.require('dmb.components.dimensionTab');
 const forceReflow = goog.require('dmb.components.forceReflow');
 const tenant = goog.require('dmb.components.tenant');
-const configureAdditionalSortTypes = goog.require('dmb.tableCustomSort');
 const languageSelector = goog.require('dmb.components.languageSelector');
 const copyComponent = goog.require('dmb.components.copyComponent');
 const exportReports = goog.require('dmb.components.exportReports');
-
-// Custom tablesort date configuration.
-tableSort.module.config(configureAdditionalSortTypes);
 
 /** @type {!angular.Module} */
 const module = angular.module('dmb', [
@@ -49,7 +42,6 @@ const module = angular.module('dmb', [
   dimensionTab.module.name,
   smoothScroll.module.name,
   tabby.module.name,
-  tableSort.module.name,
   forceReflow.module.name,
   tenant.module.name,
   languageSelector.module.name,
@@ -81,4 +73,3 @@ module.constant('cssGridSupport', cssGridSupport);
 
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);
-exports = module;
