@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, Http404
-from django.template.exceptions import TemplateDoesNotExist
+from django.http import HttpResponseRedirect
 from django.test.client import RequestFactory
 
 from djangae.test import TestCase
@@ -49,9 +48,3 @@ class TestRedirectToDefaultTenantMiddleware(TestCase):
         response = self.middleware.process_request(request)
 
         self.assertIsNone(response)
-
-    def test_process_exception_returns_404_on_template_does_not_exist(self):
-        request = self.factory.get('/')
-
-        with self.assertRaises(Http404):
-            self.middleware.process_exception(request, TemplateDoesNotExist(''))
