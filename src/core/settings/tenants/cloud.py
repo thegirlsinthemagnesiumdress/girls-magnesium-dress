@@ -57,7 +57,7 @@ SUBDIMENSION_TITLES = {
     SUBDIMENSION_RESOURCE_MANAGEMENT: 'Resource Management',
     SUBDIMENSION_CI_CD: 'Continuous Integration and Delivery (CI/CD)',
     SUBDIMENSION_ARCHITECTURE: 'Architecture',
-    SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT: 'Identity And Access Management',
+    SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT: 'Identity and Access Management',
     SUBDIMENSION_DATA_MANAGEMENT: 'Data Management',
     SUBDIMENSION_IDENTITY_MANAGEMENT: 'Identity Management',
     SUBDIMENSION_ACCESS_MANAGEMENT: 'Access Management',
