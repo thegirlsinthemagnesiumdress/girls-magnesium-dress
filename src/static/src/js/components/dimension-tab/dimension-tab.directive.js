@@ -12,13 +12,18 @@ function DimensionTabDirective() {
   return {
     restrict: 'A',
     scope: {
-      'companyName': '@',
+      'companyName': '<',
       'dmbDimensionTab': '@',
       'tenant': '@',
+      'dimensionResult': '<',
+      'dimensionIndAvg': '<',
+      'dimensionIndBest': '<',
+      'dimensionIndReady': '<',
     },
     templateUrl: dimensionTabTemplateUrl,
     controller: dimensionTabCtrl.main,
     controllerAs: dimensionTabCtrl.CONTROLLER_AS_NAME,
+    bindToController: true,
   };
 }
 

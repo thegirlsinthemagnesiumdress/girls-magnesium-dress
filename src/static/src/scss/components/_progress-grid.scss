@@ -8,6 +8,10 @@ $sources: company ind-avg ind-best;
 $elements: label bar;
 $block: '.dmb-progress-grid';
 
+@function get-level-row-height($value) {
+  @return $value * 50px;
+}
+
 // General styles
 .dmb-progress-grid {
   -webkit-print-color-adjust: exact !important;
@@ -119,7 +123,22 @@ $block: '.dmb-progress-grid';
     $progress-grid-switch-bp: map-get($value, progress-grid-switch-bp);
 
     #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
-      grid-template-rows: repeat($tenant-levels-total, 50px) auto;
+      $tenant-level-cols: 'auto ';
+      $tenant-level-rows: '';
+      @each $level, $value in $tenant-levels {
+        $range: map-get($value, range);
+        @if $range {
+          $tenant-level-cols: str-insert($tenant-level-cols, '#{$range}fr ', 100);
+          $range: get-level-row-height($range);
+          $tenant-level-rows: str-insert($tenant-level-rows, '#{$range} ', -100);
+        } @else {
+          $tenant-level-cols: str-insert($tenant-level-cols, '1fr ', 100);
+          $tenant-level-rows: str-insert($tenant-level-rows, '50px ', -100);
+        }
+      }
+      $tenant-level-rows: str-insert($tenant-level-rows, 'auto', 100);
+
+      grid-template-rows: unquote($tenant-level-rows);
 
       @include dmb-mq($until: $progress-grid-switch-bp) {
         border-top: 1px solid $dmb-prog-grid-line-color;
@@ -128,7 +147,7 @@ $block: '.dmb-progress-grid';
 
       @include dmb-mq($from: $progress-grid-switch-bp) {
         border-right: 1px solid $dmb-prog-grid-line-color;
-        grid-template-columns: auto repeat($tenant-levels-total, 1fr);
+        grid-template-columns: unquote($tenant-level-cols);
         grid-template-rows: auto repeat(length($sources), auto) 15px;
         margin: 0 $dmb-prog-grid-overflow-h-margin; //to accommodate nearly full bar labels
       }
@@ -138,10 +157,11 @@ $block: '.dmb-progress-grid';
           border-bottom: 1px solid $dmb-prog-grid-line-color;
           grid-column: 1 / -1;
 
-          @for $i from 0 to $tenant-levels-total {
-            $j: $tenant-levels-total - $i;
+          @for $i from 1 through $tenant-levels-total {
+            $level: nth(map-keys($tenant-levels), $i);
+            $j: $tenant-levels-total + 1 - $i;
 
-            &--level-#{$i} {
+            &--level-#{$level} {
               grid-row: #{$j};
             }
           }
@@ -151,10 +171,11 @@ $block: '.dmb-progress-grid';
           border-left: 1px solid $dmb-color-grey-zircon;
           grid-row: 1 / -1;
 
-          @for $i from 0 to $tenant-levels-total {
-            $j: $i + 2;
+          @for $i from 1 through $tenant-levels-total {
+            $level: nth(map-keys($tenant-levels), $i);
+            $j: $i + 1;
 
-            &--level-#{$i} {
+            &--level-#{$level} {
               grid-column: #{$j};
             }
           }
@@ -167,10 +188,13 @@ $block: '.dmb-progress-grid';
         }
 
         @include dmb-mq($from: $progress-grid-switch-bp) {
-          @for $i from 0 to $tenant-levels-total {
-            $j: $i + 2;
+          // padding: 0 10px;
 
-            &--level-#{$i} {
+          @for $i from 1 through $tenant-levels-total {
+            $level: nth(map-keys($tenant-levels), $i);
+            $j: $i + 1;
+
+            &--level-#{$level} {
               grid-column: #{$j};
             }
           }

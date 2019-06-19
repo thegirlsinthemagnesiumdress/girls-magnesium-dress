@@ -8,26 +8,33 @@
 
   <div class="h-c-grid">
     <div class="dmb-report-overall__intro h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-1 h-c-grid__col--align-middle h-c-grid__col-m--order-2">
-      <div class="dmb-progress-circle dmb-progress-circle--level-{[progressCircleCtrl.level]}"
-        data-progress="reportCtrl.result.dmb">
-        <svg dmb-progress-circle="reportCtrl.result.dmb" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
+      <div
+          class="dmb-progress-circle dmb-progress-circle--level-{[ reportCtrl.currentLevelData.value ]}"
+          data-progress="reportCtrl.overallResult">
+        <svg dmb-progress-circle="reportCtrl.overallResult" class="dmb-progress-circle__prog-svg" viewbox="0 0 120 120">
           <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
           <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
         </svg>
         <div class="dmb-progress-circle__text">
           <span
-            class="h-c-headline h-c-headline--display-two dmb-progress-circle__result">{[reportCtrl.result.dmb|number:1]}</span><span
-            class="h-c-headline h-c-headline--four dmb-progress-circle__total">/{[reportCtrl.levelsTotal]}</span>
+            class="h-c-headline h-c-headline--display-two dmb-progress-circle__result">{[ reportCtrl.overallResult|number:1 ]}</span><span
+            class="h-c-headline h-c-headline--four dmb-progress-circle__total">/{[ reportCtrl.levelsMax ]}</span>
         </div>
       </div>
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--6">
       <h2 class="h-c-headline h-c-headline--three">
-        {[reportCtrl.levels[reportCtrl.floorDmb]]} ({[reportCtrl.result.dmb|dmbRangeText]})
+        {[ reportCtrl.currentLevelData.mapValue ]}
+        <span ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+          ({[ reportCtrl.currentLevelData.value ]}-{[ reportCtrl.nextLevelData.value ]})
+        </span>
+        <span ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+          ({[ reportCtrl.currentLevelData.value ]}-{[ reportCtrl.levelsMax ]})
+        </span>
       </h2>
       <p>
-        {[reportCtrl.reportLevelDescriptions[reportCtrl.floorDmb]]}
+        {[ reportCtrl.currentLevelDescription ]}
       </p>
       <button
           class="dmb-report-overall__link h-c-link dmb-h-hidden--print"
@@ -43,7 +50,7 @@
         data-industry-avg="reportCtrl.industryResult.dmb"
         data-industry-best="reportCtrl.industryResult.dmb_bp"
         data-industry-ready="!!reportCtrl.industryResult"
-        data-rating-main="reportCtrl.result.dmb">
+        data-rating-main="reportCtrl.overallResult">
     </dmb-progress-grid>
   </div>
 

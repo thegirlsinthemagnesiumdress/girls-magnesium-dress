@@ -10,6 +10,10 @@
   {% include 'public/ads/report/report-overall.inc.html' %}
   {% include 'public/ads/report/report-dimensions.inc.html' %}
   {% include 'public/inc/report/report-footer.inc.html' %}
+
+  {% if debug %}
+    {% include 'public/inc/report/report-debug.inc.html' %}
+  {% endif %}
 </main>
 
 <div class="dmb-report-page__appendix dmb-h-hidden--screen">

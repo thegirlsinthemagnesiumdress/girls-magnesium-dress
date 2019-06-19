@@ -1,16 +1,20 @@
 <section class="dmb-report-intro dmb-u-grey-bg dmb-u-p-t-m dmb-u-p-b-m{% if class %} {{class}}{% endif %}">
   <div class="h-c-page">
-    <h1 class="h-c-headline h-c-headline--two dmb-u-m-b-s">Data Maturity report</h1>
-    <p class="h-c-headline h-c-headline--subhead  dmb-u-m-b-s">
-      <span ng-if="reportCtrl.floorDmb < (reportCtrl.levelsTotal - 1)">
-        This report will show you how you score across the key dimensions, and what to do to get to the next level, {[reportCtrl.levels[reportCtrl.floorDmb + 1]]}.
-      </span>
-      <span ng-if="reportCtrl.floorDmb >= (reportCtrl.levelsTotal - 1)">
-        Congratulations! You're in the top group for overall data maturity. This report will show you how you score across the key dimensions, and how to get even better.
-      </span>
+    <h1 class="h-c-headline h-c-headline--two dmb-u-m-b-s">
+      Data Maturity report
+    </h1>
+    <p
+        class="h-c-headline h-c-headline--subhead dmb-u-m-b-s"
+        ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+      This report will show you how you score across the key dimensions, and what to do to get to the next level, {[ reportCtrl.nextLevelData.mapValue ]}.
     </p>
-    {% include 'public/inc/global/collaboration.inc.html' with partner1='deloitte' partner2='google-news-initiative' %}
+    <p
+        class="h-c-headline h-c-headline--subhead dmb-u-m-b-s"
+        ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+      Congratulations! You're in the top group for overall data maturity. This report will show you how you score across the key dimensions, and how to get even better.
+    </p>
 
+    {% include 'public/inc/global/collaboration.inc.html' with partner1='deloitte' partner2='google-news-initiative' %}
 
     <hr class="dmb-h-hidden--screen">
   </div>

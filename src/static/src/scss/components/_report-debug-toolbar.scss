@@ -1,0 +1,19 @@
+.dmb-report-debug-toolbar {
+  background: $dmb-color-grey-zircon;
+  border-top: 3px solid #000;
+  bottom: 0;
+  left: 0;
+  padding: 15px 0;
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+
+  .h-c-page {
+    width: 350px;
+  }
+
+  input {
+    border: 1px solid #000;
+    width: 5ch;
+  }
+}

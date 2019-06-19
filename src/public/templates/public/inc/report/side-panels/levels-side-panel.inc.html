@@ -1,3 +1,4 @@
+{% load angular %}
 {% load i18n %}
 
 <aside
@@ -15,14 +16,20 @@
   </button>
   <div class="dmb-side-panel__inner">
     <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
-      {% trans "Levels of data maturity" %}
+      {% if tenant|ng_mark_safe == 'ads' %}
+        {% trans "Levels of Digital Maturity" %}
+      {% elif tenant|ng_mark_safe == 'cloud' %}
+        Levels of Cloud Maturity
+      {% else %}
+        Levels of Data Maturity
+      {% endif %}
     </h1>
-    <div ng-repeat="level in reportCtrl.levels">
+    <div ng-repeat="(key, level) in reportCtrl.levels">
       <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
         {[level]}
       </h2>
       <p ng-class="{'dmb-u-m-b-m':!$last}">
-        {[reportCtrl.levelDescriptions[$index]]}
+        {[reportCtrl.levelDescriptions[key]]}
       </p>
     </div>
   </div>
