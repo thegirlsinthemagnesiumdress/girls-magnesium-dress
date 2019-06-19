@@ -112,6 +112,34 @@ class DimensionTabController {
     this.industryResult = null;
 
     /**
+     * Subdimensions
+     * @type {Object}
+     * @export
+     */
+    this.subdimensions = tenantConf.subdimensions;
+
+    /**
+     * Subdimension labels
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+
+    /**
+     * Subdimension labels
+     * @type {string}
+     * @export
+     */
+    this.subdimensionDescription = tenantConf.subdimensionDescription;
+
+    /**
+     * Subdimension descriptions
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
+
+    /**
     * type {!Object}
       */
     this.reportService = reportService;
