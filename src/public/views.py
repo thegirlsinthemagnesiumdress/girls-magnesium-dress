@@ -55,6 +55,9 @@ def registration(request, tenant):
         'content_data': _dump_tenant_content_data(tenant),
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not get_tenant_slug(tenant)],
     })
 
 
@@ -67,6 +70,9 @@ def report_static(request, tenant, sid):
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not get_tenant_slug(tenant)],
     })
 
 
@@ -76,6 +82,9 @@ def report_result_static(request, tenant, response_id):
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not get_tenant_slug(tenant)],
     })
 
 
@@ -85,6 +94,9 @@ def index_static(request, tenant):
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not slug],
     })
 
 
@@ -94,6 +106,9 @@ def thank_you(request, tenant):
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not slug],
     })
 
 
@@ -115,6 +130,9 @@ def reports_admin(request, tenant):
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
         'bootstrap_data': JSONRenderer().render(api_data),
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not slug],
     })
 
 
@@ -136,6 +154,9 @@ def result_detail(request, tenant, response_id):
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
+        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
+                          for _, other_tenant in settings.TENANTS.items()
+                          if other_tenant['slug'] is not get_tenant_slug(tenant)],
     })
 
 
@@ -148,6 +169,7 @@ def handler404(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'tenant_slugs': [],
     }, status=404)
 
 
@@ -160,6 +182,7 @@ def handler500(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'tenant_slugs': [],
     }, status=500)
 
 
