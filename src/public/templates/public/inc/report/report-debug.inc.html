@@ -8,7 +8,7 @@
         id="overall"
         ng-model="debugOverallResult"
         ng-change="reportCtrl.setOverallResult(debugOverallResult)"
-        step="0.2"
+        step="0.1"
         type="number">
 
     <div ng-repeat="dimension in reportCtrl.dimensions">
@@ -19,7 +19,7 @@
           id="{[ dimension ]}"
           ng-model="debugDimensionResults[dimension]"
           ng-change="reportCtrl.setDimensionsResult(dimension,debugDimensionResults[dimension])"
-          step="0.2"
+          step="0.1"
           type="number">
     </div>
 
