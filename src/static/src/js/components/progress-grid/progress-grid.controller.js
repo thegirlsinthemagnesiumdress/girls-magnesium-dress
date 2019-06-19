@@ -32,10 +32,29 @@ class ProgressGridController {
     this.levelsArray = tenantConf.levelsArray;
 
     /**
+     * @type {?number}
+     * @export
+     */
+    this.ratingMain = null;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.industryBest = null;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.industryAvg = null;
+
+    /**
      * @type {Object}
      * @export
      */
     this.ratingMainData = {};
+
 
     /**
     * @type {Object}
@@ -90,17 +109,19 @@ class ProgressGridController {
    * @export
    */
   getProgress(value) {
-    if (value) {
-      const firstLevel = this.levelsArray[0];
-      const firstLevelRange = this.levelsArray[1] - firstLevel;
-
-      // normalise value to 0 by subtracting the firstLevel
-      value -= firstLevel;
-
-      // calculate the percetage of bar based on the first level's range
-      const prog = (value / firstLevelRange) * 100;
-      return `${prog}%`;
+    if (!angular.isDefined(value)) {
+      return '';
     }
+
+    const firstLevel = this.levelsArray[0];
+    const firstLevelRange = this.levelsArray[1] - firstLevel;
+
+    // normalise value to 0 by subtracting the firstLevel
+    value -= firstLevel;
+
+    // calculate the percetage of bar based on the first level's range
+    const prog = (value / firstLevelRange) * 100;
+    return `${prog}%`;
   }
 }
 

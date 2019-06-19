@@ -18,13 +18,11 @@ class ReportController {
    * Report controller
    *
    * @param {!angular.Scope} $scope
-   * @param {!angular.Scope} $rootScope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
    * @param {!glue.ng.state.StateService} glueState
    * @param {!angular.$timeout} $timeout
    * @param {!angular.$sce} $sce
-   * @param {!Object} reportService
    * @param {!Function} dmbLevelsFactory
    * @param {!Function} resultInTopLevel
    * @param {!Object} tenantConf
@@ -34,13 +32,11 @@ class ReportController {
    */
   constructor(
     $scope,
-      $rootScope,
       $http,
       $location,
       glueState,
       $timeout,
       $sce,
-      reportService,
       dmbLevelsFactory,
       resultInTopLevel,
       tenantConf,
@@ -180,28 +176,28 @@ class ReportController {
 
     /**
      *
-     * @type {String}
+     * @type {?number}
      * @export
      */
     this.overallResult = null;
 
     /**
      *
-     * @type {object}
+     * @type {Object}
      * @export
      */
     this.currentLevelData = {};
 
     /**
      *
-     * @type {object}
+     * @type {Object}
      * @export
      */
     this.nextLevelData = {};
 
     /**
      *
-     * @type {object}
+     * @type {Object}
      * @export
      */
     this.currentLevelDescription = {};
@@ -284,11 +280,11 @@ class ReportController {
 
   /**
    * Sets values for overall result
-   * @param {float} overallResult
+   * @param {number} overallResult
    */
   setOverallResult(overallResult) {
     if (!overallResult) {
-      return
+      return;
     }
 
     this.overallResult = overallResult;
@@ -302,11 +298,11 @@ class ReportController {
   /**
    * Sets values for overall result
    * @param {string} dimension
-   * @param {float} newValue
+   * @param {number} newValue
    */
   setDimensionsResult(dimension, newValue) {
     if (!newValue) {
-      return
+      return;
     }
 
     this.dimensionsResults[dimension] = newValue;

@@ -35,7 +35,7 @@ class TenantConfiguration {
     this.levels = {};
 
     /**
-     * @type {String}
+     * @type {string}
      * @export
      */
     this.levelsMax = '';

@@ -4,7 +4,7 @@ goog.module('dmb.components.progressCircle.controller');
  * DOM selectors used by component.
  *
  * @const
- * @type {Object}
+ * @type {string}
  */
 const progressBarClass = '.dmb-progress-circle__prog-bar';
 
