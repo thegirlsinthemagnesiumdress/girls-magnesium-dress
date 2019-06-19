@@ -6,12 +6,12 @@
 
 <div class="dmb-header glue-header h-c-header h-c-header--product-marketing-one-tier">
   <div class="h-c-header__bar">
+    {% comment %}
     <!-- Both the first- and second-tier variants of the hamburger icon are
          included in code, and their display is controlled using BEM modifiers.
          This is done to prevent users of the header from having to figure out
          which HTML to add/remove themselves.
     -->
-    {% comment %}
     <div class="h-c-header__hamburger h-c-header__hamburger--first-tier">
       <div class="h-c-header__hamburger-wrapper">
         <button type="button"
@@ -46,16 +46,18 @@
                 class="h-c-header__company-logo-img h-c-header__company-logo-img--standard"
                 src="{% static 'img/cloud/google-cloud.svg' %}">
           {% else %}
+            {% comment %}
             <!-- Both the color and white versions of the google logo are
                 included in code, and their display is controlled using BEM
                 modifiers. This is done to prevent users of the header from
                 having to figure out which HTML to add/remove themselves. -->
-            <svg role="img" aria-label="Google" class="h-c-header__company-logo-img
+            {% endcomment %}
+            <svg role="img" aria-label="Google logo" class="h-c-header__company-logo-img
                 h-c-header__company-logo-img--standard">
               <use xlink:href="#h-color-google-logo"></use>
             </svg>
 
-            <svg role="img" aria-label="Google" class="h-c-header__company-logo-img
+            <svg role="img" aria-label="Google logo" class="h-c-header__company-logo-img
                 h-c-header__company-logo-img--reversed">
               <use xlink:href="#h-white-google-logo"></use>
             </svg>
