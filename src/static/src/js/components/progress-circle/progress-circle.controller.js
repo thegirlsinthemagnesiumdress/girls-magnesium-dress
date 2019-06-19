@@ -35,9 +35,17 @@ class ProgressCircleController {
      */
     this.firstLevel = tenantConf.levelsArray[0];
 
-    $scope.$watch($attrs['dmbProgressCircle'], (nVal) => {
-      if (nVal) {
-        const percentComplete = ((nVal - this.firstLevel) / (tenantConf.levelsMax - this.firstLevel)) * 100;
+    /**
+     * The circumference in pixels of the SVG circle we're animating.
+     * Used to calculate the size of the progress
+     * @type {number}
+     * @export
+     */
+    this.svgCircumference = 339.292;
+
+    $scope.$watch($attrs['dmbProgressCircle'], (dmbScore) => {
+      if (dmbScore) {
+        const percentComplete = ((dmbScore - this.firstLevel) / (tenantConf.levelsMax - this.firstLevel)) * 100;
         this.setProgressCircle(percentComplete);
       }
     });
@@ -48,7 +56,7 @@ class ProgressCircleController {
    * @param {!number} percentComplete
    */
   setProgressCircle(percentComplete) {
-    const dashOffset = 339.292 * (100 - percentComplete) / 100;
+    const dashOffset = this.svgCircumference * (100 - percentComplete) / 100;
     this.progressBar_.setAttribute('style', `stroke-dashoffset: ${dashOffset};`);
   }
 }

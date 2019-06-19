@@ -103,7 +103,9 @@ class ProgressGridController {
   }
 
   /**
-   * Function to get the progress width/height for the horizontal and vertical bars
+   * Function to get the progress width/height for the horizontal and vertical bars.
+   * The value returned is a percentage of the first level because the element we are
+   * resizing sits within the first level.
    * @param {number} value
    * @return {string}
    * @export
@@ -119,7 +121,7 @@ class ProgressGridController {
     // normalise value to 0 by subtracting the firstLevel
     value -= firstLevel;
 
-    // calculate the percetage of bar based on the first level's range
+    // calculate the percentage of bar based on the first level's range
     const prog = (value / firstLevelRange) * 100;
     return `${prog}%`;
   }

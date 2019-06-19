@@ -22,8 +22,8 @@ module.factory('dmbLevelsFactory', ['tenantConf', (tenantConf) => {
   // and returns the current level value (minimum number in range),
   // the next level value (minimum number in range)
   // and the value corresponding to the nearest key in the map
-  return (value, sourceMap) => {
-    if (!angular.isDefined(value)) {
+  return (score, sourceMap) => {
+    if (!angular.isDefined(score)) {
       return '';
     }
 
@@ -34,18 +34,18 @@ module.factory('dmbLevelsFactory', ['tenantConf', (tenantConf) => {
 
     // Get source keys which are the levels
     const levelKeys = Object.keys(sourceMap).sort();
-    for (const [index, val] of levelKeys.entries()) {
-      let nextLevel = levelKeys[index + 1];
-      if (value >= val && (value < nextLevel || !nextLevel)) {
-        nextLevel = nextLevel || val;
+    for (const [index, levelMinimum] of levelKeys.entries()) {
+      let nextLevelMinimum = levelKeys[index + 1];
+      if (score >= levelMinimum && (score < nextLevelMinimum || !nextLevelMinimum)) {
+        nextLevelMinimum = nextLevelMinimum || levelMinimum;
         return {
           current: {
-            value: val,
-            mapValue: sourceMap[val],
+            value: levelMinimum,
+            mapValue: sourceMap[levelMinimum],
           },
           next: {
-            value: nextLevel,
-            mapValue: sourceMap[nextLevel],
+            value: nextLevelMinimum,
+            mapValue: sourceMap[nextLevelMinimum],
           },
         };
       }
@@ -68,8 +68,12 @@ module.factory('resultInTopLevel', ['tenantConf', (tenantConf) => {
 
 module.factory('floorDmbFactory', ['tenantConf', (tenantConf) => {
   const levelsTotal = tenantConf.levelsTotal;
-  return (dmb) =>
-    (angular.isDefined(dmb) ? Math.min(Math.floor(dmb), (levelsTotal - 1)) : null);
+  return (dmb) => {
+    if (!angular.isDefined(dmb)) {
+      return null;
+    }
+    return Math.min(Math.floor(dmb), (levelsTotal - 1));
+  };
 }]);
 
 module.filter('dmbLevelText', ['floorDmbFactory', 'tenantConf', (floorDmbFactory, tenantConf)=> {

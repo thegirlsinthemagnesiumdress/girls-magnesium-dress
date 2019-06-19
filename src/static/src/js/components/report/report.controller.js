@@ -283,7 +283,7 @@ class ReportController {
    * @param {number} overallResult
    */
   setOverallResult(overallResult) {
-    if (!overallResult) {
+    if (!angular.isDefined(overallResult)) {
       return;
     }
 
@@ -301,7 +301,7 @@ class ReportController {
    * @param {number} newValue
    */
   setDimensionsResult(dimension, newValue) {
-    if (!newValue) {
+    if (!angular.isDefined(newValue)) {
       return;
     }
 
