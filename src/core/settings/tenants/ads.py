@@ -14,6 +14,7 @@ LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
+LEVELS_MAX = 4
 
 
 WEIGHTS = {
@@ -162,7 +163,7 @@ REPORT_LEVEL_DESCRIPTIONS = {
     LEVEL_3: _('This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
 }
 
-DIMENSION_HEADER_DESCRIPTION = {
+DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_ATTRIBUTION: _('Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.'),
     DIMENSION_ADS: _('Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.'),
     DIMENSION_AUDIENCE: _('To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.'),
@@ -210,7 +211,7 @@ DIMENSION_LEVEL_DESCRIPTION = {
     },
 }
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_ATTRIBUTION: {
         LEVEL_0: [{
             'header': _('Measure the true value of your marketing activities'),
@@ -584,13 +585,14 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 
 CONTENT_DATA = {
     'levels': LEVELS,
+    'levels_max': LEVELS_MAX,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
-    'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
+    'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
 }

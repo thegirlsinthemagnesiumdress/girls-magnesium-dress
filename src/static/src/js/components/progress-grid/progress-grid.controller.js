@@ -8,52 +8,121 @@ class ProgressGridController {
    * ProgressGrid controller
    *
    * @param {!Object} tenantConf
+   * @param {!Function} dmbLevelsFactory
    *
    * @ngInject
    */
-  constructor(tenantConf) {
+  constructor(tenantConf, dmbLevelsFactory) {
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
     this.levels = tenantConf.levels;
 
     /**
+     * @type {Object}
      * @export
-     * type {Object}
      */
-    this.levelsTotal = tenantConf.levelsTotal;
+    this.levelsMax = tenantConf.levelsMax;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.levelsArray = tenantConf.levelsArray;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.ratingMain = null;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.industryBest = null;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.industryAvg = null;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.ratingMainData = {};
+
+
+    /**
+    * @type {Object}
+    * @export
+    */
+    this.industryBestData = {};
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgData = {};
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
+
+    // Bind for external use
+    this.updateLevelsData = this.updateLevelsData.bind(this);
   }
 
   /**
-   * Function to get a rounded level value from a value
-   * @param {number} value
-   * @return {number}
-   * @export
+   * On scope initialisation update the values
    */
-  getLevel(value) {
-    return Math.min(Math.floor(value), (this.levelsTotal - 1));
+  $onInit() {
+    this.updateLevelsData();
   }
 
   /**
-   * Function to get the level name from the value
-   * @param {number} value
-   * @return {string}
-   * @export
+   * Respond to property changes and update the values
    */
-  getLevelName(value) {
-    const level = this.getLevel(value);
-    return this.levels[level];
+  $onChanges() {
+    this.updateLevelsData();
   }
 
   /**
-   * Function to get the progress width/height for the horizontal and vertical bars
+   * updates the levels data for from dmbLevelsFactory
+   */
+  updateLevelsData() {
+    this.ratingMainData = this.dmbLevelsFactory(this.ratingMain);
+    this.industryBestData = this.dmbLevelsFactory(this.industryBest);
+    this.industryAvgData = this.dmbLevelsFactory(this.industryAvg);
+  }
+
+  /**
+   * Function to get the progress width/height for the horizontal and vertical bars.
+   * The value returned is a percentage of the first level because the element we are
+   * resizing sits within the first level.
    * @param {number} value
    * @return {string}
    * @export
    */
   getProgress(value) {
-    const prog = value * 100;
+    if (!angular.isDefined(value)) {
+      return '';
+    }
+
+    const firstLevel = this.levelsArray[0];
+    const firstLevelRange = this.levelsArray[1] - firstLevel;
+
+    // normalise value to 0 by subtracting the firstLevel
+    value -= firstLevel;
+
+    // calculate the percentage of bar based on the first level's range
+    const prog = (value / firstLevelRange) * 100;
     return `${prog}%`;
   }
 }

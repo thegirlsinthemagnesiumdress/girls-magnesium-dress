@@ -8,6 +8,10 @@
   {% include 'public/news/report/report-hero.inc.html' %}
   {% include 'public/news/report/report-overall.inc.html' %}
   {% include 'public/news/report/report-dimensions.inc.html' %}
+
+  {% if debug %}
+    {% include 'public/inc/report/report-debug.inc.html' %}
+  {% endif %}
 </main>
 
 <div class="dmb-report-page__appendix dmb-h-hidden--screen">

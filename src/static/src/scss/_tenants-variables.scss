@@ -56,23 +56,17 @@ $tenants: (
   ),
   cloud: (
     primary-color: $dmb-text-color,
-    progress-grid-switch-bp: 600px,
+    progress-grid-switch-bp: 800px,
     levels: (
       0: (
-        color: $h-gm-yellow-500
+        color: $h-gm-red-700,
       ),
       1: (
-        color: $h-gm-yellow-500
+        color: $h-gm-yellow-700,
       ),
       2: (
-        color: $h-gm-yellow-700
-      ),
-      3: (
-        color: $h-gm-yellow-700
-      ),
-      4: (
-        color: $h-gm-yellow-900
-      ),
+        color: $h-gm-green-700,
+      )
     )
   )
 );
