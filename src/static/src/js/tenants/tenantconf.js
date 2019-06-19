@@ -112,6 +112,10 @@ class TenantConfiguration {
     this.industryBestDescription = this.contentData['industry_best_description'];
     this.dimensionSidepanelHeading = this.contentData['dimension_sidepanel_heading'];
     this.dimensionSidepanelDescriptions = this.contentData['dimension_sidepanel_descriptions'];
+    this.subdimensions = this.contentData['subdimensions'];
+    this.subdimensionDescription = this.contentData['subdimension_description'];
+    this.subdimensionHeaders = this.contentData['subdimension_labels'];
+    this.subdimensionDescriptions = this.contentData['subdimension_descriptions'];
   }
 }
 
