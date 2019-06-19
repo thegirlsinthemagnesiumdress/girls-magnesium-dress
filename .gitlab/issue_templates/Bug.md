@@ -26,3 +26,6 @@ Any info, context or possible solutions
 | Browser |  |
 | Screen Size |  |
 | Zoom level |  |
+
+
+/label ~Bug
