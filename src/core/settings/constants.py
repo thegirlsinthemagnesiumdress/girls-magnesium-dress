@@ -1,6 +1,5 @@
 # coding=utf-8
 from collections import OrderedDict
-from core.conf.utils import map_industries
 from django.utils.translation import gettext_lazy as _
 
 ALL_INDUSTRIES = ('all', _('all'))

@@ -8,7 +8,7 @@ from django.urls import reverse
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.managers import NotExcludedFromBestPracticeManager
-from core.conf.utils import flatten, get_tenant_slug, version_info
+from core.conf.utils import get_tenant_slug, version_info
 
 
 class User(GaeAbstractDatastoreUser):
