@@ -25,10 +25,16 @@
 
     <div class="h-c-grid__col h-c-grid__col--6">
       <h2 class="h-c-headline h-c-headline--three">
-        {[ reportCtrl.currentLevelData.mapValue ]} ({[ reportCtrl.currentLevelData.value ]}-{[ reportCtrl.nextLevelData.value ]})
+        {[ reportCtrl.currentLevelData.mapValue ]}
+        <span ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+          ({[ reportCtrl.currentLevelData.value ]}-{[ reportCtrl.nextLevelData.value ]})
+        </span>
+        <span ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+          ({[ reportCtrl.currentLevelData.value ]}-{[ reportCtrl.levelsMax ]})
+        </span>
       </h2>
       <p>
-        {[ reportCtrl.currentLevelDescription.mapValue ]}
+        {[ reportCtrl.currentLevelDescription ]}
       </p>
       <button
           class="dmb-report-overall__link h-c-link dmb-h-hidden--print"

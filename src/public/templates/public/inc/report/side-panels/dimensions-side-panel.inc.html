@@ -23,8 +23,9 @@
         Dimensions of Data maturity
       {% endif %}
     </h1>
-    <p class="dmb-u-m-b-s">
-      {[ reportCtrl.trustAsHtml(reportCtrl.dimensionSidepanelHeading) ]}
+    <p
+        class="dmb-u-m-b-s"
+        ng-bind-html="reportCtrl.trustAsHtml(reportCtrl.dimensionSidepanelHeading)">
     </p>
 
     <div ng-repeat="dimension in reportCtrl.dimensions">
