@@ -137,7 +137,7 @@ class SurveyDetailView(APITestCase):
         self.assertEqual(response.data.get('survey_result').get('response_id'), 'BBB')
 
     def test_survey_does_not_have_last_result(self):
-        survey = make_survey(company_name='test company no last result', industry="ic-o", country="IT")
+        survey = make_survey(tenant='ads', company_name='test company no last result', industry="ic-o", country="IT")
         url = reverse('survey_report', kwargs={'sid': survey.pk})
         response = self.client.get(url)
 
@@ -196,6 +196,12 @@ class CreateSurveyTest(APITestCase):
     def test_industry_not_valid(self):
         """Posting data not matching required parameters should fail."""
         self.data['industry'] = 'invalid'
+        response = self.client.post(self.url, self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_tenant_not_valid(self):
+        """Posting invalid tenant should not be allowed."""
+        self.data['tenant'] = 'invalid'
         response = self.client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 

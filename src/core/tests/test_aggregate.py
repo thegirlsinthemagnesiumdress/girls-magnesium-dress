@@ -1,8 +1,7 @@
 from djangae.test import TestCase
 from django.test import override_settings
-from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
+from core.tests import mommy_recepies
 from core import aggregate
-from django.conf import settings
 from core.models import SurveyResult
 from core.tests import mocks
 
@@ -62,36 +61,17 @@ class GetPathTest(TestCase):
 
 
 @override_settings(
-    INDUSTRIES={
-        'co': ('Construction', None),
-        'edu': ('Education', None),
-        'edu-fe': ('Further education', 'edu'),
-        'edu-o': ('Other', 'edu'),
-        'edu-pe': ('Primary education', 'edu'),
-        'edu-se': ('Secondary education', 'edu'),
-        'egsw': ('Electricity, gas, steam, water', None),
-        'fi': ('Financial and Insurance', None),
-        'fi-b': ('Banking', 'fi'),
-        'fi-i': ('Insurance', 'fi'),
-        'fi-o': ('Other', 'fi'),
-    },
+    TENANTS=mocks.MOCKED_TENANTS,
     ALL_INDUSTRIES=('all', 'all'),
 )
 class UpdatableIndustries(TestCase):
     """Test class for `core.aggregate.updatable_industries` function."""
 
-    def _make_survey_with_result(self, industry):
-        survey = make_survey(industry=industry)
-        survey_res = make_survey_result(survey=survey)
-        survey.last_survey_result = survey_res
-        survey.save()
-        return survey
-
     def setUp(self):
-        self.result_1 = self._make_survey_with_result(industry='fi-b')
-        self.result_2 = self._make_survey_with_result(industry='fi-b')
-        self.result_3 = self._make_survey_with_result(industry='fi-o')
-        self.result_4 = self._make_survey_with_result(industry='edu-o')
+        self.result_1 = mommy_recepies.make_survey_with_result(industry='fi-b', tenant='tenant1')
+        self.result_2 = mommy_recepies.make_survey_with_result(industry='fi-b', tenant='tenant1')
+        self.result_3 = mommy_recepies.make_survey_with_result(industry='fi-o', tenant='tenant1')
+        self.result_4 = mommy_recepies.make_survey_with_result(industry='edu-o', tenant='tenant1')
 
     def test_updatable_industries_return_full_hierarchy(self):
         survey_results = SurveyResult.objects.all()
@@ -137,19 +117,6 @@ class UpdatableIndustries(TestCase):
 
 
 @override_settings(
-    INDUSTRIES={
-        'co': ('Construction', None),
-        'edu': ('Education', None),
-        'edu-fe': ('Further education', 'edu'),
-        'edu-o': ('Other', 'edu'),
-        'edu-pe': ('Primary education', 'edu'),
-        'edu-se': ('Secondary education', 'edu'),
-        'egsw': ('Electricity, gas, steam, water', None),
-        'fi': ('Financial and Insurance', None),
-        'fi-b': ('Banking', 'fi'),
-        'fi-i': ('Insurance', 'fi'),
-        'fi-o': ('Other', 'fi'),
-    },
     ALL_INDUSTRIES=('all', 'all'),
     MIN_ITEMS_INDUSTRY_THRESHOLD=2,
     TENANTS=mocks.MOCKED_TENANTS,
@@ -158,12 +125,12 @@ class IndustryBenchmark(TestCase):
     """Test class for `core.aggregate.industry_benchmark` function."""
 
     def setUp(self):
-        make_industry_benchmark(tenant='tenant1', industry='edu', dmb_value=2.0)
-        make_industry_benchmark(tenant='tenant1', industry='all', dmb_value=1.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu', dmb_value=2.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='all', dmb_value=1.0)
 
     def test_industry_benchmark_industry_has_value(self):
         """When industry has a value for dmb, it should return it."""
-        make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=3.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=3.0)
         industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'edu-o')
 
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
@@ -173,7 +140,7 @@ class IndustryBenchmark(TestCase):
 
     def test_industry_benchmark_industry_fallback_parent(self):
         """When industry does not have a value for dmb, it should  fallback to parent."""
-        make_industry_benchmark(tenant='tenant1', industry='edu-o')
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu-o')
         industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'edu-o')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
@@ -192,8 +159,8 @@ class IndustryBenchmark(TestCase):
     def test_industry_benchmark_industry_in_more_than_one_tenant(self):
         """When industry has the same name in more than one tenant, it should return the
         correct one."""
-        make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=2.0)
-        make_industry_benchmark(tenant='tenant2', industry='edu-o', dmb_value=4.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_value=2.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant2', industry='edu-o', dmb_value=4.0)
         industry_to_be_updated = aggregate.industry_benchmark('tenant1', 'edu-o')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
@@ -208,19 +175,6 @@ class IndustryBenchmark(TestCase):
 
 
 @override_settings(
-    INDUSTRIES={
-        'co': ('Construction', None),
-        'edu': ('Education', None),
-        'edu-fe': ('Further education', 'edu'),
-        'edu-o': ('Other', 'edu'),
-        'edu-pe': ('Primary education', 'edu'),
-        'edu-se': ('Secondary education', 'edu'),
-        'egsw': ('Electricity, gas, steam, water', None),
-        'fi': ('Financial and Insurance', None),
-        'fi-b': ('Banking', 'fi'),
-        'fi-i': ('Insurance', 'fi'),
-        'fi-o': ('Other', 'fi'),
-    },
     ALL_INDUSTRIES=('all', 'all'),
     MIN_ITEMS_INDUSTRY_THRESHOLD=2,
     TENANTS=mocks.MOCKED_TENANTS,
@@ -229,12 +183,12 @@ class IndustryBestPractice(TestCase):
     """Test class for `core.aggregate.industry_best_practice` function."""
 
     def setUp(self):
-        make_industry_benchmark(tenant='tenant1', industry='edu', dmb_bp_value=2.0)
-        make_industry_benchmark(tenant='tenant1', industry='all', dmb_bp_value=1.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu', dmb_bp_value=2.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='all', dmb_bp_value=1.0)
 
     def test_industry_benchmark_industry_has_value(self):
         """When industry has a value for dmb, it should return it."""
-        make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_bp_value=3.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_bp_value=3.0)
         industry_to_be_updated = aggregate.industry_best_practice('tenant1', 'edu-o')
 
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
@@ -244,7 +198,7 @@ class IndustryBestPractice(TestCase):
 
     def test_industry_benchmark_industry_fallback_parent(self):
         """When industry does not have a value for dmb, it should  fallback to parent."""
-        make_industry_benchmark(tenant='tenant1', industry='edu-o')
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu-o')
         industry_to_be_updated = aggregate.industry_best_practice('tenant1', 'edu-o')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 
@@ -263,8 +217,8 @@ class IndustryBestPractice(TestCase):
     def test_industry_benchmark_industry_in_more_than_one_tenant(self):
         """When industry has the same name in more than one tenant, it should return the
         correct one."""
-        make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_bp_value=2.5)
-        make_industry_benchmark(tenant='tenant2', industry='edu-o', dmb_bp_value=3.0)
+        mommy_recepies.make_industry_benchmark(tenant='tenant1', industry='edu-o', dmb_bp_value=2.5)
+        mommy_recepies.make_industry_benchmark(tenant='tenant2', industry='edu-o', dmb_bp_value=3.0)
         industry_to_be_updated = aggregate.industry_best_practice('tenant1', 'edu-o')
         got_dmb, got_dmb_d, got_industry = industry_to_be_updated
 

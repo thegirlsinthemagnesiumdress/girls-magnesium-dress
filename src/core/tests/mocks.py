@@ -227,6 +227,12 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
         ('edu-pe', ('Primary education', None)),
         ('edu-se', ('Secondary education', None)),
     ]))),
+    ('fi', ('Financial and Insurance', OrderedDict([
+        ('fi-b', ('Banking', None)),
+        ('fi-i', ('Insurance', None)),
+        ('fi-o', ('Other', None)),
+    ]))),
+    ('re', (('Real estate'), None)),
 ])
 
 INDUSTRIES = {
@@ -241,7 +247,12 @@ INDUSTRIES = {
     'ic-o': ('Other', 'ic'),
     'ic-s': ('Software', 'ic'),
     'ic-t': ('Telecommunications', 'ic'),
-    'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
+    'ic-trmvm': ('TV, radio, movies, video, music', 'ic'),
+    'fi': ('Financial and Insurance', None),
+    'fi-b': ('Banking', 'fi'),
+    'fi-i': ('Insurance', 'fi'),
+    'fi-o': ('Other', 'fi'),
+    're': ('Real estate'),
 }
 
 MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
