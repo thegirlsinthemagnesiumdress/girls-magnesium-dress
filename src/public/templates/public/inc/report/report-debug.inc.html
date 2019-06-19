@@ -1,0 +1,27 @@
+<div class="dmb-report-debug-toolbar">
+  <div class="h-c-page">
+
+    <label for="overall">
+      Overall Result:
+    </label>
+    <input
+        id="overall"
+        ng-model="debugOverallResult"
+        ng-change="reportCtrl.setOverallResult(debugOverallResult)"
+        step="0.2"
+        type="number">
+
+    <div ng-repeat="dimension in reportCtrl.dimensions">
+      <label for="{[ dimension ]}">
+        {[ reportCtrl.dimensionHeaders[dimension] ]}:
+      </label>
+      <input
+          id="{[ dimension ]}"
+          ng-model="debugDimensionResults[dimension]"
+          ng-change="reportCtrl.setDimensionsResult(dimension,debugDimensionResults[dimension])"
+          step="0.2"
+          type="number">
+    </div>
+
+  </div>
+</div>
