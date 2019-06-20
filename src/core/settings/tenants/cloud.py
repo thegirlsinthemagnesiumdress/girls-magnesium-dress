@@ -582,10 +582,31 @@ GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
 
 HIERARCHICAL_INDUSTRIES = OrderedDict([
-    ('ic', ('Information and Communication', OrderedDict([
-        ('ic-bnpj', ('Books, news, periodicals, journals', None)),
-    ]))),
+    ('cloud-am', ('Advertising & Marketing', None)),
+    ('cloud-ag', ('Agriculture', None)),
+    ('cloud-au', ('Automotive', None)),
+    ('cloud-bps', ('Business & Professional Services', None)),
+    ('cloud-cpg', ('Consumer Packaged Goods', None)),
+    ('cloud-edu', ('Education', None)),
+    ('cloud-ee', ('Electrical & Electronics', None)),
+    ('cloud-eu', ('Energy & Utilities', None)),
+    ('cloud-fi', ('Financial Services', None)),
+    ('cloud-fbr', ('Food, Beverage & Restaurants', None)),
+    ('cloud-gam', ('Gaming', None)),
+    ('cloud-hls', ('Healthcare & Life Sciences', None)),
+    ('cloud-igm', ('Industrial Goods & Manufacturing', None)),
+    ('cloud-lg', ('Law & Government', None)),
+    ('cloud-lt', ('Logistics & Transportation', None)),
+    ('cloud-me', ('Media & Entertainment', None)),
+    ('cloud-np', ('Non-Profit', None)),
+    ('cloud-ot', ('Other', None)),
+    ('cloud-rw', ('Retail & Wholesale', None)),
+    ('cloud-si', ('Software & Internet', None)),
+    ('cloud-tel', ('Telecommunications', None)),
+    ('cloud-tl', ('Tourism & Leisure', None)),
 ])
+
+
 
 INDUSTRIES = utils.map_industries(HIERARCHICAL_INDUSTRIES, None, {})
 # FLATTEN_INDUSTRIES = utils.flatten(HIERARCHICAL_INDUSTRIES)
