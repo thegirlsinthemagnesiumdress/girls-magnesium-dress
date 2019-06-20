@@ -42,6 +42,12 @@ class DimensionTabController {
     this.dimensionResult;
 
     /**
+     * @type {Object}
+     * @export
+     */
+    this.dimensionResults;
+
+    /**
      * @type {?number}
      * @export
      */
@@ -141,7 +147,7 @@ class DimensionTabController {
      * @type {string}
      * @export
      */
-    this.subdimensionDescription = tenantConf.subdimensionDescription;
+    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
 
     /**
      * Subdimension descriptions

@@ -15,6 +15,7 @@ function DimensionTabDirective() {
       'companyName': '<',
       'dmbDimensionTab': '<',
       'dimensionResult': '<',
+      'dimensionResults': '<',
       'dimensionIndAvg': '<',
       'dimensionIndBest': '<',
       'dimensionIndReady': '<',
