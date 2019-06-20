@@ -24,16 +24,47 @@ class DimensionTabController {
     tenantConf,
     dmbStaticUrl) {
     /**
-     * @type {?number}
+     * @type {string}
      * @export
      */
-    this.dimensionResult = null;
+    this.companyName;
 
     /**
      * @type {string}
      * @export
      */
-    this.dmbDimensionTab = '';
+    this.dmbDimensionTab;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionResult;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionIndAvg;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionIndBest;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.dimensionIndReady;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.tenant;
+
 
     /**
      * @type {string}
@@ -108,12 +139,6 @@ class DimensionTabController {
      * @export
      */
     this.nextLevelData = {};
-
-    /**
-     * @type {boolean}
-     * @export
-     */
-    this.dimensionIndReady = false;
 
     // Bind for external use
     this.updateDimensionTabData = this.updateDimensionTabData.bind(this);
