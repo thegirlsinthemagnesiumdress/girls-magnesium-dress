@@ -281,6 +281,7 @@ class ReportController {
   /**
    * Sets values for overall result
    * @param {number} overallResult
+   * @export
    */
   setOverallResult(overallResult) {
     if (!angular.isDefined(overallResult)) {
@@ -289,10 +290,13 @@ class ReportController {
 
     this.overallResult = overallResult;
     const levelData = this.dmbLevelsFactory(this.overallResult);
-    this.currentLevelData = levelData.current;
-    this.nextLevelData = levelData.next;
-    const levelDescriptions = this.dmbLevelsFactory(this.overallResult, this.reportLevelDescriptions);
-    this.currentLevelDescription = levelDescriptions.current.mapValue;
+    this.currentLevelData = levelData['current'];
+    this.nextLevelData = levelData['next'];
+    const levelDescriptions = this.dmbLevelsFactory(
+      this.overallResult,
+      this.reportLevelDescriptions
+    );
+    this.currentLevelDescription = levelDescriptions['current']['mapValue'];
   }
 
   /**

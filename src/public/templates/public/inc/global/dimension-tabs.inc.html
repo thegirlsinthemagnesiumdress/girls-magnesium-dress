@@ -3,9 +3,11 @@
   <div data-ng-if="reportCtrl.showTabs">
     <div class="dmb-dimension-tabs__icons">
       <!-- Tab Icons -->
-      <div class="dmb-dimension-tabs__icon h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+      <div
+          class="dmb-dimension-tabs__icon h-u-text-center"
+          ng-repeat="dimension in reportCtrl.dimensions">
         <div
-          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[reportCtrl.dmbLevelsFactory(reportCtrl.result.dmb_d[dimension]).current.value]}"
+          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[ reportCtrl.dmbLevelsFactory(reportCtrl.result.dmb_d[dimension])['current']['value'] ]}"
           data-progress="{[ reportCtrl.result.dmb_d[dimension] ]}">
           <svg class="dmb-progress-circle__prog-svg" dmb-progress-circle="reportCtrl.result.dmb_d[dimension]"
             viewbox="0 0 120 120">
@@ -14,7 +16,7 @@
           </svg>
           <div class="dmb-progress-circle__text">
             <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
-              {[reportCtrl.result.dmb_d[dimension]|number:1]}
+              {[ reportCtrl.result.dmb_d[dimension]|number:1 ]}
             </span>
           </div>
         </div>

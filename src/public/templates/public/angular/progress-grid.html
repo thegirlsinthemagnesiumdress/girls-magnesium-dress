@@ -1,7 +1,7 @@
 {% load i18n %}
 {% trans "Get more information about the industry average" as industry_avg_aria_text %}
 {% trans "Get more information about the industry best" as industry_best_aria_text %}
-<div class="dmb-progress-grid dmb-progress-grid--level-{[ progressGridCtrl.ratingMainData.current.value ]}">
+<div class="dmb-progress-grid dmb-progress-grid--level-{[ progressGridCtrl.ratingMainData['current']['value'] ]}">
     <!-- This list is visually hidden and only read out by screen readers -->
     <ul class="h-u-visually-hidden">
       <li>
@@ -14,7 +14,7 @@
           {% trans " has a rating of " %}
           {[ progressGridCtrl.ratingMain|number:1 ]},
           {% trans " which is a maturity level of " %}
-          {[ progressGridCtrl.ratingMainData.current.mapValue ]}.
+          {[ progressGridCtrl.ratingMainData['current']['mapValue'] ]}.
         </span>
       </li>
       <li>
@@ -25,7 +25,7 @@
           {% trans "The industry average is " %}
           {[ progressGridCtrl.industryAvg|number:1 ]},
           {% trans "which is a maturity level of " %}
-          {[ progressGridCtrl.industryAvgData.current.mapValue ]}.
+          {[ progressGridCtrl.industryAvgData['current']['mapValue'] ]}.
         </span>
       </li>
       <li>
@@ -36,7 +36,7 @@
           {% trans "The industry best is " %}
           {[ progressGridCtrl.industryBest|number:1 ]},
           {% trans " which is a maturity level of " %}
-          {[ progressGridCtrl.industryBestData.current.mapValue ]}.
+          {[ progressGridCtrl.industryBestData['current']['mapValue'] ]}.
         </span>
       </li>
     </ul>
@@ -86,14 +86,14 @@
   <div
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--company"
       data-value="{[ progressGridCtrl.ratingMain|number:1 ]}"
-      data-level-name="{[ progressGridCtrl.ratingMainData.current.mapValue ]}"
+      data-level-name="{[ progressGridCtrl.ratingMainData['current']['mapValue'] ]}"
       ng-style="{height: progressGridCtrl.getProgress(progressGridCtrl.ratingMain)}"
       aria-hidden="true">
   </div>
   <div
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-avg"
       data-value="{[ progressGridCtrl.industryAvg|number:1 ]}"
-      data-level-name="{[ progressGridCtrl.industryAvgData.current.mapValue ]}"
+      data-level-name="{[ progressGridCtrl.industryAvgData['current']['mapValue'] ]}"
       ng-if="progressGridCtrl.industryAvg"
       ng-style="{height: progressGridCtrl.getProgress(progressGridCtrl.industryAvg)}"
       aria-hidden="true">
@@ -101,7 +101,7 @@
   <div
       class="dmb-progress-grid__v-bar dmb-progress-grid__v-bar--ind-best"
       data-value="{[ progressGridCtrl.industryBest|number:1 ]}"
-      data-level-name="{[ progressGridCtrl.industryBestData.current.mapValue ]}"
+      data-level-name="{[ progressGridCtrl.industryBestData['current']['mapValue'] ]}"
       ng-if="progressGridCtrl.industryBest"
       ng-style="{height: progressGridCtrl.getProgress(progressGridCtrl.industryBest)}"
       aria-hidden="true">

@@ -177,13 +177,13 @@ class DimensionTabController {
       this.dmbLevelsFactory(
         this.dimensionResult,
         this.tenantConf.dimensionLevelDescription[this.dmbDimensionTab]
-      ).current.mapValue
+      ).current['mapValue']
     );
 
     this.recommendations = this.dmbLevelsFactory(
       this.dimensionResult,
       this.tenantConf.dimensionRecommendations[this.dmbDimensionTab]
-    ).current.mapValue;
+    ).current['mapValue'];
   }
 }
 
