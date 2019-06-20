@@ -413,7 +413,7 @@ DIMENSION_RECOMMENDATIONS = {
             },
             {
                 'header': 'Training Resources',
-                'text': '<ul>Continue to provide on-demand, instructor-led, and static peer-to-peer options as well as proactive learning resources via employee-hosted events such as tech talks and hackathons. Encourage staff to produce public blog articles and engage in public speaking engagements.',
+                'text': 'Continue to provide on-demand, instructor-led, and static peer-to-peer options as well as proactive learning resources via employee-hosted events such as tech talks and hackathons. Encourage staff to produce public blog articles and engage in public speaking engagements.',
                 'cta': GCP_TRAINING_CTA,
             },
             {
