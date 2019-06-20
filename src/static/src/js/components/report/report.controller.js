@@ -237,6 +237,31 @@ class ReportController {
      */
     this.trustAsHtml = $sce.trustAsHtml;
 
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensions = tenantConf.subdimensions;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
+
     // Allows use from other contexts
     this.setOverallResult = this.setOverallResult.bind(this);
 
