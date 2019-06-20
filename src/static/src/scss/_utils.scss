@@ -3,6 +3,15 @@
   font-family: $h-font-family-google-sans;
 }
 
+.dmb-u-google-sans-display {
+  font-family: 'Google Sans Display', 'Google Sans', 'Roboto', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.dmb-u-note {
+  font-size: 12px;
+}
+
 .dmb-u-no-margin {
   margin: 0 !important;
 }
@@ -115,4 +124,8 @@ $positions: (top, bottom);
   border-bottom: 6px solid $dmb-color-grey-zircon;
   max-width: 500px;
   padding-bottom: 15px;
+}
+
+.dmb-u-rounded {
+  border-radius: 8px;
 }

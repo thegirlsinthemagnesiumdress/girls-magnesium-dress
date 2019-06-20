@@ -60,23 +60,25 @@ MOCKED_DIMENSION_TITLES_TENANT_2 = {
 
 MOCKED_CONTENT_DATA_TENANT_1 = {
     'levels': {},
+    'levels_max': 1,
     'level_descriptions': {},
     'dimensions': [],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_1,
-    'dimension_headers_descriptions': {},
+    'dimension_header_descriptions': {},
     'dimension_level_description': {},
-    'dimension_level_recommendations': {},
+    'dimension_recommendations': {},
 }
 
 
 MOCKED_CONTENT_DATA_TENANT_2 = {
     'levels': {},
+    'levels_max': 2,
     'level_descriptions': {},
     'dimensions': [],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_2,
-    'dimension_headers_descriptions': {},
+    'dimension_header_descriptions': {},
     'dimension_level_description': {},
-    'dimension_level_recommendations': {},
+    'dimension_recommendations': {},
 }
 
 qualtrics_export = {

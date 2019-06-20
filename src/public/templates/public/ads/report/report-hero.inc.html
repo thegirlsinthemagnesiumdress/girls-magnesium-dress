@@ -3,13 +3,13 @@
 <section class="dmb-report-hero{% if class %} {{class}}{% endif %}">
   <div class="dmb-report-hero__bg"></div>
   <div class="h-c-page">
-    <div class="dmb-report-hero__current dmb-report-hero__current--level-{[reportCtrl.floorDmb]}">
+    <div class="dmb-report-hero__current dmb-report-hero__current--level-{[ reportCtrl.currentLevelData['value'] ]}">
       <div class="dmb-report-hero__header">
         <div class="dmb-report-hero__company h-c-headline h-c-headline--three">
-          {[reportCtrl.survey.company_name]}
+          {[ reportCtrl.survey.company_name ]}
         </div>
         <div class="dmb-report-hero__date h-c-headline h-c-headline--subhead">
-          {[reportCtrl.result.started_at|date:'MMMM yyyy']}
+          {[ reportCtrl.result.started_at|date:'MMMM yyyy' ]}
         </div>
       </div>
       <div class="dmb-report-hero__subheading h-c-headline h-c-headline--subhead">
@@ -17,7 +17,7 @@
       </div>
       <h2 class="dmb-report-hero__current-level h-c-headline h-c-headline--display-two">
         <span>
-          {[reportCtrl.levels[reportCtrl.floorDmb]]}
+          {[ reportCtrl.currentLevelData['mapValue'] ]}
         </span>
         <button
             class="dmb-report-hero__print-btn dmb-u-hide-mobile dmb-h-hidden--print"
@@ -28,11 +28,11 @@
         </button>
       </h2>
     </div>
-    <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--level-{[reportCtrl.nextLevel]}">
-      <span ng-if="reportCtrl.floorDmb !== reportCtrl.nextLevel">
-        {% trans "Next level: " %} <strong>{[reportCtrl.levels[reportCtrl.floorDmb + 1]]}</strong>
+    <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--level-{[ reportCtrl.nextLevelData['value'] ]}">
+      <span ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+        {% trans "Next level: " %} <strong>{[ reportCtrl.nextLevelData['mapValue'] ]}</strong>
       </span>
-      <span ng-if="reportCtrl.floorDmb === reportCtrl.nextLevel">
+      <span ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
         {% trans "Congratulations, you're in the top group for digital maturity" %}
       </span>
       <button

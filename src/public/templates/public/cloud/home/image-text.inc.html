@@ -1,3 +1,4 @@
+{% load static %}
 <section class="dmb-img-text{% if class %} {{class}}{% endif %}">
   <div class="h-c-page">
     <div class="h-c-grid">
@@ -7,9 +8,11 @@
         </div>
 
         {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-img-text__img dmb-u-m-b-s dmb-u-only-mobile' img='img/'|add:tenant|add:'/home/img-text-img-mobile' ext='jpg' alt='product image' %}
-        {% comment %}
-          {% include 'public/inc/global/collaboration.inc.html' with partner1='deloitte' %}
-        {% endcomment %}
+
+        <img
+            alt="Google Cloud logo"
+            width="164px"
+            src="{% static 'img/cloud/google-cloud.svg' %}">
       </div>
     </div>
   </div>
