@@ -65,6 +65,11 @@ $block: '.dmb-progress-grid';
       }
     }
 
+    &--max {
+      background-image: linear-gradient(to top, rgba($dmb-prog-grid-col-bg-color, 0) 80%, rgba($dmb-prog-grid-col-bg-color, 1) 100%);
+      border: transparent;
+    }
+
     &::after {
       content: attr(data-value)'\A'attr(data-level-name);
       font-size: 12px;
@@ -98,6 +103,11 @@ $block: '.dmb-progress-grid';
       &--#{$source} {
         grid-row: #{$i};
       }
+    }
+
+    &--max {
+      background-image: linear-gradient(to right, rgba($dmb-prog-grid-col-bg-color, 0) 80%, rgba($dmb-prog-grid-col-bg-color, 1) 100%);
+      border: transparent;
     }
 
     &::after {
