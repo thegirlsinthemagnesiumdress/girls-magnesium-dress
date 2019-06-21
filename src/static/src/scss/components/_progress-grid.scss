@@ -39,6 +39,7 @@ $block: '.dmb-progress-grid';
   &__v-bar,
   &__h-bar {
     background: $dmb-prog-grid-bar-color;
+    box-sizing: content-box;
     position: relative;
 
     &::after {
@@ -50,6 +51,7 @@ $block: '.dmb-progress-grid';
 
   &__v-bar {
     border-radius: $dmb-border-radius $dmb-border-radius 0 0;
+    border-top: 2px solid $dmb-prog-grid-bar-color;
     height: 0;
     place-self: end center;
     transition: height $dmb-progress-trans-time $dmb-progress-trans-fn;
@@ -84,6 +86,7 @@ $block: '.dmb-progress-grid';
   &__h-bar {
     align-self: center;
     border-radius: 0 $dmb-border-radius $dmb-border-radius 0;
+    border-right: 2px solid $dmb-prog-grid-bar-color;
     grid-column: 2;
     height: $dmb-prog-grid-bar-size;
     transition: width $dmb-progress-trans-time $dmb-progress-trans-fn;
@@ -291,7 +294,9 @@ $block: '.dmb-progress-grid';
 
           #{$block}__v-bar--company,
           #{$block}__h-bar--company {
-            background-color: map-get($value, color);
+            $level-color: map-get($value, color);
+            background-color: $level-color;
+            border-color: $level-color;
           }
         }
       }
