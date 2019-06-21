@@ -1,4 +1,4 @@
-goog.module('dmb.survey.scrollToFirstError');
+  goog.module('dmb.survey.scrollToFirstError');
 
 /**
  * Binds the event listener
@@ -20,15 +20,12 @@ function init() {
  */
 function scrollToFirstError() {
   const className = '.ValidationError';
-  let firstError;
   // Get all validation errors
-  const elements = document.querySelectorAll(className);
+  let elements = document.querySelectorAll(className);
+  elements = Array.from(elements);
   // Get the first visible validation error element
-  elements.forEach((elem) => {
-    const style = getComputedStyle(elem);
-    if (!firstError && style.display != 'none') {
-      firstError = elem;
-    }
+  let firstError = elements.find((element) => {
+    return getComputedStyle(element).display != 'none';
   });
   // If there is a validation error visible then scroll to the error
   if (firstError) {
