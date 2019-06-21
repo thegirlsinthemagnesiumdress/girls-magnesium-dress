@@ -1,4 +1,5 @@
-goog.module('dmb.components.report.controller');
+// goog.module('dmb.components.report.controller');
+goog.module.declareNamespace('dmb.components.report.controller');
 
 import * as BreakpointService from '@google/glue/lib/ng/common/breakpoint-service';
 import * as PaginationModel from '@google/glue/lib/ng/pagination/model';
@@ -282,8 +283,6 @@ ReportController.CONTROLLER_NAME = 'ReportCtrl';
 ReportController.CONTROLLER_AS_NAME = 'reportCtrl';
 
 
-exports = {
-  main: ReportController,
-  CONTROLLER_NAME: ReportController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ReportController.CONTROLLER_AS_NAME,
-};
+export const main = ReportController;
+export const CONTROLLER_NAME = ReportController.CONTROLLER_NAME;
+export const CONTROLLER_AS_NAME = ReportController.CONTROLLER_AS_NAME;

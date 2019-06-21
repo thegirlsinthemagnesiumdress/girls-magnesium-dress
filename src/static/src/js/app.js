@@ -1,3 +1,5 @@
+goog.module.declareNamespace('dmb.app');
+
 // In src/app.js
 import * as glueApp from '@google/glue/lib/app/app';
 import * as glueCommon from '@google/glue/lib/ng/common/common';
@@ -24,7 +26,7 @@ const copyComponent = goog.require('dmb.components.copyComponent');
 const exportReports = goog.require('dmb.components.exportReports');
 
 /** @type {!angular.Module} */
-const module = angular.module('dmb', [
+export const module = angular.module('dmb', [
   focusControl.module.name,
   glueCommon.module.name, // Progressive enhancement/browser detections.
   glueZippy.module.name,

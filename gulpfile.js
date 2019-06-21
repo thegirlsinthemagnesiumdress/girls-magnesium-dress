@@ -128,7 +128,7 @@ gulp.task('js-templates', function() {
           // on your setup. This is to make the path look more like
           // the path glue directives are looking for.
           return `/glue/${url}`;
-        }
+        },
       }
     ))
     .pipe(gulp.dest(PATHS.dev.js));
@@ -138,7 +138,7 @@ gulp.task('js-templates', function() {
 const SASS_CONFIG = {
   outputStyle: 'compressed',
   includePaths: [
-    'node_modules/glue'
+    'node_modules/@google/glue',
   ]
 };
 
@@ -326,4 +326,3 @@ gulp.task('default', (done)=>{
   );
   return task(done);
 });
-

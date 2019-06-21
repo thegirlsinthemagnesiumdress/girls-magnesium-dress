@@ -1,4 +1,5 @@
-goog.module('dmb.components.headerFix');
+// goog.module('dmb.components.headerFix');
+goog.module.declareNamespace('dmb.components.headerFix');
 
 import {cssClasses as headerCssClasses} from '@google/glue/lib/ui/header/constants';
 
@@ -11,7 +12,7 @@ const MODULE_NAME = 'headerFix';
  * Allows to submit a company to the BE.
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 
 module.run(headerFixRun);
@@ -42,10 +43,3 @@ function headerFixRun(scrollService) {
     headerEl.classList.remove(headerCssClasses.IS_WHOLLY_SCROLLED);
   }
 }
-
-
-/**
- * Registration angular module.
- * @type {!angular.Module}
- */
-exports.module = module;
