@@ -283,6 +283,7 @@ MOCKED_TENANTS = {
         'i18n': True,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_1,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_1,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
     },
     'tenant2': {
         'key': 'tenant2',
@@ -302,6 +303,7 @@ MOCKED_TENANTS = {
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_2,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_2,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
     },
     'tenant3': {
         'key': 'tenant3',
@@ -318,6 +320,7 @@ MOCKED_TENANTS = {
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
         'i18n': False,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
     }
 }
 MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])
