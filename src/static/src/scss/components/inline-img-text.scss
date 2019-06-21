@@ -1,0 +1,18 @@
+.dmb-inline-img-text {
+  $block: &;
+  display: flex;
+
+  &__img-wrp {
+    margin-right: 10px;
+  }
+
+  &__img {
+    height: 1.5em;
+  }
+
+  &--large {
+    #{$block}__img {
+      height: 1.5em;
+    }
+  }
+}

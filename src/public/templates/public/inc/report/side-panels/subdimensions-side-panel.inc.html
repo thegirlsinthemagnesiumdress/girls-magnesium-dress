@@ -21,26 +21,36 @@
         Cloud adoption epics
       {% endif %}
     </h1>
-
     <p
         class="dmb-u-m-b-m"
         ng-bind-html="reportCtrl.subdimensionDescription">
     </p>
 
+
     <div
         ng-class="{'dmb-u-m-b-m':!$last}"
         ng-repeat="dimension in reportCtrl.dimensions">
-      <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
+      <h2 class="h-c-headline h-c-headline--four">
+        <div class="dmb-inline-img-text dmb-inline-img-text--large">
+          <div class="dmb-inline-img-text__img-wrp">
+            <img
+                alt="dimension icon"
+                class="dmb-inline-img-text__img"
+                ng-src="{[ reportCtrl.dmbStaticUrl ]}img/{{ tenant|ng_mark_safe }}/dimensions/{[ dimension|underscoreToHyphen ]}.svg">
+          </div>
+          <div class="dmb-inline-img-text__text">
         {[ reportCtrl.dimensionHeaders[dimension] ]}
+          </div>
+        </div>
       </h2>
 
       <div
-          ng-class="{'dmb-u-m-b-m':!$last}"
           ng-repeat="subdimension in reportCtrl.subdimensions[dimension]">
-        <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+        <h3 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
           {[ reportCtrl.subdimensionHeaders[subdimension] ]}
         </h3>
-        <p ng-class="{'dmb-u-m-b-m':!$last}">
+        <p
+          ng-class="{'dmb-u-m-b-s':!$last}">
           {[ reportCtrl.subdimensionDescriptions[subdimension] ]}
         </p>
       </div>
