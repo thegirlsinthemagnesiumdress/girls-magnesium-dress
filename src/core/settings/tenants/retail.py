@@ -1,5 +1,7 @@
 # coding=utf-8
 # flake8: noqa
+from collections import OrderedDict
+from core.conf import utils
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
 DIMENSION_STRATEGIC_DIRECTION = "strategic_direction"
@@ -452,3 +454,11 @@ GOOGLE_SHEET_EXPORT_SURVEY_FIELDS = GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS = GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
+
+HIERARCHICAL_INDUSTRIES = OrderedDict([
+    ('rt', ('Retail trade', OrderedDict([
+        ('rt-o', ('Other', None)),
+    ]))),
+])
+
+INDUSTRIES = utils.map_industries(HIERARCHICAL_INDUSTRIES, None, {})

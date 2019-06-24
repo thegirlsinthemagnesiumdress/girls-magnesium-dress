@@ -341,13 +341,15 @@ def generate_csv_export(tenant, survey_fields, survey_result_fields, prefix):
 
         surveys = Survey.objects.filter(tenant=tenant)
 
+        tenant_industries = settings.TENANTS[tenant]['INDUSTRIES']
+
         for survey in surveys:
             survey_data = {field: None for field in all_fields}
             try:
                 survey_data.update({
                     'id': survey.pk,
                     'company_name': survey.company_name,
-                    'industry': settings.INDUSTRIES.get(survey.industry),
+                    'industry': tenant_industries.get(survey.industry),
                     'country': settings.COUNTRIES.get(survey.country),
                     'created_at': survey.created_at,
                     'engagement_lead': survey.engagement_lead,
