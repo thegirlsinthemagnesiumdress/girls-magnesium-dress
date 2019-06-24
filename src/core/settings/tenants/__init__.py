@@ -103,7 +103,7 @@ TENANTS = {
         'CONTENT_DATA': cloud_conf.CONTENT_DATA,
         'MULTI_ANSWER_QUESTIONS': cloud_conf.MULTI_ANSWER_QUESTIONS,
         'WEIGHTS': cloud_conf.WEIGHTS,
-        'EXCLUDED_TIME_THRESHOLD': 2,
+        'EXCLUDED_TIME_THRESHOLD': 10,
         'CONTACT_EMAIL': "Data Maturity Benchmark <no-reply@{}.appspotmail.com>".format(application_id()),
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
