@@ -55,9 +55,7 @@ def registration(request, tenant):
         'content_data': _dump_tenant_content_data(tenant),
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
-        'other_tenants': [(other_tenant['footer_label'], other_tenant['slug'])
-                          for _, other_tenant in settings.TENANTS.items()
-                          if other_tenant['slug'] is not get_tenant_slug(tenant)],
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
