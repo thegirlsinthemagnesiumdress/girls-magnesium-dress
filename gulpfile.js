@@ -47,8 +47,8 @@ let dev = false;
 
 
 const TEMPLATE_SRC = [
-  'node_modules/glue/hercules/lib/components/**/*.html',
-  '!node_modules/glue/hercules/lib/components/**/*_test.html',
+  'node_modules/@google/glue/hercules/lib/components/**/*.html',
+  '!node_modules/@google/glue/hercules/lib/components/**/*_test.html',
 ];
 
 gulp.task('js-deps', function() {
@@ -293,12 +293,12 @@ gulp.task('lint', gulp.parallel(
 gulp.task('build',
   gulp.parallel(
     gulp.series(
-    'clean-dist',
-    'js-templates',
-    'js-detect',
-    'js-survey',
-    'js',
-    'sass'
+      'clean-dist',
+      'js-templates',
+      'js-detect',
+      'js-survey',
+      'js',
+      'sass'
     ),
     'svg-symbols',
     'images-dist',
@@ -324,5 +324,6 @@ gulp.task('default', (done)=>{
     ),
     'watch'
   );
+
   return task(done);
 });
