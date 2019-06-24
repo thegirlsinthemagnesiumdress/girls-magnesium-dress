@@ -53,6 +53,7 @@ TENANTS = {
         'i18n': True,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
     },
     NEWS: {
         'key': NEWS,
@@ -75,6 +76,7 @@ TENANTS = {
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
+        'PRODUCT_NAME': "Data Maturity Benchmark",
     },
     RETAIL: {
         'key': RETAIL,
@@ -97,6 +99,7 @@ TENANTS = {
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
+        'PRODUCT_NAME': "Data Maturity Benchmark",
     },
     CLOUD: {
         'key': CLOUD,
@@ -116,6 +119,7 @@ TENANTS = {
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
+        'PRODUCT_NAME': "Cloud Maturity Assessment",
     },
 }
 

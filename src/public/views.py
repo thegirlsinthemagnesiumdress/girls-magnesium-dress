@@ -196,6 +196,7 @@ def generate_spreadsheet_export(request, tenant):
         tenant_conf = settings.TENANTS[tenant]
         survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
         survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
+        product_name = tenant_conf['PRODUCT_NAME']
         data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
         now = datetime.datetime.now()
 
@@ -203,7 +204,7 @@ def generate_spreadsheet_export(request, tenant):
         logging.info(msg)
         deferred.defer(
             tasks.export_tenant_data,
-            "Digital Maturity Benchmark | Data Export | {} ".format(now.strftime("%d-%m-%Y %H:%M")),
+            "{} | Data Export | {} ".format(product_name, now.strftime("%d-%m-%Y %H:%M")),
             data,
             survey_fields_mappings,
             survey_result_fields_mapping,
