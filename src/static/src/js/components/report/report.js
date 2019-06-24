@@ -39,13 +39,13 @@ module.factory('dmbLevelsFactory', ['tenantConf', (tenantConf) => {
       if (score >= levelMinimum && (score < nextLevelMinimum || !nextLevelMinimum)) {
         nextLevelMinimum = nextLevelMinimum || levelMinimum;
         return {
-          current: {
-            value: levelMinimum,
-            mapValue: sourceMap[levelMinimum],
+          'current': {
+            'value': levelMinimum,
+            'mapValue': sourceMap[levelMinimum],
           },
-          next: {
-            value: nextLevelMinimum,
-            mapValue: sourceMap[nextLevelMinimum],
+          'next': {
+            'value': nextLevelMinimum,
+            'mapValue': sourceMap[nextLevelMinimum],
           },
         };
       }

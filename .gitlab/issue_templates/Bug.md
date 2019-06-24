@@ -1,25 +1,25 @@
-**Summary**
+**Summary**  
 Bug description.
 
-**Url (if any)**
+**Url (if any)**  
 Url or description of where the bug has been spotted.
 
-**Environment (if any)**
-ie. production|staging|nighly
+**Environment (if any)**  
+ie. production|staging|nightly
 
-**Step to reproduce**
-1.  Step 1
+**Step to reproduce**  
+1.  Navigate to the page
 
-**Expected Behaviour**
+**Expected Behaviour**  
 A description of the expected behaviour
 
-**Actual behaviour**
+**Actual behaviour**  
 A description of what is happening instead
 
-**Notes**
+**Notes**  
 Any info, context or possible solutions
 
-**More info (if needed)**
+**More info (if needed)**  
 
 | | |
 | ------ | ------ |
@@ -27,5 +27,3 @@ Any info, context or possible solutions
 | Screen Size |  |
 | Zoom level |  |
 
-
-/label ~Bug

@@ -24,16 +24,53 @@ class DimensionTabController {
     tenantConf,
     dmbStaticUrl) {
     /**
-     * @type {?number}
+     * @type {string}
      * @export
      */
-    this.dimensionResult = null;
+    this.companyName;
 
     /**
      * @type {string}
      * @export
      */
-    this.dmbDimensionTab = '';
+    this.dmbDimensionTab;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionResult;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.dimensionResults;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionIndAvg;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionIndBest;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.dimensionIndReady;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.tenant;
+
 
     /**
      * @type {string}
@@ -92,6 +129,41 @@ class DimensionTabController {
     this.dmbStaticUrl = dmbStaticUrl;
 
     /**
+     * Subdimensions
+     * @type {Object}
+     * @export
+     */
+    this.subdimensions = tenantConf.subdimensions;
+
+    /**
+     * Subdimension level values
+     * @type {Object}
+     * @export
+     */
+    this.dimensionLevels = {};
+
+    /**
+     * Subdimension labels
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+
+    /**
+     * Subdimension labels
+     * @type {string}
+     * @export
+     */
+    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
+
+    /**
+     * Subdimension descriptions
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
+
+    /**
      * @type {Object}
      * @export
      */
@@ -108,12 +180,6 @@ class DimensionTabController {
      * @export
      */
     this.nextLevelData = {};
-
-    /**
-     * @type {boolean}
-     * @export
-     */
-    this.dimensionIndReady = false;
 
     // Bind for external use
     this.updateDimensionTabData = this.updateDimensionTabData.bind(this);
@@ -143,6 +209,10 @@ class DimensionTabController {
 
     this.topLevel = this.resultInTopLevel(this.dimensionResult);
 
+    Object.entries(this.dimensionResults).forEach(([dimension, value]) => {
+      this.dimensionLevels[dimension] = this.dmbLevelsFactory(value)['current']['value'];
+    });
+
     this.dimensionHeader = this.tenantConf.dimensionHeaders[this.dmbDimensionTab];
     this.dimensionDescription = this.trustAsHtml(
       this.tenantConf.dimensionHeaderDescriptions[this.dmbDimensionTab]
@@ -152,13 +222,13 @@ class DimensionTabController {
       this.dmbLevelsFactory(
         this.dimensionResult,
         this.tenantConf.dimensionLevelDescription[this.dmbDimensionTab]
-      ).current.mapValue
+      ).current['mapValue']
     );
 
     this.recommendations = this.dmbLevelsFactory(
       this.dimensionResult,
       this.tenantConf.dimensionRecommendations[this.dmbDimensionTab]
-    ).current.mapValue;
+    ).current['mapValue'];
   }
 }
 

@@ -14,6 +14,36 @@ class ProgressGridController {
    */
   constructor(tenantConf, dmbLevelsFactory) {
     /**
+     * @type {string}
+     * @export
+     */
+    this.companyName;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.ratingMain;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.industryAvg;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.industryBest;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryReady;
+
+    /**
      * @type {Object}
      * @export
      */
@@ -26,28 +56,10 @@ class ProgressGridController {
     this.levelsMax = tenantConf.levelsMax;
 
     /**
-     * @type {Object}
+     * @type {Array<string>}
      * @export
      */
     this.levelsArray = tenantConf.levelsArray;
-
-    /**
-     * @type {?number}
-     * @export
-     */
-    this.ratingMain = null;
-
-    /**
-     * @type {?number}
-     * @export
-     */
-    this.industryBest = null;
-
-    /**
-     * @type {?number}
-     * @export
-     */
-    this.industryAvg = null;
 
     /**
      * @type {Object}

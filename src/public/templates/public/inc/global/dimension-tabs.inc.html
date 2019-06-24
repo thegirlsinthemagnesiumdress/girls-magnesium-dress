@@ -3,9 +3,11 @@
   <div data-ng-if="reportCtrl.showTabs">
     <div class="dmb-dimension-tabs__icons">
       <!-- Tab Icons -->
-      <div class="dmb-dimension-tabs__icon h-u-text-center" ng-repeat="dimension in reportCtrl.dimensions">
+      <div
+          class="dmb-dimension-tabs__icon h-u-text-center"
+          ng-repeat="dimension in reportCtrl.dimensions">
         <div
-          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[reportCtrl.dmbLevelsFactory(reportCtrl.result.dmb_d[dimension]).current.value]}"
+          class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[ reportCtrl.dmbLevelsFactory(reportCtrl.result.dmb_d[dimension])['current']['value'] ]}"
           data-progress="{[ reportCtrl.result.dmb_d[dimension] ]}">
           <svg class="dmb-progress-circle__prog-svg" dmb-progress-circle="reportCtrl.result.dmb_d[dimension]"
             viewbox="0 0 120 120">
@@ -14,7 +16,7 @@
           </svg>
           <div class="dmb-progress-circle__text">
             <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
-              {[reportCtrl.result.dmb_d[dimension]|number:1]}
+              {[ reportCtrl.result.dmb_d[dimension]|number:1 ]}
             </span>
           </div>
         </div>
@@ -53,8 +55,9 @@
             <div>
               <div
                   data-company-name="reportCtrl.survey['company_name']"
-                  data-dmb-dimension-tab="{[ dimension ]}"
+                  data-dmb-dimension-tab="dimension"
                   data-dimension-result="reportCtrl.dimensionsResults[dimension]"
+                  data-dimension-results="reportCtrl.dimensionsResults"
                   data-dimension-ind-avg="reportCtrl.dimensionsIndAvgs[dimension]"
                   data-dimension-ind-best="reportCtrl.dimensionsIndBests[dimension]"
                   data-dimension-ind-ready="!!reportCtrl.industryResult"
@@ -88,9 +91,14 @@
           </div>
           <div class="glue-zippy-content">
             <div
-                company-name="{[reportCtrl.survey.company_name]}"
-                dmb-dimension-tab="{[dimension]}"
-                tenant="{{tenant|ng_mark_safe}}">
+                data-company-name="reportCtrl.survey['company_name']"
+                data-dmb-dimension-tab="dimension"
+                data-dimension-result="reportCtrl.dimensionsResults[dimension]"
+                data-dimension-results="reportCtrl.dimensionsResults"
+                data-dimension-ind-avg="reportCtrl.dimensionsIndAvgs[dimension]"
+                data-dimension-ind-best="reportCtrl.dimensionsIndBests[dimension]"
+                data-dimension-ind-ready="!!reportCtrl.industryResult"
+                data-tenant="{{ tenant|ng_mark_safe }}">
             </div>
           </div>
         </li>
