@@ -254,7 +254,7 @@ INDUSTRIES = {
     'fi-b': ('Banking', 'fi'),
     'fi-i': ('Insurance', 'fi'),
     'fi-o': ('Other', 'fi'),
-    're': ('Real estate'),
+    're': ('Real estate', None),
 }
 
 MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
