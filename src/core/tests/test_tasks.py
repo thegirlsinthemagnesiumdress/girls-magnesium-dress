@@ -120,12 +120,6 @@ class GetResultsTestCase(TestCase):
         args, kwargs = send_email_mock.call_args
         self.assertEqual(len(args[0]), 3)
 
-    @override_settings(
-        INDUSTRIES={
-            'IT': 'IT',
-            'B': 'B',
-        }
-    )
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
         'core.qualtrics.download.fetch_results',
