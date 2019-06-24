@@ -229,6 +229,12 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
         ('edu-pe', ('Primary education', None)),
         ('edu-se', ('Secondary education', None)),
     ]))),
+    ('fi', ('Financial and Insurance', OrderedDict([
+        ('fi-b', ('Banking', None)),
+        ('fi-i', ('Insurance', None)),
+        ('fi-o', ('Other', None)),
+    ]))),
+    ('re', (('Real estate'), None)),
 ])
 
 INDUSTRIES = {
@@ -243,7 +249,12 @@ INDUSTRIES = {
     'ic-o': ('Other', 'ic'),
     'ic-s': ('Software', 'ic'),
     'ic-t': ('Telecommunications', 'ic'),
-    'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
+    'ic-trmvm': ('TV, radio, movies, video, music', 'ic'),
+    'fi': ('Financial and Insurance', None),
+    'fi-b': ('Banking', 'fi'),
+    'fi-i': ('Insurance', 'fi'),
+    'fi-o': ('Other', 'fi'),
+    're': ('Real estate'),
 }
 
 MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
@@ -280,6 +291,8 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'CONTENT_DATA': MOCKED_CONTENT_DATA_TENANT_1,
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
+        'INDUSTRIES': INDUSTRIES,
         'i18n': True,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_1,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_1,
@@ -300,6 +313,8 @@ MOCKED_TENANTS = {
         'CONTENT_DATA': MOCKED_CONTENT_DATA_TENANT_2,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
+        'INDUSTRIES': INDUSTRIES,
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_2,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_2,
@@ -321,6 +336,8 @@ MOCKED_TENANTS = {
         'EXCLUDED_TIME_THRESHOLD': 5,
         'i18n': False,
         'PRODUCT_NAME': "Digital Maturity Benchmark",
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
+        'INDUSTRIES': INDUSTRIES,
     }
 }
 MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])

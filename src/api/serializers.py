@@ -1,5 +1,6 @@
 from core.models import Survey, SurveyResult
-from rest_framework.serializers import ModelSerializer, CharField, JSONField
+from rest_framework.serializers import ModelSerializer, CharField, JSONField, ValidationError
+from django.conf import settings
 
 
 class SurveySerializer(ModelSerializer):
@@ -16,6 +17,17 @@ class SurveySerializer(ModelSerializer):
             'country',
             'tenant',
         )
+
+    def validate(self, data):
+        """
+        Check that an industry belongs to valid tenant's industry list.
+        """
+        tenant_conf = settings.TENANTS.get(data.get('tenant'))
+        if tenant_conf:
+            industries = tenant_conf['INDUSTRIES']
+            if data['industry'] not in industries:
+                raise ValidationError("Industry does not belong to a set of valid industrues for this tenant")
+        return data
 
 
 class SurveyAccountIdSerializer(ModelSerializer):

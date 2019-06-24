@@ -53,7 +53,8 @@ def updatable_industries(survey_results):
     results_by_industry = defaultdict(list)
     for s in survey_results:
         if s.survey:
-            path = get_path(s.survey.industry, settings.INDUSTRIES, settings.ALL_INDUSTRIES[0])
+            industries = settings.TENANTS[s.survey.tenant]['INDUSTRIES']
+            path = get_path(s.survey.industry, industries, settings.ALL_INDUSTRIES[0])
             for industry in path:
                 results_by_industry[industry].append(s)
 
@@ -77,7 +78,8 @@ def industry_benchmark(tenant, industry, global_id=settings.ALL_INDUSTRIES[0]):
     """
 
     dmb, dmb_d, dmb_industry = None, None, global_id
-    for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
+    industries = settings.TENANTS[tenant]['INDUSTRIES']
+    for current_industry in get_path(industry, industries, global_id):
         try:
             industry_benchmark = IndustryBenchmark.objects.get(tenant=tenant, industry=current_industry)
             dmb = industry_benchmark.dmb_value
@@ -108,7 +110,8 @@ def industry_best_practice(tenant, industry, global_id=settings.ALL_INDUSTRIES[0
     """
 
     dmb_bp, dmb_d_bp, dmb_industry = None, None, global_id
-    for current_industry in get_path(industry, settings.INDUSTRIES, global_id):
+    industries = settings.TENANTS[tenant]['INDUSTRIES']
+    for current_industry in get_path(industry, industries, global_id):
         try:
             industry_benchmark = IndustryBenchmark.objects.get(tenant=tenant, industry=current_industry)
             dmb_bp = industry_benchmark.dmb_bp_value

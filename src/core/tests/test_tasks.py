@@ -1530,8 +1530,8 @@ class ExportTenantData(TestCase):
     def test_export_retail_tenant(self, mocked_export):
         """When tenant is retail, it's exported with the correct configured keys."""
         tenant = 'retail'
-        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
-        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+        make_survey_with_result(industry='rt-o', tenant=tenant)
+        make_survey_with_result(industry='rt-o', tenant=tenant)
 
         tenant_conf = settings.TENANTS[tenant]
         ads_title = "Retail Export"
