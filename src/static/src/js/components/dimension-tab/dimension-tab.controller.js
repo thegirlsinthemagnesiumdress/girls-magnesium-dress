@@ -136,6 +136,13 @@ class DimensionTabController {
     this.subdimensions = tenantConf.subdimensions;
 
     /**
+     * Subdimension level values
+     * @type {Object}
+     * @export
+     */
+    this.dimensionLevels = {};
+
+    /**
      * Subdimension labels
      * @type {Object}
      * @export
@@ -201,6 +208,10 @@ class DimensionTabController {
     this.nextLevelData = levelData.next;
 
     this.topLevel = this.resultInTopLevel(this.dimensionResult);
+
+    Object.entries(this.dimensionResults).forEach(([dimension, value]) => {
+      this.dimensionLevels[dimension] = this.dmbLevelsFactory(value)['current']['value'];
+    });
 
     this.dimensionHeader = this.tenantConf.dimensionHeaders[this.dmbDimensionTab];
     this.dimensionDescription = this.trustAsHtml(
