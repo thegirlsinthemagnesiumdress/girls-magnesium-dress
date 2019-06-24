@@ -22,6 +22,12 @@ result_data = {
         "values": [1.33, 1.33],
         "choices_text": ['Upper funnel targeting (e.g. to drive awareness).', 'Lower funnel targeting (e.g. to drive sales).'],  # noqa
     },
+    "Q235": {
+        "value": [1.0],
+        "choices_text": [
+            "Limited Segmentation: All users are analysed in broad segments. \n\n\nLimited UX / UI Focus: UX / UI, messaging, and layout are not regularly updated.\n",  # noqa
+        ]
+    },
 }
 
 DIMENSIONS = {
@@ -62,6 +68,7 @@ DIMENSIONS = {
         'Q130',
         'Q131',
         'Q132',
+        'Q235',
     ],
     'automation': [
         'Q133',
@@ -228,7 +235,7 @@ class SurveyDefinitionTestCase(TestCase):
 
     def test_get_question_definition_sets_the_right_number_of_def(self):
         questions = self.survey_definition.get_questions()
-        self.assertEqual(len(questions['definitions'].values()), 4)
+        self.assertEqual(len(questions['definitions'].values()), 5)
 
     def test_get_question_definition_sets_the_right_dimensions(self):
         questions = self.survey_definition.get_questions()
@@ -243,9 +250,9 @@ class SurveyDefinitionTestCase(TestCase):
     def test_get_question_definition_sets_the_right_questions_for_dimensions(self):
         questions = self.survey_definition.get_questions()
         self.assertEqual(questions['questions_by_dimension']['ads'], ['Q102', 'Q103', 'Q104'])
-        self.assertEqual(questions['questions_by_dimension']['audience'], ['Q128'])
+        self.assertEqual(questions['questions_by_dimension']['audience'], ['Q128', 'Q235'])
 
-    @mock.patch.object(SurveyDefinition, '_get_question', side_effect=[{'id': 'not_taken'}, {'id': 'not_taken'}, {'id': 'Q102'}, {'id': 'Q103'}, {'id': 'Q104'}, {'id': 'Q128'}])  # noqa
+    @mock.patch.object(SurveyDefinition, '_get_question', side_effect=[{'id': 'not_taken'}, {'id': 'not_taken'}, {'id': 'Q102'}, {'id': 'Q103'}, {'id': 'Q104'}, {'id': 'Q128'}, {'id': 'Q235'}])  # noqa
     def test_get_question_definition_sets_the_right_questions_definitions(self, mock_get_question):
         questions = self.survey_definition.get_questions()
 
@@ -253,7 +260,8 @@ class SurveyDefinitionTestCase(TestCase):
             'Q102': {'id': 'Q102'},
             'Q103': {'id': 'Q103'},
             'Q104': {'id': 'Q104'},
-            'Q128': {'id': 'Q128'}
+            'Q128': {'id': 'Q128'},
+            'Q235': {'id': 'Q235'}
         })
 
 
@@ -264,6 +272,10 @@ class GetSurveyDetailTestCase(TestCase):
         self.dimensions_titles = DIMENSION_TITLES
 
     def test_get_response_detail(self):
+        # Need to add in a test to this that the choice map is being selected correctly.
+        import pdb
+        pdb.set_trace()
+
         detail = get_response_detail(
             survey_definition_dict,
             result_data,
@@ -275,6 +287,7 @@ class GetSurveyDetailTestCase(TestCase):
         Q103_choices_map = detail['definitions']['Q103']['choices_map']
         Q104_choices_map = detail['definitions']['Q104']['choices_map']
         Q128_choices_map = detail['definitions']['Q128']['choices_map']
+        Q235_choices_map = detail['definitions']['Q235']['choices_map']
 
         self.assertTrue(Q102_choices_map['Creatives are based mainly on brand and product principles.']['selected'])
         self.assertFalse(Q102_choices_map['Creatives are based mainly on insights from a specific digital channel and advanced analytics.'].get('selected', False))  # noqa
@@ -282,6 +295,7 @@ class GetSurveyDetailTestCase(TestCase):
         self.assertTrue(Q104_choices_map['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).']['selected'])  # noqa
         self.assertTrue(Q128_choices_map['Upper funnel targeting (e.g. to drive awareness).']['selected'])
         self.assertTrue(Q128_choices_map['Lower funnel targeting (e.g. to drive sales).']['selected'])
+        self.assertTrue(Q235_choices_map['Limited Segmentation: All users are analysed in broad segments. \n<br />\n<br />\nLimited UX / UI Focus: UX / UI, messaging, and layout are not regularly updated.\n']['selected'])  # noqa
 
     def test_get_response_detail_choice_not_in_def(self):
         data = copy.deepcopy(result_data)
@@ -320,3 +334,15 @@ class GetSurveyDetailTestCase(TestCase):
         )
         self.assertIsNotNone(detail['definitions'].get('Q102'))
         self.assertIsNone(detail['definitions'].get('Q267'))
+
+    # def test_response_detail_choice_with_br_matches(self):
+    #     import pdb
+    #     pdb.set_trace()
+    #     data = copy.deepcopy(result_data)
+    #     detail = get_response_detail(
+    #         survey_definition_dict,
+    #         data,
+    #         self.dimensions,
+    #         self.dimensions_titles
+    #     )
+    #     self.assertIsNotNone(detail['definitions'].get('Q235'))
