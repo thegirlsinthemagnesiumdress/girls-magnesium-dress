@@ -272,10 +272,6 @@ class GetSurveyDetailTestCase(TestCase):
         self.dimensions_titles = DIMENSION_TITLES
 
     def test_get_response_detail(self):
-        # Need to add in a test to this that the choice map is being selected correctly.
-        import pdb
-        pdb.set_trace()
-
         detail = get_response_detail(
             survey_definition_dict,
             result_data,
