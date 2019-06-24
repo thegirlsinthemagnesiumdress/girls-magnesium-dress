@@ -27,6 +27,7 @@ class ReportController {
    * @param {!Function} resultInTopLevel
    * @param {!Object} tenantConf
    * @param {!Object} glueBreakpoint
+   * @param {!string} dmbStaticUrl
    *
    * @ngInject
    */
@@ -40,7 +41,8 @@ class ReportController {
       dmbLevelsFactory,
       resultInTopLevel,
       tenantConf,
-      glueBreakpoint) {
+      glueBreakpoint,
+      dmbStaticUrl) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
@@ -236,6 +238,37 @@ class ReportController {
      * @export
      */
     this.trustAsHtml = $sce.trustAsHtml;
+
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensions = tenantConf.subdimensions;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+
+    /**
+     * @export
+     * @type {string}
+     */
+    this.dmbStaticUrl = dmbStaticUrl;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
 
     // Allows use from other contexts
     this.setOverallResult = this.setOverallResult.bind(this);

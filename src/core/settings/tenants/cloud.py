@@ -55,14 +55,14 @@ SUBDIMENSION_TITLES = {
     SUBDIMENSION_UPSKILLING: 'Upskilling',
     SUBDIMENSION_TEAMWORK: 'Teamwork',
     SUBDIMENSION_SPONSORSHIP: 'Sponsorship',
-    SUBDIMENSION_INFRASTRUCTURE_AS_CODE: 'Infrastructure_as_code',
+    SUBDIMENSION_INFRASTRUCTURE_AS_CODE: 'Infrastructure as Code',
     SUBDIMENSION_RESOURCE_MANAGEMENT: 'Resource Management',
-    SUBDIMENSION_CI_CD: 'Ci/Cd',
+    SUBDIMENSION_CI_CD: 'Continuous Integration and Delivery (CI/CD)',
     SUBDIMENSION_ARCHITECTURE: 'Architecture',
-    SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT: 'Identity And Access Management',
+    SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT: 'Identity and Access Management',
     SUBDIMENSION_DATA_MANAGEMENT: 'Data Management',
-    SUBDIMENSION_ACCESS_MANAGEMENT: 'Access Management',
     SUBDIMENSION_IDENTITY_MANAGEMENT: 'Identity Management',
+    SUBDIMENSION_ACCESS_MANAGEMENT: 'Access Management',
     SUBDIMENSION_NETWORKING: 'Networking',
 }
 
@@ -88,6 +88,25 @@ SUBDIMENSION_ORDER = {
         SUBDIMENSION_IDENTITY_MANAGEMENT,
         SUBDIMENSION_NETWORKING,
     ]
+}
+
+
+SUBDIMENSION_DESCRIPTION = 'Epics are clearly defined, nonoverlapping workstreams tied back to the four themes of cloud maturity. You should design programs around the epics to help you solidify your maturity in any given phase, or take it to the next level. More information on the themes and epics of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
+
+
+SUBDIMENSION_DESCRIPTIONS = {
+    SUBDIMENSION_EXTERNAL_EXPERIENCE: 'Accelerating cloud adoption by applying best practices and other organizational lessons learned from day one, through experienced subject matter experts.',
+    SUBDIMENSION_UPSKILLING: 'Investing in learning, so that the incumbent staff may combine their existing in-depth knowledge about the business and the current IT state with learnings about new best practices.',
+    SUBDIMENSION_TEAMWORK: 'Building a team that lives and breathes behaviors and culture, which includes high collaboration and trust, so that cloud technology is utilized in the most optimal manner.',
+    SUBDIMENSION_SPONSORSHIP: 'Passionately and continuously demonstrating executive support for the cloud adoption strategy, so that early adopters have a widely recognized mandate for change.',
+    SUBDIMENSION_INFRASTRUCTURE_AS_CODE: 'Automating through code the configuration and provisioning of resources, so that human error is reduced, time is saved, and every step is fully documented.',
+    SUBDIMENSION_RESOURCE_MANAGEMENT: 'Organizing, naming, and setting quotas of cloud resources in order to ensure a structured, consistent, and controlled environment.',
+    SUBDIMENSION_CI_CD: 'Automating changes to the system through a CI/CD process pipeline, so that all changes can be tested, audited, and deployed with minimal interruption. ',
+    SUBDIMENSION_ARCHITECTURE: 'Providing best practice recommendations and a forward-looking view of the appropriate cloud compute and storage choices. ',
+    SUBDIMENSION_DATA_MANAGEMENT: 'Understanding and managing what data is being stored, where it originates from, how sensitive it is, and who is accessing it — for the purpose of keeping data safe, discoverable, and useful.',
+    SUBDIMENSION_IDENTITY_MANAGEMENT: 'Reliably authenticating users’ or services’ identity and guarding against loss of credentials and attempts at impersonation.',
+    SUBDIMENSION_ACCESS_MANAGEMENT: 'Ensuring that only the right people and services are authorized to perform the right actions on the right resources.',
+    SUBDIMENSION_NETWORKING: 'Connecting and protecting services and the flow of data between them via logical boundaries, regardless of a service’s identity or permissions.',
 }
 
 DIMENSIONS = {
@@ -835,7 +854,9 @@ CONTENT_DATA = {
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
     'subdimensions': SUBDIMENSION_ORDER,
+    'subdimension_description': SUBDIMENSION_DESCRIPTION,
     'subdimension_labels': SUBDIMENSION_TITLES,
+    'subdimension_descriptions': SUBDIMENSION_DESCRIPTIONS,
 }
 
 #####  GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####

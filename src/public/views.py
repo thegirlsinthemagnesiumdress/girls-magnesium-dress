@@ -44,7 +44,9 @@ def _dump_tenant_content_data(tenant):
         'dimension_sidepanel_heading': content_data.get('dimension_sidepanel_heading'),
         'dimension_sidepanel_descriptions': content_data.get('dimension_sidepanel_descriptions'),
         'subdimensions': content_data.get('subdimensions'),
+        'subdimension_description': content_data.get('subdimension_description'),
         'subdimension_labels': content_data.get('subdimension_labels'),
+        'subdimension_descriptions': content_data.get('subdimension_descriptions'),
     }
 
     return json.dumps(data, cls=LazyEncoder)

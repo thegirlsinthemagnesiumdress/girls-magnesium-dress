@@ -1,3 +1,4 @@
+{% load angular %}
 {% load i18n %}
 {% trans "logo" as logo_alt_text %}
 <div
@@ -23,6 +24,7 @@
     </div>
   </div>
 
+
   <div class="dmb-dimension-tabs__results">
     <div class="h-c-grid">
       <div class="dmb-dimension-tabs__results-highlight h-c-grid__col h-c-grid__col--4 h-u-text-center">
@@ -42,6 +44,7 @@
     </div>
   </div>
 
+
   <div class="dmb-dimension-tabs__progress-grid">
     <dmb-progress-grid
         data-company-name="{[dimensionTabCtrl.companyName]}"
@@ -53,6 +56,64 @@
   </div>
 
 
+  <div ng-if="dimensionTabCtrl.subdimensions">
+    <div class="h-c-grid">
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
+        <h2 class="h-c-headline h-c-headline--three">
+          Epics
+        </h2>
+        <p
+            class="dmb-u-m-b-s"
+            ng-bind-html="dimensionTabCtrl.subdimensionDescription"></p>
+        <button
+            class="dmb-report-overall__link h-c-link dmb-u-m-b-s"
+            dmb-side-panel-trigger="#dmb-subdimension-side-panel">
+          Learn more about epics
+        </button>
+
+        <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-m">
+          Here's how you score for the epics in this theme:
+        </h3>
+      </div>
+    </div>
+
+
+    <div class="dmb-u-m-b-m h-c-grid">
+      <div
+          class="h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1"
+          ng-repeat="subdimension in dimensionTabCtrl.subdimensions[dimensionTabCtrl.dmbDimensionTab]">
+        <div
+            class="
+                dmb-progress-circle
+                dmb-progress-circle--small
+                dmb-progress-circle--level-{[ dimensionTabCtrl.dimensionLevels[subdimension] ]}
+                dmb-u-m-b-s"
+            data-progress="dimensionTabCtrl.dimensionResults[subdimension]">
+          <svg
+              class="dmb-progress-circle__prog-svg"
+              dmb-progress-circle="dimensionTabCtrl.dimensionResults[subdimension]"
+              viewbox="0 0 120 120">
+            <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
+            <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
+          </svg>
+          <div class="dmb-progress-circle__text">
+            <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
+              {[ dimensionTabCtrl.dimensionResults[subdimension]|number:1 ]}
+            </span>
+          </div>
+        </div>
+
+        <h4 class="h-c-headline h-c-headline--four">
+          {[ dimensionTabCtrl.subdimensionHeaders[subdimension] ]}
+        </h4>
+        <p class="dmb-u-m-b-m">
+          {[ dimensionTabCtrl.subdimensionDescriptions[subdimension] ]}
+        </p>
+      </div>
+    </div>
+  </div>
+
+
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
       <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four dmb-h-hidden--print">
@@ -61,6 +122,8 @@
             ng-src="{[ dimensionTabCtrl.dmbStaticUrl ]}img/{[ dimensionTabCtrl.tenant ]}/dimensions/{[ dimensionTabCtrl.dmbDimensionTab|underscoreToHyphen ]}.svg">
         {[dimensionTabCtrl.dimensionHeaders[dimensionTabCtrl.dmbDimensionTab]]}
       </h4>
+
+
       <h4 class="h-c-headline h-c-headline--two">
         <span ng-if="!dimensionTabCtrl.topLevel">
           {% trans "You could be" %} {[ dimensionTabCtrl.nextLevelData['mapValue'] ]}
@@ -69,6 +132,7 @@
           {% trans "Congratulations, you're in the top group for data maturity" %}
         </span>
       </h4>
+
 
       <div class="dmb-dimension-tabs__recommendations">
         <h4 class="h-c-headline h-c-headline--four">
@@ -103,7 +167,4 @@
 
     </div>
   </div>
-
-
-
 </div>
