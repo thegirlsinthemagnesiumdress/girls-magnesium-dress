@@ -51,7 +51,7 @@ $block: '.dmb-progress-grid';
 
   &__v-bar {
     border-radius: $dmb-border-radius $dmb-border-radius 0 0;
-    border-top: 2px solid $dmb-prog-grid-bar-color;
+    border-top: 4px solid $dmb-prog-grid-bar-color;
     height: 0;
     place-self: end center;
     transition: height $dmb-progress-trans-time $dmb-progress-trans-fn;
@@ -91,7 +91,7 @@ $block: '.dmb-progress-grid';
   &__h-bar {
     align-self: center;
     border-radius: 0 $dmb-border-radius $dmb-border-radius 0;
-    border-right: 2px solid $dmb-prog-grid-bar-color;
+    border-right: 4px solid $dmb-prog-grid-bar-color;
     grid-column: 2;
     height: $dmb-prog-grid-bar-size;
     transition: width $dmb-progress-trans-time $dmb-progress-trans-fn;
