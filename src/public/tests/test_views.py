@@ -8,7 +8,7 @@ from core.tests.mommy_recepies import make_survey, make_survey_result, make_surv
 from core.tests import mocks
 from django.conf import settings
 import os
-from core.test import reload_urlconf, TempTemplateFolder
+from core.test import reload_urlconf, TempTemplateFolder, angular_context_to_object
 import json
 import mock
 from core import tasks
@@ -217,9 +217,9 @@ class IndexPage(TestCase):
         with TempTemplateFolder(templates_path, 'index.html'):
             url = reverse('index', kwargs={'tenant': self.tenant_slug})
             response = self.client.get(url)
-            # This is a bit janky at the moment but there isn't another way to do this currently
-            other_tenants = response.context['other_tenants']._original
-            expected = [('Tenant 3 Footer Label', 'tenant3-slug'), ('Tenant 2 Footer Label', 'tenant2-slug')]
+            other_tenants = angular_context_to_object(response.context['other_tenants'])
+            # tenant-3 should be excluded because `in_dmb_footer` is False
+            expected = [('Tenant 2 Footer Label', 'tenant2-slug')]
             self.assertListEqual(other_tenants, expected)
 
 
