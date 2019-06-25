@@ -296,6 +296,7 @@ class GenerateExportPage(TestCase):
     @with_appengine_user("test@google.com")
     def test_engagement_lead_ok_data(self, mock_defer):
         """All data belonging to engagement lead should be returned."""
+        survey_3 = make_survey_with_result(industry='ic-o', tenant='tenant1')
         engagement_lead = '1234'
 
         data = {
@@ -304,8 +305,10 @@ class GenerateExportPage(TestCase):
 
         self.survey_1.engagement_lead = engagement_lead
         self.survey_2.engagement_lead = engagement_lead
+        survey_3.engagement_lead = '11'
         self.survey_1.save()
         self.survey_2.save()
+        survey_3.save()
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
         response = self.client.post(url, data=json.dumps(data), content_type="application/json")
         self.assertEqual(response.status_code, 200)
