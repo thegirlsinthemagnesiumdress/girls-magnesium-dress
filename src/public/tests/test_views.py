@@ -316,19 +316,15 @@ class GenerateExportPage(TestCase):
         self.assertEqual(len(got_data), 2)
         self.assertEqual(got_share_with, response.wsgi_request.user.email)
 
-
     @mock.patch('djangae.deferred.defer')
     @with_appengine_admin('standard@google.com')
     def test_super_admin(self, mock_defer):
         """All tenant data should be returned if super user."""
-
         # Different tenant survey
         survey_3 = make_survey_with_result(industry='ic-o', tenant='tenant2')
-
         data = {
             'engagement_lead': '3'
         }
-
         self.survey_1.engagement_lead = '1'
         self.survey_2.engagement_lead = '2'
         self.survey_1.save()
