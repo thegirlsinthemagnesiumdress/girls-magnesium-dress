@@ -39,6 +39,7 @@ $block: '.dmb-progress-grid';
   &__v-bar,
   &__h-bar {
     background: $dmb-prog-grid-bar-color;
+    box-sizing: content-box;
     position: relative;
 
     &::after {
@@ -50,6 +51,7 @@ $block: '.dmb-progress-grid';
 
   &__v-bar {
     border-radius: $dmb-border-radius $dmb-border-radius 0 0;
+    border-top: 4px solid $dmb-prog-grid-bar-color;
     height: 0;
     place-self: end center;
     transition: height $dmb-progress-trans-time $dmb-progress-trans-fn;
@@ -61,6 +63,11 @@ $block: '.dmb-progress-grid';
       &--#{$source} {
         grid-column: #{$i};
       }
+    }
+
+    &--max {
+      background-image: linear-gradient(to top, rgba($dmb-prog-grid-col-bg-color, 0) 80%, rgba($dmb-prog-grid-col-bg-color, 1) 100%);
+      border: transparent;
     }
 
     &::after {
@@ -84,6 +91,7 @@ $block: '.dmb-progress-grid';
   &__h-bar {
     align-self: center;
     border-radius: 0 $dmb-border-radius $dmb-border-radius 0;
+    border-right: 4px solid $dmb-prog-grid-bar-color;
     grid-column: 2;
     height: $dmb-prog-grid-bar-size;
     transition: width $dmb-progress-trans-time $dmb-progress-trans-fn;
@@ -95,6 +103,11 @@ $block: '.dmb-progress-grid';
       &--#{$source} {
         grid-row: #{$i};
       }
+    }
+
+    &--max {
+      background-image: linear-gradient(to right, rgba($dmb-prog-grid-col-bg-color, 0) 80%, rgba($dmb-prog-grid-col-bg-color, 1) 100%);
+      border: transparent;
     }
 
     &::after {
@@ -291,7 +304,9 @@ $block: '.dmb-progress-grid';
 
           #{$block}__v-bar--company,
           #{$block}__h-bar--company {
-            background-color: map-get($value, color);
+            $level-color: map-get($value, color);
+            background-color: $level-color;
+            border-color: $level-color;
           }
         }
       }
