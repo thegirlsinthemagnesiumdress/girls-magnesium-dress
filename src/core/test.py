@@ -5,6 +5,7 @@ from django.core.urlresolvers import clear_url_caches
 from django.conf import settings
 import sys
 import shutil
+import json
 
 # App Engine login decorators
 
@@ -92,3 +93,17 @@ def reload_urlconf():
     if settings.ROOT_URLCONF in sys.modules:
         reload(sys.modules[settings.ROOT_URLCONF])
     return import_module(settings.ROOT_URLCONF)
+
+
+def angular_context_to_object(variable):
+    """Return the python object originally wrapped into django-angular context."""
+    return variable._original
+
+
+def get_bootstrap_data(context, field_name='bootstrap_data'):
+    # We use django-angular-protect (see https://github.com/potatolondon/django-angular-protect)
+    # which wraps our context values in an object.
+    # This gets us at our original value.
+    bootstrap_data = angular_context_to_object(context.get(field_name))
+    bootstrap_data = json.loads(bootstrap_data)
+    return bootstrap_data

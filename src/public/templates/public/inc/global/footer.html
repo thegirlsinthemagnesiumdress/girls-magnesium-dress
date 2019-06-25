@@ -4,6 +4,7 @@
 <footer class="dmb-footer h-c-footer h-c-footer--simple {{footerClass}}"
     id="footer-simple" {{footerAttribute}}>
   <section class="h-c-footer__global">
+    {% if tenant|ng_mark_safe != 'cloud' %}
     <div class="dmb-footer__tenant-footer">
       <p class="dmb-footer__tenant-footer-title h-c-headline h-c-headline--subhead">
         {% trans "Looking to benchmark digital maturity for a different challenge or industry?" %}
@@ -21,38 +22,19 @@
         <span class="dmb-read-more__more">{% trans "more" %}</span>
         <span class="dmb-read-more__less">{% trans "less" %}</span>
       </label>
-      <ul
-          class="dmb-footer__tenant-footer-list dmb-read-more__content">
-        {% if tenant|ng_mark_safe != 'ads' %}
-        <li class="dmb-footer__tenant-footer-list-item">
-          <a href="/advertisers">
-            {% trans "Advertiser Marketing Maturity" %}
-          </a>
-        </li>
-        {% endif %}
-        {% if tenant|ng_mark_safe != 'news' %}
-        <li class="dmb-footer__tenant-footer-list-item">
-          <a href="/news">
-            {% trans "News Publisher Data Transformation" %}
-          </a>
-        </li>
-        {% endif %}
-        {% if tenant|ng_mark_safe != 'retail' %}
+      <ul class="dmb-footer__tenant-footer-list dmb-read-more__content">
+        {% comment %} Dynamically creates links and labels for the other surveys {% endcomment %}
+        {% comment %} Label is translated in its definition in core/settings/tenants/__init__.py {% endcomment %}
+        {% for label, other_tenant_slug in other_tenants %}
           <li class="dmb-footer__tenant-footer-list-item">
-            <a href="/retaildatatransformation">
-              {% trans "Retail Data Transformation" %}
+            <a href="/{{other_tenant_slug|ng_mark_safe}}">
+              {{ label|ng_mark_safe }}
             </a>
           </li>
-        {% endif %}
-        {% if tenant|ng_mark_safe != 'cloud' %}
-          <li class="dmb-footer__tenant-footer-list-item">
-            <a href="/cloud">
-              {% trans "Cloud" %}
-            </a>
-          </li>
-        {% endif %}
+        {% endfor %}
       </ul>
     </div>
+    {% endif %}
 
     <div class="h-c-footer__logo">
       <a href="https://www.google.com" title="Google">
