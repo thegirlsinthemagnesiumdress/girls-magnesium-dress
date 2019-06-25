@@ -198,6 +198,10 @@ def generate_spreadsheet_export(request, tenant):
         survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
         product_name = tenant_conf['PRODUCT_NAME']
         data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
+
+        if request.user.is_super_admin:
+            data = Survey.objects.filter(tenant=tenant)
+
         now = datetime.datetime.now()
 
         msg = _GENERATED_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
