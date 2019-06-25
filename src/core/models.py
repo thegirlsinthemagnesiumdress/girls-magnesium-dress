@@ -50,7 +50,8 @@ class Survey(models.Model):
 
     def get_industry_display(self, *args, **kwargs):
         t = settings.TENANTS[self.tenant]
-        return t['INDUSTRIES'][self.industry]
+        industry = t['INDUSTRIES'].get(self.industry)
+        return industry[0] if industry else None
 
     @property
     def link(self):
