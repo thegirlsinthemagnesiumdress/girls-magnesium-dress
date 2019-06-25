@@ -321,7 +321,7 @@ class GenerateExportPage(TestCase):
     def test_super_admin(self, mock_defer):
         """All tenant data should be returned if super user."""
         # Different tenant survey
-        survey_3 = make_survey_with_result(industry='ic-o', tenant='tenant2')
+        make_survey_with_result(industry='ic-o', tenant='tenant2')
         data = {
             'engagement_lead': '3'
         }
