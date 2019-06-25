@@ -276,6 +276,22 @@ class SurveyDefinitionTestCase(TestCase):
             'Q128': {'id': 'Q128'}
         })
 
+    def test_subdimensions_not_in_report(self):
+        """Test subdimension is ignored, if not put int DIMENSION_TITLES list."""
+        dimensions = DIMENSIONS
+        dimensions['subdimension'] = [
+            'Q154',
+            'Q155',
+        ]
+
+        dimensions_titles = DIMENSION_TITLES
+        survey_definition = SurveyDefinition(
+            survey_definition_dict,
+            dimensions,
+            dimensions_titles
+        )
+        self.assertTrue('subdimension' not in survey_definition.dimensions)
+
 
 class GetSurveyDetailTestCase(TestCase):
 
@@ -340,21 +356,3 @@ class GetSurveyDetailTestCase(TestCase):
         )
         self.assertIsNotNone(detail['definitions'].get('Q102'))
         self.assertIsNone(detail['definitions'].get('Q267'))
-
-    def test_subdimensions_not_in_report(self):
-        data = copy.deepcopy(result_data)
-
-        dimensions = self.dimensions
-        dimensions['subdimension'] = [
-            'Q154',
-            'Q155',
-        ]
-
-        detail = get_response_detail(
-            survey_def_no_choices_page_break_dict,
-            data,
-            dimensions,
-            self.dimensions_titles
-        )
-        print(detail)
-        self.assertIsNotNone(None)
