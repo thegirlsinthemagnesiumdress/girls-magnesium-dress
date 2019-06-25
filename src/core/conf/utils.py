@@ -122,8 +122,9 @@ def get_other_tenant_footers(current_tenant):
     if not tenant_conf or not tenant_conf['in_dmb_footer']:
         return other_tenants
 
+    current_tenant_slug = get_tenant_slug(current_tenant)
     for tenant in settings.TENANTS.values():
-        if tenant['in_dmb_footer'] and tenant['slug'] is not get_tenant_slug(current_tenant):
+        if tenant['in_dmb_footer'] and tenant['slug'] is not current_tenant_slug:
             other_tenants.append((tenant['footer_label'], tenant['slug']))
     return other_tenants
 
