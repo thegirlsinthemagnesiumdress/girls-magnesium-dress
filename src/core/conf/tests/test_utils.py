@@ -1,7 +1,9 @@
-from core.conf.utils import map_industries, flatten, version_info
+from core.conf.utils import map_industries, flatten, version_info, get_other_tenant_footers
 import mock
 from djangae.test import TestCase
 from collections import OrderedDict
+from django.test import override_settings
+from core.tests.mocks import MOCKED_TENANTS
 
 
 class MapIndustriesTest(TestCase):
@@ -220,3 +222,72 @@ class VersionInfoTest(TestCase):
         self.assertEqual(version, expected_version)
         self.assertFalse(is_nightly)
         self.assertFalse(is_development)
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+)
+class GetOtherTenantFootersTest(TestCase):
+    """Test for `core.utils.get_other_tenant_footers` function."""
+
+    def one_result_test(self):
+        expected = [('Tenant 2 Footer Label', 'tenant2-slug')]
+        got = get_other_tenant_footers('tenant1')
+
+        self.assertListEqual(expected, got)
+
+    @override_settings(
+        TENANTS={
+            'tenant1': {
+                'slug': 'tenant1-slug',
+                'in_dmb_footer': True,
+                'footer_label': 'Tenant 1 Footer Label',
+            },
+            'tenant2': {
+                'slug': 'tenant2-slug',
+                'in_dmb_footer': True,
+                'footer_label': 'Tenant 2 Footer Label',
+            },
+            'tenant3': {
+                'slug': 'tenant3-slug',
+                'in_dmb_footer': True,
+                'footer_label': 'Tenant 3 Footer Label',
+            },
+        }
+    )
+    def mulitple_results_test(self):
+        expected = [('Tenant 3 Footer Label', 'tenant3-slug'), ('Tenant 2 Footer Label', 'tenant2-slug')]
+        got = get_other_tenant_footers('tenant1')
+
+        self.assertListEqual(expected, got)
+
+    @override_settings(
+        TENANTS={
+            'tenant1': {
+                'slug': 'tenant1-slug',
+                'in_dmb_footer': True,
+                'footer_label': 'Tenant 1 Footer Label',
+            },
+            'tenant2': {
+                'slug': 'tenant2-slug',
+                'in_dmb_footer': True,
+                'footer_label': 'Tenant 2 Footer Label',
+            },
+            'tenant3': {
+                'slug': 'tenant3-slug',
+                'in_dmb_footer': False,
+                'footer_label': 'Tenant 3 Footer Label',
+            },
+        }
+    )
+    def not_in_dmb_test(self):
+        expected = []
+        got = get_other_tenant_footers('tenant3')
+
+        self.assertListEqual(expected, got)
+
+    def no_in_tenant_list_test(self):
+        expected = []
+        got = get_other_tenant_footers('tenant4')
+
+        self.assertListEqual(expected, got)
