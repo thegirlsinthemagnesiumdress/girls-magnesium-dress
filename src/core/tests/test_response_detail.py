@@ -22,6 +22,26 @@ result_data = {
         "values": [1.33, 1.33],
         "choices_text": ['Upper funnel targeting (e.g. to drive awareness).', 'Lower funnel targeting (e.g. to drive sales).'],  # noqa
     },
+    "Q116": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q122": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q133": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q139": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q150": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
 }
 
 DIMENSIONS = {
@@ -320,3 +340,21 @@ class GetSurveyDetailTestCase(TestCase):
         )
         self.assertIsNotNone(detail['definitions'].get('Q102'))
         self.assertIsNone(detail['definitions'].get('Q267'))
+
+    def test_subdimensions_not_in_report(self):
+        data = copy.deepcopy(result_data)
+
+        dimensions = self.dimensions
+        dimensions['subdimension'] = [
+            'Q154',
+            'Q155',
+        ]
+
+        detail = get_response_detail(
+            survey_def_no_choices_page_break_dict,
+            data,
+            dimensions,
+            self.dimensions_titles
+        )
+        print(detail)
+        self.assertIsNotNone(None)

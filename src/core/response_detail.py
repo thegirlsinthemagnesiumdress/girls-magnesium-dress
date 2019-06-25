@@ -7,7 +7,7 @@ from core.qualtrics.question import get_question_dimension
 class SurveyDefinition(object):
     def __init__(self, definition, dimensions, dimensions_titles):
         self.definition = definition
-        self.dimensions = dimensions
+        self.dimensions = {d: dimensions[d] for d in dimensions_titles.keys()}
         self.dimensions_titles = dimensions_titles
 
     def get_questions(self):
