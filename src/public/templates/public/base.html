@@ -44,7 +44,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500,200|Google+Sans+Display:400,700|Product+Sans:400&lang=en" rel="stylesheet">
 
-    <title>{% trans "Digital Maturity Benchmark" %}</title>
+    {% with prod_name=product_name|ng_mark_safe %}
+    <title>{% trans prod_name %}</title>
+    {% endwith %}
 </head>
 <body class="{% block body_class %}{% endblock %}" angular-app>
   {% csrf_token %}

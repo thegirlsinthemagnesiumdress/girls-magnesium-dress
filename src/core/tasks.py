@@ -22,7 +22,7 @@ from datetime import datetime
 from collections import defaultdict
 from core.aggregate import updatable_industries
 
-from core.conf.utils import get_tenant_slug
+from core.conf.utils import get_tenant_slug, get_tenant_product_name
 from django.utils import translation
 from core.googleapi import sheets
 from django.utils.functional import Promise
@@ -237,6 +237,7 @@ def send_emails_for_new_reports(email_list):
                     'company_name': company_name,
                     'industry': industry,
                     'country': country,
+                    'product_name': get_tenant_product_name(tenant)
                 }
 
                 subject, text_message, html_message = render_email_template(tenant, context, q_lang)

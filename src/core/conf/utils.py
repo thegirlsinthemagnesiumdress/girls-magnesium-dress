@@ -114,6 +114,10 @@ def get_tenant_slug(tenant):
     return settings.TENANTS[tenant]['slug']
 
 
+def get_tenant_product_name(tenant):
+    return settings.TENANTS[tenant]['PRODUCT_NAME']
+
+
 def version_info(domain):
     """Returns version to be set on Qualtrics, based on domain parameter.
     :param domain:
