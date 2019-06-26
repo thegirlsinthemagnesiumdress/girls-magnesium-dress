@@ -19,11 +19,9 @@ SUBDIMENSION_INFRASTRUCTURE_AS_CODE = 'infrastructure_as_code'
 SUBDIMENSION_RESOURCE_MANAGEMENT = 'resource_management'
 SUBDIMENSION_CI_CD = 'ci_cd'
 SUBDIMENSION_ARCHITECTURE = 'architecture'
-SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT = 'identity_and_access_management'
 SUBDIMENSION_DATA_MANAGEMENT = 'data_management'
 SUBDIMENSION_ACCESS_MANAGEMENT = 'access_management'
 SUBDIMENSION_IDENTITY_MANAGEMENT = 'identity_management'
-SUBDIMENSION_NETWORKING = 'networking'
 
 
 # LEVELS
@@ -61,11 +59,9 @@ SUBDIMENSION_TITLES = {
     SUBDIMENSION_RESOURCE_MANAGEMENT: 'Resource Management',
     SUBDIMENSION_CI_CD: 'Continuous Integration and Delivery (CI/CD)',
     SUBDIMENSION_ARCHITECTURE: 'Architecture',
-    SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT: 'Identity and Access Management',
     SUBDIMENSION_DATA_MANAGEMENT: 'Data Management',
     SUBDIMENSION_IDENTITY_MANAGEMENT: 'Identity Management',
     SUBDIMENSION_ACCESS_MANAGEMENT: 'Access Management',
-    SUBDIMENSION_NETWORKING: 'Networking',
 }
 
 SUBDIMENSION_ORDER = {
@@ -84,11 +80,9 @@ SUBDIMENSION_ORDER = {
         SUBDIMENSION_ARCHITECTURE,
     ],
     DIMENSION_SECURE:[
-        SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT,
         SUBDIMENSION_DATA_MANAGEMENT,
         SUBDIMENSION_ACCESS_MANAGEMENT,
         SUBDIMENSION_IDENTITY_MANAGEMENT,
-        SUBDIMENSION_NETWORKING,
     ]
 }
 
@@ -103,12 +97,11 @@ SUBDIMENSION_DESCRIPTIONS = {
     SUBDIMENSION_SPONSORSHIP: 'Passionately and continuously demonstrating executive support for the cloud adoption strategy, so that early adopters have a widely recognized mandate for change.',
     SUBDIMENSION_INFRASTRUCTURE_AS_CODE: 'Automating through code the configuration and provisioning of resources, so that human error is reduced, time is saved, and every step is fully documented.',
     SUBDIMENSION_RESOURCE_MANAGEMENT: 'Organizing, naming, and setting quotas of cloud resources in order to ensure a structured, consistent, and controlled environment.',
-    SUBDIMENSION_CI_CD: 'Automating changes to the system through a CI/CD process pipeline, so that all changes can be tested, audited, and deployed with minimal interruption. ',
-    SUBDIMENSION_ARCHITECTURE: 'Providing best practice recommendations and a forward-looking view of the appropriate cloud compute and storage choices. ',
+    SUBDIMENSION_CI_CD: 'Automating changes to the system through a CI/CD process pipeline, so that all changes can be tested, audited, and deployed with minimal interruption.',
+    SUBDIMENSION_ARCHITECTURE: 'Providing best practice recommendations and a forward-looking view of the appropriate cloud compute and storage choices.',
     SUBDIMENSION_DATA_MANAGEMENT: 'Understanding and managing what data is being stored, where it originates from, how sensitive it is, and who is accessing it — for the purpose of keeping data safe, discoverable, and useful.',
     SUBDIMENSION_IDENTITY_MANAGEMENT: 'Reliably authenticating users’ or services’ identity and guarding against loss of credentials and attempts at impersonation.',
     SUBDIMENSION_ACCESS_MANAGEMENT: 'Ensuring that only the right people and services are authorized to perform the right actions on the right resources.',
-    SUBDIMENSION_NETWORKING: 'Connecting and protecting services and the flow of data between them via logical boundaries, regardless of a service’s identity or permissions.',
 }
 
 DIMENSIONS = {
@@ -183,18 +176,14 @@ DIMENSIONS = {
         'Q29',
         'Q33',
     ],
-    SUBDIMENSION_IDENTITY_AND_ACCESS_MANAGEMENT: [
-        'Q28',
-        'Q30',
-    ],
     SUBDIMENSION_ACCESS_MANAGEMENT: [
+        'Q28',
         'Q32',
+        'Q34',
     ],
     SUBDIMENSION_IDENTITY_MANAGEMENT: [
+        'Q30',
         'Q31',
-    ],
-    SUBDIMENSION_NETWORKING: [
-        'Q34',
     ],
 }
 
@@ -215,9 +204,9 @@ LEVELS_DESCRIPTIONS = {
 
 REPORT_LEVEL_DESCRIPTIONS = {
     LEVEL_0: 'This is the most basic of the three phases of maturity. You are probably reducing costs with a quick return on investment and little disruption to your IT organization.',
-    LEVEL_1: 'This is the most basic of the three phases of maturity but you are on your way towards the next phase. You are probably reducing costs with a quick return on investment and little disruption to your IT organization.',
+    LEVEL_1: 'This is the most basic of the three phases of maturity and you are on your way towards the next phase. You are probably reducing costs with a quick return on investment and little disruption to your IT organization.',
     LEVEL_2: 'This is the second of the three phases of maturity. You are increasing the value delivered by your IT organization by streamlining operations to be both more efficient and more effective.',
-    LEVEL_3: 'This is the second of the three phases of maturity, but you are on your way towards the next phase. You are increasing the value delivered by your IT organization by streamlining operations to be both more efficient and more effective.',
+    LEVEL_3: 'This is the second of the three phases of maturity, and you are on your way towards the next phase. You are increasing the value delivered by your IT organization by streamlining operations to be both more efficient and more effective.',
     LEVEL_4: 'This is the most advanced of the three phases of maturity. Your IT organization is becoming an engine of innovation, making it a partner to the business.',
 }
 
@@ -229,10 +218,10 @@ INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participa
 
 
 DIMENSION_HEADER_DESCRIPTIONS = {
-    DIMENSION_LEARN: '<p class="dmb-u-m-b-s">Your organization’s ability to continuously learn is determined by your efforts to upskill your IT staff while also taking advantage of the experiences shared by third-party contractors and partners. This two-pronged approach ensures that you apply cloud computing best practices idiomatically to Google Cloud Platform (or any other public cloud provider), tailored to your business needs and without having to climb the steep learning curve of doing things for the first time.</p><p class="dmb-u-m-b-s">Your staff will be more familiar with your organization’s unique idiosyncrasies and understand its technical and cultural nuances, while supporting third parties will have the experience of having completed multiple prior cloud migrations across a broad spectrum of customer solutions.</p>',
-    DIMENSION_LEAD: '<p class="dmb-u-m-b-s">The effectiveness of your organization’s cloud adoption is determined by the visibility and value of the mandate issued top-down from your sponsors (which include C-level executives as well as middle management and team leaders) and the motivational momentum generated bottom-up from your teams’ cross-functional collaboration. These two counterparts together are responsible for clearly articulating objectives, making informed decisions, and executing them in concert with multiple functions.</p><p class="dmb-u-m-b-s">Sponsors control which resources are allocated to your organization’s cloud adoption efforts and bring stakeholders from different business functions and reporting lines together. However, they must ultimately rely on an agile and cross-functional group of cloud early adopters to practically implement their strategy.</p>',
-    DIMENSION_SCALE: '<p class="dmb-u-m-b-s">Your organization’s ability to scale in the cloud is determined by the extent to which you abstract away your infrastructure with managed and serverless cloud services, as well as the quality of your CI/CD process chain and the programmable infrastructure code that runs through it.</p><p class="dmb-u-m-b-s">Because everything is managed via an API, automation can pay greater dividends in the cloud than in any other environment. Not only does it reduce human toil and serve as automatic documentation, it is also instrumental in making change low risk and frequent - the key ingredient for innovation.</p>',
-    DIMENSION_SECURE: '<p class="dmb-u-m-b-s">In the narrow sense, the security of your cloud estate is determined by your ability to guarantee who may perform which action on which resource (identity and access management) and your understanding of the data that needs protecting, ensuring it is appropriately catalogued, encrypted, and guarded from exfiltration, to name just a few considerations.</p><p>In the more holistic sense, your security posture relies on the advanced maturity of the other three cloud adoption themes:</p><ol class="dmb-u-m-b-s"><li>continuous learning of the latest technical vulnerabilities and security best practices</li><li>leading by setting measurable security objectives and rewarding a culture of blameless postmortems</li><li>scaling through automation which, in turn, minimizes human error and maximizes auditability.</li></ol><p class="dmb-u-m-b-s">Because security is so essential and because it cuts across all dimensions and themes, it lives at the very center of the cloud adoption model.</p>',
+    DIMENSION_LEARN: '<p class="dmb-u-m-b-s">Your organization’s ability to continuously learn is determined by your efforts to upskill your IT staff while also taking advantage of the experiences shared by third-party contractors and partners. This two-pronged approach ensures that you apply cloud computing best practices idiomatically to Google Cloud Platform (or any other public cloud provider), tailored to your business needs and without having to climb the steep learning curve of doing things for the first time.</p><p class="dmb-u-m-b-s">Your staff will be more familiar with your organization’s unique idiosyncrasies and understand its technical and cultural nuances, while supporting third parties will have the experience of having completed multiple prior cloud migrations across a broad spectrum of customer solutions.</p><p class="dmb-u-m-b-s">Based on your responses, here is a quick synopsis of what you’ve told us:</p>',
+    DIMENSION_LEAD: '<p class="dmb-u-m-b-s">The effectiveness of your organization’s cloud adoption is determined by the visibility and value of the mandate issued top-down from your sponsors (which include C-level executives as well as middle management and team leaders) and the motivational momentum generated bottom-up from your teams’ cross-functional collaboration. These two counterparts together are responsible for clearly articulating objectives, making informed decisions, and executing them in concert with multiple functions.</p><p class="dmb-u-m-b-s">Sponsors control which resources are allocated to your organization’s cloud adoption efforts and bring stakeholders from different business functions and reporting lines together. However, they must ultimately rely on an agile and cross-functional group of cloud early adopters to practically implement their strategy.</p><p class="dmb-u-m-b-s">Based on your responses, here is a quick synopsis of what you’ve told us:</p>',
+    DIMENSION_SCALE: '<p class="dmb-u-m-b-s">Your organization’s ability to scale in the cloud is determined by the extent to which you abstract away your infrastructure with managed and serverless cloud services, as well as the quality of your CI/CD process chain and the programmable infrastructure code that runs through it.</p><p class="dmb-u-m-b-s">Because everything is managed via an API, automation can pay greater dividends in the cloud than in any other environment. Not only does it reduce human toil and serve as automatic documentation, it is also instrumental in making change low risk and frequent - the key ingredient for innovation.</p><p class="dmb-u-m-b-s">Based on your responses, here is a quick synopsis of what you’ve told us:</p>',
+    DIMENSION_SECURE: '<p class="dmb-u-m-b-s">In the narrow sense, the security of your cloud estate is determined by your ability to guarantee who may perform which action on which resource (identity and access management) and your understanding of the data that needs protecting, ensuring it is appropriately catalogued, encrypted, and guarded from exfiltration, to name just a few considerations.</p><p class="dmb-u-m-b-s">In the more holistic sense, your security posture relies on the advanced maturity of the other three cloud adoption themes:</p><ol class="dmb-u-m-b-s"><li>Continuous learning of the latest technical vulnerabilities and security best practices.</li><li>Leading by setting measurable security objectives and rewarding a culture of blameless postmortems</li><li>Scaling through automation which, in turn, minimizes human error and maximizes auditability.</li></ol><p class="dmb-u-m-b-s">Because security is so essential and because it cuts across all dimensions and themes, it lives at the very center of the cloud adoption model.</p><p class="dmb-u-m-b-s">Based on your responses, here is a quick synopsis of what you’ve told us:</p>',
 }
 
 DIMENSION_LEVEL_DESCRIPTION = {
@@ -370,7 +359,7 @@ DIMENSION_RECOMMENDATIONS = {
         LEVEL_0: [
             {
                 'header': 'Talent and Hiring',
-                'text': 'Secure headcount and publish new job descriptions for cloud-related roles. Actively start hiring to bring on staff with prior cloud experience. Use third parties for some cloud work and to cover for cloud-specific knowledge gaps.',
+                'text': 'Secure headcount and publish new job descriptions for cloud-related roles. Actively start hiring to bring on staff with prior cloud experience. Use third-parties for some cloud work and to cover for cloud-specific knowledge gaps.',
             },
             {
                 'header': 'Training Resources',
@@ -385,7 +374,7 @@ DIMENSION_RECOMMENDATIONS = {
         LEVEL_1: [
             {
                 'header': 'Talent and Hiring',
-                'text': 'Secure headcount and publish new job descriptions for cloud-related roles. Actively hire to bring on staff with prior cloud experience. Use third parties to provide specialist knowledge and give them moderated "break glass" admin access.',
+                'text': 'Secure headcount and publish new job descriptions for cloud-related roles. Actively hire to bring on staff with prior cloud experience. Use third-parties to provide specialist knowledge and give them moderated "break glass" admin access.',
             },
             {
                 'header': 'Training Resources',
@@ -400,7 +389,7 @@ DIMENSION_RECOMMENDATIONS = {
         LEVEL_2: [
             {
                 'header': 'Talent and Hiring',
-                'text': 'In addition to new job postings, review existing roles and redefine them to reflect new requirements of a cloud-first IT organization. Begin transition of admin access from third-party partners to internal operations teams, using third parties as staff augmentation functions only.',
+                'text': 'In addition to new job postings, review existing roles and redefine them to reflect new requirements of a cloud-first IT organization. Begin transition of admin access from third-parties to internal operations teams, using third-parties as staff augmentation functions only.',
             },
             {
                 'header': 'Training Resources',
@@ -409,13 +398,13 @@ DIMENSION_RECOMMENDATIONS = {
             },
             {
                 'header': 'Training Goals and Measurement',
-                'text': 'In addition to team-level targets that are consistently reported in your organization, encourage individuals to self-assess their level of completion against published targets specific to their roles. Track and reward the cloud certifications individuals achieve.',
+                'text': 'In addition to team-level targets that are consistently reported in your organization, encourage individuals to self-assess their level of completion against published targets specific to their roles. Track the cloud certifications individuals achieve.',
             },
         ],
         LEVEL_3: [
             {
                 'header': 'Talent and Hiring',
-                'text': 'In addition to new job postings, review existing roles and redefine them to reflect new requirements of a cloud-first IT organization. Transition admin access from third-party partners to internal operations teams, using third parties as staff augmentation functions only.',
+                'text': 'In addition to new job postings, review existing roles and redefine them to reflect new requirements of a cloud-first IT organization. Transition admin access from third-parties to internal operations teams, using third-parties as staff augmentation functions only.',
             },
             {
                 'header': 'Training Resources',
@@ -430,7 +419,7 @@ DIMENSION_RECOMMENDATIONS = {
         LEVEL_4: [
             {
                 'header': 'Talent and Hiring',
-                'text': 'Ensure all roles and responsibilities have been redefined (updated?) to reflect the new requirements of a cloud-first IT organization.',
+                'text': 'Ensure all roles and responsibilities have been redefined to reflect the new requirements of a cloud-first IT organization.',
             },
             {
                 'header': 'Training Resources',
@@ -439,7 +428,7 @@ DIMENSION_RECOMMENDATIONS = {
             },
             {
                 'header': 'Training Goals and Measurement',
-                'text': 'Continue to track, reward, and report on team-level targets and role-specific assessments for individuals on a periodic basis.',
+                'text': 'Continue to track, reward, and report on team-level targets and role-specific assessments for individuals on a consistent basis.',
             },
         ],
     },
@@ -511,7 +500,7 @@ DIMENSION_RECOMMENDATIONS = {
             },
             {
                 'header': 'Goals and Measurement',
-                'text': 'Implement SRE best practices and begin to analyze and define key performance indicators to evalute your success in the cloud.',
+                'text': 'Implement SRE best practices and begin to analyze and define key performance indicators to evaluate your success in the cloud.',
                 'cta': GOALS_CTA,
             },
             {
@@ -533,7 +522,7 @@ DIMENSION_RECOMMENDATIONS = {
             },
             {
                 'header': 'Team Structure and Governance',
-                'text': '"Nurture the Cloud Center Of Excellence to drive innovation along with day-to-day cloud projects. Ensure cloud centric IT roles are in place and give projects full autonomy to drive, manage and govern themselves. In additon to implementing and refining governance controls, enable auditors to generate and view on-demand compliance reports.',
+                'text': 'Nurture the Cloud Center Of Excellence to drive innovation along with day-to-day cloud projects. Ensure cloud-centric IT roles are in place and give projects full autonomy to drive, manage and govern themselves. In addition to implementing and refining governance controls, enable auditors to generate and view on-demand compliance reports.',
                 'cta': TEAM_STRUCTURE_CTA,
             },
             {
@@ -555,7 +544,7 @@ DIMENSION_RECOMMENDATIONS = {
         LEVEL_4: [
             {
                 'header': 'Executive Sponsorship',
-                'text': 'Continue to drive sponsorship from C-level executives across the board to become a cloud-first organization and to drive innovation by fostering a culture of R&D projects within teams.',
+                'text': 'Continue to drive sponsorship from C-level executives across the board to become a cloud-first organization and to drive innovation by fostering a culture of innovation, experimentation (fail fast), and shared success within teams.',
                 'cta': EXECUTIVE_SPONSORSHIP_CTA,
             },
             {
@@ -616,7 +605,7 @@ DIMENSION_RECOMMENDATIONS = {
             },
             {
                 'header': 'Integration and Deployment',
-                'text': 'Build a plan to implement rolling updates using automation on production environments, during a maintenance window if necessary. Establish rigorous change management protocols creating risk-gradation strategies like canary or blue/green deployments for an automated deployment process.',
+                'text': 'Build a plan to implement rolling updates using automation on production environments, during a maintenance window if necessary. Establish rigorous change management protocols creating risk-gradation strategies like Canary or Blue/Green deployments for an automated deployment process.',
                 'cta': CICD_CTA,
             },
             {
