@@ -1450,7 +1450,7 @@ class RenderEmailTemplateIntegration(TestCase):
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
-        self.assertEqual(subject, "{}: Cloud Maturity Assessment Report".format(survey.company_name))
+        self.assertEqual(subject, "{}: Google Cloud Maturity Assessment Report".format(survey.company_name))
         self.assertEqual(text, text_message_rendered)
         self.assertEqual(html, html_message_rendered)
 
