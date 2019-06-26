@@ -22,6 +22,26 @@ result_data = {
         "values": [1.33, 1.33],
         "choices_text": ['Upper funnel targeting (e.g. to drive awareness).', 'Lower funnel targeting (e.g. to drive sales).'],  # noqa
     },
+    "Q116": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q122": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q133": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q139": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
+    "Q150": {
+        "values": [4],
+        "choices_text": ['Media and creative teams working hand in hand from planning to execution using collaborative tools such as a Creative Management Platform (CMP).'],  # noqa
+    },
 }
 
 DIMENSIONS = {
@@ -255,6 +275,22 @@ class SurveyDefinitionTestCase(TestCase):
             'Q104': {'id': 'Q104'},
             'Q128': {'id': 'Q128'}
         })
+
+    def test_subdimensions_not_in_report(self):
+        """Test subdimension is ignored, if not put int DIMENSION_TITLES list."""
+        dimensions = DIMENSIONS
+        dimensions['subdimension'] = [
+            'Q154',
+            'Q155',
+        ]
+
+        dimensions_titles = DIMENSION_TITLES
+        survey_definition = SurveyDefinition(
+            survey_definition_dict,
+            dimensions,
+            dimensions_titles
+        )
+        self.assertTrue('subdimension' not in survey_definition.dimensions)
 
 
 class GetSurveyDetailTestCase(TestCase):
