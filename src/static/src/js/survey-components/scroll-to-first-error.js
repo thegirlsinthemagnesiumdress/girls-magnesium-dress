@@ -11,7 +11,9 @@ function init() {
    * - addOnUnload
    */
   window['Qualtrics']['SurveyEngine']['addOnload'](tempHideHeader);
-  window['Qualtrics']['SurveyEngine']['addOnReady'](scrollToFirstError);
+  window['Qualtrics']['SurveyEngine']['addOnload'](() => {
+    window['setTimeout'](scrollToFirstError, 0);
+  });
 }
 
 /**
