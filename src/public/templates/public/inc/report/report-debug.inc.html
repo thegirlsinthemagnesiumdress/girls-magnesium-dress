@@ -1,4 +1,7 @@
-<div class="dmb-report-debug-toolbar">
+{% load angular %}
+
+<button class="dmb-report-debug-toggle" ng-click="debug_panel=!debug_panel">Debug Tools</button>
+<div class="dmb-report-debug-toolbar" ng-if="debug_panel">
   <div class="h-c-page">
 
     <label for="overall">
