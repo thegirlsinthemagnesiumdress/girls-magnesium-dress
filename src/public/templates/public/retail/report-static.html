@@ -11,7 +11,7 @@
     {% include 'public/retail/report/report-dimensions.inc.html' %}
   </div>
 
-  {% if debug %}
+  {% if debug or is_nightly %}
     {% include 'public/inc/report/report-debug.inc.html' %}
   {% endif %}
 </main>

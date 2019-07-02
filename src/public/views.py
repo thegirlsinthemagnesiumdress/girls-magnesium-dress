@@ -11,7 +11,7 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers
+from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, version_info
 
 import json
 from django.utils.translation import ugettext as _
@@ -77,6 +77,7 @@ def report_static(request, tenant, sid):
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
+        'is_nightly': version_info(request.get_host())[1],
     })
 
 
@@ -87,6 +88,7 @@ def report_result_static(request, tenant, response_id):
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
+        'is_nightly': version_info(request.get_host())[1],
     })
 
 
