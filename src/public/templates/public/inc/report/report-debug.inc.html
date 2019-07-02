@@ -1,9 +1,17 @@
 {% load angular %}
 
-<button class="dmb-report-debug-toggle" ng-click="debug_panel=!debug_panel">Debug Tools</button>
+<button ng-click="debug_panel=!debug_panel" ng-class="{
+  'dmb-report-debug-toggle--active': debug_panel,
+  'dmb-report-debug-toggle': !debug_panel
+}">
+  <span ng-if="!debug_panel">Debug Tools</span>
+  <span ng-if="debug_panel">
+    <svg role="img" class="dmb-svg dmb-svg--close" width="24px" height="24px">
+      <use xlink:href="#close"></use>
+    </svg></span>
+</button>
 <div class="dmb-report-debug-toolbar" ng-if="debug_panel">
   <div class="h-c-page">
-
     <label for="overall">
       Overall Result:
     </label>
@@ -11,6 +19,8 @@
         id="overall"
         ng-model="debugOverallResult"
         ng-change="reportCtrl.setOverallResult(debugOverallResult)"
+        min="{[ reportCtrl.levelsMin ]}"
+        max="{[ reportCtrl.levelsMax ]}"
         step="0.1"
         type="number">
 
@@ -22,6 +32,8 @@
           id="{[ dimension ]}"
           ng-model="debugDimensionResults[dimension]"
           ng-change="reportCtrl.setDimensionsResult(dimension,debugDimensionResults[dimension])"
+          min="{[ reportCtrl.levelsMin ]}"
+          max="{[ reportCtrl.levelsMax ]}"
           step="0.1"
           type="number">
     </div>
