@@ -170,6 +170,7 @@ def handler404(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'product_name': '',
         'other_tenants': [],
     }, status=404)
 
@@ -183,6 +184,7 @@ def handler500(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'product_name': '',
         'other_tenants': [],
     }, status=500)
 
