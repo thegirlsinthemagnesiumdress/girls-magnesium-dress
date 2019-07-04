@@ -127,8 +127,9 @@ class SurveyResultsIndustryDetail(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         industries_list = settings.TENANTS[tenant]['HIERARCHICAL_INDUSTRIES']
+        industry_list = settings.TENANTS[tenant]['INDUSTRIES'].keys()
         industry_map = OrderedDict(flatten(industries_list, leaf_only=False))
-        if industry not in settings.INDUSTRIES.keys():
+        if industry not in industry_list:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         dmb, dmb_d, dmb_industry = aggregate.industry_benchmark(tenant, industry)

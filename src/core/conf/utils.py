@@ -118,6 +118,21 @@ def get_tenant_product_name(tenant):
     return settings.TENANTS[tenant]['PRODUCT_NAME']
 
 
+def get_other_tenant_footers(current_tenant):
+    """Returns a list of tenants slugs and their footer labels, excluding the `current_tentant`."""
+    other_tenants = []
+    tenant_conf = settings.TENANTS.get(current_tenant)
+
+    if not tenant_conf or not tenant_conf['in_dmb_footer']:
+        return other_tenants
+
+    current_tenant_slug = get_tenant_slug(current_tenant)
+    for tenant in settings.TENANTS.values():
+        if tenant['in_dmb_footer'] and tenant['slug'] is not current_tenant_slug:
+            other_tenants.append((tenant['footer_label'], tenant['slug']))
+    return other_tenants
+
+
 def version_info(domain):
     """Returns version to be set on Qualtrics, based on domain parameter.
     :param domain:

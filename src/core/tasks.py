@@ -289,10 +289,11 @@ def render_email_template(tenant, context, language):
         html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
         text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
+        subject_lines = [line for line in subject_template.render(context).split("\n") if line]
         try:
-            subject_rendered = subject_template.render(context).split("\n")[1]
+            subject_rendered = subject_lines[1]
         except IndexError:
-            subject_rendered = subject_template.render(context).split("\n")[0]
+            subject_rendered = subject_lines[0]
         text_message_rendered = text_message_template.render(context)
         html_message_rendered = html_message_template.render(context)
     finally:

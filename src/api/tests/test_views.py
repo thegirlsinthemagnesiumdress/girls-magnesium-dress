@@ -6,7 +6,7 @@ import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
-from core.tests.mocks import INDUSTRIES, MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
+from core.tests.mocks import MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
 from core.conf.utils import get_tenant_slug
 from core.test import reload_urlconf, with_appengine_user, with_appengine_anon
 
@@ -146,9 +146,6 @@ class SurveyDetailView(APITestCase):
         self.assertEqual(response.data.get('company_name'), 'test company no last result')
 
 
-@override_settings(
-    INDUSTRIES=INDUSTRIES
-)
 class CreateSurveyTest(APITestCase):
     """Tests for `api.views.CreateSurveyView` view."""
 
@@ -247,7 +244,6 @@ class CreateSurveyTest(APITestCase):
 
 
 @override_settings(
-    INDUSTRIES=INDUSTRIES,
     TENANTS=MOCKED_TENANTS,
     TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
     MIN_ITEMS_INDUSTRY_THRESHOLD=1,
@@ -427,9 +423,6 @@ class AdminSurveyListViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-@override_settings(
-    INDUSTRIES=INDUSTRIES
-)
 class UpdateAccountIdSurveyTest(APITestCase):
     """Tests for `api.views.UpdateAccountIdSurvey` view."""
 

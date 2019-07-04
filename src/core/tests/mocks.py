@@ -254,7 +254,7 @@ INDUSTRIES = {
     'fi-b': ('Banking', 'fi'),
     'fi-i': ('Insurance', 'fi'),
     'fi-o': ('Other', 'fi'),
-    're': ('Real estate'),
+    're': ('Real estate', None),
 }
 
 MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
@@ -283,6 +283,8 @@ MOCKED_TENANTS = {
         'key': 'tenant1',
         'label': 'Tenant 1 label',
         'slug': 'tenant1-slug',
+        'in_dmb_footer': True,
+        'footer_label': 'Tenant 1 Footer Label',
         'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
@@ -302,6 +304,8 @@ MOCKED_TENANTS = {
         'key': 'tenant2',
         'label': 'Tenant 2 label',
         'slug': 'tenant2-slug',
+        'in_dmb_footer': True,
+        'footer_label': 'Tenant 2 Footer Label',
         'QUALTRICS_SURVEY_ID': 'SV_aaxxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
@@ -324,6 +328,8 @@ MOCKED_TENANTS = {
         'key': 'tenant3',
         'label': 'Tenant 3 label',
         'slug': 'tenant3-slug',
+        'in_dmb_footer': False,
+        'footer_label': 'Tenant 3 Footer Label',
         'QUALTRICS_SURVEY_ID': 'SV_bbxxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',

@@ -72,6 +72,8 @@
               <div class="dmb-form__input-wrapper">
                 {% if tenant|ng_mark_safe == 'ads' %}
                   {% trans "Enter the organisation name" as org_label %}
+                {% elif tenant|ng_mark_safe == 'cloud' %}
+                  {% trans "Organization name" as org_label %}
                 {% else %}
                   {% trans "Enter the organization name" as org_label %}
                 {% endif %}
@@ -153,12 +155,11 @@
             <button
                 class="dmb-form__submit h-c-button h-c-button--primary"
                 ng-disabled="!registration.$valid">
-            {% if tenant|ng_mark_safe == 'cloud' %}
-              Continue to my assessment
-            {% else %}
-              {% trans "Progress to my assessment" %}
-            {% endif %}
-
+              {% if tenant|ng_mark_safe == 'cloud' %}
+                Continue to my assessment
+              {% else %}
+                {% trans "Progress to my assessment" %}
+              {% endif %}
             </button>
 
             <div
