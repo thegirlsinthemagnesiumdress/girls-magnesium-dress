@@ -11,8 +11,7 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers
-
+from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
@@ -63,6 +62,7 @@ def registration(request, tenant):
         'content_data': _dump_tenant_content_data(tenant),
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -76,6 +76,7 @@ def report_static(request, tenant, sid):
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -86,6 +87,7 @@ def report_result_static(request, tenant, response_id):
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -96,6 +98,7 @@ def index_static(request, tenant):
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -106,6 +109,7 @@ def thank_you(request, tenant):
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -129,6 +133,7 @@ def reports_admin(request, tenant):
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
         'bootstrap_data': JSONRenderer().render(api_data),
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -151,6 +156,7 @@ def result_detail(request, tenant, response_id):
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
+        'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
@@ -164,6 +170,7 @@ def handler404(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'product_name': '',
         'other_tenants': [],
     }, status=404)
 
@@ -177,6 +184,7 @@ def handler500(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'product_name': '',
         'other_tenants': [],
     }, status=500)
 

@@ -1,8 +1,8 @@
 {% load angular %}
 {% load i18n %}
 {% load static %}
-{% trans "Digital Maturity Benchmark" as digital_maturity %}
-{% trans "Data Maturity Benchmark" as data_maturity %}
+{% with prod_name=product_name|ng_mark_safe %}
+{% trans prod_name %}
 
 <div class="dmb-header glue-header h-c-header h-c-header--product-marketing-one-tier">
   <div class="h-c-header__bar">
@@ -70,7 +70,7 @@
           <a href="/{{ slug|ng_mark_safe }}"
               class="h-c-header__product-logo-link">
             <span class="h-c-header__product-logo-text">
-              {% if tenant|ng_mark_safe == 'ads' %}{{digital_maturity}}{% else %}{{data_maturity}}{% endif %}
+              {{ prod_name }}
             </span>
           </a>
         </div>
@@ -233,3 +233,4 @@
   <div id="h-js-header__drawer-backdrop" class="h-c-header__drawer-backdrop"></div>
   {% endcomment %}
 </div>
+{% endwith %}

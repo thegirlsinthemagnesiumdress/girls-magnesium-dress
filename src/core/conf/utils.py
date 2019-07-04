@@ -114,6 +114,10 @@ def get_tenant_slug(tenant):
     return settings.TENANTS[tenant]['slug']
 
 
+def get_tenant_product_name(tenant):
+    return settings.TENANTS[tenant]['PRODUCT_NAME']
+
+
 def get_other_tenant_footers(current_tenant):
     """Returns a list of tenants slugs and their footer labels, excluding the `current_tentant`."""
     other_tenants = []
