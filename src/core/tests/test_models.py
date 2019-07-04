@@ -96,7 +96,6 @@ class UserTest(TestCase):
 
     @with_appengine_user('standard@asd.com')
     def test_standard_user_not_super_admin(self):
-        # import ipdb; ipdb.set_trace()
         response = self.client.get('/')
         user = response.wsgi_request.user
         self.assertFalse(user.is_super_admin)

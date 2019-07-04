@@ -1,7 +1,3 @@
-{% comment %}
-  Loading angular was required to make the product name available in the blocktrans
-  otherwise a "Suspicious operation" error is thrown.
-{% endcomment %}
 {% load angular %}
 {% load i18n %}
 <section class="dmb-header-text-cta h-c-page h-u-text-center{% if class %} {{class}}{% endif %}">
@@ -12,7 +8,6 @@
       </h2>
       <p class="dmb-header-text-cta__text dmb-u-m-b-s">
         {% with prod_name=product_name|ng_mark_safe %}
-        {% comment %} {% trans "The <strong>"|add:{{prod_name}}|add:"</strong> is a diagnostic tool developed based on our in-depth research with BCG." %} {% endcomment %}
         {% blocktrans %}The <strong>{{prod_name}}</strong> is a diagnostic tool developed based on our in-depth research with BCG.{% endblocktrans %}
         {% endwith %}
       </p>
