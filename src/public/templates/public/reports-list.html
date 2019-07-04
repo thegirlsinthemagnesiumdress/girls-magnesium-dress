@@ -13,13 +13,9 @@
         {{ tenant|ng_mark_safe }}
       </div>
       <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium">
-        {% if tenant|ng_mark_safe == 'ads' %}
-          Digital Maturity
-        {% elif tenant|ng_mark_safe == 'cloud' %}
-          Cloud Maturity
-        {% else %}
-          Data Maturity
-        {% endif %}
+        {% with prod_name=product_name|ng_mark_safe %}
+          {{ prod_name }}
+        {% endwith %}
         Admin Dashboard
       </h1>
 
