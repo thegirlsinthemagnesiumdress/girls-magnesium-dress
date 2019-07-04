@@ -9,9 +9,9 @@ import * as smoothScroll from '@google/glue/lib/ng/smoothscroll/smoothscroll';
 import * as tabby from '@google/glue/lib/ng/tabby/tabby';
 
 const focusControl = goog.require('dmb.components.focusControl');
-const headerFix = goog.require('dmb.components.headerFix');
+import * as headerFix from './components/header-fix/header-fix';
 const registration = goog.require('dmb.components.registration');
-const scrollHandler = goog.require('dmb.components.scroll');
+import * as scrollHandler from './components/scroll/scroll';
 const sidePanel = goog.require('dmb.components.sidePanel');
 const report = goog.require('dmb.components.report');
 const reportList = goog.require('dmb.components.reportAdmin');
