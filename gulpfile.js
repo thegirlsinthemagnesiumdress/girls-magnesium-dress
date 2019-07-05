@@ -69,7 +69,7 @@ gulp.task('js', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
       .pipe(glueGulp.prod({
         entry_point: 'dmb.app',
-        hide_warnings_for: 'node_modules/glue/',
+        hide_warnings_for: 'node_modules/@google/glue/',
         js_output_file: 'js/main.min.js',
       }))
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
@@ -127,7 +127,7 @@ gulp.task('js-templates', function() {
           // TODO: You may have to modify the url here depending
           // on your setup. This is to make the path look more like
           // the path glue directives are looking for.
-          return `/glue/${url}`;
+          return `/@google/glue/${url}`;
         },
       }
     ))
