@@ -1948,7 +1948,6 @@ msgid "Ready to benchmark your company’s digital maturity?"
 msgstr "¿Quieres comparar el nivel de desarrollo digital de tu empresa con el de otras?"
 
 #, fuzzy
-#| msgid "Let’s start with some details about your organisation:"
 msgid "Let’s start with some details about your organisation:"
 msgstr "Para empezar, necesitamos algunos detalles sobre tu organización:"
 
