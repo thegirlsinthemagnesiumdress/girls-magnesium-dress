@@ -1,0 +1,22 @@
+// sass-lint:disable no-ids
+#dmb-cloud {
+  .h-c-header__company-logo-img {
+    width: 160px;
+  }
+
+  .dmb-home-hero {
+    &__bg-img {
+      background-position: right top;
+    }
+
+    .h-c-grid {
+      @include dmb-mq($from: desktop) {
+        width: 100%;
+      }
+    }
+  }
+
+  .h-c-footer {
+    margin-top: 0;
+  }
+}

@@ -1,5 +1,7 @@
 # coding=utf-8
 # flake8: noqa
+from collections import OrderedDict
+from core.conf import utils
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
 DIMENSION_STRATEGIC_DIRECTION = "strategic_direction"
@@ -11,6 +13,7 @@ LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
+LEVELS_MAX = 4
 
 WEIGHTS = {
     'Q4': 0.2,
@@ -134,7 +137,7 @@ INDUSTRY_AVG_DESCRIPTION = 'How news organizations perform on average; calculate
 INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participant in the Deloitte Digital Transformation through Data study.'
 
 
-DIMENSION_HEADER_DESCRIPTION = {
+DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_STRATEGIC_DIRECTION: 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
     DIMENSION_READER_ENGAGEMENT: 'Reader engagement is crucial to acquiring and retaining readers and increasing share of attention. Without an engaged readership, a news company cannot secure the subscription and advertising opportunities it needs to survive and thrive.',
     DIMENSION_READER_REVENUE: 'News companies that successfully build valuable direct-to-consumer relationships with their readers not only see the near-term benefits of increased revenue but also reduce operating volatility through long-term, recurring revenue streams.',
@@ -178,7 +181,7 @@ ACTIVATING_USE_CASES_GUIDE_CTA = {
     'link': 'http://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-digital-transformation-through-data-for-news.pdf#page=17',
 }
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_STRATEGIC_DIRECTION: {
         LEVEL_0: [{
             'header': 'Broadcast a thoughtful data strategy',
@@ -488,13 +491,14 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 
 CONTENT_DATA = {
     'levels': LEVELS,
+    'levels_max': LEVELS_MAX,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
-    'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
+    'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
@@ -506,3 +510,11 @@ GOOGLE_SHEET_EXPORT_SURVEY_FIELDS = GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS = GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
+
+HIERARCHICAL_INDUSTRIES = OrderedDict([
+    ('ic', ('Information and Communication', OrderedDict([
+        ('ic-bnpj', ('Books, news, periodicals, journals', None)),
+    ]))),
+])
+
+INDUSTRIES = utils.map_industries(HIERARCHICAL_INDUSTRIES, None, {})

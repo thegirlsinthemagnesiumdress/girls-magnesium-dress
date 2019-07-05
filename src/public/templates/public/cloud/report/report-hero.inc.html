@@ -1,0 +1,44 @@
+<section class="dmb-report-hero{% if class %} {{class}}{% endif %}">
+  <div class="dmb-report-hero__bg"></div>
+  <div class="h-c-page">
+    <div class="dmb-report-hero__current dmb-report-hero__current--level-{[ reportCtrl.currentLevelData['value'] ]}">
+      <div class="dmb-report-hero__header">
+        <div class="dmb-report-hero__company h-c-headline h-c-headline--three">
+          {[ reportCtrl.survey.company_name ]}
+        </div>
+        <div class="dmb-report-hero__date h-c-headline h-c-headline--subhead">
+          {[ reportCtrl.result.started_at|date:'MMMM yyyy' ]}
+        </div>
+      </div>
+      <div class="dmb-report-hero__subheading h-c-headline h-c-headline--subhead">
+        Your Cloud Maturity phase is
+      </div>
+      <h2 class="dmb-report-hero__current-level h-c-headline h-c-headline--display-two">
+        <span>
+          {[ reportCtrl.currentLevelData['mapValue'] ]}
+        </span>
+        <button
+            class="dmb-report-hero__print-btn dmb-u-hide-mobile dmb-h-hidden--print"
+            aria-label="Print report button"
+            data-tooltip-text="This page is designed to be printable"
+            ng-click ="reportCtrl.print()">
+          {% include 'core/inc/svg.html' with id='print' inline=True only %}
+        </button>
+      </h2>
+    </div>
+    <div class="dmb-report-hero__next h-c-headline h-c-headline--subhead dmb-report-hero__next--level-{[ reportCtrl.nextLevelData['value'] ]}">
+      <span ng-if="!reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+        Next phase: <strong>{[ reportCtrl.nextLevelData['mapValue'] ]}</strong>
+      </span>
+      <span ng-if="reportCtrl.resultInTopLevel(reportCtrl.overallResult)">
+        Congratulations, you're in the most mature phase for cloud maturity
+      </span>
+      <button
+          class="dmb-h-hidden--print"
+          dmb-side-panel-trigger="#dmb-levels-side-panel"
+          aria-label="Get more informations about what your maturity represents">
+        {% include 'core/inc/svg.html' with id='info' inline=True only %}
+      </button>
+    </div>
+  </div>
+</section>

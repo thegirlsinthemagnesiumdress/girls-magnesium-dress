@@ -22,7 +22,7 @@ from datetime import datetime
 from collections import defaultdict
 from core.aggregate import updatable_industries
 
-from core.conf.utils import get_tenant_slug
+from core.conf.utils import get_tenant_slug, get_tenant_product_name
 from django.utils import translation
 from core.googleapi import sheets
 from django.utils.functional import Promise
@@ -237,6 +237,7 @@ def send_emails_for_new_reports(email_list):
                     'company_name': company_name,
                     'industry': industry,
                     'country': country,
+                    'product_name': get_tenant_product_name(tenant)
                 }
 
                 subject, text_message, html_message = render_email_template(tenant, context, q_lang)
@@ -288,10 +289,11 @@ def render_email_template(tenant, context, language):
         html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
         text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
 
+        subject_lines = [line for line in subject_template.render(context).split("\n") if line]
         try:
-            subject_rendered = subject_template.render(context).split("\n")[1]
+            subject_rendered = subject_lines[1]
         except IndexError:
-            subject_rendered = subject_template.render(context).split("\n")[0]
+            subject_rendered = subject_lines[0]
         text_message_rendered = text_message_template.render(context)
         html_message_rendered = html_message_template.render(context)
     finally:
@@ -341,13 +343,15 @@ def generate_csv_export(tenant, survey_fields, survey_result_fields, prefix):
 
         surveys = Survey.objects.filter(tenant=tenant)
 
+        tenant_industries = settings.TENANTS[tenant]['INDUSTRIES']
+
         for survey in surveys:
             survey_data = {field: None for field in all_fields}
             try:
                 survey_data.update({
                     'id': survey.pk,
                     'company_name': survey.company_name,
-                    'industry': settings.INDUSTRIES.get(survey.industry),
+                    'industry': tenant_industries.get(survey.industry),
                     'country': settings.COUNTRIES.get(survey.country),
                     'created_at': survey.created_at,
                     'engagement_lead': survey.engagement_lead,

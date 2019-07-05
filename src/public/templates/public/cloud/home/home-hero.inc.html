@@ -1,0 +1,29 @@
+{% load angular %}
+<section class="dmb-home-hero h-c-page{% if class %} {{class}}{% endif %}">
+  <div class="dmb-home-hero__bg-img"></div>
+  <div class="h-c-grid">
+    <div class="dmb-home-hero__card dmb-u-rounded h-c-grid__col h-c-grid__col--6 h-c-grid__col-l--5">
+      <div class="dmb-home-hero__logo">
+        {% include 'core/inc/svg.html' with id='google-cloud' size='38px' class='dmb-u-m-b-m' only %}
+      </div>
+
+      <h1 class="dmb-primary-heading dmb-u-google-sans-display h-c-headline h-c-headline--two">
+      {% with prod_name=product_name|ng_mark_safe %}
+        {{prod_name}}
+      {% endwith %}
+      </h1>
+      <p class="dmb-u-m-b-s h-c-headling--subhead">
+        Determine where you are on your cloud journey today, plan your progress, and mature your cloud capabilities.
+      </p>
+      <p class="dmb-u-note dmb-u-m-b-s dmb-u-alt-font">
+        A part of the
+        <a
+            class="h-c-link h-c-inline-link"
+            href="https://cloud.google.com/adoption-framework/"
+            target="_blank">
+          Google Adoption Framework
+        </a>
+      </p>
+    </div>
+  </div>
+</section>

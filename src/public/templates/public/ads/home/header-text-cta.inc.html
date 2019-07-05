@@ -1,3 +1,4 @@
+{% load angular %}
 {% load i18n %}
 <section class="dmb-header-text-cta h-c-page h-u-text-center{% if class %} {{class}}{% endif %}">
   <div class="h-c-grid">
@@ -6,7 +7,9 @@
         {% trans "Your roadmap to digital marketing maturity" %}
       </h2>
       <p class="dmb-header-text-cta__text dmb-u-m-b-s">
-        {% trans "The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG." %}
+        {% with prod_name=product_name|ng_mark_safe %}
+        {% blocktrans %}The <strong>{{prod_name}}</strong> is a diagnostic tool developed based on our in-depth research with BCG.{% endblocktrans %}
+        {% endwith %}
       </p>
       {% comment %}
       <a

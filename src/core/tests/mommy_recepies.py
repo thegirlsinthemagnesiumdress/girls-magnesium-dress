@@ -9,10 +9,12 @@ from uuid import uuid4
 
 
 def make_survey(**kwargs):
+    tenant = kwargs.get('tenant', settings.TENANTS.keys()[0])
+    industry = settings.TENANTS[tenant]['INDUSTRIES'].keys()[0]
     survey_kwargs = {
-        "industry": settings.INDUSTRIES.keys()[0],
+        "industry": industry,
         "country": settings.COUNTRIES.keys()[0],
-        "tenant": kwargs.get('tenant', settings.TENANTS.keys()[0]),
+        "tenant": tenant,
         "sid": kwargs.get('sid', uuid4().hex)
     }
     survey_kwargs.update(kwargs)
