@@ -43,15 +43,11 @@ class SurveyTest(TestCase):
         match = re.search(r'sp=([^&]*)', survey.link_sponsor)
         self.assertEqual(match.groups(1)[0], 'true')
 
-    @override_settings(
-        INDUSTRIES={
-            'IT': 'Information Technology',
-        }
-    )
     def test_save_valid_industry(self):
         """Saving an industry that is in industry list, should set industry field to that industry."""
-        survey = Survey.objects.create(country='IT', industry='IT', tenant='tenant1')
-        self.assertEqual(survey.industry, 'IT')
+        survey = Survey.objects.create(country='IT', industry="re", tenant='tenant1')
+        self.assertEqual(survey.industry, 're')
+        self.assertEqual(survey.get_industry_display(), "Real estate")
 
     def test_company_name_unicode(self):
         """Test that company name can have unicode characters."""

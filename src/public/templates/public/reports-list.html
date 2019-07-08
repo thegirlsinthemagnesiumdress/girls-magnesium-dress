@@ -13,8 +13,10 @@
         {{ tenant|ng_mark_safe }}
       </div>
       <h1 class="h-c-headline h-c-headline--two h-u-font-weight-medium">
-        {% if tenant|ng_mark_safe == 'ads' %}Digital {% else %}Data {% endif %}
-        Maturity Admin Dashboard
+        {% with prod_name=product_name|ng_mark_safe %}
+          {{ prod_name }}
+        {% endwith %}
+        Admin Dashboard
       </h1>
 
       <div class="h-c-grid">
@@ -192,7 +194,9 @@
                   Check <a class="h-c-inline-link" href="http://go/dmb-userguide" target="_blank">go/dmb-userguide</a> for help on identifying the Greentea ID of your client.
                 </div>
               </div>
+            {% endif %}
 
+            {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
               <div class="dmb-form__input-wrapper">
                 <label for="industry">Industry:</label>
                 <select

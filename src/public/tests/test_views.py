@@ -3,12 +3,12 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
 
-from core.test import with_appengine_admin, with_appengine_user
+from core.test import with_appengine_admin, with_appengine_user, get_bootstrap_data
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_with_result
 from core.tests import mocks
 from django.conf import settings
 import os
-from core.test import reload_urlconf, TempTemplateFolder
+from core.test import reload_urlconf, TempTemplateFolder, angular_context_to_object
 import json
 import mock
 from core import tasks
@@ -54,14 +54,6 @@ class ReportsAdminTestCase(TestCase):
             dmb_d='{}'
         )
 
-    def _get_bootstrap_data(self, context):
-        # We use django-angular-protect (see https://github.com/potatolondon/django-angular-protect)
-        # which wraps our context values in an object.
-        # This gets us at our original value.
-        bootstrap_data = context.get('bootstrap_data')._original
-        bootstrap_data = json.loads(bootstrap_data)
-        return bootstrap_data
-
     @with_appengine_user('test@google.com')
     def test_standard_user_logged_in(self):
         """Standard user can retrieve reports belonging to its engagement_lead within a specific tenant."""
@@ -77,7 +69,7 @@ class ReportsAdminTestCase(TestCase):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
 
-            bootstrap_data = self._get_bootstrap_data(response.context)
+            bootstrap_data = get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('results')
 
             self.assertTrue(surveys)
@@ -91,7 +83,7 @@ class ReportsAdminTestCase(TestCase):
         with TempTemplateFolder(templates_path, 'reports-list.html'):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
-            bootstrap_data = self._get_bootstrap_data(response.context)
+            bootstrap_data = get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('results')
 
             engagement_lead_ids = [el['engagement_lead'] for el in surveys]
@@ -109,7 +101,7 @@ class ReportsAdminTestCase(TestCase):
         with TempTemplateFolder(templates_path, 'reports-list.html'):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
-            bootstrap_data = self._get_bootstrap_data(response.context)
+            bootstrap_data = get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('results')
 
             self.assertTrue(surveys)
@@ -177,6 +169,58 @@ class ReportDetailTestCase(TestCase):
         url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_2.sid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+
+@override_settings(
+    TENANTS=mocks.MOCKED_TENANTS,
+    I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
+    NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
+    TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
+)
+class IndexPage(TestCase):
+    """Tests for the `index` view."""
+
+    def setUp(self):
+        reload_urlconf()
+        self.tenant_slug = 'tenant1-slug'
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
+
+        self.survey_result_1 = make_survey_result(
+            survey=self.survey_1,
+            response_id='AAA',
+            dmb=1.0,
+            dmb_d='{}'
+        )
+        self.survey_1.last_survey_result = self.survey_result_1
+        self.survey_1.save()
+
+    def test_custom_index_page(self):
+        """If template exists should return 200."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        with TempTemplateFolder(templates_path, 'index.html'):
+            url = reverse('index', kwargs={'tenant': self.tenant_slug})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+
+    def test_index_page_exists(self):
+        """Index page should always exist, and return 200."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        with TempTemplateFolder(templates_path, 'index.html'):
+            url = reverse('index', kwargs={'tenant': self.tenant_slug})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+
+    def test_index_footers_exists(self):
+        """Dynamically generated footer links should be present, and not include current tennant."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        with TempTemplateFolder(templates_path, 'index.html'):
+            url = reverse('index', kwargs={'tenant': self.tenant_slug})
+            response = self.client.get(url)
+            other_tenants = angular_context_to_object(response.context['other_tenants'])
+            # tenant-3 should be excluded because `in_dmb_footer` is False
+            expected = [('Tenant 2 Footer Label', 'tenant2-slug')]
+            self.assertListEqual(other_tenants, expected)
 
 
 @override_settings(
@@ -289,7 +333,6 @@ class GenerateExportPage(TestCase):
         args, kwargs = mock_defer.call_args
         got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
-        print got_title
         self.assertTrue("Digital Maturity Benchmark | Data Export |" in got_title)
         self.assertEqual(len(got_data), 0)
 
@@ -297,6 +340,7 @@ class GenerateExportPage(TestCase):
     @with_appengine_user("test@google.com")
     def test_engagement_lead_ok_data(self, mock_defer):
         """All data belonging to engagement lead should be returned."""
+        survey_3 = make_survey_with_result(industry='ic-o', tenant='tenant1')
         engagement_lead = '1234'
 
         data = {
@@ -305,10 +349,37 @@ class GenerateExportPage(TestCase):
 
         self.survey_1.engagement_lead = engagement_lead
         self.survey_2.engagement_lead = engagement_lead
+        survey_3.engagement_lead = '11'
         self.survey_1.save()
         self.survey_2.save()
+        survey_3.save()
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
         response = self.client.post(url, data=json.dumps(data), content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        mock_defer.assert_called_once()
+
+        args, kwargs = mock_defer.call_args
+        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
+        self.assertEqual(len(got_data), 2)
+        self.assertEqual(got_share_with, response.wsgi_request.user.email)
+
+    @mock.patch('djangae.deferred.defer')
+    @with_appengine_admin('standard@google.com')
+    def test_super_admin(self, mock_defer):
+        """All tenant data should be returned if super user."""
+        # Different tenant survey
+        make_survey_with_result(industry='ic-o', tenant='tenant2')
+        data = {
+            'engagement_lead': '3'
+        }
+        self.survey_1.engagement_lead = '1'
+        self.survey_2.engagement_lead = '2'
+        self.survey_1.save()
+        self.survey_2.save()
+
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
+
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
 

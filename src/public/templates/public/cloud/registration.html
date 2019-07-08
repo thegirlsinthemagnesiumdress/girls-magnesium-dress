@@ -1,0 +1,130 @@
+{% extends 'public/base.html' %}
+{% load staticfiles %}
+{% load angular %}
+
+{% block main %}
+
+<section
+    class="dmb-registration"
+    ng-controller="RegistrationCtrl as registrationCtrl"
+    ng-init="registrationCtrl.hideConfirmationPage = true"
+    ng-cloak>
+
+  <div class="dmb-registration__header">
+    <div class="h-c-page">
+      <div class="h-c-grid">
+        <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
+          <h1 class="dmb-registration__heading dmb-u-m-t-m h-c-headline h-c-headline--two">
+            Ready to assess your organization's cloud maturity?
+          </h1>
+        </div>
+        <div class="dmb-registration__bg h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dmb-registration__form-wrapper h-c-page">
+    <div class="h-c-grid">
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-2">
+        <h2 class="h-c-headline h-c-headline--four">
+          Let’s start with some details about your organization:
+        </h2>
+        <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            class="h-c-button h-c-button--flat dmb-u-m-b-m">
+          How do we keep your information safe?
+        </a>
+      </div>
+
+      <div class="h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-2">
+        <form
+            class="dmb-form dmb-u-m-t-m dmb-u-m-b-l"
+            name="registration"
+            novalidate
+            autocomplete="off"
+            ng-submit="registrationCtrl.submit()">
+          <div class="dmb-form__wrapper">
+            <div class="dmb-input-wrp">
+              <input
+                  id="tenant"
+                  name="tenant"
+                  ng-model="registrationCtrl.tenant"
+                  type="hidden"
+                  required
+                  value="{{tenant|ng_mark_safe}}"
+                  ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
+                  aria-hidden="true">
+            </div>
+            <div class="dmb-input-wrp">
+              <input
+                  id="companyName"
+                  class="dmb-form__input"
+                  name="companyName"
+                  ng-model="registrationCtrl.companyName"
+                  type="text"
+                  required
+                  placeholder="Organization name">
+            </div>
+            <div class="dmb-input-wrp">
+              <select
+                  class="dmb-form__select dmb-dropdown-arrow"
+                  name="country"
+                  id="country"
+                  ng-model="registrationCtrl.country"
+                  required>
+                <option value="" selected>
+                  Select a country
+                </option>
+                {% for c_key, c_text in countries %}
+                  <option
+                      value="{{c_key|ng_mark_safe}}">
+                    {{c_text|ng_mark_safe}}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="dmb-input-wrp">
+              <select
+                  aria-label="Select an industry"
+                  class="dmb-form__select dmb-dropdown-arrow"
+                  id="industry"
+                  name="industry"
+                  ng-model="registrationCtrl.industry"
+                  required>
+                <option selected value="">
+                  Select an industry
+                </option>
+                {% for i_key, i_text in industries %}
+                <option value="{{i_key|ng_mark_safe}}">
+                  {{i_text|ng_mark_safe}}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- <div
+                class="input-wrp__error"
+                ng-show="!registration.companyName.$pristine && registration.companyName.$error.required">
+              This field is required.
+            </div> -->
+
+          </div>
+          <button
+              ng-disabled="!registration.$valid"
+              class="dmb-form__submit h-c-button h-c-button--primary">
+            Continue to my assessment
+          </button>
+
+          <div class="dmb-form__error" ng-hide="!registrationCtrl.serverError">
+            Oops, something went wrong!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
