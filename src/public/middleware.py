@@ -2,6 +2,7 @@ from django.core.urlresolvers import resolve
 from django.conf import settings
 from django.shortcuts import redirect
 from core.conf.utils import get_tenant_key, get_tenant_slug
+from django.utils import translation
 
 
 class RedirectToDefaultTenant(object):
@@ -18,3 +19,10 @@ class RedirectToDefaultTenant(object):
     def process_view(self, request, view_func, view_args, view_kwargs):
         if 'tenant' in view_kwargs:
             view_kwargs.update({'tenant': get_tenant_key(view_kwargs['tenant'])})
+
+
+class ForceDefaultLang(object):
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        if 'tenant' in view_kwargs and not settings.TENANTS.get(view_kwargs['tenant']).get('i18n'):
+            translation.activate('en')
