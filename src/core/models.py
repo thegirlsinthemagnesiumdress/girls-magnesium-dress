@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.utils import translation
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
+from core.settings.default import QUALTRICS_LANGS
 from core.managers import NotExcludedFromBestPracticeManager
 from core.conf import utils
 from collections import OrderedDict
@@ -76,7 +77,9 @@ class Survey(models.Model):
             survey_link = '{}&ver={}'.format(survey_link, version)
 
         if settings.TENANTS.get(self.tenant).get('i18n'):
-            survey_link = '{}&Q_Language={}'.format(survey_link, translation.get_language())
+            # Append the qualtrics language code if tenant uses il8n using the browser language code
+            survey_link = '{}&Q_Language={}'.format(survey_link, [q_code for q_code, code in QUALTRICS_LANGS.iteritems()
+                                                                  if code == translation.get_language()][0])
 
         return survey_link
 
