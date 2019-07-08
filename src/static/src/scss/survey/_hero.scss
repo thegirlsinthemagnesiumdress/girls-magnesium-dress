@@ -9,6 +9,7 @@
   &__company-logo {
     height: 20px;
     margin-right: 10px;
+    width: auto;
 
     @include dmb-mq($from: desktop) {
       height: 22px;
