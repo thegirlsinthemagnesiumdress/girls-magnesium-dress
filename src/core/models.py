@@ -55,7 +55,7 @@ class Survey(models.Model):
         t = settings.TENANTS[self.tenant]
         industries_dict = OrderedDict(utils.flatten(t['HIERARCHICAL_INDUSTRIES']))
         industry = industries_dict.get(self.industry)
-        return industry if industry else None
+        return industry.decode('utf-8') if industry else None
 
     @property
     def link(self):
