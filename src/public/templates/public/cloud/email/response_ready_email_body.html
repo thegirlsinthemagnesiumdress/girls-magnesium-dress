@@ -67,7 +67,9 @@
                         <img alt="Google" src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" width="74" style="display: block; border: 0px;"/>
                       </td>
                       <td align="left" style="padding-left: 6px; color: #5F6368; font-family: Arial,Helvetica,sans-serif; font-size: 22px; font-style: normal; font-weight: 400;">
-                        Cloud Maturity Assessment
+                        {% with prod_name=product_name %}
+                          {{ prod_name }}
+                        {% endwith %}
                       </td>
                     </tr>
                   </table>
@@ -83,7 +85,7 @@
 
                     <tr>
                       <td align="left" style="font-family: Google Sans, Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 28px; font-weight: 700; line-height: 32px; color: #444444; padding-top: 50px; padding-bottom: 40px; text-align: center;" class="headline">
-                          Your report is ready!
+                        Your Google Cloud Maturity Assessment Report is ready!
                       </td>
                     </tr>
 
@@ -162,7 +164,9 @@
 
                         <tr>
                             <td class="footnote" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 16px; color: #999999; font-style: 400; letter-spacing: 0px; padding-bottom: 15px;" align="center">
-                               You received this email because you or someone from your organization completed a Google Cloud Maturity Assessment.
+                               {% with prod_name=product_name %}
+                               You received this email because you or someone from your organization completed a Google {{ prod_name }}.
+                               {% endwith %}
                              </td>
                         </tr>
 

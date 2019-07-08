@@ -1,3 +1,4 @@
+{% load angular %}
 <section class="dmb-home-hero h-c-page{% if class %} {{class}}{% endif %}">
   <div class="dmb-home-hero__bg-img"></div>
   <div class="h-c-grid">
@@ -7,10 +8,12 @@
       </div>
 
       <h1 class="dmb-primary-heading dmb-u-google-sans-display h-c-headline h-c-headline--two">
-        Google Cloud Maturity Assessment
+      {% with prod_name=product_name|ng_mark_safe %}
+        {{prod_name}}
+      {% endwith %}
       </h1>
       <p class="dmb-u-m-b-s h-c-headling--subhead">
-        Determine where you are on your cloud journey today, plan your progress and mature your cloud capabilities.
+        Determine where you are on your cloud journey today, plan your progress, and mature your cloud capabilities.
       </p>
       <p class="dmb-u-note dmb-u-m-b-s dmb-u-alt-font">
         A part of the

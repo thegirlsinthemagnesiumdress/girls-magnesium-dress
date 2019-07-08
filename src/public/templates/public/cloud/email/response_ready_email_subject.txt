@@ -1,1 +1,1 @@
-{{ company_name }}: Cloud Maturity Assessment Report
+{{ company_name }}: Google Cloud Maturity Assessment Report

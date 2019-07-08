@@ -32,6 +32,7 @@ import pytz
 from collections import OrderedDict
 from django.conf import settings
 from django.template.loader import get_template
+import unittest
 
 
 @override_settings(
@@ -1352,6 +1353,7 @@ class RenderEmailTemplateTestCase(TestCase):
 
 class RenderEmailTemplateIntegration(TestCase):
 
+    @unittest.skipIf(settings.TENANTS.get(settings.ADS) is None, "Advertisers tenant is excluded")
     def test_render_email_template_ads(self):
         """Test if template files are rendered correctly for ads tenant"""
         survey = make_survey(sid='3', tenant='ads')
@@ -1377,6 +1379,7 @@ class RenderEmailTemplateIntegration(TestCase):
         self.assertEqual(text, text_message_rendered)
         self.assertEqual(html, html_message_rendered)
 
+    @unittest.skipIf(settings.TENANTS.get(settings.NEWS) is None, "News tenant is excluded")
     def test_render_email_template_news(self):
         """Test if template files are rendered correctly for news tenant"""
         survey = make_survey(sid='3', tenant='news')
@@ -1404,6 +1407,7 @@ class RenderEmailTemplateIntegration(TestCase):
         self.assertEqual(text, text_message_rendered)
         self.assertEqual(html, html_message_rendered)
 
+    @unittest.skipIf(settings.TENANTS.get(settings.RETAIL) is None, "Retail tenant is excluded")
     def test_render_email_template_retail(self):
         """Test if template files are rendered correctly for retail tenant"""
         survey = make_survey(sid='3', tenant='retail')
@@ -1429,6 +1433,7 @@ class RenderEmailTemplateIntegration(TestCase):
         self.assertEqual(text, text_message_rendered)
         self.assertEqual(html, html_message_rendered)
 
+    @unittest.skipIf(settings.TENANTS.get(settings.CLOUD) is None, "Cloud tenant is excluded")
     def test_render_email_template_cloud(self):
         """Test if template files are rendered correctly for cloud tenant"""
         survey = make_survey(sid='3', tenant='cloud')
@@ -1450,7 +1455,7 @@ class RenderEmailTemplateIntegration(TestCase):
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
-        self.assertEqual(subject, "{}: Cloud Maturity Assessment Report".format(survey.company_name))
+        self.assertEqual(subject, "{}: Google Cloud Maturity Assessment Report".format(survey.company_name))
         self.assertEqual(text, text_message_rendered)
         self.assertEqual(html, html_message_rendered)
 

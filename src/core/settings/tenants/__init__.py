@@ -34,7 +34,7 @@ RETAIL = 'retail'
 CLOUD = 'cloud'
 
 
-TENANTS = {
+INTERNAL_TENANTS = {
     ADS: {
         'key': ADS,
         'label': _('Advertisers'),
@@ -56,6 +56,7 @@ TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Digital Maturity Benchmark",
+        'enabled': True,
     },
     NEWS: {
         'key': NEWS,
@@ -81,6 +82,7 @@ TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Data Maturity Benchmark",
+        'enabled': True,
     },
     RETAIL: {
         'key': RETAIL,
@@ -106,6 +108,7 @@ TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Data Maturity Benchmark",
+        'enabled': True,
     },
     CLOUD: {
         'key': CLOUD,
@@ -128,10 +131,17 @@ TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Cloud Maturity Assessment",
+        'enabled': False,
     },
 }
 
 DEFAULT_TENANT = ADS
+
+
+def active_tenants():
+    return {k: v for k, v in INTERNAL_TENANTS.items() if v['enabled']}
+
+TENANTS = active_tenants()
 
 I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if v['i18n']])
 NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if not v['i18n']])

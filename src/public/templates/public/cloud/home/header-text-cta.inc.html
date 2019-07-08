@@ -1,3 +1,4 @@
+{% load angular %}
 <section class="dmb-header-text-cta h-c-page h-u-text-center{% if class %} {{class}}{% endif %}">
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-2">
@@ -5,14 +6,10 @@
         Your roadmap to cloud maturity
       </h2>
       <p class="dmb-header-text-cta__text dmb-u-m-b-s">
-        The <strong>Google Cloud Maturity Assessment</strong> provides a structured approach for using the Google Cloud Adoption Framework to assess cloud maturity, define GCP account configuration and cloud operating model more efficiently and effectively, and develop the training and change management programs needed to support that change smoothly. It does this by structuring and aligning the short-term tactical, mid-term strategic and long-term transformational business objectives along four themes: Learn, Lead, Scale and Secure.
+      {% with prod_name=product_name|ng_mark_safe %}
+        The <strong>{{prod_name}}</strong> provides a structured approach for using the Google Cloud Adoption Framework to assess cloud maturity, define GCP account configuration and cloud operating model more efficiently and effectively, and develop the training and change management programs needed to support that change smoothly. It does this by structuring and aligning the short-term tactical, mid-term strategic and long-term transformational business objectives along four themes: Learn, Lead, Scale and Secure.
+      {% endwith %}
       </p>
-      <a
-          href="https://cloud.google.com/adoption-framework/"
-          class="h-c-button dmb-outline-button"
-          target="_blank">
-        Google Cloud Adoption Framework
-      </a>
     </div>
   </div>
 </section>
