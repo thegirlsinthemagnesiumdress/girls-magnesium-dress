@@ -1,0 +1,2 @@
+We've finished analyzing your responses to find out how you can drive your organization’s journey to the next phase of cloud maturity.
+Here's the link to access your report: {{url}}

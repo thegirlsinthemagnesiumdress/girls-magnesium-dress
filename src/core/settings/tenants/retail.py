@@ -1,5 +1,7 @@
 # coding=utf-8
 # flake8: noqa
+from collections import OrderedDict
+from core.conf import utils
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
 DIMENSION_STRATEGIC_DIRECTION = "strategic_direction"
@@ -11,6 +13,7 @@ LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
+LEVELS_MAX = 4
 
 WEIGHTS = {
     'Q4': 0.2,
@@ -114,7 +117,7 @@ INDUSTRY_AVG_DESCRIPTION = 'How retailers perform on average; dynamically calcul
 INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participant who has taken this data maturity survey.'
 
 
-DIMENSION_HEADER_DESCRIPTION = {
+DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_STRATEGIC_DIRECTION: 'Doing this well means that data is understood universally, it supports key business objectives, and there are robust data resources and technologies in place.',
     DIMENSION_USER_ENGAGEMENT: 'Leading Retailers clearly understand the context of the full customer journey and why customers engage. Teams effectively use customer data and insights to design an on-site experience that increases customer engagement and improves the efficiency of their path to purchase.',
     DIMENSION_CORE_SALES: 'Leading Retailers have differentiated features that are relevant to customers across their life cycles. The portfolio of features and products are mutually reinforcing, and it drives loyalty and increases LTV. You frequently use LTV metrics to support business decisions, like providing targeted customer support or pushing tailored promotions to specific customers.',
@@ -156,7 +159,7 @@ DATA_ACTIVATION_GUIDE_CTA = {
 }
 
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_STRATEGIC_DIRECTION: {
         LEVEL_0: [{
             'header': 'Broadcast a thoughtful data strategy',
@@ -432,13 +435,14 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 
 CONTENT_DATA = {
     'levels': LEVELS,
+    'levels_max': LEVELS_MAX,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
-    'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
+    'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'industry_avg_description': INDUSTRY_AVG_DESCRIPTION,
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
@@ -450,3 +454,11 @@ GOOGLE_SHEET_EXPORT_SURVEY_FIELDS = GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS = GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
+
+HIERARCHICAL_INDUSTRIES = OrderedDict([
+    ('rt', ('Retail trade', OrderedDict([
+        ('rt-o', ('Other', None)),
+    ]))),
+])
+
+INDUSTRIES = utils.map_industries(HIERARCHICAL_INDUSTRIES, None, {})

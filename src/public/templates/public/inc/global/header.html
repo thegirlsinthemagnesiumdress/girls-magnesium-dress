@@ -1,16 +1,16 @@
 {% load angular %}
 {% load i18n %}
-{% trans "Digital Maturity Benchmark" as digital_maturity %}
-{% trans "Data Maturity Benchmark" as data_maturity %}
+{% load static %}
+{% with prod_name=product_name|ng_mark_safe %}
 
 <div class="dmb-header glue-header h-c-header h-c-header--product-marketing-one-tier">
   <div class="h-c-header__bar">
+    {% comment %}
     <!-- Both the first- and second-tier variants of the hamburger icon are
          included in code, and their display is controlled using BEM modifiers.
          This is done to prevent users of the header from having to figure out
          which HTML to add/remove themselves.
     -->
-    {% comment %}
     <div class="h-c-header__hamburger h-c-header__hamburger--first-tier">
       <div class="h-c-header__hamburger-wrapper">
         <button type="button"
@@ -34,33 +34,46 @@
 
     <div class="h-c-header__lockup">
       <div class="h-c-header__company-logo">
-        <a href="/{{ slug|ng_mark_safe }}"
-            class="h-c-header__company-logo-link" title="Google">
-          <!-- Both the color and white versions of the google logo are
-               included in code, and their display is controlled using BEM
-               modifiers. This is done to prevent users of the header from
-               having to figure out which HTML to add/remove themselves.
-          -->
-          <svg role="img" aria-label="Google" class="h-c-header__company-logo-img
-              h-c-header__company-logo-img--standard">
-            <use xlink:href="#h-color-google-logo"></use>
-          </svg>
+        <a
+            class="h-c-header__company-logo-link"
+            href="/{{ slug|ng_mark_safe }}"
+            title="Google">
 
-          <svg role="img" aria-label="Google" class="h-c-header__company-logo-img
-              h-c-header__company-logo-img--reversed">
-            <use xlink:href="#h-white-google-logo"></use>
-          </svg>
+          {% if tenant|ng_mark_safe == 'cloud' %}
+            <img
+                alt="Google Cloud logo"
+                class="h-c-header__company-logo-img h-c-header__company-logo-img--standard"
+                src="{% static 'img/cloud/google-cloud.svg' %}">
+          {% else %}
+            {% comment %}
+            <!-- Both the color and white versions of the google logo are
+                included in code, and their display is controlled using BEM
+                modifiers. This is done to prevent users of the header from
+                having to figure out which HTML to add/remove themselves. -->
+            {% endcomment %}
+            <svg role="img" aria-label="Google logo" class="h-c-header__company-logo-img
+                h-c-header__company-logo-img--standard">
+              <use xlink:href="#h-color-google-logo"></use>
+            </svg>
+
+            <svg role="img" aria-label="Google logo" class="h-c-header__company-logo-img
+                h-c-header__company-logo-img--reversed">
+              <use xlink:href="#h-white-google-logo"></use>
+            </svg>
+          {% endif %}
         </a>
       </div>
 
-      <div class="h-c-header__product-logo">
-        <a href="/{{ slug|ng_mark_safe }}"
-            class="h-c-header__product-logo-link">
-          <span class="h-c-header__product-logo-text">
-            {% if tenant|ng_mark_safe == 'ads' %}{{digital_maturity}}{% else %}{{data_maturity}}{% endif %}
-          </span>
-        </a>
-      </div>
+      {% if tenant|ng_mark_safe != 'cloud' %}
+        <div class="h-c-header__product-logo">
+          <a href="/{{ slug|ng_mark_safe }}"
+              class="h-c-header__product-logo-link">
+            <span class="h-c-header__product-logo-text">
+              {{ prod_name }}
+            </span>
+          </a>
+        </div>
+      {% endif %}
 
       <a href="#jump-content" class="h-c-header__jump-to-content"
           data-glue-jump-link>
@@ -219,3 +232,4 @@
   <div id="h-js-header__drawer-backdrop" class="h-c-header__drawer-backdrop"></div>
   {% endcomment %}
 </div>
+{% endwith %}

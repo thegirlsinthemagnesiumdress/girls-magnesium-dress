@@ -1,0 +1,36 @@
+{% extends "public/base.html" %}
+{% load staticfiles %}
+{% load angular %}
+
+{% block header %}
+  {% with register=True %}
+    {% include 'public/inc/global/header.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block main %}
+{% url 'registration' slug|ng_mark_safe as create_url %}
+{% with tenant=tenant|ng_mark_safe %}
+  <main id="dmb-home">
+      {% include 'public/'|add:tenant|add:'/home/home-hero.inc.html' %}
+
+      {% include 'public/'|add:tenant|add:'/home/cta-banner.inc.html' with class='dmb-u-m-b-l dmb-u-only-mobile' url=create_url cta="Start the assessment now" footnote="This assessment takes around 15 minutes to complete." %}
+
+      {% include 'public/'|add:tenant|add:'/home/image-text-collage.inc.html' with class='dmb-u-p-t-l dmb-u-m-b-l' %}
+
+      {% include 'public/'|add:tenant|add:'/home/header-text-cta.inc.html' with class='dmb-u-m-b-s' %}
+
+      {% include 'public/'|add:tenant|add:'/home/product-hero.inc.html' %}
+
+      {% include 'public/'|add:tenant|add:'/home/icon-text-cta.inc.html' %}
+
+      {% include 'public/'|add:tenant|add:'/home/home-tabs.inc.html' with class="dmb-u-m-t-l dmb-u-m-b-m" %}
+
+      {% include 'public/'|add:tenant|add:'/home/tile-carousel.inc.html' %}
+
+      {% include 'public/'|add:tenant|add:'/home/image-text.inc.html' %}
+
+      {% include 'public/'|add:tenant|add:'/home/cta-banner.inc.html' with class='dmb-u-m-t-l' url=create_url cta="Start the assessment now" footnote="This assessment takes around 15 minutes to complete." %}
+  </main>
+{% endwith %}
+{% endblock main %}

@@ -8,7 +8,7 @@ from core.tests.mommy_recepies import make_survey, make_survey_result, make_surv
 from core.tests import mocks
 from django.conf import settings
 import os
-from core.test import reload_urlconf, TempTemplateFolder
+from core.test import reload_urlconf, TempTemplateFolder, angular_context_to_object
 import json
 import mock
 from core import tasks
@@ -217,9 +217,9 @@ class IndexPage(TestCase):
         with TempTemplateFolder(templates_path, 'index.html'):
             url = reverse('index', kwargs={'tenant': self.tenant_slug})
             response = self.client.get(url)
-            # This is a bit janky at the moment but there isn't another way to do this currently
-            other_tenants = response.context['other_tenants']._original
-            expected = [('Tenant 3 Footer Label', 'tenant3-slug'), ('Tenant 2 Footer Label', 'tenant2-slug')]
+            other_tenants = angular_context_to_object(response.context['other_tenants'])
+            # tenant-3 should be excluded because `in_dmb_footer` is False
+            expected = [('Tenant 2 Footer Label', 'tenant2-slug')]
             self.assertListEqual(other_tenants, expected)
 
 
@@ -333,7 +333,6 @@ class GenerateExportPage(TestCase):
         args, kwargs = mock_defer.call_args
         got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
-        print got_title
         self.assertTrue("Digital Maturity Benchmark | Data Export |" in got_title)
         self.assertEqual(len(got_data), 0)
 
@@ -341,6 +340,7 @@ class GenerateExportPage(TestCase):
     @with_appengine_user("test@google.com")
     def test_engagement_lead_ok_data(self, mock_defer):
         """All data belonging to engagement lead should be returned."""
+        survey_3 = make_survey_with_result(industry='ic-o', tenant='tenant1')
         engagement_lead = '1234'
 
         data = {
@@ -349,10 +349,37 @@ class GenerateExportPage(TestCase):
 
         self.survey_1.engagement_lead = engagement_lead
         self.survey_2.engagement_lead = engagement_lead
+        survey_3.engagement_lead = '11'
         self.survey_1.save()
         self.survey_2.save()
+        survey_3.save()
         url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
         response = self.client.post(url, data=json.dumps(data), content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        mock_defer.assert_called_once()
+
+        args, kwargs = mock_defer.call_args
+        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
+        self.assertEqual(len(got_data), 2)
+        self.assertEqual(got_share_with, response.wsgi_request.user.email)
+
+    @mock.patch('djangae.deferred.defer')
+    @with_appengine_admin('standard@google.com')
+    def test_super_admin(self, mock_defer):
+        """All tenant data should be returned if super user."""
+        # Different tenant survey
+        make_survey_with_result(industry='ic-o', tenant='tenant2')
+        data = {
+            'engagement_lead': '3'
+        }
+        self.survey_1.engagement_lead = '1'
+        self.survey_2.engagement_lead = '2'
+        self.survey_1.save()
+        self.survey_2.save()
+
+        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
+
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
 

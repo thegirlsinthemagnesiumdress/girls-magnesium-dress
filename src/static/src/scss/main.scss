@@ -60,6 +60,7 @@
 @import 'components/icon-text-cta';
 @import 'components/img-text';
 @import 'components/img-text-collage';
+@import 'components/inline-img-text';
 @import 'components/outline-button';
 @import 'components/panel-trigger';
 @import 'components/product-hero';
@@ -70,6 +71,7 @@
 @import 'components/report-footer';
 @import 'components/report-hero';
 @import 'components/report-overall';
+@import 'components/report-debug-toolbar';
 @import 'components/reports-admin';
 @import 'components/result-details';
 @import 'components/side-panel';
@@ -88,3 +90,4 @@
 
 // Tenant Overrides
 @import 'tenants/ads';
+@import 'tenants/cloud';

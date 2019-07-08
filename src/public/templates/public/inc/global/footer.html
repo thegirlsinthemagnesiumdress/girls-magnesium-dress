@@ -4,6 +4,7 @@
 <footer class="dmb-footer h-c-footer h-c-footer--simple {{footerClass}}"
     id="footer-simple" {{footerAttribute}}>
   <section class="h-c-footer__global">
+    {% if tenant|ng_mark_safe != 'cloud' %}
     <div class="dmb-footer__tenant-footer">
       <p class="dmb-footer__tenant-footer-title h-c-headline h-c-headline--subhead">
         {% trans "Looking to benchmark digital maturity for a different challenge or industry?" %}
@@ -33,6 +34,7 @@
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
 
     <div class="h-c-footer__logo">
       <a href="https://www.google.com" title="Google">
@@ -60,9 +62,8 @@
       <li class="dmb-footer__feedback-link-wrapper h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
         <a
             class="dmb-footer__feedback-link h-c-footer__link"
-            href="mailto:{% if tenant|ng_mark_safe == 'ads' %}digital{% else %}data{% endif %}-maturity@google.com"
-            target="_blank"
-          >
+            href="mailto:{% if tenant|ng_mark_safe == 'ads' %}digital-maturity{% elif tenant|ng_mark_safe == 'cloud' %}gcaf-cma{% else %}data-maturity{% endif %}@google.com"
+            target="_blank">
           <svg width="20px" height="16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M18 0H2C.9 0 .01.9.01 2L0 14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L2.4 4.25a.85.85 0 1 1     .9-1.44L10 7l6.7-4.19a.85.85 0 1 1 .9 1.44z"
