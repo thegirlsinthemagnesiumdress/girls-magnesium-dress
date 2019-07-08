@@ -366,15 +366,3 @@ class GetSurveyDetailTestCase(TestCase):
         )
         self.assertIsNotNone(detail['definitions'].get('Q102'))
         self.assertIsNone(detail['definitions'].get('Q267'))
-
-    # def test_response_detail_choice_with_br_matches(self):
-    #     import pdb
-    #     pdb.set_trace()
-    #     data = copy.deepcopy(result_data)
-    #     detail = get_response_detail(
-    #         survey_definition_dict,
-    #         data,
-    #         self.dimensions,
-    #         self.dimensions_titles
-    #     )
-    #     self.assertIsNotNone(detail['definitions'].get('Q235'))
