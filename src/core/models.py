@@ -5,6 +5,7 @@ from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils import translation
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.managers import NotExcludedFromBestPracticeManager
@@ -73,6 +74,9 @@ class Survey(models.Model):
 
         if version:
             survey_link = '{}&ver={}'.format(survey_link, version)
+
+        if settings.TENANTS.get(self.tenant).get('i18n'):
+            survey_link = '{}&Q_Language={}'.format(survey_link, translation.get_language())
 
         return survey_link
 
