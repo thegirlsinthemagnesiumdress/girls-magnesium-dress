@@ -167,7 +167,7 @@ REPORT_LEVEL_DESCRIPTIONS = {
 
 DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_ATTRIBUTION: _('Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.'),
-    DIMENSION_ADS: _('Reaching consumers is not enough. They demand assistive experiences - fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.'),
+    DIMENSION_ADS: _('Reaching consumers is not enough. They demand assistive experiences &8211; fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.'),
     DIMENSION_AUDIENCE: _('To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.'),
     DIMENSION_ACCESS: _('Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control.'),
     DIMENSION_AUTOMATION: _('Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth.'),
@@ -191,13 +191,13 @@ DIMENSION_LEVEL_DESCRIPTION = {
         LEVEL_0: _('You mostly use 3rd party data to target your campaigns, relying on broad audience definitions. You tend to focus on a specific part of the marketing funnel.'),
         LEVEL_1: _('You use 3rd party and 1st party data to target your campaigns. You have segmented your audience, largely based on demographics and you cover several parts of the marketing funnel.'),
         LEVEL_2: _('You use 3rd party and 1st party data to target your campaigns, covering the full marketing funnel. You have started to use insights captured in one channel in another channel. You have segmented your audience based on behavioural and interest data.'),
-        LEVEL_3: _('You use 3rd party and 1st party data - including offline data - to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning.'),
+        LEVEL_3: _('You use 3rd party and 1st party data &8211; including offline data &8211; to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning.'),
     },
     DIMENSION_ACCESS: {
         LEVEL_0: _('Your keyword lists are narrowly defined and most of your digital media buys are direct buys across a limited number of inventory sources and formats. You rely on platform default settings to ensure brand safety and ad viewability and to prevent ad fraud.'),
         LEVEL_1: _('Your keyword lists cover your immediate products and most of your digital media buys are auction-based and direct buys across several inventory sources and formats. You rely on platform default settings and some manual adjustment to ensure brand safety and ad viewability and to prevent ad fraud.'),
         LEVEL_2: _('Your keyword lists extend well beyond product-related terms and most of your digital media buys are auction-based and direct buys across a variety of inventory sources and formats. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud.'),
-        LEVEL_3: _('You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources - including TV or OOH - and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. '),
+        LEVEL_3: _('You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources &8211; including TV or OOH &8211; and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. '),
     },
     DIMENSION_AUTOMATION: {
         LEVEL_0: _('You are planning, creating, monitoring and optimising most of your campaigns manually.'),
@@ -238,7 +238,7 @@ DIMENSION_RECOMMENDATIONS = {
             'text': _('Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit.'),
         }, {
             'header': _('Capture marketing performance data comprehensively'),
-            'text': _('Create a single source of truth for marketing performance and establish a shared understanding of success metrics - across all device types and across all digital touchpoints.'),
+            'text': _('Create a single source of truth for marketing performance and establish a shared understanding of success metrics &8211; across all device types and across all digital touchpoints.'),
         }, {
             'header': _('Expand your measurement capabilities'),
             'text': _('Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. '),
