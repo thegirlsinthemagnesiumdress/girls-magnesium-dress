@@ -166,8 +166,7 @@ gulp.task('sass', function() {
   return gulp.src(`${PATHS.src.scss}/**/*.scss`)
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
-      .pipe(gap.prependFile('node_modules/angular/angular-csp.css'))
-      .pipe(gap.prependFile('./src/static/src/scss/prepend.css'))
+      .pipe(gulpif('**/main.css', gap.prependFile('node_modules/angular/angular-csp.css')))
       .pipe(rename({
         dirname: 'css',
       }))

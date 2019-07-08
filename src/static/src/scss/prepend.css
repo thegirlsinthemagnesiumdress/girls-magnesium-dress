@@ -1,9 +1,0 @@
-/*
-  Prepending angular-csp charset and importing google roboto.
-  To ensure that if a user does not have the font it is imported
-  properly (before this import would be invalidated by more
-  CSS code being appended before it.
-*/
-@charset "UTF-8";
-
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&lang=en");
