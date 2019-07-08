@@ -170,7 +170,7 @@ DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_ADS: _('Reaching consumers is not enough. They demand assistive experiences &8211; fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.'),
     DIMENSION_AUDIENCE: _('To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.'),
     DIMENSION_ACCESS: _('Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control.'),
-    DIMENSION_AUTOMATION: _('Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth.'),
+    DIMENSION_AUTOMATION: _('Tailored experiences typically require your marketing to use multiple data points, including your users&rsquo; context, the time of day or the device they&rsquo;re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth.'),
     DIMENSION_ORGANIZATION: _('Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed.'),
 }
 
@@ -178,12 +178,12 @@ DIMENSION_LEVEL_DESCRIPTION = {
     DIMENSION_ATTRIBUTION: {
         LEVEL_0: _('You use a mix of measurement methodologies but results mostly only influence long-term planning. Evaluation of your marketing activities tends to be based on campaign metrics.'),
         LEVEL_1: _('You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics.'),
-        LEVEL_2: _('You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they\'re running. Evaluation of your marketing activities tends to be based on business outcomes.'),
-        LEVEL_3: _('You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they\'re running. Evaluation of your marketing activities tends to be based on business outcomes.'),
+        LEVEL_2: _('You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they&rsquo;re running. Evaluation of your marketing activities tends to be based on business outcomes.'),
+        LEVEL_3: _('You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they&rsquo;re running. Evaluation of your marketing activities tends to be based on business outcomes.'),
     },
     DIMENSION_ADS: {
         LEVEL_0: _('The user experience and speed of your website or app is at a basic level. Your creatives are the result of isolated processes and you tend to use the same message for all users. Creative testing happens infrequently or not at all.'),
-        LEVEL_1: _('You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there\'s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience.'),
+        LEVEL_1: _('You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there&rsquo;s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience.'),
         LEVEL_2: _('You are using advanced methods of user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives, coordinated across digital channels. You are using several testing methodologies to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience.'),
         LEVEL_3: _('You are using cutting edge technology to create an impactful and tailored user experience across your websites and apps. Teams collaborate to build creatives, which are coordinated across digital and non-digital channels. You share results from several testing methodologies across digital and non-digital teams to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience and influenced by contextual signals.'),
     },
@@ -206,7 +206,7 @@ DIMENSION_LEVEL_DESCRIPTION = {
         LEVEL_3: _('Leveraging a variety of data signals, you make use of automation features for planning, creating, monitoring and optimising most or all of your campaigns. This may include the usage of ad servers, platform APIs and dynamic data feeds.'),
     },
     DIMENSION_ORGANIZATION: {
-        LEVEL_0: _('Your business is held back from siloed teams, with agencies working at arm\'s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. '),
+        LEVEL_0: _('Your business is held back from siloed teams, with agencies working at arm&rsquo;s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. '),
         LEVEL_1: _('Some of your key business functions work together towards clear objectives, including some of your agency partners. '),
         LEVEL_2: _('You have cross-functional teams with common objectives across all digital channels. Most or all agency partners collaborate with each other.'),
         LEVEL_3: _('You have cross-functional teams with common objectives across all digital and non-digital channels. All agency and other partners collaborate with each other, some as virtual teams. Your teams are agile and share best practices. '),
@@ -225,7 +225,7 @@ DIMENSION_RECOMMENDATIONS = {
             'header': _('Expand your measurement capabilities'),
             'text': _('Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns.'),
         }, {
-            'header': _('Build your teams\' skills in web analytics'),
+            'header': _('Build your teams&rsquo; skills in web analytics'),
             'text': _('Ask relevant people to take the beginner and introductory courses of the Analytics Academy. '),
             'cta': {
                 'text': _('Analytics Academy'),
@@ -243,7 +243,7 @@ DIMENSION_RECOMMENDATIONS = {
             'header': _('Expand your measurement capabilities'),
             'text': _('Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. '),
         }, {
-            'header': _('Build your teams\' skills in web analytics'),
+            'header': _('Build your teams&rsquo; skills in web analytics'),
             'text': _('Ask relevant people to take the beginner and advanced courses of the Analytics Academy.'),
             'cta': {
                 'text': _('Analytics Academy'),
@@ -261,7 +261,7 @@ DIMENSION_RECOMMENDATIONS = {
             'header': _('Expand your measurement capabilities'),
             'text': _('Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time.'),
         }, {
-            'header': _('Build your teams\' skills in web analytics'),
+            'header': _('Build your teams&rsquo; skills in web analytics'),
             'text': _('Ask relevant people to take the advanced courses of the Analytics Academy.'),
             'cta': {
                 'text': _('Analytics Academy'),
@@ -279,7 +279,7 @@ DIMENSION_RECOMMENDATIONS = {
             'header': _('Expand your measurement capabilities'),
             'text': _('Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. '),
         }, {
-            'header': _('Build your teams\' skills in web analytics'),
+            'header': _('Build your teams&rsquo; skills in web analytics'),
             'text': _('Ask relevant people to take the advanced courses of the Analytics Academy.'),
             'cta': {
                 'text': _('Analytics Academy'),
@@ -497,7 +497,7 @@ DIMENSION_RECOMMENDATIONS = {
             'text': _('Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a first step, move to automated bid adjustments for search and display campaigns. Gain experience with campaign management features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines).'),
         }, {
             'header': _('Automate asset optimisation'),
-            'text': _('Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user\'s location or the user\'s keyword. Aim to automate at least half of your creative optimisation decisions.'),
+            'text': _('Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user&rsquo;s location or the user&rsquo;s keyword. Aim to automate at least half of your creative optimisation decisions.'),
         }],
         LEVEL_1: [{
             'header': _('Leverage technology'),
@@ -521,7 +521,7 @@ DIMENSION_RECOMMENDATIONS = {
         }],
         LEVEL_3: [{
             'header': _('Stay on top of new technology'),
-            'text': _('Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it\'s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation.'),
+            'text': _('Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it&rsquo;s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation.'),
         }, {
             'header': _('Automate high volume tasks'),
             'text': _('Actively look for repetitive tasks that could be automated and identify tasks that are already automated but may benefit from more data inputs, for example, if your bids are already being set automatically, integrate additional relevant data signals as they become available.'),
@@ -574,7 +574,7 @@ DIMENSION_RECOMMENDATIONS = {
     },
 }
 
-DIMENSION_SIDEPANEL_HEADING = _('We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands.')
+DIMENSION_SIDEPANEL_HEADING = _('We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today&rsquo;s customers expect from brands.')
 
 DIMENSION_SIDEPANEL_DESCRIPTIONS = {
     DIMENSION_ATTRIBUTION: _('The capability to accurately measure and value customer touchpoints.'),

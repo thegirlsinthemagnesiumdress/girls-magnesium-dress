@@ -860,7 +860,7 @@ msgstr "Si quieres conectar con los clientes en el momento en que te necesitan, 
 msgid "Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control."
 msgstr "Una vez que seas capaz de identificar las audiencias, deberás llegar a ellas de una forma eficaz y mostrarles tus mensajes de marketing a través de todos los canales y tipos de inventario, con los niveles de control adecuados."
 
-msgid "Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth."
+msgid "Tailored experiences typically require your marketing to use multiple data points, including your users&rsquo; context, the time of day or the device they&rsquo;re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth."
 msgstr "Para ofrecer experiencias personalizadas, tu estrategia de marketing debe basarse en varios datos, como el contexto de los usuarios, la hora del día o el dispositivo que utilizan. Gracias a los sistemas automáticos, podrás ofrecer contenido relevante a los usuarios según sus necesidades y, en consecuencia, optimizar las operaciones de marketing e impulsar la efectividad, la rentabilidad y el crecimiento."
 
 msgid "Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed."
@@ -1319,7 +1319,7 @@ msgstr "Sigue mejorando la manera de coordinar y definir los objetivos que deben
 msgid "Regularly evaluate collaboration between all relevant agencies and help them to be more impactful and efficient. Continue to review your ability to work in agile ways, for example evaluate how you allocate budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
 msgstr "Evalúa periódicamente la colaboración entre las agencias y ayúdales a ser más eficaces e influyentes. Continúa buscando formas de trabajar de manera ágil; por ejemplo, asigna parte del presupuesto a hacer experimentos, y promueve el intercambio de prácticas recomendadas entre los distintos cargos, marcas, departamentos y regiones."
 
-msgid "We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands."
+msgid "We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today&rsquo;s customers expect from brands."
 msgstr "Hemos colaborado con BCG para hacer un estudio de empresas en profundidad e identificar los pilares del marketing digital bien desarrollado. De acuerdo con los resultados, estas seis capacidades son clave para obtener un buen rendimiento y ofrecer a los clientes lo que esperan de las marcas."
 
 msgid "The capability to accurately measure and value customer touchpoints."
@@ -1709,7 +1709,7 @@ msgstr "Los móviles y el canal digital tienen cada vez más protagonismo en nue
 msgid "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as these expectations ratchet up, so do the requirements (and opportunities) for marketers."
 msgstr "Para los profesionales del marketing, esto alude directamente al comportamiento de los consumidores, y lo que esperan ha cambiado. Si estas expectativas aumentan, también lo harán las exigencias (y las oportunidades) para estos profesionales."
 
-msgid "Today’s consumers are:"
+msgid "Today&rsquo;s consumers are:"
 msgstr "Los consumidores de hoy en día son:"
 
 msgid "Curious"
@@ -1736,7 +1736,7 @@ msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Ma
 msgstr "En Europa, África y Oriente Medio, las búsquedas móviles que contienen \"cerca\" se han multiplicado por 4,5 en la Búsqueda de Google y por 6 en Google Maps en los dos últimos años.&nbsp;"
 
 #, python-format
-msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;"
+msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand&rsquo;s growth.&nbsp;"
 msgstr "Según el 89 %% de los profesionales del marketing, la clave del desarrollo de las marcas está en ofrecer experiencias útiles en el recorrido del cliente.&nbsp;"
 
 msgid "Impatient"
@@ -1770,7 +1770,7 @@ msgid "Deliver the speedy, frictionless experiences on mobile that consumers exp
 msgstr "Cumple las expectativas de los consumidores ofreciéndoles experiencias rápidas y sin complicaciones en el canal móvil."
 
 #, python-format
-msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
+msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they&rsquo;re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
 msgstr "<strong>Si los clientes ganan, las empresas también ganan,</strong> aunque les está costando ponerlo todo en práctica. Según el estudio que realizamos junto con BCG, solo el 2 %% de las marcas son conscientes del potencial que tiene el marketing basado en datos."
 
 msgid "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report."
@@ -1942,10 +1942,10 @@ msgstr "Áreas del nivel de desarrollo del marketing"
 msgid "Levels of Digital Maturity"
 msgstr "Niveles de desarrollo de datos"
 
-msgid "Ready to benchmark your company’s digital maturity?"
+msgid "Ready to benchmark your company&rsquo;s digital maturity?"
 msgstr "¿Quieres comparar el nivel de desarrollo digital de tu empresa con el de otras?"
 
-msgid "Let’s start with some details about your organisation:"
+msgid "Let&rsquo;s start with some details about your organisation:"
 msgstr "Para empezar, necesitamos algunos detalles sobre tu organización:"
 
 msgid "How we keep your information safe"
@@ -1980,7 +1980,7 @@ msgstr "Ya has terminado."
 msgid "Your response has been submitted and your report is being generated."
 msgstr "Se ha enviado tu respuesta y se está generando el informe."
 
-msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgid "You will receive it in your <strong>email inbox</strong> when it&rsquo;s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
 msgstr "Una vez finalizado, lo recibirás en tu <strong>buzón de correo electrónico</strong>.<br> Te pedimos paciencia, ya que <strong>podría tardar hasta 15 minutos</strong> en llegarte."
 
 msgid "View the study while you wait"
