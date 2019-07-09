@@ -60,6 +60,7 @@ deploy_ads_nightly:
     name: Nightly
     url: https://ads-nightly-dot-gweb-digitalmaturity-staging.appspot.com
   script:
+    - ../manage.py compilemessages -l es
     - echo $DEPLOY_KEY_NIGHTLY > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud --quiet --project gweb-digitalmaturity-staging app deploy --no-promote -v ads-nightly
