@@ -26,7 +26,7 @@ import os
 
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
-_, is_nightly, is_development, is_staging = version_info(os.environ['HTTP_HOST'])
+version, is_nightly, is_development, is_staging = version_info(os.environ['HTTP_HOST'])
 STAGING = is_staging
 
 
