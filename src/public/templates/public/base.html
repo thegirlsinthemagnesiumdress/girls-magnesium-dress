@@ -28,7 +28,7 @@
       <link rel="stylesheet" href="/node_modules/angular/angular-csp.css">
       <script src="/node_modules/google-closure-library/closure/goog/base.js"></script>
       <script src="{% static 'js/deps.js' %}"></script>
-      <script>goog.require('dmb.detect')</script>
+      <script src="{% static 'js/detect.min.js' %}"></script>
     {% else %}
       <script src="{% static_rev 'js/detect.min.js' %}"></script>
 
@@ -85,7 +85,7 @@
   <script src="/node_modules/clipboard/dist/clipboard.js"></script>
   <script src="/node_modules/ngclipboard/dist/ngclipboard.js"></script>
   <script src="{% static 'js/templates.js' %}" ></script>
-  <script >goog.require('dmb.app')</script>
+  <script src="{% static 'js/main.min.js' %}" ></script>
 {% endif %}
 </body>
 </html>

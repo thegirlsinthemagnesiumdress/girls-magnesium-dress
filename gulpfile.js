@@ -3,7 +3,7 @@ const sass = require('gulp-sass');
 
 const gulp = require('gulp');
 const path = require('path');
-const hercules = require('glue').gulp.hercules;
+const glueGulp = require('@google/glue/gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const sassLint = require('gulp-sass-lint');
 const eslint = require('gulp-eslint');
@@ -15,7 +15,11 @@ const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 const rev = require('gulp-rev');
 const svgSymbols = require('gulp-svg-symbols');
+const closureDeps = require('gulp-google-closure-deps');
+const closureDir = path.dirname(require.resolve('google-closure-library/closure/goog/base'));
 const gulpif = require('gulp-if');
+const webpack = require('webpack-stream');
+const webpackConfig = require('./webpack.config');
 
 const STATIC_DIR = './src/static';
 const SRC_STATIC_DIR = './src/static/src';
@@ -42,22 +46,29 @@ let dev = false;
 
 
 const TEMPLATE_SRC = [
-  'node_modules/glue/hercules/lib/components/**/*.html',
-  '!node_modules/glue/hercules/lib/components/**/*_test.html',
+  'node_modules/@google/glue/hercules/lib/components/**/*.html',
+  '!node_modules/@google/glue/hercules/lib/components/**/*_test.html',
 ];
+
+gulp.task('js-deps', function() {
+  return gulp.src(`${PATHS.src.js}/**/*.js`)
+      .pipe(closureDeps({'closurePath': closureDir}))
+      .pipe(rename('deps.js'))
+      .pipe(gulp.dest(PATHS.dev.js));
+});
 
 gulp.task('js-dev', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
-      .pipe(hercules.js.dev())
+      .pipe(webpack(webpackConfig))
       .pipe(gulp.dest(PATHS.dev.js))
       .pipe(livereload());
 });
 
 gulp.task('js', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
-      .pipe(hercules.js.prod({
+      .pipe(glueGulp.prod({
         entry_point: 'dmb.app',
-        hide_warnings_for: 'node_modules/glue/',
+        hide_warnings_for: 'node_modules/@google/glue/',
         js_output_file: 'js/main.min.js',
       }))
       .pipe(gap.prependFile(path.join(PATHS.dev.js, 'templates.js')))
@@ -75,7 +86,7 @@ gulp.task('js', function() {
 gulp.task('js-detect', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
       // Note that entry_point matches the namespace defined in detect.js
-      .pipe(hercules.js.prod({
+      .pipe(glueGulp.prod({
         entry_point: 'dmb.detect',
         js_output_file: 'js/detect.min.js',
 
@@ -92,7 +103,7 @@ gulp.task('js-detect', function() {
 gulp.task('js-survey', function() {
   return gulp.src(`${PATHS.src.js}/**/*.js`)
       // Note that entry_point matches the namespace defined in survey.js
-      .pipe(hercules.js.prod({
+      .pipe(glueGulp.prod({
         entry_point: 'dmb.survey',
         hide_warnings_for: 'node_modules/glue/',
         js_output_file: 'js/qualtrics-survey.min.js',
@@ -115,8 +126,8 @@ gulp.task('js-templates', function() {
           // TODO: You may have to modify the url here depending
           // on your setup. This is to make the path look more like
           // the path glue directives are looking for.
-          return `/glue/${url}`;
-        }
+          return `/@google/glue/${url}`;
+        },
       }
     ))
     .pipe(gulp.dest(PATHS.dev.js));
@@ -126,7 +137,7 @@ gulp.task('js-templates', function() {
 const SASS_CONFIG = {
   outputStyle: 'compressed',
   includePaths: [
-    'node_modules/glue'
+    'node_modules/@google/glue',
   ]
 };
 
@@ -249,9 +260,12 @@ gulp.task('images-dist', function() {
 
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(`${PATHS.src.js}/**/*.js`, gulp.parallel(
-    'js-lint',
-    'js-dev'
+  gulp.watch(`${PATHS.src.js}/**/*.js`, gulp.series(
+    'js-deps',
+    gulp.parallel(
+      'js-lint',
+      'js-dev'
+    )
   ));
 
   gulp.watch(`${SRC_STATIC_DIR}/svg/*.svg`, gulp.parallel('svg-symbols'));
@@ -272,12 +286,12 @@ gulp.task('lint', gulp.parallel(
 gulp.task('build',
   gulp.parallel(
     gulp.series(
-    'clean-dist',
-    'js-templates',
-    'js-detect',
-    'js-survey',
-    'js',
-    'sass'
+      'clean-dist',
+      'js-templates',
+      'js-detect',
+      'js-survey',
+      'js',
+      'sass'
     ),
     'svg-symbols',
     'images-dist',
@@ -290,6 +304,7 @@ gulp.task('default', (done)=>{
 
   const task = gulp.series(
     'clean-dev',
+    'js-deps',
     gulp.parallel(
       'js-lint',
       'sass-lint',
@@ -302,6 +317,6 @@ gulp.task('default', (done)=>{
     ),
     'watch'
   );
+
   return task(done);
 });
-

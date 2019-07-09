@@ -1,7 +1,8 @@
-goog.module('dmb.components.report.controller');
+// goog.module('dmb.components.report.controller');
+goog.module.declareNamespace('dmb.components.report.controller');
 
-const BreakpointService = goog.require('glue.ng.common.Breakpoint');
-const PaginationModel = goog.require('glue.ng.pagination.Model');
+import * as BreakpointService from '@google/glue/lib/ng/common/breakpoint-service';
+import * as PaginationModel from '@google/glue/lib/ng/pagination/model';
 
 const surveyEndpoint = '/api/report/company/';
 const resultEndpoint = '/api/report/result/';
@@ -176,9 +177,10 @@ class ReportController {
 
     /**
      * @type {glue.ng.pagination.Model}
+     * Might not need this following Glue 19 update, leaving it in just in case.
      * @export
      */
-    this.model = new PaginationModel({
+    this.model = new PaginationModel.Model({
       'activeEl': this.dimensions[0],
     });
 
@@ -311,7 +313,7 @@ class ReportController {
       });
     });
 
-    $scope.$on(BreakpointService.service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
+    $scope.$on(BreakpointService.Service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
       this.showTabs= this.showTabs_(size);
       $scope.$apply();
     });
@@ -401,8 +403,6 @@ ReportController.CONTROLLER_NAME = 'ReportCtrl';
 ReportController.CONTROLLER_AS_NAME = 'reportCtrl';
 
 
-exports = {
-  main: ReportController,
-  CONTROLLER_NAME: ReportController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ReportController.CONTROLLER_AS_NAME,
-};
+export const main = ReportController;
+export const CONTROLLER_NAME = ReportController.CONTROLLER_NAME;
+export const CONTROLLER_AS_NAME = ReportController.CONTROLLER_AS_NAME;

@@ -2,14 +2,14 @@
  * @fileoverview Initial feature detections that allow us to style the page
  * differently and prevent FOUC.
  */
-goog.module('dmb.detect');
+goog.module.declareNamespace('dmb.detect');
 
 
-const glueApp = goog.require('glue.app');
-const glueDetect = goog.require('glue.detect');
-const glueFlexbox = goog.require('glue.detect.flexbox');
+import * as glueApp from '@google/glue/lib/app/app';
+import * as glueDetect from '@google/glue/lib/detect/detect';
+import * as glueFlexbox from '@google/glue/lib/detect/flexbox/flexbox';
 
-glueDetect.decorateDom(glueFlexbox);
+glueDetect.decorateDom(glueFlexbox.feature);
 
 glueApp.blacklist({
   // Set this to the highest level of IE you don't support.
