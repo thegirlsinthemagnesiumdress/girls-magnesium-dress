@@ -11,7 +11,6 @@ const del = require('del');
 const templateCache = require('gulp-angular-templatecache');
 const autoprefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
-const notify = require('gulp-notify');
 const livereload = require('gulp-livereload');
 const gap = require('gulp-append-prepend');
 const rev = require('gulp-rev');
@@ -159,10 +158,7 @@ gulp.task('sass-dev', function() {
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(PATHS.dev.scss))
-      .pipe(livereload())
-      .pipe(notify({
-        message: 'Sass compilation complete.'
-      }));
+      .pipe(livereload());
 });
 
 gulp.task('sass', function() {
@@ -170,7 +166,7 @@ gulp.task('sass', function() {
   return gulp.src(`${PATHS.src.scss}/**/*.scss`)
       .pipe(sass(SASS_CONFIG).on('error', sass.logError))
       .pipe(autoprefixer(AUTOPREFIXER_CONFIG))
-      .pipe(gap.prependFile('node_modules/angular/angular-csp.css'))
+      .pipe(gulpif('**/main.css', gap.prependFile('node_modules/angular/angular-csp.css')))
       .pipe(rename({
         dirname: 'css',
       }))
@@ -180,10 +176,7 @@ gulp.task('sass', function() {
       .pipe(rev.manifest(PATHS.manifest, {
         merge: true,
       }))
-      .pipe(gulp.dest('./'))
-      .pipe(notify({
-        message: 'Sass compilation complete.',
-      }));
+      .pipe(gulp.dest('./'));
 });
 
 gulp.task('js-lint', function() {
