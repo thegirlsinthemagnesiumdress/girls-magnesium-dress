@@ -177,9 +177,10 @@ class ReportController {
 
     /**
      * @type {glue.ng.pagination.Model}
+     * Might not need this following Glue 19 update, leaving it in just in case.
      * @export
      */
-    this.model = new PaginationModel({
+    this.model = new PaginationModel.Model({
       'activeEl': this.dimensions[0],
     });
 
