@@ -32,6 +32,15 @@ class SurveyTest(TestCase):
         match = re.search(r'sid=([^&]*)', survey.link)
         self.assertEqual(match.groups(1)[0], survey.sid)
 
+    def test_i18n_link(self):
+        """
+        Test that a link is set with the
+        correct language code
+        """
+        survey = Survey(company_name="i18n-test", country="EN", industry="re", tenant="tenant1")
+        match = re.search(r'Q_Language=([^&]*)', survey.link)
+        self.assertEqual(match.groups(1)[0], 'EN')
+
     def test_sponsor_link(self):
         """
         Test that the sponsor link has both the sid and sponsor flag
