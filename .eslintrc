@@ -9,6 +9,9 @@
     "es6": true,
     "jasmine": true
   },
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "globals": {
     "goog": true,
     "google": false,
