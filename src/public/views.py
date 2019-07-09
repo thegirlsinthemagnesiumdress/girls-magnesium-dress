@@ -11,7 +11,7 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name
+from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name, version_info
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
@@ -21,9 +21,13 @@ from django.http import HttpResponse
 import logging
 from djangae import deferred
 import datetime
+import os
 
 
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
+
+_, is_nightly, is_development, is_staging = version_info(os.environ['HTTP_HOST'])
+STAGING = is_staging
 
 
 def _dump_tenant_content_data(tenant):
@@ -73,6 +77,7 @@ def report_static(request, tenant, sid):
         raise Http404
 
     return render(request, 'public/{}/report-static.html'.format(tenant), {
+        'staging': STAGING,
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
@@ -84,6 +89,7 @@ def report_static(request, tenant, sid):
 def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
     return render(request, 'public/{}/report-static.html'.format(tenant), {
+        'staging': STAGING,
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
