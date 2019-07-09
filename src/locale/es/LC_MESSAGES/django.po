@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-05 11:28+0000\n"
+"POT-Creation-Date: 2019-07-09 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -872,16 +872,16 @@ msgstr "Utilizas varias metodologías de medición, pero, en general, los result
 msgid "You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics."
 msgstr "Utilizas varias metodologías de medición y modelos de atribución al último clic. Haces pruebas A/B con frecuencia y los resultados te sirven para planificar las campañas. En general, evalúas tus iniciativas de marketing basándote en las métricas de conversión."
 
-msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they&rsquo;re running. Evaluation of your marketing activities tends to be based on business outcomes."
 msgstr "Utilizas varias metodologías de medición y un modelo de atribución personalizado. Haces pruebas A/B con frecuencia y los resultados te sirven para optimizar las campañas al tiempo que se están publicando. En general, evalúas tus iniciativas de marketing basándote en los resultados del negocio."
 
-msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they&rsquo;re running. Evaluation of your marketing activities tends to be based on business outcomes."
 msgstr "Utilizas varias metodologías de medición y un modelo de atribución basada en datos. Haces pruebas A/B con frecuencia y los resultados te sirven para optimizar las campañas al tiempo que se están publicando. En general, evalúas tus iniciativas de marketing basándote en los resultados del negocio."
 
 msgid "The user experience and speed of your website or app is at a basic level. Your creatives are the result of isolated processes and you tend to use the same message for all users. Creative testing happens infrequently or not at all."
 msgstr "La experiencia de usuario y la velocidad que ofreces en tu sitio web o aplicación son insuficientes. Sigues procesos inconexos para diseñar tus creatividades y acostumbras a mostrar el mismo mensaje a todos los usuarios. Casi nunca pruebas las creatividades o no lo haces nunca."
 
-msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there's limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
+msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there&rsquo;s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
 msgstr "Has intentado optimizar y personalizar la experiencia de usuario de tu sitio web o aplicación. Los equipos diseñan las creatividades conjuntamente, pero hay poca coordinación entre los diferentes canales. Utilizas los datos de analíticas y los resultados de pruebas A/B para mejorar la eficacia de las creatividades. Tus mensajes están pensados para segmentos muy amplios de la audiencia."
 
 msgid "You are using advanced methods of user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives, coordinated across digital channels. You are using several testing methodologies to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience."
@@ -926,7 +926,7 @@ msgstr "Utilizas funciones automáticas para planificar, crear, supervisar y opt
 msgid "Leveraging a variety of data signals, you make use of automation features for planning, creating, monitoring and optimising most or all of your campaigns. This may include the usage of ad servers, platform APIs and dynamic data feeds."
 msgstr "Aprovechas varias señales de datos y utilizas funciones automáticas para planificar, crear, supervisar y optimizar todas o casi todas tus campañas. En consecuencia, es posible que uses servidores de anuncios, APIs de plataformas y feeds de datos dinámicos."
 
-msgid "Your business is held back from siloed teams, with agencies working at arm's length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
+msgid "Your business is held back from siloed teams, with agencies working at arm&rsquo;s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
 msgstr "En tu empresa los equipos trabajan de forma aislada y no hay colaboración entre las agencias. No tienes ningún recurso con dedicación plena y, para algunos ámbitos de marketing específicos, no tienes recursos. "
 
 msgid "Some of your key business functions work together towards clear objectives, including some of your agency partners. "
@@ -956,7 +956,7 @@ msgstr "Amplía tus funciones de medición"
 msgid "Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns."
 msgstr "Invierte en herramientas de etiquetado y seguimiento, y añade otras metodologías de medición a tu lista de funciones. Haz pruebas más a menudo y, con los resultados que obtengas, optimiza las campañas."
 
-msgid "Build your teams' skills in web analytics"
+msgid "Build your teams&rsquo; skills in web analytics"
 msgstr "Amplía los conocimientos sobre analítica web de tu equipo"
 
 msgid "Ask relevant people to take the beginner and introductory courses of the Analytics Academy. "
@@ -1232,7 +1232,7 @@ msgstr "Aprovecha al máximo tu inversión publicitaria creando pujas automátic
 msgid "Automate asset optimisation"
 msgstr "Automatiza la optimización de los recursos"
 
-msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user's location or the user's keyword. Aim to automate at least half of your creative optimisation decisions."
+msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user&rsquo;s location or the user&rsquo;s keyword. Aim to automate at least half of your creative optimisation decisions."
 msgstr "Utiliza feeds dinámicos para probar variaciones de los recursos de las creatividades, como, por ejemplo, texto que depende de la ubicación de cada usuario o las palabras clave que estos utilizan. Deberías automatizar al menos la mitad de las decisiones en las que te bases para optimizar las creatividades."
 
 msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server for an increased percentage of your ads, use your Demand Side Platform (DSP) for more of your media buys and increase your use of media platform APIs."
@@ -1259,7 +1259,7 @@ msgstr "Utiliza feeds dinámicos, señales de comportamiento de tu sitio web y s
 msgid "Stay on top of new technology"
 msgstr "Controla las nuevas tecnologías"
 
-msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it's feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
+msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it&rsquo;s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
 msgstr "Mantente al día de las nuevas funciones de plataformas que permiten configurar y gestionar las campañas con mayor eficacia. Por ejemplo, empieza a comprar medios en canales o plataformas nuevos para que puedan procesarse a través de la plataforma de demanda (DSP) en cuanto sea posible. Utiliza nuevas funciones de las API de las plataformas para automatizar más tareas relacionadas con la configuración, el mantenimiento, la creación de informes y la optimización de campañas."
 
 msgid "Actively look for repetitive tasks that could be automated and identify tasks that are already automated but may benefit from more data inputs, for example, if your bids are already being set automatically, integrate additional relevant data signals as they become available."
@@ -1709,7 +1709,9 @@ msgstr "Los móviles y el canal digital tienen cada vez más protagonismo en nue
 msgid "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as these expectations ratchet up, so do the requirements (and opportunities) for marketers."
 msgstr "Para los profesionales del marketing, esto alude directamente al comportamiento de los consumidores, y lo que esperan ha cambiado. Si estas expectativas aumentan, también lo harán las exigencias (y las oportunidades) para estos profesionales."
 
-msgid "Today&rsquo;s consumers are:"
+#, fuzzy
+#| msgid "Today&rsquo;s consumers are:"
+msgid "Today’s consumers are:"
 msgstr "Los consumidores de hoy en día son:"
 
 msgid "Curious"
@@ -1735,8 +1737,9 @@ msgstr "Quieren experiencias relevantes y personalizadas, y esperan que las marc
 msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
 msgstr "En Europa, África y Oriente Medio, las búsquedas móviles que contienen \"cerca\" se han multiplicado por 4,5 en la Búsqueda de Google y por 6 en Google Maps en los dos últimos años.&nbsp;"
 
-#, python-format
-msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand&rsquo;s growth.&nbsp;"
+#, fuzzy, python-format
+#| msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand&rsquo;s growth.&nbsp;"
+msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;"
 msgstr "Según el 89 %% de los profesionales del marketing, la clave del desarrollo de las marcas está en ofrecer experiencias útiles en el recorrido del cliente.&nbsp;"
 
 msgid "Impatient"
@@ -1769,8 +1772,9 @@ msgstr "Ser rápido"
 msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
 msgstr "Cumple las expectativas de los consumidores ofreciéndoles experiencias rápidas y sin complicaciones en el canal móvil."
 
-#, python-format
-msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they&rsquo;re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
+#, fuzzy, python-format
+#| msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they&rsquo;re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
+msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
 msgstr "<strong>Si los clientes ganan, las empresas también ganan,</strong> aunque les está costando ponerlo todo en práctica. Según el estudio que realizamos junto con BCG, solo el 2 %% de las marcas son conscientes del potencial que tiene el marketing basado en datos."
 
 msgid "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report."
@@ -1903,6 +1907,9 @@ msgstr "Productos de Google"
 msgid "Contact us"
 msgstr "Contacto"
 
+msgid "Change language or region"
+msgstr ""
+
 msgid "Skip to content"
 msgstr "Ir al contenido"
 
@@ -1980,7 +1987,9 @@ msgstr "Ya has terminado."
 msgid "Your response has been submitted and your report is being generated."
 msgstr "Se ha enviado tu respuesta y se está generando el informe."
 
-msgid "You will receive it in your <strong>email inbox</strong> when it&rsquo;s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+#, fuzzy
+#| msgid "You will receive it in your <strong>email inbox</strong> when it&rsquo;s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
 msgstr "Una vez finalizado, lo recibirás en tu <strong>buzón de correo electrónico</strong>.<br> Te pedimos paciencia, ya que <strong>podría tardar hasta 15 minutos</strong> en llegarte."
 
 msgid "View the study while you wait"
