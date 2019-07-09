@@ -11,7 +11,7 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug
+from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
@@ -31,30 +31,39 @@ def _dump_tenant_content_data(tenant):
 
     data = {
         'levels': content_data['levels'],
+        'levels_max': content_data['levels_max'],
         'level_descriptions': content_data['level_descriptions'],
         'report_level_descriptions': content_data.get('report_level_descriptions'),
         'dimensions': content_data['dimensions'],
         'dimension_labels': content_data['dimension_labels'],
-        'dimension_headers_descriptions': content_data['dimension_headers_descriptions'],
+        'dimension_header_descriptions': content_data['dimension_header_descriptions'],
         'dimension_level_description': content_data['dimension_level_description'],
-        'dimension_level_recommendations': content_data['dimension_level_recommendations'],
+        'dimension_recommendations': content_data['dimension_recommendations'],
         'industry_avg_description': content_data.get('industry_avg_description'),
         'industry_best_description': content_data.get('industry_best_description'),
         'dimension_sidepanel_heading': content_data.get('dimension_sidepanel_heading'),
         'dimension_sidepanel_descriptions': content_data.get('dimension_sidepanel_descriptions'),
+        'subdimensions': content_data.get('subdimensions'),
+        'subdimension_description': content_data.get('subdimension_description'),
+        'subdimension_labels': content_data.get('subdimension_labels'),
+        'subdimension_descriptions': content_data.get('subdimension_descriptions'),
     }
 
     return json.dumps(data, cls=LazyEncoder)
 
 
 def registration(request, tenant):
-    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
+
+    tenant_conf = settings.TENANTS[tenant]
+    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
     return render(request, 'public/registration.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
@@ -67,6 +76,8 @@ def report_static(request, tenant, sid):
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
@@ -76,6 +87,8 @@ def report_result_static(request, tenant, response_id):
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
@@ -85,6 +98,8 @@ def index_static(request, tenant):
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
@@ -94,13 +109,16 @@ def thank_you(request, tenant):
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
-    industries = flatten(settings.HIERARCHICAL_INDUSTRIES)
+    tenant_conf = settings.TENANTS[tenant]
+    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
 
     slug = get_tenant_slug(tenant)
 
@@ -115,6 +133,8 @@ def reports_admin(request, tenant):
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
         'bootstrap_data': JSONRenderer().render(api_data),
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
@@ -136,6 +156,8 @@ def result_detail(request, tenant, response_id):
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
     })
 
 
@@ -148,6 +170,8 @@ def handler404(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'product_name': '',
+        'other_tenants': [],
     }, status=404)
 
 
@@ -160,6 +184,8 @@ def handler500(request, *args, **kwargs):
         'tenant': '',
         'slug': '',
         'content_data': '',
+        'product_name': '',
+        'other_tenants': [],
     }, status=500)
 
 
@@ -188,14 +214,19 @@ def generate_spreadsheet_export(request, tenant):
         tenant_conf = settings.TENANTS[tenant]
         survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
         survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
-        data = Survey.objects.filter(engagement_lead=engagement_lead, tenant=tenant)
+        product_name = tenant_conf['PRODUCT_NAME']
+        data = Survey.objects.filter(tenant=tenant)
+
+        if not request.user.is_super_admin:
+            data = data.filter(engagement_lead=engagement_lead)
+
         now = datetime.datetime.now()
 
         msg = _GENERATED_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
         logging.info(msg)
         deferred.defer(
             tasks.export_tenant_data,
-            "Digital Maturity Benchmark | Data Export | {} ".format(now.strftime("%d-%m-%Y %H:%M")),
+            "{} | Data Export | {} ".format(product_name, now.strftime("%d-%m-%Y %H:%M")),
             data,
             survey_fields_mappings,
             survey_result_fields_mapping,

@@ -190,7 +190,7 @@
   }
 
   &__progress-grid {
-    @include dmb-resp-prop(margin-bottom, 40px, 60px, 80px);
+    @extend .dmb-u-m-b-l;
   }
 
   &__recommendations-header {

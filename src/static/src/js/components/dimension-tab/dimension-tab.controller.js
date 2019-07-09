@@ -1,6 +1,6 @@
 goog.module('dmb.components.dimensionTab.controller');
 
-const tenantDataElementName = 'bootstrap-data';
+// const tenantDataElementName = 'bootstrap-data';
 
 /**
  * DimensionTab class controller.
@@ -9,20 +9,119 @@ class DimensionTabController {
   /**
    * DimensionTab controller
    *
-   * @param {!angular.Scope} $scope
-   * @param {!Object} reportService
-   * @param {!Function} floorDmbFactory
+   * @param {!angular.$sce} $sce
+   * @param {!Function} dmbLevelsFactory
+   * @param {!Function} resultInTopLevel
    * @param {!Object} tenantConf
    * @param {!string} dmbStaticUrl
    *
    * @ngInject
    */
   constructor(
-    $scope,
-    reportService,
-    floorDmbFactory,
+    $sce,
+    dmbLevelsFactory,
+    resultInTopLevel,
     tenantConf,
     dmbStaticUrl) {
+    /**
+     * @type {string}
+     * @export
+     */
+    this.companyName;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.dmbDimensionTab;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionResult;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.dimensionResults;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionIndAvg;
+
+    /**
+     * @type {?number}
+     * @export
+     */
+    this.dimensionIndBest;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.dimensionIndReady;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.tenant;
+
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.dimensionHeader = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.dimensionDescription = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.dimensionLevelDescription = '';
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.recommendations = {};
+
+    /**
+     * @type {Function}
+     * @export
+     */
+    this.trustAsHtml = $sce.trustAsHtml;
+
+    /**
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
+
+    /**
+     *
+     * @type {boolean}
+     * @export
+     */
+    this.topLevel = false;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.resultInTopLevel = resultInTopLevel;
+
     /**
      * @export
      * @type {string}
@@ -30,111 +129,106 @@ class DimensionTabController {
     this.dmbStaticUrl = dmbStaticUrl;
 
     /**
-     * @type string
+     * Subdimensions
+     * @type {Object}
      * @export
      */
-    this.tenant = '';
+    this.subdimensions = tenantConf.subdimensions;
 
     /**
-     * @type {!Object}
+     * Subdimension level values
+     * @type {Object}
      * @export
      */
-    this.levels = tenantConf.levels;
+    this.dimensionLevels = {};
 
     /**
+     * Subdimension labels
+     * @type {Object}
      * @export
+     */
+    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+
+    /**
+     * Subdimension labels
      * @type {string}
+     * @export
      */
-    this.levelsTotal = tenantConf.levelsTotal;
+    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
 
     /**
+     * Subdimension descriptions
+     * @type {Object}
      * @export
-     * type {Object}
      */
-    this.dimensionClassNames = {};
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
 
-    tenantConf.dimensions.forEach((dimension) => {
-      this.dimensionClassNames[dimension] = dimension.replace(/_/g, '-');
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.tenantConf = tenantConf;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.currentLevelData = {};
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.nextLevelData = {};
+
+    // Bind for external use
+    this.updateDimensionTabData = this.updateDimensionTabData.bind(this);
+  }
+
+  /**
+   * On scope initialisation update the values
+   */
+  $onInit() {
+    this.updateDimensionTabData();
+  }
+
+  /**
+   * Respond to property changes and update the values
+   */
+  $onChanges() {
+    this.updateDimensionTabData();
+  }
+
+  /**
+   * updates the levels data for from dmbLevelsFactory
+   */
+  updateDimensionTabData() {
+    const levelData = this.dmbLevelsFactory(this.dimensionResult);
+    this.currentLevelData = levelData.current;
+    this.nextLevelData = levelData.next;
+
+    this.topLevel = this.resultInTopLevel(this.dimensionResult);
+
+    Object.entries(this.dimensionResults).forEach(([dimension, value]) => {
+      this.dimensionLevels[dimension] = this.dmbLevelsFactory(value)['current']['value'];
     });
 
-    /**
-     * @export
-     * type {Object}
-     */
-    this.dimensionHeaders = tenantConf.dimensionHeaders;
+    this.dimensionHeader = this.tenantConf.dimensionHeaders[this.dmbDimensionTab];
+    this.dimensionDescription = this.trustAsHtml(
+      this.tenantConf.dimensionHeaderDescriptions[this.dmbDimensionTab]
+    );
 
-    /**
-     * @export
-     * type {Object}
-     */
-    this.dimensionHeadersDescription = tenantConf.dimensionHeadersDescription;
+    this.dimensionLevelDescription = this.trustAsHtml(
+      this.dmbLevelsFactory(
+        this.dimensionResult,
+        this.tenantConf.dimensionLevelDescription[this.dmbDimensionTab]
+      ).current['mapValue']
+    );
 
-    /**
-     * @export
-     * type {Object}
-     */
-    this.dimensionLevelDescription = tenantConf.dimensionLevelDescription;
-
-    /**
-     * @export
-     * type {Object}
-     */
-    this.dimensionLevelRecommendations = tenantConf.dimensionLevelRecommendations;
-
-    /**
-     * @export
-     * type {Object}
-     */
-    this.dmb = null;
-
-    /**
-     * @export
-     * type {Object}
-     */
-    this.floorDMB = null;
-
-    /**
-     * @export
-     * type {Object}
-     */
-    this.industryDmb = null;
-
-    /**
-     * @export
-     * type {Object}
-     */
-    this.industryDmb_bp = null;
-
-    /**
-     * @export
-     * type {Object}
-     */
-    this.industryResult = null;
-
-    /**
-    * type {!Object}
-      */
-    this.reportService = reportService;
-
-    const tenantDataElement = document.getElementById(tenantDataElementName);
-    this.tenant = tenantDataElement.dataset['tenant'];
-
-    $scope.$watch(() => (reportService.dmb_d), (nVal)=> {
-      this.dmb = nVal ? nVal[$scope['dmbDimensionTab']] : null;
-      this.floorDMB = floorDmbFactory(this.dmb);
-    });
-
-    $scope.$watch(() => (reportService.industryDmb_d), (nVal)=> {
-      this.industryDmb = nVal ? nVal[$scope['dmbDimensionTab']] : null;
-    });
-
-    $scope.$watch(() => (reportService.industryDmb_d_bp), (nVal)=> {
-      this.industryDmb_bp = nVal ? nVal[$scope['dmbDimensionTab']] : null;
-    });
-
-    $scope.$watch(() => (reportService.industryResult), (nVal)=> {
-      this.industryResult = nVal;
-    });
+    this.recommendations = this.dmbLevelsFactory(
+      this.dimensionResult,
+      this.tenantConf.dimensionRecommendations[this.dmbDimensionTab]
+    ).current['mapValue'];
   }
 }
 

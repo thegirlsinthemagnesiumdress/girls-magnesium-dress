@@ -62,7 +62,7 @@
                             disabled
                           {% endif %}
                           >
-                        {{choice.text}}
+                        {{choice.text|safe}}
                         <span class="dmb-result-detail__choice-value"> ({{choice.value}})</span>
                     </label>
                     {% endwith %}

@@ -1,0 +1,65 @@
+<section class="dmb-home-tabs h-c-page{% if class %} {{class}}{% endif %}">
+  <h1 class="h-c-eyebrow h-c-eyebrow--underlined">
+    How it works
+  </h1>
+
+  {% include 'public/inc/global/step-heading.inc.html' with svg='shield' numbered=True text="Find out where your organization is on the cloud maturity scale" only %}
+
+  <div
+      class="dmb-home-tabs__tabs glue-tabby glue-zippy-style h-t-hercules"
+      data-glue-tabby-tabset-breakpoints="['small', 'medium', 'medium-large', 'large', 'x-large', 'xx-large']"
+      ng-cloak>
+    <ul class="glue-zippy-set-single">
+      <li
+          class="dmb-home-tabs__tab--level-0 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-0"
+          id="level-0">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Tactical
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title='Tactical' text='Organizations in this phase often have individual cloud workloads in place, but no coherent plan encompassing all of them nor a strategy for building out for the future. The focus is on reducing the cost of discrete systems and on getting to the cloud with minimal disruption. The wins are quick, but there is no provision for scale.' %}
+        </div>
+      </li>
+
+      <li
+          id="level-1"
+          class="dmb-home-tabs__tab--level-1 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-1">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Strategic
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title="Strategic" text="Organizations in this phase have a broad vision that governs individual workloads, which are designed and developed with an eye to future needs and scale. The organization has started to embrace change, and the people and process portion of the equation are now involved. IT teams are both efficient and effective, increasing the value of harnessing the cloud for business operations. " %}
+        </div>
+      </li>
+
+      <li
+          id="level-2"
+          class="dmb-home-tabs__tab--level-2 glue-a-zippy--v-smooth-expand"
+          data-glue-label="level-2">
+        <h3 class="dmb-home-tabs__tab-heading h-c-tabby__heading-container">
+          <span class="h-c-tabby__heading dmb-u-alt-font h-u-font-weight-medium">
+            Transformational
+          </span>
+          <svg role="img" width="12" height="8" class="h-c-tabby__heading-indicator h-c-icon h-c-icon--chevron h-c-icon--chevron-down">
+            <use xlink:href="#mi-chevron"></use>
+          </svg>
+        </h3>
+        <div class="h-c-tabby__content">
+          {% include 'public/inc/home/home-tab-content.inc.html' with title="Transformational" text="Organizations in this phase have cloud operations functioning smoothly, and have turned their attention to integrating the data and insights garnered from working in the cloud. Existing data is transparently shared. New data is collected and analyzed. The predictive and prescriptive analytics of machine learning applied. People and processes are being transformed, which further supports the technological changes. IT is no longer a cost center, but has become a partner to the business." %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

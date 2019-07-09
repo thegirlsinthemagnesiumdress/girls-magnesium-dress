@@ -60,6 +60,10 @@ $dmb-home-hero-card-bg: #fff;
     }
   }
 
+  &__logo {
+    margin-left: -19px;
+  }
+
   &__footnote {
     @include dmb-mq(#{$h-site-width-desktop}) {
       margin-left: calc(#{$h-grid-col-max-width} / 2);

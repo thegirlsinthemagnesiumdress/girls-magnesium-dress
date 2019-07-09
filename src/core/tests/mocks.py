@@ -60,23 +60,25 @@ MOCKED_DIMENSION_TITLES_TENANT_2 = {
 
 MOCKED_CONTENT_DATA_TENANT_1 = {
     'levels': {},
+    'levels_max': 1,
     'level_descriptions': {},
     'dimensions': [],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_1,
-    'dimension_headers_descriptions': {},
+    'dimension_header_descriptions': {},
     'dimension_level_description': {},
-    'dimension_level_recommendations': {},
+    'dimension_recommendations': {},
 }
 
 
 MOCKED_CONTENT_DATA_TENANT_2 = {
     'levels': {},
+    'levels_max': 2,
     'level_descriptions': {},
     'dimensions': [],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_2,
-    'dimension_headers_descriptions': {},
+    'dimension_header_descriptions': {},
     'dimension_level_description': {},
-    'dimension_level_recommendations': {},
+    'dimension_recommendations': {},
 }
 
 qualtrics_export = {
@@ -227,6 +229,12 @@ HIERARCHICAL_INDUSTRIES = OrderedDict([
         ('edu-pe', ('Primary education', None)),
         ('edu-se', ('Secondary education', None)),
     ]))),
+    ('fi', ('Financial and Insurance', OrderedDict([
+        ('fi-b', ('Banking', None)),
+        ('fi-i', ('Insurance', None)),
+        ('fi-o', ('Other', None)),
+    ]))),
+    ('re', (('Real estate'), None)),
 ])
 
 INDUSTRIES = {
@@ -241,7 +249,12 @@ INDUSTRIES = {
     'ic-o': ('Other', 'ic'),
     'ic-s': ('Software', 'ic'),
     'ic-t': ('Telecommunications', 'ic'),
-    'ic-trmvm': ('TV, radio, movies, video, music', 'ic')
+    'ic-trmvm': ('TV, radio, movies, video, music', 'ic'),
+    'fi': ('Financial and Insurance', None),
+    'fi-b': ('Banking', 'fi'),
+    'fi-i': ('Insurance', 'fi'),
+    'fi-o': ('Other', 'fi'),
+    're': ('Real estate', None),
 }
 
 MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
@@ -270,6 +283,8 @@ MOCKED_TENANTS = {
         'key': 'tenant1',
         'label': 'Tenant 1 label',
         'slug': 'tenant1-slug',
+        'in_dmb_footer': True,
+        'footer_label': 'Tenant 1 Footer Label',
         'QUALTRICS_SURVEY_ID': 'SV_bexxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
@@ -278,14 +293,19 @@ MOCKED_TENANTS = {
         'WEIGHTS': MOCKED_WEIGHTS,
         'CONTENT_DATA': MOCKED_CONTENT_DATA_TENANT_1,
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
+        'INDUSTRIES': INDUSTRIES,
         'i18n': True,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_1,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_1,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
     },
     'tenant2': {
         'key': 'tenant2',
         'label': 'Tenant 2 label',
         'slug': 'tenant2-slug',
+        'in_dmb_footer': True,
+        'footer_label': 'Tenant 2 Footer Label',
         'QUALTRICS_SURVEY_ID': 'SV_aaxxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
@@ -297,14 +317,19 @@ MOCKED_TENANTS = {
         'CONTENT_DATA': MOCKED_CONTENT_DATA_TENANT_2,
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
+        'INDUSTRIES': INDUSTRIES,
         'i18n': False,
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': GOOGLE_SHEET_EXPORT_SURVEY_FIELDS_TENANT_2,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': GOOGLE_SHEET_EXPORT_RESULT_FIELDS_TENANT_2,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
     },
     'tenant3': {
         'key': 'tenant3',
         'label': 'Tenant 3 label',
         'slug': 'tenant3-slug',
+        'in_dmb_footer': False,
+        'footer_label': 'Tenant 3 Footer Label',
         'QUALTRICS_SURVEY_ID': 'SV_bbxxxxxxxx',
         'EMAIL_TO': 'Q97_4_TEXT',
         'EMAIL_BCC': 'Q97_5_TEXT',
@@ -316,6 +341,9 @@ MOCKED_TENANTS = {
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
         'i18n': False,
+        'PRODUCT_NAME': "Digital Maturity Benchmark",
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
+        'INDUSTRIES': INDUSTRIES,
     }
 }
 MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])
@@ -738,7 +766,71 @@ survey_definition_dict = {
                 }
             }
         },
-
+        "QID235": {
+            "questionLabel": None,
+            "questionName": "Q235",
+            "questionText": "<h2 class=\"dmb-dimension-header h-c-headline h-c-headline--two\">\n  <img class=\"dmb-dimension-header__icon dmb-u-m-b-s\" src=\"${e://Field/static_url}/img/retail/dimensions/user-engagement.svg\">\n  User interface and navigation optimization\n</h2>\n\nPlease select the maturity level that most accurately describes your organisation's ability to support user interface and navigation optimisation:",
+            "questionType": {
+                "selector": "SAVR",
+                "subSelector": "TX",
+                "type": "MC"
+            },
+            "validation": {
+                "doesForceResponse": True
+            },
+            "choices": {
+                "1": {
+                    "analyze": True,
+                    "choiceText": "Limited Segmentation: All users are analysed in broad segments. \n<br />\n<br />\nLimited UX / UI Focus: UX / UI, messaging, and layout are not regularly updated.\n",
+                    "description": "Limited Segmentation: All users are analysed in broad segments. \n<br />\n<br />\nLimited UX / UI Focus: UX / UI, messaging, and layout are not regularly updated.\n",
+                    "imageDescription": None,
+                    "recode": "1",
+                    "scoring": [
+                        {
+                        "category": "SC_577ByjK0PVdnw69",
+                        "value": "0"
+                        }
+                    ],
+                    "variableName": None
+                },
+                "3": {
+                    "analyze": True,
+                    "choiceText": "Detailed Segmentation: Segments are based on personal and behavioral characteristics.\n<br />\n<br />\nAdvanced UX / UI: Personalization techniques are used at the segment level to enable customers to reach their baskets in fewer clicks, although load speed is a major consideration.\n<br />\n<br />\nAdvanced Analytics: Customer data is captured, monitored, and analyzed quickly and effectively to drive business decisions.\n",
+                    "description": "Detailed Segmentation: Segments are based on personal and behavioral characteristics.\n<br />\n<br />\nAdvanced UX / UI: Personalization techniques are used at the segment level to enable customers to reach their baskets in fewer clicks, although load speed is a major consideration.\n<br />\n<br />\nAdvanced Analytics: Customer data is captured, monitored, and analyzed quickly and effectively to drive business decisions.\n",
+                    "imageDescription": None,
+                    "recode": "3",
+                    "scoring": [
+                        {
+                        "category": "SC_577ByjK0PVdnw69",
+                        "value": "2.67"
+                        }
+                    ],
+                    "variableName": None
+                },
+                "4": {
+                    "analyze": True,
+                    "choiceText": "Dynamic Segmentation: The UX / UI can respond to a customer’s in-session behavior as he or she exhibits different segment characteristics.\n<br />\n<br />\nDynamic UX / UI: Sophisticated personalization techniques are used to tailor the customer’s experience in near real-time.\n<br />\n<br />\nAutomated Analytics: Customer data is captured, monitored, and analyzed in near real-time and decisions are automated.",
+                    "description": "Dynamic Segmentation: The UX / UI can respond to a customer’s in-session behavior as he or she exhibits different segment characteristics.\n<br />\n<br />\nDynamic UX / UI: Sophisticated personalization techniques are used to tailor the customer’s experience in near real-time.\n<br />\n<br />\nAutomated Analytics: Customer data is captured, monitored, and analyzed in near real-time and decisions are automated.",
+                    "imageDescription": None,
+                    "recode": "4",
+                    "scoring": [
+                        {
+                        "category": "SC_577ByjK0PVdnw69",
+                        "value": "4"
+                        }
+                    ],
+                    "variableName": None
+                },
+                "5": {
+                    "analyze": True,
+                    "choiceText": "Basic Segmentation: Uses standard characteristics (e.g., gender, geography) for segmentation.\n<br />\n<br />\nBasic UX / UI: Basic user understanding is used to design the look and feel of the online experience.\n<br />\n<br />\nBasic Analytics: Ability to synthesize customer information and observations into actionable insights.\n",
+                    "description": "Basic Segmentation: Uses standard characteristics (e.g., gender, geography) for segmentation.\n<br />\n<br />\nBasic UX / UI: Basic user understanding is used to design the look and feel of the online experience.\n<br />\n<br />\nBasic Analytics: Ability to synthesize customer information and observations into actionable insights.\n",
+                    "imageDescription": None,
+                    "recode": "2",
+                    "variableName": None
+                }
+            },
+        }
     },
     "exportColumnMap": {
         "Q97_4_TEXT": {
@@ -807,6 +899,10 @@ survey_definition_dict = {
                 {
                     "type": "Question",
                     "questionId": "QID128"
+                },
+                {
+                    "type": "Question",
+                    "questionId": "QID235"
                 },
             ]
         }
@@ -977,6 +1073,9 @@ survey_def_no_choices_page_break_dict = {
             "question": "QID128",
             "choice": "QID128.choices.3"
         },
+        "Q235": {
+            "question": "QID235"
+        }
     },
     "blocks": {
         "BL_4OcGZZcRLl0cRYp": {

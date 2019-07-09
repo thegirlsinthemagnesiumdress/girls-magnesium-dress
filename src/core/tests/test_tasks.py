@@ -31,6 +31,8 @@ from django.utils.timezone import make_aware
 import pytz
 from collections import OrderedDict
 from django.conf import settings
+from django.template.loader import get_template
+import unittest
 
 
 @override_settings(
@@ -120,12 +122,6 @@ class GetResultsTestCase(TestCase):
         args, kwargs = send_email_mock.call_args
         self.assertEqual(len(args[0]), 3)
 
-    @override_settings(
-        INDUSTRIES={
-            'IT': 'IT',
-            'B': 'B',
-        }
-    )
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
         'core.qualtrics.download.fetch_results',
@@ -600,7 +596,7 @@ class SendEmailTestCase(TestCase):
         self.assertEqual(email_mock.call_count, 0)
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
-    @mock.patch('core.tasks.get_template')
+    @mock.patch('django.template.base.Template')
     def test_email_is_sent_using_tenant_specific_templates(self, get_template_mock, email_mock):
         survey = make_survey(sid='3', tenant='ads')
         email_list = [
@@ -1260,8 +1256,10 @@ class CalculateIndustryBenchmark(TestCase):
 class RenderEmailTemplateTestCase(TestCase):
 
     @mock.patch('django.utils.translation.activate')
-    @mock.patch('core.tasks.get_template')
+    # @mock.patch('core.tasks.get_template')
+    @mock.patch('django.template.base.Template')
     def test_render_email_template_english_language(self, get_template_mock, translation_mock):
+        # get_template_mock().render = mock.MagicMock(return_value=['some random subject'])
 
         survey = make_survey(sid='3', tenant='ads')
 
@@ -1287,10 +1285,12 @@ class RenderEmailTemplateTestCase(TestCase):
         self.assertEqual(second_call_args[0], 'en')
 
     @mock.patch('django.utils.translation.activate')
-    @mock.patch('core.tasks.get_template')
+    @mock.patch('django.template.base.Template')
     def test_render_email_template_other_language(self, get_template_mock, translation_mock):
         """When the template is rendered in another language, it's ativated first,
         and later the english (default) is activated back again."""
+        # get_template_mock.render = mock.MagicMock(return_value=['some random subject'])
+
         survey = make_survey(sid='3', tenant='ads')
 
         context = {
@@ -1314,9 +1314,11 @@ class RenderEmailTemplateTestCase(TestCase):
         self.assertEqual(first_call_args[0], 'es')
         self.assertEqual(second_call_args[0], 'en')
 
-    def test_render_email_template_english_rendered(self):
+    @mock.patch('django.template.base.Template')
+    def test_render_email_template_english_rendered(self, get_template_mock):
         """When the template is rendered in another language, it's ativated first,
         and later the english (default) is activated back again."""
+        get_template_mock.render = mock.MagicMock(return_value=['some random subject'])
         survey = make_survey(sid='3', tenant='ads')
 
         context = {
@@ -1347,6 +1349,115 @@ class RenderEmailTemplateTestCase(TestCase):
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
+
+
+class RenderEmailTemplateIntegration(TestCase):
+
+    @unittest.skipIf(settings.TENANTS.get(settings.ADS) is None, "Advertisers tenant is excluded")
+    def test_render_email_template_ads(self):
+        """Test if template files are rendered correctly for ads tenant"""
+        survey = make_survey(sid='3', tenant='ads')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        tenant = survey.tenant
+        ads_html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+        ads_text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
+        text_message_rendered = ads_text_message_template.render(context)
+        html_message_rendered = ads_html_message_template.render(context)
+
+        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(text)
+        self.assertIsNotNone(html)
+        self.assertEqual(subject, "Response is ready!")
+        self.assertEqual(text, text_message_rendered)
+        self.assertEqual(html, html_message_rendered)
+
+    @unittest.skipIf(settings.TENANTS.get(settings.NEWS) is None, "News tenant is excluded")
+    def test_render_email_template_news(self):
+        """Test if template files are rendered correctly for news tenant"""
+        survey = make_survey(sid='3', tenant='news')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        tenant = survey.tenant
+
+        # load email content templates from file
+        ads_html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+        ads_text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
+        text_message_rendered = ads_text_message_template.render(context)
+        html_message_rendered = ads_html_message_template.render(context)
+
+        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(text)
+        self.assertIsNotNone(html)
+        self.assertEqual(subject, "Response is ready!")
+        self.assertEqual(text, text_message_rendered)
+        self.assertEqual(html, html_message_rendered)
+
+    @unittest.skipIf(settings.TENANTS.get(settings.RETAIL) is None, "Retail tenant is excluded")
+    def test_render_email_template_retail(self):
+        """Test if template files are rendered correctly for retail tenant"""
+        survey = make_survey(sid='3', tenant='retail')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        tenant = survey.tenant
+        ads_html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+        ads_text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
+        text_message_rendered = ads_text_message_template.render(context)
+        html_message_rendered = ads_html_message_template.render(context)
+
+        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(text)
+        self.assertIsNotNone(html)
+        self.assertEqual(subject, "Response is ready!")
+        self.assertEqual(text, text_message_rendered)
+        self.assertEqual(html, html_message_rendered)
+
+    @unittest.skipIf(settings.TENANTS.get(settings.CLOUD) is None, "Cloud tenant is excluded")
+    def test_render_email_template_cloud(self):
+        """Test if template files are rendered correctly for cloud tenant"""
+        survey = make_survey(sid='3', tenant='cloud')
+
+        context = {
+            'url': "http://{}{}".format('domain', 'link'),
+            'company_name': survey.company_name,
+            'industry': survey.industry,
+            'country': survey.country,
+        }
+
+        tenant = survey.tenant
+        ads_html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
+        ads_text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
+        text_message_rendered = ads_text_message_template.render(context)
+        html_message_rendered = ads_html_message_template.render(context)
+
+        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(text)
+        self.assertIsNotNone(html)
+        self.assertEqual(subject, "{}: Google Cloud Maturity Assessment Report".format(survey.company_name))
+        self.assertEqual(text, text_message_rendered)
+        self.assertEqual(html, html_message_rendered)
 
 
 class ExportTenantData(TestCase):
@@ -1530,8 +1641,8 @@ class ExportTenantData(TestCase):
     def test_export_retail_tenant(self, mocked_export):
         """When tenant is retail, it's exported with the correct configured keys."""
         tenant = 'retail'
-        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
-        make_survey_with_result(industry='ic-bnpj', tenant=tenant)
+        make_survey_with_result(industry='rt-o', tenant=tenant)
+        make_survey_with_result(industry='rt-o', tenant=tenant)
 
         tenant_conf = settings.TENANTS[tenant]
         ads_title = "Retail Export"

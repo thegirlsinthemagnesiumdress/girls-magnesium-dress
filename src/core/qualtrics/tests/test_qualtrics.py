@@ -40,6 +40,26 @@ class CalculateResponseBenchmarkTest(TestCase):
         self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
         self.assertEqual(dmb, 1.75)
 
+    def test_calculate_response_benchmark_multi_question_dimension(self):
+        """Test for a multiple dimension, when a question belongs to more than one dimension."""
+        responses = [
+            ('Q1', [1.0], 1, 'dimension_A'),
+            ('Q1', [3.0], 1, 'dimension_B'),
+            ('Q2', [2.0], 1, 'dimension_A'),
+            ('Q2', [1.0], 3, 'dimension_B'),
+            ('Q3', [2.0], 2, 'dimension_A'),
+        ]
+
+        dmb, dmb_d_dictionary = benchmark.calculate_response_benchmark(responses)
+
+        self.assertIsInstance(dmb_d_dictionary, dict)
+        self.assertEqual(len(dmb_d_dictionary), 2)
+        self.assertTrue('dimension_A' in dmb_d_dictionary)
+        self.assertTrue('dimension_B' in dmb_d_dictionary)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_A'), 1.75, places=2)
+        self.assertAlmostEqual(dmb_d_dictionary.get('dimension_B'), 1.5, places=2)
+        self.assertEqual(dmb, 1.625)
+
 
 class CalculateResponseBenchmarkWeightedTest(TestCase):
     """Test class for `calculate_response_benchmark` function for weighted case."""

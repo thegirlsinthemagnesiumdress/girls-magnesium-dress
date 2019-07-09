@@ -19,29 +19,31 @@ class ReportController {
    * Report controller
    *
    * @param {!angular.Scope} $scope
-   * @param {!angular.Scope} $rootScope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
    * @param {!glue.ng.state.StateService} glueState
    * @param {!angular.$timeout} $timeout
-   * @param {!Object} reportService
-   * @param {!Function} floorDmbFactory
+   * @param {!angular.$sce} $sce
+   * @param {!Function} dmbLevelsFactory
+   * @param {!Function} resultInTopLevel
    * @param {!Object} tenantConf
    * @param {!Object} glueBreakpoint
+   * @param {!string} dmbStaticUrl
    *
    * @ngInject
    */
   constructor(
     $scope,
-      $rootScope,
       $http,
       $location,
       glueState,
       $timeout,
-      reportService,
-      floorDmbFactory,
+      $sce,
+      dmbLevelsFactory,
+      resultInTopLevel,
       tenantConf,
-      glueBreakpoint) {
+      glueBreakpoint,
+      dmbStaticUrl) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
@@ -54,25 +56,10 @@ class ReportController {
     this.ngTimeout_ = $timeout;
 
     /**
-     * Survey object.
-     * @type {Object}
      * @export
+     * @type {boolean}
      */
-    this.survey = null;
-
-    /**
-     * Survey result object.
-     * @type {Object}
-     * @export
-     */
-    this.result = null;
-
-    /**
-     * Floored dmb.
-     * @type {?number}
-     * @export
-     */
-    this.floorDmb = null;
+    this.renderTabset = false;
 
     /**
      *  Show dimensions tab (instead of the zippy).
@@ -81,23 +68,18 @@ class ReportController {
      */
     this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
 
+
     /**
-     * @type {!Object}
      * @export
+     * @type {Object}
      */
     this.levels = tenantConf.levels;
 
     /**
      * @export
-     * @type {Object}
+     * @type {String}
      */
-    this.levelsTotal = tenantConf.levelsTotal;
-
-    /**
-     * @export
-     * @type {Object}
-     */
-    this.nextLevel = null;
+    this.levelsMax = tenantConf.levelsMax;
 
     /**
      * @type {!Object}
@@ -124,6 +106,28 @@ class ReportController {
     this.industryBestDescription = tenantConf.industryBestDescription;
 
     /**
+     * Industry result object.
+     * @type {Object}
+     * @export
+     */
+    this.industryResult = null;
+
+    /**
+     * Industry best rating source industry.
+     * @type {Object}
+     * @export
+     */
+    this.industryAvgSource = null;
+
+    /**
+     * Industry average source industry.
+     * @type {Object}
+     * @export
+     */
+    this.industryBestSource = null;
+
+
+    /**
      * @export
      * @type {Array.<string>}
      */
@@ -131,10 +135,21 @@ class ReportController {
 
     /**
      * @export
-     * @type {boolean}
+     * @type {Object}
      */
-    this.renderTabset = false;
+    this.dimensionsResults = {};
 
+    /**
+     * @export
+     * @type {Object}
+     */
+    this.dimensionsIndAvgs = {};
+
+    /**
+     * @export
+     * @type {Object}
+     */
+    this.dimensionsIndBests = {};
 
     /**
      * @type {!Object}
@@ -163,25 +178,101 @@ class ReportController {
     });
 
     /**
-     * Industry result object.
-     * @type {Object}
+     *
+     * @type {?number}
      * @export
      */
-    this.industryResult = null;
+    this.overallResult = null;
 
     /**
-     * Industry best rating source industry.
+     *
      * @type {Object}
      * @export
      */
-    this.industryAvgSource = null;
+    this.currentLevelData = {};
 
     /**
-     * Industry average source industry.
+     *
      * @type {Object}
      * @export
      */
-    this.industryBestSource = null;
+    this.nextLevelData = {};
+
+    /**
+     *
+     * @type {Object}
+     * @export
+     */
+    this.currentLevelDescription = {};
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.resultInTopLevel = resultInTopLevel;
+
+    /**
+     * Survey object.
+     * @type {Object}
+     * @export
+     */
+    this.survey = null;
+
+    /**
+     * Survey result object.
+     * @type {Object}
+     * @export
+     */
+    this.result = null;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.trustAsHtml = $sce.trustAsHtml;
+
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensions = tenantConf.subdimensions;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+
+    /**
+     * @export
+     * @type {string}
+     */
+    this.dmbStaticUrl = dmbStaticUrl;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
+
+    // Allows use from other contexts
+    this.setOverallResult = this.setOverallResult.bind(this);
 
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
@@ -193,37 +284,25 @@ class ReportController {
       this.result = this.survey['survey_result'];
 
       // DRF returns decimal fields as strings. We should probably look into this
-      // on the BE but until we do let's fix this on the FE.
-      this.result.dmb = parseFloat(this.result['dmb']);
+      // on the BE but until we do let's fix this on the FE
+      this.setOverallResult(parseFloat(this.result['dmb']));
+      this.dimensionsResults = this.result['dmb_d'];
 
-      this.floorDmb = floorDmbFactory(this.result.dmb);
-      this.nextLevel = floorDmbFactory(this.floorDmb + 1);
+      // // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
+      // // reportService.dmb_d['reader_revenue'] = null;
 
-      reportService.dmb_d = this.result['dmb_d'];
-
-      // ENABLE TO TEST OPTIONAL DIMENSION
-      // reportService.dmb_d['reader_revenue'] = null;
-
-      // TODO(aabuelgasim): remove this chunk once new tabby is used
-      for (let key in reportService.dmb_d) {
-        if (reportService.dmb_d[key] === null) {
-          this.dimensions.splice(this.dimensions.indexOf(key), 1);
-        }
-      }
       this.ngTimeout_(() => {
         this.renderTabset = true;
       }, 0, true);
-      // //////////////
 
 
       $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
         this.industryResult = res.data;
         this.industryAvgSource = this.industryResult['dmb_industry'];
         this.industryBestSource = this.industryResult['dmb_bp_industry'];
-        reportService.industryResult = this.industryResult;
-        reportService.industryDmb_d = this.industryResult['dmb_d'];
-        reportService.industryDmb_d_bp = this.industryResult['dmb_d_bp'];
-        $rootScope.$broadcast('content-updated');
+
+        this.dimensionsIndAvgs = this.industryResult['dmb_d'];
+        this.dimensionsIndBests = this.industryResult['dmb_d_bp'];
       });
     });
 
@@ -231,6 +310,40 @@ class ReportController {
       this.showTabs= this.showTabs_(size);
       $scope.$apply();
     });
+  }
+
+  /**
+   * Sets values for overall result
+   * @param {number} overallResult
+   * @export
+   */
+  setOverallResult(overallResult) {
+    if (!angular.isDefined(overallResult)) {
+      return;
+    }
+
+    this.overallResult = overallResult;
+    const levelData = this.dmbLevelsFactory(this.overallResult);
+    this.currentLevelData = levelData['current'];
+    this.nextLevelData = levelData['next'];
+    const levelDescriptions = this.dmbLevelsFactory(
+      this.overallResult,
+      this.reportLevelDescriptions
+    );
+    this.currentLevelDescription = levelDescriptions['current']['mapValue'];
+  }
+
+  /**
+   * Sets values for overall result
+   * @param {string} dimension
+   * @param {number} newValue
+   */
+  setDimensionsResult(dimension, newValue) {
+    if (!angular.isDefined(newValue)) {
+      return;
+    }
+
+    this.dimensionsResults[dimension] = newValue;
   }
 
   /**

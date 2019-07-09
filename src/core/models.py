@@ -8,7 +8,8 @@ from django.urls import reverse
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.managers import NotExcludedFromBestPracticeManager
-from core.conf.utils import flatten, get_tenant_slug, version_info
+from core.conf import utils
+from collections import OrderedDict
 
 
 class User(GaeAbstractDatastoreUser):
@@ -41,12 +42,18 @@ class Survey(models.Model):
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
     company_name = models.CharField(max_length=50)
     engagement_lead = models.CharField(max_length=32, blank=True, null=True)
-    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
+    industry = models.CharField(max_length=128)
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
+
+    def get_industry_display(self, *args, **kwargs):
+        t = settings.TENANTS[self.tenant]
+        industries_dict = OrderedDict(utils.flatten(t['HIERARCHICAL_INDUSTRIES']))
+        industry = industries_dict.get(self.industry)
+        return industry if industry else None
 
     @property
     def link(self):
@@ -57,7 +64,7 @@ class Survey(models.Model):
         it to match the data against companies.
         """
         qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
-        version, is_nightly, is_development = version_info(settings.HTTP_HOST)
+        version, is_nightly, is_development = utils.version_info(settings.HTTP_HOST)
 
         if is_nightly or is_development:
             survey_link = settings.QUALTRICS_BASE_SURVEY_PREVIEW_URL.format(survey_id=qualtrics_survey_id, sid=self.sid)
@@ -83,7 +90,7 @@ class Survey(models.Model):
 
     @property
     def slug(self):
-        return get_tenant_slug(self.tenant)
+        return utils.get_tenant_slug(self.tenant)
 
     @property
     def excluded(self):
@@ -93,9 +100,11 @@ class Survey(models.Model):
         if not self.pk:
             self.sid = uuid4().hex
 
-        assert self.industry in settings.INDUSTRIES.keys(), "%r is not in set of configured INDUSTRIES" % self.industry
         assert self.country in settings.COUNTRIES.keys(), "%r is not in set of configured COUNTRIES" % self.country
         assert self.tenant in settings.TENANTS.keys(), "%r is not in set of configured TENANTS" % self.tenant
+
+        industry_list = settings.TENANTS[self.tenant]['INDUSTRIES'].keys()
+        assert self.industry in industry_list, "%r is not in set of configured INDUSTRIES" % self.industry
 
         super(Survey, self).save(*args, **kwargs)
 
@@ -156,7 +165,7 @@ class SurveyDefinition(models.Model):
 
 
 class IndustryBenchmark(models.Model):
-    industry = models.CharField(max_length=128, choices=flatten(settings.HIERARCHICAL_INDUSTRIES))
+    industry = models.CharField(max_length=128)
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     initial_dmb = models.DecimalField(max_digits=4, decimal_places=2, null=True)
     initial_dmb_d = JSONField(null=True)
