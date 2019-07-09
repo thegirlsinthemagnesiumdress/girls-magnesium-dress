@@ -44,7 +44,7 @@ class ProgressCircleController {
     this.svgCircumference = 339.292;
 
     $scope.$watch($attrs['dmbProgressCircle'], (dmbScore) => {
-      if (dmbScore) {
+      if (dmbScore !== null) {
         const percentComplete = ((dmbScore - this.firstLevel) / (tenantConf.levelsMax - this.firstLevel)) * 100;
         this.setProgressCircle(percentComplete);
       }

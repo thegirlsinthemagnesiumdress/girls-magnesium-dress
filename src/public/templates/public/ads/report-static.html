@@ -5,7 +5,7 @@
 
 {% block main %}
 <main id="dmb-report" dmb-report ng-cloak>
-  <div ng-if="reportCtrl.overallResult">
+  <div ng-if="reportCtrl.overallResult !== null">
     {% include 'public/ads/report/report-intro.inc.html' %}
     {% include 'public/ads/report/report-hero.inc.html' %}
     {% include 'public/ads/report/report-overall.inc.html' %}
