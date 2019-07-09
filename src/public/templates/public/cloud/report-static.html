@@ -1,5 +1,7 @@
 {% extends 'public/base.html' %}
 
+{% load angular %}
+
 {% block body_class %}dmb-report{% endblock %}
 
 {% block main %}
@@ -10,8 +12,7 @@
     {% include 'public/cloud/report/report-overall.inc.html' %}
     {% include 'public/cloud/report/report-dimensions.inc.html' %}
   </div>
-
-    {% if debug %}
+    {% if debug or is_nightly %}
       {% include 'public/inc/report/report-debug.inc.html' %}
     {% endif %}
 </main>

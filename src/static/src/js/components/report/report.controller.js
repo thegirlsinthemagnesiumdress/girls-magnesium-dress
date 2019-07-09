@@ -82,6 +82,12 @@ class ReportController {
     this.levelsMax = tenantConf.levelsMax;
 
     /**
+     * @export
+     * @type {Array.<string>}
+     */
+    this.levelsMin = tenantConf.levelsArray[0];
+
+    /**
      * @type {!Object}
      * @export
      */
