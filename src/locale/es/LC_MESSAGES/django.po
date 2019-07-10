@@ -1955,11 +1955,6 @@ msgstr "Información sobre la protección de datos"
 msgid "Enter the organisation name"
 msgstr "Escribe el nombre de la organización"
 
-#, fuzzy
-#| msgid "Organisation"
-msgid "Organization name"
-msgstr "Organización"
-
 msgid "Enter the organization name"
 msgstr "Escribe el nombre de la organización"
 
@@ -1981,8 +1976,6 @@ msgstr "Ya has terminado."
 msgid "Your response has been submitted and your report is being generated."
 msgstr "Se ha enviado tu respuesta y se está generando el informe."
 
-#, fuzzy
-#| msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
 msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
 msgstr "Una vez finalizado, lo recibirás en tu <strong>buzón de correo electrónico</strong>.<br> Te pedimos paciencia, ya que <strong>podría tardar hasta 15 minutos</strong> en llegarte."
 
