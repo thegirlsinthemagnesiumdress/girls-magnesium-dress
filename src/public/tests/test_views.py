@@ -170,6 +170,15 @@ class ReportDetailTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
+    def test_staging_context_variable(self):
+        """Tests if the staging boolean is passed into the context to trigger the debug menu"""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        with TempTemplateFolder(templates_path, 'report-static.html'):
+            url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.context['staging'], False)
+
 
 @override_settings(
     TENANTS=mocks.MOCKED_TENANTS,
