@@ -344,6 +344,7 @@ class ReportController {
    * Sets values for overall result
    * @param {string} dimension
    * @param {number} newValue
+   * @export
    */
   setDimensionsResult(dimension, newValue) {
     if (!angular.isDefined(newValue)) {
