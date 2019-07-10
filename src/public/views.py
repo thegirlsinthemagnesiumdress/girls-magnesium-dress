@@ -83,6 +83,7 @@ def report_static(request, tenant, sid):
         'content_data': _dump_tenant_content_data(tenant),
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
+        'is_nightly': version_info(request.get_host())[1],
     })
 
 
@@ -95,6 +96,7 @@ def report_result_static(request, tenant, response_id):
         'content_data': _dump_tenant_content_data(tenant),
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
+        'is_nightly': version_info(request.get_host())[1],
     })
 
 

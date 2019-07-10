@@ -766,7 +766,71 @@ survey_definition_dict = {
                 }
             }
         },
-
+        "QID235": {
+            "questionLabel": None,
+            "questionName": "Q235",
+            "questionText": "<h2 class=\"dmb-dimension-header h-c-headline h-c-headline--two\">\n  <img class=\"dmb-dimension-header__icon dmb-u-m-b-s\" src=\"${e://Field/static_url}/img/retail/dimensions/user-engagement.svg\">\n  User interface and navigation optimization\n</h2>\n\nPlease select the maturity level that most accurately describes your organisation's ability to support user interface and navigation optimisation:",
+            "questionType": {
+                "selector": "SAVR",
+                "subSelector": "TX",
+                "type": "MC"
+            },
+            "validation": {
+                "doesForceResponse": True
+            },
+            "choices": {
+                "1": {
+                    "analyze": True,
+                    "choiceText": "Limited Segmentation: All users are analysed in broad segments. \n<br />\n<br />\nLimited UX / UI Focus: UX / UI, messaging, and layout are not regularly updated.\n",
+                    "description": "Limited Segmentation: All users are analysed in broad segments. \n<br />\n<br />\nLimited UX / UI Focus: UX / UI, messaging, and layout are not regularly updated.\n",
+                    "imageDescription": None,
+                    "recode": "1",
+                    "scoring": [
+                        {
+                        "category": "SC_577ByjK0PVdnw69",
+                        "value": "0"
+                        }
+                    ],
+                    "variableName": None
+                },
+                "3": {
+                    "analyze": True,
+                    "choiceText": "Detailed Segmentation: Segments are based on personal and behavioral characteristics.\n<br />\n<br />\nAdvanced UX / UI: Personalization techniques are used at the segment level to enable customers to reach their baskets in fewer clicks, although load speed is a major consideration.\n<br />\n<br />\nAdvanced Analytics: Customer data is captured, monitored, and analyzed quickly and effectively to drive business decisions.\n",
+                    "description": "Detailed Segmentation: Segments are based on personal and behavioral characteristics.\n<br />\n<br />\nAdvanced UX / UI: Personalization techniques are used at the segment level to enable customers to reach their baskets in fewer clicks, although load speed is a major consideration.\n<br />\n<br />\nAdvanced Analytics: Customer data is captured, monitored, and analyzed quickly and effectively to drive business decisions.\n",
+                    "imageDescription": None,
+                    "recode": "3",
+                    "scoring": [
+                        {
+                        "category": "SC_577ByjK0PVdnw69",
+                        "value": "2.67"
+                        }
+                    ],
+                    "variableName": None
+                },
+                "4": {
+                    "analyze": True,
+                    "choiceText": "Dynamic Segmentation: The UX / UI can respond to a customer’s in-session behavior as he or she exhibits different segment characteristics.\n<br />\n<br />\nDynamic UX / UI: Sophisticated personalization techniques are used to tailor the customer’s experience in near real-time.\n<br />\n<br />\nAutomated Analytics: Customer data is captured, monitored, and analyzed in near real-time and decisions are automated.",
+                    "description": "Dynamic Segmentation: The UX / UI can respond to a customer’s in-session behavior as he or she exhibits different segment characteristics.\n<br />\n<br />\nDynamic UX / UI: Sophisticated personalization techniques are used to tailor the customer’s experience in near real-time.\n<br />\n<br />\nAutomated Analytics: Customer data is captured, monitored, and analyzed in near real-time and decisions are automated.",
+                    "imageDescription": None,
+                    "recode": "4",
+                    "scoring": [
+                        {
+                        "category": "SC_577ByjK0PVdnw69",
+                        "value": "4"
+                        }
+                    ],
+                    "variableName": None
+                },
+                "5": {
+                    "analyze": True,
+                    "choiceText": "Basic Segmentation: Uses standard characteristics (e.g., gender, geography) for segmentation.\n<br />\n<br />\nBasic UX / UI: Basic user understanding is used to design the look and feel of the online experience.\n<br />\n<br />\nBasic Analytics: Ability to synthesize customer information and observations into actionable insights.\n",
+                    "description": "Basic Segmentation: Uses standard characteristics (e.g., gender, geography) for segmentation.\n<br />\n<br />\nBasic UX / UI: Basic user understanding is used to design the look and feel of the online experience.\n<br />\n<br />\nBasic Analytics: Ability to synthesize customer information and observations into actionable insights.\n",
+                    "imageDescription": None,
+                    "recode": "2",
+                    "variableName": None
+                }
+            },
+        }
     },
     "exportColumnMap": {
         "Q97_4_TEXT": {
@@ -835,6 +899,10 @@ survey_definition_dict = {
                 {
                     "type": "Question",
                     "questionId": "QID128"
+                },
+                {
+                    "type": "Question",
+                    "questionId": "QID235"
                 },
             ]
         }
@@ -1005,6 +1073,9 @@ survey_def_no_choices_page_break_dict = {
             "question": "QID128",
             "choice": "QID128.choices.3"
         },
+        "Q235": {
+            "question": "QID235"
+        }
     },
     "blocks": {
         "BL_4OcGZZcRLl0cRYp": {

@@ -33,11 +33,10 @@
       <div class="h-c-grid">
         <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-2">
           <h2 class="h-c-headline h-c-headline--four">
-            {% trans "Let’s start with some details about your " %}
             {% if tenant|ng_mark_safe == 'ads' %}
-              {% trans "organisation:" %}
+              {% trans "Let’s start with some details about your organisation:" %}
             {% else %}
-              organization:
+              Let’s start with some details about your organization:
             {% endif %}
           </h2>
           <a

@@ -4,14 +4,14 @@
 
 {% block main %}
 <main id="dmb-report" dmb-report ng-cloak>
-  <div ng-if="reportCtrl.overallResult">
+  <div ng-if="reportCtrl.overallResult !== null">
     {% include 'public/retail/report/report-intro.inc.html' %}
     {% include 'public/retail/report/report-hero.inc.html' %}
     {% include 'public/retail/report/report-overall.inc.html' %}
     {% include 'public/retail/report/report-dimensions.inc.html' %}
   </div>
 
-  {% if debug %}
+  {% if debug or is_nightly %}
     {% include 'public/inc/report/report-debug.inc.html' %}
   {% endif %}
 </main>

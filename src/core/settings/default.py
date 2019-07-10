@@ -76,6 +76,7 @@ MIDDLEWARE_CLASSES = (
     'djangae.contrib.common.middleware.RequestStorageMiddleware',
     'google.appengine.ext.appstats.recording.AppStatsDjangoMiddleware',
     'public.middleware.RedirectToDefaultTenant',
+    'public.middleware.ForceDefaultLang',
 )
 
 STATICFILES_FINDERS = (
@@ -329,6 +330,8 @@ QUALTRICS_LANGS = {
     'EN': 'en',
     'ES-ES': 'es',
 }
+
+QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }
 
 HTTP_HOST = os.environ['HTTP_HOST']
 
