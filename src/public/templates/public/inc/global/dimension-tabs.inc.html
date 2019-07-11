@@ -48,7 +48,10 @@
           data-glue-tabset-model="reportCtrl.model"
           data-glue-tabset-enable-arrow-nav ng-cloak>
         <ul>
-          <li ng-repeat="dimension in reportCtrl.dimensions" data-glue-label="{[dimension]}" id="{[dimension]}">
+          <li
+              data-glue-label="{[dimension]}"
+              id="{[dimension]}"
+              ng-repeat="dimension in reportCtrl.dimensions">
             <h3>
               {[reportCtrl.dimensionHeaders[dimension]]}
             </h3>
