@@ -234,7 +234,7 @@ msgstr "Estonia"
 msgid "Ethiopia"
 msgstr "Etiopía"
 
-msgid "Falkland Islands (Malvinas"
+msgid "Falkland Islands (Malvinas)"
 msgstr "Islas Malvinas (Islas Falkland)"
 
 msgid "Faroe Islands"
@@ -312,7 +312,7 @@ msgstr "Haití"
 msgid "Heard Island and McDonald Islands"
 msgstr "Islas Heard y McDonald"
 
-msgid "Holy See (Vatican City State"
+msgid "Holy See (Vatican City State)"
 msgstr "Ciudad del Vaticano"
 
 msgid "Honduras"
@@ -585,7 +585,7 @@ msgstr "San Cristóbal y Nieves"
 msgid "Saint Lucia"
 msgstr "Santa Lucía"
 
-msgid "Saint Martin (French part"
+msgid "Saint Martin (French part)"
 msgstr "San Martín (parte francesa)"
 
 msgid "Saint Pierre and Miquelon"
@@ -621,7 +621,7 @@ msgstr "Sierra Leona"
 msgid "Singapore"
 msgstr "Singapur"
 
-msgid "Sint Maarten (Dutch part"
+msgid "Sint Maarten (Dutch part)"
 msgstr "San Martín (parte holandesa)"
 
 msgid "Slovakia"
