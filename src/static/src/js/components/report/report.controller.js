@@ -137,7 +137,7 @@ class ReportController {
      * @export
      * @type {Array.<string>}
      */
-    this.dimensions = tenantConf.dimensions;
+    this.dimensions = [];
 
     /**
      * @export
@@ -283,9 +283,6 @@ class ReportController {
 
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
-    // We're saving the results in a service since it's not possible to
-    // directly pass them to the directive throught the bindings since
-    // the tab component messes up the scopes. We use a service instead.
     $http.get(reportEndpoint).then((res)=> {
       this.survey = res.data;
       this.result = this.survey['survey_result'];
@@ -293,10 +290,14 @@ class ReportController {
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE
       this.setOverallResult(parseFloat(this.result['dmb']));
+
+      // Enable to test unused, optional dimension for news (Should not be shown)
+      // this.result['dmb_d']['reader_revenue'] = null;
+      // Enable to test 0 value, optional dimension for news (Should be shown)
+      // this.result['dmb_d']['advertising_revenue'] = 0;
       this.dimensionsResults = this.result['dmb_d'];
 
-      // // ENABLE TO TEST OPTIONAL DIMENSION IN NEWS
-      // // reportService.dmb_d['reader_revenue'] = null;
+      this.dimensions = tenantConf.dimensions.filter((key) => this.result['dmb_d'][key] !== null);
 
       this.ngTimeout_(() => {
         this.renderTabset = true;
