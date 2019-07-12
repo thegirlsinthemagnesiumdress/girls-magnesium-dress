@@ -234,8 +234,6 @@ msgstr "Estonya"
 msgid "Ethiopia"
 msgstr "Etiyopya"
 
-#, fuzzy
-#| msgid "Falkland Islands (Malvinas"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland Adaları (Malvinas)"
 
@@ -314,8 +312,6 @@ msgstr "Haiti"
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard Adası ve McDonald Adaları"
 
-#, fuzzy
-#| msgid "Holy See (Vatican City State"
 msgid "Holy See (Vatican City State)"
 msgstr "Papalık (Vatikan Şehir Devleti)"
 
@@ -589,8 +585,6 @@ msgstr "Saint Kitts ve Nevis"
 msgid "Saint Lucia"
 msgstr "Saint Lucia"
 
-#, fuzzy
-#| msgid "Saint Martin (French part"
 msgid "Saint Martin (French part)"
 msgstr "Saint Martin (Fransız Bölgesi)"
 
@@ -627,8 +621,6 @@ msgstr "Sierra Leone"
 msgid "Singapore"
 msgstr "Singapur"
 
-#, fuzzy
-#| msgid "Sint Maarten (Dutch part"
 msgid "Sint Maarten (Dutch part)"
 msgstr "Sint Maarten (Hollanda Toprakları)"
 
@@ -859,8 +851,6 @@ msgstr "4 olgunluk düzeyinden en üstte yer alandır. Birden fazla kanalda, her
 msgid "Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences."
 msgstr "Başarılı bir ilişkilendirme için, tüm müşteri temas noktalarının ölçümü ve değer ataması doğru bir şekilde yapılmalıdır. Bunu yaptığınız takdirde, bilinçli yatırım kararları verir ve daha iyi, daha etkili deneyimler oluşturursunuz."
 
-#, fuzzy
-#| msgid "Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content."
 msgid "Reaching consumers is not enough. They demand assistive experiences - fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content."
 msgstr "Tüketicilere ulaşmak yeterli değildir. Tüketiciler sizden işlerini kolaylaştıran hızlı, sorunsuz ve özel ihtiyaçlarına uygun deneyimler bekler. Web siteniz, uygulamanız, reklamlarınız ve markalı içeriğiniz de dahil olmak üzere tüm marka dijital temas noktalarında sezgisel ve etkili deneyimler sunmanız gerekir."
 
@@ -882,21 +872,15 @@ msgstr "Farklı ölçüm yöntemlerini bir arada kullanıyorsunuz ancak sonuçla
 msgid "You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics."
 msgstr "Çeşitli ölçüm yöntemlerinin yanında son tıklamayla ilişkilendirme harici modeller kullanıyorsunuz. Kampanya planlamasında düzenli A/B testlerinin sonuçlarından yararlanılıyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle dönüşüm metrikleri baz alınıyor."
 
-#, fuzzy
-#| msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes."
 msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
 msgstr "Çeşitli ölçüm yöntemlerinin yanında bir özel ilişkilendirme modeli kullanıyorsunuz. Yayınlandıkları sırada kampanyaları optimize etmek için, sık uygulanan A/B testlerinin sonuçlarından yararlanılıyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle işletme sonuçları baz alınıyor."
 
-#, fuzzy
-#| msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes."
 msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
 msgstr "Çeşitli ölçüm yöntemlerinin yanında veriye dayalı bir ilişkilendirme modeli kullanıyorsunuz. Yayınlandıkları sırada kampanyalar genelinde optimizasyon için, sık uygulanan A/B testlerinin sonuçlarından yararlanılıyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle işletme sonuçları baz alınıyor."
 
 msgid "The user experience and speed of your website or app is at a basic level. Your creatives are the result of isolated processes and you tend to use the same message for all users. Creative testing happens infrequently or not at all."
 msgstr "Web sitesi veya uygulamanızın kullanıcı deneyimi ve hızı temel seviyede. Reklam öğeleriniz ayrı ayrı süreçlerle üretiliyor ve genellikle tüm kullanıcılar için aynı mesajı kullanıyorsunuz. Reklam öğesi testi sık yapılmıyor ya da hiç yapılmıyor."
 
-#, fuzzy
-#| msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there's limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
 msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there’s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
 msgstr "Web siteniz veya uygulamanız için kullanıcı deneyimini optimize etmeyi ve kişiselleştirmeyi denediniz. Ekipler reklam öğesi oluşturmak için ortak çalışıyor, ancak kanallar arasında sınırlı koordinasyon var. Reklam öğelerinin etkisini artırmak için analiz yoluyla elde edilen bilgileri ve A/B testlerinin sonuçlarını kullanıyorsunuz. Mesajlarınız kitlenizin geniş segmentleri için özelleştiriliyor."
 
@@ -915,8 +899,6 @@ msgstr "Kampanyalarınızı hedeflemek için 3. taraf ve 1. taraf verilerinden y
 msgid "You use 3rd party and 1st party data to target your campaigns, covering the full marketing funnel. You have started to use insights captured in one channel in another channel. You have segmented your audience based on behavioural and interest data."
 msgstr "Kampanyalarınızı hedeflemek için 3. taraf ve 1. taraf verilerinden yararlanıyorsunuz. Pazarlama dönüşüm hunisinin tamamı kapsama alanınızda. Bir kanalda elde edilen analizleri başka bir kanalda kullanmaya başlamışsınız. Kitlenizi davranış ve ilgi alanı verilerine göre segmentlere ayırmışsınız."
 
-#, fuzzy
-#| msgid "You use 3rd party and 1st party data – including offline data – to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning."
 msgid "You use 3rd party and 1st party data - including offline data - to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning."
 msgstr "Kampanyalarınızı hedeflemek için çevrimdışı veriler de dahil olmak üzere 3. taraf ve 1. taraf verilerinden yararlanıyorsunuz. Pazarlama dönüşüm hunisinin tamamı kapsama alanınızda. Bir kanalda elde edilen analizleri başka bir kanalda kullanıyorsunuz ve kitlenizi gelişmiş analiz veya makine öğrenimine dayalı olarak segmentlere ayırmışsınız."
 
@@ -929,8 +911,6 @@ msgstr "Anahtar kelime listeleriniz mevcut ürünlerinizi kapsıyor. Dijital med
 msgid "Your keyword lists extend well beyond product-related terms and most of your digital media buys are auction-based and direct buys across a variety of inventory sources and formats. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud."
 msgstr "Anahtar kelime listelerinizin kapsamı, ürünle ilgili terimlerin çok ötesine uzanıyor. Dijital medya satın almalarınızın çoğu, çeşitli envanter kaynaklarında ve biçimlerde gerçekleştirilen açık artırmaya dayalı ve doğrudan satın alma işlemlerinden oluşuyor. Marka güvenliği ile reklam görüntülenebilirliğini sağlama ve reklam sahtekarlığını engellemeye yönelik sistemlere kaynak yatırıyorsunuz."
 
-#, fuzzy
-#| msgid "You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources – including TV or OOH – and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. "
 msgid "You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources - including TV or OOH - and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. "
 msgstr "Kapsamlı ve düzenli tutulan anahtar kelime listeleri kullanıyorsunuz. Medya satın almalarınızda, TV reklamları veya ev dışı reklamlar gibi birçok reklam biçimi ve envanter kaynağındaki çeşitli anlaşma türlerinden yararlanıyorsunuz. Marka güvenliği ile reklam görüntülenebilirliğini sağlama ve reklam sahtekarlığını engellemeye yönelik sistemlere kaynak yatırıyorsunuz. "
 
@@ -946,8 +926,6 @@ msgstr "Kampanyalarınızın birçoğunda planlama, oluşturma, izleme ve optimi
 msgid "Leveraging a variety of data signals, you make use of automation features for planning, creating, monitoring and optimising most or all of your campaigns. This may include the usage of ad servers, platform APIs and dynamic data feeds."
 msgstr "Çeşitli veri sinyalleri kullanarak, kampanyalarınızın çoğunu veya tamamını planlamak, oluşturmak, izlemek ve optimize etmek için otomasyon özelliklerinden yararlanıyorsunuz. Buna reklam sunucuları, platform API'leri ve dinamik veri feed'leri kullanmak da dahil olabiliyor."
 
-#, fuzzy
-#| msgid "Your business is held back from siloed teams, with agencies working at arm's length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
 msgid "Your business is held back from siloed teams, with agencies working at arm’s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
 msgstr "Ekiplerin birbirinden kopuk bir şekilde çalışması ve ajansların yakın ilişki kurmaması, işletmenizin gelişiminin önünde engel oluşturuyor. Tamamen özel olarak görevlendirilmiş kaynaklarınız yok. Pazarlamayla ilgili uzmanlık gerektiren belli başlı alanlarda ise hiç kaynağınız yok. "
 
@@ -978,8 +956,6 @@ msgstr "Ölçüm yeteneklerinizi geliştirin"
 msgid "Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns."
 msgstr "Etiketleme ve izleme araçlarına yatırım yapın. Yetenekleriniz arasına daha fazla ölçüm yöntemi ekleyin. Kampanyaları optimize etmek için, test sıklığını artırın ve verilerden yararlanın."
 
-#, fuzzy
-#| msgid "Build your teams' skills in web analytics"
 msgid "Build your teams’ skills in web analytics"
 msgstr "Ekiplerinizin web analizi konusundaki becerilerini geliştirin"
 
@@ -992,8 +968,6 @@ msgstr "Analytics Akademisi"
 msgid "Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit."
 msgstr "İşletmenize uygun bir ilişkilendirme modeline geçiş yapın. Gelirin ötesindeki değeri gösteren metrikler (ör. değer artışı veya kâr) kullanın."
 
-#, fuzzy
-#| msgid "Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints."
 msgid "Create a single source of truth for marketing performance and establish a shared understanding of success metrics - across all device types and across all digital touchpoints."
 msgstr "Pazarlama performansına ilişkin tek bir doğruluk kaynağı oluşturun. Tüm cihaz türleri ve tüm dijital temas noktalarında başarı metrikleriyle ilgili ortak bir anlayış belirleyin."
 
@@ -1258,8 +1232,6 @@ msgstr "Reklam harcamanızdan en iyi şekilde yararlanmak için, platformlar gen
 msgid "Automate asset optimisation"
 msgstr "Öğe optimizasyonunu otomatikleştirin"
 
-#, fuzzy
-#| msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user's location or the user's keyword. Aim to automate at least half of your creative optimisation decisions."
 msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user’s location or the user’s keyword. Aim to automate at least half of your creative optimisation decisions."
 msgstr "Reklam öğelerinizin bir kullanıcının konumu veya kullanıcının anahtar kelimesine bağlı olan reklam metni gibi varyasyonlarını test etmek için dinamik feed'lerden yararlanın. Reklam öğesi optimizasyon kararlarınızın en az yarısını otomatikleştirmeyi amaçlayın."
 
@@ -1287,8 +1259,6 @@ msgstr "Reklam öğenizin en iyi performans gösteren varyasyonunu bulmak için 
 msgid "Stay on top of new technology"
 msgstr "Yeni teknolojileri yakından takip edin"
 
-#, fuzzy
-#| msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it's feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
 msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it’s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
 msgstr "Kampanya oluşturmayı ve yönetmeyi daha verimli hale getiren yeni platform özelliklerini yakından takip edin. Örneğin, mümkün olur olmaz Talep Tarafı Platformunuzdan (TTP) geçecek yeni kanallar veya platformlarda medya satın almaya başlayın. Platform API'lerinin kampanya kurulumu, bakımı, raporlaması ve optimizasyonu sürecindeki daha fazla işi otomatikleştiren yeni özelliklerinden yararlanın."
 
@@ -1541,10 +1511,8 @@ msgstr "Yanıt hazır."
 msgid "Your roadmap to digital marketing maturity"
 msgstr "Dijital pazarlamada olgunluk için yol haritanız"
 
-#, fuzzy, python-format
-#| msgid "The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG."
 msgid "The <strong>%(prod_name)s</strong> is a diagnostic tool developed based on our in-depth research with BCG."
-msgstr "<strong>Digital Maturity Benchmark</strong>, BCG ile yürüttüğümüz kapsamlı çalışmaya dayalı olarak geliştirdiğimiz bir teşhis aracıdır."
+msgstr "<strong>%(prod_name)s</strong>, BCG ile yürüttüğümüz kapsamlı çalışmaya dayalı olarak geliştirdiğimiz bir teşhis aracıdır."
 
 msgid "Never miss a moment to connect with customers"
 msgstr "Müşterilerle bağlantı kurmak için hiçbir fırsatı kaçırmayın"
@@ -1766,10 +1734,8 @@ msgstr "Alakalı ve kendileri için özel olarak oluşturulmuş deneyimler istiy
 msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
 msgstr "\"Yakınımdaki\" aramaları son 2 yılda Avrupa, Orta Doğu ve Afrika'da Google Arama için 4,5 ve Google Haritalar için 6 katına çıktı.&nbsp;"
 
-#, fuzzy, python-format
-#| msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;"
 msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
-msgstr "Pazarlamacıların %%89'u, müşteri ihtiyaçlarını önceden kestirmenin ve tüketici yolculuğu boyunca faydalı deneyimler sunmanın markalarının büyümesi açısından kritik öneme sahip olduğunu söylüyor.&nbsp;"
+msgstr "Pazarlamacıların %%89'u, müşteri ihtiyaçlarını önceden kestirmenin ve tüketici yolculuğu boyunca faydalı deneyimler sunmanın markalarının büyümesi açısından kritik öneme sahip olduğunu söylüyor."
 
 msgid "Impatient"
 msgstr "Sabırsız"
