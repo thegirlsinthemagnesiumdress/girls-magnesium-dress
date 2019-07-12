@@ -1,0 +1,45 @@
+.dmb-report-debug-toggle {
+  background-color: #fff;
+  border-radius: 1em;
+  bottom: 3px;
+  color: #1a73e8;
+  font-weight: 400;
+  padding: 5px;
+  position: fixed;
+  right: 20px;
+  z-index: 1001;
+}
+
+.dmb-report-debug-toggle--active {
+  background: $dmb-color-grey-zircon;
+  bottom: 2px;
+  color: #1a73e8;
+  font-size: .75em;
+  position: fixed;
+  right: 20px;
+  z-index: 1001;
+}
+
+.dmb-report-debug-toolbar {
+  background: $dmb-color-grey-zircon;
+  border-top: 1px solid #000;
+  bottom: 0;
+  font-size: .75em;
+  left: 0;
+  padding: 10px 0;
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+
+  .h-c-page {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  input {
+    border: 1px solid #000;
+    margin-right: 20px;
+    width: 5ch;
+  }
+}

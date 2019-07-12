@@ -1,6 +1,8 @@
 # coding=utf-8
 # flake8: noqa
 from django.utils.translation import gettext_lazy as _
+from collections import OrderedDict
+from core.conf import utils
 from . import GOOGLE_SHEET_BASE_SURVEY_FIELDS, GOOGLE_SHEET_BASE_RESULT_FIELDS
 
 DIMENSION_ADS = 'ads'
@@ -14,6 +16,7 @@ LEVEL_0 = 0
 LEVEL_1 = 1
 LEVEL_2 = 2
 LEVEL_3 = 3
+LEVELS_MAX = 4
 
 
 WEIGHTS = {
@@ -162,7 +165,7 @@ REPORT_LEVEL_DESCRIPTIONS = {
     LEVEL_3: _('This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
 }
 
-DIMENSION_HEADER_DESCRIPTION = {
+DIMENSION_HEADER_DESCRIPTIONS = {
     DIMENSION_ATTRIBUTION: _('Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences.'),
     DIMENSION_ADS: _('Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content.'),
     DIMENSION_AUDIENCE: _('To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel.'),
@@ -210,7 +213,7 @@ DIMENSION_LEVEL_DESCRIPTION = {
     },
 }
 
-DIMENSION_LEVEL_RECOMMENDATIONS = {
+DIMENSION_RECOMMENDATIONS = {
     DIMENSION_ATTRIBUTION: {
         LEVEL_0: [{
             'header': _('Measure the true value of your marketing activities'),
@@ -584,13 +587,14 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 
 CONTENT_DATA = {
     'levels': LEVELS,
+    'levels_max': LEVELS_MAX,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
     'dimension_labels': DIMENSION_TITLES,
-    'dimension_headers_descriptions': DIMENSION_HEADER_DESCRIPTION,
+    'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
-    'dimension_level_recommendations': DIMENSION_LEVEL_RECOMMENDATIONS,
+    'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
 }
@@ -600,3 +604,90 @@ GOOGLE_SHEET_EXPORT_SURVEY_FIELDS = GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS = GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
+
+HIERARCHICAL_INDUSTRIES = OrderedDict([
+    ('afs', (_('Accommodation and food service'), None)),
+    ('aer', (_('Arts, entertainment & recreation'), None)),
+    ('co', (_('Construction'), None)),
+    ('edu', (_('Education'), OrderedDict([
+        ('edu-fe', (_('Further education'), None)),
+        ('edu-o', (_('Other'), None)),
+        ('edu-pe', (_('Primary education'), None)),
+        ('edu-se', (_('Secondary education'), None)),
+    ]))),
+    ('egsw', (_('Electricity, gas, steam, water'), None)),
+    ('fi', (_('Financial and Insurance'), OrderedDict([
+        ('fi-b', (_('Banking'), None)),
+        ('fi-i', (_('Insurance'), None)),
+        ('fi-o', (_('Other'), None)),
+    ]))),
+    ('hh&sw', (_('Human health & social work'), None)),
+    ('ic', (_('Information and Communication'), OrderedDict([
+        ('ic-bnpj', (_('Books, news, periodicals, journals'), None)),
+        ('ic-o', (_('Other'), None)),
+        ('ic-s', (_('Software'), None)),
+        ('ic-trmvm', (_('TV, radio, movies, video, music'), None)),
+        ('ic-t', (_('Telecommunications'), None)),
+    ]))),
+    ('ma', (_('Manufacturing'), OrderedDict([
+        ('ma-c', (_('Chemicals'), None)),
+        ('ma-ctd', (_('Cosmetics, toiletries, detergents'), None)),
+        ('ma-e', (_('Electronics'), None)),
+        ('ma-fb', (_('Food & beverages'), None)),
+        ('ma-f', (_('Furniture'), None)),
+        ('ma-me', (_('Machinery & equipment'), None)),
+        ('ma-o', (_('Other'), None)),
+        ('ma-p', (_('Pharmaceuticals'), None)),
+        ('ma-tfa', (_('Textiles, footwear & apparel'), None)),
+        ('ma-tg', (_('Toys & games'), None)),
+        ('ma-v', (_('Vehicles'), None)),
+    ]))),
+    ('other', (_('Other service activities - Other'), None)),
+    ('os-p', (_('Other service activities - Printing'), None)),
+    ('pa', (_('Professional activities'), OrderedDict([
+        ('pa-c', (_('Consultancy'), None)),
+        ('pa-l', (_('Legal'), None)),
+        ('pa-o', (_('Other'), None)),
+        ('pa-r', (_('Research'), None)),
+    ]))),
+    ('papo', (_('Public administration & political organisations'), None)),
+    ('re', (_('Real estate'), None)),
+    ('rt', (_('Retail trade'), OrderedDict([
+        ('r-mc', (_('Multi-category'), None)),
+        ('rt-bmv', (_('Books, music, video'), None)),
+        ('rt-c', (_('Chemicals'), None)),
+        ('rt-ctd', (_('Cosmetics, toiletries, detergents'), None)),
+        ('rt-e', (_('Electronics'), None)),
+        ('rt-fb', (_('Food and beverages'), None)),
+        ('rt-f', (_('Furniture'), None)),
+        ('rt-hg', (_('Household goods'), None)),
+        ('rt-me', (_('Machinery & equipment'), None)),
+        ('rt-o', (_('Other'), None)),
+        ('rt-p', (_('Pharmaceuticals'), None)),
+        ('rt-tfa', (_('Textiles, footwear & apparel'), None)),
+        ('rt-tg', (_('Toys & games'), None)),
+        ('rt-v', (_('Vehicles'), None)),
+    ]))),
+    ('tt', (_('Transportation and Travel'), OrderedDict([
+        ('tt-o', (_('Other'), None)),
+        ('tt-rflw', (_('Railway, flight, land & water transport'), None)),
+        ('tt-tato', (_('Travel agency & tour operator'), None)),
+    ]))),
+    ('wt', (_('Wholesale trade'), OrderedDict([
+        ('wt-bmv', (_('Books, music, video'), None)),
+        ('wt-c', (_('Chemicals'), None)),
+        ('wt-ctd', (_('Cosmetics, toiletries, detergents'), None)),
+        ('wt-e', (_('Electronics'), None)),
+        ('wt-fb', (_('Food and beverages'), None)),
+        ('wt-f', (_('Furniture'), None)),
+        ('wt-hg', (_('Household goods'), None)),
+        ('wt-me', (_('Machinery & equipment'), None)),
+        ('wt-o', (_('Other'), None)),
+        ('wt-p', (_('Pharmaceuticals'), None)),
+        ('wt-tfa', (_('Textiles, footwear & apparel'), None)),
+        ('wt-tg', (_('Toys & games'), None)),
+        ('wt-v', (_('Vehicles'), None)),
+    ]))),
+])
+
+INDUSTRIES = utils.map_industries(HIERARCHICAL_INDUSTRIES, None, {})

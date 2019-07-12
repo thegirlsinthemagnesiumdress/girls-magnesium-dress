@@ -141,14 +141,17 @@ def data_to_questions(survey_data, dimensions, multianswers, weights, default_we
         except ValueError:
             pass
 
-        return (
+        questions_dimensions = get_question_dimension(question_key, dimensions)
+        return [(
             question_key,
             question_value,
             weights.get(question_key, default_weight),
-            get_question_dimension(question_key, dimensions)
-        )
+            dimension
+        ) for dimension in questions_dimensions]
 
-    questions = map(lambda x: create_tuple(x, data), data)
+    questions = []
+    for x in data:
+        questions.extend(create_tuple(x, data))
 
     return questions
 
@@ -187,9 +190,11 @@ def to_raw(questions, questions_text):
 
 
 def get_question_dimension(question_id, dimensions):
+    questions_dimensions = []
     for dimension_key, dimension_value in dimensions.iteritems():
         if question_id in dimension_value:
-            return dimension_key
+            questions_dimensions.append(dimension_key)
+    return questions_dimensions
 
 
 def discard_scores(survey_data, threshold):

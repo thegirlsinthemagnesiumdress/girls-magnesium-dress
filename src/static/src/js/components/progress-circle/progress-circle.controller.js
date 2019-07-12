@@ -1,19 +1,15 @@
 goog.module('dmb.components.progressCircle.controller');
 
-
 /**
  * DOM selectors used by component.
  *
  * @const
- * @type {Object}
+ * @type {string}
  */
-const DOM_SELECTORS = {
-  progressBar: '.dmb-progress-circle__prog-bar',
-};
-
+const progressBarClass = '.dmb-progress-circle__prog-bar';
 
 /**
- * ProgressCircle class controller.
+ * ProgressCircle class controller
  */
 class ProgressCircleController {
   /**
@@ -22,43 +18,45 @@ class ProgressCircleController {
    * @param {!angular.JQLite} $element
    * @param {!angular.Attributes} $attrs
    * @param {!angular.Scope} $scope
-   * @param {!angular.$filter} $filter
-   * @param {!Function} floorDmbFactory
+   * @param {!Object} tenantConf
    *
    * @ngInject
    */
-  constructor($element, $attrs, $scope, $filter, floorDmbFactory) {
-    /**
-     * @export
-     * @type {Object}
-     */
-    this.level = null;
-
-    /**
-     * @type {angular.JQLite}
-     * @private
-     */
-    this.$element_ = $element;
-
+  constructor($element, $attrs, $scope, tenantConf) {
     /**
      * @type {HTMLElement}
      * @private
      */
-    this.progressBar_ = $element[0].querySelector(DOM_SELECTORS.progressBar);
+    this.progressBar_ = $element[0].querySelector(progressBarClass);
 
-    $scope.$watch($attrs['dmbProgressCircle'], (nVal) => {
-      this.level = floorDmbFactory(nVal);
-      const prog = $filter('dmbPercentageNumber')(nVal);
-      this.setProgressCircle(prog);
+        /**
+     * @type {Object}
+     * @export
+     */
+    this.firstLevel = tenantConf.levelsArray[0];
+
+    /**
+     * The circumference in pixels of the SVG circle we're animating.
+     * Used to calculate the size of the progress
+     * @type {number}
+     * @export
+     */
+    this.svgCircumference = 339.292;
+
+    $scope.$watch($attrs['dmbProgressCircle'], (dmbScore) => {
+      if (dmbScore !== null) {
+        const percentComplete = ((dmbScore - this.firstLevel) / (tenantConf.levelsMax - this.firstLevel)) * 100;
+        this.setProgressCircle(percentComplete);
+      }
     });
   }
 
   /**
    * Sets the circle progress by setting the strole-dashoffset.
-   * @param {!number} progress
+   * @param {!number} percentComplete
    */
-  setProgressCircle(progress) {
-    const dashOffset = 339.292 * (100 - progress) / 100;
+  setProgressCircle(percentComplete) {
+    const dashOffset = this.svgCircumference * (100 - percentComplete) / 100;
     this.progressBar_.setAttribute('style', `stroke-dashoffset: ${dashOffset};`);
   }
 }

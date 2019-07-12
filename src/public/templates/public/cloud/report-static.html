@@ -1,0 +1,36 @@
+{% extends 'public/base.html' %}
+
+{% load angular %}
+
+{% block body_class %}dmb-report{% endblock %}
+
+{% block main %}
+<main id="dmb-report" dmb-report ng-cloak>
+  <div ng-if="reportCtrl.overallResult !== null">
+    {% include 'public/cloud/report/report-intro.inc.html' %}
+    {% include 'public/cloud/report/report-hero.inc.html' %}
+    {% include 'public/cloud/report/report-overall.inc.html' %}
+    {% include 'public/cloud/report/report-dimensions.inc.html' %}
+  </div>
+    {% if debug or is_nightly %}
+      {% include 'public/inc/report/report-debug.inc.html' %}
+    {% endif %}
+</main>
+
+<div class="dmb-report-page__appendix dmb-h-hidden--screen">
+  <h2 class="h-c-headline h-c-headline--three">
+    Appendix
+  </h2>
+</div>
+
+{% include 'public/inc/report/side-panels/levels-side-panel.inc.html' %}
+{% include 'public/inc/report/side-panels/industry-side-panel.inc.html' %}
+{% include 'public/inc/report/side-panels/dimensions-side-panel.inc.html' %}
+{% include 'public/inc/report/side-panels/subdimensions-side-panel.inc.html' %}
+
+
+{% endblock %}
+
+{% block footer %}
+  {% include 'public/inc/global/footer.html' with footerClass="dmb-h-hidden--print" footerAttribute="ng-cloak" %}
+{% endblock footer %}

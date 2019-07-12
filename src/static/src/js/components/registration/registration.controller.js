@@ -135,6 +135,7 @@ class RegistrationController {
    * @export
    */
   reset() {
+    this.accountId= '';
     this.companyName = '';
     this.industry = '';
     this.country = '';

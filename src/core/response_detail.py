@@ -7,7 +7,7 @@ from core.qualtrics.question import get_question_dimension
 class SurveyDefinition(object):
     def __init__(self, definition, dimensions, dimensions_titles):
         self.definition = definition
-        self.dimensions = dimensions
+        self.dimensions = {d: dimensions[d] for d in dimensions_titles.keys()}
         self.dimensions_titles = dimensions_titles
 
     def get_questions(self):
@@ -26,18 +26,19 @@ class SurveyDefinition(object):
 
                 q_definition = self._get_question(def_q_id)
                 q_id = q_definition['id']
-                q_dimension = get_question_dimension(q_id, self.dimensions)
+                q_dimensions = get_question_dimension(q_id, self.dimensions)
 
-                if q_dimension:
-                    questions['definitions'][q_id] = q_definition
-                    questions['questions_by_dimension'][q_dimension].append(q_id)
+                if q_dimensions:
+                    for q_dimension in q_dimensions:
+                        questions['definitions'][q_id] = q_definition
+                        questions['questions_by_dimension'][q_dimension].append(q_id)
 
-                    dimension_obj = {
-                        'id': q_dimension,
-                        'title': self.dimensions_titles.get(q_dimension),
-                    }
-                    if dimension_obj not in questions['dimensions']:
-                        questions['dimensions'].append(dimension_obj)
+                        dimension_obj = {
+                            'id': q_dimension,
+                            'title': self.dimensions_titles.get(q_dimension),
+                        }
+                        if dimension_obj not in questions['dimensions']:
+                            questions['dimensions'].append(dimension_obj)
 
         return questions
 
@@ -104,6 +105,10 @@ def get_response_detail(definition, response_data, dimensions, dimensions_titles
     response_detail = copy.deepcopy(questions)
 
     for q_id, q_definition in response_detail['definitions'].items():
+        # Remove <br />'s from choices_map to allow for matching
+        string_choice_map = dict((key.replace("<br />", ""), value)
+                                 for (key, value) in q_definition['choices_map'].items())
+
         # Array containing a list of choice texts that are not anymore in the schema.
         q_definition['not_in_schema_text'] = []
 
@@ -112,9 +117,9 @@ def get_response_detail(definition, response_data, dimensions, dimensions_titles
         if question_data:
             q_definition['available'] = True
             for choice_text in question_data['choices_text']:
-                choice_map = q_definition['choices_map'].get(choice_text, False)
+                choice_map = string_choice_map.get(choice_text, False)
                 if choice_map:
-                    q_definition['choices_map'][choice_text]['selected'] = True
+                    q_definition['choices_map'][choice_map['text']]['selected'] = True
                 elif choice_text:
                     q_definition['not_in_schema_text'].append(choice_text)
 
