@@ -114,6 +114,13 @@ def get_tenant_slug(tenant):
     return settings.TENANTS[tenant]['slug']
 
 
+def get_other_tenant_footers(tenant):
+    """Returns a list of tenants slugs and their footer labels, excluding the current tentant."""
+    return [(other_tenant['footer_label'], other_tenant['slug'])
+            for _, other_tenant in settings.TENANTS.items()
+            if other_tenant['slug'] is not get_tenant_slug(tenant)]
+
+
 def version_info(domain):
     """Returns version to be set on Qualtrics, based on domain parameter.
     :param domain:
