@@ -1,4 +1,6 @@
-  goog.module('dmb.survey.scrollToFirstError');
+goog.module('dmb.survey.scrollToFirstError');
+
+const selector = '.Highlight .ValidationError';
 
 /**
  * Binds the event listener
@@ -11,7 +13,10 @@ function init() {
    * - addOnUnload
    */
   window['Qualtrics']['SurveyEngine']['addOnload'](tempHideHeader);
-  window['Qualtrics']['SurveyEngine']['addOnReady'](scrollToFirstError);
+  window['Qualtrics']['SurveyEngine']['addOnload'](() => {
+    // Added in timeout to eleveate race condition on page loading and scrolling being triggered
+    window['setTimeout'](scrollToFirstError, 0);
+  });
 }
 
 /**
@@ -19,18 +24,11 @@ function init() {
  * not on the first page or the survey)
  */
 function scrollToFirstError() {
-  const className = '.ValidationError';
   // Get all validation errors
-  let elements = document.querySelectorAll(className);
-  elements = Array.from(elements);
-  // Get the first visible validation error element
-  let firstError = elements.find((element) => {
-    return getComputedStyle(element).display != 'none';
-  });
+  let firstError = document.querySelector(selector);
   // If there is a validation error visible then scroll to the error
   if (firstError) {
     // Get the parent so the whole element is visible on scroll
-    firstError = firstError.closest('.QuestionOuter');
     // Use element.scollIntoView instead of window.scroll since all of the window
     // scroll methods refused to work.
     // Scrolls the page so the element in question is in the viewport
