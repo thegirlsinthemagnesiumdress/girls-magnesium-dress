@@ -35,11 +35,8 @@ LANGUAGE_CODES = [key for key, lang in settings.LANGUAGES]
 
 BASE_PATH = os.path.join(settings.BASE_DIR, "static/src/img/")
 
-DRIVER = 'chromedriver'
-driver = webdriver.Chrome(DRIVER)
 
-
-def take_screenshot(focused_element, path):
+def take_screenshot(driver, focused_element, path):
     driver.execute_script("arguments[0].scrollIntoView();", focused_element)
     # Arbitrary padding
     driver.execute_script("window.scrollBy(0, -20);")
@@ -54,7 +51,7 @@ def take_screenshot(focused_element, path):
     driver.save_screenshot(path)
 
 
-def take_screenshots(path):
+def take_screenshots(driver, path, retina=False):
     if not os.path.exists(path):
         os.makedirs(path)
     for screen_name, screen in SCREEN_SIZES.items():
@@ -72,29 +69,40 @@ def take_screenshots(path):
                 (By.CLASS_NAME, screen['focused_element'])
             )
         )
-        take_screenshot(element, path + '/{}.png'.format(screen_name))
-        # Need some way to scale the image in python due to HTML/CSS breakpoints
-        # driver.set_window_size(w * 2, h * 2)
-        take_screenshot(element, path + '/{}@2x.png'.format(screen_name))
+        if retina:
+            take_screenshot(driver, element, path + '/{}@2x.png'.format(screen_name))
+        else:
+            take_screenshot(driver, element, path + '/{}.png'.format(screen_name))
+
+
+def take_tenant_screenshots(driver, retina=False):
+    # Loop through tenants
+    for tenant_name, tenant in settings.TENANTS.items():
+        # If tenant supports i18n then repeat for each language
+        if tenant['i18n']:
+            for locale in LANGUAGE_CODES:
+                driver.get('http://localhost:8000/{}/{}/reports/{}'
+                           .format(locale, tenant['slug'], tenant['screenshot_report_id']))
+                path = BASE_PATH + "/{}/home".format(tenant_name)
+                if locale != 'en':
+                    path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
+                take_screenshots(driver, path)
+        else:
+            driver.get('http://localhost:8000/{}/reports/{}'
+                       .format(tenant['slug'], tenant['screenshot_report_id']))
+            path = BASE_PATH + "/{}/home".format(tenant_name)
+            take_screenshots(driver, path)
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        # Loop through tenants
-        for tenant_name, tenant in settings.TENANTS.items():
-            # If tenant supports i18n then repeat for each language
-            if tenant['i18n']:
-                for locale in LANGUAGE_CODES:
-                    driver.get('http://localhost:8000/{}/{}/reports/{}'
-                               .format(locale, tenant['slug'], tenant['screenshot_report_id']))
-                    path = BASE_PATH + "/{}/home".format(tenant_name)
-                    if locale != 'en':
-                        path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
-                    take_screenshots(path)
-            else:
-                driver.get('http://localhost:8000/{}/reports/{}'
-                           .format(tenant['slug'], tenant['screenshot_report_id']))
-                path = BASE_PATH + "/{}/home".format(tenant_name)
-                take_screenshots(path)
-        # Exit the chrome driver
+        # Take 1x screenshots
+        driver = webdriver.Chrome()
+        take_tenant_screenshots(driver)
         driver.close()
+        # Take 2x screenshots
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--force-device-scale-factor=2")
+        retina_driver = webdriver.Chrome(options=chrome_options)
+        take_tenant_screenshots(retina_driver, retina=True)
+        retina_driver.close()
