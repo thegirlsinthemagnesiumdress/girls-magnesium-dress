@@ -67,17 +67,16 @@ if __name__ == "__main__":
     if "deploy" in sys.argv and "--settings" not in sys.argv:
         print("NOTE: Using core.settings.live as we are deploying")
         os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.live"
+        kwargs = {}
     elif "test" in sys.argv:
+        from djangae.core.management import test_execute_from_command_line
         print("NOTE: Using core.settings.local as we are testing")
         os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.local"
-
-    if "test" in sys.argv:
-        from djangae.core.management import test_execute_from_command_line
         test_execute_from_command_line(sys.argv)
     else:
+        print("NOTE: Using core.settings.loca as we are on local env")
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
-        from djangae.core.management import execute_from_command_line
-
         kwargs = _configure_service_account()
 
-        execute_from_command_line(sys.argv, **kwargs)
+    from djangae.core.management import execute_from_command_line
+    execute_from_command_line(sys.argv, **kwargs)
