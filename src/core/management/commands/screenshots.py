@@ -33,8 +33,25 @@ HIDDEN_SELECTORS = [
 
 LANGUAGE_CODES = ['en', 'es']
 
+BASE_PATH = os.path.join(settings.BASE_DIR, "static/src/img/")
+
 DRIVER = 'chromedriver'
 driver = webdriver.Chrome(DRIVER)
+
+
+def take_screenshot(focused_element, path):
+    driver.execute_script("arguments[0].scrollIntoView();", focused_element)
+    # Arbitrary padding
+    driver.execute_script("window.scrollBy(0, -20);")
+    # Hide any debug or unwanted elements
+    for selector in HIDDEN_SELECTORS:
+        driver.execute_script(
+            "if (document.querySelector('{0}')) document.querySelector('{0}').style.display = 'none'"
+            .format(selector)
+        )
+    # Arbitrary timeout of scrollbar
+    time.sleep(0.5)
+    driver.save_screenshot(path)
 
 
 def take_screenshots(path):
@@ -43,25 +60,22 @@ def take_screenshots(path):
     for screen_name, screen in SCREEN_SIZES.items():
         # Resize the screen to the correct size
         w, h = screen['size']
-        driver.set_window_size(w, h)
+        # Execute script to get adjusted window size (due to chrome bar etc.)
+        window_size = driver.execute_script("""
+        return [window.outerWidth - window.innerWidth + arguments[0],
+          window.outerHeight - window.innerHeight + arguments[1]];
+        """, w, h)
+        driver.set_window_size(*window_size)
         # Wait until the angular content has loaded
         element = WebDriverWait(driver, 1).until(
             EC.presence_of_element_located(
                 (By.CLASS_NAME, screen['focused_element'])
             )
         )
-        driver.execute_script("arguments[0].scrollIntoView();", element)
-        # Arbitrary padding
-        driver.execute_script("window.scrollBy(0, -20);")
-        # Hide any debug or unwanted elements
-        for selector in HIDDEN_SELECTORS:
-            driver.execute_script(
-                "if (document.querySelector('{0}')) document.querySelector('{0}').style.display = 'none'"
-                .format(selector)
-            )
-        # Arbitrary timeout of scrollbar
-        time.sleep(0.5)
-        driver.save_screenshot(path + '/{}.png'.format(screen_name))
+        take_screenshot(element, path + '/{}.png'.format(screen_name))
+        # Need some way to scale the image in python due to HTML/CSS breakpoints
+        # driver.set_window_size(w * 2, h * 2)
+        take_screenshot(element, path + '/{}@2x.png'.format(screen_name))
 
 
 class Command(BaseCommand):
@@ -71,14 +85,16 @@ class Command(BaseCommand):
             # If tenant supports i18n then repeat for each language
             if tenant['i18n']:
                 for locale in LANGUAGE_CODES:
-                    driver.get('http://localhost:8000/{}/{}/reports/{}'.format(locale, tenant['slug'], tenant['screenshot_report_id']))
-                    path = os.path.join(settings.BASE_DIR, "static/src/img/{}/home".format(tenant_name))
+                    driver.get('http://localhost:8000/{}/{}/reports/{}'
+                               .format(locale, tenant['slug'], tenant['screenshot_report_id']))
+                    path = BASE_PATH + "/{}/home".format(tenant_name)
                     if locale != 'en':
-                        path = os.path.join(settings.BASE_DIR, "static/src/img/{}/{}/home".format(locale, tenant_name))
+                        path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
                     take_screenshots(path)
             else:
-                driver.get('http://localhost:8000/{}/reports/{}'.format(tenant['slug'], tenant['screenshot_report_id']))
-                path = os.path.join(settings.BASE_DIR, "static/src/img/{}/home".format(tenant_name))
+                driver.get('http://localhost:8000/{}/reports/{}'
+                           .format(tenant['slug'], tenant['screenshot_report_id']))
+                path = BASE_PATH + "/{}/home".format(tenant_name)
                 take_screenshots(path)
         # Exit the chrome driver
         driver.close()
