@@ -31,7 +31,7 @@ HIDDEN_SELECTORS = [
     '.dmb-header'
 ]
 
-LANGUAGE_CODES = ['en', 'es']
+LANGUAGE_CODES = [key for key, lang in settings.LANGUAGES]
 
 BASE_PATH = os.path.join(settings.BASE_DIR, "static/src/img/")
 
