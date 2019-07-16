@@ -8,11 +8,7 @@
       alt="background image">
 
   {% trans "laptop screen demo" as alt_text %}
-  <!-- {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img' img='img/ads/home/laptop' ext='png' alt='alt_text' %} -->
-  <img class='dmb-product-hero__img'
-    srcset="{% static_i18n 'ads/home/laptop.png' %} 1x, {% static_i18n 'ads/home/laptop@2x.png' %} 2x"
-    src="{% static_i18n 'ads/home/laptop.png' %}"
-    alt='alt_text'/>
+  {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-product-hero__img' img='ads/home/laptop' ext='png' alt='alt_text' %}
 
   <div class="dmb-product-hero__color-bg"></div>
 </section>

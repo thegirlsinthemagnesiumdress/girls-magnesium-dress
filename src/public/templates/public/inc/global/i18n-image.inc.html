@@ -1,0 +1,24 @@
+{% comment %}
+
+  Generates an <img> tag with an srcset with 1x and 2x versions of the image
+  in the correct locale
+
+  Arguments:
+    img: image file path relative to static/img directory without file extension
+    ext: image file extension
+    classes: (optional) space-separated classnames to give image
+    alt: (optional) image alt text
+
+  Usage:
+
+    {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-class dmb-class-2' img='news/home-collage-img1' ext='jpg' alt='image alt' %}
+
+{% endcomment %}
+
+{% load staticfiles %}
+
+<img
+  srcset="{% static_i18n img %}.{{ext}} 1x, {% static_i18n img %}@2x.{{ext}} 2x"
+  src="{% static_i18n img %}.{{ext}}"
+  {% if class %}class="{{class}}"{% endif %}
+  {% if alt %}alt="{{alt}}"{% endif %} />
