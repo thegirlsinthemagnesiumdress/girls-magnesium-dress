@@ -35,7 +35,8 @@ class Command(BaseCommand):
         version = options['app-version']
         if options['prod']:
             print("Starting production deployment..")
-            return
+            application = PROD_APP_ID
         else:
             print("Starting staging deployment..")
-            run_deployment(STAGING_APP_ID, version, settings_string='core.settings.live')
+            application = STAGING_APP_ID
+        run_deployment(application, version, settings_string='core.settings.live')
