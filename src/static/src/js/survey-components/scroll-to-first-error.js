@@ -15,7 +15,7 @@ function init() {
   window['Qualtrics']['SurveyEngine']['addOnload'](tempHideHeader);
   window['Qualtrics']['SurveyEngine']['addOnload'](() => {
     // Added in timeout to eleveate race condition on page loading and scrolling being triggered
-    window['setTimeout'](scrollToFirstError, 0);
+    window['setTimeout'](scrollToFirstError, 500);
   });
 }
 
