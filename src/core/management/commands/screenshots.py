@@ -47,7 +47,7 @@ def take_screenshot(driver, focused_element, path):
             .format(selector)
         )
     # Arbitrary timeout of scrollbar
-    time.sleep(0.5)
+    time.sleep(0.6)
     driver.save_screenshot(path)
 
 

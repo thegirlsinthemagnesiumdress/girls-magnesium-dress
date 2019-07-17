@@ -10,10 +10,27 @@
     z-index: -1;
   }
 
-  &__img {
+  &__img-outer {
     max-width: 950px;
     min-width: 288px;
     width: 65%;
+  }
+
+  &__img-inner {
+    border-radius: 5px;
+    left: 25.75%;
+    max-width: 950px;
+    min-width: 288px;
+    position: absolute;
+    top: 3%;
+    width: 48%;
+  }
+
+  @media (max-width: 600px) {
+    &__img-inner {
+      min-width: 210px;
+      width: 48%;
+    }
   }
 
   &__color-bg {
