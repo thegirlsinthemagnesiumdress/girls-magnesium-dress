@@ -6,7 +6,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-import time
 import os
 
 SCREEN_SIZES = {
@@ -47,11 +46,14 @@ def take_screenshot(driver, focused_element, path):
             .format(selector)
         )
     # Arbitrary timeout of scrollbar
-    time.sleep(0.6)
     driver.save_screenshot(path)
 
 
 def take_screenshots(driver, path, retina=False):
+    # Hide the scrollbar
+    driver.execute_script(
+        "document.body.style.overflowY = 'hidden'"
+    )
     if not os.path.exists(path):
         os.makedirs(path)
     for screen_name, screen in SCREEN_SIZES.items():
@@ -86,23 +88,25 @@ def take_tenant_screenshots(driver, retina=False):
                 path = BASE_PATH + "/{}/home".format(tenant_name)
                 if locale != 'en':
                     path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
-                take_screenshots(driver, path)
+                take_screenshots(driver, path, retina)
         else:
             driver.get('http://localhost:8000/{}/reports/{}'
                        .format(tenant['slug'], tenant['screenshot_report_id']))
             path = BASE_PATH + "/{}/home".format(tenant_name)
-            take_screenshots(driver, path)
+            take_screenshots(driver, path, retina)
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # Take 1x screenshots
-        driver = webdriver.Chrome()
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--force-device-scale-factor=1")
+        driver = webdriver.Chrome(options=chrome_options)
         take_tenant_screenshots(driver)
         driver.close()
         # Take 2x screenshots
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("--force-device-scale-factor=2")
-        retina_driver = webdriver.Chrome(options=chrome_options)
+        retina_options = webdriver.ChromeOptions()
+        retina_options.add_argument("--force-device-scale-factor=2")
+        retina_driver = webdriver.Chrome(options=retina_options)
         take_tenant_screenshots(retina_driver, retina=True)
         retina_driver.close()
