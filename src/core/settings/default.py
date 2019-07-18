@@ -327,9 +327,11 @@ ANGULAR_TEMPLATES = [
 
 ALLOWED_ANGULAR_TEMPLATES = '|'.join(ANGULAR_TEMPLATES)
 
+# Qualtrics lang dict, "Qualtrics code": "django code"
 QUALTRICS_LANGS = {
     'EN': 'en',
     'ES-ES': 'es',
+    'TR': 'tr',
 }
 
 QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }
