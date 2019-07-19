@@ -14,6 +14,8 @@ libraries:
   version: "1.6.1"
 - name: six
   version: "1.9.0"
+- name: django
+  version: "1.11"
 
 builtins:
 - appstats: on
@@ -117,13 +119,22 @@ skip_files:
     - README.md
     - install_deps
     - requirements.txt
-    - sitepackages/google_appengine*
-    - sitepackages_local
+    - sitepackages/google_appengine/
+    - sitepackages_local/
     - (.*)\.scss
     - \.storage.*
     - (.*)\.pyc
     - (.*)\.scss
     - (.*)\.DS_Store
-    - node_modules
+    - node_modules/
     - static/dev
     - static/src
+    - third_party/local
+    - third_party/google_appengine/
+    - keys/
+    - bin/
+    - scripts/
+    - coverage_html/
+    - \.git
+    - \.gitignore
+    - sitepackages/django/
