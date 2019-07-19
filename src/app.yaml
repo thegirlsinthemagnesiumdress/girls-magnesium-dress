@@ -19,6 +19,9 @@ builtins:
 - appstats: on
 - remote_api: on
 
+inbound_services:
+- mail_bounce
+
 handlers:
 
 - url: /_ah/(mapreduce|queue|warmup).*
