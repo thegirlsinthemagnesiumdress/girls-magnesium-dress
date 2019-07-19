@@ -13,7 +13,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^_ah/', include('djangae.urls')),
-    url(r'^_ah/bounce$', views.receive_bounce),
+    url(r'^_ah/bounce$', views.receive_bounce, name="email-bounce"),
     # Note that by default this is also locked down with login:admin in app.yaml
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', include('djangae.contrib.gauth.urls')),

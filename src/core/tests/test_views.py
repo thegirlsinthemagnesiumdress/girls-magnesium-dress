@@ -161,3 +161,38 @@ class GenerateExportsTask(TestCase):
 
         self.assertEqual(response.status_code, 403)
         mock_defer.assert_not_called()
+
+
+class BounceEmail(TestCase):
+    """Tests for `core.views.receive_bounce` function."""
+    def setUp(self):
+        self.url = reverse('email-bounce')
+
+    def test_get_not_alowed(self):
+        """GET method on bounce email endpoint should return 405."""
+        # url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 405)
+
+    @mock.patch('core.views.logging')
+    def test_post_return_200(self, mock_logging):
+        """POST method on bounce email endpoint should return 200."""
+        # url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
+        post_data = {
+            'original-from': "appengine_email@app.com",
+            'original-to': "someone@domain.com",
+            'original-cc': "someone@domain.com",
+            'original-bcc': "someoneelse@domain.com",
+            'original-subject': "Some email subject",
+            'original-text': "Some email text",
+            'notification-from': "someone@domain.com",
+            'notification-to': "someone@domain.com",
+            'notification-cc': "someone@domain.com",
+            'notification-bcc': "someone@domain.com",
+            'notification-subject': "email bounced",
+            'notification-text': "Something went wrong",
+            'raw-message': "some email raw data",
+        }
+        response = self.client.post(self.url, data=post_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(mock_logging.error.called)
