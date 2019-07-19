@@ -26,7 +26,12 @@ inbound_services:
 
 handlers:
 
-- url: /_ah/(mapreduce|queue|warmup|bounce).*
+- url: /_ah/(mapreduce|queue|warmup).*
+  script: core.wsgi.application
+  login: admin
+  secure: always
+
+- url: /_ah/bounce
   script: core.wsgi.application
   login: admin
   secure: always
