@@ -320,8 +320,8 @@ class GenerateExportPage(TestCase):
 
     @mock.patch('djangae.deferred.defer')
     @with_appengine_user("test@google.com")
-    def test_engagement_lead_ok_no_data(self, mock_defer):
-        """If engagement_lead has no surveys, it should return empty dataset"""
+    def test_standard_user(self, mock_defer):
+        """If it's a standard user is_super_admin should be `False`"""
         engagement_lead = '1234'
         data = {
             'engagement_lead': engagement_lead
@@ -331,46 +331,23 @@ class GenerateExportPage(TestCase):
         self.assertEqual(response.status_code, 200)
         mock_defer.assert_called_once()
         args, kwargs = mock_defer.call_args
-        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
+        got_func, got_title, got_tenant, got_is_super_admin, got_el, got_headers, got_rows, got_share_with = args
         self.assertEqual(got_func, tasks.export_tenant_data)
         self.assertTrue("Digital Maturity Benchmark | Data Export |" in got_title)
-        self.assertEqual(len(got_data), 0)
-
-    @mock.patch('djangae.deferred.defer')
-    @with_appengine_user("test@google.com")
-    def test_engagement_lead_ok_data(self, mock_defer):
-        """All data belonging to engagement lead should be returned."""
-        survey_3 = make_survey_with_result(industry='ic-o', tenant='tenant1')
-        engagement_lead = '1234'
-
-        data = {
-            'engagement_lead': engagement_lead
-        }
-
-        self.survey_1.engagement_lead = engagement_lead
-        self.survey_2.engagement_lead = engagement_lead
-        survey_3.engagement_lead = '11'
-        self.survey_1.save()
-        self.survey_2.save()
-        survey_3.save()
-        url = reverse('reports_export', kwargs={'tenant': self.tenant_slug})
-        response = self.client.post(url, data=json.dumps(data), content_type="application/json")
-        self.assertEqual(response.status_code, 200)
-        mock_defer.assert_called_once()
-
-        args, kwargs = mock_defer.call_args
-        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
-        self.assertEqual(len(got_data), 2)
+        self.assertEqual(got_tenant, 'tenant1')
+        self.assertFalse(got_is_super_admin)
+        self.assertEqual(got_el, engagement_lead)
         self.assertEqual(got_share_with, response.wsgi_request.user.email)
+
 
     @mock.patch('djangae.deferred.defer')
     @with_appengine_admin('standard@google.com')
     def test_super_admin(self, mock_defer):
-        """All tenant data should be returned if super user."""
+        """All tenant data should be returned if is_super_admin is `True`."""
         # Different tenant survey
         make_survey_with_result(industry='ic-o', tenant='tenant2')
         data = {
-            'engagement_lead': '3'
+            'engagement_lead': '3',
         }
         self.survey_1.engagement_lead = '1'
         self.survey_2.engagement_lead = '2'
@@ -384,6 +361,8 @@ class GenerateExportPage(TestCase):
         mock_defer.assert_called_once()
 
         args, kwargs = mock_defer.call_args
-        got_func, got_title, got_data, got_headers, got_rows, got_share_with = args
-        self.assertEqual(len(got_data), 2)
+        got_func, got_title, got_tenant, got_is_super_admin, got_el, got_headers, got_rows, got_share_with = args
+        self.assertEqual(got_func, tasks.export_tenant_data)
+        self.assertEqual(got_tenant, 'tenant1')
         self.assertEqual(got_share_with, response.wsgi_request.user.email)
+        self.assertEqual(got_el, '3')
