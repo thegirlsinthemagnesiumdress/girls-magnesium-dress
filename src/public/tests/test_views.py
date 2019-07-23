@@ -339,7 +339,6 @@ class GenerateExportPage(TestCase):
         self.assertEqual(got_el, engagement_lead)
         self.assertEqual(got_share_with, response.wsgi_request.user.email)
 
-
     @mock.patch('djangae.deferred.defer')
     @with_appengine_admin('standard@google.com')
     def test_super_admin(self, mock_defer):
