@@ -1461,7 +1461,7 @@ class RenderEmailTemplateIntegration(TestCase):
 
 
 class ExportTenantDataSuperAdmin(TestCase):
-    """Tests for export_tenant_data function, when is_super_admin is `False`"""
+    """Tests for export_tenant_data function, when is_super_admin is `True`"""
 
     def setUp(self):
         self.share_with = "share_with@email.com"
@@ -1669,7 +1669,7 @@ class ExportTenantDataSuperAdmin(TestCase):
         args, kwargs = mocked_export.call_args
         got_title, got_headers, got_rows, got_share_with = args
 
-        # check that is has been called with 3 items
+        # check that is has been called with 2 items
         self.assertEqual("Retail Export", got_title)
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
@@ -1840,7 +1840,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         args, kwargs = mocked_export.call_args
         got_title, got_headers, got_rows, got_share_with = args
 
-        # check that is has been called with 3 items
+        # check that is has been called with 2 items
         self.assertEqual("Ads Export", got_title)
         self.assertItemsEqual(got_headers, expected_headers)
         # make sure only the requested engagement lead is exported
@@ -1875,7 +1875,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         args, kwargs = mocked_export.call_args
         got_title, got_headers, got_rows, got_share_with = args
 
-        # check that is has been called with 3 items
+        # check that is has been called with 2 items
         self.assertEqual("News Export", got_title)
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
@@ -1909,7 +1909,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         args, kwargs = mocked_export.call_args
         got_title, got_headers, got_rows, got_share_with = args
 
-        # check that is has been called with 3 items
+        # check that is has been called with 2 items
         self.assertEqual("Retail Export", got_title)
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
