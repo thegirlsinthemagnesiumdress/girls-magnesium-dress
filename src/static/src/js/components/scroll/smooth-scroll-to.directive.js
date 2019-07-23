@@ -25,14 +25,14 @@
  * https://glue-docs.appspot.com/docs/components/angularjs/smoothscroll/api/
  */
 
-goog.module('dmb.components.scroll.smoothScrollDirective');
+goog.module.declareNamespace('dmb.components.scroll.smoothScrollDirective');
 
 
-const SmoothScrollCtrl = goog.require('dmb.components.scroll.SmoothScrollCtrl');
+import * as SmoothScrollCtrl from './smooth-scroll-to.controller';
 
 
 /** @const {string} */
-const DIRECTIVE_NAME = 'dmbSmoothScroll';
+export const DIRECTIVE_NAME = 'dmbSmoothScroll';
 
 
 /**
@@ -57,7 +57,4 @@ function directive(glueSmoothScrollService, $location) {
 }
 
 
-exports = {
-  DIRECTIVE_NAME,
-  main: directive,
-};
+export const main = directive;

@@ -1,4 +1,4 @@
-goog.module('dmb.components.sidePanel.focusTrap');
+goog.module.declareNamespace('dmb.components.sidePanel.focusTrap');
 
 const FOCUSABLE_ELEMENT_SELECTOR = [
   'a',
@@ -20,7 +20,7 @@ const FOCUSABLE_ELEMENT_SELECTOR = [
 /**
  * FocusTrap class
  */
-class FocusTrap {
+export class FocusTrap {
   /**
    * Constructor
    * @param  {Element} element The element to trap focus within
@@ -94,5 +94,3 @@ class FocusTrap {
     return null;
   }
 }
-
-exports = FocusTrap;

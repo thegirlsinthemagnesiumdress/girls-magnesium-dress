@@ -1,13 +1,12 @@
-// goog.module('dmb.components.scroll');
 goog.module.declareNamespace('dmb.components.scroll');
 
 import * as config from '@google/glue/lib/ng/common/common';
 import * as service from '@google/glue/lib/ng/smoothscroll/smoothscroll-service';
 
-const scrollService = goog.require('dmb.components.scroll.service');
-const directive = goog.require('dmb.components.scroll.directive');
-const pinTopDirective = goog.require('dmb.components.scroll.pinTopDirective');
-const smoothScrollDirective = goog.require('dmb.components.scroll.smoothScrollDirective');
+import * as scrollService from './scroll.service';
+import * as directive from './scroll-aware.directive';
+import * as pinTopDirective from './scroll-pin-top.directive';
+import * as smoothScrollDirective from './smooth-scroll-to.directive';
 
 
 /** @const {string} */

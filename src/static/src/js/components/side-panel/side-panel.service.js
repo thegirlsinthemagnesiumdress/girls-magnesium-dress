@@ -1,4 +1,4 @@
-goog.module('dmb.components.sidePanel.service');
+goog.module.declareNamespace('dmb.components.sidePanel.service');
 
 /**
  * Sidepanel service.
@@ -35,7 +35,5 @@ class SidePanelService {
 SidePanelService.SERVICE_NAME = 'sidePanelService';
 
 
-exports = {
-  main: SidePanelService,
-  SERVICE_NAME: SidePanelService.SERVICE_NAME,
-};
+export const main = SidePanelService;
+export const SERVICE_NAME = SidePanelService.SERVICE_NAME;

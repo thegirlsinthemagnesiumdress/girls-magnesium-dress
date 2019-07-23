@@ -1,6 +1,6 @@
- goog.module('dmb.components.sidePanel.directive');
+ goog.module.declareNamespace('dmb.components.sidePanel.directive');
 
-const SidePanel = goog.require('dmb.components.sidePanel.class');
+import {SidePanel} from './side-panel.class';
 
 /**
  * Side panel directive.
@@ -26,10 +26,8 @@ function SidePanelDirective(sidePanelService) {
 SidePanelDirective.DIRECTIVE_NAME = 'dmbSidePanel';
 
 
-exports = {
-  main: SidePanelDirective,
-  DIRECTIVE_NAME: SidePanelDirective.DIRECTIVE_NAME,
-};
+export const main = SidePanelDirective;
+export const DIRECTIVE_NAME = SidePanelDirective.DIRECTIVE_NAME;
 
 /*
 

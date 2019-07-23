@@ -1,4 +1,4 @@
-goog.module('dmb.components.scroll.SmoothScrollCtrl');
+goog.module.declareNamespace('dmb.components.scroll.SmoothScrollCtrl');
 
 const EventType = goog.require('goog.events.EventType');
 const KeyCodes = goog.require('goog.events.KeyCodes');
@@ -111,8 +111,6 @@ SmoothScrollCtrl.CONTROLLER_NAME = 'DmbSmoothScrollCtrl';
 SmoothScrollCtrl.CONTROLLER_AS_NAME = 'dmbSmoothScrollCtrl';
 
 
-exports = {
-  main: SmoothScrollCtrl,
-  CONTROLLER_NAME: SmoothScrollCtrl.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: SmoothScrollCtrl.CONTROLLER_AS_NAME,
-};
+export const main = SmoothScrollCtrl;
+export const CONTROLLER_NAME = SmoothScrollCtrl;
+export const CONTROLLER_AS_NAME = SmoothScrollCtrl.CONTROLLER_AS_NAME;

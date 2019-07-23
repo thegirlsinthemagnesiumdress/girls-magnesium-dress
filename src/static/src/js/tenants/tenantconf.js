@@ -1,4 +1,4 @@
-goog.module('dmb.components.tenant');
+goog.module.declareNamespace('dmb.components.tenant');
 
 const tenantDataElementName = 'bootstrap-data';
 
@@ -12,7 +12,7 @@ const SERVICE_NAME = 'tenantConf';
 /**
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 /**
  * Tenant conf class
@@ -130,10 +130,3 @@ class TenantConfiguration {
 
 
 module.service(SERVICE_NAME, TenantConfiguration);
-
-
-/**
- * Registration angular module.
- * @type {!angular.Module}
- */
-exports.module = module;

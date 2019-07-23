@@ -1,8 +1,8 @@
-goog.module('dmb.components.sidePanel.class');
+goog.module.declareNamespace('dmb.components.sidePanel.class');
 
-const forceReflow = goog.require('dmb.components.forceReflow.util');
+import {forceReflow} from '../force-reflow/force-reflow.util';
 
-const FocusTrap = goog.require('dmb.components.sidePanel.focusTrap');
+import {FocusTrap} from './focus-trap.class';
 
 /**
  * Enum of the classes used in the component
@@ -21,7 +21,7 @@ const classes = {
 /**
  * Side panel class
  */
-class SidePanel {
+export class SidePanel {
   /**
    * Constructor
    * @param  {HTMLElement} element The panel element to set up.
@@ -302,5 +302,3 @@ function transitionEndPromise(element, property) {
     element.addEventListener('transitionend', transitionend);
   });
 }
-
-exports = SidePanel;
