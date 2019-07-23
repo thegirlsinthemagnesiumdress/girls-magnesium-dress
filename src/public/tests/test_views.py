@@ -336,7 +336,8 @@ class GenerateExportPage(TestCase):
         self.assertTrue("Digital Maturity Benchmark | Data Export |" in got_title)
         self.assertEqual(got_tenant, 'tenant1')
         self.assertFalse(got_is_super_admin)
-        self.assertEqual(got_el, engagement_lead)
+        self.assertNotEqual(got_el, engagement_lead)
+        self.assertEqual(got_el, response.wsgi_request.user.engagement_lead)
         self.assertEqual(got_share_with, response.wsgi_request.user.email)
 
     @mock.patch('djangae.deferred.defer')
@@ -364,4 +365,4 @@ class GenerateExportPage(TestCase):
         self.assertEqual(got_func, tasks.export_tenant_data)
         self.assertEqual(got_tenant, 'tenant1')
         self.assertEqual(got_share_with, response.wsgi_request.user.email)
-        self.assertEqual(got_el, '3')
+        self.assertEqual(got_el, response.wsgi_request.user.engagement_lead)
