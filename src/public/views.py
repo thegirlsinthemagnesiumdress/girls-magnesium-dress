@@ -217,10 +217,8 @@ def generate_spreadsheet_export(request, tenant):
         survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
         survey_result_fields_mapping = tenant_conf['GOOGLE_SHEET_EXPORT_RESULT_FIELDS']
         product_name = tenant_conf['PRODUCT_NAME']
-        data = Survey.objects.filter(tenant=tenant)
 
-        if not request.user.is_super_admin:
-            data = data.filter(engagement_lead=engagement_lead)
+        is_super_admin = request.user.is_super_admin
 
         now = datetime.datetime.now()
 
@@ -229,7 +227,9 @@ def generate_spreadsheet_export(request, tenant):
         deferred.defer(
             tasks.export_tenant_data,
             "{} | Data Export | {} ".format(product_name, now.strftime("%d-%m-%Y %H:%M")),
-            data,
+            tenant,
+            is_super_admin,
+            engagement_lead,
             survey_fields_mappings,
             survey_result_fields_mapping,
             request.user.email,
