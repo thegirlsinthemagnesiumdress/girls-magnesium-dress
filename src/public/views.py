@@ -202,8 +202,7 @@ def generate_spreadsheet_export(request, tenant):
                            "{engagement_lead}, Tenant: {tenant}")
 
     _USER_USING_DIFFERENT_EL = ("User {user} is trying to access to data that belongs to another "
-                         "Enagagement Lead: {engagement_lead}")
-
+                                "Enagagement Lead: {engagement_lead}")
 
     if request.method != "POST":
         return HttpResponse(status=405)
