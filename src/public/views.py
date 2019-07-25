@@ -201,6 +201,9 @@ def generate_spreadsheet_export(request, tenant):
     _GENERATED_INFO_MSG = ("Generate spreadsheet export for Enagagement Lead: "
                            "{engagement_lead}, Tenant: {tenant}")
 
+    _USER_USING_DIFFERENT_EL = ("User {user} is trying to access to data that belongs to another "
+                                "Enagagement Lead: {engagement_lead}")
+
     if request.method != "POST":
         return HttpResponse(status=405)
 
@@ -212,6 +215,12 @@ def generate_spreadsheet_export(request, tenant):
             msg = _MISSING_INFO_MSG.format(engagement_lead=engagement_lead, tenant=tenant)
             logging.warning(msg)
             return HttpResponse(msg, status=400)
+
+        if engagement_lead != request.user.engagement_lead:
+            msg = _USER_USING_DIFFERENT_EL.format(user=request.user.email, engagement_lead=engagement_lead)
+            logging.error(msg)
+
+        engagement_lead = request.user.engagement_lead
 
         tenant_conf = settings.TENANTS[tenant]
         survey_fields_mappings = tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS']
