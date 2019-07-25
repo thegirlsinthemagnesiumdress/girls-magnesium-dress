@@ -41,9 +41,13 @@ def make_survey_definition(**kwargs):
     return mommy.make('core.SurveyDefinition', **kwargs)
 
 
-def make_survey_with_result(industry, tenant=None):
-    survey = make_survey(industry=industry, tenant=tenant)
-    survey_res = make_survey_result(survey=survey)
+def make_survey_with_result(**kwargs):
+    sr_kwargs = {}
+    started_at = kwargs.pop('started_at', None)
+    if started_at:
+        sr_kwargs['started_at'] = started_at
+    survey = make_survey(**kwargs)
+    survey_res = make_survey_result(survey=survey, **sr_kwargs)
     survey.last_survey_result = survey_res
     survey.save()
     return survey
