@@ -6,9 +6,10 @@ const dimensionTabTemplateUrl = '/angular/dimension-tab/';
 /**
  * Dimension tab directive.
  * @ngInject
+ * @param {string} LANGUAGE_CODE
  * @return {Object} Config for the directive
  */
-function DimensionTabDirective() {
+function DimensionTabDirective(LANGUAGE_CODE) {
   return {
     restrict: 'A',
     scope: {
@@ -21,7 +22,7 @@ function DimensionTabDirective() {
       'dimensionIndReady': '<',
       'tenant': '@',
     },
-    templateUrl: dimensionTabTemplateUrl,
+    templateUrl: `/${LANGUAGE_CODE}${dimensionTabTemplateUrl}`,
     controller: dimensionTabCtrl.main,
     controllerAs: dimensionTabCtrl.CONTROLLER_AS_NAME,
     bindToController: true,
