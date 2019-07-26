@@ -8,9 +8,10 @@ const progressGridFallbackTemplateUrl = '/angular/progress-grid-fallback';
  * Side panel directive.
  * @ngInject
  * @param {boolean} cssGridSupport
+ * @param {string} LANGUAGE_CODE
  * @return {Object} Config for the directive
  */
-function ProgressGridDirective(cssGridSupport) {
+function ProgressGridDirective(cssGridSupport, LANGUAGE_CODE) {
   return {
     restrict: 'E',
     scope: {
@@ -24,7 +25,7 @@ function ProgressGridDirective(cssGridSupport) {
     controllerAs: progressGridCtrl.CONTROLLER_AS_NAME,
     bindToController: true,
     templateUrl: () => {
-      return cssGridSupport ? progressGridTemplateUrl : progressGridFallbackTemplateUrl;
+      return `/${LANGUAGE_CODE}` + (cssGridSupport ? progressGridTemplateUrl : progressGridFallbackTemplateUrl);
     },
   };
 }

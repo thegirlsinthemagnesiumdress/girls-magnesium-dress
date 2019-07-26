@@ -24,6 +24,8 @@ const tenant = goog.require('dmb.components.tenant');
 const languageSelector = goog.require('dmb.components.languageSelector');
 const copyComponent = goog.require('dmb.components.copyComponent');
 const exportReports = goog.require('dmb.components.exportReports');
+import * as languageCode from './components/language-code/language-code';
+
 
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
@@ -51,6 +53,7 @@ export const module = angular.module('dmb', [
   exportReports.module.name,
   'hercules_template_bundle',
   'ngclipboard',
+  languageCode.module.name,
 ]);
 
 try {
