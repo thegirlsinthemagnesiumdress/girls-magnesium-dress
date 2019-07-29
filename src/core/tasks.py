@@ -449,10 +449,28 @@ def get_survey_data(survey, survey_columns, dateformat):
     return survey_data
 
 
-def export_tenant_data(title, data, survey_fields, survey_result_fields, share_with, dateformat="%Y/%m/%d %H:%M:%S"):
+def _get_exportable_surveys(tenant, is_super_admin, engagement_lead):
+    data = Survey.objects.filter(tenant=tenant)
+    if not is_super_admin:
+        data = data.filter(engagement_lead=engagement_lead)
+    return data
+
+
+def export_tenant_data(
+        title,
+        tenant,
+        is_super_admin,
+        engagement_lead,
+        survey_fields,
+        survey_result_fields,
+        share_with,
+        dateformat="%Y/%m/%d %H:%M:%S"
+):
     """Export tenant data to Google Spreadsheet."""
 
     try:
+        data = _get_exportable_surveys(tenant, is_super_admin, engagement_lead)
+
         export_data = []
         survey_columns = sorted(survey_fields.keys())
         survey_result_columns = sorted(survey_result_fields.keys())

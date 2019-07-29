@@ -120,43 +120,19 @@ ROOT_URLCONF = 'core.urls'
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
-    '--disable-docstring',
-    '--progressive-bar-filled=4',
-    '--progressive-function-color=4',
-    '--with-coverage',
-    '--cover-erase',
-    '--cover-html',
-    '--cover-html-dir=coverage_html',
-    '--logging-level=CRITICAL',
-    '--nocapture',
+    '--config={}'.format(os.path.join(PROJECT_ROOT, "tox.ini")),
 ]
-
-NOSE_COVER_PACKAGES = [
-    x for x in os.listdir(BASE_DIR)
-    if (
-        os.path.exists(os.path.join(BASE_DIR, x, "models.py")) or
-        os.path.exists(os.path.join(BASE_DIR, x, "views.py")) or
-        os.path.exists(os.path.join(BASE_DIR, x, "views"))
-    )
-]
-
-for app in NOSE_COVER_PACKAGES:
-    NOSE_ARGS.append('--cover-package=%s' % app)
-
-if "--collect-only" not in sys.argv:
-    NOSE_ARGS.append('--with-progressive')
 
 NOSE_PLUGINS = [
     'nose.plugins.logcapture.LogCapture',
     'disabledoc.plugin.DisableDocstring',
     'noseprogressive.plugin.ProgressivePlugin',
     'djangae.noseplugin.DjangaePlugin',
-    # 'nose_exclude.NoseExclude'
 ]
 
 # Internationalization
@@ -167,6 +143,7 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', 'English'),
     ('es', 'Español'),
+    ('tr', 'Türkçe'),
 ]
 
 TIME_ZONE = 'UTC'
@@ -326,9 +303,11 @@ ANGULAR_TEMPLATES = [
 
 ALLOWED_ANGULAR_TEMPLATES = '|'.join(ANGULAR_TEMPLATES)
 
+# Qualtrics lang dict, "Qualtrics code": "django code"
 QUALTRICS_LANGS = {
     'EN': 'en',
     'ES-ES': 'es',
+    'TR': 'tr',
 }
 
 QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }
