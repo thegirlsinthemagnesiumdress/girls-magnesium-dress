@@ -10,7 +10,7 @@ import os
 
 SCREEN_SIZES = {
     'laptop': {
-        'size': (1024, 768),
+        'size': (1440, 900),
         'focused_element': 'dmb-dimension-tabs'
     },
     'tablet': {
