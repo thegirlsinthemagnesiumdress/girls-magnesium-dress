@@ -14,8 +14,8 @@ SCREEN_SIZES = {
         'focused_element': 'dmb-dimension-tabs'
     },
     'tablet': {
-        'size': (768, 1024),
-        'focused_element': 'dmb-report-overall'
+        'size': (556, 796),
+        'focused_element': 'dmb-progress-circle'
     },
     'mobile': {
         'size': (400, 600),
@@ -38,7 +38,7 @@ BASE_PATH = os.path.join(settings.BASE_DIR, "static/src/img/")
 def take_screenshot(driver, focused_element, path):
     driver.execute_script("arguments[0].scrollIntoView();", focused_element)
     # Arbitrary padding
-    driver.execute_script("window.scrollBy(0, -20);")
+    driver.execute_script("window.scrollBy(0, -10);")
     # Hide any debug or unwanted elements
     for selector in HIDDEN_SELECTORS:
         driver.execute_script(
