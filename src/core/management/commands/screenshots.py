@@ -71,6 +71,13 @@ def take_screenshots(driver, path, retina=False):
                 (By.CLASS_NAME, screen['focused_element'])
             )
         )
+        if screen_name == 'mobile':
+            # Wait until the graph data has loaded
+            _ = WebDriverWait(driver, 1).until(
+                EC.presence_of_element_located(
+                    (By.CLASS_NAME, 'dmb-progress-grid')
+                )
+            )
         if retina:
             take_screenshot(driver, element, path + '/{}@2x.png'.format(screen_name))
         else:
@@ -101,14 +108,16 @@ class Command(BaseCommand):
         # Take 1x screenshots
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--force-device-scale-factor=1")
-        chrome_options.add_argument("--app=http://localhost:8000/ads/")
+        # Launch in app mode to remove navbar and point to phony url to save loading time
+        chrome_options.add_argument("--app=http://localhost:8000/notaurl")
         driver = webdriver.Chrome(options=chrome_options)
         take_tenant_screenshots(driver)
         driver.close()
         # Take 2x screenshots
         retina_options = webdriver.ChromeOptions()
         retina_options.add_argument("--force-device-scale-factor=2")
-        retina_options.add_argument("--app=http://localhost:8000/ads/")
+        # Launch in app mode to remove navbar and point to phony url to save loading time
+        retina_options.add_argument("--app=http://localhost:8000/notaurl")
         retina_driver = webdriver.Chrome(options=retina_options)
         take_tenant_screenshots(retina_driver, retina=True)
         retina_driver.close()
