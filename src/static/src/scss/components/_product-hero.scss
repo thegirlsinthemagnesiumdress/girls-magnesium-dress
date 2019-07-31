@@ -18,36 +18,11 @@
 
   &__img-inner {
     border-radius: 5px;
-    left: 24.75%;
+    left: 50%;
     position: absolute;
-    top: 1.5%;
-    width: 50%;
-  }
-
-  // Pixel devices
-  @media (max-width: 600px) {
-    &__img-inner {
-      left: 24%;
-      min-width: 210px;
-      top: 5%;
-    }
-  }
-
-  // iPhones
-  @media (max-width: 400px) {
-    &__img-inner {
-      left: 21.5%;
-      min-width: 210px;
-    }
-  }
-
-  // iPhone 5 + SE
-  @media (max-width: 350px) {
-    &__img-inner {
-      left: 17%;
-      min-width: 210px;
-      top: 5%;
-    }
+    top: 3%;
+    transform: translateX(-50%);
+    width: 49%;
   }
 
   &__color-bg {

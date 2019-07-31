@@ -1,6 +1,6 @@
 {% load staticfiles %}
 
-<div class="dmb-collaboration{% if invert %} dmb-collaboration--invert{% endif %}">
+<div class="dmb-collaboration{% if invert %} dmb-collaboration--invert{% endif %} {% if class %}{{class}}{% endif %}">
   <div class="dmb-collaboration__text h-c-footnote">
     {{ text|default:'In collaboration with' }}
   </div>
