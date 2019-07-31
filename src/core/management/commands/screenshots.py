@@ -18,7 +18,7 @@ SCREEN_SIZES = {
         'focused_element': 'dmb-progress-circle'
     },
     'mobile': {
-        'size': (400, 600),
+        'size': (400, 820),
         'focused_element': 'dmb-report-overall'
     },
 }
@@ -38,7 +38,7 @@ BASE_PATH = os.path.join(settings.BASE_DIR, "static/src/img/")
 def take_screenshot(driver, focused_element, path):
     driver.execute_script("arguments[0].scrollIntoView();", focused_element)
     # Arbitrary padding
-    driver.execute_script("window.scrollBy(0, -10);")
+    driver.execute_script("window.scrollBy(0, -15);")
     # Hide any debug or unwanted elements
     for selector in HIDDEN_SELECTORS:
         driver.execute_script(
@@ -101,12 +101,14 @@ class Command(BaseCommand):
         # Take 1x screenshots
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--force-device-scale-factor=1")
+        chrome_options.add_argument("--app=http://localhost:8000/ads/")
         driver = webdriver.Chrome(options=chrome_options)
         take_tenant_screenshots(driver)
         driver.close()
         # Take 2x screenshots
         retina_options = webdriver.ChromeOptions()
         retina_options.add_argument("--force-device-scale-factor=2")
+        retina_options.add_argument("--app=http://localhost:8000/ads/")
         retina_driver = webdriver.Chrome(options=retina_options)
         take_tenant_screenshots(retina_driver, retina=True)
         retina_driver.close()
