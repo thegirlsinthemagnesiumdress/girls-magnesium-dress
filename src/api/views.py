@@ -136,9 +136,9 @@ class SurveyResultsIndustryDetail(APIView):
         dmb_bp, dmb_d_bp, dmb_bp_industry = aggregate.industry_best_practice(tenant, industry)
 
         data = {
-            'industry': industry_map[industry],
-            'dmb_industry': industry_map.get(dmb_industry, settings.ALL_INDUSTRIES[0]),
-            'dmb_bp_industry': industry_map.get(dmb_bp_industry, settings.ALL_INDUSTRIES[0]),
+            'industry': industry_map[industry].decode('utf-8'),
+            'dmb_industry': industry_map.get(dmb_industry, settings.ALL_INDUSTRIES[0]).decode('utf-8'),
+            'dmb_bp_industry': industry_map.get(dmb_bp_industry, settings.ALL_INDUSTRIES[0]).decode('utf-8'),
             'dmb': dmb,
             'dmb_d': dmb_d,
             'dmb_bp': dmb_bp,

@@ -330,6 +330,32 @@ class SurveyIndustryResultTest(APITestCase):
         mocked_industry_benchmark.assert_not_called()
         mocked_industry_best_practice.assert_not_called()
 
+    @mock.patch('core.aggregate.industry_best_practice', return_value=(None, None, None))
+    @mock.patch('core.aggregate.industry_benchmark', return_value=(None, None, None))
+    def test_industry_with_results_unicode(self, mocked_industry_benchmark, mocked_industry_best_practice):
+        """Unicode industry name should be correctly returned."""
+        make_industry_benchmark(industry='all', tenant='tenant3')
+        make_industry_benchmark(industry='ic', tenant='tenant3')
+        make_industry_benchmark(industry='ic-o', tenant='tenant3')
+
+        url = '{}?tenant=tenant3'.format(reverse('survey_industry', kwargs={'industry': 'ic-o'}))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response_data_keys = response.data.keys()
+
+        mocked_industry_benchmark.assert_called()
+        mocked_industry_best_practice.assert_called()
+
+        self.assertEqual(set(response_data_keys), {
+            'industry',
+            'dmb_industry',
+            'dmb_bp_industry',
+            'dmb',
+            'dmb_d',
+            'dmb_bp',
+            'dmb_d_bp'
+        })
+
 
 class SurveyResultDetailView(APITestCase):
     """Tests for `api.views.SurveyResultDetailView` view."""
