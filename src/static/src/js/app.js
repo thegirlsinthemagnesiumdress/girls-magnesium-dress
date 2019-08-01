@@ -2,11 +2,14 @@ goog.module.declareNamespace('dmb.app');
 
 // In src/app.js
 import * as glueApp from '@google/glue/lib/app/app';
+
+// Glue Angular
 import * as glueCommon from '@google/glue/lib/ng/common/common';
 import * as glueZippy from '@google/glue/lib/ng/zippy/zippy';
-import * as header from '@google/glue/lib/ng/ui/header/header';
-import * as smoothScroll from '@google/glue/lib/ng/smoothscroll/smoothscroll';
 import * as tabby from '@google/glue/lib/ng/tabby/tabby';
+
+// Glue Vanilla
+import {Header} from '@google/glue/lib/ui/header/component';
 
 const focusControl = goog.require('dmb.components.focusControl');
 import * as headerFix from './components/header-fix/header-fix';
@@ -33,7 +36,6 @@ export const module = angular.module('dmb', [
   glueCommon.module.name, // Progressive enhancement/browser detections.
   glueZippy.module.name,
   'ngAnimate',
-  header.module.name,
   headerFix.module.name,
   registration.module.name,
   scrollHandler.module.name,
@@ -44,7 +46,6 @@ export const module = angular.module('dmb', [
   progressGrid.module.name,
   progressTable.module.name,
   dimensionTab.module.name,
-  smoothScroll.module.name,
   tabby.module.name,
   forceReflow.module.name,
   tenant.module.name,
@@ -78,3 +79,6 @@ module.constant('cssGridSupport', cssGridSupport);
 
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);
+
+// Initialise GLue Vanilla components
+document.querySelectorAll('.glue-header').forEach(Header.attachTo);
