@@ -133,7 +133,8 @@ class Command(BaseCommand):
         elif options['tenant'] not in DEFAULT_TENANTS and options['tenant'] is not None:
             logger.error("Invalid tenant slug, aborting!")
             return
-        # If we have a language passed make sure language code is valid and that tentants have i18n enabled (unless lang=en)
+        # If we have a language passed make sure language code is valid
+        # and that tentants have i18n enabled (unless lang=en)
         if options['lang'] and options['lang'] in DEFAULT_LANGUAGE_CODES:
             if options['lang'] != 'en':
                 tenants = {k: v for k, v in tenants.items() if v['i18n']}
