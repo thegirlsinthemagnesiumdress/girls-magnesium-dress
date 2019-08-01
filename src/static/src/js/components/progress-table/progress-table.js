@@ -1,6 +1,6 @@
-goog.module('dmb.components.progressTable');
+goog.module.declareNamespace('dmb.components.progressTable');
 
-const directive = goog.require('dmb.components.progressTable.directive');
+import * as directive from './progress-table.directive';
 
 
 /** @const {string} */
@@ -10,15 +10,7 @@ const MODULE_NAME = 'progressTable';
 /**
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 
 module.directive(directive.DIRECTIVE_NAME, directive.main);
-
-
-/**
- * Progress table angular module.
- * @type {!angular.Module}
- */
-exports.module = module;
-

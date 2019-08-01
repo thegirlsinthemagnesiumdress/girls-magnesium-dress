@@ -1,4 +1,4 @@
-goog.module('dmb.components.reportAdmin.controller');
+goog.module.declareNamespace('dmb.components.reportAdmin.controller');
 
 const accountIdInputClass = '.dmb-reports-admin__table-account-input';
 
@@ -166,8 +166,6 @@ ReportAdminController.CONTROLLER_NAME = 'ReportAdminCtrl';
 ReportAdminController.CONTROLLER_AS_NAME = 'reportAdminCtrl';
 
 
-exports = {
-  main: ReportAdminController,
-  CONTROLLER_NAME: ReportAdminController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ReportAdminController.CONTROLLER_AS_NAME,
-};
+export const main = ReportAdminController;
+export const CONTROLLER_NAME = ReportAdminController;
+export const CONTROLLER_AS_NAME = ReportAdminController.CONTROLLER_AS_NAME;

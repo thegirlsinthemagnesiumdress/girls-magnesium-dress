@@ -1,6 +1,6 @@
-goog.module('dmb.components.dimensionTab.directive');
+goog.module.declareNamespace('dmb.components.dimensionTab.directive');
 
-const dimensionTabCtrl = goog.require('dmb.components.dimensionTab.controller');
+import * as dimensionTabCtrl from '../dimension-tab/dimension-tab.controller';
 const dimensionTabTemplateUrl = '/angular/dimension-tab/';
 
 /**
@@ -33,11 +33,5 @@ function DimensionTabDirective() {
 DimensionTabDirective.DIRECTIVE_NAME = 'dmbDimensionTab';
 
 
-exports = {
-  main: DimensionTabDirective,
-  DIRECTIVE_NAME: DimensionTabDirective.DIRECTIVE_NAME,
-};
-
-/*
-  EXAMPLE HTML:
-*/
+export const main = DimensionTabDirective;
+export const DIRECTIVE_NAME = DimensionTabDirective.DIRECTIVE_NAME;

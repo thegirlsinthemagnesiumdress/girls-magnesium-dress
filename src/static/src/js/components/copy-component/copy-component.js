@@ -1,6 +1,6 @@
-goog.module('dmb.components.copyComponent');
+goog.module.declareNamespace('dmb.components.copyComponent');
 
-const controller = goog.require('dmb.components.copyComponent.controller');
+import * as controller from '../copy-component/copy-component.controller';
 
 
 /** @const {string} */
@@ -10,14 +10,7 @@ const MODULE_NAME = 'copyComponent';
 /**
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 
 module.controller(controller.CONTROLLER_NAME, controller.main);
-
-
-/**
- * Copy component angular module.
- * @type {!angular.Module}
- */
-exports.module = module;

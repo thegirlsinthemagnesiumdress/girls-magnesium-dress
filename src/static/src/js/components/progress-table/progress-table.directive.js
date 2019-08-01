@@ -1,6 +1,7 @@
-goog.module('dmb.components.progressTable.directive');
+goog.module.declareNamespace('dmb.components.progressTable.directive');
 
-const progTableCtrl = goog.require('dmb.components.progressTable.controller');
+import * as progTableCtrl from './progress-table.controller';
+
 const progressTableTemplateUrl = '/angular/progress-table';
 
 /**
@@ -29,10 +30,8 @@ function ReportDirective() {
 ReportDirective.DIRECTIVE_NAME = 'dmbProgressTable';
 
 
-exports = {
-  main: ReportDirective,
-  DIRECTIVE_NAME: ReportDirective.DIRECTIVE_NAME,
-};
+export const main = ReportDirective;
+export const DIRECTIVE_NAME = ReportDirective.DIRECTIVE_NAME;
 
 /*
 EXAMPLE HTML

@@ -1,6 +1,7 @@
-goog.module('dmb.components.progressGrid.directive');
+goog.module.declareNamespace('dmb.components.progressGrid.directive');
 
-const progressGridCtrl = goog.require('dmb.components.progressGrid.controller');
+import * as progressGridCtrl from './progress-grid.controller';
+
 const progressGridTemplateUrl = '/angular/progress-grid';
 const progressGridFallbackTemplateUrl = '/angular/progress-grid-fallback';
 
@@ -34,10 +35,8 @@ function ProgressGridDirective(cssGridSupport) {
 ProgressGridDirective.DIRECTIVE_NAME = 'dmbProgressGrid';
 
 
-exports = {
-  main: ProgressGridDirective,
-  DIRECTIVE_NAME: ProgressGridDirective.DIRECTIVE_NAME,
-};
+export const main = ProgressGridDirective;
+export const DIRECTIVE_NAME = ProgressGridDirective.DIRECTIVE_NAME;
 
 /*
 EXAMPLE HTML

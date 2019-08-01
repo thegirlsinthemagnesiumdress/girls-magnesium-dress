@@ -1,6 +1,6 @@
-goog.module('dmb.components.report.directive');
+goog.module.declareNamespace('dmb.components.report.directive');
 
-const reportCtrl = goog.require('dmb.components.report.controller');
+import * as reportCtrl from './report.controller';
 
 /**
  * Side panel directive.
@@ -20,7 +20,5 @@ function ReportDirective() {
 ReportDirective.DIRECTIVE_NAME = 'dmbReport';
 
 
-exports = {
-  main: ReportDirective,
-  DIRECTIVE_NAME: ReportDirective.DIRECTIVE_NAME,
-};
+export const main = ReportDirective;
+export const DIRECTIVE_NAME = ReportDirective.DIRECTIVE_NAME;
