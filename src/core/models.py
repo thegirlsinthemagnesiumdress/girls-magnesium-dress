@@ -5,8 +5,10 @@ from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils import translation
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
+from core.settings.default import QUALTRICS_LANGS_REV
 from core.managers import NotExcludedFromBestPracticeManager
 from core.conf import utils
 from collections import OrderedDict
@@ -45,9 +47,11 @@ class Survey(models.Model):
     industry = models.CharField(max_length=128)
     country = models.CharField(max_length=2, choices=settings.COUNTRIES.iteritems())
     last_survey_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
+    last_internal_result = models.ForeignKey('SurveyResult', null=True, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
+    parent_id = models.CharField(max_length=64, blank=True, null=True)
 
     def get_industry_display(self, *args, **kwargs):
         t = settings.TENANTS[self.tenant]
@@ -55,13 +59,18 @@ class Survey(models.Model):
         industry = industries_dict.get(self.industry)
         return industry if industry else None
 
-    @property
-    def link(self):
+    def build_qualtrics_link(self, qualtrics_survey_id, i18n=False):
         """
-        Lint to qualtrics survey. Every company will have a different URL, created
-        out of the sid.
-        The sid will be stored for every survey response and we will be able to use
-        it to match the data against companies.
+        Builds a qualtrics link for a specified qualtrics survey
+        and adds parameter values for the relevant version
+        or internationalization.
+
+        Args:
+            qualtrics_survey_id (str): ID of qualtrics survey to link to.
+            i18n (bool, optional): Does the survey support i18n. Defaults to False.
+
+        Returns:
+            str: Link to the relevant survey with parameter values set.
         """
         qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
         version, is_nightly, is_development = utils.version_info(settings.HTTP_HOST)
@@ -74,7 +83,36 @@ class Survey(models.Model):
         if version:
             survey_link = '{}&ver={}'.format(survey_link, version)
 
+        if i18n:
+            # Append the qualtrics language code if tenant uses il8n using the browser language code
+            survey_link = '{}&Q_Language={}'.format(survey_link, QUALTRICS_LANGS_REV[str(translation.get_language())])
+
         return survey_link
+
+    @property
+    def link(self):
+        """
+        Link to qualtrics survey. Every company will have a different URL, created
+        out of the sid.
+        The sid will be stored for every survey response and we will be able to use
+        it to match the data against companies.
+        """
+        qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
+        i18n = settings.TENANTS.get(self.tenant).get('i18n')
+        survey_link = self.build_qualtrics_link(qualtrics_survey_id, i18n)
+
+        return survey_link
+
+    @property
+    def internal_link(self):
+        """
+        Link to internal qualtrics survey. Every company will have a different URL,
+        created out of the sid.
+        The sid will be stored for every survey response and we will be able to use
+        it to match the data against companies.
+        """
+        qualtrics_survey_id = settings.INTERNAL_TENANTS.get(self.internal_slug).get('QUALTRICS_SURVEY_ID')
+        return self.build_qualtrics_link(qualtrics_survey_id)
 
     @property
     def link_sponsor(self):
@@ -86,15 +124,33 @@ class Survey(models.Model):
 
     @property
     def last_survey_result_link(self):
-        return reverse('report', kwargs={'tenant': self.slug, 'sid': self.sid}) if self.last_survey_result_id else None
+        return reverse('report', kwargs={
+            'tenant': self.slug,
+            'sid': self.sid
+        }) if self.last_survey_result_id else None
+
+    # @property
+    # def last_internal_result_link(self):
+    #     return reverse('internal-report', kwargs={
+    #         'tenant': self.slug,
+    #         'sid': self.sid
+    #     }) if self.last_internal_result_id else None
 
     @property
     def slug(self):
         return utils.get_tenant_slug(self.tenant)
 
     @property
+    def internal_slug(self):
+        return utils.get_tenant_slug(self.tenant) + '_internal'
+
+    @property
     def excluded(self):
         return self.last_survey_result.excluded_from_best_practice if self.last_survey_result else True
+
+    @property
+    def internal_excluded(self):
+        return self.last_internal_result.excluded_from_best_practice if self.last_internal_result else True
 
     def save(self, *args, **kwargs):
         if not self.pk:
