@@ -1,4 +1,3 @@
-// goog.module('dmb.components.report.controller');
 goog.module.declareNamespace('dmb.components.report.controller');
 
 import * as BreakpointService from '@google/glue/lib/ng/common/breakpoint-service';

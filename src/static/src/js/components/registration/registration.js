@@ -1,6 +1,6 @@
-goog.module('dmb.components.registration');
+goog.module.declareNamespace('dmb.components.registration');
 
-const controller = goog.require('dmb.components.registration.controller');
+import * as controller from './registration.controller';
 
 
 /** @const {string} */
@@ -11,14 +11,7 @@ const MODULE_NAME = 'registration';
  * Allows to submit a company to the BE.
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 
 module.controller(controller.CONTROLLER_NAME, controller.main);
-
-
-/**
- * Registration angular module.
- * @type {!angular.Module}
- */
-exports.module = module;

@@ -1,6 +1,6 @@
-goog.module('dmb.components.progressCircle.directive');
+goog.module.declareNamespace('dmb.components.progressCircle.directive');
 
-const reportCtrl = goog.require('dmb.components.progressCircle.controller');
+import * as reportCtrl from '../progress-circle/progress-circle.controller';
 
 /**
  * Side panel directive.
@@ -21,10 +21,8 @@ function ReportDirective() {
 ReportDirective.DIRECTIVE_NAME = 'dmbProgressCircle';
 
 
-exports = {
-  main: ReportDirective,
-  DIRECTIVE_NAME: ReportDirective.DIRECTIVE_NAME,
-};
+export const main = ReportDirective;
+export const DIRECTIVE_NAME = ReportDirective.DIRECTIVE_NAME;
 
 /*
   EXAMPLE HTML:

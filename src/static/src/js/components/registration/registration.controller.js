@@ -1,4 +1,4 @@
-goog.module('dmb.components.registration.controller');
+goog.module.declareNamespace('dmb.components.registration.controller');
 const domSafe = goog.require('goog.dom.safe');
 
 const SURVEY_ENDPOINT = '/api/survey';
@@ -149,7 +149,5 @@ class RegistrationController {
 RegistrationController.CONTROLLER_NAME = 'RegistrationCtrl';
 
 
-exports = {
-  main: RegistrationController,
-  CONTROLLER_NAME: RegistrationController.CONTROLLER_NAME,
-};
+export const main = RegistrationController;
+export const CONTROLLER_NAME = RegistrationController.CONTROLLER_NAME;

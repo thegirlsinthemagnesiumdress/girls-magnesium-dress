@@ -1,5 +1,6 @@
 {% load angular %}
 {% load i18n %}
+{% load languages %}
 
 <footer class="dmb-footer h-c-footer h-c-footer--simple {{footerClass}}"
     id="footer-simple" {{footerAttribute}}>
@@ -80,6 +81,7 @@
               method="post"
               ng-controller="LanguageSelectorCtrl as languageSelectorCtrl">
             {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path|strip_lang }}" />
             <select
                 name="language"
                 ng-model="language"

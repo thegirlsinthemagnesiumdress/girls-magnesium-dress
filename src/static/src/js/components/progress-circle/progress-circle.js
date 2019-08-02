@@ -1,6 +1,6 @@
-goog.module('dmb.components.progressCircle');
+goog.module.declareNamespace('dmb.components.progressCircle');
 
-const directive = goog.require('dmb.components.progressCircle.directive');
+import * as directive from './progress-circle.directive';
 
 
 /** @const {string} */
@@ -10,14 +10,7 @@ const MODULE_NAME = 'progressCircle';
 /**
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 
 module.directive(directive.DIRECTIVE_NAME, directive.main);
-
-
-/**
- * Progress circle angular module.
- * @type {!angular.Module}
- */
-exports.module = module;

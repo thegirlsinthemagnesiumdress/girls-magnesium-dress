@@ -1,4 +1,4 @@
-goog.module('dmb.components.progressTable.controller');
+goog.module.declareNamespace('dmb.components.progressTable.controller');
 
 /**
  * ProgressTable class controller.
@@ -68,8 +68,6 @@ ProgressTableController.CONTROLLER_NAME = 'ProgressTableCtrl';
 ProgressTableController.CONTROLLER_AS_NAME = 'progressTableCtrl';
 
 
-exports = {
-  main: ProgressTableController,
-  CONTROLLER_NAME: ProgressTableController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ProgressTableController.CONTROLLER_AS_NAME,
-};
+export const main = ProgressTableController;
+export const CONTROLLER_NAME = ProgressTableController;
+export const CONTROLLER_AS_NAME = ProgressTableController.CONTROLLER_AS_NAME;

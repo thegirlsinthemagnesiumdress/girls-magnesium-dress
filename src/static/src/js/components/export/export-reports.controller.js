@@ -1,4 +1,4 @@
-goog.module('dmb.components.exportReports.controller');
+goog.module.declareNamespace('dmb.components.exportReports.controller');
 
 /**
  * Export reports controller
@@ -70,7 +70,5 @@ class ExportReportsController {
 ExportReportsController.CONTROLLER_NAME = 'ExportReportsCtrl';
 
 
-exports = {
-  main: ExportReportsController,
-  CONTROLLER_NAME: ExportReportsController.CONTROLLER_NAME,
-};
+export const main = ExportReportsController;
+export const CONTROLLER_NAME = ExportReportsController.CONTROLLER_NAME;

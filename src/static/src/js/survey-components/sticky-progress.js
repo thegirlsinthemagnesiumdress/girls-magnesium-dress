@@ -1,6 +1,7 @@
-goog.module('dmb.survey.stickyProgress');
+goog.module.declareNamespace('dmb.survey.stickyProgress');
 
-const scrollServiceConfig = goog.require('dmb.components.scroll.service');
+import * as scrollServiceConfig from '../components/scroll/scroll.service';
+
 
 const scrollService = scrollServiceConfig.main();
 
@@ -8,7 +9,7 @@ const scrollService = scrollServiceConfig.main();
  * Init funciton to create the progress bar if it exists in the DOM
  * @return {ProgressBar} returns the newly created ProgressBar instance
  */
-function init() {
+export function init() {
   return new ProgressBar('ProgressBar', 'SkinContent');
 }
 
@@ -103,7 +104,3 @@ class ProgressBar {
     }, 32);
   }
 }
-
-exports = {
-  init,
-};

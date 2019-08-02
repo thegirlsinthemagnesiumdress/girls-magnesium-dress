@@ -1,7 +1,7 @@
-goog.module('dmb.components.report');
+goog.module.declareNamespace('dmb.components.report');
 
-const directive = goog.require('dmb.components.report.directive');
-const service = goog.require('dmb.components.report.service');
+import * as directive from './report.directive';
+import * as service from './report.service';
 
 
 /** @const {string} */
@@ -11,7 +11,7 @@ const MODULE_NAME = 'report';
 /**
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 
 module.directive(directive.DIRECTIVE_NAME, directive.main);
@@ -87,11 +87,3 @@ module.filter('underscoreToHyphen', () => {
     return angular.isDefined(stringToConvert) ? stringToConvert.replace(/_/g, '-') : '';
   };
 });
-
-/**
- * Report angular module.
- * @type {!angular.Module}
- */
-exports.module = module;
-
-

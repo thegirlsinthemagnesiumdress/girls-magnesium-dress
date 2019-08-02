@@ -1,4 +1,4 @@
-goog.module('dmb.components.dimensionTab.controller');
+goog.module.declareNamespace('dmb.components.dimensionTab.controller');
 
 // const tenantDataElementName = 'bootstrap-data';
 
@@ -241,8 +241,6 @@ DimensionTabController.CONTROLLER_NAME = 'DimensionTabCtrl';
 DimensionTabController.CONTROLLER_AS_NAME = 'dimensionTabCtrl';
 
 
-exports = {
-  main: DimensionTabController,
-  CONTROLLER_NAME: DimensionTabController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: DimensionTabController.CONTROLLER_AS_NAME,
-};
+export const main = DimensionTabController;
+export const CONTROLLER_NAME = DimensionTabController.CONTROLLER_NAME;
+export const CONTROLLER_AS_NAME = DimensionTabController.CONTROLLER_AS_NAME;
