@@ -1,7 +1,4 @@
-# coding=utf-8
 # flake8: noqa
-from django.utils.translation import gettext_lazy as _
-
 DIMENSION_ADS = 'ads'
 DIMENSION_ACCESS = 'access'
 DIMENSION_AUDIENCE = 'audience'
@@ -18,12 +15,12 @@ LEVELS_MAX = 4
 WEIGHTS = {}
 
 DIMENSION_TITLES = {
-    DIMENSION_ADS: _('Assets and ads'),
-    DIMENSION_ACCESS: _('Access'),
-    DIMENSION_AUDIENCE: _('Audience'),
-    DIMENSION_ATTRIBUTION: _('Attribution'),
-    DIMENSION_AUTOMATION: _('Automation'),
-    DIMENSION_ORGANIZATION: _('Organisation'),
+    DIMENSION_ADS: 'Assets and ads',
+    DIMENSION_ACCESS: 'Access',
+    DIMENSION_AUDIENCE: 'Audience',
+    DIMENSION_ATTRIBUTION: 'Attribution',
+    DIMENSION_AUTOMATION: 'Automation',
+    DIMENSION_ORGANIZATION: 'Organisation',
 }
 
 DIMENSION_ORDER = [
