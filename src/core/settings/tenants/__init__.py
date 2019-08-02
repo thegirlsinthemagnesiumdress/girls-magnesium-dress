@@ -34,7 +34,7 @@ RETAIL = 'retail'
 CLOUD = 'cloud'
 
 
-INTERNAL_TENANTS = {
+ALL_TENANTS = {
     ADS: {
         'key': ADS,
         'label': _('Advertisers'),
@@ -139,7 +139,7 @@ DEFAULT_TENANT = ADS
 
 
 def active_tenants():
-    return {k: v for k, v in INTERNAL_TENANTS.items() if v['enabled']}
+    return {k: v for k, v in ALL_TENANTS.items() if v['enabled']}
 
 TENANTS = active_tenants()
 
