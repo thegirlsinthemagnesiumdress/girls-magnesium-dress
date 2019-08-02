@@ -1,6 +1,6 @@
-goog.module('dmb.components.reportAdmin.directive');
+goog.module.declareNamespace('dmb.components.reportAdmin.directive');
 
-const reportAdminCtrl = goog.require('dmb.components.reportAdmin.controller');
+import * as reportAdminCtrl from './report-admin.controller';
 
 /**
  * Report List directive.
@@ -31,7 +31,5 @@ function ReportListDirective($location, $timeout, sidePanelService) {
 ReportListDirective.DIRECTIVE_NAME = 'dmbReportsAdmin';
 
 
-exports = {
-  main: ReportListDirective,
-  DIRECTIVE_NAME: ReportListDirective.DIRECTIVE_NAME,
-};
+export const main = ReportListDirective;
+export const DIRECTIVE_NAME = ReportListDirective.DIRECTIVE_NAME;

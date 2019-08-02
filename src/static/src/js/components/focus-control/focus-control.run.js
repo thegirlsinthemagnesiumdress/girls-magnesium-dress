@@ -1,4 +1,4 @@
-goog.module('dmb.components.focusControl.run');
+goog.module.declareNamespace('dmb.components.focusControl.run');
 
 /**
  * Class for handling focus control on the page. Hiding all outlines when the
@@ -65,6 +65,4 @@ function Run() {
 }
 
 
-exports = {
-  main: Run,
-};
+export const main = Run;

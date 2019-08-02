@@ -1,4 +1,4 @@
-goog.module('dmb.components.languageSelector.controller');
+goog.module.declareNamespace('dmb.components.languageSelector.controller');
 
 
 /**
@@ -29,7 +29,5 @@ class LanguageSelectorController {
 LanguageSelectorController.CONTROLLER_NAME = 'LanguageSelectorCtrl';
 
 
-exports = {
-  main: LanguageSelectorController,
-  CONTROLLER_NAME: LanguageSelectorController.CONTROLLER_NAME,
-};
+export const main = LanguageSelectorController;
+export const CONTROLLER_NAME = LanguageSelectorController.CONTROLLER_NAME;

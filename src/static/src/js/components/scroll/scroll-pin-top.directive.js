@@ -1,5 +1,5 @@
 
-goog.module('dmb.components.scroll.pinTopDirective');
+goog.module.declareNamespace('dmb.components.scroll.pinTopDirective');
 
 
 /**
@@ -124,7 +124,5 @@ function pinTopDirective(scrollService, $timeout) {
   };
 }
 
-exports = {
-  DIRECTIVE_NAME: 'dmbPinTop',
-  main: pinTopDirective,
-};
+export const main = pinTopDirective;
+export const DIRECTIVE_NAME = 'dmbPinTop';

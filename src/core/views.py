@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from djangae import deferred
 from djangae.environment import task_or_admin_only
 
-from core.management import migrations
 from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
 from django.conf import settings
 from django.shortcuts import render
@@ -86,56 +85,6 @@ def generate_exports_task(request):
         publishers_survey_fields,
         publishers_survey_result_fields,
         settings.NEWS,
-        _queue='default',
-    )
-
-    return HttpResponse(msg)
-
-
-@task_or_admin_only
-def migrate_to_default_tenant_task(request):
-    """Migrate existing surveys to the default tenant.
-
-    The default tenant is ADS.
-    """
-    msg = "Migrate existing surveys to the default tenant"
-    logging.info(msg)
-
-    deferred.defer(
-        migrations.migrate_to_default_tenant,
-        _queue='default',
-    )
-
-    return HttpResponse(msg)
-
-
-@task_or_admin_only
-def migrate_to_tenant_task(request):
-    """Migrate existing surveys from a tenant to another.
-
-    The default tenant is ADS.
-    """
-    msg = "Migrate existing surveys to the default tenant"
-    logging.info(msg)
-
-    deferred.defer(
-        migrations.migrate_to_tenant,
-        'advertisers',
-        settings.ADS,
-        _queue='default',
-    )
-
-    return HttpResponse(msg)
-
-
-@task_or_admin_only
-def migrate_deloitte_data_task(request):
-    """Migrate deafult values provided by Deloitte."""
-    msg = "Migrate deafult values provided by Deloitte"
-    logging.info(msg)
-
-    deferred.defer(
-        migrations.migrate_deloitte_data,
         _queue='default',
     )
 

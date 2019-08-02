@@ -1,4 +1,4 @@
-goog.module('dmb.components.scroll.service');
+goog.module.declareNamespace('dmb.components.scroll.service');
 
 /**
  * scrollService angular factory
@@ -80,7 +80,5 @@ function scrollService() {
   }
 }
 
-exports = {
-  SERVICE_NAME: 'scrollService',
-  main: scrollService,
-};
+export const main = scrollService;
+export const SERVICE_NAME = 'scrollService';
