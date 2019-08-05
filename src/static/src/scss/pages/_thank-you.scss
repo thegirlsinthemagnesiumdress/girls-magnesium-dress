@@ -1,16 +1,22 @@
 // sass-lint:disable no-ids
 #dmb-survey-thank-you {
-  @each $tenant, $value in $tenants {
-    #dmb-#{$tenant} & {
-      .dmb-card-on-bg {
-        &__bg {
-          background-image: url('../img/#{$tenant}/survey/thankyou.jpg');
+  .dmb-card-on-bg {
+    &__bg {
+      background-image: url('../img/thankyou.jpg');
+      background-size: 1024px;
+      overflow: hidden;
 
-          @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            background-image: url('../img/#{$tenant}/survey/thankyou@2x.jpg');
-          }
-        }
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../img/thankyou@2x.jpg');
       }
+    }
+
+    &__mobile {
+      left: 50%;
+      position: absolute;
+      top: -77px;
+      transform: translateX(-90%) rotate(37deg);
+      width: 288px;
     }
   }
 }
