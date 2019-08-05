@@ -17,8 +17,8 @@ DEFAULT_SCREEN_SIZES = {
         'focused_element': 'dmb-dimension-tabs'
     },
     'tablet': {
-        'size': (556, 796),
-        'focused_element': 'dmb-progress-circle'
+        'size': (600, 860),
+        'focused_element': 'dmb-report-overall'
     },
     'mobile': {
         'size': (400, 820),
