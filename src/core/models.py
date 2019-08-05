@@ -111,7 +111,13 @@ class Survey(models.Model):
         The sid will be stored for every survey response and we will be able to use
         it to match the data against companies.
         """
-        qualtrics_survey_id = settings.INTERNAL_TENANTS.get(self.internal_slug).get('QUALTRICS_SURVEY_ID')
+        internal_tenant = settings.INTERNAL_TENANTS.get(self.internal_slug)
+        if internal_tenant is None:
+            raise Exception(
+                'Internal link requested from tenant ({}) with no internal counterpart.'
+                .format(settings.TENANTS.get(self.slug))
+            )
+        qualtrics_survey_id = internal_tenant.get('QUALTRICS_SURVEY_ID')
         return self.build_qualtrics_link(qualtrics_survey_id)
 
     @property
