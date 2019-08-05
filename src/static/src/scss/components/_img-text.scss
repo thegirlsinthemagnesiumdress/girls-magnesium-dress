@@ -18,7 +18,7 @@
     }
 
     @include dmb-mq($from: desktop) {
-      margin: 250px 0 210px;
+      margin: 250px 0;
     }
 
     @include dmb-mq($from: wide) {
@@ -29,17 +29,22 @@
   &__img-wrapper {
     max-width: 700px;
     position: relative;
-    right: -10%;
+    right: -6%;
     transform: rotate(30deg);
     width: 80%;
 
     @include dmb-mq($until: tablet) {
-      margin-bottom: 100px;
+      margin: 64px 0 80px;
     }
 
     @include dmb-mq($from: tablet) {
       position: absolute;
       right: -4%;
+      top: 12%;
+      width: 45%;
+    }
+
+    @include dmb-mq($from: 850px) {
       top: 10%;
       width: 40%;
     }
@@ -49,7 +54,7 @@
     border-radius: 10px;
     left: 42.5%;
     position: absolute;
-    top: 5.5%;
+    top: 4%;
     width: 53%;
   }
 
@@ -57,7 +62,8 @@
     border-radius: 10px;
     position: absolute;
     right: 74%;
-    top: 26%;
     width: 24%;
+
+    @include dmb-resp-prop(top, 22.5%, 20%, 20%, 21.5%);
   }
 }
