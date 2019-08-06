@@ -84,7 +84,6 @@ class Survey(models.Model):
         Returns:
             str: Link to the relevant survey with parameter values set.
         """
-        qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
         version, is_nightly, is_development = utils.version_info(settings.HTTP_HOST)
 
         if is_nightly or is_development:

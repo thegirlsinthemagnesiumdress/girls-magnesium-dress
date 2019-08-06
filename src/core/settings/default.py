@@ -307,6 +307,8 @@ QUALTRICS_LANGS = {
     'ES-ES': 'es',
 }
 
+QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }
+
 HTTP_HOST = os.environ['HTTP_HOST']
 
 REST_FRAMEWORK = {
