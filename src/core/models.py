@@ -147,13 +147,12 @@ class Survey(models.Model):
             'sid': self.sid
         }) if self.last_survey_result_id else None
 
-    # On hold until URLs are finalised
-    # @property
-    # def last_internal_result_link(self):
-    #     return reverse('internal-report', kwargs={
-    #         'tenant': self.slug,
-    #         'sid': self.sid
-    #     }) if self.last_internal_result_id else None
+    @property
+    def last_internal_result_link(self):
+        return reverse('report', kwargs={
+            'tenant': self.slug,
+            'sid': self.sid
+        }) if self.last_internal_result_id else None
 
     @property
     def slug(self):
