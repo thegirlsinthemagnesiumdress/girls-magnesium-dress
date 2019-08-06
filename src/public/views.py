@@ -88,7 +88,6 @@ def internal_report(request, tenant, sid):
         raise Http404
 
     return render(request, 'public/{}/report-internal.html'.format(tenant), {
-        'staging': STAGING,
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
