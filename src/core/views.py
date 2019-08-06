@@ -159,5 +159,19 @@ def update_industries_benchmarks_task(request):
     return HttpResponse(msg)
 
 
+@task_or_admin_only
+def update_survey_model_task(request):
+    """Update survey models to incorperate new fields for DMBLite"""
+    msg = "Update survey models"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.migrate_to_dmblite_survey,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
 def angular_templates(request, template_name):
     return render(request, 'public/angular/{}.html'.format(template_name))

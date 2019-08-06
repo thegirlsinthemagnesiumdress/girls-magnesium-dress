@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^migrations/migrate_to_default_tenant_task/$', views.migrate_to_default_tenant_task, name="migrate_to_default_tenant_task"),  # noqa
     url(r'^migrations/migrate_to_tenant_task/$', views.migrate_to_tenant_task, name="migrate_to_tenant_task"),
     url(r'^migrations/migrate_deloitte_data_task/$', views.migrate_deloitte_data_task, name="migrate_deloitte_data_task"),  # noqa
+    url(r'^migrations/migrate_to_dmblite_survey/$', views.update_survey_model_task, name="migrate_to_dmblite_survey"),
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^angular/(?P<template_name>{})/$'.format(settings.ALLOWED_ANGULAR_TEMPLATES), views.angular_templates, name="angular-templates"),  # noqa

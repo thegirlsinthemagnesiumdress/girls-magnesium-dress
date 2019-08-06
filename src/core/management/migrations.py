@@ -46,9 +46,17 @@ def migrate_deloitte_data():
 
 
 def migrate_to_tenant(old_tenant, new_tenant):
-
     logging.info("Migrating from tenant {} to {}".format(old_tenant, new_tenant))
     old_tenants = Survey.objects.filter(tenant=old_tenant)
     logging.info("Found {} with tenant {}".format(old_tenants.count(), old_tenant))
     updated = old_tenants.update(tenant=new_tenant)
     logging.info("{} updated to tenant {}".format(updated, new_tenant))
+
+
+def migrate_to_dmblite_survey():
+    # Ensure that all tenants with stored surveys are enabled before running this migration
+    logging.info("Adding DMBLite fields to surveys")
+    surveys = Survey.objects.all()
+    logging.info("Found {} surveys to be converted".format(surveys.count()))
+    for survey in surveys:
+        survey.save()
