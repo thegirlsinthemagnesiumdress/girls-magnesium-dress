@@ -15,8 +15,10 @@ def migrate_to_dmblite_survey():
     surveys = Survey.objects.all()
     logging.info("Found {} surveys to be converted".format(surveys.count()))
     for survey in surveys:
-        survey.save()
-
+        try:
+            survey.save()
+        except AssertionError:
+            logging.error("Something went wrong migrating survey {} ".format(survey.sid))
     # Disable all tenants after task
     logging.info("Disabling cloud tenant")
     settings.ALL_TENANTS['cloud']['enabled'] = False
