@@ -1,4 +1,4 @@
-goog.module('dmb.components.progressCircle.controller');
+goog.module.declareNamespace('dmb.components.progressCircle.controller');
 
 /**
  * DOM selectors used by component.
@@ -70,8 +70,6 @@ ProgressCircleController.CONTROLLER_NAME = 'ProgressCircleCtrl';
 ProgressCircleController.CONTROLLER_AS_NAME = 'progressCircleCtrl';
 
 
-exports = {
-  main: ProgressCircleController,
-  CONTROLLER_NAME: ProgressCircleController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ProgressCircleController.CONTROLLER_AS_NAME,
-};
+export const main = ProgressCircleController;
+export const CONTROLLER_NAME = ProgressCircleController;
+export const CONTROLLER_AS_NAME = ProgressCircleController.CONTROLLER_AS_NAME;

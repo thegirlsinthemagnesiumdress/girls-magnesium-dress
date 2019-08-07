@@ -1,8 +1,8 @@
 goog.module.declareNamespace('dmb.components.scroll');
 
-const scrollService = goog.require('dmb.components.scroll.service');
-const directive = goog.require('dmb.components.scroll.directive');
-const pinTopDirective = goog.require('dmb.components.scroll.pinTopDirective');
+import * as scrollService from './scroll.service';
+import * as directive from './scroll-aware.directive';
+import * as pinTopDirective from './scroll-pin-top.directive';
 
 
 /** @const {string} */

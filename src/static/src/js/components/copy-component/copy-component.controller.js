@@ -1,4 +1,4 @@
-goog.module('dmb.components.copyComponent.controller');
+goog.module.declareNamespace('dmb.components.copyComponent.controller');
 
 const MESSAGE_CLASS = 'dmb-copy-comp__message';
 const MESSAGE_SUCCESS_CLASS = `${MESSAGE_CLASS}--success`;
@@ -44,7 +44,5 @@ class CopyComponentCtrl {
 CopyComponentCtrl.CONTROLLER_NAME = 'CopyComponentCtrl';
 
 
-exports = {
-  main: CopyComponentCtrl,
-  CONTROLLER_NAME: CopyComponentCtrl.CONTROLLER_NAME,
-};
+export const main = CopyComponentCtrl;
+export const CONTROLLER_NAME = CopyComponentCtrl.CONTROLLER_NAME;

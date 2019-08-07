@@ -1,14 +1,16 @@
-goog.module('dmb.components.progressTable.directive');
+goog.module.declareNamespace('dmb.components.progressTable.directive');
 
-const progTableCtrl = goog.require('dmb.components.progressTable.controller');
+import * as progTableCtrl from './progress-table.controller';
+
 const progressTableTemplateUrl = '/angular/progress-table';
 
 /**
  * Side panel directive.
  * @ngInject
+ * @param {string} LANGUAGE_CODE
  * @return {Object} Config for the directive
  */
-function ReportDirective() {
+function ReportDirective(LANGUAGE_CODE) {
   return {
     restrict: 'E',
     scope: {
@@ -20,7 +22,7 @@ function ReportDirective() {
     },
     controller: progTableCtrl.main,
     controllerAs: progTableCtrl.CONTROLLER_AS_NAME,
-    templateUrl: progressTableTemplateUrl,
+    templateUrl: `/${LANGUAGE_CODE}${progressTableTemplateUrl}`,
   };
 }
 
@@ -29,10 +31,8 @@ function ReportDirective() {
 ReportDirective.DIRECTIVE_NAME = 'dmbProgressTable';
 
 
-exports = {
-  main: ReportDirective,
-  DIRECTIVE_NAME: ReportDirective.DIRECTIVE_NAME,
-};
+export const main = ReportDirective;
+export const DIRECTIVE_NAME = ReportDirective.DIRECTIVE_NAME;
 
 /*
 EXAMPLE HTML

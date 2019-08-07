@@ -78,6 +78,7 @@ MIDDLEWARE_CLASSES = tuple(
 
 CSP_SCRIPT_SRC += (
     "'sha256-Zk5IgZ4b9G375sPeV/3uici3CrQ4you2YI5DwtVjrQs='",  # Analytics snippet.
+    "https://www.googletagmanager.com",
 )
 
 DOMAIN = 'digitalmaturitybenchmark.withgoogle.com'

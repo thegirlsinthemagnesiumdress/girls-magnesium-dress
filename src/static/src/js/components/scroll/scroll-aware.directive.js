@@ -1,4 +1,4 @@
-goog.module('dmb.components.scroll.directive');
+goog.module.declareNamespace('dmb.components.scroll.directive');
 
 /**
  * @param {!Object} scrollService
@@ -136,7 +136,5 @@ function scrollAwareDirective(scrollService, $timeout) {
   };
 }
 
-exports = {
-  DIRECTIVE_NAME: 'dmbScrollAware',
-  main: scrollAwareDirective,
-};
+export const main = scrollAwareDirective;
+export const DIRECTIVE_NAME = 'dmbScrollAware';

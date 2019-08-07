@@ -41,7 +41,7 @@ fe-lint:
     - echo "deb http://packages.cloud.google.com/apt cloud-sdk-jessie main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
     - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
     - apt-get update
-    - apt-get -y install google-cloud-sdk nasm python-pip default-jdk
+    - apt-get -y install google-cloud-sdk nasm python-pip default-jdk gettext
     - sed -i "s#$SSH_VAR#$GLUE_URL#g" package.json
     - ./bin/install_deps
     - ./manage.py gulp build --settings=core.settings.live
@@ -60,6 +60,7 @@ deploy_ads_nightly:
     name: Nightly
     url: https://ads-nightly-dot-gweb-digitalmaturity-staging.appspot.com
   script:
+    - ../manage.py compilemessages -l es
     - echo $DEPLOY_KEY_NIGHTLY > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud --quiet --project gweb-digitalmaturity-staging app deploy --no-promote -v ads-nightly

@@ -1,10 +1,10 @@
-goog.module('dmb.components.report.service');
+goog.module.declareNamespace('dmb.components.report.service');
 
 
 /**
  * Report class service
  * We had to create this service because Glue Tabs mess the scopes
- * and it's not possible to pass an asyncronous value to the tab inner directive.
+ * and it's not possible to pass an asynchronous value to the tab inner directive.
  * We use a service to share this data between report controller and
  * tab dimension directive.
  */
@@ -48,7 +48,5 @@ class ReportService {
 ReportService.SERVICE_NAME = 'reportService';
 
 
-exports = {
-  main: ReportService,
-  SERVICE_NAME: ReportService.SERVICE_NAME,
-};
+export const main = ReportService;
+export const SERVICE_NAME = ReportService.SERVICE_NAME;

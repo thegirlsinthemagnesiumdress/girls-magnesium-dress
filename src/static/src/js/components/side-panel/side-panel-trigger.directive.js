@@ -1,6 +1,4 @@
-goog.module('dmb.components.sidePanel.triggerDirective');
-
-// const SidePanel = goog.require('dmb.components.sidePanel.class');
+goog.module.declareNamespace('dmb.components.sidePanel.triggerDirective');
 
 
 /**
@@ -31,7 +29,5 @@ function SidePanelTriggerDirective(sidePanelService) {
 SidePanelTriggerDirective.DIRECTIVE_NAME = 'dmbSidePanelTrigger';
 
 
-exports = {
-  main: SidePanelTriggerDirective,
-  DIRECTIVE_NAME: SidePanelTriggerDirective.DIRECTIVE_NAME,
-};
+export const main = SidePanelTriggerDirective;
+export const DIRECTIVE_NAME = SidePanelTriggerDirective.DIRECTIVE_NAME;

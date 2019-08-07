@@ -1,6 +1,7 @@
-goog.module('dmb.components.progressGrid.directive');
+goog.module.declareNamespace('dmb.components.progressGrid.directive');
 
-const progressGridCtrl = goog.require('dmb.components.progressGrid.controller');
+import * as progressGridCtrl from './progress-grid.controller';
+
 const progressGridTemplateUrl = '/angular/progress-grid';
 const progressGridFallbackTemplateUrl = '/angular/progress-grid-fallback';
 
@@ -8,9 +9,10 @@ const progressGridFallbackTemplateUrl = '/angular/progress-grid-fallback';
  * Side panel directive.
  * @ngInject
  * @param {boolean} cssGridSupport
+ * @param {string} LANGUAGE_CODE
  * @return {Object} Config for the directive
  */
-function ProgressGridDirective(cssGridSupport) {
+function ProgressGridDirective(cssGridSupport, LANGUAGE_CODE) {
   return {
     restrict: 'E',
     scope: {
@@ -24,7 +26,7 @@ function ProgressGridDirective(cssGridSupport) {
     controllerAs: progressGridCtrl.CONTROLLER_AS_NAME,
     bindToController: true,
     templateUrl: () => {
-      return cssGridSupport ? progressGridTemplateUrl : progressGridFallbackTemplateUrl;
+      return `/${LANGUAGE_CODE}` + (cssGridSupport ? progressGridTemplateUrl : progressGridFallbackTemplateUrl);
     },
   };
 }
@@ -34,10 +36,8 @@ function ProgressGridDirective(cssGridSupport) {
 ProgressGridDirective.DIRECTIVE_NAME = 'dmbProgressGrid';
 
 
-exports = {
-  main: ProgressGridDirective,
-  DIRECTIVE_NAME: ProgressGridDirective.DIRECTIVE_NAME,
-};
+export const main = ProgressGridDirective;
+export const DIRECTIVE_NAME = ProgressGridDirective.DIRECTIVE_NAME;
 
 /*
 EXAMPLE HTML
