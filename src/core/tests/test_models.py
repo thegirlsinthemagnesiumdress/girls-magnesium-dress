@@ -39,7 +39,7 @@ class SurveyTest(TestCase):
         has the correct survey ID.
         """
         survey = make_survey(tenant="tenant1")
-        internal_tenant = MOCKED_INTERNAL_TENANTS[survey.internal_slug]
+        internal_tenant = MOCKED_INTERNAL_TENANTS[survey.slug]
         match = re.search(r'preview/([^&]*)[?]', survey.internal_link)
         self.assertEqual(match.groups(1)[0], internal_tenant.get('QUALTRICS_SURVEY_ID'))
 
@@ -51,11 +51,10 @@ class SurveyTest(TestCase):
         """
         survey = make_survey(tenant="tenant2")
         # Test that no internal tenant exists
-        internal_tenant = MOCKED_INTERNAL_TENANTS.get(survey.internal_slug)
+        internal_tenant = MOCKED_INTERNAL_TENANTS.get(survey.slug)
         self.assertEqual(None, internal_tenant)
-        # Check that if a survey link is requested an exception is thrown
-        with self.assertRaises(Exception):
-            survey.internal_link
+        # Check that if a survey link is requested None is returned
+        self.assertEqual(None, survey.internal_link)
 
     def test_i18n_link(self):
         """
