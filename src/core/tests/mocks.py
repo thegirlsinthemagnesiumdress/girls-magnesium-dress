@@ -352,8 +352,8 @@ MOCKED_NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items()
 MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 MOCKED_INTERNAL_TENANTS = {
-    'tenant1-slug_internal': {
-        'key': 'tenant1-slug_internal',
+    'tenant1-slug': {
+        'key': 'tenant1-slug',
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'QUALTRICS_SURVEY_ID': 'SV_in1xxxxxxxxxxxx',
         'WEIGHTS': MOCKED_WEIGHTS

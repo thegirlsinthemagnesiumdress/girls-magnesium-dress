@@ -1,7 +1,7 @@
 # flake8: noqa
 import ads as ads_internal_conf
 
-ADS_INTERNAL = 'ads_internal'
+ADS_INTERNAL = 'ads'
 
 # WIP Name
 INTERNAL_TENANTS = {
