@@ -79,6 +79,12 @@ indexes:
 
 - kind: core_surveyresult
   properties:
+  - name: internal_survey_id
+  - name: started_at
+    direction: desc
+
+- kind: core_surveyresult
+  properties:
   - name: survey_id
   - name: loaded_at
 

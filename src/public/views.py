@@ -87,6 +87,21 @@ def report_static(request, tenant, sid):
     })
 
 
+def internal_report(request, tenant, sid):
+    survey = get_object_or_404(Survey, sid=sid)
+    if not survey.last_internal_result:
+        raise Http404
+
+    return render(request, 'public/{}/report-internal.html'.format(tenant), {
+        'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
+        'is_nightly': version_info(request.get_host())[1],
+    })
+
+
 def report_result_static(request, tenant, response_id):
     get_object_or_404(SurveyResult, response_id=response_id)
     return render(request, 'public/{}/report-static.html'.format(tenant), {

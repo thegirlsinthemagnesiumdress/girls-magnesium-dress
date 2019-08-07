@@ -125,6 +125,7 @@ class ReportsAdminTestCase(TestCase):
     TENANTS=mocks.MOCKED_TENANTS,
     I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
     NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
+    INTERNAL_TENANTS=mocks.MOCKED_INTERNAL_TENANTS,
     TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
 )
 class ReportDetailTestCase(TestCase):
@@ -142,7 +143,15 @@ class ReportDetailTestCase(TestCase):
             dmb=1.0,
             dmb_d='{}'
         )
+        self.internal_result_1 = make_survey_result(
+            survey=self.survey_1,
+            internal_survey=self.survey_1,
+            response_id='BBB',
+            dmb=1.0,
+            dmb_d='{}'
+        )
         self.survey_1.last_survey_result = self.survey_result_1
+        self.survey_1.last_internal_result = self.internal_result_1
         self.survey_1.save()
 
     def test_survey_has_survey_result(self):
@@ -150,6 +159,14 @@ class ReportDetailTestCase(TestCase):
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'report-static.html'):
             url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+
+    def test_survey_has_internal_result(self):
+        """If a survey exists and it has an internal result it should return 200."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        with TempTemplateFolder(templates_path, 'report-internal.html'):
+            url = reverse('report-internal', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
@@ -178,6 +195,12 @@ class ReportDetailTestCase(TestCase):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.context['staging'], False)
+
+    def test_survey_does_not_have_a_internal_result(self):
+        """If a survey exists but doesnt have a result then a 404 should be raised."""
+        url = reverse('report-internal', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_2.sid})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 
 
 @override_settings(

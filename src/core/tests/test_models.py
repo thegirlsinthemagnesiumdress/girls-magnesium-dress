@@ -3,7 +3,7 @@ import re
 
 from core.models import Survey, User
 from core.tests.mommy_recepies import make_survey
-from core.tests.mocks import MOCKED_TENANTS
+from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_user
@@ -11,7 +11,8 @@ from core.test import with_appengine_admin, with_appengine_user
 
 
 @override_settings(
-    TENANTS=MOCKED_TENANTS
+    TENANTS=MOCKED_TENANTS,
+    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS
 )
 class SurveyTest(TestCase):
     """Test case for `core.Survey` model."""
@@ -31,6 +32,29 @@ class SurveyTest(TestCase):
         survey = make_survey()
         match = re.search(r'sid=([^&]*)', survey.link)
         self.assertEqual(match.groups(1)[0], survey.sid)
+
+    def test_internal_link(self):
+        """
+        Test that the internal survey link
+        has the correct survey ID.
+        """
+        survey = make_survey(tenant="tenant1")
+        internal_tenant = MOCKED_INTERNAL_TENANTS[survey.slug]
+        match = re.search(r'preview/([^&]*)[?]', survey.internal_link)
+        self.assertEqual(match.groups(1)[0], internal_tenant.get('QUALTRICS_SURVEY_ID'))
+
+    def test_no_internal_link(self):
+        """
+        Test that a tenant with no internal
+        counterpart does not have a
+        internal link.
+        """
+        survey = make_survey(tenant="tenant2")
+        # Test that no internal tenant exists
+        internal_tenant = MOCKED_INTERNAL_TENANTS.get(survey.slug)
+        self.assertEqual(None, internal_tenant)
+        # Check that if a survey link is requested None is returned
+        self.assertEqual(None, survey.internal_link)
 
     def test_i18n_link(self):
         """

@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^cron/pull_qualtrics_results/$', views.sync_qualtrics_results, name="pull-qualtrics-results"),
     url(r'^cron/generate_exports/$', views.generate_exports_task, name="export-datastore-data"),
     url(r'^cron/update_benchmarks/$', views.update_industries_benchmarks_task, name="update-benchmarks"),
+    url(r'^migrations/migrate_to_dmblite_survey/$', views.update_survey_model_task, name="migrate_to_dmblite_survey"),
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]

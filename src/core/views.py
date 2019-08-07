@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from djangae import deferred
 from djangae.environment import task_or_admin_only
 
+from core.management import migrations
 from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
 from django.conf import settings
 from django.shortcuts import render
@@ -104,6 +105,20 @@ def update_industries_benchmarks_task(request):
             tenant,
             _queue='default',
         )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def update_survey_model_task(request):
+    """Update survey models to incorperate new fields for DMBLite"""
+    msg = "Update survey models"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.migrate_to_dmblite_survey,
+        _queue='default',
+    )
 
     return HttpResponse(msg)
 
