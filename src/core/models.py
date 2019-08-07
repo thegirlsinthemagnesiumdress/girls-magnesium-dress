@@ -5,8 +5,10 @@ from djangae.fields import JSONField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils import translation
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
+from core.settings.default import QUALTRICS_LANGS_REV
 from core.managers import NotExcludedFromBestPracticeManager
 from core.conf import utils
 from collections import OrderedDict
@@ -53,7 +55,7 @@ class Survey(models.Model):
         t = settings.TENANTS[self.tenant]
         industries_dict = OrderedDict(utils.flatten(t['HIERARCHICAL_INDUSTRIES']))
         industry = industries_dict.get(self.industry)
-        return industry if industry else None
+        return industry.decode('utf-8') if industry else None
 
     @property
     def link(self):
@@ -64,7 +66,7 @@ class Survey(models.Model):
         it to match the data against companies.
         """
         qualtrics_survey_id = settings.TENANTS.get(self.tenant).get('QUALTRICS_SURVEY_ID')
-        version, is_nightly, is_development = utils.version_info(settings.HTTP_HOST)
+        version, is_nightly, is_development, is_staging = utils.version_info(settings.HTTP_HOST)
 
         if is_nightly or is_development:
             survey_link = settings.QUALTRICS_BASE_SURVEY_PREVIEW_URL.format(survey_id=qualtrics_survey_id, sid=self.sid)
@@ -73,6 +75,10 @@ class Survey(models.Model):
 
         if version:
             survey_link = '{}&ver={}'.format(survey_link, version)
+
+        if settings.TENANTS.get(self.tenant).get('i18n'):
+            # Append the qualtrics language code if tenant uses il8n using the browser language code
+            survey_link = '{}&Q_Language={}'.format(survey_link, QUALTRICS_LANGS_REV[str(translation.get_language())])
 
         return survey_link
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-04 15:50+0000\n"
+"POT-Creation-Date: 2019-07-09 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,1973 +19,1980 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "all"
-msgstr ""
-
-msgid "Accommodation and food service"
-msgstr ""
-
-msgid "Arts, entertainment & recreation"
-msgstr ""
-
-msgid "Construction"
-msgstr ""
-
-msgid "Education"
-msgstr ""
-
-msgid "Further education"
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
-msgid "Primary education"
-msgstr ""
-
-msgid "Secondary education"
-msgstr ""
-
-msgid "Electricity, gas, steam, water"
-msgstr ""
-
-msgid "Financial and Insurance"
-msgstr ""
-
-msgid "Banking"
-msgstr ""
-
-msgid "Insurance"
-msgstr ""
-
-msgid "Human health & social work"
-msgstr ""
-
-msgid "Information and Communication"
-msgstr ""
-
-msgid "Books, news, periodicals, journals"
-msgstr ""
-
-msgid "Software"
-msgstr ""
-
-msgid "TV, radio, movies, video, music"
-msgstr ""
-
-msgid "Telecommunications"
-msgstr ""
-
-msgid "Manufacturing"
-msgstr ""
-
-msgid "Chemicals"
-msgstr ""
-
-msgid "Cosmetics, toiletries, detergents"
-msgstr ""
-
-msgid "Electronics"
-msgstr ""
-
-msgid "Food & beverages"
-msgstr ""
-
-msgid "Furniture"
-msgstr ""
-
-msgid "Machinery & equipment"
-msgstr ""
-
-msgid "Pharmaceuticals"
-msgstr ""
-
-msgid "Textiles, footwear & apparel"
-msgstr ""
-
-msgid "Toys & games"
-msgstr ""
-
-msgid "Vehicles"
-msgstr ""
-
-msgid "Other service activities - Other"
-msgstr ""
-
-msgid "Other service activities - Printing"
-msgstr ""
-
-msgid "Professional activities"
-msgstr ""
-
-msgid "Consultancy"
-msgstr ""
-
-msgid "Legal"
-msgstr ""
-
-msgid "Research"
-msgstr ""
-
-msgid "Public administration & political organisations"
-msgstr ""
-
-msgid "Real estate"
-msgstr ""
-
-msgid "Retail trade"
-msgstr ""
-
-msgid "Multi-category"
-msgstr ""
-
-msgid "Books, music, video"
-msgstr ""
-
-msgid "Food and beverages"
-msgstr ""
-
-msgid "Household goods"
-msgstr ""
-
-msgid "Transportation and Travel"
-msgstr ""
-
-msgid "Railway, flight, land & water transport"
-msgstr ""
-
-msgid "Travel agency & tour operator"
-msgstr ""
-
-msgid "Wholesale trade"
-msgstr ""
+msgstr "todos"
 
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afganistán"
 
 msgid "Åland Islands"
-msgstr ""
+msgstr "Islas Åland"
 
 msgid "Albania"
-msgstr ""
+msgstr "Albania"
 
 msgid "Algeria"
-msgstr ""
+msgstr "Argelia"
 
 msgid "American Samoa"
-msgstr ""
+msgstr "Samoa Americana"
 
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 msgid "Anguilla"
-msgstr ""
+msgstr "Anguila"
 
 msgid "Antarctica"
-msgstr ""
+msgstr "Antártida"
 
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "Antigua y Barbuda"
 
 msgid "Argentina"
-msgstr ""
+msgstr "Argentina"
 
 msgid "Armenia"
-msgstr ""
+msgstr "Armenia"
 
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 msgid "Australia"
-msgstr ""
+msgstr "Australia"
 
 msgid "Austria"
-msgstr ""
+msgstr "Austria"
 
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbaiyán"
 
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamas"
 
 msgid "Bahrain"
-msgstr ""
+msgstr "Baréin"
 
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladés"
 
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 msgid "Belarus"
-msgstr ""
+msgstr "Bielorrusia"
 
 msgid "Belgium"
-msgstr ""
+msgstr "Bélgica"
 
 msgid "Belize"
-msgstr ""
+msgstr "Belice"
 
 msgid "Benin"
-msgstr ""
+msgstr "Benín"
 
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermudas"
 
 msgid "Bhutan"
-msgstr ""
+msgstr "Bután"
 
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Bolivia"
 
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, San Eustaquio y Saba"
 
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosnia y Herzegovina"
 
 msgid "Botswana"
-msgstr ""
+msgstr "Botsuana"
 
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Isla Bouvet"
 
 msgid "Brazil"
-msgstr ""
+msgstr "Brasil"
 
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "Territorio Británico del Océano Índico"
 
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunéi Darusalam"
 
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 msgid "Cambodia"
-msgstr ""
+msgstr "Camboya"
 
 msgid "Cameroon"
-msgstr ""
+msgstr "Camerún"
 
 msgid "Canada"
-msgstr ""
+msgstr "Canadá"
 
 msgid "Cape Verde"
-msgstr ""
+msgstr "Cabo Verde"
 
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Islas Caimán"
 
 msgid "Central African Republic"
-msgstr ""
+msgstr "República Centroafricana"
 
 msgid "Chad"
-msgstr ""
+msgstr "Chad"
 
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 msgid "China"
-msgstr ""
+msgstr "China"
 
 msgid "Christmas Island"
-msgstr ""
+msgstr "Isla de Navidad"
 
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Islas Cocos"
 
 msgid "Colombia"
-msgstr ""
+msgstr "Colombia"
 
 msgid "Comoros"
-msgstr ""
+msgstr "Comoras"
 
 msgid "Congo"
-msgstr ""
+msgstr "Congo"
 
 msgid "Congo, the Democratic Republic of the"
-msgstr ""
+msgstr "República Democrática del Congo"
 
 msgid "Cook Islands"
-msgstr ""
+msgstr "Islas Cook"
 
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "Costa de Marfil"
 
 msgid "Croatia"
-msgstr ""
+msgstr "Croacia"
 
 msgid "Cuba"
-msgstr ""
+msgstr "Cuba"
 
 msgid "Curaçao"
-msgstr ""
+msgstr "Curazao"
 
 msgid "Cyprus"
-msgstr ""
+msgstr "Chipre"
 
 msgid "Czech Republic"
-msgstr ""
+msgstr "República Checa"
 
 msgid "Denmark"
-msgstr ""
+msgstr "Dinamarca"
 
 msgid "Djibouti"
-msgstr ""
+msgstr "Yibuti"
 
 msgid "Dominica"
-msgstr ""
+msgstr "Dominica"
 
 msgid "Dominican Republic"
-msgstr ""
+msgstr "República Dominicana"
 
 msgid "Ecuador"
-msgstr ""
+msgstr "Ecuador"
 
 msgid "Egypt"
-msgstr ""
+msgstr "Egipto"
 
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Guinea Ecuatorial"
 
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiopía"
 
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Islas Malvinas (Islas Falkland)"
 
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Islas Feroe"
 
 msgid "Fiji"
-msgstr ""
+msgstr "Fiyi"
 
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 msgid "France"
-msgstr ""
+msgstr "Francia"
 
 msgid "French Guiana"
-msgstr ""
+msgstr "Guayana Francesa"
 
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polinesia Francesa"
 
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Territorios Australes Franceses"
 
 msgid "Gabon"
-msgstr ""
+msgstr "Gabón"
 
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 msgid "Georgia"
-msgstr ""
+msgstr "Georgia"
 
 msgid "Germany"
-msgstr ""
+msgstr "Alemania"
 
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltar"
 
 msgid "Greece"
-msgstr ""
+msgstr "Grecia"
 
 msgid "Greenland"
-msgstr ""
+msgstr "Groenlandia"
 
 msgid "Grenada"
-msgstr ""
+msgstr "Granada"
 
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadalupe"
 
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 msgid "Guinea"
-msgstr ""
+msgstr "Guinea"
 
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guinea-Bisáu"
 
 msgid "Guyana"
-msgstr ""
+msgstr "Guyana"
 
 msgid "Haiti"
-msgstr ""
+msgstr "Haití"
 
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Islas Heard y McDonald"
 
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Ciudad del Vaticano"
 
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 msgid "Hungary"
-msgstr ""
+msgstr "Hungría"
 
 msgid "Iceland"
-msgstr ""
+msgstr "Islandia"
 
 msgid "India"
-msgstr ""
+msgstr "India"
 
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonesia"
 
 msgid "Iran, Islamic Republic of"
-msgstr ""
+msgstr "Irán"
 
 msgid "Iraq"
-msgstr ""
+msgstr "Irak"
 
 msgid "Ireland"
-msgstr ""
+msgstr "Irlanda"
 
 msgid "Isle of Man"
-msgstr ""
+msgstr "Isla de Man"
 
 msgid "Israel"
-msgstr ""
+msgstr "Israel"
 
 msgid "Italy"
-msgstr ""
+msgstr "Italia"
 
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaica"
 
 msgid "Japan"
-msgstr ""
+msgstr "Japón"
 
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 msgid "Jordan"
-msgstr ""
+msgstr "Jordania"
 
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazajistán"
 
 msgid "Kenya"
-msgstr ""
+msgstr "Kenia"
 
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 msgid "Korea, Democratic People's Republic of"
-msgstr ""
+msgstr "Corea del Norte"
 
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Corea del Sur"
 
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kirguistán"
 
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laos"
 
 msgid "Latvia"
-msgstr ""
+msgstr "Letonia"
 
 msgid "Lebanon"
-msgstr ""
+msgstr "Líbano"
 
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesoto"
 
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 msgid "Libya"
-msgstr ""
+msgstr "Libia"
 
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 msgid "Lithuania"
-msgstr ""
+msgstr "Lituania"
 
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxemburgo"
 
 msgid "Macao"
-msgstr ""
+msgstr "Macao"
 
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Macedonia"
 
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagascar"
 
 msgid "Malawi"
-msgstr ""
+msgstr "Malaui"
 
 msgid "Malaysia"
-msgstr ""
+msgstr "Malasia"
 
 msgid "Maldives"
-msgstr ""
+msgstr "Maldivas"
 
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Islas Marshall"
 
 msgid "Martinique"
-msgstr ""
+msgstr "Martinica"
 
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritania"
 
 msgid "Mauritius"
-msgstr ""
+msgstr "Mauricio"
 
 msgid "Mayotte"
-msgstr ""
+msgstr "Mayotte"
 
 msgid "Mexico"
-msgstr ""
+msgstr "México"
 
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Micronesia"
 
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Moldavia"
 
 msgid "Monaco"
-msgstr ""
+msgstr "Mónaco"
 
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 msgid "Montenegro"
-msgstr ""
+msgstr "Montenegro"
 
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 msgid "Morocco"
-msgstr ""
+msgstr "Marruecos"
 
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambique"
 
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar/Birmania"
 
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 msgid "Netherlands"
-msgstr ""
+msgstr "Países Bajos"
 
 msgid "New Caledonia"
-msgstr ""
+msgstr "Nueva Caledonia"
 
 msgid "New Zealand"
-msgstr ""
+msgstr "Nueva Zelanda"
 
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 msgid "Niger"
-msgstr ""
+msgstr "Níger"
 
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigeria"
 
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 msgid "Norfolk Island"
-msgstr ""
+msgstr "Isla Norfolk"
 
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "Islas Marianas del Norte"
 
 msgid "Norway"
-msgstr ""
+msgstr "Noruega"
 
 msgid "Oman"
-msgstr ""
+msgstr "Omán"
 
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistán"
 
 msgid "Palau"
-msgstr ""
+msgstr "Palaos"
 
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "Territorios Palestinos, ocupados"
 
 msgid "Panama"
-msgstr ""
+msgstr "Panamá"
 
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papúa Nueva Guinea"
 
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 msgid "Peru"
-msgstr ""
+msgstr "Perú"
 
 msgid "Philippines"
-msgstr ""
+msgstr "Filipinas"
 
 msgid "Pitcairn"
-msgstr ""
+msgstr "Pitcairn"
 
 msgid "Poland"
-msgstr ""
+msgstr "Polonia"
 
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 msgid "Qatar"
-msgstr ""
+msgstr "Qatar"
 
 msgid "Réunion"
-msgstr ""
+msgstr "Reunión"
 
 msgid "Romania"
-msgstr ""
+msgstr "Rumanía"
 
 msgid "Russian Federation"
-msgstr ""
+msgstr "Rusia"
 
 msgid "Rwanda"
-msgstr ""
+msgstr "Ruanda"
 
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "San Bartolomé"
 
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Santa Elena, Ascensión y Tristán da Cunha"
 
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "San Cristóbal y Nieves"
 
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Santa Lucía"
 
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "San Martín (parte francesa)"
 
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "San Pedro y Miquelón"
 
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "San Vicente y las Granadinas"
 
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "Santo Tomé y Príncipe"
 
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Arabia Saudí"
 
 msgid "Senegal"
-msgstr ""
+msgstr "Senegal"
 
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychelles"
 
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sierra Leona"
 
 msgid "Singapore"
-msgstr ""
+msgstr "Singapur"
 
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "San Martín (parte holandesa)"
 
 msgid "Slovakia"
-msgstr ""
+msgstr "Eslovaquia"
 
 msgid "Slovenia"
-msgstr ""
+msgstr "Eslovenia"
 
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Islas Salomón"
 
 msgid "Somalia"
-msgstr ""
+msgstr "Somalia"
 
 msgid "South Africa"
-msgstr ""
+msgstr "Sudáfrica"
 
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "Islas Georgias del Sur y Sandwich del Sur"
 
 msgid "South Sudan"
-msgstr ""
+msgstr "Sudán del Sur"
 
 msgid "Spain"
-msgstr ""
+msgstr "España"
 
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 msgid "Sudan"
-msgstr ""
+msgstr "Sudán"
 
 msgid "Suriname"
-msgstr ""
+msgstr "Surinam"
 
 msgid "Svalbard and Jan Mayen"
-msgstr ""
+msgstr "Svalbard y Jan Mayen"
 
 msgid "Swaziland"
-msgstr ""
+msgstr "Esuatini"
 
 msgid "Sweden"
-msgstr ""
+msgstr "Suecia"
 
 msgid "Switzerland"
-msgstr ""
+msgstr "Suiza"
 
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Siria"
 
 msgid "Taiwan"
-msgstr ""
+msgstr "Taiwán"
 
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tayikistán"
 
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tanzania"
 
 msgid "Thailand"
-msgstr ""
+msgstr "Tailandia"
 
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Timor Oriental"
 
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad y Tobago"
 
 msgid "Tunisia"
-msgstr ""
+msgstr "Túnez"
 
 msgid "Turkey"
-msgstr ""
+msgstr "Turquía"
 
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistán"
 
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Islas Turcas y Caicos"
 
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 msgid "Ukraine"
-msgstr ""
+msgstr "Ucrania"
 
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Emiratos Árabes Unidos"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "Reino Unido"
 
 msgid "United States"
-msgstr ""
+msgstr "Estados Unidos"
 
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "Islas menores alejadas de los Estados Unidos"
 
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Uzbekistán"
 
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Venezuela"
 
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "Islas Vírgenes Británicas"
 
 msgid "Virgin Islands, U.S"
-msgstr ""
+msgstr "Islas Vírgenes de los Estados Unidos"
 
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "Wallis y Futuna"
 
 msgid "Western Sahara"
-msgstr ""
+msgstr "Sáhara Occidental"
 
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabue"
 
 msgid "Advertisers"
-msgstr ""
+msgstr "Anunciantes"
+
+msgid "Advertiser Marketing Maturity"
+msgstr "Desarrollo de marketing para anunciantes"
 
 msgid "News"
-msgstr ""
+msgstr "Noticias"
+
+msgid "News Publisher Data Transformation"
+msgstr "Transformación de datos para editores de noticias"
 
 msgid "Retail"
+msgstr "Minorista"
+
+msgid "Retail Data Transformation"
+msgstr "Transformación de datos para el comercio minorista"
+
+msgid "Cloud"
 msgstr ""
+
+#, fuzzy
+#| msgid "Data Maturity Benchmark"
+msgid "Cloud Maturity Benchmark"
+msgstr "Data Maturity Benchmark"
 
 msgid "Assets and ads"
-msgstr ""
+msgstr "Recursos y anuncios"
 
 msgid "Access"
-msgstr ""
+msgstr "Acceso"
 
 msgid "Audience"
-msgstr ""
+msgstr "Audiencia"
 
 msgid "Attribution"
-msgstr ""
+msgstr "Atribución"
 
 msgid "Automation"
-msgstr ""
+msgstr "Automatización"
 
 msgid "Organisation"
-msgstr ""
+msgstr "Organización"
 
 msgid "Nascent"
-msgstr ""
+msgstr "Incipiente"
 
 msgid "Emerging"
-msgstr ""
+msgstr "Emergente"
 
 msgid "Connected"
-msgstr ""
+msgstr "Conectado"
 
 msgid "Multi-moment"
-msgstr ""
+msgstr "Multimomento"
 
 msgid "Marketing campaigns use mainly external data and direct buys, with limited links to sales."
-msgstr ""
+msgstr "Las campañas de marketing se basan, principalmente, en datos externos y compras directas que muestran una relación limitada con las ventas."
 
 msgid "Some use of owned data in automated buying with single-channel optimisation and testing."
-msgstr ""
+msgstr "Uso limitado de los datos propios en compras automatizadas, con optimización y pruebas en un solo canal."
 
 msgid "Data integrated and activated across channels with demonstrated link to ROI or sales proxies."
-msgstr ""
+msgstr "Datos integrados y activados en varios canales que muestran una relación directa con el retorno de inversión y los canales de venta."
 
 msgid "Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
-msgstr ""
+msgstr "Ejecución de campañas dinámica en varios canales optimizada para conseguir resultados y transacciones en función de cada cliente."
 
 msgid "This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales."
-msgstr ""
+msgstr "Este es el nivel más básico de los cuatro niveles de desarrollo. Tus campañas de marketing se basan principalmente en datos externos y compras directas que muestran una relación limitada con las ventas."
 
 msgid "This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing."
-msgstr ""
+msgstr "Este es el segundo de los cuatro niveles de desarrollo. Utilizas poco los datos propios en compras automatizadas, y optimizas y haces pruebas en un solo canal."
 
 msgid "This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
-msgstr ""
+msgstr "Este es el tercero de los cuatro niveles de desarrollo. Los datos están integrados y activados en varios canales que muestran una relación directa con el retorno de inversión y las acciones que conducen a las compras."
 
 msgid "This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
-msgstr ""
+msgstr "Este es el nivel más avanzado de los cuatro niveles de desarrollo. Las campañas se ejecutan dinámicamente en varios canales para conseguir resultados y transacciones en función de cada cliente."
 
 msgid "Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences."
-msgstr ""
+msgstr "Si la atribución se hace bien, se podrá medir y asignar con precisión el valor que tienen cada uno de los puntos de contacto de los consumidores, y dispondrás de la información necesaria para tomar buenas decisiones sobre inversión y para crear experiencias mucho más positivas y eficaces."
 
-msgid "Reaching consumers is not enough. They demand assistive experiences – fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content."
-msgstr ""
+msgid "Reaching consumers is not enough. They demand assistive experiences - fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content."
+msgstr "Llegar a los clientes no es suficiente; esperan experiencias asistenciales, es decir, rápidas, personalizadas y sin complicaciones. Ofréceles experiencias intuitivas y eficaces en todos los puntos de contacto digitales de la marca, ya sea en el sitio web, la aplicación, los anuncios o el contenido de marca."
 
 msgid "To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel."
-msgstr ""
+msgstr "Si quieres conectar con los clientes en el momento en que te necesitan, deberás organizar todas las fuentes de datos para poder identificar, entender e influir en las audiencias más valiosas en todo el embudo de conversión de ventas."
 
 msgid "Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control."
-msgstr ""
+msgstr "Una vez que seas capaz de identificar las audiencias, deberás llegar a ellas de una forma eficaz y mostrarles tus mensajes de marketing a través de todos los canales y tipos de inventario, con los niveles de control adecuados."
 
 msgid "Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth."
-msgstr ""
+msgstr "Para ofrecer experiencias personalizadas, tu estrategia de marketing debe basarse en varios datos, como el contexto de los usuarios, la hora del día o el dispositivo que utilizan. Gracias a los sistemas automáticos, podrás ofrecer contenido relevante a los usuarios según sus necesidades y, en consecuencia, optimizar las operaciones de marketing e impulsar la efectividad, la rentabilidad y el crecimiento."
 
 msgid "Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed."
-msgstr ""
+msgstr "Las decisiones que se toman en el ámbito del marketing siguen un proceso, están influenciadas por la manera en que se trabaja con los diferentes equipos y partners, y dependen de los apoyos que reciban de profesionales especializados. No basta con tener una estrategia de datos avanzada, las plataformas tecnológicas adecuadas o ideas creativas. Tu organización debe estar preparada para tomar y aplicar las decisiones más acertadas."
 
 msgid "You use a mix of measurement methodologies but results mostly only influence long-term planning. Evaluation of your marketing activities tends to be based on campaign metrics."
-msgstr ""
+msgstr "Utilizas varias metodologías de medición, pero, en general, los resultados solo influyen en la planificación a largo plazo. En general, evalúas tus iniciativas de marketing basándote en las métricas de campaña."
 
 msgid "You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics."
-msgstr ""
+msgstr "Utilizas varias metodologías de medición y modelos de atribución al último clic. Haces pruebas A/B con frecuencia y los resultados te sirven para planificar las campañas. En general, evalúas tus iniciativas de marketing basándote en las métricas de conversión."
 
-msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes."
-msgstr ""
+msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgstr "Utilizas varias metodologías de medición y un modelo de atribución personalizado. Haces pruebas A/B con frecuencia y los resultados te sirven para optimizar las campañas al tiempo que se están publicando. En general, evalúas tus iniciativas de marketing basándote en los resultados del negocio."
 
-msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they're running. Evaluation of your marketing activities tends to be based on business outcomes."
-msgstr ""
+msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgstr "Utilizas varias metodologías de medición y un modelo de atribución basada en datos. Haces pruebas A/B con frecuencia y los resultados te sirven para optimizar las campañas al tiempo que se están publicando. En general, evalúas tus iniciativas de marketing basándote en los resultados del negocio."
 
 msgid "The user experience and speed of your website or app is at a basic level. Your creatives are the result of isolated processes and you tend to use the same message for all users. Creative testing happens infrequently or not at all."
-msgstr ""
+msgstr "La experiencia de usuario y la velocidad que ofreces en tu sitio web o aplicación son insuficientes. Sigues procesos inconexos para diseñar tus creatividades y acostumbras a mostrar el mismo mensaje a todos los usuarios. Casi nunca pruebas las creatividades o no lo haces nunca."
 
-msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there's limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
-msgstr ""
+msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there’s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
+msgstr "Has intentado optimizar y personalizar la experiencia de usuario de tu sitio web o aplicación. Los equipos diseñan las creatividades conjuntamente, pero hay poca coordinación entre los diferentes canales. Utilizas los datos de analíticas y los resultados de pruebas A/B para mejorar la eficacia de las creatividades. Tus mensajes están pensados para segmentos muy amplios de la audiencia."
 
 msgid "You are using advanced methods of user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives, coordinated across digital channels. You are using several testing methodologies to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience."
-msgstr ""
+msgstr "Utilizas métodos avanzados para optimizar y personalizar la experiencia de usuario de tu sitio web o aplicación. Los equipos diseñan las creatividades conjuntamente y existe coordinación entre los diferentes canales digitales. Utilizas varias metodologías de pruebas para mejorar la eficacia de las creatividades. Creas diferentes mensajes adaptados a diversos segmentos de audiencia."
 
 msgid "You are using cutting edge technology to create an impactful and tailored user experience across your websites and apps. Teams collaborate to build creatives, which are coordinated across digital and non-digital channels. You share results from several testing methodologies across digital and non-digital teams to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience and influenced by contextual signals."
-msgstr ""
+msgstr "Utilizas tecnología de última generación para ofrecer una experiencia de usuario eficaz y personalizada en tus sitios web y aplicaciones. Los equipos diseñan las creatividades conjuntamente y existe coordinación entre los diferentes canales digitales y tradicionales. Los equipos de estrategia digital y de estrategia convencional están informados sobre los resultados que se obtienen de varias metodologías de prueba para, de esta manera, mejorar la eficacia de las creatividades. Creas diferentes mensajes adaptados a diversos segmentos de audiencia y basados en señales contextuales."
 
 msgid "You mostly use 3rd party data to target your campaigns, relying on broad audience definitions. You tend to focus on a specific part of the marketing funnel."
-msgstr ""
+msgstr "La mayoría de las veces utilizas datos de terceros para segmentar tus campañas y te diriges a una audiencia amplia. Tus acciones se centran, principalmente, en una fase concreta del embudo de conversión de marketing."
 
 msgid "You use 3rd party and 1st party data to target your campaigns. You have segmented your audience, largely based on demographics and you cover several parts of the marketing funnel."
-msgstr ""
+msgstr "Utilizas datos propios y de terceros para segmentar tus campañas. Has segmentado la audiencia en gran medida por grupos demográficos y tu estrategia abarca varias fases del embudo de conversión de marketing."
 
 msgid "You use 3rd party and 1st party data to target your campaigns, covering the full marketing funnel. You have started to use insights captured in one channel in another channel. You have segmented your audience based on behavioural and interest data."
-msgstr ""
+msgstr "Utilizas datos propios y de terceros para segmentar las campañas y tus iniciativas abarcan todo el embudo de conversión de marketing. Has empezado a usar los datos que has recogido de un canal en otro. Has segmentado la audiencia por datos basados en el comportamiento y los intereses."
 
-msgid "You use 3rd party and 1st party data – including offline data – to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning."
-msgstr ""
+msgid "You use 3rd party and 1st party data - including offline data - to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning."
+msgstr "Utilizas datos propios y de terceros (incluidos datos offline) para segmentar las campañas y tus iniciativas abarcan el embudo de conversión de marketing entero. Usas los datos que has recogido de un canal en otro y has segmentado la audiencia basándote en analíticas avanzadas o usando aprendizaje automático."
 
 msgid "Your keyword lists are narrowly defined and most of your digital media buys are direct buys across a limited number of inventory sources and formats. You rely on platform default settings to ensure brand safety and ad viewability and to prevent ad fraud."
-msgstr ""
+msgstr "Tus palabras clave son muy específicas y obtienes la mayor parte de tus medios digitales en compras directas realizadas en muy pocas fuentes de inventario y en pocos formatos. Utilizas la configuración predeterminada de la plataforma para controlar la seguridad de la marca y la visibilidad de los anuncios, así como para prevenir el fraude publicitario."
 
 msgid "Your keyword lists cover your immediate products and most of your digital media buys are auction-based and direct buys across several inventory sources and formats. You rely on platform default settings and some manual adjustment to ensure brand safety and ad viewability and to prevent ad fraud."
-msgstr ""
+msgstr "Tus listas de palabras clave incluyen los nombres de tus productos, y obtienes la mayoría de tus medios en subastas y en compras directas realizadas en varias fuentes de inventario y en diferentes formatos. Utilizas la configuración predeterminada de la plataforma y haces algunos ajustes manuales para controlar la seguridad de la marca y la visibilidad de los anuncios, así como para prevenir el fraude publicitario."
 
 msgid "Your keyword lists extend well beyond product-related terms and most of your digital media buys are auction-based and direct buys across a variety of inventory sources and formats. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud."
-msgstr ""
+msgstr "Tus listas de palabras clave incluyen muchos más términos que los relacionados directamente con tus productos; obtienes la mayoría de tus medios en subastas y compras directas realizadas en varias fuentes de inventario y en varios formatos. Inviertes recursos en sistemas para controlar la seguridad de la marca y la visibilidad de los anuncios, así como para prevenir el fraude publicitario."
 
-msgid "You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources – including TV or OOH – and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. "
-msgstr ""
+msgid "You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources - including TV or OOH - and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. "
+msgstr "Tus listas de palabras clave son amplias y las tienes siempre actualizadas. Las compras de medios se basan en distintos tipos de acuerdos sobre diferentes formatos y las haces en diferentes fuentes de inventario (como televisión o publicidad exterior); además, están optimizadas en función del canal. Inviertes recursos en sistemas para controlar la seguridad de la marca y la visibilidad de los anuncios, así como para prevenir el fraude publicitario. "
 
 msgid "You are planning, creating, monitoring and optimising most of your campaigns manually."
-msgstr ""
+msgstr "Planificas, creas, supervisas y optimizas manualmente la mayoría de tus campañas."
 
 msgid "You are using selected automation features for planning, creating, monitoring and optimising some of your campaigns. This may include using ad servers or platform APIs."
-msgstr ""
+msgstr "Utilizas algunas funciones automáticas para planificar, crear, supervisar y optimizar determinadas campañas. En consecuencia, es posible que uses servidores de anuncios o APIs de plataformas."
 
 msgid "You use automation features for planning, creating, monitoring and optimising across many of your campaigns. This may include using ad servers, platform APIs and dynamic data feeds."
-msgstr ""
+msgstr "Utilizas funciones automáticas para planificar, crear, supervisar y optimizar muchas de tus campañas. En consecuencia, es posible que uses servidores de anuncios, APIs de plataformas y feeds de datos dinámicos."
 
 msgid "Leveraging a variety of data signals, you make use of automation features for planning, creating, monitoring and optimising most or all of your campaigns. This may include the usage of ad servers, platform APIs and dynamic data feeds."
-msgstr ""
+msgstr "Aprovechas varias señales de datos y utilizas funciones automáticas para planificar, crear, supervisar y optimizar todas o casi todas tus campañas. En consecuencia, es posible que uses servidores de anuncios, APIs de plataformas y feeds de datos dinámicos."
 
-msgid "Your business is held back from siloed teams, with agencies working at arm's length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
-msgstr ""
+msgid "Your business is held back from siloed teams, with agencies working at arm’s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
+msgstr "En tu empresa los equipos trabajan de forma aislada y no hay colaboración entre las agencias. No tienes ningún recurso con dedicación plena y, para algunos ámbitos de marketing específicos, no tienes recursos. "
 
 msgid "Some of your key business functions work together towards clear objectives, including some of your agency partners. "
-msgstr ""
+msgstr "Algunas funciones clave de tu empresa, incluidas algunas agencias partner, trabajan conjuntamente para conseguir objetivos concretos. "
 
 msgid "You have cross-functional teams with common objectives across all digital channels. Most or all agency partners collaborate with each other."
-msgstr ""
+msgstr "Cuentas con equipos con miembros de diferentes departamentos, que tienen los mismos objetivos en todos los canales digitales. Todas o casi todas las agencias partner colaboran entre sí."
 
 msgid "You have cross-functional teams with common objectives across all digital and non-digital channels. All agency and other partners collaborate with each other, some as virtual teams. Your teams are agile and share best practices. "
-msgstr ""
+msgstr "Cuentas con equipos con miembros de diferentes departamentos, que quieren conseguir los mismos objetivos en todos los canales, ya sean digitales o convencionales. Todas las agencias y los demás partners colaboran entre sí, algunos como equipos virtuales. Tus equipos son flexibles y siguen las mismas prácticas recomendadas. "
 
 msgid "Measure the true value of your marketing activities"
-msgstr ""
+msgstr "Mide el valor real de tus iniciativas de marketing"
 
 msgid "Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores."
-msgstr ""
+msgstr "Cambia de modelo de atribución y utiliza uno que no sea al último clic. Además usa métricas que ofrezcan otros valores aparte de los clics o el número de conversiones, como, por ejemplo, los ingresos y las visitas a tiendas físicas."
 
 msgid "Capture marketing performance data comprehensively"
-msgstr ""
+msgstr "Recoge datos exhaustivos sobre el rendimiento de marketing"
 
 msgid "Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints."
-msgstr ""
+msgstr "Asegúrate de que puedes consultar el rendimiento de todos tus activos y campañas para luego evaluar el rendimiento de los diferentes puntos de contacto digitales."
 
 msgid "Expand your measurement capabilities"
-msgstr ""
+msgstr "Amplía tus funciones de medición"
 
 msgid "Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns."
-msgstr ""
+msgstr "Invierte en herramientas de etiquetado y seguimiento, y añade otras metodologías de medición a tu lista de funciones. Haz pruebas más a menudo y, con los resultados que obtengas, optimiza las campañas."
 
-msgid "Build your teams' skills in web analytics"
-msgstr ""
+msgid "Build your teams’ skills in web analytics"
+msgstr "Amplía los conocimientos sobre analítica web de tu equipo"
 
 msgid "Ask relevant people to take the beginner and introductory courses of the Analytics Academy. "
-msgstr ""
+msgstr "Elige a las personas que deberían hacer el curso para principiantes y el curso de introducción de Analytics Academy, y pídeles que los hagan. "
 
 msgid "Analytics Academy"
-msgstr ""
+msgstr "Analytics Academy"
 
 msgid "Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit."
-msgstr ""
+msgstr "Cambia de modelo de atribución y utiliza uno que encaje con tu negocio. Además, usa métricas que ofrezcan otros valores aparte de los ingresos, como, por ejemplo, los beneficios y los ingresos incrementales."
 
-msgid "Create a single source of truth for marketing performance and establish a shared understanding of success metrics – across all device types and across all digital touchpoints."
-msgstr ""
+msgid "Create a single source of truth for marketing performance and establish a shared understanding of success metrics - across all device types and across all digital touchpoints."
+msgstr "Crea una sola referencia fiable de la que puedas extraer los resultados de marketing y define con claridad qué significa “buenos resultados“ en todos los tipos de dispositivo y en todos los puntos de contacto digitales."
 
 msgid "Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. "
-msgstr ""
+msgstr "Añade metodologías de medición a tu lista de funciones para optimizar el impacto de las creatividades o el rendimiento de determinados canales. Haz pruebas más a menudo y, con los resultados que obtengas, optimiza las campañas. "
 
 msgid "Ask relevant people to take the beginner and advanced courses of the Analytics Academy."
-msgstr ""
+msgstr "Elige a las personas que deberían hacer el curso para principiantes y el curso avanzado de Analytics Academy, y pídeles que los hagan."
 
 msgid "Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value."
-msgstr ""
+msgstr "En el modelo de atribución basada en datos que usas, ten en cuenta las señales específicas de tu negocio. Además, utiliza métricas que ofrezcan otros valores aparte de los ingresos, como, por ejemplo, los beneficios y el valor del tiempo de vida del cliente."
 
 msgid "Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels."
-msgstr ""
+msgstr "Crea una sola referencia fiable de la que puedas extraer los resultados de marketing y en la que se tenga en cuenta el comportamiento en canales, tanto digitales como convencionales."
 
 msgid "Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time."
-msgstr ""
+msgstr "Añade metodologías de medición a tu lista de funciones para optimizar todos los aspectos del marketing digital, como la asignación de presupuesto, el impacto de las creatividades o el rendimiento de determinados canales. Haz pruebas más a menudo y, con los resultados que obtengas, optimiza las campañas en tiempo real."
 
 msgid "Ask relevant people to take the advanced courses of the Analytics Academy."
-msgstr ""
+msgstr "Elige a las personas que deberían hacer el curso avanzado de Analytics Academy, y pídeles que lo hagan."
 
 msgid "Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models."
-msgstr ""
+msgstr "Sigue mejorando el modelo de atribución basada en datos y saca partido de la información privada, las fuentes de datos y las funciones de aprendizaje automático. Determina el valor de las interacciones que generan los usuarios nuevos, como, por ejemplo, con una función nueva en tu aplicación o la ampliación de servicios en las tiendas o el centro de llamadas. Incluye este valor en tus modelos de medición."
 
 msgid "Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance."
-msgstr ""
+msgstr "Añade nuevos tipos de campaña o actividades en canales nuevos (como, por ejemplo, una plataforma de redes sociales) a una fuente que elijas como referencia fiable de resultados de marketing."
 
 msgid "Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. "
-msgstr ""
+msgstr "Define un proceso eficaz que se adapte a las diferentes metodologías de medición para optimizar todos los aspectos del marketing digital, como la asignación de presupuesto, el impacto de las creatividades o el rendimiento de determinados canales. Te recomendamos que, además, lo vayas mejorando. "
 
 msgid "Make ads more relevant for different types of users"
-msgstr ""
+msgstr "Crea anuncios más relevantes para distintos tipos de usuarios"
 
 msgid "Segment your users into different audiences, for example, new users and existing customers. Create ads that align with their respective expectations."
-msgstr ""
+msgstr "Segmenta a tus usuarios y clasifícalos por audiencias, por ejemplo, usuarios nuevos y clientes que ya tienes. Luego crea anuncios que se adapten a sus expectativas."
 
 msgid "Tailor the user experience of your assets"
-msgstr ""
+msgstr "Adapta la experiencia de usuario que ofrecen tus recursos"
 
 msgid "Tailor your website or app to the expectations of different audiences, for example, existing customer may benefit from more specific information whereas new users may need a broader picture."
-msgstr ""
+msgstr "Modifica tu sitio web o tu aplicación según las expectativas de las diferentes audiencias; por ejemplo, es posible que tus clientes necesiten información más específica, y los usuarios nuevos, datos más genéricos."
 
 msgid "Start using technology"
-msgstr ""
+msgstr "Empieza a usar la tecnología"
 
 msgid "Use web analytics tools and A/B testing tools to continually improve the performance of your assets."
-msgstr ""
+msgstr "Utiliza herramientas de analítica web y de pruebas A/B para mejorar constantemente el rendimiento de tus recursos."
 
 msgid "Improve the speed of your mobile assets"
-msgstr ""
+msgstr "Aumenta la velocidad de tus recursos para móviles"
 
 msgid "Take the mobile speed test and get recommendations to implement right away."
-msgstr ""
+msgstr "Haz la prueba de velocidad para móviles y aplica al instante las recomendaciones que se deduzcan de los resultados."
 
 msgid "Mobile speed test"
-msgstr ""
+msgstr "Prueba de velocidad para móviles"
 
 msgid "Remove friction from the user experience of your mobile assets"
-msgstr ""
+msgstr "Mejora la experiencia de usuario que ofrecen tus recursos para móviles"
 
 msgid "Consider these best practices and implement them."
-msgstr ""
+msgstr "Examina estas prácticas recomendadas e impleméntalas."
 
 msgid "Mobile UX best practices"
-msgstr ""
+msgstr "Prácticas recomendadas sobre la experiencia de usuario en móviles"
 
 msgid "Connect different teams of your company"
-msgstr ""
+msgstr "Conecta los diferentes equipos de tu empresa"
 
 msgid "Foster collaboration between different marketing teams that are responsible for creating your creatives, for example, digital and non-digital teams, media and creative teams. Encourage them to work together and share best practices."
-msgstr ""
+msgstr "Fomenta la colaboración entre los diferentes equipos de marketing que se encargan de diseñar las creatividades, como, por ejemplo, el equipo especializado en canales digitales y el equipo de canales convencionales o bien el equipo de medios y el de creatividades. Propón que trabajen conjuntamente y que sigan las mismas prácticas recomendadas."
 
 msgid "Improve the relevance of your ads for different types of users"
-msgstr ""
+msgstr "Mejora la relevancia de los anuncios según el tipo de usuario"
 
 msgid "Refine the segmentation of your users into different audiences and create ads that match their characteristics."
-msgstr ""
+msgstr "Acota la segmentación de tus usuarios y clasifícalos por audiencias. Luego, crea anuncios adaptados a sus características."
 
 msgid "Expand tailoring your website beyond basic personalisation, for example, create tailored experiences for more of your audience segments or use real-time predictive modelling to suggest products."
-msgstr ""
+msgstr "Aparte de personalizar los aspectos más básicos de tu sitio web, crea experiencias que se adapten a un mayor número de segmentos de tu audiencia o utiliza modelos predictivos en tiempo real para sugerir productos."
 
 msgid "Expand your creative testing capabilities"
-msgstr ""
+msgstr "Amplía las funciones para probar creatividades"
 
 msgid "Add more methods such as multivariate tests or consumer surveys to your testing suite."
-msgstr ""
+msgstr "Añade otros métodos al conjunto de pruebas que ya usas, como pruebas multivariantes o encuestas a consumidores."
 
 msgid "Consider these best practices and implement those where you still have gaps."
-msgstr ""
+msgstr "Examina estas prácticas recomendadas e impleméntalas en las áreas en las que todavía haya algún problema."
 
 msgid "Improve collaboration of teams that are responsible for creatives"
-msgstr ""
+msgstr "Fomenta la colaboración entre los equipos encargados de diseñar las creatividades"
 
 msgid "Consider establishing timelines that are shared between media and creative teams. Explore using the same toolset, for example, for managing creative projects. Encourage best practice sharing across these teams."
-msgstr ""
+msgstr "Prueba a definir las mismas cronologías para los equipos de medios y de creatividades. Prueba también a usar las mismas herramientas, por ejemplo, para gestionar proyectos creativos. Anima a los equipos a que compartan las prácticas recomendadas."
 
 msgid "Use additional data signals such as time of day or user location in your audience segmentation to create ads that are even more relevant."
-msgstr ""
+msgstr "Utiliza más señales de datos al segmentar la audiencia, como la hora del día o la ubicación de los usuarios para, de esta manera, crear anuncios mucho más relevantes."
 
 msgid "Expand tailoring your website to include data signals from internal systems like your CRM or loyalty programme."
-msgstr ""
+msgstr "Personaliza más aspectos de tu sitio web e incluye señales de datos de sistemas internos, como tu CRM o tu programa de fidelización."
 
 msgid "Maximise the impact of your creative tests"
-msgstr ""
+msgstr "Aprovecha al máximo los resultados de las pruebas de las creatividades"
 
 msgid "Share the results of your tests widely, for example with non-digital teams. Establish a feedback loop so all teams can learn from each other."
-msgstr ""
+msgstr "Informa de los resultados de las pruebas a todas las personas interesadas, por ejemplo, los equipos de canales convencionales. Crea un canal de comunicación para que todos los equipos puedan intercambiarse información e ideas."
 
 msgid "Remove friction from the entire user experience"
-msgstr ""
+msgstr "Mejora la experiencia de usuario al completo"
 
 msgid "Consider these best practices and implement those where you still have gaps. Use current mobile techniques such as progressive web apps or single sign-on. Create links between your mobile assets and non-digital touchpoints, like stores or call centres."
-msgstr ""
+msgstr "Examina estas prácticas recomendadas e impleméntalas en las áreas en las que todavía haya algún problema. Utiliza técnicas actuales para móviles, como las aplicaciones web progresivas o el inicio de sesión único. Vincula los recursos para móviles con puntos de contacto convencionales, como, por ejemplo, tiendas o centros de llamadas."
 
 msgid "Enable media and creative teams to work hand-in-hand and to use collaborative tools. Establish connections between digital and non-digital teams."
-msgstr ""
+msgstr "Fomenta la cooperación entre los equipos de medios y de creatividades, y el uso de herramientas de colaboración. Crea conexiones entre los equipos de canales digitales y convencionales."
 
 msgid "Keep up to date with the latest research and industry best practices to find new ways of increasing the relevance of your ads."
-msgstr ""
+msgstr "Estate al tanto de los últimos estudios y las prácticas recomendadas más extendidas del sector y encuentra nuevas formas de aumentar la relevancia de tus anuncios."
 
 msgid "Continue to invest in tailoring your website to the expectations of different audiences. Leverage new data signals as they become available, for example, from emerging device types or internal tools.as they become available"
-msgstr ""
+msgstr "Sigue invirtiendo en recursos para adaptar tu sitio web a las expectativas de las distintas audiencias. Aprovecha las nuevas señales de datos a medida que estén disponibles, por ejemplo, nuevos tipos de dispositivos o herramientas internas."
 
 msgid "Continue to share the results of your tests widely and build a robust data set of creative performance. Iterate feedback and sharing processes to ensure continued improvement off your creatives"
-msgstr ""
+msgstr "Sigue informando de los resultados de las pruebas a todas las personas interesadas y crea un conjunto sólido de datos sobre el rendimiento de las creatividades. Revisa los comentarios y los procesos mediante los cuales se comparten datos para asegurarte de que continuamente se aplican mejoras en las creatividades."
 
 msgid "Continue to invest in the speed of your mobile assets"
-msgstr ""
+msgstr "Sigue invirtiendo para aumentar la velocidad de tus recursos para móviles"
 
 msgid "Every fraction of a second counts. Take the mobile speed test regularly to identify areas of improvement."
-msgstr ""
+msgstr "Cada décima de segundo cuenta. Haz la prueba de velocidad para móviles periódicamente e identifica qué aspectos debes mejorar."
 
 msgid "Review the entire user experience to identify friction points"
-msgstr ""
+msgstr "Repasa toda la experiencia de usuario e identifica los problemas"
 
 msgid "Keep up to date with emerging trends in UX and web technologies. Explore further possibilities to improve the user experience as people move between digital touchpoints and between digital and non-digital touchpoints."
-msgstr ""
+msgstr "Estate al tanto de las últimas tendencias sobre experiencia de usuario y tecnologías web. Descubre qué otras opciones tienes para mejorar la experiencia de los usuarios que utilizan distintos puntos de contacto digitales y puntos de contacto tanto digitales como convencionales."
 
 msgid "Connect teams who are responsible for your creatives with newly hired specialists or teams."
-msgstr ""
+msgstr "Pon en contacto a los equipos que se encargan de las creatividades con especialistas o equipos que acabes de contratar."
 
 msgid "Use more signals to reach your audience"
-msgstr ""
+msgstr "Utiliza más señales para llegar a tu audiencia"
 
 msgid "In addition to 3rd party data, use 1st party data (i.e. your own data) to decide which users you want to reach online. Segment users into different audiences and optimise this segmentation regularly."
-msgstr ""
+msgstr "Además de usar datos de terceros, utiliza los tuyos propios para decidir a qué usuarios quieres llegar online. Segmenta a los usuarios y clasifícalos por audiencias, y luego optimiza esta segmentación de forma periódica."
 
 msgid "Leverage insights across channels"
-msgstr ""
+msgstr "Aprovecha los datos en todos tus canales"
 
 msgid "Share insights you gain in 1 channel, for example search, to improve how you reach your audience in another channel, for example email."
-msgstr ""
+msgstr "Utiliza los datos que recoges en un canal, por ejemplo, el de búsqueda, para llegar mejor a tu audiencia en otro canal, como el de correo electrónico."
 
 msgid "Find additional opportunities to reach users"
-msgstr ""
+msgstr "Descubre otras oportunidades para llegar a los usuarios"
 
 msgid "Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing."
-msgstr ""
+msgstr "Abarca todos los aspectos del embudo de conversión de marketing: crea notoriedad, genera consideración, impulsa las compras y la repetición de las compras."
 
 msgid "Invest in technology"
-msgstr ""
+msgstr "Invierte en tecnología"
 
 msgid "Build or buy tools that allow you to capture and analyse user insights, for example, a CRM or Data Management Platform."
-msgstr ""
+msgstr "Crea o compra herramientas que te permitan recoger y analizar información valiosa sobre los usuarios, por ejemplo, un sistema de CRM o una plataforma de gestión de datos."
 
 msgid "In addition to 3rd party data, use 1st party data across different digital channels to decide which users you want to reach online. Use that data to create additional audience segments and update this segmentation while campaigns are running."
-msgstr ""
+msgstr "Además de usar datos de terceros, utiliza los tuyos propios en los distintos canales digitales para decidir a qué usuarios quieres llegar online. Usa los datos para crear más segmentos de audiencia y optimiza esta segmentación mientras se estén publicando las campañas."
 
 msgid "Leverage insights across digital and non-digital channels"
-msgstr ""
+msgstr "Aprovecha los datos en los canales digitales y convencionales"
 
 msgid "Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video."
-msgstr ""
+msgstr "Utiliza los datos que recoges en un canal, por ejemplo, el de la televisión lineal, para llegar mejor a tu audiencia en otro canal, como el del vídeo online."
 
 msgid "Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing.as they become available."
-msgstr ""
+msgstr "Abarca todos los aspectos del embudo de conversión de marketing: crea notoriedad, genera consideración e impulsa las compras y la repetición de las compras."
 
 msgid "Enhance segmentation capabilities"
-msgstr ""
+msgstr "Mejora las funciones de segmentación"
 
 msgid "Extend your proficiency in using tools that allow you to capture and analyse user insights, for example, a CRM system or Data Management Platform."
-msgstr ""
+msgstr "Mejora el dominio de herramientas que permiten recoger y analizar información valiosa sobre los usuarios, como, por ejemplo, un sistema de CRM o una plataforma de gestión de datos."
 
 msgid "In addition to 3rd party data, use 1st party data across different digital and non-digital channels to build meaningful audience segments. Update these segments automatically, based on a set of rules that you actively maintain."
-msgstr ""
+msgstr "Además de usar datos de terceros, utiliza los tuyos propios en los distintos canales, tanto digitales como convencionales, para crear segmentos de audiencia valiosos. Modifica estos segmentos automáticamente en función de una serie de reglas que deberás actualizar con frecuencia."
 
 msgid "Leverage insights from the entire company"
-msgstr ""
+msgstr "Aprovecha los datos de toda la empresa"
 
 msgid "Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video. Consider feeding in other types of data, for example, sales data."
-msgstr ""
+msgstr "Utiliza los datos que recoges en un canal, como, por ejemplo, el de la televisión lineal, para llegar mejor a tu audiencia en otro canal, como el del vídeo online. Puedes incluir otros tipos de datos, como los de ventas."
 
 msgid "Extend your proficiency in using tools that allow you to capture and analyse user insights, for example a CRM system or Data Management Platform. Connect tools with each other. Leverage machine learning technology improve your audience segmentation."
-msgstr ""
+msgstr "Mejora el dominio de herramientas que permiten recoger y analizar información valiosa sobre los usuarios, como, por ejemplo, un sistema de CRM o una plataforma de gestión de datos. Vincula las herramientas y utiliza la tecnología de aprendizaje automático para mejorar la segmentación de la audiencia."
 
 msgid "Update the types of signals you use to reach your audience"
-msgstr ""
+msgstr "Cambia los tipos de señales que usas para llegar a la audiencia"
 
 msgid "Consider new signals as they become available to build your audience segments. Continue to update these segments based on the value they deliver to your business."
-msgstr ""
+msgstr "Mejora tus segmentos de audiencia con nuevas señales que se vayan haciendo disponibles. Sigue modificando estos segmentos en función del valor que supongan para tu negocio."
 
 msgid "Assess if insights from new marketing channels, device types, ad formats and business systems can be used to improve how you reach users."
-msgstr ""
+msgstr "Evalúa si se pueden usar los datos sobre nuevos canales de marketing, tipos de dispositivos, formatos de anuncio y sistemas empresariales para llegar mejor a los usuarios."
 
 msgid "Stay close to developments in the tool landscape and explore opportunities related to improving the actionability of insights. For example, check if insights gained in 1 tool, like your Data Management Platform, could be used in another tool, like the 1 where you build and run your campaigns. Leverage emerging machine learning technology to improve your audience segmentation."
-msgstr ""
+msgstr "Mantente al día de los desarrollos de herramientas y averigua cómo se podrían usar mejor los datos. Por ejemplo, comprueba si los datos que has recogido en una herramienta, como la plataforma de gestión de datos, se pueden usar en otra herramienta, como en la que utilizas para crear y publicar tus campañas. Aprovecha la nueva tecnología de aprendizaje automático para mejorar la segmentación de la audiencia."
 
 msgid "Extend your reach and optimise performance"
-msgstr ""
+msgstr "Amplía tu cobertura y optimiza el rendimiento"
 
 msgid "Extend your keyword lists to capture relevant queries related to all your products and to your product category. Buy video and display media across desktop and mobile platforms, using direct buys or programmatic buying methods such as open auction or programmatic direct. Optimise your media buys."
-msgstr ""
+msgstr "Amplía tus listas de palabras clave para abarcar consultas relevantes que guarden relación con todos tus productos y con la categoría a la que pertenecen. Compra medios de vídeo y display en plataformas para ordenadores y móviles usando compras directas o métodos de compra programática, como las subastas abiertas o la programática directa. Optimiza tus compras de medios."
 
 msgid "Ensure quality control"
-msgstr ""
+msgstr "Controla la calidad"
 
 msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Start acting on the results, for example, by building negative keyword lists or adding websites to a blacklist."
-msgstr ""
+msgstr "Supervisa la seguridad de la marca, la visibilidad, la calidad de los anuncios y el rendimiento de las palabras clave de tus campañas. Utiliza los resultados para crear listas de palabras clave negativas o añadir sitios web a una lista negra, por ejemplo."
 
 msgid "Extend your keyword lists to capture relevant queries related to all your products, your product category, your brand and other relevant areas. Buy a larger percentage of video and display media using programmatic buying methods, such as open auction or programmatic direct. Optimise performance across digital channels."
-msgstr ""
+msgstr "Amplía tus listas de palabras clave para abarcar consultas relevantes que guarden relación con todos tus productos, la categoría a la que pertenecen, tu marca y otros aspectos importantes. Compra más medios de vídeo y display usando métodos de compra programática, como las subastas abiertas o la programática directa. Optimiza el rendimiento en los distintos canales digitales."
 
 msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Use the results to optimise your bidding strategy, your media buys and your budget allocation."
-msgstr ""
+msgstr "Supervisa la seguridad de la marca, la visibilidad, la calidad de los anuncios y el rendimiento de las palabras clave de tus campañas. Utiliza los resultados para optimizar la estrategia de pujas, las compras de medios y la asignación de presupuesto."
 
 msgid "Increase the variety of ad formats"
-msgstr ""
+msgstr "Utiliza una mayor variedad de formatos de anuncio"
 
 msgid "Use specialised formats, such as shopping ads on search, native ads and mobile app formats."
-msgstr ""
+msgstr "Utiliza formatos especializados, como anuncios de Shopping en la Búsqueda, anuncios nativos y formatos para aplicaciones móviles."
 
 msgid "In addition to your extensive keyword list, use automated features that capture unpredictable demand, for example, search queries generated by current events. Increase the percentage of video and display media you buy programmatically and consider additional deal types such as preferred or guaranteed. Consider buying some of your non-digital media programmatically."
-msgstr ""
+msgstr "Además de tener una lista de palabras clave muy extensa, utiliza funciones automáticas para captar la demanda impredecible, como, por ejemplo, consultas de búsqueda derivadas de eventos en curso. Compra más medios de vídeo y display con métodos programáticos y considera la posibilidad de incluir otros tipos de acuerdos, como los preferentes o los garantizados. Quizás también te interese comprar de forma programática algunos medios no digitales."
 
 msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Feed the results directly into your algorithms that optimise bidding, your media buys and your budget allocation. Actively engage with ecosystem partners to prevent future issues."
-msgstr ""
+msgstr "Supervisa la seguridad de la marca, la visibilidad, la calidad de los anuncios y el rendimiento de las palabras clave de tus campañas. Incluye los resultados directamente en los algoritmos que optimizan las pujas, las compras de medios y la asignación de presupuesto. Colabora periódicamente con partners del ecosistema para evitar problemas en el futuro."
 
 msgid "Use digital TV and digital out-of-home formats."
-msgstr ""
+msgstr "Utiliza formatos de exterior y de la televisión digital."
 
 msgid "Establish processes and improve internal systems that help you to capture new demand. Evaluate emerging deal types or features that help you to maximise reach while generating impact on your bottom line. Optimise your media buys across digital and non-digital channels."
-msgstr ""
+msgstr "Define procesos y mejora los sistemas internos que te permiten captar la demanda nueva. Evalúa funciones o tipos de acuerdo nuevos que maximizan la cobertura y, al mismo tiempo, influyen en los resultados de la empresa. Optimiza las compras de medios en los canales digitales y convencionales."
 
 msgid "Assess and iterate your tools and internal processes to monitor brand safety, viewability, ad quality and keyword performance. Continue to automate the usage of the results in your bidding, buying and optimisation algorithms. Actively engage with ecosystem partners and industry associations to share best practices and prevent future issues."
-msgstr ""
+msgstr "Evalúa y mejora las herramientas y los procesos internos para que puedas supervisar la seguridad de la marca, la visibilidad, la calidad de los anuncios y el rendimiento de las palabras clave. Sigue automatizando el uso de los resultados para definir las pujas, comprar y optimizar los algoritmos. Colabora periódicamente con partners del ecosistema y asociaciones del sector para intercambiar con ellos prácticas recomendadas y evitar problemas en el futuro."
 
 msgid "Experiment with ad formats in channels that have just recently become accessible through digital buying methods, for example radio ads."
-msgstr ""
+msgstr "Experimenta con distintos formatos de anuncio en canales que se han empezado a ofrecer hace muy poco a través de los métodos de compra digitales, como los anuncios de radio."
 
 msgid "Leverage technology"
-msgstr ""
+msgstr "Sácale partido a la tecnología"
 
 msgid "Use tools that make setting up and managing campaigns more efficient, for example, using an ad server for your creatives and a Demand SIde Platform (DSP) for your media buys. Check if the tools you are already using provide an API to reduce the number of manual tasks."
-msgstr ""
+msgstr "Utiliza herramientas que te permitan configurar y gestionar campañas más eficazmente, como, por ejemplo, servidores de anuncios en el caso de las creatividades, y plataformas de demanda (DSP) para las compras de medios. Comprueba si las herramientas que ya usas incluyen una API que permita reducir el número de tareas manuales."
 
 msgid "Automate high volume tasks"
-msgstr ""
+msgstr "Automatiza las tareas más frecuentes"
 
 msgid "Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a first step, move to automated bid adjustments for search and display campaigns. Gain experience with campaign management features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines)."
-msgstr ""
+msgstr "Aprovecha al máximo tu inversión publicitaria creando pujas automáticas que se apliquen en tiempo real en todas las plataformas. Para empezar, utiliza los ajustes de pujas automáticas en las campañas de búsqueda y display. Aprende a usar las funciones de gestión de campañas que seleccionan automáticamente los criterios de segmentación, como los sitios web en los que se publicarán tus anuncios, la cantidad que se va a pujar y los cambios que deben aplicarse después de haber probado distintos títulos, por ejemplo."
 
 msgid "Automate asset optimisation"
-msgstr ""
+msgstr "Automatiza la optimización de los recursos"
 
-msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user's location or the user's keyword. Aim to automate at least half of your creative optimisation decisions."
-msgstr ""
+msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user’s location or the user’s keyword. Aim to automate at least half of your creative optimisation decisions."
+msgstr "Utiliza feeds dinámicos para probar variaciones de los recursos de las creatividades, como, por ejemplo, texto que depende de la ubicación de cada usuario o las palabras clave que estos utilizan. Deberías automatizar al menos la mitad de las decisiones en las que te bases para optimizar las creatividades."
 
 msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server for an increased percentage of your ads, use your Demand Side Platform (DSP) for more of your media buys and increase your use of media platform APIs."
-msgstr ""
+msgstr "Utiliza más aquellas herramientas que permiten configurar y gestionar las campañas con mayor eficacia, por ejemplo, usa un servidor de anuncios para más anuncios y una plataforma de demanda (DSP) para más compras de medios, y utiliza con más frecuencia las API de las plataformas de medios."
 
 msgid "Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a next step, add more signals to your automated bid adjustments across search and display campaigns. Expand your use of automated campaign features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines)."
-msgstr ""
+msgstr "Aprovecha al máximo tu inversión publicitaria creando pujas automáticas que se apliquen en tiempo real en todas las plataformas. Podrías añadir más señales a los ajustes de pujas automáticas en las campañas de búsqueda y display. Utiliza con más frecuencia las funciones automáticas de campaña que seleccionan los criterios de segmentación, como los sitios web en los que se publicarán tus anuncios, la cantidad que se va a pujar y los cambios que deben aplicarse a las creatividades después de haber probado distintos títulos, por ejemplo."
 
 msgid "Use dynamic feeds and behavioural signals to automatically find the best-performing variation of your creative. Automate the optimisation of your creatives across several digital channels."
-msgstr ""
+msgstr "Utiliza feeds dinámicos y señales de comportamiento para encontrar de forma automática la variación de la creatividad que ofrece mejores resultados. Automatiza la optimización de tus creatividades en varios canales digitales."
 
 msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server beyond static creatives, use your Demand Side Platform (DSP) for more of your media buys and increase your use of platform APIs to include setup, maintenance, reporting and optimisation."
-msgstr ""
+msgstr "Utiliza más aquellas herramientas que permiten configurar y gestionar las campañas con mayor eficacia. Por ejemplo, usa un servidor de anuncios para las creatividades estáticas, usa una plataforma de demanda (DSP) para hacer más compras de medios, y utiliza con más frecuencia las API de las plataformas para realizar tareas de configuración, mantenimiento, creación de informes y optimización."
 
 msgid "Move to fully automated bidding which considers a variety of signals, including cross-device behaviour and insights from data-driven attribution models. Continue to explore new features that can automate targeting decisions."
-msgstr ""
+msgstr "Utiliza pujas automáticas, las cuales tienen en cuenta varios tipos de señales, como el comportamiento multidispositivo e información valiosa de modelos de atribución basada en datos. Sigue buscando nuevas funciones que te permitan automatizar las decisiones de segmentación."
 
 msgid "Automate assets that have many variables"
-msgstr ""
+msgstr "Automatiza los recursos que tienen muchas variables"
 
 msgid "Use dynamic feeds, behavioural signals from your website as well as cross-channel behavioural signals to automatically find the best-performing variation of your creative. Aim for a high percentage of automated creative optimisation."
-msgstr ""
+msgstr "Utiliza feeds dinámicos, señales de comportamiento de tu sitio web y señales de comportamiento en los distintos canales para encontrar de forma automática la variación de la creatividad que ofrece mejores resultados. La mayoría de tus creatividades deberían optimizarse automáticamente."
 
 msgid "Stay on top of new technology"
-msgstr ""
+msgstr "Controla las nuevas tecnologías"
 
-msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it's feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
-msgstr ""
+msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it’s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
+msgstr "Mantente al día de las nuevas funciones de plataformas que permiten configurar y gestionar las campañas con mayor eficacia. Por ejemplo, empieza a comprar medios en canales o plataformas nuevos para que puedan procesarse a través de la plataforma de demanda (DSP) en cuanto sea posible. Utiliza nuevas funciones de las API de las plataformas para automatizar más tareas relacionadas con la configuración, el mantenimiento, la creación de informes y la optimización de campañas."
 
 msgid "Actively look for repetitive tasks that could be automated and identify tasks that are already automated but may benefit from more data inputs, for example, if your bids are already being set automatically, integrate additional relevant data signals as they become available."
-msgstr ""
+msgstr "Busca tareas repetitivas que se puedan automatizar. De las que ya estén automatizadas, averigua cuáles mejorarían si tuvieran más datos; por ejemplo, comprueba si tus pujas se definen de forma automática, integra otras señales de datos relevantes a medida que estén disponibles."
 
 msgid "Pay attention to new data signals that may help to improve the algorithms in your creative optimisation technology. Aim for a high percentage of automated creative optimisation."
-msgstr ""
+msgstr "Fíjate en si hay nuevas señales de datos que puedan mejorar los algoritmos de la tecnología que utilices para optimizar las creatividades. La mayoría de tus creatividades deberían optimizarse automáticamente."
 
 msgid "Devote specialist resources to digital marketing"
-msgstr ""
+msgstr "Contrata a especialistas en marketing digital"
 
 msgid "Hire people who specialise in a specific channel, in data science and measurement technologies. Make sure these people can spend enough or even all their time on digital marketing."
-msgstr ""
+msgstr "Contrata a personas especializadas en un determinado canal, como en la ciencia de los datos o en las tecnologías de medición, y asegúrate de que puedan dedicar todo su tiempo, o una gran parte del tiempo, al marketing digital."
 
 msgid "Increase coordination and collaboration"
-msgstr ""
+msgstr "Incrementa la coordinación y la colaboración"
 
 msgid "Identify a senior sponsor who champions data-driven marketing, for example a VP of marketing. Coordinate and agree on marketing objectives across several digital channels. Enable collaboration between functional teams, starting with large campaign launches. Consider creating roles that are responsible for more than 1 digital marketing channel."
-msgstr ""
+msgstr "Busca a un profesional experimentado que fomente el marketing basado en datos, como, por ejemplo, un vicepresidente de Marketing. Coordina y define los objetivos que deben lograrse en varios canales digitales. Facilita la colaboración entre equipos funcionales, empezando por el lanzamiento de campañas grandes. También puedes crear puestos para personas que se encarguen de más de un canal de marketing digital."
 
 msgid "Improve partner management and ways of working"
-msgstr ""
+msgstr "Mejora la gestión de los partners y la forma de trabajar"
 
 msgid "Foster collaboration between different agencies. Increase your ability to work in agile ways, for example, devote budget to running experiments and encourage best practice sharing across functions or departments."
-msgstr ""
+msgstr "Fomenta la colaboración entre diferentes agencias. Aumenta la capacidad para trabajar de manera ágil; por ejemplo, asigna parte del presupuesto a hacer experimentos, y promueve el intercambio de prácticas recomendadas entre los distintos cargos y departamentos de la empresa."
 
 msgid "Expand specialist resources"
-msgstr ""
+msgstr "Aumenta la plantilla de especialistas"
 
 msgid "Increase the number of specialists for specific digital marketing channels, for data science and for measurement technologies."
-msgstr ""
+msgstr "Aumenta el número de especialistas en canales de marketing digital, ciencias de los datos y tecnologías de medición."
 
 msgid "Investigate if data-driven marketing could be sponsored by a more senior person, for example the CMO. Coordinate and agree on marketing objectives across all digital channels. Set up processes that allow day-to-day collaboration across teams, functions and between your organisation and your most important partners."
-msgstr ""
+msgstr "Averigua si un profesional más experimentado podría impulsar el marketing basado en datos, como, por ejemplo, el director de Marketing. Coordina y define los objetivos que deben lograrse en varios canales digitales. Implanta procesos que permitan la colaboración diaria entre equipos y cargos, y entre tu organización y los partners más importantes."
 
 msgid "Improve collaboration between different agencies and establish regular touchpoints. Increase your ability to work in agile ways, for example, devote more budget to running experiments and encourage best practice sharing across functions, brands, departments and regions."
-msgstr ""
+msgstr "Mejora la colaboración entre diferentes agencias y establece puntos de contacto periódicos. Aumenta la capacidad para trabajar de manera ágil. Por ejemplo, asigna parte del presupuesto a hacer experimentos, y promueve el intercambio de prácticas recomendadas entre los distintos cargos, marcas, departamentos y regiones."
 
 msgid "Increase the number of specialists for specific digital marketing channels, for data science and measurement technologies. "
-msgstr ""
+msgstr "Aumenta el número de especialistas en canales de marketing digital, ciencias de los datos y tecnologías de medición. "
 
 msgid "Investigate if data-driven marketing could be sponsored by a more senior person, for example by the CEO. Coordinate and agree on marketing objectives across digital and non-digital channels. Link your marketing objectives to business results. Improve processes that enable day-to-day collaboration across teams, functions and between your organisation and all relevant ecosystem partners."
-msgstr ""
+msgstr "Averigua si un profesional más experimentado, como, por ejemplo, el director ejecutivo, podría impulsar el marketing basado en datos. Coordina y define los objetivos que deben lograrse en varios canales digitales y convencionales. Relaciona tus objetivos de marketing con los resultados del negocio. Mejora los procesos que permiten la colaboración diaria entre equipos y cargos, y entre tu organización y los partners más importantes del ecosistema."
 
 msgid "Improve collaboration between all relevant agencies and from virtual campaign teams. Increase your ability to work in agile ways, for example, devote more budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
-msgstr ""
+msgstr "Mejora la colaboración entre las agencias más destacadas y entre los equipos de campaña virtuales. Aumenta la capacidad para trabajar de manera ágil; por ejemplo, asigna parte del presupuesto a hacer experimentos y mejora los procesos relacionados con el intercambio de prácticas recomendadas entre los distintos cargos, marcas, departamentos y regiones."
 
 msgid "Increase the number of specialists for specific digital marketing channels, for data science, measurement technologies and emerging fields of specialisms."
-msgstr ""
+msgstr "Aumenta el número de especialistas en canales de marketing digital, ciencias de los datos, tecnologías de medición y campos de especialidad emergentes."
 
 msgid "Fine-tune coordination and collaboration"
-msgstr ""
+msgstr "Mejora la coordinación y la colaboración"
 
 msgid "Continue to iterate on how you coordinate and agree on marketing objectives across digital and non-digital channels. Find new links between marketing objectives and business performance. Improve processes that enable day-to-day collaboration across teams, functions and between your organisation and all relevant ecosystem partners."
-msgstr ""
+msgstr "Sigue mejorando la manera de coordinar y definir los objetivos que deben lograrse en varios canales digitales y convencionales. Busca nuevas correlaciones entre los objetivos de marketing y los resultados comerciales. Mejora los procesos que permiten la colaboración diaria entre equipos y cargos, y entre tu organización y los partners más importantes del ecosistema."
 
 msgid "Regularly evaluate collaboration between all relevant agencies and help them to be more impactful and efficient. Continue to review your ability to work in agile ways, for example evaluate how you allocate budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
-msgstr ""
+msgstr "Evalúa periódicamente la colaboración entre las agencias y ayúdales a ser más eficaces e influyentes. Continúa buscando formas de trabajar de manera ágil; por ejemplo, asigna parte del presupuesto a hacer experimentos, y promueve el intercambio de prácticas recomendadas entre los distintos cargos, marcas, departamentos y regiones."
 
 msgid "We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands."
-msgstr ""
+msgstr "Hemos colaborado con BCG para hacer un estudio de empresas en profundidad e identificar los pilares del marketing digital bien desarrollado. De acuerdo con los resultados, estas seis capacidades son clave para obtener un buen rendimiento y ofrecer a los clientes lo que esperan de las marcas."
 
 msgid "The capability to accurately measure and value customer touchpoints."
-msgstr ""
+msgstr "Capacidad de medir y valorar con precisión los puntos de contacto de los clientes."
 
 msgid "The capability to deliver attention-driving, intuitive experiences across digital touchpoints."
-msgstr ""
+msgstr "Capacidad de ofrecer experiencias intuitivas y atractivas en los puntos de contacto digitales."
 
 msgid "The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel."
-msgstr ""
+msgstr "Capacidad de organizar los datos para identificar, entender e influir en las audiencias más valiosas en todo el embudo de conversión de ventas."
 
 msgid "The capability to reach and deliver across all inventory types and channels."
-msgstr ""
+msgstr "Capacidad de llegar a los consumidores y mostrar anuncios en todos los canales y tipos de inventario."
 
 msgid "The capability to optimise marketing operations to drive profitability and growth."
-msgstr ""
+msgstr "Capacidad de optimizar las operaciones de marketing para generar rentabilidad y crecimiento."
 
 msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
-msgstr ""
+msgstr "Capacidad de mejorar el proceso de toma de decisiones y los resultados mediante la colaboración entre equipos y partners especializados."
 
-msgid "Digital Maturity Benchmark"
-msgstr ""
+msgid "Accommodation and food service"
+msgstr "Alojamiento y alimentación"
+
+msgid "Arts, entertainment & recreation"
+msgstr "Artes, entretenimiento y ocio"
+
+msgid "Construction"
+msgstr "Construcción"
+
+msgid "Education"
+msgstr "Educación"
+
+msgid "Further education"
+msgstr "Formación complementaria"
+
+msgid "Other"
+msgstr "Otro tipo"
+
+msgid "Primary education"
+msgstr "Educación primaria"
+
+msgid "Secondary education"
+msgstr "Educación secundaria"
+
+msgid "Electricity, gas, steam, water"
+msgstr "Electricidad, gas, vapor y agua"
+
+msgid "Financial and Insurance"
+msgstr "Finanzas y seguros"
+
+msgid "Banking"
+msgstr "Banca"
+
+msgid "Insurance"
+msgstr "Seguros"
+
+msgid "Human health & social work"
+msgstr "Salud y trabajo social"
+
+msgid "Information and Communication"
+msgstr "Información y comunicación"
+
+msgid "Books, news, periodicals, journals"
+msgstr "Libros, noticias, periódicos y revistas"
+
+msgid "Software"
+msgstr "Software"
+
+msgid "TV, radio, movies, video, music"
+msgstr "Televisión, radio, películas, vídeo y música"
+
+msgid "Telecommunications"
+msgstr "Telecomunicaciones"
+
+msgid "Manufacturing"
+msgstr "Fabricación"
+
+msgid "Chemicals"
+msgstr "Sector químico"
+
+msgid "Cosmetics, toiletries, detergents"
+msgstr "Cosméticos, artículos de aseo y detergentes"
+
+msgid "Electronics"
+msgstr "Electrónica"
+
+msgid "Food & beverages"
+msgstr "Alimentos y bebidas"
+
+msgid "Furniture"
+msgstr "Muebles"
+
+msgid "Machinery & equipment"
+msgstr "Maquinaria y bienes de equipo"
+
+msgid "Pharmaceuticals"
+msgstr "Productos farmacéuticos"
+
+msgid "Textiles, footwear & apparel"
+msgstr "Textiles, ropa y calzado"
+
+msgid "Toys & games"
+msgstr "Juguetes y juegos"
+
+msgid "Vehicles"
+msgstr "Vehículos"
+
+msgid "Other service activities - Other"
+msgstr "Otras actividades relacionadas con servicios - Otro tipo"
+
+msgid "Other service activities - Printing"
+msgstr "Otras actividades relacionadas con servicios - Impresión"
+
+msgid "Professional activities"
+msgstr "Actividades profesionales"
+
+msgid "Consultancy"
+msgstr "Consultoría"
+
+msgid "Legal"
+msgstr "Servicios jurídicos"
+
+msgid "Research"
+msgstr "Investigación"
+
+msgid "Public administration & political organisations"
+msgstr "Administración pública y organizaciones políticas"
+
+msgid "Real estate"
+msgstr "Mercado inmobiliario"
+
+msgid "Retail trade"
+msgstr "Comercio minorista"
+
+msgid "Multi-category"
+msgstr "Varias categorías"
+
+msgid "Books, music, video"
+msgstr "Libros, música y vídeo"
+
+msgid "Food and beverages"
+msgstr "Alimentos y bebidas"
+
+msgid "Household goods"
+msgstr "Artículos domésticos"
+
+msgid "Transportation and Travel"
+msgstr "Viajes y transportes"
+
+msgid "Railway, flight, land & water transport"
+msgstr "Transporte ferroviario, aéreo, terrestre y naval"
+
+msgid "Travel agency & tour operator"
+msgstr "Agencias de viajes y operadores turísticos"
+
+msgid "Wholesale trade"
+msgstr "Comercio mayorista"
 
 msgid "Your results are ready!"
-msgstr ""
+msgstr "¡Ya tenemos los resultados!"
 
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 msgid "Industry"
-msgstr ""
+msgstr "Sector"
 
 msgid "We've finished analysing your survey responses to find out where you can improve your marketing strategy."
-msgstr ""
+msgstr "Hemos analizado las respuestas de la encuesta para detectar qué aspectos de tu estrategia de marketing puedes mejorar."
 
 msgid "Click the button below to access your digital maturity report and see the results of your survey."
-msgstr ""
+msgstr "Haz clic en el siguiente botón para acceder al informe sobre el nivel de desarrollo digital de tu empresa y ver los resultados de la encuesta."
 
 msgid "Access your report"
-msgstr ""
+msgstr "Accede a tu informe"
 
 msgid "Connect with Google"
-msgstr ""
+msgstr "Conéctate con Google"
 
 msgid "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email."
-msgstr ""
+msgstr "Has recibido este correo electrónico porque has respondido a una encuesta de Google Digital Maturity Benchmark. Si no es así, ignóralo."
 
 msgid "We've finished analyzing your survey responses to find out where you can improve your marketing strategy. Here's the link to access your report:"
-msgstr ""
+msgstr "Hemos analizado las respuestas de la encuesta para detectar qué aspectos de tu estrategia de marketing puedes mejorar. Puedes consultar el informe en el siguiente enlace:"
 
 msgid "Response is ready!"
-msgstr ""
+msgstr "¡Las respuestas están listas!"
 
 msgid "Your roadmap to digital marketing maturity"
-msgstr ""
+msgstr "El camino hacia un marketing digital bien desarrollado"
 
-msgid "The <strong>Digital Maturity Benchmark</strong> is a diagnostic tool developed based on our in-depth research with BCG."
-msgstr ""
+#, python-format
+msgid "The <strong>%(prod_name)s</strong> is a diagnostic tool developed based on our in-depth research with BCG."
+msgstr "<strong>%(prod_name)s</strong> es una herramienta de diagnóstico que hemos desarrollado a partir de un estudio exhaustivo elaborado en colaboración con BCG."
 
 msgid "Never miss a moment to connect with customers"
-msgstr ""
+msgstr "Aprovecha cualquier momento para conectar con los clientes"
 
 msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
-msgstr ""
+msgstr "Averigua qué nivel de desarrollo del marketing basado en datos tiene tu empresa y descubre qué puedes hacer para alcanzar el máximo potencial."
 
 msgid "How it works"
-msgstr ""
+msgstr "Cómo funciona"
 
 msgid "Benchmark which stage your organisation is at on our digital maturity scale."
-msgstr ""
+msgstr "Compara el nivel de desarrollo digital de tu organización con el de otras empresas."
 
 msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
-msgstr ""
+msgstr "En esta fase, las empresas adoptan una estrategia de marketing distinta en cada campaña, y se centran en datos externos y compras directas que muestran una relación limitada con las ventas."
 
 msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
-msgstr ""
+msgstr "Estas empresas utilizan algunos datos propios en compras automatizadas, y optimizan y hacen pruebas en un solo canal."
 
 msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
-msgstr ""
+msgstr "En este nivel de desarrollo, los datos están integrados y activados en varios canales que muestran una relación directa con el retorno de inversión y las acciones que conducen a las compras."
 
 msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
-msgstr ""
+msgstr "En esta fase, las empresas han optimizado la ejecución dinámica de campañas y pueden ofrecer experiencias personalizadas a los clientes en varios canales."
 
 msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
-msgstr ""
+msgstr "La herramienta analiza dónde se encuentra tu empresa en el camino hacia la atribución y el marketing basados en datos. Además, genera un informe personalizado e interactivo con el correspondiente asesoramiento, en el que se compara tu organización con otras empresas del sector y se incluyen recomendaciones de estrategias y tácticas que te ayudarán a mejorar."
 
 msgid "Everyday there are hundreds of chances to engage with customers digitally"
-msgstr ""
+msgstr "Todos los días tienes cientos de oportunidades para conectar con los clientes a través del canal digital"
 
 #, python-format
 msgid "But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2%% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey."
-msgstr ""
+msgstr "Sin embargo, según un estudio realizado por Boston Consulting Group (BCG) sobre el nivel de desarrollo del marketing basado en datos, solo el 2 %% de las empresas utilizan datos y tecnología para crear experiencias útiles y relevantes en varios momentos del recorrido de compra."
 
 msgid "Use the insights from your report to identify how to drive your organisation to the next level, and work with others in your company and your partners to achieve this."
-msgstr ""
+msgstr "Averigua cómo puedes mejorar tu organización con los datos del informe, y trabaja con otras personas de la empresa y tus partners para conseguirlo."
 
 msgid "devices running the tool"
-msgstr ""
+msgstr "dispositivos que usan la herramienta"
 
 msgid "laptop screen demo"
-msgstr ""
+msgstr "demostración en un portátil"
 
 msgid "These businesses have a sustainable competitive advantage"
-msgstr ""
+msgstr "Estas empresas cuentan con ventajas competitivas sostenibles"
 
 #, python-format
 msgid "Companies leading the way in multi-moment marketing see 30%% cost efficiency savings and a 20%% increase in revenue."
-msgstr ""
+msgstr "Las empresas que dominan el marketing multimomento aumentan la rentabilidad un 30 %%, y los ingresos, un 20 %%."
 
 msgid "Find out more"
-msgstr ""
+msgstr "Más información"
 
 msgid "image of person using the app on a mobile"
-msgstr ""
+msgstr "imagen de una persona usando la aplicación en un dispositivo móvil"
 
 msgid "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability."
-msgstr ""
+msgstr "Analiza en profundidad los resultados de tu organización en las seis áreas de eficiencia y rentabilidad del marketing digital."
 
 msgid "organization dimension logo"
-msgstr ""
+msgstr "logotipo de dimensión de organización"
 
 msgid "Improve decision-making and results by working collaboratively across teams and with specialised partners"
-msgstr ""
+msgstr "Mejora el proceso de toma de decisiones y los resultados con equipos y partners especializados que colaboran entre ellos."
 
 msgid "attribution dimension logo"
-msgstr ""
+msgstr "logotipo de dimensión de atribución"
 
 msgid "Accurately measure and value customer touchpoints"
-msgstr ""
+msgstr "Mide y valora con precisión los puntos de contacto de los clientes."
 
 msgid "assets and ads dimension logo"
-msgstr ""
+msgstr "logotipo de dimensión de recursos y anuncios"
 
 msgid "Deliver attention-driving, intuitive experiences across digital touchpoints"
-msgstr ""
+msgstr "Ofrece experiencias intuitivas y atractivas en los puntos de contacto digitales."
 
 msgid "audience dimension logo"
-msgstr ""
+msgstr "logotipo de dimensión de audiencia"
 
 msgid "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel"
-msgstr ""
+msgstr "Organiza los datos para identificar y entender las audiencias más valiosas e influir en ellas en todo el embudo de conversión de ventas."
 
 msgid "access dimension logo"
-msgstr ""
+msgstr "logotipo de dimensión de acceso"
 
 msgid "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control"
-msgstr ""
+msgstr "Identifica tus audiencias y llega a ellas de una manera eficaz a través de todos los canales y tipos de inventario publicitario, con los niveles de control adecuados."
 
 msgid "automation dimension logo"
-msgstr ""
+msgstr "logotipo de dimensión de automatización"
 
 msgid "Optimise marketing operations to drive profitability and growth"
-msgstr ""
+msgstr "Optimiza las operaciones de marketing para generar rentabilidad y crecimiento."
 
 msgid "In partnership with"
-msgstr ""
+msgstr "En colaboración con"
 
 msgid "Why digital maturity matters"
-msgstr ""
+msgstr "La importancia del desarrollo digital"
 
 msgid "Start the assessment now"
-msgstr ""
+msgstr "Empezar la evaluación ahora"
 
 msgid "This in-depth assessment takes around 30 minutes to complete."
-msgstr ""
+msgstr "Esta evaluación exhaustiva te llevará unos 30 minutos."
 
 msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
-msgstr ""
+msgstr "BCG identificó estas cifras analizando los factores y las capacidades que han contribuido al éxito de más de 40 empresas de ocho sectores."
 
 msgid "read more"
-msgstr ""
-
-msgid "Ready to benchmark your company’s digital maturity?"
-msgstr ""
-
-msgid "Let’s start with some details about your organisation:"
-msgstr ""
-
-msgid "How we keep your information safe"
-msgstr ""
-
-msgid "Enter the organisation name"
-msgstr ""
-
-msgid "Select an industry"
-msgstr ""
-
-msgid "Select a country"
-msgstr ""
-
-msgid "This field is required!"
-msgstr ""
-
-msgid "Progress to my assessment"
-msgstr ""
-
-msgid "Oops, something went wrong!"
-msgstr ""
+msgstr "más información"
 
 msgid "Appendix"
-msgstr ""
+msgstr "Apéndice"
 
 msgid "Benchmark calculations"
-msgstr ""
+msgstr "Cálculos de las comparativas"
 
 msgid "Industry average & industry best"
-msgstr ""
+msgstr "Media del sector y mejores resultados del sector"
 
 msgid "These two metrics show how your company compares to the average and top performers in your industry globally."
-msgstr ""
+msgstr "Estas dos métricas permiten comparar tu empresa con las que ofrecen unos resultados medios y con las que tienen el mejor rendimiento de tu sector."
 
 msgid "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category."
-msgstr ""
+msgstr "En este caso, “la media del sector“ se basa en respuestas globales de la categoría “{[reportCtrl.industryAvgSource]}“."
 
 msgid "Your “Industry average” is currently based on global responses from all industries."
-msgstr ""
+msgstr "En este caso, “la media del sector“ se basa en respuestas globales de todos los sectores."
 
 msgid "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category."
-msgstr ""
+msgstr "En este caso, “los mejores resultados del sector“ se basan en respuestas globales de la categoría “{[reportCtrl.industryBestSource]}“."
 
 msgid "Your “Industry best” is currently based on global responses from all industries."
-msgstr ""
+msgstr "En este caso, “los mejores resultados del sector“ se basan en respuestas globales de todos los sectores."
 
 msgid "If the scores above do not refer to your specific industry, not enough people have yet filled in the assessment to produce a reliable average. Check back later as the scores are continuously updated!"
-msgstr ""
+msgstr "Si las puntuaciones que se incluyen arriba no se corresponden con tu sector, significa que aún no hay evaluaciones suficientes completadas para generar una media fiable. Te recomendamos que vuelvas a consultarlas más tarde porque los datos se actualizan continuamente."
 
 msgid "Six dimensions of digital marketing maturity"
-msgstr ""
+msgstr "Seis áreas del nivel de desarrollo del marketing digital"
 
 msgid "Together with BCG, we identified the "
-msgstr ""
+msgstr "En colaboración con BCG, identificamos las "
 
 msgid "key dimensions"
-msgstr ""
+msgstr "dimensiones clave"
 
 msgid " that drive data-driven marketing maturity. Click the icons below to see how you perform in each."
-msgstr ""
+msgstr " que contribuyen al desarrollo del marketing basado en datos. Haz clic en los iconos siguientes para ver qué tal lo está haciendo tu empresa."
 
 msgid "Your Digital Maturity level is"
-msgstr ""
+msgstr "Tu nivel de desarrollo digital es"
 
 msgid "Next level: "
-msgstr ""
+msgstr "Siguiente nivel: "
 
 msgid "Congratulations, you're in the top group for digital maturity"
-msgstr ""
+msgstr "Enhorabuena, tu empresa se encuentra entre las que tienen el mayor nivel de desarrollo digital"
 
 msgid "Digital Maturity report"
-msgstr ""
+msgstr "Informe de desarrollo digital"
 
 msgid "This report will show you where you are weakest and strongest, and what to do to get to the next level."
-msgstr ""
+msgstr "Gracias a este informe sabrás lo que va bien y lo que va mal en tu empresa, y qué puedes hacer para mejorar."
 
 msgid "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level."
-msgstr ""
+msgstr "Con este informe descubrirás los puntos débiles de tu empresa y cómo alcanzar todo el potencial del marketing digital."
 
 msgid "Why Digital Maturity matters"
-msgstr ""
+msgstr "La importancia del desarrollo digital"
 
 msgid "Your overall digital maturity"
-msgstr ""
+msgstr "Nivel de desarrollo digital general de tu empresa"
 
 msgid "Learn more about levels"
-msgstr ""
+msgstr "Más información sobre los niveles"
 
 msgid "Dimensions"
-msgstr ""
+msgstr "Dimensiones"
 
 msgid "The definition has probably changed and we could not find any answer for this question."
-msgstr ""
+msgstr "Es posible que la definición haya cambiado, por lo que no hemos podido encontrar respuesta a esta pregunta."
 
 msgid "Consumer shift"
-msgstr ""
+msgstr "Cambios en el comportamiento de los consumidores"
 
 msgid "Today, more and more of our lives are powered by mobile and digital. We love our devices, but what we really love is the power our devices give us. The power to get exactly what we want, instantly and effortlessly. To have our needs not just met, but anticipated."
-msgstr ""
+msgstr "Los móviles y el canal digital tienen cada vez más protagonismo en nuestras vidas. Nos gustan los dispositivos, pero lo que más nos atrae de ellos es el poder que nos dan, el poder de conseguir exactamente lo que queremos al instante y sin esfuerzo. No solo queremos que satisfagan nuestras necesidades, también esperamos que se anticipen a ellas."
 
 msgid "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as these expectations ratchet up, so do the requirements (and opportunities) for marketers."
-msgstr ""
+msgstr "Para los profesionales del marketing, esto alude directamente al comportamiento de los consumidores, y lo que esperan ha cambiado. Si estas expectativas aumentan, también lo harán las exigencias (y las oportunidades) para estos profesionales."
 
 msgid "Today’s consumers are:"
-msgstr ""
+msgstr "Los consumidores de hoy en día son:"
 
 msgid "Curious"
-msgstr ""
+msgstr "Curiosos"
 
 msgid "They turn to Google Search more and more often looking to get useful advice and answers - even for the small stuff - so every decision they make is an informed one."
-msgstr ""
+msgstr "Cada vez utilizan más la Búsqueda de Google para obtener consejos útiles y respuestas, aunque sea para cuestiones de poca importancia. Así, se aseguran de que las decisiones que toman están bien fundamentadas."
 
 #, python-format
 msgid "In the last 2 years, mobile searches have risen 239%% for best travel accessories, 208%% for best face powder and 156%% for best wet weather gear.&nbsp;"
-msgstr ""
+msgstr "En los últimos dos años, las búsquedas móviles sobre los mejores accesorios de viaje, los mejores polvos faciales y la mejor ropa para la lluvia han aumentado un 239 %%, un 208 %% y un 156 %%, respectivamente.&nbsp;"
 
 #, python-format
 msgid "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2 years.&nbsp;"
-msgstr ""
+msgstr "También en los dos últimos años, las búsquedas móviles sobre listas de nacimiento y listas de la compra de alimentos saludables han aumentado un 180 %%.&nbsp;"
 
 msgid "Demanding"
-msgstr ""
+msgstr "Exigentes"
 
 msgid "They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment."
-msgstr ""
+msgstr "Quieren experiencias relevantes y personalizadas, y esperan que las marcas entiendan lo que buscan y les muestren información útil en el momento justo."
 
 msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
-msgstr ""
+msgstr "En Europa, África y Oriente Medio, las búsquedas móviles que contienen \"cerca\" se han multiplicado por 4,5 en la Búsqueda de Google y por 6 en Google Maps en los dos últimos años.&nbsp;"
 
-#, python-format
-msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth.&nbsp;"
-msgstr ""
+msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
+msgstr "Según el 89 %% de los profesionales del marketing, la clave del desarrollo de las marcas está en ofrecer experiencias útiles en el recorrido del cliente."
 
 msgid "Impatient"
-msgstr ""
+msgstr "Impacientes"
 
 msgid "People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly."
-msgstr ""
+msgstr "Los usuarios toman las decisiones cada vez más rápidamente y esperan ponerlas en marcha al instante."
 
 msgid "1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;"
-msgstr ""
+msgstr "Cuando un sitio web móvil tarda más de tres segundos en cargarse, uno de cada dos usuarios lo abandona.&nbsp;"
 
 msgid "So, how can you be digitally mature and so anticipate the needs of your customers today?"
-msgstr ""
+msgstr "Por lo tanto, ¿qué puedes hacer para alcanzar un nivel de desarrollo digital que permita anticiparte a las necesidades de tus clientes?"
 
 msgid "Be there"
-msgstr ""
+msgstr "Estar presente"
 
 msgid "Use the power of technology and insights to deliver relevant, real-time messages at scale, whenever each consumer is ready for them."
-msgstr ""
+msgstr "Utiliza el poder de la tecnología y de los datos para mostrar mensajes relevantes, personalizados y en tiempo real, en el momento adecuado para cada consumidor."
 
 msgid "Be helpful"
-msgstr ""
+msgstr "Ser útil"
 
 msgid "Build a strategy driven by assistance, reorienting to become more relevant across the customer experience."
-msgstr ""
+msgstr "Crea una estrategia basada en la asistencia que te permita ser útil en toda la experiencia del cliente."
 
 msgid "Be quick"
-msgstr ""
+msgstr "Ser rápido"
 
 msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
-msgstr ""
+msgstr "Cumple las expectativas de los consumidores ofreciéndoles experiencias rápidas y sin complicaciones en el canal móvil."
 
-#, python-format
 msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
-msgstr ""
+msgstr "<strong>Si los clientes ganan, las empresas también ganan,</strong> aunque les está costando ponerlo todo en práctica. Según el estudio que realizamos junto con BCG, solo el 2 %% de las marcas son conscientes del potencial que tiene el marketing basado en datos."
 
 msgid "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report."
-msgstr ""
+msgstr "Descubre cómo puede tu empresa estar presente, y ser útil y rápida para cumplir y superar las expectativas —cada vez mayores— de los clientes a través de un informe de Digital Marketing Maturity."
 
 msgid "Source: Google Data, EMEA, Jan - Dec 2015 vs. Jan - Dec 2017"
-msgstr ""
+msgstr "Fuente: Datos de Google, Europa, África y Medio Oriente, periodo de enero a diciembre del 2015 frente al periodo de enero a diciembre del 2017."
 
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
-msgstr ""
-
-msgid "Nice Work!"
-msgstr ""
-
-msgid "Your response has been submitted and your report is being generated."
-msgstr ""
-
-msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
-msgstr ""
-
-msgid "Back to website"
-msgstr ""
+msgstr "Fuente: Econsultancy y Google, “An Audience of Individuals“ (Una audiencia formada por personas individuales), 2017; n=514 ejecutivos de marketing y medición de empresas ubicadas principalmente en Norteamérica y cuyos ingresos superan los 250 millones de USD; n=133 profesionales del marketing que afirmaron que el departamento de marketing había superado con creces su principal objetivo de negocio en el 2016, n=381 otros profesionales del marketing (resto de la muestra)."
 
 msgid "You are "
-msgstr ""
+msgstr "Tu empresa está "
 
 msgid "You could be"
-msgstr ""
+msgstr "Podrías ser"
 
 msgid "Congratulations"
-msgstr ""
+msgstr "Enhorabuena,"
 
 #, python-format
 msgid "you're in the top 2%% for marketing maturity"
-msgstr ""
+msgstr "tu empresa se encuentra entre el 2 %% de empresas con el mejor nivel de desarrollo de marketing"
 
 msgid "Here's how you get there:"
-msgstr ""
+msgstr "Para conseguir este objetivo:"
 
 msgid "Here's how to get even better:"
-msgstr ""
+msgstr "Para mejorar:"
 
 msgid "logo"
-msgstr ""
+msgstr "logotipo"
 
 msgid "in this dimension"
-msgstr ""
+msgstr "en esta área"
 
 msgid "Congratulations, you're in the top group for data maturity"
-msgstr ""
+msgstr "Enhorabuena, tu empresa se encuentra entre las que tienen el mayor nivel de desarrollo de datos"
 
 msgid "Get more information about the industry average"
-msgstr ""
+msgstr "Más información sobre la media del sector"
 
 msgid "Get more information about the industry best"
-msgstr ""
+msgstr "Más información sobre los mejores resultados del sector"
 
 msgid "Industry average is not available yet, sorry!"
-msgstr ""
+msgstr "La media del sector todavía no está disponible."
 
 msgid "Industry average"
-msgstr ""
+msgstr "La media del sector"
 
 msgid "Industry best is not available yet, sorry!"
-msgstr ""
+msgstr "Los mejores resultados del sector todavía no están disponibles."
 
 msgid "Industry best"
-msgstr ""
+msgstr "Los mejores resultados del sector"
 
 msgid "Fetching your company rating..."
-msgstr ""
+msgstr "Calculando la puntuación de tu empresa..."
 
 msgid "Your company, "
-msgstr ""
+msgstr "Tu empresa, "
 
 msgid " has a rating of "
-msgstr ""
+msgstr " tiene una puntuación de "
 
 msgid " which is a maturity level of "
-msgstr ""
+msgstr " que se corresponde con un nivel de desarrollo de "
 
 msgid "Fetching industry average..."
-msgstr ""
+msgstr "Obteniendo la media del sector..."
 
 msgid "The industry average is "
-msgstr ""
+msgstr "La media del sector es "
 
 msgid "which is a maturity level of "
-msgstr ""
+msgstr "que se corresponde con un nivel de desarrollo de "
 
 msgid "Fetching industry best..."
-msgstr ""
+msgstr "Obteniendo los mejores resultados del sector..."
 
 msgid "The industry best is "
-msgstr ""
+msgstr "El mejor resultado del sector es "
 
 msgid "Not available yet"
-msgstr ""
+msgstr "Aún no están disponibles"
 
 msgid "Your Company is"
-msgstr ""
+msgstr "Tu empresa es"
 
 msgid "Your company rating"
-msgstr ""
+msgstr "Puntuación de tu empresa"
 
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiar en el portapapeles"
 
 msgid "Copied to clipboard!"
-msgstr ""
+msgstr "Se ha copiado en el portapapeles."
 
 msgid "Sorry, unable to copy."
-msgstr ""
+msgstr "No se ha podido copiar."
 
 msgid "Looking to benchmark digital maturity for a different challenge or industry?"
-msgstr ""
+msgstr "¿Quieres comparar el nivel de desarrollo digital de tu empresa en otro ámbito o sector?"
 
 msgid "Read"
-msgstr ""
+msgstr "Leer"
 
 msgid "more"
-msgstr ""
+msgstr "más"
 
 msgid "less"
-msgstr ""
-
-msgid "Advertiser Marketing Maturity"
-msgstr ""
-
-msgid "News Publisher Data Transformation"
-msgstr ""
-
-msgid "Retail Data Transformation"
-msgstr ""
+msgstr "menos"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privacidad"
 
 msgid "Terms"
-msgstr ""
+msgstr "Condiciones"
 
 msgid "About Google"
-msgstr ""
+msgstr "Acerca de Google"
 
 msgid "Google Products"
-msgstr ""
+msgstr "Productos de Google"
 
 msgid "Contact us"
-msgstr ""
+msgstr "Contacto"
 
-msgid "Data Maturity Benchmark"
+msgid "Change language or region"
 msgstr ""
 
 msgid "Skip to content"
-msgstr ""
+msgstr "Ir al contenido"
 
 msgid "Start now"
-msgstr ""
+msgstr "Empezar ahora"
 
 msgid "In partnership with The Boston Consulting Group"
-msgstr ""
+msgstr "En colaboración con The Boston Consulting Group"
 
 msgid "Next steps"
-msgstr ""
+msgstr "Pasos siguientes"
 
 msgid "Review your recommendations and consider these four steps:"
-msgstr ""
+msgstr "Revisa las recomendaciones y sigue estos 4 pasos:"
 
 msgid "Define which areas are strongly linked to your business goals"
-msgstr ""
+msgstr "Identifica las áreas más relacionadas con tus objetivos de negocio."
 
 msgid "Create a roadmap outlining what you intend to do over the next 12 months"
-msgstr ""
+msgstr "Crea una hoja de ruta con tus planes para los próximos 12 meses."
 
 msgid "Decide who will own each action and how to track progress over this period"
-msgstr ""
+msgstr "Decide quién se encargará de cada acción y cómo hacer un seguimiento del progreso durante este periodo."
 
 msgid "Identify the right partners outside of your company to support you at each stage"
-msgstr ""
+msgstr "Identifica los partners externos a los que acudirá tu empresa en cada fase."
 
 msgid "Share this report with your colleagues"
-msgstr ""
+msgstr "Comparte este informe con tus compañeros"
 
 msgid "To share this report, copy the link and send it to your colleagues."
-msgstr ""
+msgstr "Para compartir este informe, copia el enlace y envíaselo a tus compañeros."
 
 msgid "Dimensions of marketing maturity"
+msgstr "Áreas del nivel de desarrollo del marketing"
+
+msgid "Levels of Digital Maturity"
+msgstr "Niveles de desarrollo de datos"
+
+msgid "Ready to benchmark your company’s digital maturity?"
+msgstr "¿Quieres comparar el nivel de desarrollo digital de tu empresa con el de otras?"
+
+msgid "Let’s start with some details about your organisation:"
+msgstr "Para empezar, necesitamos algunos detalles sobre tu organización:"
+
+msgid "How we keep your information safe"
+msgstr "Información sobre la protección de datos"
+
+msgid "Enter the organisation name"
+msgstr "Escribe el nombre de la organización"
+
+msgid "Enter the organization name"
+msgstr "Escribe el nombre de la organización"
+
+msgid "Select an industry"
+msgstr "Selecciona un sector"
+
+msgid "Select a country"
+msgstr "Selecciona un país"
+
+msgid "Progress to my assessment"
+msgstr "Empezar con la evaluación"
+
+msgid "Oops, something went wrong!"
+msgstr "¡Vaya! Se ha producido un error."
+
+msgid "Nice Work!"
+msgstr "Ya has terminado."
+
+msgid "Your response has been submitted and your report is being generated."
+msgstr "Se ha enviado tu respuesta y se está generando el informe."
+
+msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgstr "Una vez finalizado, lo recibirás en tu <strong>buzón de correo electrónico</strong>.<br> Te pedimos paciencia, ya que <strong>podría tardar hasta 15 minutos</strong> en llegarte."
+
+msgid "View the study while you wait"
 msgstr ""
 
-msgid "Levels of data maturity"
-msgstr ""
+msgid "Back to website"
+msgstr "Volver al sitio web"
 
 msgid "Woops.. that page doesn't seem to exist, or the link is broken."
-msgstr ""
+msgstr "¡Vaya! Parece que la página no existe o el enlace no funciona."
 
 msgid "Try returning to the homepage."
-msgstr ""
+msgstr "Prueba a volver a la página principal."
 
 msgid "Return to homepage"
-msgstr ""
+msgstr "Volver a la página principal"
 
 msgid "Woops.. there was an internal server error."
-msgstr ""
+msgstr "Vaya... Se ha producido un error de servidor interno."
