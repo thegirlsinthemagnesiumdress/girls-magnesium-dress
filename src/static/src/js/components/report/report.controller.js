@@ -1,4 +1,3 @@
-// goog.module('dmb.components.report.controller');
 goog.module.declareNamespace('dmb.components.report.controller');
 
 import * as BreakpointService from '@google/glue/lib/ng/common/breakpoint-service';
@@ -345,6 +344,7 @@ class ReportController {
    * Sets values for overall result
    * @param {string} dimension
    * @param {number} newValue
+   * @export
    */
   setDimensionsResult(dimension, newValue) {
     if (!angular.isDefined(newValue)) {

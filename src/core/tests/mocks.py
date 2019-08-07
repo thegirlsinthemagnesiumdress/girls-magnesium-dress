@@ -3,6 +3,7 @@
 
 from django.utils import dateparse
 from collections import OrderedDict
+from django.utils.translation import ugettext_lazy as _
 
 
 MOCKED_DIMENSIONS = {
@@ -257,6 +258,22 @@ INDUSTRIES = {
     're': ('Real estate', None),
 }
 
+
+HIERARCHICAL_INDUSTRIES_UNICODE = OrderedDict([
+    ('ic', (_(u'Información y comunicación'), OrderedDict([
+        ('ic-bnpj', (_(u'Libros, noticias, periódicos y revistas'), None)),
+        ('ic-o', (_(u'Other'), None)),
+    ]))),
+])
+
+INDUSTRIES_UNICODE = {
+    'ic': (_(u'Información y comunicación'), None),
+    'ic-bnpj': (_(u'Libros, noticias, periódicos y revistas'), 'ic'),
+    'ic-o': (_(u'Other'), 'ic'),
+}
+
+
+
 MOCKED_GOOGLE_SHEET_BASE_SURVEY_FIELDS = {
     'company_name': 'Company Name',
     'country': 'Country',
@@ -340,10 +357,10 @@ MOCKED_TENANTS = {
         'DIMENSIONS_WEIGHTS': MOCKED_DIMENSIONS_WEIGHTS[1],
         'FORCED_INDUSTRY': 'ic-bnpj',
         'EXCLUDED_TIME_THRESHOLD': 5,
-        'i18n': False,
+        'i18n': True,
         'PRODUCT_NAME': "Digital Maturity Benchmark",
-        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES,
-        'INDUSTRIES': INDUSTRIES,
+        'HIERARCHICAL_INDUSTRIES': HIERARCHICAL_INDUSTRIES_UNICODE,
+        'INDUSTRIES': INDUSTRIES_UNICODE,
     }
 }
 MOCKED_I18N_TENANTS = '|'.join([v['slug'] for k, v in MOCKED_TENANTS.items() if v['i18n']])

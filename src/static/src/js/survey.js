@@ -1,4 +1,4 @@
-goog.module('dmb.survey');
+goog.module.declareNamespace('dmb.survey');
 
 /**
  * Defining the properties we use on the globally provided Qualtrics instance
@@ -13,10 +13,10 @@ goog.module('dmb.survey');
  */
 window.Qualtrics;
 
-const focusControl = goog.require('dmb.components.focusControl.run');
-const scrollToFirstError = goog.require('dmb.survey.scrollToFirstError');
-const sidePanel = goog.require('dmb.survey.sidePanel');
-const stickyProgress = goog.require('dmb.survey.stickyProgress');
+import * as focusControl from './components/focus-control/focus-control.run';
+import * as scrollToFirstError from './survey-components/scroll-to-first-error';
+import * as sidePanel from './survey-components/side-panel';
+import * as stickyProgress from './survey-components/sticky-progress';
 
 focusControl.main();
 scrollToFirstError.init();

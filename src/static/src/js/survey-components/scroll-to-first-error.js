@@ -1,11 +1,11 @@
-goog.module('dmb.survey.scrollToFirstError');
+goog.module.declareNamespace('dmb.survey.scrollToFirstError');
 
 const selector = '.Highlight .ValidationError';
 
 /**
  * Binds the event listener
  */
-function init() {
+export function init() {
   /*
    * Possible events:
    * - addOnload
@@ -53,8 +53,3 @@ function tempHideHeader() {
 
   header.classList.add(hiddenClass);
 }
-
-
-exports = {
-  init,
-};

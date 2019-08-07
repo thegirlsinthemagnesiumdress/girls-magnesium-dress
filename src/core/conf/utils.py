@@ -143,6 +143,7 @@ def version_info(domain):
     """
 
     version = None
+    is_staging = False
     is_nightly = False
     is_development = environment.is_development_environment()
     # if it's local environment
@@ -155,5 +156,6 @@ def version_info(domain):
             version = version_match.group('version')
         else:
             version = 'staging'
+        is_staging = True
         is_nightly = 'nightly' in version
-    return (version, is_nightly, is_development)
+    return (version, is_nightly, is_development, is_staging)

@@ -69,7 +69,7 @@ class Survey(models.Model):
         t = settings.TENANTS[self.tenant]
         industries_dict = OrderedDict(utils.flatten(t['HIERARCHICAL_INDUSTRIES']))
         industry = industries_dict.get(self.industry)
-        return industry if industry else None
+        return industry.decode('utf-8') if industry else None
 
     def build_qualtrics_link(self, qualtrics_survey_id, i18n=False):
         """
@@ -84,7 +84,7 @@ class Survey(models.Model):
         Returns:
             str: Link to the relevant survey with parameter values set.
         """
-        version, is_nightly, is_development = utils.version_info(settings.HTTP_HOST)
+        version, is_nightly, is_development, is_staging = utils.version_info(settings.HTTP_HOST)
 
         if is_nightly or is_development:
             survey_link = settings.QUALTRICS_BASE_SURVEY_PREVIEW_URL.format(survey_id=qualtrics_survey_id, sid=self.sid)

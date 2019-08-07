@@ -1,4 +1,4 @@
-goog.module('dmb.components.progressGrid.controller');
+goog.module.declareNamespace('dmb.components.progressGrid.controller');
 
 /**
  * ProgressGrid class controller.
@@ -148,8 +148,6 @@ ProgressGridController.CONTROLLER_NAME = 'ProgressGridCtrl';
 ProgressGridController.CONTROLLER_AS_NAME = 'progressGridCtrl';
 
 
-exports = {
-  main: ProgressGridController,
-  CONTROLLER_NAME: ProgressGridController.CONTROLLER_NAME,
-  CONTROLLER_AS_NAME: ProgressGridController.CONTROLLER_AS_NAME,
-};
+export const main = ProgressGridController;
+export const CONTROLLER_NAME = ProgressGridController;
+export const CONTROLLER_AS_NAME = ProgressGridController.CONTROLLER_AS_NAME;

@@ -1,14 +1,15 @@
-goog.module('dmb.components.dimensionTab.directive');
+goog.module.declareNamespace('dmb.components.dimensionTab.directive');
 
-const dimensionTabCtrl = goog.require('dmb.components.dimensionTab.controller');
+import * as dimensionTabCtrl from '../dimension-tab/dimension-tab.controller';
 const dimensionTabTemplateUrl = '/angular/dimension-tab/';
 
 /**
  * Dimension tab directive.
  * @ngInject
+ * @param {string} LANGUAGE_CODE
  * @return {Object} Config for the directive
  */
-function DimensionTabDirective() {
+function DimensionTabDirective(LANGUAGE_CODE) {
   return {
     restrict: 'A',
     scope: {
@@ -21,7 +22,7 @@ function DimensionTabDirective() {
       'dimensionIndReady': '<',
       'tenant': '@',
     },
-    templateUrl: dimensionTabTemplateUrl,
+    templateUrl: `/${LANGUAGE_CODE}${dimensionTabTemplateUrl}`,
     controller: dimensionTabCtrl.main,
     controllerAs: dimensionTabCtrl.CONTROLLER_AS_NAME,
     bindToController: true,
@@ -33,11 +34,5 @@ function DimensionTabDirective() {
 DimensionTabDirective.DIRECTIVE_NAME = 'dmbDimensionTab';
 
 
-exports = {
-  main: DimensionTabDirective,
-  DIRECTIVE_NAME: DimensionTabDirective.DIRECTIVE_NAME,
-};
-
-/*
-  EXAMPLE HTML:
-*/
+export const main = DimensionTabDirective;
+export const DIRECTIVE_NAME = DimensionTabDirective.DIRECTIVE_NAME;

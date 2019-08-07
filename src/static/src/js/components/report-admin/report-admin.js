@@ -1,6 +1,6 @@
-goog.module('dmb.components.reportAdmin');
+goog.module.declareNamespace('dmb.components.reportAdmin');
 
-const directive = goog.require('dmb.components.reportAdmin.directive');
+import * as directive from './report-list.directive';
 
 /** @const {string} */
 const MODULE_NAME = 'reportAdmin';
@@ -9,14 +9,6 @@ const MODULE_NAME = 'reportAdmin';
 /**
  * @type {!angular.Module}
  */
-const module = angular.module(MODULE_NAME, []);
+export const module = angular.module(MODULE_NAME, []);
 
 module.directive(directive.DIRECTIVE_NAME, directive.main);
-
-/**
- * Report angular module.
- * @type {!angular.Module}
- */
-exports.module = module;
-
-
