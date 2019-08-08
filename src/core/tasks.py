@@ -35,9 +35,19 @@ def sync_qualtrics():
         survey_definition = _get_definition(tenant_key, tenant['QUALTRICS_SURVEY_ID'])
 
         if survey_definition:
-            _get_results(tenant, survey_definition)
+            _get_results(tenant, survey_definition, _create_survey_result)
         else:
             logging.error('Fetching survey definition failed, not fetching results')
+
+        internal_tenant = settings.INTERNAL_TENANTS.get(tenant_key)
+
+        if internal_tenant:
+            internal_survey_definition = _get_definition(tenant_key, internal_tenant['QUALTRICS_SURVEY_ID'])
+
+            if internal_survey_definition:
+                _get_results(internal_tenant, internal_survey_definition, _create_internal_result)
+            else:
+                logging.error('Fetching internal survey definition failed, not fetching results')
 
 
 def _get_definition(tenant, survey_id):
@@ -73,7 +83,7 @@ def _get_definition(tenant, survey_id):
     return last_survey_definition
 
 
-def _get_results(tenant, survey_definition):
+def _get_results(tenant, survey_definition, get_survey_result_func):
     """Download survey results from Qualtrics.
 
     :param tenant: dictionary containing 'QUALTRICS_SURVEY_ID', 'EMAIL_TO', 'EMAIL_BCC' keys
@@ -83,7 +93,7 @@ def _get_results(tenant, survey_definition):
     The function will use the latest stored `response_id` if any, otherwise
     download all the available results from Qualtrics.
     """
-    survey_id, email_to, email_bcc = tenant['QUALTRICS_SURVEY_ID'], tenant['EMAIL_TO'], tenant['EMAIL_BCC']
+    survey_id = tenant['QUALTRICS_SURVEY_ID']
     try:
         survey_result = SurveyResult.objects.latest('started_at')
         started_after = survey_result.started_at
@@ -100,18 +110,22 @@ def _get_results(tenant, survey_definition):
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant)
+        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant, get_survey_result_func)  # noqa
         new_response_ids = [result.response_id for result in new_survey_results]
 
-        langs_dict = settings.QUALTRICS_LANGS
+        email_to, email_bcc = tenant.get('EMAIL_TO'), tenant.get('EMAIL_BCC')
 
-        email_list = [(item.get(email_to),
-                       item.get(email_bcc),
-                       item.get('sid'),
-                       langs_dict.get(item.get('Q_Language'), langs_dict['EN'])) for item in responses
-                      if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
-        if email_list:
-            send_emails_for_new_reports(email_list)
+        if email_to and email_bcc:
+            langs_dict = settings.QUALTRICS_LANGS
+
+            email_list = [(item.get(email_to),
+                           item.get(email_bcc),
+                           item.get('sid'),
+                           langs_dict.get(item.get('Q_Language'), langs_dict['EN'])) for item in responses
+                          if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
+
+            if email_list:
+                send_emails_for_new_reports(email_list)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
 
@@ -131,7 +145,7 @@ def _update_responses_with_text(responses, text_responses):
     return merged_responses
 
 
-def _create_survey_results(results_data, last_survey_definition, tenant):
+def _create_survey_results(results_data, last_survey_definition, tenant, get_survey_result_func):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param results_data: dictionary containing the downloaded responses
@@ -144,7 +158,7 @@ def _create_survey_results(results_data, last_survey_definition, tenant):
     new_survey_results = []
     for data in results_data:
         try:
-            new_survey_result = _create_survey_result(data, last_survey_definition, tenant)
+            new_survey_result = get_survey_result_func(data, last_survey_definition, tenant)  # noqa
             if new_survey_result:
                 new_survey_results.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
@@ -192,6 +206,55 @@ def _create_survey_result(survey_data, last_survey_definition, tenant):
             try:
                 s = Survey.objects.get(pk=response_data.get('sid'))
                 s.last_survey_result = survey_result
+                s.save()
+            except Survey.DoesNotExist:
+                logging.warning('Could not update Survey with sid {}'.format(response_data.get('sid')))
+    except IntegrityError:
+        logging.info('SurveyResult with response_id: {} has already been saved.'.format(response_id))
+    return new_survey_result
+
+
+def _create_internal_result(survey_data, last_survey_definition, tenant):
+    """Create `SurveyResult` given a single `result_data`.
+
+    :param data: dictionary of data downloaded from Qualtrics
+    :param last_survey_definition: `core.SurveyDefinition` object,
+        reprensenting the last definition stored in the model.
+
+    :returns: `response_id` if a `core.SurveyResult` is created, None
+        otherwise.
+    """
+    response_data, response_text = survey_data['value'], survey_data['text']
+    if not _survey_completed(response_data.get('Finished')):
+        logging.warning('Found unfinshed survey {}: SKIP'.format(response_data.get('sid')))
+        return
+
+    response_id = response_data['ResponseID']
+    new_survey_result = None
+    try:
+        with transaction.atomic(xg=True):
+            dimensions, multianswers, weights = tenant['DIMENSIONS'], tenant['MULTI_ANSWER_QUESTIONS'], tenant['WEIGHTS']  # noqa
+            questions = question.data_to_questions(response_data, dimensions, multianswers, weights)
+            questions_text = question.data_to_questions_text(response_text, dimensions, multianswers)
+
+            raw_data = question.to_raw(questions, questions_text)
+            dmb, dmb_d = _response_benchmark(questions, response_data, tenant)
+            excluded_from_best_practice = question.discard_scores(response_data, tenant['EXCLUDED_TIME_THRESHOLD'])
+            survey_result = SurveyResult.objects.create(
+                survey_id=response_data.get('sid'),
+                internal_survey_id=response_data.get('sid'),
+                response_id=response_id,
+                started_at=make_aware(parse_datetime(response_data.get('StartDate')), pytz.timezone('US/Mountain')),
+                excluded_from_best_practice=excluded_from_best_practice,
+                dmb=dmb,
+                dmb_d=dmb_d,
+                raw=raw_data,
+                survey_definition=last_survey_definition,
+            )
+            new_survey_result = survey_result
+            try:
+                s = Survey.objects.get(pk=response_data.get('sid'))
+                s.last_internal_result = survey_result
                 s.save()
             except Survey.DoesNotExist:
                 logging.warning('Could not update Survey with sid {}'.format(response_data.get('sid')))
