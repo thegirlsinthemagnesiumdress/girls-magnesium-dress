@@ -241,7 +241,6 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
             dmb, dmb_d = _response_benchmark(questions, response_data, tenant)
             excluded_from_best_practice = question.discard_scores(response_data, tenant['EXCLUDED_TIME_THRESHOLD'])
             survey_result = SurveyResult.objects.create(
-                survey_id=response_data.get('sid'),
                 internal_survey_id=response_data.get('sid'),
                 response_id=response_id,
                 started_at=make_aware(parse_datetime(response_data.get('StartDate')), pytz.timezone('US/Mountain')),
