@@ -39,7 +39,7 @@ class SurveyTest(TestCase):
         has the correct survey ID.
         """
         survey = make_survey(tenant="tenant1")
-        internal_tenant = MOCKED_INTERNAL_TENANTS[survey.slug]
+        internal_tenant = MOCKED_INTERNAL_TENANTS[survey.tenant]
         match = re.search(r'preview/([^&]*)[?]', survey.internal_link)
         self.assertEqual(match.groups(1)[0], internal_tenant.get('QUALTRICS_SURVEY_ID'))
 
