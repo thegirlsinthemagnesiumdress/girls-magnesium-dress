@@ -76,6 +76,41 @@ class sync_qualtricsTestCase(TestCase):
         self.assertEqual(get_survey_definition_mock.call_count, len(MOCKED_TENANTS.keys()))
         self.assertEqual(get_result_mock.call_count, 0)
 
+    @override_settings(
+        INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
+    )
+    @mock.patch('core.tasks._get_definition', return_value='something')
+    @mock.patch('core.tasks._get_results', return_value='something')
+    def test_correct_survey_definition(self, get_result_mock, get_survey_definition_mock):
+        """Check that survey definitions are found correctly for internal and external tenants using the tenants' key"""
+        sync_qualtrics()
+        # Check the number of calls is equal to the number of internal and external tenants
+        self.assertEqual(
+            get_survey_definition_mock.call_count,
+            len(MOCKED_TENANTS.keys()) + len(MOCKED_INTERNAL_TENANTS.keys())
+        )
+        # Get all the calls and args
+        all_calls = get_survey_definition_mock.call_args_list
+        for args, kwargs in all_calls:
+            # Check tenant and sid are passed
+            self.assertEqual(len(args), 2)
+            # Check tenant is not null
+            tenant, qualtrics_id = args
+            self.assertIsNotNone(tenant)
+            # Check that if a tenant has an internal version that an additonal call
+            # was made using the internal tenant key and correct qualtrics ID.
+            if MOCKED_INTERNAL_TENANTS.get(tenant):
+                get_survey_definition_mock.assert_any_call(
+                    MOCKED_INTERNAL_TENANTS[tenant]['key'],
+                    MOCKED_INTERNAL_TENANTS[tenant]['QUALTRICS_SURVEY_ID']
+                )
+            elif MOCKED_TENANTS.get(tenant):
+                # Check tenant has called the get definition with the correct params.
+                get_survey_definition_mock.assert_any_call(
+                    MOCKED_TENANTS[tenant]['key'],
+                    MOCKED_TENANTS[tenant]['QUALTRICS_SURVEY_ID']
+                )
+
 
 @override_settings(
     DIMENSIONS=MOCKED_DIMENSIONS
@@ -497,8 +532,8 @@ class CreateInternalSurveyResultTestCase(TestCase):
         self.responses = _update_responses_with_text(responses_values, responses_text).values()
         self.response_ids = [response['value'].get('ResponseID') for response in self.responses
                              if response['value'].get('Finished') == '1']
-        self.survey_definition = make_survey_definition()
         self.tenant = settings.INTERNAL_TENANTS['tenant1']
+        self.survey_definition = make_survey_definition(tenant=self.tenant['key'])
 
     def test_internal_survey_result_created(self):
         """`SurveyResult` is always created and correctly links to survey if it exists."""
