@@ -1,0 +1,39 @@
+{% extends "public/base.html" %}
+{% load angular %}
+
+{% block main %}
+{% djangoblock %}
+<div class="h-c-page">
+  <p>{{ account.company_name }}</p>
+  <p>{{ account.account_id }}    {{ account.country }}    {{ account.industry }}</p>
+
+  <p>External Results:</p>
+  <ul>
+    {% for result in account.survey_results.all %}
+      <li>
+        {{ result.started_at }} [{{ result.dmb }}]
+        <ul>
+          {% for dimension, score in result.dmb_d.items %}
+            <li>{{ dimension }} [{{ score }}]</li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p>Internal Results:</p>
+  <ul>
+    {% for result in account.internal_results.all %}
+      <li>
+        {{ result.started_at }} [{{ result.dmb }}]
+        <ul>
+          {% for dimension, score in result.dmb_d.items %}
+            <li>{{ dimension }} [{{ score }}]</li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% enddjangoblock %}
+{% endblock %}

@@ -163,6 +163,21 @@ def reports_admin(request, tenant):
 
 @login_required
 @survey_admin_required
+def account_detail(request, tenant, account_id):
+    account = get_object_or_404(Survey, account_id=account_id)
+
+    return render(request, 'public/{}/account-detail.html'.format(tenant), {
+        'tenant': tenant,
+        'slug': get_tenant_slug(tenant),
+        'account': account,
+        'content_data': _dump_tenant_content_data(tenant),
+        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': get_other_tenant_footers(tenant),
+    })
+
+
+@login_required
+@survey_admin_required
 def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
