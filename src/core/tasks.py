@@ -42,7 +42,7 @@ def sync_qualtrics():
         internal_tenant = settings.INTERNAL_TENANTS.get(tenant_key)
 
         if internal_tenant:
-            internal_survey_definition = _get_definition(tenant_key, internal_tenant['QUALTRICS_SURVEY_ID'])
+            internal_survey_definition = _get_definition(internal_tenant['key'], internal_tenant['QUALTRICS_SURVEY_ID'])
 
             if internal_survey_definition:
                 _get_results(internal_tenant, internal_survey_definition, _create_internal_result)
