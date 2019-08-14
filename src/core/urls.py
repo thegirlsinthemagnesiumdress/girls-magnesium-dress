@@ -13,7 +13,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^_ah/', include('djangae.urls')),
-
+    url(r'^_ah/bounce$', views.receive_bounce, name="email-bounce"),
     # Note that by default this is also locked down with login:admin in app.yaml
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', include('djangae.contrib.gauth.urls')),
@@ -23,13 +23,13 @@ urlpatterns = [
     url(r'^cron/update_benchmarks/$', views.update_industries_benchmarks_task, name="update-benchmarks"),
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^angular/(?P<template_name>{})/$'.format(settings.ALLOWED_ANGULAR_TEMPLATES), views.angular_templates, name="angular-templates"),  # noqa
 ]
 
 
 urlpatterns += i18n_patterns(
     url(r'', include('public.urls', namespace="legacy")),  # handle all the old links before the introduction of tenants concept  # noqa
     url(r'^(?P<tenant>{})/'.format(settings.I18N_TENANTS), include('public.urls')),
+    url(r'^angular/(?P<template_name>{})/$'.format(settings.ALLOWED_ANGULAR_TEMPLATES), views.angular_templates, name="angular-templates"),  # noqa
     )
 
 handler404 = 'public.views.handler404'

@@ -28,6 +28,7 @@ import * as tenant from './tenants/tenantconf';
 import * as languageSelector from './components/language-selector/language-selector';
 import * as copyComponent from './components/copy-component/copy-component';
 import * as exportReports from './components/export/export-reports';
+import * as languageCode from './components/language-code/language-code';
 import tabState from './components/tab-state/tab-state';
 
 /** @type {!angular.Module} */
@@ -52,6 +53,7 @@ export const module = angular.module('dmb', [
   exportReports.module.name,
   'hercules_template_bundle',
   'ngclipboard',
+  languageCode.module.name,
 ]);
 
 try {

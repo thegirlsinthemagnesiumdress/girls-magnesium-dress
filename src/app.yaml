@@ -21,9 +21,17 @@ builtins:
 - appstats: on
 - remote_api: on
 
+inbound_services:
+- mail_bounce
+
 handlers:
 
 - url: /_ah/(mapreduce|queue|warmup).*
+  script: core.wsgi.application
+  login: admin
+  secure: always
+
+- url: /_ah/bounce
   script: core.wsgi.application
   login: admin
   secure: always

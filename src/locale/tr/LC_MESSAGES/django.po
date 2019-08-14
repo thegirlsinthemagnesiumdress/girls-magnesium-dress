@@ -1,0 +1,2013 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-12 09:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "all"
+msgstr "tümü"
+
+msgid "Afghanistan"
+msgstr "Afganistan"
+
+msgid "Åland Islands"
+msgstr "Åland Adaları"
+
+msgid "Albania"
+msgstr "Arnavutluk"
+
+msgid "Algeria"
+msgstr "Cezayir"
+
+msgid "American Samoa"
+msgstr "Amerikan Samoası"
+
+msgid "Andorra"
+msgstr "Andorra"
+
+msgid "Angola"
+msgstr "Angola"
+
+msgid "Anguilla"
+msgstr "Anguilla"
+
+msgid "Antarctica"
+msgstr "Antarktika"
+
+msgid "Antigua and Barbuda"
+msgstr "Antigua ve Barbuda"
+
+msgid "Argentina"
+msgstr "Arjantin"
+
+msgid "Armenia"
+msgstr "Ermenistan"
+
+msgid "Aruba"
+msgstr "Aruba"
+
+msgid "Australia"
+msgstr "Avustralya"
+
+msgid "Austria"
+msgstr "Avusturya"
+
+msgid "Azerbaijan"
+msgstr "Azerbaycan"
+
+msgid "Bahamas"
+msgstr "Bahamalar"
+
+msgid "Bahrain"
+msgstr "Bahreyn"
+
+msgid "Bangladesh"
+msgstr "Bangladeş"
+
+msgid "Barbados"
+msgstr "Barbados"
+
+msgid "Belarus"
+msgstr "Beyaz Rusya"
+
+msgid "Belgium"
+msgstr "Belçika"
+
+msgid "Belize"
+msgstr "Beliz"
+
+msgid "Benin"
+msgstr "Benin"
+
+msgid "Bermuda"
+msgstr "Bermuda"
+
+msgid "Bhutan"
+msgstr "Butan"
+
+msgid "Bolivia, Plurinational State of"
+msgstr "Bolivya Çok Uluslu Devleti"
+
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonaire, Sint Eustatius ve Saba"
+
+msgid "Bosnia and Herzegovina"
+msgstr "Bosna-Hersek"
+
+msgid "Botswana"
+msgstr "Botsvana"
+
+msgid "Bouvet Island"
+msgstr "Bouvet Adası"
+
+msgid "Brazil"
+msgstr "Brezilya"
+
+msgid "British Indian Ocean Territory"
+msgstr "İngiliz Hint Okyanusu İdari Bölgesi"
+
+msgid "Brunei Darussalam"
+msgstr "Brunei Darussalam"
+
+msgid "Bulgaria"
+msgstr "Bulgaristan"
+
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+msgid "Burundi"
+msgstr "Burundi"
+
+msgid "Cambodia"
+msgstr "Kamboçya"
+
+msgid "Cameroon"
+msgstr "Kamerun"
+
+msgid "Canada"
+msgstr "Kanada"
+
+msgid "Cape Verde"
+msgstr "Cape Verde"
+
+msgid "Cayman Islands"
+msgstr "Cayman Adaları"
+
+msgid "Central African Republic"
+msgstr "Orta Afrika Cumhuriyeti"
+
+msgid "Chad"
+msgstr "Çad"
+
+msgid "Chile"
+msgstr "Şili"
+
+msgid "China"
+msgstr "Çin"
+
+msgid "Christmas Island"
+msgstr "Christmas Adası"
+
+msgid "Cocos (Keeling) Islands"
+msgstr "Cocos (Keeling) Adaları"
+
+msgid "Colombia"
+msgstr "Kolombiya"
+
+msgid "Comoros"
+msgstr "Komorlar"
+
+msgid "Congo"
+msgstr "Kongo"
+
+msgid "Congo, the Democratic Republic of the"
+msgstr "Kongo Demokratik Cumhuriyeti"
+
+msgid "Cook Islands"
+msgstr "Cook Adaları"
+
+msgid "Costa Rica"
+msgstr "Kosta Rika"
+
+msgid "Côte d'Ivoire"
+msgstr "Fildişi Sahili"
+
+msgid "Croatia"
+msgstr "Hırvatistan"
+
+msgid "Cuba"
+msgstr "Küba"
+
+msgid "Curaçao"
+msgstr "Curaçao"
+
+msgid "Cyprus"
+msgstr "Güney Kıbrıs Rum Yönetimi"
+
+msgid "Czech Republic"
+msgstr "Çek Cumhuriyeti"
+
+msgid "Denmark"
+msgstr "Danimarka"
+
+msgid "Djibouti"
+msgstr "Cibuti"
+
+msgid "Dominica"
+msgstr "Dominika"
+
+msgid "Dominican Republic"
+msgstr "Dominik Cumhuriyeti"
+
+msgid "Ecuador"
+msgstr "Ekvador"
+
+msgid "Egypt"
+msgstr "Mısır"
+
+msgid "El Salvador"
+msgstr "El Salvador"
+
+msgid "Equatorial Guinea"
+msgstr "Ekvator Ginesi"
+
+msgid "Eritrea"
+msgstr "Eritre"
+
+msgid "Estonia"
+msgstr "Estonya"
+
+msgid "Ethiopia"
+msgstr "Etiyopya"
+
+msgid "Falkland Islands (Malvinas)"
+msgstr "Falkland Adaları (Malvinas)"
+
+msgid "Faroe Islands"
+msgstr "Faroe Adaları"
+
+msgid "Fiji"
+msgstr "Fiji"
+
+msgid "Finland"
+msgstr "Finlandiya"
+
+msgid "France"
+msgstr "Fransa"
+
+msgid "French Guiana"
+msgstr "Fransız Guyanası"
+
+msgid "French Polynesia"
+msgstr "Fransız Polinezyası"
+
+msgid "French Southern Territories"
+msgstr "Fransız Güney Toprakları"
+
+msgid "Gabon"
+msgstr "Gabon"
+
+msgid "Gambia"
+msgstr "Gambiya"
+
+msgid "Georgia"
+msgstr "Gürcistan"
+
+msgid "Germany"
+msgstr "Almanya"
+
+msgid "Ghana"
+msgstr "Gana"
+
+msgid "Gibraltar"
+msgstr "Cebelitarık"
+
+msgid "Greece"
+msgstr "Yunanistan"
+
+msgid "Greenland"
+msgstr "Grönland"
+
+msgid "Grenada"
+msgstr "Grenada"
+
+msgid "Guadeloupe"
+msgstr "Guadalup"
+
+msgid "Guam"
+msgstr "Guam"
+
+msgid "Guatemala"
+msgstr "Guatemala"
+
+msgid "Guernsey"
+msgstr "Guernsey"
+
+msgid "Guinea"
+msgstr "Gine"
+
+msgid "Guinea-Bissau"
+msgstr "Gine-Bissau"
+
+msgid "Guyana"
+msgstr "Guyana"
+
+msgid "Haiti"
+msgstr "Haiti"
+
+msgid "Heard Island and McDonald Islands"
+msgstr "Heard Adası ve McDonald Adaları"
+
+msgid "Holy See (Vatican City State)"
+msgstr "Papalık (Vatikan Şehir Devleti)"
+
+msgid "Honduras"
+msgstr "Honduras"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+msgid "Hungary"
+msgstr "Macaristan"
+
+msgid "Iceland"
+msgstr "İzlanda"
+
+msgid "India"
+msgstr "Hindistan"
+
+msgid "Indonesia"
+msgstr "Endonezya"
+
+msgid "Iran, Islamic Republic of"
+msgstr "İran İslam Cumhuriyeti"
+
+msgid "Iraq"
+msgstr "Irak"
+
+msgid "Ireland"
+msgstr "İrlanda"
+
+msgid "Isle of Man"
+msgstr "Man Adası"
+
+msgid "Israel"
+msgstr "İsrail"
+
+msgid "Italy"
+msgstr "İtalya"
+
+msgid "Jamaica"
+msgstr "Jamaika"
+
+msgid "Japan"
+msgstr "Japonya"
+
+msgid "Jersey"
+msgstr "Jersey"
+
+msgid "Jordan"
+msgstr "Ürdün"
+
+msgid "Kazakhstan"
+msgstr "Kazakistan"
+
+msgid "Kenya"
+msgstr "Kenya"
+
+msgid "Kiribati"
+msgstr "Kiribati"
+
+msgid "Korea, Democratic People's Republic of"
+msgstr "Kore Demokratik Halk Cumhuriyeti"
+
+msgid "Korea, Republic of"
+msgstr "Kore Cumhuriyeti"
+
+msgid "Kuwait"
+msgstr "Kuveyt"
+
+msgid "Kyrgyzstan"
+msgstr "Kırgızistan"
+
+msgid "Lao People's Democratic Republic"
+msgstr "Lao Demokratik Halk Cumhuriyeti"
+
+msgid "Latvia"
+msgstr "Letonya"
+
+msgid "Lebanon"
+msgstr "Lübnan"
+
+msgid "Lesotho"
+msgstr "Lesotho"
+
+msgid "Liberia"
+msgstr "Liberya"
+
+msgid "Libya"
+msgstr "Libya"
+
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+msgid "Lithuania"
+msgstr "Litvanya"
+
+msgid "Luxembourg"
+msgstr "Lüksemburg"
+
+msgid "Macao"
+msgstr "Makao"
+
+msgid "Macedonia, the former Yugoslav Republic of"
+msgstr "Kuzey Makedonya Cumhuriyeti"
+
+msgid "Madagascar"
+msgstr "Madagaskar"
+
+msgid "Malawi"
+msgstr "Malavi"
+
+msgid "Malaysia"
+msgstr "Malezya"
+
+msgid "Maldives"
+msgstr "Maldivler"
+
+msgid "Mali"
+msgstr "Mali"
+
+msgid "Malta"
+msgstr "Malta"
+
+msgid "Marshall Islands"
+msgstr "Marshall Adaları"
+
+msgid "Martinique"
+msgstr "Martinik"
+
+msgid "Mauritania"
+msgstr "Moritanya"
+
+msgid "Mauritius"
+msgstr "Morityus"
+
+msgid "Mayotte"
+msgstr "Mayotte"
+
+msgid "Mexico"
+msgstr "Meksika"
+
+msgid "Micronesia, Federated States of"
+msgstr "Mikronezya Federe Devletleri"
+
+msgid "Moldova, Republic of"
+msgstr "Moldova Cumhuriyeti"
+
+msgid "Monaco"
+msgstr "Monako"
+
+msgid "Mongolia"
+msgstr "Moğolistan"
+
+msgid "Montenegro"
+msgstr "Karadağ"
+
+msgid "Montserrat"
+msgstr "Montserrat"
+
+msgid "Morocco"
+msgstr "Fas"
+
+msgid "Mozambique"
+msgstr "Mozambik"
+
+msgid "Myanmar"
+msgstr "Burma"
+
+msgid "Namibia"
+msgstr "Namibya"
+
+msgid "Nauru"
+msgstr "Nauru"
+
+msgid "Nepal"
+msgstr "Nepal"
+
+msgid "Netherlands"
+msgstr "Hollanda"
+
+msgid "New Caledonia"
+msgstr "Yeni Kaledonya"
+
+msgid "New Zealand"
+msgstr "Yeni Zelanda"
+
+msgid "Nicaragua"
+msgstr "Nikaragua"
+
+msgid "Niger"
+msgstr "Nijer"
+
+msgid "Nigeria"
+msgstr "Nijerya"
+
+msgid "Niue"
+msgstr "Niue"
+
+msgid "Norfolk Island"
+msgstr "Norfolk Adası"
+
+msgid "Northern Mariana Islands"
+msgstr "Kuzey Mariana Adaları"
+
+msgid "Norway"
+msgstr "Norveç"
+
+msgid "Oman"
+msgstr "Umman"
+
+msgid "Pakistan"
+msgstr "Pakistan"
+
+msgid "Palau"
+msgstr "Palau"
+
+msgid "Palestinian Territory, Occupied"
+msgstr "İşgal Altındaki Filistin Toprakları"
+
+msgid "Panama"
+msgstr "Panama"
+
+msgid "Papua New Guinea"
+msgstr "Papua Yeni Gine"
+
+msgid "Paraguay"
+msgstr "Paraguay"
+
+msgid "Peru"
+msgstr "Peru"
+
+msgid "Philippines"
+msgstr "Filipinler"
+
+msgid "Pitcairn"
+msgstr "Pitcairn"
+
+msgid "Poland"
+msgstr "Polonya"
+
+msgid "Portugal"
+msgstr "Portekiz"
+
+msgid "Puerto Rico"
+msgstr "Porto Riko"
+
+msgid "Qatar"
+msgstr "Katar"
+
+msgid "Réunion"
+msgstr "Réunion"
+
+msgid "Romania"
+msgstr "Romanya"
+
+msgid "Russian Federation"
+msgstr "Rusya Federasyonu"
+
+msgid "Rwanda"
+msgstr "Ruanda"
+
+msgid "Saint Barthélemy"
+msgstr "Saint Barthélemy"
+
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr "Saint Helena, Ascension ve Tristan da Cunha"
+
+msgid "Saint Kitts and Nevis"
+msgstr "Saint Kitts ve Nevis"
+
+msgid "Saint Lucia"
+msgstr "Saint Lucia"
+
+msgid "Saint Martin (French part)"
+msgstr "Saint Martin (Fransız Bölgesi)"
+
+msgid "Saint Pierre and Miquelon"
+msgstr "Saint Pierre ve Miquelon"
+
+msgid "Saint Vincent and the Grenadines"
+msgstr "Saint Vincent ve Grenadinler"
+
+msgid "Samoa"
+msgstr "Samoa"
+
+msgid "San Marino"
+msgstr "San Marino"
+
+msgid "Sao Tome and Principe"
+msgstr "Sao Tome ve Principe"
+
+msgid "Saudi Arabia"
+msgstr "Suudi Arabistan"
+
+msgid "Senegal"
+msgstr "Senegal"
+
+msgid "Serbia"
+msgstr "Sırbistan"
+
+msgid "Seychelles"
+msgstr "Seyşeller"
+
+msgid "Sierra Leone"
+msgstr "Sierra Leone"
+
+msgid "Singapore"
+msgstr "Singapur"
+
+msgid "Sint Maarten (Dutch part)"
+msgstr "Sint Maarten (Hollanda Toprakları)"
+
+msgid "Slovakia"
+msgstr "Slovakya"
+
+msgid "Slovenia"
+msgstr "Slovenya"
+
+msgid "Solomon Islands"
+msgstr "Solomon Adaları"
+
+msgid "Somalia"
+msgstr "Somali"
+
+msgid "South Africa"
+msgstr "Güney Afrika"
+
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Güney Georgia ve Güney Sandwich Adaları"
+
+msgid "South Sudan"
+msgstr "Güney Sudan"
+
+msgid "Spain"
+msgstr "İspanya"
+
+msgid "Sri Lanka"
+msgstr "Sri Lanka"
+
+msgid "Sudan"
+msgstr "Sudan"
+
+msgid "Suriname"
+msgstr "Surinam"
+
+msgid "Svalbard and Jan Mayen"
+msgstr "Svalbard ve Jan Mayen"
+
+msgid "Swaziland"
+msgstr "Svaziland"
+
+msgid "Sweden"
+msgstr "İsveç"
+
+msgid "Switzerland"
+msgstr "İsviçre"
+
+msgid "Syrian Arab Republic"
+msgstr "Suriye Arap Cumhuriyeti"
+
+msgid "Taiwan"
+msgstr "Tayvan"
+
+msgid "Tajikistan"
+msgstr "Tacikistan"
+
+msgid "Tanzania, United Republic of"
+msgstr "Tanzanya Birleşik Cumhuriyeti"
+
+msgid "Thailand"
+msgstr "Tayland"
+
+msgid "Timor-Leste"
+msgstr "Doğu Timor"
+
+msgid "Togo"
+msgstr "Togo"
+
+msgid "Tokelau"
+msgstr "Tokelau"
+
+msgid "Tonga"
+msgstr "Tonga"
+
+msgid "Trinidad and Tobago"
+msgstr "Trinidad ve Tobago"
+
+msgid "Tunisia"
+msgstr "Tunus"
+
+msgid "Turkey"
+msgstr "Türkiye"
+
+msgid "Turkmenistan"
+msgstr "Türkmenistan"
+
+msgid "Turks and Caicos Islands"
+msgstr "Turks ve Caicos Adaları"
+
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+msgid "Uganda"
+msgstr "Uganda"
+
+msgid "Ukraine"
+msgstr "Ukrayna"
+
+msgid "United Arab Emirates"
+msgstr "Birleşik Arap Emirlikleri"
+
+msgid "United Kingdom"
+msgstr "Birleşik Krallık"
+
+msgid "United States"
+msgstr "ABD"
+
+msgid "United States Minor Outlying Islands"
+msgstr "ABD Sınır Dışı Küçük Adaları"
+
+msgid "Uruguay"
+msgstr "Uruguay"
+
+msgid "Uzbekistan"
+msgstr "Özbekistan"
+
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+msgid "Venezuela, Bolivarian Republic of"
+msgstr "Venezuela Bolivar Cumhuriyeti"
+
+msgid "Viet Nam"
+msgstr "Vietnam"
+
+msgid "Virgin Islands, British"
+msgstr "İngiliz Virjin Adaları"
+
+msgid "Virgin Islands, U.S"
+msgstr "ABD Virjin Adaları"
+
+msgid "Wallis and Futuna"
+msgstr "Wallis ve Futuna"
+
+msgid "Western Sahara"
+msgstr "Batı Sahra"
+
+msgid "Yemen"
+msgstr "Yemen"
+
+msgid "Zambia"
+msgstr "Zambiya"
+
+msgid "Zimbabwe"
+msgstr "Zimbabve"
+
+msgid "Advertisers"
+msgstr "Reklamverenler"
+
+msgid "Advertiser Marketing Maturity"
+msgstr "Reklamveren Pazarlama Olgunluk Düzeyi"
+
+msgid "News"
+msgstr "Haberler"
+
+msgid "News Publisher Data Transformation"
+msgstr "Haber Yayıncısı Veri Dönüşümü"
+
+msgid "Retail"
+msgstr "Perakende"
+
+msgid "Retail Data Transformation"
+msgstr "Perakende Veri Dönüşümü"
+
+msgid "Cloud"
+msgstr ""
+
+#, fuzzy
+#| msgid "Data Maturity Benchmark"
+msgid "Cloud Maturity Benchmark"
+msgstr "Verilerle İlgili Olgunluk Karşılaştırması"
+
+msgid "Assets and ads"
+msgstr "Öğeler ve reklamlar"
+
+msgid "Access"
+msgstr "Erişim"
+
+msgid "Audience"
+msgstr "Kitle"
+
+msgid "Attribution"
+msgstr "İlişkilendirme"
+
+msgid "Automation"
+msgstr "Otomasyon"
+
+msgid "Organisation"
+msgstr "Organizasyon"
+
+msgid "Nascent"
+msgstr "Yeni doğan"
+
+msgid "Emerging"
+msgstr "Gelişen"
+
+msgid "Connected"
+msgstr "Bağlı"
+
+msgid "Multi-moment"
+msgstr "Çoklu an"
+
+msgid "Marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr "Pazarlama kampanyalarında en çok harici veriler ile doğrudan satın alma işlemlerinden yararlanılıyor ve satış bağlantıları sınırlı."
+
+msgid "Some use of owned data in automated buying with single-channel optimisation and testing."
+msgstr "Sahip olunan verilerin bir kısmı otomatik satın almada tek kanallı optimizasyon ve test ile kullanılıyor."
+
+msgid "Data integrated and activated across channels with demonstrated link to ROI or sales proxies."
+msgstr "Veriler, YG veya satış rakamlarıyla bağlantısı olduğu kanıtlanmış farklı kanallarda entegre ediliyor ve etkinleştiriliyor."
+
+msgid "Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
+msgstr "Birden fazla kanalda, her bir müşteri işletme sonucu ve işlemi için optimize edilmiş dinamik yürütme söz konusu."
+
+msgid "This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr "4 olgunluk düzeyinden en altta yer alandır. Pazarlama kampanyalarınızda en çok harici veriler ile doğrudan satın alma işlemlerinden yararlanılıyordur ve satış bağlantıları sınırlıdır."
+
+msgid "This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing."
+msgstr "4 olgunluk düzeyinden 2. sırada yer alandır. Sahip olduğunuz verilerin bir kısmı otomatik satın almada tek kanallı optimizasyon ve test ile kullanılıyordur."
+
+msgid "This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr "4 olgunluk düzeyinden 3. sırada yer alandır. Verileriniz, YG veya satış rakamlarıyla bağlantısı olduğu kanıtlanmış farklı kanallarda entegre ediliyor ve etkinleştiriliyordur."
+
+msgid "This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
+msgstr "4 olgunluk düzeyinden en üstte yer alandır. Birden fazla kanalda, her bir müşteri işletme sonucu ve işlemi için optimize edilmiş dinamik yürütmeye ulaşmışsınızdır."
+
+msgid "Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences."
+msgstr "Başarılı bir ilişkilendirme için, tüm müşteri temas noktalarının ölçümü ve değer ataması doğru bir şekilde yapılmalıdır. Bunu yaptığınız takdirde, bilinçli yatırım kararları verir ve daha iyi, daha etkili deneyimler oluşturursunuz."
+
+msgid "Reaching consumers is not enough. They demand assistive experiences - fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content."
+msgstr "Tüketicilere ulaşmak yeterli değildir. Tüketiciler sizden işlerini kolaylaştıran hızlı, sorunsuz ve özel ihtiyaçlarına uygun deneyimler bekler. Web siteniz, uygulamanız, reklamlarınız ve markalı içeriğiniz de dahil olmak üzere tüm marka dijital temas noktalarında sezgisel ve etkili deneyimler sunmanız gerekir."
+
+msgid "To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel."
+msgstr "Tüketicilere size ihtiyaç duydukları her an ulaşabilmek için, satış dönüşüm hunisi boyunca en değerli kitleleri tanımlamak, anlamak ve etkilemek üzere tüm veri kaynaklarını düzene koymanız gerekir."
+
+msgid "Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control."
+msgstr "Kitlelerinizi tanımlayabildiğiniz andan itibaren, onlara etkili bir şekilde ulaşmanız ve pazarlama mesajlarınızı doğru denetim seviyeleriyle tüm envanter türlerinde ve kanallarında iletmeniz gerekir."
+
+msgid "Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth."
+msgstr "Özel deneyimler genellikle, pazarlamanızda kullanıcılarınızın bağlamı, günün saati veya kullandıkları cihaz gibi birden fazla veri noktasından yararlanılmasını gerektirir. Otomasyon, kullanıcılar için geniş ölçekte alaka düzeyi tutturmanızı sağlayabilir. Pazarlama operasyonlarını en iyi şekilde yürütmenize olanak tanırken reklamcılık faaliyetlerinizin etkisini, kârlılığını ve büyüme oranını artırır."
+
+msgid "Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed."
+msgstr "Pazarlamayla ilgili her karar bir süreçten geçer, ekipler arası çalışma biçiminizden etkilenir ve özel becerilere sahip kişilerin desteğine bağlıdır. Dolayısıyla, mesafe katedebilmek için gelişmiş bir veri stratejisine, doğru teknoloji platformlarına ve yaratıcı fikirlere sahip olmanız gerekir. Organizasyonunuz doğru kararların alınması ve uygulanmasını mümkün kılacak şekilde oluşturulmalıdır."
+
+msgid "You use a mix of measurement methodologies but results mostly only influence long-term planning. Evaluation of your marketing activities tends to be based on campaign metrics."
+msgstr "Farklı ölçüm yöntemlerini bir arada kullanıyorsunuz ancak sonuçlar çoğunlukla sadece uzun vadeli planlamayı etkiliyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle kampanya metrikleri baz alınıyor."
+
+msgid "You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics."
+msgstr "Çeşitli ölçüm yöntemlerinin yanında son tıklamayla ilişkilendirme harici modeller kullanıyorsunuz. Kampanya planlamasında düzenli A/B testlerinin sonuçlarından yararlanılıyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle dönüşüm metrikleri baz alınıyor."
+
+msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgstr "Çeşitli ölçüm yöntemlerinin yanında bir özel ilişkilendirme modeli kullanıyorsunuz. Yayınlandıkları sırada kampanyaları optimize etmek için, sık uygulanan A/B testlerinin sonuçlarından yararlanılıyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle işletme sonuçları baz alınıyor."
+
+msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgstr "Çeşitli ölçüm yöntemlerinin yanında veriye dayalı bir ilişkilendirme modeli kullanıyorsunuz. Yayınlandıkları sırada kampanyalar genelinde optimizasyon için, sık uygulanan A/B testlerinin sonuçlarından yararlanılıyor. Pazarlama faaliyetleriniz değerlendirilirken genellikle işletme sonuçları baz alınıyor."
+
+msgid "The user experience and speed of your website or app is at a basic level. Your creatives are the result of isolated processes and you tend to use the same message for all users. Creative testing happens infrequently or not at all."
+msgstr "Web sitesi veya uygulamanızın kullanıcı deneyimi ve hızı temel seviyede. Reklam öğeleriniz ayrı ayrı süreçlerle üretiliyor ve genellikle tüm kullanıcılar için aynı mesajı kullanıyorsunuz. Reklam öğesi testi sık yapılmıyor ya da hiç yapılmıyor."
+
+msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there’s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
+msgstr "Web siteniz veya uygulamanız için kullanıcı deneyimini optimize etmeyi ve kişiselleştirmeyi denediniz. Ekipler reklam öğesi oluşturmak için ortak çalışıyor, ancak kanallar arasında sınırlı koordinasyon var. Reklam öğelerinin etkisini artırmak için analiz yoluyla elde edilen bilgileri ve A/B testlerinin sonuçlarını kullanıyorsunuz. Mesajlarınız kitlenizin geniş segmentleri için özelleştiriliyor."
+
+msgid "You are using advanced methods of user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives, coordinated across digital channels. You are using several testing methodologies to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience."
+msgstr "Web sitenizin veya uygulamanızın kullanıcı deneyimini optimize etmek ve kişiselleştirmek için gelişmiş yöntemler kullanıyorsunuz. Ekipler reklam öğesi oluşturmak için farklı dijital kanallarda koordineli bir şekilde ortak çalışıyor. Reklam öğesi etkisini artırmak için birden fazla test yöntemi kullanıyorsunuz. Mesajlarınız kitlenizin çeşitli segmentleri için özelleştiriliyor."
+
+msgid "You are using cutting edge technology to create an impactful and tailored user experience across your websites and apps. Teams collaborate to build creatives, which are coordinated across digital and non-digital channels. You share results from several testing methodologies across digital and non-digital teams to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience and influenced by contextual signals."
+msgstr "Web sitelerinizde ve uygulamalarınızda etkili ve özel bir kullanıcı deneyimi oluşturmak için en son teknolojiden yararlanıyorsunuz. Ekipler reklam öğesi oluşturmak için dijital ve dijital olmayan kanallarda koordineli bir şekilde ortak çalışıyor. Reklam öğesi etkisini artırmak için birden fazla test yönteminin sonuçlarını dijital ve dijital olmayan ekiplerde aynen kullanıyorsunuz. Mesajlarınız kitlenizin çeşitli segmentleri için özelleştiriliyor ve içeriğe dayalı sinyallerden etkileniyor."
+
+msgid "You mostly use 3rd party data to target your campaigns, relying on broad audience definitions. You tend to focus on a specific part of the marketing funnel."
+msgstr "Kampanyalarınızı hedeflemek için geniş kitle tanımlarına dayalı olarak çoğunlukla 3. taraf verilerinden yararlanıyorsunuz. Genellikle pazarlama dönüşüm hunisinin belirli bir bölümüne odaklanıyorsunuz."
+
+msgid "You use 3rd party and 1st party data to target your campaigns. You have segmented your audience, largely based on demographics and you cover several parts of the marketing funnel."
+msgstr "Kampanyalarınızı hedeflemek için 3. taraf ve 1. taraf verilerinden yararlanıyorsunuz. Kitlenizi büyük oranda demografiye göre segmentlere ayırmışsınız ve pazarlama dönüşüm hunisinin birden fazla bölümü kapsama alanınızda."
+
+msgid "You use 3rd party and 1st party data to target your campaigns, covering the full marketing funnel. You have started to use insights captured in one channel in another channel. You have segmented your audience based on behavioural and interest data."
+msgstr "Kampanyalarınızı hedeflemek için 3. taraf ve 1. taraf verilerinden yararlanıyorsunuz. Pazarlama dönüşüm hunisinin tamamı kapsama alanınızda. Bir kanalda elde edilen analizleri başka bir kanalda kullanmaya başlamışsınız. Kitlenizi davranış ve ilgi alanı verilerine göre segmentlere ayırmışsınız."
+
+msgid "You use 3rd party and 1st party data - including offline data - to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning."
+msgstr "Kampanyalarınızı hedeflemek için çevrimdışı veriler de dahil olmak üzere 3. taraf ve 1. taraf verilerinden yararlanıyorsunuz. Pazarlama dönüşüm hunisinin tamamı kapsama alanınızda. Bir kanalda elde edilen analizleri başka bir kanalda kullanıyorsunuz ve kitlenizi gelişmiş analiz veya makine öğrenimine dayalı olarak segmentlere ayırmışsınız."
+
+msgid "Your keyword lists are narrowly defined and most of your digital media buys are direct buys across a limited number of inventory sources and formats. You rely on platform default settings to ensure brand safety and ad viewability and to prevent ad fraud."
+msgstr "Anahtar kelime listeleriniz dar kapsamlı bir şekilde tanımlanmış ve dijital medya satın almalarınızın çoğu, sınırlı sayıdaki envanter kaynaklarında ve biçimlerde gerçekleştirilen doğrudan satın alma işlemlerinden oluşuyor. Marka güvenliği ile reklam görüntülenebilirliğini sağlamak ve reklam sahtekarlığını engellemek için platform varsayılan ayarlarını kullanıyorsunuz."
+
+msgid "Your keyword lists cover your immediate products and most of your digital media buys are auction-based and direct buys across several inventory sources and formats. You rely on platform default settings and some manual adjustment to ensure brand safety and ad viewability and to prevent ad fraud."
+msgstr "Anahtar kelime listeleriniz mevcut ürünlerinizi kapsıyor. Dijital medya satın almalarınızın çoğu, birden fazla envanter kaynağında ve biçimde gerçekleştirilen açık artırmaya dayalı ve doğrudan satın alma işlemlerinden oluşuyor. Marka güvenliği ile reklam görüntülenebilirliğini sağlamak ve reklam sahtekarlığını engellemek için platform varsayılan ayarlarının yanı sıra bazı manuel ayarlar kullanıyorsunuz."
+
+msgid "Your keyword lists extend well beyond product-related terms and most of your digital media buys are auction-based and direct buys across a variety of inventory sources and formats. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud."
+msgstr "Anahtar kelime listelerinizin kapsamı, ürünle ilgili terimlerin çok ötesine uzanıyor. Dijital medya satın almalarınızın çoğu, çeşitli envanter kaynaklarında ve biçimlerde gerçekleştirilen açık artırmaya dayalı ve doğrudan satın alma işlemlerinden oluşuyor. Marka güvenliği ile reklam görüntülenebilirliğini sağlama ve reklam sahtekarlığını engellemeye yönelik sistemlere kaynak yatırıyorsunuz."
+
+msgid "You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources - including TV or OOH - and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. "
+msgstr "Kapsamlı ve düzenli tutulan anahtar kelime listeleri kullanıyorsunuz. Medya satın almalarınızda, TV reklamları veya ev dışı reklamlar gibi birçok reklam biçimi ve envanter kaynağındaki çeşitli anlaşma türlerinden yararlanıyorsunuz. Marka güvenliği ile reklam görüntülenebilirliğini sağlama ve reklam sahtekarlığını engellemeye yönelik sistemlere kaynak yatırıyorsunuz. "
+
+msgid "You are planning, creating, monitoring and optimising most of your campaigns manually."
+msgstr "Kampanyalarınızın çoğunu manuel olarak planlıyor, oluşturuyor, izliyor ve optimize ediyorsunuz."
+
+msgid "You are using selected automation features for planning, creating, monitoring and optimising some of your campaigns. This may include using ad servers or platform APIs."
+msgstr "Kampanyalarınızdan bazılarını planlamak, oluşturmak, izlemek ve optimize etmek için seçili otomasyon özelliklerinden yararlanıyorsunuz. Buna reklam sunucuları veya platform API'leri kullanmak da dahil olabiliyor."
+
+msgid "You use automation features for planning, creating, monitoring and optimising across many of your campaigns. This may include using ad servers, platform APIs and dynamic data feeds."
+msgstr "Kampanyalarınızın birçoğunda planlama, oluşturma, izleme ve optimizasyon için otomasyon özelliklerinden yararlanıyorsunuz. Buna reklam sunucuları, platform API'leri ve dinamik veri feed'leri kullanmak da dahil olabiliyor."
+
+msgid "Leveraging a variety of data signals, you make use of automation features for planning, creating, monitoring and optimising most or all of your campaigns. This may include the usage of ad servers, platform APIs and dynamic data feeds."
+msgstr "Çeşitli veri sinyalleri kullanarak, kampanyalarınızın çoğunu veya tamamını planlamak, oluşturmak, izlemek ve optimize etmek için otomasyon özelliklerinden yararlanıyorsunuz. Buna reklam sunucuları, platform API'leri ve dinamik veri feed'leri kullanmak da dahil olabiliyor."
+
+msgid "Your business is held back from siloed teams, with agencies working at arm’s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
+msgstr "Ekiplerin birbirinden kopuk bir şekilde çalışması ve ajansların yakın ilişki kurmaması, işletmenizin gelişiminin önünde engel oluşturuyor. Tamamen özel olarak görevlendirilmiş kaynaklarınız yok. Pazarlamayla ilgili uzmanlık gerektiren belli başlı alanlarda ise hiç kaynağınız yok. "
+
+msgid "Some of your key business functions work together towards clear objectives, including some of your agency partners. "
+msgstr "Ajans iş ortaklarınızın bir bölümü de dahil olmak üzere en önemli işletme fonksiyonlarınız net hedefler doğrultusunda çalışıyor. "
+
+msgid "You have cross-functional teams with common objectives across all digital channels. Most or all agency partners collaborate with each other."
+msgstr "Tüm dijital kanallarda ortak hedefleri olan çapraz fonksiyonlu ekiplere sahipsiniz. Ajans iş ortaklarınızın çoğu veya tamamı iş birliği içerisinde hareket ediyor."
+
+msgid "You have cross-functional teams with common objectives across all digital and non-digital channels. All agency and other partners collaborate with each other, some as virtual teams. Your teams are agile and share best practices. "
+msgstr "Dijital ve dijital olmayan tüm kanallarda ortak hedefleri olan çapraz fonksiyonlu ekiplere sahipsiniz. Tüm ajanslar ve diğer iş ortakları, bazıları sanal ekipler şeklinde olmak üzere iş birliği içerisinde hareket ediyor. Ekipleriniz çevik ve en iyi uygulamaları birbirleriyle paylaşıyor. "
+
+msgid "Measure the true value of your marketing activities"
+msgstr "Pazarlama faaliyetlerinizin gerçek değerini ölçün"
+
+msgid "Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores."
+msgstr "Son tıklamaya dayalı olmayan bir ilişkilendirme modeline geçiş yapın. Tıklamalar veya dönüşüm sayısının ötesindeki değeri gösteren metrikler (ör. gelir ve fiziksel mağaza ziyaretleri) kullanın."
+
+msgid "Capture marketing performance data comprehensively"
+msgstr "Pazarlama performans verilerini kapsamlı olarak elde edin"
+
+msgid "Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints."
+msgstr "Tüm kampanyalarınızın ve öğelerinizin performansı hakkında bilgi sahibi olduğunuzdan emin olun. Farklı dijital temas noktalarındaki performansı değerlendirin."
+
+msgid "Expand your measurement capabilities"
+msgstr "Ölçüm yeteneklerinizi geliştirin"
+
+msgid "Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns."
+msgstr "Etiketleme ve izleme araçlarına yatırım yapın. Yetenekleriniz arasına daha fazla ölçüm yöntemi ekleyin. Kampanyaları optimize etmek için, test sıklığını artırın ve verilerden yararlanın."
+
+msgid "Build your teams’ skills in web analytics"
+msgstr "Ekiplerinizin web analizi konusundaki becerilerini geliştirin"
+
+msgid "Ask relevant people to take the beginner and introductory courses of the Analytics Academy. "
+msgstr "İlgili kişilerden Analytics Akademisi yeni başlayan ve giriş kurslarını almalarını isteyin. "
+
+msgid "Analytics Academy"
+msgstr "Analytics Akademisi"
+
+msgid "Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit."
+msgstr "İşletmenize uygun bir ilişkilendirme modeline geçiş yapın. Gelirin ötesindeki değeri gösteren metrikler (ör. değer artışı veya kâr) kullanın."
+
+msgid "Create a single source of truth for marketing performance and establish a shared understanding of success metrics - across all device types and across all digital touchpoints."
+msgstr "Pazarlama performansına ilişkin tek bir doğruluk kaynağı oluşturun. Tüm cihaz türleri ve tüm dijital temas noktalarında başarı metrikleriyle ilgili ortak bir anlayış belirleyin."
+
+msgid "Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. "
+msgstr "Reklam öğesi etkisini veya bağımsız kanalların performansını optimize etmek için yetenekleriniz arasına ölçüm yöntemleri ekleyin. Kampanyaları optimize etmek için, test sıklığını artırın ve verilerden yararlanın. "
+
+msgid "Ask relevant people to take the beginner and advanced courses of the Analytics Academy."
+msgstr "İlgili kişilerden Analytics Akademisi yeni başlayan ve ileri seviye kurslarını almalarını isteyin."
+
+msgid "Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value."
+msgstr "Veriye dayalı ilişkilendirme modelinizde işletmenize özel sinyalleri göz önünde bulundurun. Gelirin ötesindeki değeri gösteren metrikler (ör. kâr veya yaşam boyu değer) kullanın."
+
+msgid "Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels."
+msgstr "Pazarlama performansına ilişkin, dijital ve dijital olmayan kanallardaki davranışı göz önünde bulunduran tek bir doğruluk kaynağı oluşturun."
+
+msgid "Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time."
+msgstr "Bütçe dağıtımı, reklam öğesi etkisi veya bağımsız kanalların performansı dahil olmak üzere dijital pazarlamanın tüm yönlerini optimize etmek için yetenekleriniz arasına ölçüm yöntemleri ekleyin. Kampanyaları gerçek zamanlı optimize etmek için, test sıklığını artırın ve verilerden yararlanın."
+
+msgid "Ask relevant people to take the advanced courses of the Analytics Academy."
+msgstr "İlgili kişilerden Analytics Akademisi ileri seviye kurslarını almalarını isteyin."
+
+msgid "Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models."
+msgstr "Veriye dayalı ilişkilendirme modelinizde ince ayar yapmaya ve özel analizler, veri kaynakları ve makine öğrenimi olanaklarından yararlanmaya devam edin. Uygulamanızdaki yeni bir özellik veya mağazada ya da çağrı merkezi aracılığıyla sunulan ek hizmet gibi yeni kullanıcı etkileşimlerinin değerini belirleyin. Bu değeri ölçüm modellerinize dahil edin."
+
+msgid "Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance."
+msgstr "Yeni çıkan kampanya türlerini veya sosyal medya platformu gibi yeni kanallardaki etkinlikleri pazarlama performansına ilişkin tek doğruluk kaynağınıza ekleyin."
+
+msgid "Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. "
+msgstr "Bütçe dağıtımı, reklam öğesi etkisi veya bağımsız kanalların performansı dahil olmak üzere dijital pazarlamanın tüm yönlerini optimize etmek üzere farklı ölçüm yöntemleriniz için tekrar tekrar kullanacağınız sağlam ve ortak bir süreç belirleyin. "
+
+msgid "Make ads more relevant for different types of users"
+msgstr "Reklamları, farklı kullanıcı türleri için daha alakalı hale getirin"
+
+msgid "Segment your users into different audiences, for example, new users and existing customers. Create ads that align with their respective expectations."
+msgstr "Kullanıcıları yeni kullanıcılar ve mevcut müşteriler gibi farklı kitlelere ayırın. Bu kitlelerin özel beklentileriyle uyumlu reklamlar oluşturun."
+
+msgid "Tailor the user experience of your assets"
+msgstr "Öğelerin kullanıcı deneyimini özelleştirin"
+
+msgid "Tailor your website or app to the expectations of different audiences, for example, existing customer may benefit from more specific information whereas new users may need a broader picture."
+msgstr "Web sitesi veya uygulamanızı farklı kitlelerin beklentilerine uygun hale getirin. Örneğin, mevcut müşteriler özel bilgilerden faydalanırken yeni kullanıcılar daha genel açıklamalara ihtiyaç duyabilir."
+
+msgid "Start using technology"
+msgstr "Teknolojiden yararlanmaya başlayın"
+
+msgid "Use web analytics tools and A/B testing tools to continually improve the performance of your assets."
+msgstr "Öğelerinizin performansını sürekli olarak artırmak için web analizi ve A/B testi araçlarından yararlanın."
+
+msgid "Improve the speed of your mobile assets"
+msgstr "Mobil öğelerinizin hızını artırın"
+
+msgid "Take the mobile speed test and get recommendations to implement right away."
+msgstr "Mobil hız testine katılın ve hemen uygulayabileceğiniz öneriler alın."
+
+msgid "Mobile speed test"
+msgstr "Mobil hız testi"
+
+msgid "Remove friction from the user experience of your mobile assets"
+msgstr "Mobil öğelerinizin sunduğu kullanıcı deneyimini sorunsuz hale getirin"
+
+msgid "Consider these best practices and implement them."
+msgstr "Bu en iyi uygulamaları değerlendirin ve uygulayın."
+
+msgid "Mobile UX best practices"
+msgstr "Mobil kullanıcı deneyimiyle ilgili en iyi uygulamalar"
+
+msgid "Connect different teams of your company"
+msgstr "Şirketinizdeki farklı ekipler arasında bağlantı kurun"
+
+msgid "Foster collaboration between different marketing teams that are responsible for creating your creatives, for example, digital and non-digital teams, media and creative teams. Encourage them to work together and share best practices."
+msgstr "Reklam öğelerinizi oluşturmaktan sorumlu olan farklı pazarlama ekipleri (ör. dijital ve dijital olmayan ekipler, medya ekipleri ve kreatif ekipler) arasında iş birliği sağlayın. Ekipleri birlikte çalışmaya ve en iyi uygulamaları birbirleriyle paylaşmaya teşvik edin."
+
+msgid "Improve the relevance of your ads for different types of users"
+msgstr "Reklamlarınızı farklı kullanıcı türleri için daha alakalı hale getirin"
+
+msgid "Refine the segmentation of your users into different audiences and create ads that match their characteristics."
+msgstr "Kullanıcı segmentlerinizi farklı kitleler halinde ayrıntılandırın ve kitlelerinizin özelliklerine uygun reklamlar oluşturun."
+
+msgid "Expand tailoring your website beyond basic personalisation, for example, create tailored experiences for more of your audience segments or use real-time predictive modelling to suggest products."
+msgstr "Web sitenizi temel kişiselleştirmenin ötesinde özelleştirin. Örneğin, daha fazla kitle segmentiniz için özelleştirilmiş deneyimler oluşturun veya ürün önerileri almak üzere gerçek zamanlı tahmine dayalı modellemeyi kullanın."
+
+msgid "Expand your creative testing capabilities"
+msgstr "Reklam öğesi test etme yeteneklerinizi genişletin"
+
+msgid "Add more methods such as multivariate tests or consumer surveys to your testing suite."
+msgstr "Test araç setinize çok değişkenli testler veya tüketici anketleri gibi daha fazla yöntem ekleyin."
+
+msgid "Consider these best practices and implement those where you still have gaps."
+msgstr "Bu en iyi uygulamaları değerlendirin ve açıklarınızın olduğu noktalarla ilgili olanları uygulayın."
+
+msgid "Improve collaboration of teams that are responsible for creatives"
+msgstr "Reklam öğelerinden sorumlu ekipler arasındaki iş birliğini geliştirin"
+
+msgid "Consider establishing timelines that are shared between media and creative teams. Explore using the same toolset, for example, for managing creative projects. Encourage best practice sharing across these teams."
+msgstr "Medya ekipleri ve kreatif ekipler arasında ortak zaman çizelgeleri belirlemeyi düşünün. Örneğin, kreatif projeleri yönetmek için aynı araç setinden yararlanarak araştırma yapın. Bu ekipler arasında en iyi uygulama paylaşımını teşvik edin."
+
+msgid "Use additional data signals such as time of day or user location in your audience segmentation to create ads that are even more relevant."
+msgstr "Alaka düzeyi daha da yüksek reklamlar oluşturmak için, kitlelerinizi segmentlere ayırırken günün saati veya kullanıcı konumu gibi ek veri sinyallerinden yararlanın."
+
+msgid "Expand tailoring your website to include data signals from internal systems like your CRM or loyalty programme."
+msgstr "Web sitenizi özelleştirmeyi CRM veya bağlılık programınız gibi dahili sistemlerden gelen veri sinyallerini içerecek şekilde genişletin."
+
+msgid "Maximise the impact of your creative tests"
+msgstr "Reklam öğesi testlerinizin etkisini en üst düzeye çıkarın"
+
+msgid "Share the results of your tests widely, for example with non-digital teams. Establish a feedback loop so all teams can learn from each other."
+msgstr "Testlerinizin sonuçlarını geniş ölçekte (örneğin dijital olmayan ekiplerle) paylaşın. Tüm ekiplerin birbirinden bir şey öğrenebilmesi için geri bildirim döngüsü oluşturun."
+
+msgid "Remove friction from the entire user experience"
+msgstr "Kullanıcı deneyimini bütünüyle sorunsuz hale getirin"
+
+msgid "Consider these best practices and implement those where you still have gaps. Use current mobile techniques such as progressive web apps or single sign-on. Create links between your mobile assets and non-digital touchpoints, like stores or call centres."
+msgstr "Bu en iyi uygulamaları değerlendirin ve açıklarınızın olduğu noktalarla ilgili olanları uygulayın. Progresif web uygulamaları veya tek oturum açma gibi güncel mobil tekniklerden yararlanın. Mobil öğeleriniz ile mağazalar veya çağrı merkezleri gibi dijital olmayan temas noktaları arasında bağlantılar oluşturun."
+
+msgid "Enable media and creative teams to work hand-in-hand and to use collaborative tools. Establish connections between digital and non-digital teams."
+msgstr "Medya ekipleri ile kreatif ekiplerin iş birliği içerisinde hareket etmesini ve ortak çalışma araçları kullanmasını sağlayın. Dijital ve dijital olmayan ekipler arasında bağlantılar kurun."
+
+msgid "Keep up to date with the latest research and industry best practices to find new ways of increasing the relevance of your ads."
+msgstr "Reklamlarınızın alaka düzeyini artırmak için yeni yollar bulmak amacıyla en son araştırmalar ve sektör en iyi uygulamalarından haberdar olun."
+
+msgid "Continue to invest in tailoring your website to the expectations of different audiences. Leverage new data signals as they become available, for example, from emerging device types or internal tools.as they become available"
+msgstr "Web sitenizi farklı kitlelerin beklentileri doğrultusunda özelleştirmeye yatırım yapmayı sürdürün. Kullanılabilir oldukça, yeni çıkan cihaz türleri veya dahili araçlardan alınan sinyaller gibi yeni veri sinyallerinden yararlanın."
+
+msgid "Continue to share the results of your tests widely and build a robust data set of creative performance. Iterate feedback and sharing processes to ensure continued improvement off your creatives"
+msgstr "Testlerinizin sonuçlarını geniş ölçekte paylaşmaya devam edin ve reklam öğesi performansına ilişkin sağlam bir veri seti oluşturun. Reklam öğelerinizin sürekli gelişimi için geri bildirim ve paylaşım süreçlerini tekrarlayın."
+
+msgid "Continue to invest in the speed of your mobile assets"
+msgstr "Mobil öğelerinizin hızına yatırım yapmaya devam edin"
+
+msgid "Every fraction of a second counts. Take the mobile speed test regularly to identify areas of improvement."
+msgstr "Her salise önemlidir. Geliştirilebilecek alanları belirlemek için düzenli olarak mobil hız testine katılın."
+
+msgid "Review the entire user experience to identify friction points"
+msgstr "Sorun oluşturabilecek noktaları belirlemek için kullanıcı deneyimini bütünüyle gözden geçirin"
+
+msgid "Keep up to date with emerging trends in UX and web technologies. Explore further possibilities to improve the user experience as people move between digital touchpoints and between digital and non-digital touchpoints."
+msgstr "Kullanıcı deneyimi ve web teknolojileriyle ilgili yeni trendlerden haberdar olun. Kullanıcılar dijital temas noktaları arasında ve dijital ile dijital olmayan temas noktaları arasında geçiş yaparken kullanıcı deneyimini iyileştirmenizi sağlayacak diğer olanakları keşfedin."
+
+msgid "Connect teams who are responsible for your creatives with newly hired specialists or teams."
+msgstr "Yeni işe alacağınız uzmanlar veya yeni görevlendireceğiniz ekipler yardımıyla, reklam öğelerinizden sorumlu ekipler arasında bağlantı kurun."
+
+msgid "Use more signals to reach your audience"
+msgstr "Kitlenize ulaşmak için daha fazla sinyalden yararlanın"
+
+msgid "In addition to 3rd party data, use 1st party data (i.e. your own data) to decide which users you want to reach online. Segment users into different audiences and optimise this segmentation regularly."
+msgstr "İnternette ulaşmak istediğiniz kullanıcılara karar vermek için, 3. taraf verilerine ek olarak 1. taraf verilerini (yani kendi verilerinizi) kullanın. Kullanıcıları farklı kitleler halinde segmentlere ayırın ve bu segmentasyonu düzenli olarak optimize edin."
+
+msgid "Leverage insights across channels"
+msgstr "Farklı kanallardaki analizlerden yararlanın"
+
+msgid "Share insights you gain in 1 channel, for example search, to improve how you reach your audience in another channel, for example email."
+msgstr "Bir kanalda (ör. arama) elde ettiğiniz analizleri, başka bir kanalda (ör. e-posta) kitlenize ulaşma şeklinizi iyileştirmek için kullanın."
+
+msgid "Find additional opportunities to reach users"
+msgstr "Kullanıcılara ulaşmak için ek fırsatlar bulun"
+
+msgid "Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing."
+msgstr "Bilinirlik oluşturmadan üzerinde düşünmeye sevk etmeye, satın alma işlemi sağlamaya ve son olarak satın almayı tekrar ettirmeye, pazarlama dönüşüm hunisinin tüm bölümlerini kapsayın."
+
+msgid "Invest in technology"
+msgstr "Teknolojiye yatırım yapın"
+
+msgid "Build or buy tools that allow you to capture and analyse user insights, for example, a CRM or Data Management Platform."
+msgstr "CRM veya Veri Yönetimi Platformu gibi, kullanıcı analizlerini elde etmenizi ve analiz etmenizi sağlayan araçlar oluşturun ya da satın alın."
+
+msgid "In addition to 3rd party data, use 1st party data across different digital channels to decide which users you want to reach online. Use that data to create additional audience segments and update this segmentation while campaigns are running."
+msgstr "İnternette ulaşmak istediğiniz kullanıcılara karar vermek için, 3. taraf verilerine ek olarak 1. taraf verilerini kullanın. Bu verilerden, kampanyalarınız yayındayken ek kitle segmentleri oluşturmak ve bu segmentasyonu güncellemek için yararlanın."
+
+msgid "Leverage insights across digital and non-digital channels"
+msgstr "Dijital ve dijital olmayan kanallardaki analizlerden yararlanın"
+
+msgid "Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video."
+msgstr "Bir kanalda (ör. lineer TV) elde ettiğiniz analizleri, başka bir kanalda (ör. online video) kitlenize ulaşma şeklinizi iyileştirmek için kullanın."
+
+msgid "Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing.as they become available."
+msgstr "Bilinirlik oluşturmadan üzerinde düşünmeye sevk etmeye, satın alma işlemi sağlamaya ve son olarak satın almayı tekrar ettirmeye, pazarlama dönüşüm hunisinin tüm bölümlerini kapsayın."
+
+msgid "Enhance segmentation capabilities"
+msgstr "Segmentasyon yeteneklerinizi genişletin"
+
+msgid "Extend your proficiency in using tools that allow you to capture and analyse user insights, for example, a CRM system or Data Management Platform."
+msgstr "CRM veya Veri Yönetimi Platformu gibi, kullanıcı analizlerini elde etmenizi ve analiz etmenizi sağlayan araçları kullanma konusundaki yetkinliğinizi artırın."
+
+msgid "In addition to 3rd party data, use 1st party data across different digital and non-digital channels to build meaningful audience segments. Update these segments automatically, based on a set of rules that you actively maintain."
+msgstr "Anlamlı kitle segmentleri oluşturmak için, 3. taraf verilerine ek olarak 1. taraf verilerini kullanın. Bu segmentleri, etkin bir şekilde gözden geçirdiğiniz bir dizi kurala göre otomatik olarak güncelleyin."
+
+msgid "Leverage insights from the entire company"
+msgstr "Tüm şirketteki analizlerden yararlanın"
+
+msgid "Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video. Consider feeding in other types of data, for example, sales data."
+msgstr "Bir kanalda (ör. lineer TV) elde ettiğiniz analizleri, başka bir kanalda (ör. online video) kitlenize ulaşma şeklinizi iyileştirmek için kullanın. Satış verileri gibi başka veri türleri sağlamayı düşünün."
+
+msgid "Extend your proficiency in using tools that allow you to capture and analyse user insights, for example a CRM system or Data Management Platform. Connect tools with each other. Leverage machine learning technology improve your audience segmentation."
+msgstr "CRM veya Veri Yönetimi Platformu gibi, kullanıcı analizlerini elde etmenizi ve analiz etmenizi sağlayan araçları kullanma konusundaki yetkinliğinizi artırın. Araçları birbirine bağlayın. Kitle segmentasyonunuzu iyileştirmek için makine öğrenimi teknolojisinden yararlanın."
+
+msgid "Update the types of signals you use to reach your audience"
+msgstr "Kitlenize ulaşmak için kullandığınız sinyal türlerini güncelleyin"
+
+msgid "Consider new signals as they become available to build your audience segments. Continue to update these segments based on the value they deliver to your business."
+msgstr "Kullanılabilir oldukça, kitle segmentlerinizi oluşturmak için yeni sinyalleri değerlendirin. Bu segmentleri, işletmeniz için sağladıkları değere göre güncellemeye devam edin."
+
+msgid "Assess if insights from new marketing channels, device types, ad formats and business systems can be used to improve how you reach users."
+msgstr "Yeni pazarlama kanalları, cihaz türleri, reklam biçimleri ve iş sistemlerinden elde edilen analizlerin kullanıcılara ulaşma şeklinizi iyileştirmek için kullanılıp kullanılamayacağını değerlendirin."
+
+msgid "Stay close to developments in the tool landscape and explore opportunities related to improving the actionability of insights. For example, check if insights gained in 1 tool, like your Data Management Platform, could be used in another tool, like the 1 where you build and run your campaigns. Leverage emerging machine learning technology to improve your audience segmentation."
+msgstr "Araç teknolojilerindeki gelişmeleri yakından takip edin ve analizlerin uygulanabilirliğine ilişkin fırsatları araştırın. Örneğin, Veri Yönetimi Platformunuz gibi bir araçta elde edilen analizlerin, kampanyalarınızı oluşturup yayınladığınız araç gibi başka bir araçta kullanılıp kullanılamayacağını kontrol edin. Kitle segmentasyonunuzu iyileştirmek için yeni çıkan makine öğrenimi teknolojilerinden yararlanın."
+
+msgid "Extend your reach and optimise performance"
+msgstr "Erişiminizi artırın ve performansı optimize edin"
+
+msgid "Extend your keyword lists to capture relevant queries related to all your products and to your product category. Buy video and display media across desktop and mobile platforms, using direct buys or programmatic buying methods such as open auction or programmatic direct. Optimise your media buys."
+msgstr "Anahtar kelime listelerinizi, tüm ürünleriniz ve ürün kategorinizle alakalı sorguları kapsayacak şekilde genişletin. Masaüstü ve mobil platformlarda, doğrudan satın almalar yoluyla ya da herkesin katılabileceği açık artırma veya programatik doğrudan gibi programatik satın alma yöntemlerinden yararlanarak video ve görüntülü medya satın alın. Medya satın almalarınızı optimize edin."
+
+msgid "Ensure quality control"
+msgstr "Kalite kontrolü sağlayın"
+
+msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Start acting on the results, for example, by building negative keyword lists or adding websites to a blacklist."
+msgstr "Kampanyalarınızda marka güvenliği, görüntülenebilirlik, reklam kalitesi ve anahtar kelime performansı denetimi yapın. Örneğin, negatif anahtar kelime listeleri oluşturarak veya web sitelerini kara listeye ekleyerek sonuçların gereklerini uygulamaya başlayın."
+
+msgid "Extend your keyword lists to capture relevant queries related to all your products, your product category, your brand and other relevant areas. Buy a larger percentage of video and display media using programmatic buying methods, such as open auction or programmatic direct. Optimise performance across digital channels."
+msgstr "Anahtar kelime listelerinizi, tüm ürünleriniz, ürün kategoriniz, markanız ve ilgili diğer alanlarla alakalı sorguları kapsayacak şekilde genişletin. Herkesin katılabileceği açık artırma veya programatik doğrudan gibi programatik satın alma yöntemlerinden yararlanarak daha fazla video ve görüntülü medya satın alın. Dijital kanallardaki performansı optimize edin."
+
+msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Use the results to optimise your bidding strategy, your media buys and your budget allocation."
+msgstr "Kampanyalarınızda marka güvenliği, görüntülenebilirlik, reklam kalitesi ve anahtar kelime performansı denetimi yapın. Teklif stratejinizi, medya satın almalarınızı ve bütçe dağıtımınızı optimize etmek için sonuçlardan yararlanın."
+
+msgid "Increase the variety of ad formats"
+msgstr "Reklam biçimi çeşitliliğini artırın"
+
+msgid "Use specialised formats, such as shopping ads on search, native ads and mobile app formats."
+msgstr "Arama Ağı'ndaki alışveriş reklamları, yerel reklamlar ve mobil uygulama biçimleri gibi özel biçimler kullanın."
+
+msgid "In addition to your extensive keyword list, use automated features that capture unpredictable demand, for example, search queries generated by current events. Increase the percentage of video and display media you buy programmatically and consider additional deal types such as preferred or guaranteed. Consider buying some of your non-digital media programmatically."
+msgstr "Kapsamlı anahtar kelime listenizin dışında, güncel olaylardan kaynaklı arama sorguları gibi, önceden kestirilemeyen talebi yakalayan otomatik özelliklerden yararlanın. Programatik olarak satın aldığınız video ve görüntülü medyaların miktarını artırın ve tercih edilen veya garantili gibi başka anlaşma türlerini kullanmayı düşünün. Dijital olmayan medyanızın bir bölümünü programatik olarak satın alabilirsiniz."
+
+msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Feed the results directly into your algorithms that optimise bidding, your media buys and your budget allocation. Actively engage with ecosystem partners to prevent future issues."
+msgstr "Kampanyalarınızda marka güvenliği, görüntülenebilirlik, reklam kalitesi ve anahtar kelime performansı denetimi yapın. Sonuçları doğrudan, teklif stratejinizi, medya satın almalarınızı ve bütçe dağıtımınızı optimize eden algoritmalarınıza aktarın. Gelecekte sorun yaşanmasının önüne geçmek için ekosistem iş ortaklarıyla etkin iş birliği yapın."
+
+msgid "Use digital TV and digital out-of-home formats."
+msgstr "Dijital TV ve dijital ev dışı biçimlerden yararlanın."
+
+msgid "Establish processes and improve internal systems that help you to capture new demand. Evaluate emerging deal types or features that help you to maximise reach while generating impact on your bottom line. Optimise your media buys across digital and non-digital channels."
+msgstr "Yeni talebi yakalamanızı sağlayan süreçler oluşturun ve yine aynı işleve sahip dahili sistemleri iyileştirin. Net kârınıza etki ederken erişimi en üst düzeye çıkaran yeni anlaşma türlerini veya özellikleri değerlendirin. Dijital ve dijital olmayan kanallardaki medya satın almalarınızı optimize edin."
+
+msgid "Assess and iterate your tools and internal processes to monitor brand safety, viewability, ad quality and keyword performance. Continue to automate the usage of the results in your bidding, buying and optimisation algorithms. Actively engage with ecosystem partners and industry associations to share best practices and prevent future issues."
+msgstr "Marka güvenliği, görüntülenebilirlik, reklam kalitesi ve anahtar kelime performansını denetlemenizi sağlayan araçları ve dahili süreçleri değerlendirin ve tekrar kullanın. Teklif, satın alma ve optimizasyon algoritmalarınızdaki sonuçları otomatik olarak kullanmaya devam edin. Gelecekte sorun yaşanmasının önüne geçmek için ekosistem iş ortakları ve sektörel oluşumlarla etkin iş birliği yapın."
+
+msgid "Experiment with ad formats in channels that have just recently become accessible through digital buying methods, for example radio ads."
+msgstr "Radyo reklamları gibi dijital satın alma yöntemleri üzerinden yeni erişilebilir hale gelmiş kanallardaki reklam biçimleriyle denemeler yapın."
+
+msgid "Leverage technology"
+msgstr "Teknolojiden yararlanın"
+
+msgid "Use tools that make setting up and managing campaigns more efficient, for example, using an ad server for your creatives and a Demand SIde Platform (DSP) for your media buys. Check if the tools you are already using provide an API to reduce the number of manual tasks."
+msgstr "Örneğin, reklam öğeleriniz için bir reklam sunucusu ve medya satın almalarınız için bir Talep Tarafı Platformu (TTP) kullanarak kampanya oluşturmayı ve yönetmeyi daha verimli hale getiren araçlardan yararlanın. Zaten kullanmakta olduğunuz araçların manuel iş yoğunluğunu azaltmak için bir API sağlayıp sağlamadığını kontrol edin."
+
+msgid "Automate high volume tasks"
+msgstr "Büyük hacimli işleri otomatikleştirin"
+
+msgid "Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a first step, move to automated bid adjustments for search and display campaigns. Gain experience with campaign management features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines)."
+msgstr "Reklam harcamanızdan en iyi şekilde yararlanmak için, platformlar genelinde tam otomatik gerçek zamanlı teklif vermeyi kullanmayı amaçlayın. İlk iş olarak, Arama Ağı ve Görüntülü Reklam Ağı kampanyaları için otomatik teklif ayarlamalarına geçiş yapın. Reklamlarınızın gösterildiği web siteleri, verdiğiniz teklif tutarı ve reklam öğelerinizin tam yerleşim düzeni gibi, hedefleme ölçütlerini otomatik olarak seçen kampanya yönetim özellikleri konusunda deneyim kazanın (ör. birkaç başlığı test ederek)."
+
+msgid "Automate asset optimisation"
+msgstr "Öğe optimizasyonunu otomatikleştirin"
+
+msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user’s location or the user’s keyword. Aim to automate at least half of your creative optimisation decisions."
+msgstr "Reklam öğelerinizin bir kullanıcının konumu veya kullanıcının anahtar kelimesine bağlı olan reklam metni gibi varyasyonlarını test etmek için dinamik feed'lerden yararlanın. Reklam öğesi optimizasyon kararlarınızın en az yarısını otomatikleştirmeyi amaçlayın."
+
+msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server for an increased percentage of your ads, use your Demand Side Platform (DSP) for more of your media buys and increase your use of media platform APIs."
+msgstr "Örneğin, reklamlarınızın daha büyük bölümü için bir reklam sunucusu kullanarak, medya satın almalarınızın daha büyük bölümü için bir Talep Tarafı Platformu (TTP) kullanarak ve medya platformu API'ları kullanımınızı artırarak kampanya oluşturmayı ve yönetmeyi daha verimli hale getiren araçlardan daha çok yararlanın."
+
+msgid "Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a next step, add more signals to your automated bid adjustments across search and display campaigns. Expand your use of automated campaign features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines)."
+msgstr "Reklam harcamanızdan en iyi şekilde yararlanmak için, platformlar genelinde tam otomatik gerçek zamanlı teklif vermeyi kullanmayı amaçlayın. Sonraki adım olarak, Arama Ağı ve Görüntülü Reklam Ağı kampanyalarınızdaki otomatik teklif ayarlamalarına daha fazla sinyal ekleyin. Reklamlarınızın gösterildiği web siteleri, verdiğiniz teklif tutarı ve reklam öğelerinizin tam yerleşim düzeni gibi, hedefleme ölçütlerini otomatik olarak seçen otomatik kampanya özelliklerini daha fazla kullanın (ör. birkaç başlığı test ederek)."
+
+msgid "Use dynamic feeds and behavioural signals to automatically find the best-performing variation of your creative. Automate the optimisation of your creatives across several digital channels."
+msgstr "Reklam öğenizin en iyi performans gösteren varyasyonunu bulmak için dinamik feed'ler ve davranış sinyallerinden yararlanın. Reklam öğelerinizin birden fazla dijital kanalda optimizasyonunu otomatikleştirin."
+
+msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server beyond static creatives, use your Demand Side Platform (DSP) for more of your media buys and increase your use of platform APIs to include setup, maintenance, reporting and optimisation."
+msgstr "Örneğin, statik reklam öğelerinin ötesinde bir reklam sunucusu kullanarak, medya satın almalarınızın daha büyük bölümü için Talep Tarafı Platformunuzu (TTP) kullanarak ve medya platformu API'ları kullanımınızı kurulum, bakım, raporlama ve optimizasyonu içerecek şekilde artırarak kampanya oluşturmayı ve yönetmeyi daha verimli hale getiren araçlardan daha çok yararlanın."
+
+msgid "Move to fully automated bidding which considers a variety of signals, including cross-device behaviour and insights from data-driven attribution models. Continue to explore new features that can automate targeting decisions."
+msgstr "Cihazlar arası davranış ve veriye dayalı ilişkilendirme modellerinden elde edilen analizler gibi çeşitli sinyalleri dikkate alan tam otomatik teklif vermeye geçiş yapın. Hedefleme kararlarını otomatikleştirebilecek yeni özellikler keşfetmeye devam edin."
+
+msgid "Automate assets that have many variables"
+msgstr "Çok sayıda değişkene sahip öğeleri otomatikleştirin"
+
+msgid "Use dynamic feeds, behavioural signals from your website as well as cross-channel behavioural signals to automatically find the best-performing variation of your creative. Aim for a high percentage of automated creative optimisation."
+msgstr "Reklam öğenizin en iyi performans gösteren varyasyonunu bulmak için dinamik feed'ler, web sitenizden gelen davranış sinyalleri ve kanallar arası davranış sinyallerinden yararlanın. Reklam öğelerinizin optimizasyonunu daha yüksek oranda otomatikleştirmeyi amaçlayın."
+
+msgid "Stay on top of new technology"
+msgstr "Yeni teknolojileri yakından takip edin"
+
+msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it’s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
+msgstr "Kampanya oluşturmayı ve yönetmeyi daha verimli hale getiren yeni platform özelliklerini yakından takip edin. Örneğin, mümkün olur olmaz Talep Tarafı Platformunuzdan (TTP) geçecek yeni kanallar veya platformlarda medya satın almaya başlayın. Platform API'lerinin kampanya kurulumu, bakımı, raporlaması ve optimizasyonu sürecindeki daha fazla işi otomatikleştiren yeni özelliklerinden yararlanın."
+
+msgid "Actively look for repetitive tasks that could be automated and identify tasks that are already automated but may benefit from more data inputs, for example, if your bids are already being set automatically, integrate additional relevant data signals as they become available."
+msgstr "Tekrarlanan ve otomatikleştirme için uygun olabilecek işleri etkin bir şekilde aramak dışında, zaten otomatikleştirilmiş olup daha fazla veri girişinin fayda sağlayabileceği işleri belirleyin. Örneğin, teklifleriniz zaten otomatik olarak belirleniyorsa başka alakalı sinyalleri kullanılabilir olduklarında dahil edin."
+
+msgid "Pay attention to new data signals that may help to improve the algorithms in your creative optimisation technology. Aim for a high percentage of automated creative optimisation."
+msgstr "Reklam öğesi optimizasyon teknolojinizdeki algoritmaları geliştirebilecek yeni veri sinyallerine dikkat edin. Reklam öğelerinizin optimizasyonunu daha yüksek oranda otomatikleştirmeyi amaçlayın."
+
+msgid "Devote specialist resources to digital marketing"
+msgstr "Dijital pazarlamaya uzman kaynaklar atayın"
+
+msgid "Hire people who specialise in a specific channel, in data science and measurement technologies. Make sure these people can spend enough or even all their time on digital marketing."
+msgstr "Veri bilimi ve ölçüm teknolojilerinde belirli bir kanalda uzmanlaşmış kişileri işe alın. Bu kişilerin dijital pazarlamaya yeteri kadar zaman ayırabileceğinden ve hatta tüm zamanlarını bunun için kullanabileceğinden emin olun."
+
+msgid "Increase coordination and collaboration"
+msgstr "Koordinasyonu ve iş birliğini artırın"
+
+msgid "Identify a senior sponsor who champions data-driven marketing, for example a VP of marketing. Coordinate and agree on marketing objectives across several digital channels. Enable collaboration between functional teams, starting with large campaign launches. Consider creating roles that are responsible for more than 1 digital marketing channel."
+msgstr "Veriye dayalı pazarlama konusunda destek sağlayacak kıdemli bir destek sorumlusu (ör. pazarlamadan sorumlu başkan yardımcısı) belirleyin. Birden fazla dijital kanaldaki pazarlama hedeflerini koordine edin ve bu hedefler üzerinde anlaşın. Büyük kampanya lansmanlarıyla başlayarak fonksiyonel ekipler arası iş birliğini gerçekleştirin. Birden fazla dijital pazarlama kanalından sorumlu roller oluşturmayı düşünün."
+
+msgid "Improve partner management and ways of working"
+msgstr "İş ortağı yönetimini ve çalışma şekillerini iyileştirin"
+
+msgid "Foster collaboration between different agencies. Increase your ability to work in agile ways, for example, devote budget to running experiments and encourage best practice sharing across functions or departments."
+msgstr "Farklı ajanslar arasında iş birliği sağlayın. Çevik bir şekilde çalışma becerinizi geliştirin. Örneğin, yapılan denemelere bütçe ayırın ve fonksiyonlar veya departmanlar arasında en iyi uygulamaların paylaşımını teşvik edin."
+
+msgid "Expand specialist resources"
+msgstr "Uzman kaynaklarınızın sayısını artırın"
+
+msgid "Increase the number of specialists for specific digital marketing channels, for data science and for measurement technologies."
+msgstr "Belirli dijital pazarlama kanalları, veri bilimi ve ölçüm teknolojileri üzerine çalışan uzmanların sayısını artırın."
+
+msgid "Investigate if data-driven marketing could be sponsored by a more senior person, for example the CMO. Coordinate and agree on marketing objectives across all digital channels. Set up processes that allow day-to-day collaboration across teams, functions and between your organisation and your most important partners."
+msgstr "Veriye dayalı pazarlamanın pazarlama müdürü gibi daha kıdemli bir kişi tarafından desteklenip desteklenmeyeceğini araştırın. Tüm dijital kanallardaki pazarlama hedeflerini koordine edin ve bu hedefler üzerinde anlaşın. Ekipler, fonksiyonlar, organizasyonunuz ve en önemli iş ortaklarınız arasında sürekli iş birliğini mümkün kılan süreçler oluşturun."
+
+msgid "Improve collaboration between different agencies and establish regular touchpoints. Increase your ability to work in agile ways, for example, devote more budget to running experiments and encourage best practice sharing across functions, brands, departments and regions."
+msgstr "Farklı ajanslar arasındaki iş birliğini iyileştirin ve düzenli temas noktaları belirleyin. Çevik bir şekilde çalışma becerinizi geliştirin. Örneğin, yapılan denemelere daha fazla bütçe ayırın ve fonksiyonlar, markalar, departmanlar ve bölgeler arasında en iyi uygulamaların paylaşımını teşvik edin."
+
+msgid "Increase the number of specialists for specific digital marketing channels, for data science and measurement technologies. "
+msgstr "Belirli dijital pazarlama kanalları, veri bilimi ve ölçüm teknolojileri üzerine çalışan uzmanların sayısını artırın. "
+
+msgid "Investigate if data-driven marketing could be sponsored by a more senior person, for example by the CEO. Coordinate and agree on marketing objectives across digital and non-digital channels. Link your marketing objectives to business results. Improve processes that enable day-to-day collaboration across teams, functions and between your organisation and all relevant ecosystem partners."
+msgstr "Veriye dayalı pazarlamanın genel müdür gibi daha kıdemli bir kişi tarafından desteklenip desteklenmeyeceğini araştırın. Dijital ve dijital olmayan kanallardaki pazarlama hedeflerini koordine edin ve bu hedefler üzerinde anlaşın. Pazarlama hedefleriniz ile işletme sonuçlarınız arasında bağlantı kurun. Ekipler, fonksiyonlar, organizasyonunuz ve ilgili tüm ekosistem iş ortakları arasında sürekli iş birliğini mümkün kılan süreçleri iyileştirin."
+
+msgid "Improve collaboration between all relevant agencies and from virtual campaign teams. Increase your ability to work in agile ways, for example, devote more budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
+msgstr "İlgili tüm ajanslar ve sanal kampanya ekipleri arasındaki iş birliğini iyileştirin. Çevik bir şekilde çalışma becerinizi geliştirin. Örneğin, yapılan denemelere daha fazla bütçe ayırın ve fonksiyonlar, markalar, departmanlar ve bölgeler arasında en iyi uygulamaların paylaşımına ilişkin süreçleri daha incelikli hale getirin."
+
+msgid "Increase the number of specialists for specific digital marketing channels, for data science, measurement technologies and emerging fields of specialisms."
+msgstr "Belirli dijital pazarlama kanalları, veri bilimi, ölçüm teknolojileri ve yeni çıkan uzmanlık alanlarında çalışan uzmanların sayısını artırın."
+
+msgid "Fine-tune coordination and collaboration"
+msgstr "Koordinasyon ve iş birliğiyle ilgili hassas ayarlamalar yapın"
+
+msgid "Continue to iterate on how you coordinate and agree on marketing objectives across digital and non-digital channels. Find new links between marketing objectives and business performance. Improve processes that enable day-to-day collaboration across teams, functions and between your organisation and all relevant ecosystem partners."
+msgstr "Dijital ve dijital olmayan kanallardaki pazarlama hedeflerinizi koordine etme ve bu hedefler üzerinde anlaşma tarzınızı koruyun. Pazarlama hedefleri ile işletme performansı arasında yeni bağlantılar bulun. Ekipler, fonksiyonlar, organizasyonunuz ve ilgili tüm ekosistem iş ortakları arasında sürekli iş birliğini mümkün kılan süreçleri iyileştirin."
+
+msgid "Regularly evaluate collaboration between all relevant agencies and help them to be more impactful and efficient. Continue to review your ability to work in agile ways, for example evaluate how you allocate budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
+msgstr "İlgili tüm ajanslar arasındaki iş birliğini düzenli olarak değerlendirin. Bu ajansların daha etkili ve verimli olmalarını sağlayın. Çevik bir şekilde çalışma becerinizi gözden geçirmeye devam edin. Örneğin, yapılan denemelere nasıl bütçe aktardığınızı değerlendirin ve fonksiyonlar, markalar, departmanlar ve bölümler arasında en iyi uygulamaların paylaşımına ilişkin süreçleri daha incelikli hale getirin."
+
+msgid "We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands."
+msgstr "Veriye dayalı pazarlama konusunda olgunluk sağlayan özellikleri tespit etmek için kapsamlı bir çalışma yürütmek üzere BCG ile iş birliği yaptık. Sonuçlar, bu 6 yeteneğin üst düzey performans ve günümüz müşterilerinin markalardan beklediklerini sunmak açısından çok önemli olduğunu gösterdi."
+
+msgid "The capability to accurately measure and value customer touchpoints."
+msgstr "Müşteri temas noktalarını doğru bir şekilde ölçme ve değerlendirme yeteneği."
+
+msgid "The capability to deliver attention-driving, intuitive experiences across digital touchpoints."
+msgstr "Dijital temas noktalarında ilgi çekici ve sezgisel deneyimler sunma yeteneği."
+
+msgid "The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel."
+msgstr "Satış dönüşüm hunisi boyunca en değerli kitleleri belirlemek, anlamak ve etkilemek için verileri organize etme yeteneği."
+
+msgid "The capability to reach and deliver across all inventory types and channels."
+msgstr "Tüm envanter türlerinde ve kanallarda erişim ve reklam yayınlama yeteneği."
+
+msgid "The capability to optimise marketing operations to drive profitability and growth."
+msgstr "Kârlılık ve büyüme sağlamak için pazarlama operasyonlarını optimize etme yeteneği."
+
+msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
+msgstr "Ekipler genelinde ve uzman iş ortaklarıyla birlikte hareket ederek karar almayı ve sonuçları iyileştirme yeteneği."
+
+msgid "Accommodation and food service"
+msgstr "Konaklama ve yemek hizmetleri"
+
+msgid "Arts, entertainment & recreation"
+msgstr "Sanat, eğlence ve rekreasyon"
+
+msgid "Construction"
+msgstr "İnşaat"
+
+msgid "Education"
+msgstr "Eğitim"
+
+msgid "Further education"
+msgstr "İleri eğitim"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Primary education"
+msgstr "İlköğretim"
+
+msgid "Secondary education"
+msgstr "Ortaöğretim"
+
+msgid "Electricity, gas, steam, water"
+msgstr "Elektrik, gaz, buhar, su"
+
+msgid "Financial and Insurance"
+msgstr "Finans ve Sigortacılık"
+
+msgid "Banking"
+msgstr "Bankacılık"
+
+msgid "Insurance"
+msgstr "Sigortacılık"
+
+msgid "Human health & social work"
+msgstr "İnsan sağlığı ve sosyal hizmetler"
+
+msgid "Information and Communication"
+msgstr "Bilgi ve İletişim"
+
+msgid "Books, news, periodicals, journals"
+msgstr "Kitaplar, gazeteler, süreli yayınlar, dergiler"
+
+msgid "Software"
+msgstr "Yazılım"
+
+msgid "TV, radio, movies, video, music"
+msgstr "TV, radyo, film, video, müzik"
+
+msgid "Telecommunications"
+msgstr "Telekomünikasyon"
+
+msgid "Manufacturing"
+msgstr "İmalat"
+
+msgid "Chemicals"
+msgstr "Kimyasallar"
+
+msgid "Cosmetics, toiletries, detergents"
+msgstr "Kozmetik, kişisel bakım ürünleri, deterjanlar"
+
+msgid "Electronics"
+msgstr "Elektronik"
+
+msgid "Food & beverages"
+msgstr "Yeme-içme"
+
+msgid "Furniture"
+msgstr "Mobilya"
+
+msgid "Machinery & equipment"
+msgstr "Makineler ve ekipman"
+
+msgid "Pharmaceuticals"
+msgstr "İlaçlar"
+
+msgid "Textiles, footwear & apparel"
+msgstr "Tekstil, ayakkabı ve giyim"
+
+msgid "Toys & games"
+msgstr "Oyuncaklar ve oyunlar"
+
+msgid "Vehicles"
+msgstr "Taşıtlar"
+
+msgid "Other service activities - Other"
+msgstr "Diğer hizmet faaliyetleri - Diğer"
+
+msgid "Other service activities - Printing"
+msgstr "Diğer hizmet faaliyetleri - Baskı"
+
+msgid "Professional activities"
+msgstr "Mesleki faaliyetler"
+
+msgid "Consultancy"
+msgstr "Danışmanlık"
+
+msgid "Legal"
+msgstr "Hukuk"
+
+msgid "Research"
+msgstr "Araştırma"
+
+msgid "Public administration & political organisations"
+msgstr "Kamu yönetimi ve siyasi örgütler"
+
+msgid "Real estate"
+msgstr "Emlak"
+
+msgid "Retail trade"
+msgstr "Perakende ticaret"
+
+msgid "Multi-category"
+msgstr "Çoklu kategori"
+
+msgid "Books, music, video"
+msgstr "Kitaplar, müzik, video"
+
+msgid "Food and beverages"
+msgstr "Yeme-içme"
+
+msgid "Household goods"
+msgstr "Ev eşyaları"
+
+msgid "Transportation and Travel"
+msgstr "Ulaşım ve Seyahat"
+
+msgid "Railway, flight, land & water transport"
+msgstr "Demir, hava, kara ve su yolu taşımacılığı"
+
+msgid "Travel agency & tour operator"
+msgstr "Seyahat acentesi ve tur operatörü"
+
+msgid "Wholesale trade"
+msgstr "Toptan ticaret"
+
+msgid "Your results are ready!"
+msgstr "Sonuçlarınız hazır."
+
+msgid "Country"
+msgstr "Ülke"
+
+msgid "Industry"
+msgstr "Sektör"
+
+msgid "We've finished analysing your survey responses to find out where you can improve your marketing strategy."
+msgstr "Pazarlama stratejinizin hangi yönlerinde iyileştirmeler yapabileceğinizi öğrenmek için anket yanıtlarınızı analiz etmeyi bitirdik."
+
+msgid "Click the button below to access your digital maturity report and see the results of your survey."
+msgstr "Dijital olgunluk raporunuza erişmek ve anketinizin sonuçlarını görmek için aşağıdaki düğmeyi tıklayın."
+
+msgid "Access your report"
+msgstr "Raporunuza erişin"
+
+msgid "Connect with Google"
+msgstr "Google ile bağlantı kurun"
+
+msgid "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email."
+msgstr "Bu e-posta, Google Digital Maturity Benchmark anketine katıldığınız için gönderilmiştir. Katılan siz değilseniz lütfen bu e-postayı yoksayın."
+
+msgid "We've finished analyzing your survey responses to find out where you can improve your marketing strategy. Here's the link to access your report:"
+msgstr "Pazarlama stratejinizin hangi yönlerinde iyileştirmeler yapabileceğinizi öğrenmek için anket yanıtlarınızı analiz etmeyi bitirdik. Raporunuza şu bağlantıdan erişebilirsiniz:"
+
+msgid "Response is ready!"
+msgstr "Yanıt hazır."
+
+msgid "Your roadmap to digital marketing maturity"
+msgstr "Dijital pazarlamada olgunluk için yol haritanız"
+
+msgid "The <strong>%(prod_name)s</strong> is a diagnostic tool developed based on our in-depth research with BCG."
+msgstr "<strong>%(prod_name)s</strong>, BCG ile yürüttüğümüz kapsamlı çalışmaya dayalı olarak geliştirdiğimiz bir teşhis aracıdır."
+
+msgid "Never miss a moment to connect with customers"
+msgstr "Müşterilerle bağlantı kurmak için hiçbir fırsatı kaçırmayın"
+
+msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
+msgstr "Veriye dayalı pazarlamanızın durumunu öğrenin ve dijital olgunluk yol haritanızı keşfedin."
+
+msgid "How it works"
+msgstr "İşleyiş şekli"
+
+msgid "Benchmark which stage your organisation is at on our digital maturity scale."
+msgstr "Organizasyonunuzun dijital olgunluk ölçeğimizin hangi kademesinde olduğunu ölçün."
+
+msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
+msgstr "Bu kademedeki işletmeler kampanya bazında faaliyet gösteren işletmelerdir. Harici veriler ile doğrudan satın almalardan yararlanırlar ve satış bağlantıları sınırlıdır."
+
+msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
+msgstr "Bu işletmelerde, sahip olunan verilerin bir kısmının otomatik satın almada tek kanallı optimizasyon ve test ile kullanımı söz konusudur."
+
+msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr "Şu an itibarıyla veriler YG veya satış bağlantısı olduğu kanıtlanmış farklı kanallarda entegre ediliyor ve etkinleştiriliyor."
+
+msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
+msgstr "Bu kademede, işletmeler kanallar arasında tek müşteri görünümü için optimize edilmiş dinamik yürütmeye sahiptir."
+
+msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
+msgstr "Araç, işletmenizin tam veriye dayalı pazarlama ve ilişkilendirme yolundaki konumunu analiz eder. Ardından, kişiselleştirilmiş, danışmanlık amaçlı ve etkileşimli bir rapor üretir. Bu raporda, işletmeniz sektörünüzdeki diğer organizasyonlarla karşılaştırılır. Ayrıca, olgunluk düzeyinizin yükselmesini sağlayacak stratejik ve taktik öneriler sunulur."
+
+msgid "Everyday there are hundreds of chances to engage with customers digitally"
+msgstr "Her gün müşterilerle dijital olarak etkileşimde bulunmak için yüzlerce fırsat doğar"
+
+#, python-format
+msgid "But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2%% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey."
+msgstr "Ancak, Boston Consulting Group (BCG) tarafından veriye dayalı pazarlamada olgunlukla ilgili olarak yürütülen çalışma, işletmelerin sadece %%2'sinin satın alma yolculuğunda birden fazla anda faydalı ve alakalı deneyimler oluşturmak için analizler ve teknolojiden yararlandığını ortaya koymuştur."
+
+msgid "Use the insights from your report to identify how to drive your organisation to the next level, and work with others in your company and your partners to achieve this."
+msgstr "Organizasyonunuzu bir sonraki düzeye nasıl taşıyacağınızı öğrenmek için, raporunuzdaki bilgilerden yararlanın ve şirketinizdeki diğer kişiler ve iş ortaklarınızla iş birliği yapın."
+
+msgid "devices running the tool"
+msgstr "aracı çalıştıran cihazlar"
+
+msgid "laptop screen demo"
+msgstr "dizüstü ekran demosu"
+
+msgid "These businesses have a sustainable competitive advantage"
+msgstr "Bu işletmeler sürdürülebilir rekabet avantajına sahiptir"
+
+#, python-format
+msgid "Companies leading the way in multi-moment marketing see 30%% cost efficiency savings and a 20%% increase in revenue."
+msgstr "Çoklu an pazarlamasında başı çeken şirketler, %%30 maliyet verimliliği ve %%20 gelir artışı elde etmektedir."
+
+msgid "Find out more"
+msgstr "Daha fazla bilgi"
+
+msgid "image of person using the app on a mobile"
+msgstr "uygulamayı mobil cihazda kullanan kişinin resmi"
+
+msgid "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability."
+msgstr "Organizasyonunuzun dijital pazarlamada verimlilik ve kârlılığın 6 boyutunda nasıl performans gösterdiğine ilişkin ayrıntılı bilgi edinin."
+
+msgid "organization dimension logo"
+msgstr "organizasyon boyut logosu"
+
+msgid "Improve decision-making and results by working collaboratively across teams and with specialised partners"
+msgstr "Ekipler genelinde ve uzman iş ortaklarıyla birlikte hareket ederek karar almayı ve sonuçları iyileştirin"
+
+msgid "attribution dimension logo"
+msgstr "ilişkilendirme boyut logosu"
+
+msgid "Accurately measure and value customer touchpoints"
+msgstr "Müşteri temas noktalarını doğru bir şekilde ölçün ve değerlendirin"
+
+msgid "assets and ads dimension logo"
+msgstr "öğeler ve reklamlar boyut logosu"
+
+msgid "Deliver attention-driving, intuitive experiences across digital touchpoints"
+msgstr "Dijital temas noktalarında ilgi çekici ve sezgisel deneyimler sunun"
+
+msgid "audience dimension logo"
+msgstr "kitle boyut logosu"
+
+msgid "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel"
+msgstr "Satış dönüşüm hunisi boyunca en değerli kitleleri belirlemek, anlamak ve etkilemek için verileri organize edin"
+
+msgid "access dimension logo"
+msgstr "erişim boyut logosu"
+
+msgid "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control"
+msgstr "Doğru denetim seviyeleriyle, belirlediğiniz kitlelere tüm reklam envanter türlerinde ve kanallarda verimli bir şekilde ulaşın"
+
+msgid "automation dimension logo"
+msgstr "otomasyon boyut logosu"
+
+msgid "Optimise marketing operations to drive profitability and growth"
+msgstr "Kârlılık ve büyüme sağlamak için pazarlama operasyonlarını optimize edin"
+
+msgid "In partnership with"
+msgstr "İş ortağı:"
+
+msgid "Why digital maturity matters"
+msgstr "Dijital olgunluk neden önemli?"
+
+msgid "Start the assessment now"
+msgstr "Değerlendirmeyi hemen başlatın"
+
+msgid "This in-depth assessment takes around 30 minutes to complete."
+msgstr "Kapsamlı değerlendirme yaklaşık 30 dakika sürer."
+
+msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
+msgstr "BCG, bu rakamları belirlerken 8 sektörden 40'ın üzerinde şirketteki başarı faktörlerini ve yetenekleri incelemiştir"
+
+msgid "read more"
+msgstr "daha fazla bilgi"
+
+msgid "Appendix"
+msgstr "Ek"
+
+msgid "Benchmark calculations"
+msgstr "Karşılaştırma hesaplamaları"
+
+msgid "Industry average & industry best"
+msgstr "Sektör ortalaması ve sektörün en iyisi"
+
+msgid "These two metrics show how your company compares to the average and top performers in your industry globally."
+msgstr "Bu iki metrik, şirketinizin sektörünüz genelindeki ortalama ve en iyi performans gösteren şirketler karşısındaki durumunu gösterir."
+
+msgid "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category."
+msgstr "“Sektör ortalaması” değeri için “{[reportCtrl.industryAvgSource]}” kategorisindeki genel yanıtlar baz alındı."
+
+msgid "Your “Industry average” is currently based on global responses from all industries."
+msgstr "“Sektör ortalaması” değeri için tüm sektörlerdeki genel yanıtlar baz alındı."
+
+msgid "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category."
+msgstr "“Sektörün en iyisi” değeri için “{[reportCtrl.industryBestSource]}” kategorisindeki genel yanıtlar baz alındı."
+
+msgid "Your “Industry best” is currently based on global responses from all industries."
+msgstr "“Sektörün en iyisi” değeri için tüm sektörlerdeki genel yanıtlar baz alındı."
+
+msgid "If the scores above do not refer to your specific industry, not enough people have yet filled in the assessment to produce a reliable average. Check back later as the scores are continuously updated!"
+msgstr "Yukarıdaki puanlar sektörünüzün durumunu yansıtmıyorsa henüz güvenilir bir ortalama oluşturmaya yetecek kadar kişi değerlendirmeye katılmamıştır. Puanlar sürekli olarak güncellendiği için daha sonra tekrar kontrol edin."
+
+msgid "Six dimensions of digital marketing maturity"
+msgstr "Dijital pazarlamada olgunluğun 6 boyutu"
+
+msgid "Together with BCG, we identified the "
+msgstr "BCG ile birlikte, veriye dayalı pazarlamada olgunluk sağlayan "
+
+msgid "key dimensions"
+msgstr "temel boyutları"
+
+msgid " that drive data-driven marketing maturity. Click the icons below to see how you perform in each."
+msgstr " belirledik. Bu boyutların her birinde nasıl performans gösterdiğinizi öğrenmek için aşağıdaki simgeleri tıklayın."
+
+msgid "Your Digital Maturity level is"
+msgstr "Dijital Olgunluk düzeyiniz:"
+
+msgid "Next level: "
+msgstr "Sonraki düzey: "
+
+msgid "Congratulations, you're in the top group for digital maturity"
+msgstr "Tebrikler. Dijital olgunluk bakımından en üst gruptasınız."
+
+msgid "Digital Maturity report"
+msgstr "Dijital Olgunluk raporu"
+
+msgid "This report will show you where you are weakest and strongest, and what to do to get to the next level."
+msgstr "En zayıf ve en güçlü yönleriniz ile bir sonraki düzeye çıkmak için neler yapmanız gerektiği bu raporda belirtilmiştir."
+
+msgid "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level."
+msgstr "Bu raporda, yeterince iyi performans göstermiyor olabileceğiniz alanlar ve dijital pazarlama konusundaki olgunluğunuzu en üst düzeyde tutmak için neler yapabileceğiniz açıklanmıştır."
+
+msgid "Why Digital Maturity matters"
+msgstr "Dijital Olgunluk neden önemli?"
+
+msgid "Your overall digital maturity"
+msgstr "Genel dijital olgunluk düzeyiniz"
+
+msgid "Learn more about levels"
+msgstr "Olgunluk düzeyleri hakkında daha fazla bilgi"
+
+msgid "Dimensions"
+msgstr "Boyutlar"
+
+msgid "The definition has probably changed and we could not find any answer for this question."
+msgstr "Tanım muhtemelen değiştiği için bu soruya yanıt bulamadık."
+
+msgid "Consumer shift"
+msgstr "Tüketici kayması"
+
+msgid "Today, more and more of our lives are powered by mobile and digital. We love our devices, but what we really love is the power our devices give us. The power to get exactly what we want, instantly and effortlessly. To have our needs not just met, but anticipated."
+msgstr "Artık yaşamlarımızda mobil ve dijital öğelerin gücünü gitgide daha fazla hissediyoruz. Cihazlarımızı seviyoruz, ancak asıl hoşumuza giden cihazlarımızın bize sağladığı güç. Bu güç sayesinde, tam olarak istediklerimizi anında ve zorlanmadan elde edebiliyoruz. İhtiyaçlarımız sadece karşılanmakla kalmıyor, aynı zamanda tahmin ediliyor."
+
+msgid "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as these expectations ratchet up, so do the requirements (and opportunities) for marketers."
+msgstr "Pazarlamacılar için bu, tüketicilerin davranış ve beklentilerinin temelden değişmesi anlamına geliyor. Bu beklentiler artmaya devam ederken pazarlamacılara düşen sorumluluklar (ve fırsatlar) da artıyor."
+
+msgid "Today’s consumers are:"
+msgstr "Günümüz tüketicileri:"
+
+msgid "Curious"
+msgstr "Meraklı"
+
+msgid "They turn to Google Search more and more often looking to get useful advice and answers - even for the small stuff - so every decision they make is an informed one."
+msgstr "Küçük şeylerle ilgili olsa bile, faydalı tavsiye ve yanıtlara ulaşmak için Google Arama'ya gitgide daha sık başvuruyorlar. Dolayısıyla, tüm kararlarını bilinçli bir şekilde alıyorlar."
+
+#, python-format
+msgid "In the last 2 years, mobile searches have risen 239%% for best travel accessories, 208%% for best face powder and 156%% for best wet weather gear.&nbsp;"
+msgstr "Son 2 yılda mobil arama hacminde, en iyi seyahat aksesuarları için %%239, en iyi yüz pudraları için %%208 ve en iyi yağışlı hava ekipmanları için %%156 artış meydana geldi.&nbsp;"
+
+#, python-format
+msgid "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2 years.&nbsp;"
+msgstr "“Bebek alışveriş listeleri” ve “sağlıklı alışveriş listeleri” için yapılan mobil aramalar son 2 yılda %%180 arttı.&nbsp;"
+
+msgid "Demanding"
+msgstr "Talepkar"
+
+msgid "They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment."
+msgstr "Alakalı ve kendileri için özel olarak oluşturulmuş deneyimler istiyor ve markaların doğru anda faydalı bilgilerle isteklerine yanıt vermesini bekliyorlar."
+
+msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
+msgstr "\"Yakınımdaki\" aramaları son 2 yılda Avrupa, Orta Doğu ve Afrika'da Google Arama için 4,5 ve Google Haritalar için 6 katına çıktı.&nbsp;"
+
+msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
+msgstr "Pazarlamacıların %%89'u, müşteri ihtiyaçlarını önceden kestirmenin ve tüketici yolculuğu boyunca faydalı deneyimler sunmanın markalarının büyümesi açısından kritik öneme sahip olduğunu söylüyor."
+
+msgid "Impatient"
+msgstr "Sabırsız"
+
+msgid "People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly."
+msgstr "Kullanıcılar artık her zaman olduğundan daha hızlı karar veriyor ve bu kararlar doğrultusunda anında harekete geçebilmeyi bekliyor."
+
+msgid "1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;"
+msgstr "Bir mobil sitenin yüklenmesi 3 saniyeden uzun sürdüğü takdirde 2 ziyaretten 1'inden vazgeçiliyor.&nbsp;"
+
+msgid "So, how can you be digitally mature and so anticipate the needs of your customers today?"
+msgstr "Öyleyse günümüzde dijital olgunluğa nasıl erişebilir ve müşterilerinizin ihtiyaçlarını nasıl tahmin edebilirsiniz?"
+
+msgid "Be there"
+msgstr "Orada olun"
+
+msgid "Use the power of technology and insights to deliver relevant, real-time messages at scale, whenever each consumer is ready for them."
+msgstr "Tüketiciler mesajınızı almak için hazır olduklarında, alakalı ve gerçek zamanlı mesajları geniş ölçekte iletmek için teknoloji ve analizlerin gücünden yararlanın."
+
+msgid "Be helpful"
+msgstr "Yardımcı olun"
+
+msgid "Build a strategy driven by assistance, reorienting to become more relevant across the customer experience."
+msgstr "Müşteri deneyimi boyunca alaka düzeyini artıracak yeniden yönlendirmeler içeren yardım odaklı bir strateji oluşturun."
+
+msgid "Be quick"
+msgstr "Hızlı olun"
+
+msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
+msgstr "Mobil cihazlarda tüketicilerin beklediği hızlı ve sorunsuz deneyimleri sunun."
+
+#, python-format
+msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
+msgstr "<strong>Müşterilerin fayda görmesi demek elbette işletmelerin de fayda görmesi demektir</strong>, ancak bunu hayata geçirmek hiç kolay değildir. BCG ile yürüttüğümüz çalışma, markaların sadece %%2'lik kısmının veriye dayalı pazarlamanın tam potansiyelini kullanmayı başardığını göstermektedir."
+
+msgid "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report."
+msgstr "Devamlı olarak yükselen bu müşteri beklentilerini karşılamak ve aşmak için nasıl orada olacağınızı, yardımcı olacağınızı ve hızlı olacağınızı öğrenmek üzere etkileşimli Dijital Pazarlamada Olgunluk raporunuzu inceleyin."
+
+msgid "Source: Google Data, EMEA, Jan - Dec 2015 vs. Jan - Dec 2017"
+msgstr "Kaynak: Google Verileri, Avrupa, Orta Doğu ve Afrika, Oca - Ara 2015 ve Oca - Ara 2017"
+
+msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
+msgstr "Kaynak: Econsultancy/Google, “An Audience of Individuals” (“Birey Kitlesi”) 2017, katılımcı sayısı=514, 250 milyon $'ın üzerinde gelire sahip Kuzey Amerika şirketlerinde görev yapan pazarlama ve ölçüm yetkilileri; katılımcı sayısı=133, 2016 yılında pazarlama sonuçlarının üst düzey işletme hedeflerini önemli ölçüde aştığını bildiren önde gelen pazarlamacılar, katılımcı sayısı=381, ana akım pazarlamacılar (örneklemin geri kalanı)."
+
+msgid "You are "
+msgstr "Şu anki düzeyiniz: "
+
+msgid "You could be"
+msgstr "Gelebileceğiniz düzey:"
+
+msgid "Congratulations"
+msgstr "Tebrikler"
+
+#, python-format
+msgid "you're in the top 2%% for marketing maturity"
+msgstr "pazarlamada olgunluk bakımından %%2'lik grubun içindesiniz"
+
+msgid "Here's how you get there:"
+msgstr "Oraya ulaşmak için yapmanız gerekenler:"
+
+msgid "Here's how to get even better:"
+msgstr "Daha iyi olmak için yapmanız gerekenler:"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "in this dimension"
+msgstr "bu boyutta"
+
+msgid "Congratulations, you're in the top group for data maturity"
+msgstr "Tebrikler. Verilerle ilgili olgunluk bakımından en üst gruptasınız."
+
+msgid "Get more information about the industry average"
+msgstr "Sektör ortalaması hakkında daha fazla bilgi edinin"
+
+msgid "Get more information about the industry best"
+msgstr "Sektörün en iyisi hakkında daha fazla bilgi edinin"
+
+msgid "Industry average is not available yet, sorry!"
+msgstr "Maalesef, sektör ortalaması şu anda mevcut değil."
+
+msgid "Industry average"
+msgstr "Sektör ortalaması"
+
+msgid "Industry best is not available yet, sorry!"
+msgstr "Maalesef, sektörün en iyisi şu anda mevcut değil."
+
+msgid "Industry best"
+msgstr "Sektörün en iyisi"
+
+msgid "Fetching your company rating..."
+msgstr "Şirket değerlendirmeniz getiriliyor..."
+
+msgid "Your company, "
+msgstr "Şirketinizin "
+
+msgid " has a rating of "
+msgstr " değerlendirmesi "
+
+msgid " which is a maturity level of "
+msgstr " ve bunun karşılık geldiği olgunluk düzeyi: "
+
+msgid "Fetching industry average..."
+msgstr "Sektör ortalaması getiriliyor..."
+
+msgid "The industry average is "
+msgstr "Sektör ortalaması: "
+
+msgid "which is a maturity level of "
+msgstr "ve bunun karşılık geldiği olgunluk düzeyi: "
+
+msgid "Fetching industry best..."
+msgstr "Sektörün en iyisi getiriliyor..."
+
+msgid "The industry best is "
+msgstr "Sektörün en iyisi: "
+
+msgid "Not available yet"
+msgstr "Henüz mevcut değil"
+
+msgid "Your Company is"
+msgstr "Şirketiniz"
+
+msgid "Your company rating"
+msgstr "Şirket değerlendirmeniz"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Copy to clipboard"
+msgstr "Panoya kopyala"
+
+msgid "Copied to clipboard!"
+msgstr "Panoya kopyalandı!"
+
+msgid "Sorry, unable to copy."
+msgstr "Üzgünüz, kopyalanamıyor."
+
+msgid "Looking to benchmark digital maturity for a different challenge or industry?"
+msgstr "Farklı bir sorun veya sektör için dijital olgunluk karşılaştırması yapmak mı istiyorsunuz?"
+
+msgid "Read"
+msgstr "Okuyun"
+
+msgid "more"
+msgstr "daha fazla"
+
+msgid "less"
+msgstr "daha az"
+
+msgid "Privacy"
+msgstr "Gizlilik"
+
+msgid "Terms"
+msgstr "Şartlar"
+
+msgid "About Google"
+msgstr "Google Hakkında"
+
+msgid "Google Products"
+msgstr "Google Ürünleri"
+
+msgid "Contact us"
+msgstr "Bize ulaşın"
+
+msgid "Change language or region"
+msgstr ""
+
+msgid "Skip to content"
+msgstr "İçeriğe git"
+
+msgid "Start now"
+msgstr "Hemen başlayın"
+
+msgid "In partnership with The Boston Consulting Group"
+msgstr "Boston Consulting Group iş birliğiyle"
+
+msgid "Next steps"
+msgstr "Sonraki adımlar"
+
+msgid "Review your recommendations and consider these four steps:"
+msgstr "Önerilerinizi inceleyin ve şu dört adımı göz önünde bulundurun:"
+
+msgid "Define which areas are strongly linked to your business goals"
+msgstr "Hangi alanlarla işletme hedefleriniz arasında güçlü bir bağ olduğunu belirtin"
+
+msgid "Create a roadmap outlining what you intend to do over the next 12 months"
+msgstr "Gelecek 12 ay boyunca yapmayı amaçladıklarınızı özetleyen bir yol haritası oluşturun"
+
+msgid "Decide who will own each action and how to track progress over this period"
+msgstr "Her bir işlemi kimin sahipleneceğine ve bu süreçte ilerleme durumunun nasıl izleneceğine karar verin"
+
+msgid "Identify the right partners outside of your company to support you at each stage"
+msgstr "Her aşamada şirket dışından sizi destekleyecek doğru iş ortaklarını belirleyin"
+
+msgid "Share this report with your colleagues"
+msgstr "Bu raporu iş arkadaşlarınızla paylaşın"
+
+msgid "To share this report, copy the link and send it to your colleagues."
+msgstr "Bu raporu paylaşmak için, bağlantıyı kopyalayın ve iş arkadaşlarınıza gönderin."
+
+msgid "Dimensions of marketing maturity"
+msgstr "Pazarlamada olgunluğun boyutları"
+
+#, fuzzy
+#| msgid "Levels of data maturity"
+msgid "Levels of Digital Maturity"
+msgstr "Verilerle ilgili olgunluk düzeyleri"
+
+msgid "Ready to benchmark your company’s digital maturity?"
+msgstr "Şirketinizin dijital olgunluğunu ölçmeye hazır mısınız?"
+
+msgid "Let’s start with some details about your organisation:"
+msgstr "Organizasyonunuz hakkında birkaç ayrıntıyla başlayalım:"
+
+msgid "How we keep your information safe"
+msgstr "Bilgilerinizin güvenliğini nasıl sağlıyoruz"
+
+msgid "Enter the organisation name"
+msgstr "Organizasyon adını girin"
+
+#, fuzzy
+#| msgid "Organisation"
+msgid "Organization name"
+msgstr "Organizasyon"
+
+#, fuzzy
+#| msgid "Enter the organisation name"
+msgid "Enter the organization name"
+msgstr "Organizasyon adını girin"
+
+msgid "Select an industry"
+msgstr "Sektör seçin"
+
+msgid "Select a country"
+msgstr "Ülke seçin"
+
+msgid "Progress to my assessment"
+msgstr "Değerlendirmeme ilerle"
+
+msgid "Oops, something went wrong!"
+msgstr "Maalesef bir sorun oluştu."
+
+msgid "Nice Work!"
+msgstr "Güzel sonuç."
+
+msgid "Your response has been submitted and your report is being generated."
+msgstr "Yanıtınız gönderildi ve raporunuz oluşturuluyor."
+
+msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgstr "Raporunuz hazır olduğunda <strong>e-posta gelen kutunuza</strong> iletilecek.<br> <strong>İşlemin tamamlanması 15 dakikayı bulabileceği için</strong> sabırlı olmanızı rica ediyoruz."
+
+msgid "View the study while you wait"
+msgstr ""
+
+msgid "Back to website"
+msgstr "Web sitesine dön"
+
+msgid "Woops.. that page doesn't seem to exist, or the link is broken."
+msgstr "Maalesef, böyle bir sayfa yok ya da bağlantı bozuk."
+
+msgid "Try returning to the homepage."
+msgstr "Ana sayfaya dönmeyi deneyin."
+
+msgid "Return to homepage"
+msgstr "Ana sayfaya dön"
+
+msgid "Woops.. there was an internal server error."
+msgstr "Dahili sunucu hatası oluştu."
+
+#~ msgid "Digital Maturity Benchmark"
+#~ msgstr "Digital Maturity Benchmark"
+
+#~ msgid "This field is required!"
+#~ msgstr "Bu alan boş bırakılamaz."

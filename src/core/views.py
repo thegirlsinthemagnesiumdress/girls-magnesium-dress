@@ -110,3 +110,12 @@ def update_industries_benchmarks_task(request):
 
 def angular_templates(request, template_name):
     return render(request, 'public/angular/{}.html'.format(template_name))
+
+
+def receive_bounce(request, *args, **kwargs):
+    if request.method != 'POST':
+        return HttpResponse(status=405)
+    original_to, original_from = request.POST['original-to'], request.POST['original-to']
+    logging.error('Email bounced back original-to: {} , original-from: {}'.format(original_to, original_from))
+    logging.error('Email bounced back original-text: {}'.format(request.POST['original-text']))
+    return HttpResponse(status=200)

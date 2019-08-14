@@ -7,9 +7,10 @@ const progressTableTemplateUrl = '/angular/progress-table';
 /**
  * Side panel directive.
  * @ngInject
+ * @param {string} LANGUAGE_CODE
  * @return {Object} Config for the directive
  */
-function ReportDirective() {
+function ReportDirective(LANGUAGE_CODE) {
   return {
     restrict: 'E',
     scope: {
@@ -21,7 +22,7 @@ function ReportDirective() {
     },
     controller: progTableCtrl.main,
     controllerAs: progTableCtrl.CONTROLLER_AS_NAME,
-    templateUrl: progressTableTemplateUrl,
+    templateUrl: `/${LANGUAGE_CODE}${progressTableTemplateUrl}`,
   };
 }
 
