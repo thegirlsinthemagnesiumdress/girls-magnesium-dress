@@ -147,7 +147,7 @@ def reports_admin(request, tenant):
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
-    return render(request, 'public/reports-list.html', {
+    return render(request, 'public/admin/reports-list.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
@@ -166,10 +166,15 @@ def reports_admin(request, tenant):
 def account_detail(request, tenant, account_id):
     account = get_object_or_404(Survey, account_id=account_id)
 
-    return render(request, 'public/{}/account-detail.html'.format(tenant), {
+    tenant_conf = settings.TENANTS[tenant]
+    industries = {k: v for (k, v) in flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])}
+
+    return render(request, 'public/admin/account-detail.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
         'account': account,
+        'country': settings.COUNTRIES[account.country],
+        'industry': industries[account.industry],
         'content_data': _dump_tenant_content_data(tenant),
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
