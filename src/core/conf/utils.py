@@ -159,3 +159,86 @@ def version_info(domain):
         is_staging = True
         is_nightly = 'nightly' in version
     return (version, is_nightly, is_development, is_staging)
+
+
+def get_tenant_level_ranges(tenant):
+    """Returns an array or ranges for determining a scores level.
+
+    Args:
+        tenant (string): The tenant to generate level ranges for.
+
+    Returns:
+        [(number, number)]: An array of tuples representing the level ranges
+    """
+    level_ranges = []
+
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+    levels = sorted(content_data['levels'].keys())
+    for i in range(0, len(levels)):
+        # If we are on the last level then the max is LEVELS_MAX
+        if i == len(levels) - 1:
+            levels_max = content_data['levels_max']
+            level_ranges.append((levels[i], levels_max))
+        else:
+            level_ranges.append((levels[i], levels[i + 1]))
+
+    return level_ranges
+
+
+def get_level_key(level_ranges, score):
+    """Gets the level key for level dictionaries based on the score.
+
+    Args:
+        level_ranges ([(number number)]): An array of ranges representing the level boundaries.
+        score (number): The score for a dimension or overall.
+
+    Returns:
+        number: The key for dictionaries using level values (e.g. level descriptions).
+    """
+    # If the level is the max score then return the highest level (min of the final range).
+    max_range = level_ranges[len(level_ranges) - 1]
+    if score >= max_range[1]:
+        return max_range[0]
+    # Otherwise loop through the ranges and find the range containing the score.
+    for (level_min, level_max) in level_ranges:
+        if level_min <= score < level_max:
+            return level_min
+    # Else return the minimum level.
+    return level_ranges[0][0]
+
+
+def get_level_info(tenant, level_ranges, score):
+    """Gets the level value, name, and description based on the score
+
+    Args:
+        tenant (string): The tenant to retrieve level info from.
+        level_ranges ([(number, number)]): The level ranges for the given tenant.
+        score (number): The raw score from qualtrics.
+
+    Returns:
+        object: An object containing the value, name, and description of the level.
+    """
+    # Calculate the level to index the tenants' content data.
+    level = get_level_key(level_ranges, score)
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+    # Return value, name, and description for level.
+    return {
+        "value": level,
+        "name": content_data['levels'][level],
+        "description": content_data['level_descriptions'][level]
+    }
+
+
+def is_top_level(level_ranges, score):
+    """Checks if a score is in the top level.
+
+    Args:
+        level_ranges ([(number, number)]): The level ranges to test the score on.
+        score (number): The raw score from qualtrics.
+
+    Returns:
+        boolesn: True if the score is in the top level.
+    """
+    level = get_level_key(level_ranges, score)
+    top_level = level_ranges[len(level_ranges) - 1][0]
+    return level >= top_level

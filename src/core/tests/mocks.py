@@ -60,9 +60,17 @@ MOCKED_DIMENSION_TITLES_TENANT_2 = {
 }
 
 MOCKED_CONTENT_DATA_TENANT_1 = {
-    'levels': {},
-    'levels_max': 1,
-    'level_descriptions': {},
+    'levels': {
+        0: 'level_0',
+        1: 'level_1',
+        2: 'level_2'
+    },
+    'levels_max': 3,
+    'level_descriptions': {
+        0: 'level_0_description',
+        1: 'level_1_description',
+        2: 'level_2_description'
+    },
     'dimensions': [],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_1,
     'dimension_header_descriptions': {},
