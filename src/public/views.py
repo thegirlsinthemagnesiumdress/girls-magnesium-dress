@@ -79,6 +79,8 @@ def report_static(request, tenant, sid):
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
         'is_nightly': version_info(request.get_host())[1],
+        'dimensions': settings.TENANTS[tenant]['CONTENT_DATA']['dimensions'],
+        'dimension_results': survey.last_survey_result.dmb_d,
     })
 
 
@@ -96,12 +98,19 @@ def report_result_static(request, tenant, response_id):
 
 def index_static(request, tenant):
     slug = get_tenant_slug(tenant)
+    levels_info = []
+    for k, v in sorted(settings.TENANTS[tenant]['CONTENT_DATA']['levels'].items()):
+        levels_info.append({
+            'heading': v,
+            'text': settings.TENANTS[tenant]['CONTENT_DATA']['level_descriptions'][k],
+        })
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
+        'levels_info': levels_info,
     })
 
 

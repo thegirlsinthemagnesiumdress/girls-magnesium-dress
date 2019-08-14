@@ -1,0 +1,15 @@
+<section class="dmb-home-tabs h-c-page{% if class %} {{class}}{% endif %}">
+  <h1 class="h-c-eyebrow">
+    {{ heading }}
+  </h1>
+
+  {% include 'public/inc/global/step-heading.inc.html' with text=subheading svg='shield' numbered=True only %}
+
+  {% if text %}
+    <p class="dmb-u-m-b-m">
+      {{text}}
+    </p>
+  {% endif %}
+
+  {% include 'public/inc/home/home-tabs.inc.html' with levels=levels only %}
+</section>

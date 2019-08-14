@@ -1,5 +1,35 @@
- // sass-lint:disable no-ids
+// sass-lint:disable no-ids
 #dmb-home {
+  //Tabs
+  $dmb-exp-to-tabs-switch-bp: tablet;
+
+  .dmb-exp-panels {
+    @include dmb-mq($from: #{$dmb-exp-to-tabs-switch-bp}) {
+      display: none;
+    }
+
+    &__content {
+      border-left: 4px solid transparent;
+      padding: 0 10px;
+
+      .glue-is-expanded & {
+        margin: 20px 0 36px;
+      }
+    }
+  }
+
+  .dmb-tabs {
+    @include dmb-mq($until: #{$dmb-exp-to-tabs-switch-bp}) {
+      display: none;
+    }
+
+    &__tabs {
+      @include dmb-resp-prop(margin-top, 20px, 30px, 40px);
+    }
+  }
+
+
+  // Tenant based styles
   @each $tenant, $value in $tenants {
     #dmb-#{$tenant} & {
       // HERO IMAGES
@@ -20,6 +50,7 @@
           }
         }
       }
+
 
       // IMAGE TEXT COLLAGE IMAGES
       .dmb-img-text-collage {
@@ -48,6 +79,50 @@
           }
         }
       }
+
+
+      // LEVEL BASED STYLES
+      $tenant-levels: map-get($value, levels);
+      @each $level, $value in $tenant-levels {
+
+        // EXPANSION PANELS
+        $dmb-exp-panels: '.dmb-exp-panels';
+
+        #{$dmb-exp-panels} {
+          &__panel--level-#{$level} {
+            #{$dmb-exp-panels}__heading {
+              color: map-get($value, color);
+            }
+
+            #{$dmb-exp-panels}__content {
+              border-color: map-get($value, color);
+            }
+          }
+        }
+
+        // TABS
+        $dmb-tabs: '.dmb-tabs';
+
+        #{$dmb-tabs} {
+          &__toggle--level-#{$level} {
+            #{$dmb-tabs}__toggle-link {
+              color: map-get($value, color);
+            }
+
+            #{$dmb-tabs}__toggle-link[aria-selected='true'],
+            #{$dmb-tabs}__toggle-link:focus {
+              border-color: map-get($value, color);
+            }
+          }
+
+          &__tab--level-#{$level} {
+            #{$dmb-tabs}__tab-heading {
+              color: map-get($value, color);
+            }
+          }
+        }
+      }
+
 
       // IMAGE TEXT IMAGE
       .dmb-img-text {

@@ -1,8 +1,5 @@
 goog.module.declareNamespace('dmb.components.report.controller');
 
-import * as BreakpointService from '@google/glue/lib/ng/common/breakpoint-service';
-import * as PaginationModel from '@google/glue/lib/ng/pagination/model';
-
 const surveyEndpoint = '/api/report/company/';
 const resultEndpoint = '/api/report/result/';
 const industryEndpoint = '/api/report/industry/';
@@ -17,42 +14,33 @@ class ReportController {
   /**
    * Report controller
    *
-   * @param {!angular.Scope} $scope
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
-   * @param {!glue.ng.state.StateService} glueState
    * @param {!angular.$timeout} $timeout
    * @param {!angular.$sce} $sce
    * @param {!Function} dmbLevelsFactory
    * @param {!Function} resultInTopLevel
    * @param {!Object} tenantConf
-   * @param {!Object} glueBreakpoint
    * @param {!string} dmbStaticUrl
    *
    * @ngInject
    */
   constructor(
-    $scope,
       $http,
       $location,
-      glueState,
       $timeout,
       $sce,
       dmbLevelsFactory,
       resultInTopLevel,
       tenantConf,
-      glueBreakpoint,
       dmbStaticUrl) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
     const responseId = responseIdMatches ? responseIdMatches[1] : null;
 
-    /** @private {!glue.ng.state.StateService} */
-    this.glueState_ = glueState;
-
-    /** @private {!angular.$timeout} */
-    this.ngTimeout_ = $timeout;
+    // /** @private {!angular.$timeout} */
+    // this.ngTimeout_ = $timeout;
 
     /**
      * @export
