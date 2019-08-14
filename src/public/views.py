@@ -9,6 +9,7 @@ from core.auth import survey_admin_required
 from core.models import Survey, SurveyResult
 from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.http import Http404
 from core.response_detail import get_response_detail
 from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name, version_info
@@ -136,10 +137,14 @@ def thank_you(request, tenant):
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
-
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
+    return redirect(reverse('admin', kwargs={'tenant': get_tenant_slug(tenant)}))
+
+@login_required
+@survey_admin_required
+def admin(request, tenant):
     tenant_conf = settings.TENANTS[tenant]
     industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
 
@@ -147,8 +152,20 @@ def reports_admin(request, tenant):
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
-    return render(request, 'public/reports-list.html', {
+    return render(request, 'public/admin.html', {
+        'content_data': '',
+        'other_tenants': get_other_tenant_footers(tenant),
+        'product_name': get_tenant_product_name(tenant),
+        'slug': get_tenant_slug(tenant),
+        'surveys': Survey.objects.filter(tenant=tenant),
         'tenant': tenant,
+        # 'engagement_lead': request.user.engagement_lead,
+        # 'industries': industries,
+        # 'countries': COUNTRIES_TUPLE,
+        # 'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
+        # 'bootstrap_data': JSONRenderer().render(api_data),
+    })
+
         'slug': get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
