@@ -8,7 +8,7 @@
   },
   "private": true,
   "dependencies": {
-    "@google/glue": "git+ssh://git@gitlab.com:potato/google/digital-maturity-benchmark/glue.git#v19.0.1",
+    "@google/glue": "git+ssh://git@gitlab.com:potato/google/digital-maturity-benchmark/glue.git#v20.0.0",
     "clipboard": "2.0.1",
     "google-closure-compiler": "20181028.0.1",
     "google-closure-library": "20180910.0.0",
