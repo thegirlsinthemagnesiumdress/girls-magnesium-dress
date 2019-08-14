@@ -26,14 +26,14 @@ class ReportController {
    * @ngInject
    */
   constructor(
-      $http,
-      $location,
-      $timeout,
-      $sce,
-      dmbLevelsFactory,
-      resultInTopLevel,
-      tenantConf,
-      dmbStaticUrl) {
+    $http,
+    $location,
+    $timeout,
+    $sce,
+    dmbLevelsFactory,
+    resultInTopLevel,
+    tenantConf,
+    dmbStaticUrl) {
     const sidMatches = $location.absUrl().match(locationSidRegex);
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
@@ -43,36 +43,28 @@ class ReportController {
     // this.ngTimeout_ = $timeout;
 
     /**
-     * @export
-     * @type {boolean}
-     */
-    this.renderTabset = false;
-
-    /**
-     *  Show dimensions tab (instead of the zippy).
-     * @type {!boolean}
-     * @export
-     */
-    this.showTabs = this.showTabs_(glueBreakpoint.getBreakpointSize());
-
-
-    /**
-     * @export
      * @type {Object}
+     * @export
+     */
+    this.tenantConf = tenantConf;
+
+    /**
+     * @type {Object}
+     * @export
      */
     this.levels = tenantConf.levels;
 
     /**
-     * @export
-     * @type {String}
-     */
-    this.levelsMax = tenantConf.levelsMax;
-
-    /**
-     * @export
      * @type {Array.<string>}
+     * @export
      */
     this.levelsMin = tenantConf.levelsArray[0];
+
+    /**
+     * @type {String}
+     * @export
+     */
+    this.levelsMax = tenantConf.levelsMax;
 
     /**
      * @type {!Object}
@@ -99,56 +91,38 @@ class ReportController {
     this.industryBestDescription = tenantConf.industryBestDescription;
 
     /**
-     * Industry result object.
+     * Industry result object
      * @type {Object}
      * @export
      */
     this.industryResult = null;
 
     /**
-     * Industry best rating source industry.
+     * Industry best rating source industry
      * @type {Object}
      * @export
      */
     this.industryAvgSource = null;
 
     /**
-     * Industry average source industry.
+     * Industry average source industry
      * @type {Object}
      * @export
      */
     this.industryBestSource = null;
 
-
     /**
-     * @export
      * @type {Array.<string>}
+     * @export
      */
-    this.dimensions = [];
+    this.dimensionList = tenantConf.dimensions;
 
     /**
-     * @export
+     * Dimensions object for dimension tabss
      * @type {Object}
-     */
-    this.dimensionsResults = {};
-
-    /**
-     * @export
-     * @type {Object}
-     */
-    this.dimensionsIndAvgs = {};
-
-    /**
-     * @export
-     * @type {Object}
-     */
-    this.dimensionsIndBests = {};
-
-    /**
-     * @type {!Object}
      * @export
      */
-    this.dimensionHeaders = tenantConf.dimensionHeaders;
+    this.dimensions = {};
 
     /**
      * @type {string}
@@ -161,15 +135,6 @@ class ReportController {
      * @export
      */
     this.dimensionSidepanelDescriptions = tenantConf.dimensionSidepanelDescriptions;
-
-    /**
-     * @type {glue.ng.pagination.Model}
-     * Might not need this following Glue 19 update, leaving it in just in case.
-     * @export
-     */
-    this.model = new PaginationModel.Model({
-      'activeEl': this.dimensions[0],
-    });
 
     /**
      *
@@ -200,20 +165,6 @@ class ReportController {
     this.currentLevelDescription = {};
 
     /**
-     *
-     * @type {Function}
-     * @export
-     */
-    this.dmbLevelsFactory = dmbLevelsFactory;
-
-    /**
-     *
-     * @type {Function}
-     * @export
-     */
-    this.resultInTopLevel = resultInTopLevel;
-
-    /**
      * Survey object.
      * @type {Object}
      * @export
@@ -226,14 +177,6 @@ class ReportController {
      * @export
      */
     this.result = null;
-
-    /**
-     *
-     * @type {Function}
-     * @export
-     */
-    this.trustAsHtml = $sce.trustAsHtml;
-
 
     /**
      * @type {!Object}
@@ -254,22 +197,45 @@ class ReportController {
     this.subdimensionHeaders = tenantConf.subdimensionHeaders;
 
     /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.resultInTopLevel = resultInTopLevel;
+
+    /**
      * @export
      * @type {string}
      */
     this.dmbStaticUrl = dmbStaticUrl;
 
     /**
-     * @type {Object}
+     *
+     * @type {Function}
      * @export
      */
-    this.subdimensionDescriptions = tenantConf.subdimensionDescriptions;
+    this.trustAsHtml = $sce.trustAsHtml;
+
 
     // Allows use from other contexts
     this.setOverallResult = this.setOverallResult.bind(this);
 
     const reportEndpoint = responseId ? `${resultEndpoint}${responseId}` : `${surveyEndpoint}${surveyId}`;
 
+    // Get report results
     $http.get(reportEndpoint).then((res)=> {
       this.survey = res.data;
       this.result = this.survey['survey_result'];
@@ -278,32 +244,27 @@ class ReportController {
       // on the BE but until we do let's fix this on the FE
       this.setOverallResult(parseFloat(this.result['dmb']));
 
-      // Enable to test unused, optional dimension for news (Should not be shown)
-      // this.result['dmb_d']['reader_revenue'] = null;
-      // Enable to test 0 value, optional dimension for news (Should be shown)
-      // this.result['dmb_d']['advertising_revenue'] = 0;
-      this.dimensionsResults = this.result['dmb_d'];
+      // this.dimensionResults = this.result['dmb_d'];
 
-      this.dimensions = tenantConf.dimensions.filter((key) => this.result['dmb_d'][key] !== null);
+      this.dimensionList.forEach((dimension) => {
+        this.setDimensionResult(dimension, this.result['dmb_d'][dimension]);
+      });
 
-      this.ngTimeout_(() => {
-        this.renderTabset = true;
-      }, 0, true);
-
-
+      // Get industry results
       $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
         this.industryResult = res.data;
         this.industryAvgSource = this.industryResult['dmb_industry'];
         this.industryBestSource = this.industryResult['dmb_bp_industry'];
 
-        this.dimensionsIndAvgs = this.industryResult['dmb_d'];
-        this.dimensionsIndBests = this.industryResult['dmb_d_bp'];
+        this.dimensionList.forEach((dimension) => {
+          if (this.industryResult['dmb_d']) {
+            this.dimensions[dimension].indResults.average = this.industryResult['dmb_d'][dimension];
+          }
+          if (this.industryResult['dmb_d_bp']) {
+            this.dimensions[dimension].indResults.best = this.industryResult['dmb_d_bp'][dimension];
+          }
+        });
       });
-    });
-
-    $scope.$on(BreakpointService.Service.BREAK_POINT_UPDATE_EVENT, (e, size) => {
-      this.showTabs= this.showTabs_(size);
-      $scope.$apply();
     });
   }
 
@@ -328,51 +289,68 @@ class ReportController {
     this.currentLevelDescription = levelDescriptions['current']['mapValue'];
   }
 
+
   /**
-   * Sets values for overall result
+   * Sets this.dimensions object with the correct data for a given dimension and a given result
    * @param {string} dimension
-   * @param {number} newValue
+   * @param {number} value
+   * @export
    */
-  setDimensionsResult(dimension, newValue) {
-    if (!angular.isDefined(newValue)) {
+  setDimensionResult(dimension, value) {
+    if (!angular.isDefined(value)) {
       return;
     }
 
-    this.dimensionsResults[dimension] = newValue;
+    const dimensionObj = {};
+
+    dimensionObj.name = this.tenantConf.dimensionHeaders[dimension];
+    dimensionObj.description = this.trustAsHtml(
+      this.tenantConf.dimensionHeaderDescriptions[dimension]
+    );
+
+    dimensionObj.result = value;
+
+    const levelsData = this.dmbLevelsFactory(value);
+    const dimensionCurrentLevelObject = levelsData.current;
+    const dimensionNextLevelObject = levelsData.next;
+    const dimensionLevel = levelsData.current.value;
+
+    dimensionObj.levels = {
+      current: {
+        description: this.trustAsHtml(
+          this.tenantConf.dimensionLevelDescription[dimension][dimensionLevel]
+        ),
+        name: dimensionCurrentLevelObject.mapValue,
+        value: dimensionCurrentLevelObject.value,
+      },
+      next: {
+        name: dimensionNextLevelObject.mapValue,
+        value: dimensionNextLevelObject.value,
+      },
+    };
+
+    dimensionObj.inTopLevel = this.resultInTopLevel(value);
+    dimensionObj.recommendations = this.tenantConf.dimensionRecommendations[dimension][dimensionLevel];
+    dimensionObj.indResults = {
+      average: null,
+      best: null,
+    };
+
+    this.dimensions[dimension] = dimensionObj;
   }
 
-  /**
-   *  @param {string} size
-   *  @return {boolean}
-   *  @private
-   */
-  showTabs_(size) {
-    const bpTabsEnabled = [
-      'large',
-      'x-large',
-      'xx-large',
-      'medium-large',
-      'medium',
-    ];
+  // /**
+  //  * Sets values for overall result
+  //  * @param {string} dimension
+  //  * @param {number} newValue
+  //  */
+  // setDimensionsResult(dimension, newValue) {
+  //   if (!angular.isDefined(newValue)) {
+  //     return;
+  //   }
 
-    return bpTabsEnabled.indexOf(size) > -1;
-  }
-
-  /**
-   * Opens a specific tab if state is enabled. This is expected to be used with
-   * something like ngClick.
-   *
-   * @param {string} tabsetId The unique state id for the tabset.
-   * @param {string} elementId The unique id of the tab to open.
-   * @export
-   */
-  selectTab(tabsetId, elementId) {
-    this.ngTimeout_(() => {
-      this.glueState_.setState(tabsetId, {
-        'activeEl': elementId,
-      });
-    }, 0, true);
-  }
+  //   // this.dimensionResults[dimension] = newValue;
+  // }
 
   /**
    * @export

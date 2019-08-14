@@ -1,0 +1,109 @@
+{% load angular %}
+
+{% comment %}
+  The breakpoint at which the expansion panels (.dmb-exp-panels) are hidden and the tabs (.dmb-tabs) are shown is determined by `$dmb-exp-to-tabs-switch-bp` in `_report.scss`.
+{% endcomment %}
+
+<section class="dmb-report-dimensions dmb-u-m-b-l h-c-page{% if class %} {{class}}{% endif %}">
+
+  <!-- Expansion Panels Component -->
+  <div class="dmb-exp-panels glue-expansion-panels">
+
+    {% for dimension in dimensions %}
+      {% with dimension=dimension|ng_mark_safe tenant=tenant|ng_mark_safe %}
+        {% if dimension_results|ng_mark_safe|get_item:dimension is not None %}
+          <div
+              class="dmb-exp-panels__panel glue-expansion-panel dmb-exp-panels__panel--level-{[ reportCtrl.dimensions['{{dimension}}'].level.current.value ]}">
+            <!-- Expansion Panel toggle -->
+            <div
+                class="dmb-exp-panels__toggle glue-expansion-panel-toggle"
+                data-glue-expansion-panel-toggle-for="{{dimension}}">
+              <h2
+                  class="dmb-exp-panels__heading h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-no-margin">
+                {[ reportCtrl.dimensions['{{dimension}}'].name ]}
+              </h2>
+              <svg class="dmb-exp-panels__arrow" role="img" width="12" height="8">
+                <use xlink:href="#mi-chevron"></use>
+              </svg>
+            </div>
+
+            <!-- Expansion Panel content -->
+            <div
+                class="dmb-exp-panels__content glue-expansion-panel-content"
+                {% if forloop.counter0 == 0 %} data-glue-expansion-panel-initial="expanded"{% endif %}
+                id="{{dimension}}">
+              {% include 'public/inc/report/report-tabs-content.inc.html' %}
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+    {% endfor %}
+
+  </div> <!--/expansion panels -->
+
+
+  <!-- Tabs Component -->
+  <div aria-hidden="true" class="dmb-tabs glue-c-tabset">
+
+    <!-- Tab toggles -->
+    <div dmb-pin-top>
+      <ul
+          class="dmb-tabs__toggles glue-tabs glue-c-tabset__tablist h-c-page"
+          data-glue-pagination="tabs">
+
+        {% for dimension in dimensions %}
+          {% with dimension=dimension|ng_mark_safe tenant=tenant|ng_mark_safe %}
+            {% if dimension_results|ng_mark_safe|get_item:dimension is not None %}
+              <li class="dmb-tabs__toggle dmb-tabs__toggle--level-{[ reportCtrl.dimensions['{{dimension}}'].levels.current.value ]} glue-c-tabset__tab">
+                <a
+                    class="dmb-tabs__toggle-link h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-no-margin glue-c-tabset__button"
+                    data-glue-pagination-page="{{forloop.counter}}"
+                    href="#{{dimension}}">
+
+                  <!-- Progress Circle Component -->
+                  <div
+                      class="dmb-progress-circle dmb-progress-circle--small dmb-progress-circle--level-{[ reportCtrl.dimensions['{{dimension}}'].levels.current.value ]}"
+                      data-progress="{[ reportCtrl.dimensions['{{dimension}}'].result ]}">
+                    <svg
+                        class="dmb-progress-circle__prog-svg"
+                        dmb-progress-circle="reportCtrl.dimensions['{{dimension}}'].result"
+                        viewbox="0 0 120 120">
+                      <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
+                      <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
+                    </svg>
+                    <div class="dmb-progress-circle__text">
+                      <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
+                        {[ reportCtrl.dimensions['{{dimension}}'].result|number:1 ]}
+                      </span>
+                    </div>
+                  </div>
+
+                  {[ reportCtrl.dimensions['{{dimension}}'].name ]}
+                </a>
+              </li>
+            {% endif %}
+          {% endwith %}
+        {% endfor %}
+
+      </ul>
+    </div>
+
+    <!-- Tabs content -->
+    <ul
+        class="dmb-tabs__tabs glue-pagination-pages glue-c-tabset__panel-container"
+        data-glue-pagination="tabs">
+
+      {% for dimension in dimensions %}
+        {% with dimension=dimension|ng_mark_safe tenant=tenant|ng_mark_safe %}
+          <li
+              class="dmb-tabs__tab dmb-tabs__tab--level-{[ reportCtrl.dimensions['{{dimension}}'].levels.current.value ]} glue-o-pagination__page glue-c-tabset__page"
+              id="{{dimension}}">
+            {% include 'public/inc/report/report-tabs-content.inc.html' %}
+          </li>
+        {% endwith %}
+      {% endfor %}
+
+    </ul>
+  </div>
+
+</section>
