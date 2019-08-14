@@ -1,0 +1,33 @@
+.dmb-toolbar {
+  &__heading {
+    display: flex;
+  }
+
+  &__heading-icon {
+    height: 24px;
+    margin: 0 24px 0 8px;
+    width: 24px;
+  }
+
+  &__search {
+    border-radius: $dmb-border-radius-large;
+    display: none;
+    flex-grow: 1;
+    margin-right: 24px;
+  }
+
+  &__btns {
+    align-items: center;
+    display: flex;
+  }
+
+  &__right-col {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__export-btn {
+    display: inline-flex;
+    margin-right: 24px;
+  }
+}
