@@ -1,0 +1,2007 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-15 13:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "all"
+msgstr ""
+
+msgid "Afghanistan"
+msgstr ""
+
+msgid "Åland Islands"
+msgstr ""
+
+msgid "Albania"
+msgstr ""
+
+msgid "Algeria"
+msgstr ""
+
+msgid "American Samoa"
+msgstr ""
+
+msgid "Andorra"
+msgstr ""
+
+msgid "Angola"
+msgstr ""
+
+msgid "Anguilla"
+msgstr ""
+
+msgid "Antarctica"
+msgstr ""
+
+msgid "Antigua and Barbuda"
+msgstr ""
+
+msgid "Argentina"
+msgstr ""
+
+msgid "Armenia"
+msgstr ""
+
+msgid "Aruba"
+msgstr ""
+
+msgid "Australia"
+msgstr ""
+
+msgid "Austria"
+msgstr ""
+
+msgid "Azerbaijan"
+msgstr ""
+
+msgid "Bahamas"
+msgstr ""
+
+msgid "Bahrain"
+msgstr ""
+
+msgid "Bangladesh"
+msgstr ""
+
+msgid "Barbados"
+msgstr ""
+
+msgid "Belarus"
+msgstr ""
+
+msgid "Belgium"
+msgstr ""
+
+msgid "Belize"
+msgstr ""
+
+msgid "Benin"
+msgstr ""
+
+msgid "Bermuda"
+msgstr ""
+
+msgid "Bhutan"
+msgstr ""
+
+msgid "Bolivia, Plurinational State of"
+msgstr ""
+
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr ""
+
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+msgid "Botswana"
+msgstr ""
+
+msgid "Bouvet Island"
+msgstr ""
+
+msgid "Brazil"
+msgstr ""
+
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+msgid "Brunei Darussalam"
+msgstr ""
+
+msgid "Bulgaria"
+msgstr ""
+
+msgid "Burkina Faso"
+msgstr ""
+
+msgid "Burundi"
+msgstr ""
+
+msgid "Cambodia"
+msgstr ""
+
+msgid "Cameroon"
+msgstr ""
+
+msgid "Canada"
+msgstr ""
+
+msgid "Cape Verde"
+msgstr ""
+
+msgid "Cayman Islands"
+msgstr ""
+
+msgid "Central African Republic"
+msgstr ""
+
+msgid "Chad"
+msgstr ""
+
+msgid "Chile"
+msgstr ""
+
+msgid "China"
+msgstr ""
+
+msgid "Christmas Island"
+msgstr ""
+
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+msgid "Colombia"
+msgstr ""
+
+msgid "Comoros"
+msgstr ""
+
+msgid "Congo"
+msgstr ""
+
+msgid "Congo, the Democratic Republic of the"
+msgstr ""
+
+msgid "Cook Islands"
+msgstr ""
+
+msgid "Costa Rica"
+msgstr ""
+
+msgid "Côte d'Ivoire"
+msgstr ""
+
+msgid "Croatia"
+msgstr ""
+
+msgid "Cuba"
+msgstr ""
+
+msgid "Curaçao"
+msgstr ""
+
+msgid "Cyprus"
+msgstr ""
+
+msgid "Czech Republic"
+msgstr ""
+
+msgid "Denmark"
+msgstr ""
+
+msgid "Djibouti"
+msgstr ""
+
+msgid "Dominica"
+msgstr ""
+
+msgid "Dominican Republic"
+msgstr ""
+
+msgid "Ecuador"
+msgstr ""
+
+msgid "Egypt"
+msgstr ""
+
+msgid "El Salvador"
+msgstr ""
+
+msgid "Equatorial Guinea"
+msgstr ""
+
+msgid "Eritrea"
+msgstr ""
+
+msgid "Estonia"
+msgstr ""
+
+msgid "Ethiopia"
+msgstr ""
+
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+msgid "Faroe Islands"
+msgstr ""
+
+msgid "Fiji"
+msgstr ""
+
+msgid "Finland"
+msgstr ""
+
+msgid "France"
+msgstr ""
+
+msgid "French Guiana"
+msgstr ""
+
+msgid "French Polynesia"
+msgstr ""
+
+msgid "French Southern Territories"
+msgstr ""
+
+msgid "Gabon"
+msgstr ""
+
+msgid "Gambia"
+msgstr ""
+
+msgid "Georgia"
+msgstr ""
+
+msgid "Germany"
+msgstr ""
+
+msgid "Ghana"
+msgstr ""
+
+msgid "Gibraltar"
+msgstr ""
+
+msgid "Greece"
+msgstr ""
+
+msgid "Greenland"
+msgstr ""
+
+msgid "Grenada"
+msgstr ""
+
+msgid "Guadeloupe"
+msgstr ""
+
+msgid "Guam"
+msgstr ""
+
+msgid "Guatemala"
+msgstr ""
+
+msgid "Guernsey"
+msgstr ""
+
+msgid "Guinea"
+msgstr ""
+
+msgid "Guinea-Bissau"
+msgstr ""
+
+msgid "Guyana"
+msgstr ""
+
+msgid "Haiti"
+msgstr ""
+
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+msgid "Holy See (Vatican City State)"
+msgstr ""
+
+msgid "Honduras"
+msgstr ""
+
+msgid "Hong Kong"
+msgstr ""
+
+msgid "Hungary"
+msgstr ""
+
+msgid "Iceland"
+msgstr ""
+
+msgid "India"
+msgstr ""
+
+msgid "Indonesia"
+msgstr ""
+
+msgid "Iran, Islamic Republic of"
+msgstr ""
+
+msgid "Iraq"
+msgstr ""
+
+msgid "Ireland"
+msgstr ""
+
+msgid "Isle of Man"
+msgstr ""
+
+msgid "Israel"
+msgstr ""
+
+msgid "Italy"
+msgstr ""
+
+msgid "Jamaica"
+msgstr ""
+
+msgid "Japan"
+msgstr ""
+
+msgid "Jersey"
+msgstr ""
+
+msgid "Jordan"
+msgstr ""
+
+msgid "Kazakhstan"
+msgstr ""
+
+msgid "Kenya"
+msgstr ""
+
+msgid "Kiribati"
+msgstr ""
+
+msgid "Korea, Democratic People's Republic of"
+msgstr ""
+
+msgid "Korea, Republic of"
+msgstr ""
+
+msgid "Kuwait"
+msgstr ""
+
+msgid "Kyrgyzstan"
+msgstr ""
+
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+msgid "Latvia"
+msgstr ""
+
+msgid "Lebanon"
+msgstr ""
+
+msgid "Lesotho"
+msgstr ""
+
+msgid "Liberia"
+msgstr ""
+
+msgid "Libya"
+msgstr ""
+
+msgid "Liechtenstein"
+msgstr ""
+
+msgid "Lithuania"
+msgstr ""
+
+msgid "Luxembourg"
+msgstr ""
+
+msgid "Macao"
+msgstr ""
+
+msgid "Macedonia, the former Yugoslav Republic of"
+msgstr ""
+
+msgid "Madagascar"
+msgstr ""
+
+msgid "Malawi"
+msgstr ""
+
+msgid "Malaysia"
+msgstr ""
+
+msgid "Maldives"
+msgstr ""
+
+msgid "Mali"
+msgstr ""
+
+msgid "Malta"
+msgstr ""
+
+msgid "Marshall Islands"
+msgstr ""
+
+msgid "Martinique"
+msgstr ""
+
+msgid "Mauritania"
+msgstr ""
+
+msgid "Mauritius"
+msgstr ""
+
+msgid "Mayotte"
+msgstr ""
+
+msgid "Mexico"
+msgstr ""
+
+msgid "Micronesia, Federated States of"
+msgstr ""
+
+msgid "Moldova, Republic of"
+msgstr ""
+
+msgid "Monaco"
+msgstr ""
+
+msgid "Mongolia"
+msgstr ""
+
+msgid "Montenegro"
+msgstr ""
+
+msgid "Montserrat"
+msgstr ""
+
+msgid "Morocco"
+msgstr ""
+
+msgid "Mozambique"
+msgstr ""
+
+msgid "Myanmar"
+msgstr ""
+
+msgid "Namibia"
+msgstr ""
+
+msgid "Nauru"
+msgstr ""
+
+msgid "Nepal"
+msgstr ""
+
+msgid "Netherlands"
+msgstr ""
+
+msgid "New Caledonia"
+msgstr ""
+
+msgid "New Zealand"
+msgstr ""
+
+msgid "Nicaragua"
+msgstr ""
+
+msgid "Niger"
+msgstr ""
+
+msgid "Nigeria"
+msgstr ""
+
+msgid "Niue"
+msgstr ""
+
+msgid "Norfolk Island"
+msgstr ""
+
+msgid "Northern Mariana Islands"
+msgstr ""
+
+msgid "Norway"
+msgstr ""
+
+msgid "Oman"
+msgstr ""
+
+msgid "Pakistan"
+msgstr ""
+
+msgid "Palau"
+msgstr ""
+
+msgid "Palestinian Territory, Occupied"
+msgstr ""
+
+msgid "Panama"
+msgstr ""
+
+msgid "Papua New Guinea"
+msgstr ""
+
+msgid "Paraguay"
+msgstr ""
+
+msgid "Peru"
+msgstr ""
+
+msgid "Philippines"
+msgstr ""
+
+msgid "Pitcairn"
+msgstr ""
+
+msgid "Poland"
+msgstr ""
+
+msgid "Portugal"
+msgstr ""
+
+msgid "Puerto Rico"
+msgstr ""
+
+msgid "Qatar"
+msgstr ""
+
+msgid "Réunion"
+msgstr ""
+
+msgid "Romania"
+msgstr ""
+
+msgid "Russian Federation"
+msgstr ""
+
+msgid "Rwanda"
+msgstr ""
+
+msgid "Saint Barthélemy"
+msgstr ""
+
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr ""
+
+msgid "Saint Kitts and Nevis"
+msgstr ""
+
+msgid "Saint Lucia"
+msgstr ""
+
+msgid "Saint Martin (French part)"
+msgstr ""
+
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+msgid "Samoa"
+msgstr ""
+
+msgid "San Marino"
+msgstr ""
+
+msgid "Sao Tome and Principe"
+msgstr ""
+
+msgid "Saudi Arabia"
+msgstr ""
+
+msgid "Senegal"
+msgstr ""
+
+msgid "Serbia"
+msgstr ""
+
+msgid "Seychelles"
+msgstr ""
+
+msgid "Sierra Leone"
+msgstr ""
+
+msgid "Singapore"
+msgstr ""
+
+msgid "Sint Maarten (Dutch part)"
+msgstr ""
+
+msgid "Slovakia"
+msgstr ""
+
+msgid "Slovenia"
+msgstr ""
+
+msgid "Solomon Islands"
+msgstr ""
+
+msgid "Somalia"
+msgstr ""
+
+msgid "South Africa"
+msgstr ""
+
+msgid "South Georgia and the South Sandwich Islands"
+msgstr ""
+
+msgid "South Sudan"
+msgstr ""
+
+msgid "Spain"
+msgstr ""
+
+msgid "Sri Lanka"
+msgstr ""
+
+msgid "Sudan"
+msgstr ""
+
+msgid "Suriname"
+msgstr ""
+
+msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+msgid "Swaziland"
+msgstr ""
+
+msgid "Sweden"
+msgstr ""
+
+msgid "Switzerland"
+msgstr ""
+
+msgid "Syrian Arab Republic"
+msgstr ""
+
+msgid "Taiwan"
+msgstr ""
+
+msgid "Tajikistan"
+msgstr ""
+
+msgid "Tanzania, United Republic of"
+msgstr ""
+
+msgid "Thailand"
+msgstr ""
+
+msgid "Timor-Leste"
+msgstr ""
+
+msgid "Togo"
+msgstr ""
+
+msgid "Tokelau"
+msgstr ""
+
+msgid "Tonga"
+msgstr ""
+
+msgid "Trinidad and Tobago"
+msgstr ""
+
+msgid "Tunisia"
+msgstr ""
+
+msgid "Turkey"
+msgstr ""
+
+msgid "Turkmenistan"
+msgstr ""
+
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+msgid "Tuvalu"
+msgstr ""
+
+msgid "Uganda"
+msgstr ""
+
+msgid "Ukraine"
+msgstr ""
+
+msgid "United Arab Emirates"
+msgstr ""
+
+msgid "United Kingdom"
+msgstr ""
+
+msgid "United States"
+msgstr ""
+
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
+msgid "Uruguay"
+msgstr ""
+
+msgid "Uzbekistan"
+msgstr ""
+
+msgid "Vanuatu"
+msgstr ""
+
+msgid "Venezuela, Bolivarian Republic of"
+msgstr ""
+
+msgid "Viet Nam"
+msgstr ""
+
+msgid "Virgin Islands, British"
+msgstr ""
+
+msgid "Virgin Islands, U.S"
+msgstr ""
+
+msgid "Wallis and Futuna"
+msgstr ""
+
+msgid "Western Sahara"
+msgstr ""
+
+msgid "Yemen"
+msgstr ""
+
+msgid "Zambia"
+msgstr ""
+
+msgid "Zimbabwe"
+msgstr ""
+
+msgid "Advertisers"
+msgstr ""
+
+msgid "Advertiser Marketing Maturity"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "News Publisher Data Transformation"
+msgstr ""
+
+msgid "Retail"
+msgstr ""
+
+msgid "Retail Data Transformation"
+msgstr ""
+
+msgid "Cloud"
+msgstr ""
+
+msgid "Cloud Maturity Benchmark"
+msgstr ""
+
+msgid "Assets and ads"
+msgstr ""
+
+msgid "Access"
+msgstr ""
+
+msgid "Audience"
+msgstr ""
+
+msgid "Attribution"
+msgstr ""
+
+msgid "Automation"
+msgstr ""
+
+msgid "Organisation"
+msgstr ""
+
+msgid "Nascent"
+msgstr ""
+
+msgid "Emerging"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Multi-moment"
+msgstr ""
+
+msgid "Marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr ""
+
+msgid "Some use of owned data in automated buying with single-channel optimisation and testing."
+msgstr ""
+
+msgid "Data integrated and activated across channels with demonstrated link to ROI or sales proxies."
+msgstr ""
+
+msgid "Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
+msgstr ""
+
+msgid "This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales."
+msgstr ""
+
+msgid "This is the 2nd of the 4 levels of maturity. You use some owned data in automated buying, with single-channel optimisation and testing."
+msgstr ""
+
+msgid "This is the 3rd of the 4 levels of maturity. Your data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr ""
+
+msgid "This is the most advanced of the 4 levels of maturity. You have achieved dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions."
+msgstr ""
+
+msgid "Great attribution means accurately measuring and ascribing value to all consumer touch-points, so you make informed investment decisions and create even better, even more impactful experiences."
+msgstr ""
+
+msgid "Reaching consumers is not enough. They demand assistive experiences - fast, frictionless and tailored to their specific needs. You need to deliver intuitive and effective experiences across all brand digital touchpoints, including your website, your app, ads and branded content."
+msgstr ""
+
+msgid "To reach consumers whenever they need you, you have to organise all data sources to identify, understand and influence the most valuable audiences throughout the sales funnel."
+msgstr ""
+
+msgid "Once you are able to identify your audiences, you have to efficiently reach them and deliver your marketing messages across all inventory types and channels with the right levels of control."
+msgstr ""
+
+msgid "Tailored experiences typically require your marketing to use multiple data points, including your users’ context, the time of day or the device they’re using. Automation can help you to achieve relevance for users at scale. It enables you to optimise the execution of marketing operations, driving advertising effectiveness, profitability and growth."
+msgstr ""
+
+msgid "Every marketing decision has goes through a process, is influenced by the way you work across teams and partners, and depends on support by people with specialised skills. So having an advanced data strategy, the right tech platforms and creative ideas only gets you so far: your organisation has to be set up to enable the right decisions to be made and executed."
+msgstr ""
+
+msgid "You use a mix of measurement methodologies but results mostly only influence long-term planning. Evaluation of your marketing activities tends to be based on campaign metrics."
+msgstr ""
+
+msgid "You use a variety of measurement methodologies as well as non-last-click attribution models. Results from regular A/B testing are used to inform campaign planning. Evaluation of your marketing activities tends to be based on conversion metrics."
+msgstr ""
+
+msgid "You use a variety of measurement methodologies as well as a custom attribution model. Results from frequent A/B testing are used to optimise campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgstr ""
+
+msgid "You use a variety of measurement methodologies as well as a data-driven attribution model. Results from frequent A/B testing are used for optimisation across campaigns when they’re running. Evaluation of your marketing activities tends to be based on business outcomes."
+msgstr ""
+
+msgid "The user experience and speed of your website or app is at a basic level. Your creatives are the result of isolated processes and you tend to use the same message for all users. Creative testing happens infrequently or not at all."
+msgstr ""
+
+msgid "You have tried user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives but there’s limited coordination across channels. You are using insights from analytics and results from A/B tests to improve creative effectiveness. Your messages are tailored to broad segments of your audience."
+msgstr ""
+
+msgid "You are using advanced methods of user experience optimisation and personalisation of your website or app. Teams collaborate to build creatives, coordinated across digital channels. You are using several testing methodologies to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience."
+msgstr ""
+
+msgid "You are using cutting edge technology to create an impactful and tailored user experience across your websites and apps. Teams collaborate to build creatives, which are coordinated across digital and non-digital channels. You share results from several testing methodologies across digital and non-digital teams to improve creative effectiveness. Your messages are tailored to a variety of segments of your audience and influenced by contextual signals."
+msgstr ""
+
+msgid "You mostly use 3rd party data to target your campaigns, relying on broad audience definitions. You tend to focus on a specific part of the marketing funnel."
+msgstr ""
+
+msgid "You use 3rd party and 1st party data to target your campaigns. You have segmented your audience, largely based on demographics and you cover several parts of the marketing funnel."
+msgstr ""
+
+msgid "You use 3rd party and 1st party data to target your campaigns, covering the full marketing funnel. You have started to use insights captured in one channel in another channel. You have segmented your audience based on behavioural and interest data."
+msgstr ""
+
+msgid "You use 3rd party and 1st party data - including offline data - to target your campaigns, covering the full marketing funnel. You are using insights captured in 1 channel in another channel and you have segmented your audience based on advanced analytics or machine learning."
+msgstr ""
+
+msgid "Your keyword lists are narrowly defined and most of your digital media buys are direct buys across a limited number of inventory sources and formats. You rely on platform default settings to ensure brand safety and ad viewability and to prevent ad fraud."
+msgstr ""
+
+msgid "Your keyword lists cover your immediate products and most of your digital media buys are auction-based and direct buys across several inventory sources and formats. You rely on platform default settings and some manual adjustment to ensure brand safety and ad viewability and to prevent ad fraud."
+msgstr ""
+
+msgid "Your keyword lists extend well beyond product-related terms and most of your digital media buys are auction-based and direct buys across a variety of inventory sources and formats. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud."
+msgstr ""
+
+msgid "You use extensive and well-maintained keyword lists. Your media buys use a variety of deal types across many ad formats and inventory sources - including TV or OOH - and they are optimised across channels. You invest resources in systems to ensure brand safety and ad viewability and to prevent ad fraud. "
+msgstr ""
+
+msgid "You are planning, creating, monitoring and optimising most of your campaigns manually."
+msgstr ""
+
+msgid "You are using selected automation features for planning, creating, monitoring and optimising some of your campaigns. This may include using ad servers or platform APIs."
+msgstr ""
+
+msgid "You use automation features for planning, creating, monitoring and optimising across many of your campaigns. This may include using ad servers, platform APIs and dynamic data feeds."
+msgstr ""
+
+msgid "Leveraging a variety of data signals, you make use of automation features for planning, creating, monitoring and optimising most or all of your campaigns. This may include the usage of ad servers, platform APIs and dynamic data feeds."
+msgstr ""
+
+msgid "Your business is held back from siloed teams, with agencies working at arm’s length. You have no fully dedicated resources, and no resources at all for certain marketing specialisms. "
+msgstr ""
+
+msgid "Some of your key business functions work together towards clear objectives, including some of your agency partners. "
+msgstr ""
+
+msgid "You have cross-functional teams with common objectives across all digital channels. Most or all agency partners collaborate with each other."
+msgstr ""
+
+msgid "You have cross-functional teams with common objectives across all digital and non-digital channels. All agency and other partners collaborate with each other, some as virtual teams. Your teams are agile and share best practices. "
+msgstr ""
+
+msgid "Measure the true value of your marketing activities"
+msgstr ""
+
+msgid "Move to an attribution model that is not based on the last click. Use metrics that show value beyond clicks or number of conversions, for example, revenue and visits in physical stores."
+msgstr ""
+
+msgid "Capture marketing performance data comprehensively"
+msgstr ""
+
+msgid "Make sure you have visibility into the performance of all your campaigns and assets. Assess performance across different digital touchpoints."
+msgstr ""
+
+msgid "Expand your measurement capabilities"
+msgstr ""
+
+msgid "Invest in tools for tagging and tracking and add more measurement methodologies to your suite of capabilities. Increase the frequency of tests and use the data to optimise campaigns."
+msgstr ""
+
+msgid "Build your teams’ skills in web analytics"
+msgstr ""
+
+msgid "Ask relevant people to take the beginner and introductory courses of the Analytics Academy. "
+msgstr ""
+
+msgid "Analytics Academy"
+msgstr ""
+
+msgid "Move to an attribution model that fits your particular business. Use metrics that show value beyond revenue, for example, incremental revenue or profit."
+msgstr ""
+
+msgid "Create a single source of truth for marketing performance and establish a shared understanding of success metrics - across all device types and across all digital touchpoints."
+msgstr ""
+
+msgid "Add measurement methodologies to your suite of capabilities to optimise creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns. "
+msgstr ""
+
+msgid "Ask relevant people to take the beginner and advanced courses of the Analytics Academy."
+msgstr ""
+
+msgid "Consider signals that are specific to your business in your data-driven attribution model. Use metrics that show value beyond revenue, for example, profit or lifetime value."
+msgstr ""
+
+msgid "Create a single source of truth for marketing performance which considers behaviour in digital and non-digital channels."
+msgstr ""
+
+msgid "Add measurement methodologies to your suite of capabilities to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. Increase the frequency of running tests and use the data to optimise campaigns in real-time."
+msgstr ""
+
+msgid "Ask relevant people to take the advanced courses of the Analytics Academy."
+msgstr ""
+
+msgid "Continue to fine-tune your data-driven attribution model and leverage proprietary insights, data sources and machine learning capabilities. Determine the value of new user interactions, for example, a new feature in your app or added service provided in-store or through a call centre. Feed this value into your measurement models."
+msgstr ""
+
+msgid "Add emerging campaign types or activities in new channels, such as a social media platform, to your single source of truth for marketing performance."
+msgstr ""
+
+msgid "Establish and iterate on a robust and shared process for your different measurement methodologies to optimise all aspects of digital marketing, including budget allocation, creative impact or the performance of individual channels. "
+msgstr ""
+
+msgid "Make ads more relevant for different types of users"
+msgstr ""
+
+msgid "Segment your users into different audiences, for example, new users and existing customers. Create ads that align with their respective expectations."
+msgstr ""
+
+msgid "Tailor the user experience of your assets"
+msgstr ""
+
+msgid "Tailor your website or app to the expectations of different audiences, for example, existing customer may benefit from more specific information whereas new users may need a broader picture."
+msgstr ""
+
+msgid "Start using technology"
+msgstr ""
+
+msgid "Use web analytics tools and A/B testing tools to continually improve the performance of your assets."
+msgstr ""
+
+msgid "Improve the speed of your mobile assets"
+msgstr ""
+
+msgid "Take the mobile speed test and get recommendations to implement right away."
+msgstr ""
+
+msgid "Mobile speed test"
+msgstr ""
+
+msgid "Remove friction from the user experience of your mobile assets"
+msgstr ""
+
+msgid "Consider these best practices and implement them."
+msgstr ""
+
+msgid "Mobile UX best practices"
+msgstr ""
+
+msgid "Connect different teams of your company"
+msgstr ""
+
+msgid "Foster collaboration between different marketing teams that are responsible for creating your creatives, for example, digital and non-digital teams, media and creative teams. Encourage them to work together and share best practices."
+msgstr ""
+
+msgid "Improve the relevance of your ads for different types of users"
+msgstr ""
+
+msgid "Refine the segmentation of your users into different audiences and create ads that match their characteristics."
+msgstr ""
+
+msgid "Expand tailoring your website beyond basic personalisation, for example, create tailored experiences for more of your audience segments or use real-time predictive modelling to suggest products."
+msgstr ""
+
+msgid "Expand your creative testing capabilities"
+msgstr ""
+
+msgid "Add more methods such as multivariate tests or consumer surveys to your testing suite."
+msgstr ""
+
+msgid "Consider these best practices and implement those where you still have gaps."
+msgstr ""
+
+msgid "Improve collaboration of teams that are responsible for creatives"
+msgstr ""
+
+msgid "Consider establishing timelines that are shared between media and creative teams. Explore using the same toolset, for example, for managing creative projects. Encourage best practice sharing across these teams."
+msgstr ""
+
+msgid "Use additional data signals such as time of day or user location in your audience segmentation to create ads that are even more relevant."
+msgstr ""
+
+msgid "Expand tailoring your website to include data signals from internal systems like your CRM or loyalty programme."
+msgstr ""
+
+msgid "Maximise the impact of your creative tests"
+msgstr ""
+
+msgid "Share the results of your tests widely, for example with non-digital teams. Establish a feedback loop so all teams can learn from each other."
+msgstr ""
+
+msgid "Remove friction from the entire user experience"
+msgstr ""
+
+msgid "Consider these best practices and implement those where you still have gaps. Use current mobile techniques such as progressive web apps or single sign-on. Create links between your mobile assets and non-digital touchpoints, like stores or call centres."
+msgstr ""
+
+msgid "Enable media and creative teams to work hand-in-hand and to use collaborative tools. Establish connections between digital and non-digital teams."
+msgstr ""
+
+msgid "Keep up to date with the latest research and industry best practices to find new ways of increasing the relevance of your ads."
+msgstr ""
+
+msgid "Continue to invest in tailoring your website to the expectations of different audiences. Leverage new data signals as they become available, for example, from emerging device types or internal tools.as they become available"
+msgstr ""
+
+msgid "Continue to share the results of your tests widely and build a robust data set of creative performance. Iterate feedback and sharing processes to ensure continued improvement off your creatives"
+msgstr ""
+
+msgid "Continue to invest in the speed of your mobile assets"
+msgstr ""
+
+msgid "Every fraction of a second counts. Take the mobile speed test regularly to identify areas of improvement."
+msgstr ""
+
+msgid "Review the entire user experience to identify friction points"
+msgstr ""
+
+msgid "Keep up to date with emerging trends in UX and web technologies. Explore further possibilities to improve the user experience as people move between digital touchpoints and between digital and non-digital touchpoints."
+msgstr ""
+
+msgid "Connect teams who are responsible for your creatives with newly hired specialists or teams."
+msgstr ""
+
+msgid "Use more signals to reach your audience"
+msgstr ""
+
+msgid "In addition to 3rd party data, use 1st party data (i.e. your own data) to decide which users you want to reach online. Segment users into different audiences and optimise this segmentation regularly."
+msgstr ""
+
+msgid "Leverage insights across channels"
+msgstr ""
+
+msgid "Share insights you gain in 1 channel, for example search, to improve how you reach your audience in another channel, for example email."
+msgstr ""
+
+msgid "Find additional opportunities to reach users"
+msgstr ""
+
+msgid "Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing."
+msgstr ""
+
+msgid "Invest in technology"
+msgstr ""
+
+msgid "Build or buy tools that allow you to capture and analyse user insights, for example, a CRM or Data Management Platform."
+msgstr ""
+
+msgid "In addition to 3rd party data, use 1st party data across different digital channels to decide which users you want to reach online. Use that data to create additional audience segments and update this segmentation while campaigns are running."
+msgstr ""
+
+msgid "Leverage insights across digital and non-digital channels"
+msgstr ""
+
+msgid "Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video."
+msgstr ""
+
+msgid "Cover all parts of the marketing funnel, starting from creating awareness, to building consideration, to driving purchases and, finally, repeat purchasing.as they become available."
+msgstr ""
+
+msgid "Enhance segmentation capabilities"
+msgstr ""
+
+msgid "Extend your proficiency in using tools that allow you to capture and analyse user insights, for example, a CRM system or Data Management Platform."
+msgstr ""
+
+msgid "In addition to 3rd party data, use 1st party data across different digital and non-digital channels to build meaningful audience segments. Update these segments automatically, based on a set of rules that you actively maintain."
+msgstr ""
+
+msgid "Leverage insights from the entire company"
+msgstr ""
+
+msgid "Share insights you gain in 1 channel, for example linear TV, to improve how you reach your audience in another channel, for example online video. Consider feeding in other types of data, for example, sales data."
+msgstr ""
+
+msgid "Extend your proficiency in using tools that allow you to capture and analyse user insights, for example a CRM system or Data Management Platform. Connect tools with each other. Leverage machine learning technology improve your audience segmentation."
+msgstr ""
+
+msgid "Update the types of signals you use to reach your audience"
+msgstr ""
+
+msgid "Consider new signals as they become available to build your audience segments. Continue to update these segments based on the value they deliver to your business."
+msgstr ""
+
+msgid "Assess if insights from new marketing channels, device types, ad formats and business systems can be used to improve how you reach users."
+msgstr ""
+
+msgid "Stay close to developments in the tool landscape and explore opportunities related to improving the actionability of insights. For example, check if insights gained in 1 tool, like your Data Management Platform, could be used in another tool, like the 1 where you build and run your campaigns. Leverage emerging machine learning technology to improve your audience segmentation."
+msgstr ""
+
+msgid "Extend your reach and optimise performance"
+msgstr ""
+
+msgid "Extend your keyword lists to capture relevant queries related to all your products and to your product category. Buy video and display media across desktop and mobile platforms, using direct buys or programmatic buying methods such as open auction or programmatic direct. Optimise your media buys."
+msgstr ""
+
+msgid "Ensure quality control"
+msgstr ""
+
+msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Start acting on the results, for example, by building negative keyword lists or adding websites to a blacklist."
+msgstr ""
+
+msgid "Extend your keyword lists to capture relevant queries related to all your products, your product category, your brand and other relevant areas. Buy a larger percentage of video and display media using programmatic buying methods, such as open auction or programmatic direct. Optimise performance across digital channels."
+msgstr ""
+
+msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Use the results to optimise your bidding strategy, your media buys and your budget allocation."
+msgstr ""
+
+msgid "Increase the variety of ad formats"
+msgstr ""
+
+msgid "Use specialised formats, such as shopping ads on search, native ads and mobile app formats."
+msgstr ""
+
+msgid "In addition to your extensive keyword list, use automated features that capture unpredictable demand, for example, search queries generated by current events. Increase the percentage of video and display media you buy programmatically and consider additional deal types such as preferred or guaranteed. Consider buying some of your non-digital media programmatically."
+msgstr ""
+
+msgid "Monitor brand safety, viewability, ad quality and keyword performance in your campaigns. Feed the results directly into your algorithms that optimise bidding, your media buys and your budget allocation. Actively engage with ecosystem partners to prevent future issues."
+msgstr ""
+
+msgid "Use digital TV and digital out-of-home formats."
+msgstr ""
+
+msgid "Establish processes and improve internal systems that help you to capture new demand. Evaluate emerging deal types or features that help you to maximise reach while generating impact on your bottom line. Optimise your media buys across digital and non-digital channels."
+msgstr ""
+
+msgid "Assess and iterate your tools and internal processes to monitor brand safety, viewability, ad quality and keyword performance. Continue to automate the usage of the results in your bidding, buying and optimisation algorithms. Actively engage with ecosystem partners and industry associations to share best practices and prevent future issues."
+msgstr ""
+
+msgid "Experiment with ad formats in channels that have just recently become accessible through digital buying methods, for example radio ads."
+msgstr ""
+
+msgid "Leverage technology"
+msgstr ""
+
+msgid "Use tools that make setting up and managing campaigns more efficient, for example, using an ad server for your creatives and a Demand SIde Platform (DSP) for your media buys. Check if the tools you are already using provide an API to reduce the number of manual tasks."
+msgstr ""
+
+msgid "Automate high volume tasks"
+msgstr ""
+
+msgid "Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a first step, move to automated bid adjustments for search and display campaigns. Gain experience with campaign management features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines)."
+msgstr ""
+
+msgid "Automate asset optimisation"
+msgstr ""
+
+msgid "Use dynamic feeds to test variations of your creative assets, for example, ad copy that depends on a user’s location or the user’s keyword. Aim to automate at least half of your creative optimisation decisions."
+msgstr ""
+
+msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server for an increased percentage of your ads, use your Demand Side Platform (DSP) for more of your media buys and increase your use of media platform APIs."
+msgstr ""
+
+msgid "Aim for fully automated, real-time bidding across platforms to make the most out of your ad spend. As a next step, add more signals to your automated bid adjustments across search and display campaigns. Expand your use of automated campaign features that automatically select targeting criteria, such as the websites your ads appear on, how much you bid and the exact makeup of your creatives (for example by testing several headlines)."
+msgstr ""
+
+msgid "Use dynamic feeds and behavioural signals to automatically find the best-performing variation of your creative. Automate the optimisation of your creatives across several digital channels."
+msgstr ""
+
+msgid "Expand your use of tools that make setting up and managing campaigns more efficient, for example use an ad server beyond static creatives, use your Demand Side Platform (DSP) for more of your media buys and increase your use of platform APIs to include setup, maintenance, reporting and optimisation."
+msgstr ""
+
+msgid "Move to fully automated bidding which considers a variety of signals, including cross-device behaviour and insights from data-driven attribution models. Continue to explore new features that can automate targeting decisions."
+msgstr ""
+
+msgid "Automate assets that have many variables"
+msgstr ""
+
+msgid "Use dynamic feeds, behavioural signals from your website as well as cross-channel behavioural signals to automatically find the best-performing variation of your creative. Aim for a high percentage of automated creative optimisation."
+msgstr ""
+
+msgid "Stay on top of new technology"
+msgstr ""
+
+msgid "Stay close to new platform features that make setting up and managing campaigns more efficient, for example, start buying media on new channels or platforms to go through your Demand Side Platform (DSP) as soon as it’s feasible. Leverage new features of platform APIs to automate more tasks in campaign setup, maintenance, reporting and optimisation."
+msgstr ""
+
+msgid "Actively look for repetitive tasks that could be automated and identify tasks that are already automated but may benefit from more data inputs, for example, if your bids are already being set automatically, integrate additional relevant data signals as they become available."
+msgstr ""
+
+msgid "Pay attention to new data signals that may help to improve the algorithms in your creative optimisation technology. Aim for a high percentage of automated creative optimisation."
+msgstr ""
+
+msgid "Devote specialist resources to digital marketing"
+msgstr ""
+
+msgid "Hire people who specialise in a specific channel, in data science and measurement technologies. Make sure these people can spend enough or even all their time on digital marketing."
+msgstr ""
+
+msgid "Increase coordination and collaboration"
+msgstr ""
+
+msgid "Identify a senior sponsor who champions data-driven marketing, for example a VP of marketing. Coordinate and agree on marketing objectives across several digital channels. Enable collaboration between functional teams, starting with large campaign launches. Consider creating roles that are responsible for more than 1 digital marketing channel."
+msgstr ""
+
+msgid "Improve partner management and ways of working"
+msgstr ""
+
+msgid "Foster collaboration between different agencies. Increase your ability to work in agile ways, for example, devote budget to running experiments and encourage best practice sharing across functions or departments."
+msgstr ""
+
+msgid "Expand specialist resources"
+msgstr ""
+
+msgid "Increase the number of specialists for specific digital marketing channels, for data science and for measurement technologies."
+msgstr ""
+
+msgid "Investigate if data-driven marketing could be sponsored by a more senior person, for example the CMO. Coordinate and agree on marketing objectives across all digital channels. Set up processes that allow day-to-day collaboration across teams, functions and between your organisation and your most important partners."
+msgstr ""
+
+msgid "Improve collaboration between different agencies and establish regular touchpoints. Increase your ability to work in agile ways, for example, devote more budget to running experiments and encourage best practice sharing across functions, brands, departments and regions."
+msgstr ""
+
+msgid "Increase the number of specialists for specific digital marketing channels, for data science and measurement technologies. "
+msgstr ""
+
+msgid "Investigate if data-driven marketing could be sponsored by a more senior person, for example by the CEO. Coordinate and agree on marketing objectives across digital and non-digital channels. Link your marketing objectives to business results. Improve processes that enable day-to-day collaboration across teams, functions and between your organisation and all relevant ecosystem partners."
+msgstr ""
+
+msgid "Improve collaboration between all relevant agencies and from virtual campaign teams. Increase your ability to work in agile ways, for example, devote more budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
+msgstr ""
+
+msgid "Increase the number of specialists for specific digital marketing channels, for data science, measurement technologies and emerging fields of specialisms."
+msgstr ""
+
+msgid "Fine-tune coordination and collaboration"
+msgstr ""
+
+msgid "Continue to iterate on how you coordinate and agree on marketing objectives across digital and non-digital channels. Find new links between marketing objectives and business performance. Improve processes that enable day-to-day collaboration across teams, functions and between your organisation and all relevant ecosystem partners."
+msgstr ""
+
+msgid "Regularly evaluate collaboration between all relevant agencies and help them to be more impactful and efficient. Continue to review your ability to work in agile ways, for example evaluate how you allocate budget to running experiments and refine processes around best practice sharing across functions, brands, departments and regions."
+msgstr ""
+
+msgid "We worked with BCG to carry out an in-depth study of businesses to identify what drives data-driven marketing maturity. The results showed these 6 capabilities are key to top performance and delivering what today’s customers expect from brands."
+msgstr ""
+
+msgid "The capability to accurately measure and value customer touchpoints."
+msgstr ""
+
+msgid "The capability to deliver attention-driving, intuitive experiences across digital touchpoints."
+msgstr ""
+
+msgid "The capability to organise data to identify, understand and influence the most valuable audiences throughout the sales funnel."
+msgstr ""
+
+msgid "The capability to reach and deliver across all inventory types and channels."
+msgstr ""
+
+msgid "The capability to optimise marketing operations to drive profitability and growth."
+msgstr ""
+
+msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
+msgstr ""
+
+msgid "Accommodation and food service"
+msgstr ""
+
+msgid "Arts, entertainment & recreation"
+msgstr ""
+
+msgid "Construction"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "Further education"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Primary education"
+msgstr ""
+
+msgid "Secondary education"
+msgstr ""
+
+msgid "Electricity, gas, steam, water"
+msgstr ""
+
+msgid "Financial and Insurance"
+msgstr ""
+
+msgid "Banking"
+msgstr ""
+
+msgid "Insurance"
+msgstr ""
+
+msgid "Human health & social work"
+msgstr ""
+
+msgid "Information and Communication"
+msgstr ""
+
+msgid "Books, news, periodicals, journals"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "TV, radio, movies, video, music"
+msgstr ""
+
+msgid "Telecommunications"
+msgstr ""
+
+msgid "Manufacturing"
+msgstr ""
+
+msgid "Chemicals"
+msgstr ""
+
+msgid "Cosmetics, toiletries, detergents"
+msgstr ""
+
+msgid "Electronics"
+msgstr ""
+
+msgid "Food & beverages"
+msgstr ""
+
+msgid "Furniture"
+msgstr ""
+
+msgid "Machinery & equipment"
+msgstr ""
+
+msgid "Pharmaceuticals"
+msgstr ""
+
+msgid "Textiles, footwear & apparel"
+msgstr ""
+
+msgid "Toys & games"
+msgstr ""
+
+msgid "Vehicles"
+msgstr ""
+
+msgid "Other service activities - Other"
+msgstr ""
+
+msgid "Other service activities - Printing"
+msgstr ""
+
+msgid "Professional activities"
+msgstr ""
+
+msgid "Consultancy"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Research"
+msgstr ""
+
+msgid "Public administration & political organisations"
+msgstr ""
+
+msgid "Real estate"
+msgstr ""
+
+msgid "Retail trade"
+msgstr ""
+
+msgid "Multi-category"
+msgstr ""
+
+msgid "Books, music, video"
+msgstr ""
+
+msgid "Food and beverages"
+msgstr ""
+
+msgid "Household goods"
+msgstr ""
+
+msgid "Transportation and Travel"
+msgstr ""
+
+msgid "Railway, flight, land & water transport"
+msgstr ""
+
+msgid "Travel agency & tour operator"
+msgstr ""
+
+msgid "Wholesale trade"
+msgstr ""
+
+msgid "Información y comunicación"
+msgstr ""
+
+msgid "Libros, noticias, periódicos y revistas"
+msgstr ""
+
+msgid "Your results are ready!"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "Industry"
+msgstr ""
+
+msgid "We've finished analysing your survey responses to find out where you can improve your marketing strategy."
+msgstr ""
+
+msgid "Click the button below to access your digital maturity report and see the results of your survey."
+msgstr ""
+
+msgid "Access your report"
+msgstr ""
+
+msgid "Connect with Google"
+msgstr ""
+
+msgid "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email."
+msgstr ""
+
+msgid "We've finished analyzing your survey responses to find out where you can improve your marketing strategy. Here's the link to access your report:"
+msgstr ""
+
+msgid "Response is ready!"
+msgstr ""
+
+msgid "Your roadmap to digital marketing maturity"
+msgstr ""
+
+#, python-format
+msgid "The <strong>%(prod_name)s</strong> is a diagnostic tool developed based on our in-depth research with BCG."
+msgstr ""
+
+msgid "Never miss a moment to connect with customers"
+msgstr ""
+
+msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
+msgstr ""
+
+msgid "How it works"
+msgstr ""
+
+msgid "Benchmark which stage your organisation is at on our digital maturity scale."
+msgstr ""
+
+msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
+msgstr ""
+
+msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
+msgstr ""
+
+msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+msgstr ""
+
+msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
+msgstr ""
+
+msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
+msgstr ""
+
+msgid "Everyday there are hundreds of chances to engage with customers digitally"
+msgstr ""
+
+#, python-format
+msgid "But research into data-driven marketing maturity by Boston Consulting Group (BCG) finds only 2%% of businesses use insights and technology to create useful, relevant experiences at multiple moments across the purchase journey."
+msgstr ""
+
+msgid "Use the insights from your report to identify how to drive your organisation to the next level, and work with others in your company and your partners to achieve this."
+msgstr ""
+
+msgid "devices running the tool"
+msgstr ""
+
+msgid "laptop screen demo"
+msgstr ""
+
+msgid "These businesses have a sustainable competitive advantage"
+msgstr ""
+
+#, python-format
+msgid "Companies leading the way in multi-moment marketing see 30%% cost efficiency savings and a 20%% increase in revenue."
+msgstr ""
+
+msgid "Find out more"
+msgstr ""
+
+msgid "image of person using the app on a mobile"
+msgstr ""
+
+msgid "Dig deeper into how your organisation performs across the 6 dimensions of digital marketing efficiency and profitability."
+msgstr ""
+
+msgid "organization dimension logo"
+msgstr ""
+
+msgid "Improve decision-making and results by working collaboratively across teams and with specialised partners"
+msgstr ""
+
+msgid "attribution dimension logo"
+msgstr ""
+
+msgid "Accurately measure and value customer touchpoints"
+msgstr ""
+
+msgid "assets and ads dimension logo"
+msgstr ""
+
+msgid "Deliver attention-driving, intuitive experiences across digital touchpoints"
+msgstr ""
+
+msgid "audience dimension logo"
+msgstr ""
+
+msgid "Organise data to identify, understand and influence the most valuable audiences throughout the sales funnel"
+msgstr ""
+
+msgid "access dimension logo"
+msgstr ""
+
+msgid "Efficiently reach your identified audiences across all ad inventory types and channels, with the right levels of control"
+msgstr ""
+
+msgid "automation dimension logo"
+msgstr ""
+
+msgid "Optimise marketing operations to drive profitability and growth"
+msgstr ""
+
+msgid "In partnership with"
+msgstr ""
+
+msgid "Why digital maturity matters"
+msgstr ""
+
+msgid "Start the assessment now"
+msgstr ""
+
+msgid "This in-depth assessment takes around 30 minutes to complete."
+msgstr ""
+
+msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
+msgstr ""
+
+msgid "read more"
+msgstr ""
+
+msgid "Appendix"
+msgstr ""
+
+msgid "Benchmark calculations"
+msgstr ""
+
+msgid "Industry average & industry best"
+msgstr ""
+
+msgid "These two metrics show how your company compares to the average and top performers in your industry globally."
+msgstr ""
+
+msgid "Your “Industry average” is currently based on global responses in the “{[reportCtrl.industryAvgSource]}” category."
+msgstr ""
+
+msgid "Your “Industry average” is currently based on global responses from all industries."
+msgstr ""
+
+msgid "Your “Industry best” is currently based on global responses in the “{[reportCtrl.industryBestSource]}” category."
+msgstr ""
+
+msgid "Your “Industry best” is currently based on global responses from all industries."
+msgstr ""
+
+msgid "If the scores above do not refer to your specific industry, not enough people have yet filled in the assessment to produce a reliable average. Check back later as the scores are continuously updated!"
+msgstr ""
+
+msgid "Six dimensions of digital marketing maturity"
+msgstr ""
+
+msgid "Together with BCG, we identified the "
+msgstr ""
+
+msgid "key dimensions"
+msgstr ""
+
+msgid " that drive data-driven marketing maturity. Click the icons below to see how you perform in each."
+msgstr ""
+
+msgid "Your Digital Maturity level is"
+msgstr ""
+
+msgid "Next level: "
+msgstr ""
+
+msgid "Congratulations, you're in the top group for digital maturity"
+msgstr ""
+
+msgid "Digital Maturity report"
+msgstr ""
+
+msgid "This report will show you where you are weakest and strongest, and what to do to get to the next level."
+msgstr ""
+
+msgid "This report will show you where you might not be performing as well, and how to keep your marketing maturity at the highest level."
+msgstr ""
+
+msgid "Why Digital Maturity matters"
+msgstr ""
+
+msgid "Your overall digital maturity"
+msgstr ""
+
+msgid "Learn more about levels"
+msgstr ""
+
+msgid "Dimensions"
+msgstr ""
+
+msgid "The definition has probably changed and we could not find any answer for this question."
+msgstr ""
+
+msgid "Consumer shift"
+msgstr ""
+
+msgid "Today, more and more of our lives are powered by mobile and digital. We love our devices, but what we really love is the power our devices give us. The power to get exactly what we want, instantly and effortlessly. To have our needs not just met, but anticipated."
+msgstr ""
+
+msgid "For marketers, this means the very nature of how consumers behave and what they expect has changed. And as these expectations ratchet up, so do the requirements (and opportunities) for marketers."
+msgstr ""
+
+msgid "Today’s consumers are:"
+msgstr ""
+
+msgid "Curious"
+msgstr ""
+
+msgid "They turn to Google Search more and more often looking to get useful advice and answers - even for the small stuff - so every decision they make is an informed one."
+msgstr ""
+
+#, python-format
+msgid "In the last 2 years, mobile searches have risen 239%% for best travel accessories, 208%% for best face powder and 156%% for best wet weather gear.&nbsp;"
+msgstr ""
+
+#, python-format
+msgid "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2 years.&nbsp;"
+msgstr ""
+
+msgid "Demanding"
+msgstr ""
+
+msgid "They want relevant and tailor-made experiences and expect brands to understand and meet their intent with useful information in the moment."
+msgstr ""
+
+msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
+msgstr ""
+
+#, python-format
+msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
+msgstr ""
+
+msgid "Impatient"
+msgstr ""
+
+msgid "People are making decisions faster than ever before, and they expect to be able to act on those decisions instantly."
+msgstr ""
+
+msgid "1 in 2 visits are abandoned if a mobile site takes longer than 3 seconds to load.&nbsp;"
+msgstr ""
+
+msgid "So, how can you be digitally mature and so anticipate the needs of your customers today?"
+msgstr ""
+
+msgid "Be there"
+msgstr ""
+
+msgid "Use the power of technology and insights to deliver relevant, real-time messages at scale, whenever each consumer is ready for them."
+msgstr ""
+
+msgid "Be helpful"
+msgstr ""
+
+msgid "Build a strategy driven by assistance, reorienting to become more relevant across the customer experience."
+msgstr ""
+
+msgid "Be quick"
+msgstr ""
+
+msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
+msgstr ""
+
+#, python-format
+msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
+msgstr ""
+
+msgid "Find out how you can be there, be helpful and be quick to meet and exceed these ever-rising customer expectations in your interactive Digital Marketing Maturity report."
+msgstr ""
+
+msgid "Source: Google Data, EMEA, Jan - Dec 2015 vs. Jan - Dec 2017"
+msgstr ""
+
+msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
+msgstr ""
+
+msgid "You are "
+msgstr ""
+
+msgid "You could be"
+msgstr ""
+
+msgid "Congratulations"
+msgstr ""
+
+#, python-format
+msgid "you're in the top 2%% for marketing maturity"
+msgstr ""
+
+msgid "Here's how you get there:"
+msgstr ""
+
+msgid "Here's how to get even better:"
+msgstr ""
+
+msgid "logo"
+msgstr ""
+
+msgid "in this dimension"
+msgstr ""
+
+msgid "Congratulations, you're in the top group for data maturity"
+msgstr ""
+
+msgid "Get more information about the industry average"
+msgstr ""
+
+msgid "Get more information about the industry best"
+msgstr ""
+
+msgid "Industry average is not available yet, sorry!"
+msgstr ""
+
+msgid "Industry average"
+msgstr ""
+
+msgid "Industry best is not available yet, sorry!"
+msgstr ""
+
+msgid "Industry best"
+msgstr ""
+
+msgid "Fetching your company rating..."
+msgstr ""
+
+msgid "Your company, "
+msgstr ""
+
+msgid " has a rating of "
+msgstr ""
+
+msgid " which is a maturity level of "
+msgstr ""
+
+msgid "Fetching industry average..."
+msgstr ""
+
+msgid "The industry average is "
+msgstr ""
+
+msgid "which is a maturity level of "
+msgstr ""
+
+msgid "Fetching industry best..."
+msgstr ""
+
+msgid "The industry best is "
+msgstr ""
+
+msgid "Not available yet"
+msgstr ""
+
+msgid "Your Company is"
+msgstr ""
+
+msgid "Your company rating"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Copied to clipboard!"
+msgstr ""
+
+msgid "Sorry, unable to copy."
+msgstr ""
+
+msgid "Looking to benchmark digital maturity for a different challenge or industry?"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "more"
+msgstr ""
+
+msgid "less"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Terms"
+msgstr ""
+
+msgid "About Google"
+msgstr ""
+
+msgid "Google Products"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Change language or region"
+msgstr ""
+
+msgid "Skip to content"
+msgstr ""
+
+msgid "Start now"
+msgstr ""
+
+msgid "In partnership with The Boston Consulting Group"
+msgstr ""
+
+msgid "Next steps"
+msgstr ""
+
+msgid "Review your recommendations and consider these four steps:"
+msgstr ""
+
+msgid "Define which areas are strongly linked to your business goals"
+msgstr ""
+
+msgid "Create a roadmap outlining what you intend to do over the next 12 months"
+msgstr ""
+
+msgid "Decide who will own each action and how to track progress over this period"
+msgstr ""
+
+msgid "Identify the right partners outside of your company to support you at each stage"
+msgstr ""
+
+msgid "Share this report with your colleagues"
+msgstr ""
+
+msgid "To share this report, copy the link and send it to your colleagues."
+msgstr ""
+
+msgid "Dimensions of marketing maturity"
+msgstr ""
+
+msgid "Levels of Digital Maturity"
+msgstr ""
+
+msgid "Ready to benchmark your company’s digital maturity?"
+msgstr ""
+
+msgid "Let’s start with some details about your organisation:"
+msgstr ""
+
+msgid "How we keep your information safe"
+msgstr ""
+
+msgid "Enter the organisation name"
+msgstr ""
+
+msgid "Organization name"
+msgstr ""
+
+msgid "Enter the organization name"
+msgstr ""
+
+msgid "Select an industry"
+msgstr ""
+
+msgid "Select a country"
+msgstr ""
+
+msgid "Progress to my assessment"
+msgstr ""
+
+msgid "Oops, something went wrong!"
+msgstr ""
+
+msgid "Nice Work!"
+msgstr ""
+
+msgid "Your response has been submitted and your report is being generated."
+msgstr ""
+
+msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgstr ""
+
+msgid "View the study while you wait"
+msgstr ""
+
+msgid "Back to website"
+msgstr ""
+
+msgid "Woops.. that page doesn't seem to exist, or the link is broken."
+msgstr ""
+
+msgid "Try returning to the homepage."
+msgstr ""
+
+msgid "Return to homepage"
+msgstr ""
+
+msgid "Woops.. there was an internal server error."
+msgstr ""
