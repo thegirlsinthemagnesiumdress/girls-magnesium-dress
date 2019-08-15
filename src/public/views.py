@@ -166,17 +166,6 @@ def admin(request, tenant):
         # 'bootstrap_data': JSONRenderer().render(api_data),
     })
 
-        'slug': get_tenant_slug(tenant),
-        'content_data': _dump_tenant_content_data(tenant),
-        'engagement_lead': request.user.engagement_lead,
-        'industries': industries,
-        'countries': COUNTRIES_TUPLE,
-        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
-        'bootstrap_data': JSONRenderer().render(api_data),
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
-    })
-
 
 @login_required
 @survey_admin_required
