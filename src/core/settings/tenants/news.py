@@ -492,6 +492,7 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'levels_max': LEVELS_MAX,
+    'level_ranges': utils.get_tenant_level_ranges(LEVELS, LEVELS_MAX),
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,

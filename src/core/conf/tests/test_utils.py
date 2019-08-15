@@ -5,8 +5,10 @@ from core.conf.utils import (
     get_other_tenant_footers,
     get_tenant_level_ranges,
     get_level_key,
+    get_next_level_key,
+    in_top_level,
     get_level_info,
-    is_top_level,
+    get_dimension_level_info,
 )
 import mock
 from djangae.test import TestCase
@@ -311,74 +313,116 @@ class GetOtherTenantFootersTest(TestCase):
 
 @override_settings(
     TENANTS=MOCKED_TENANTS,
-    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
 )
 class GetLevelAttributesTest(TestCase):
     """Test for functions in `core.utils` for getting level-dependent properties/attributes."""
 
+    def setUp(self):
+        self.content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
+        self.level_ranges = get_tenant_level_ranges(
+            self.content_data['levels'],
+            self.content_data['levels_max']
+        )
+
     def get_level_ranges_test(self):
         """Test that a tenants level ranges are assembled correctly"""
-        content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
-        level_ranges = get_tenant_level_ranges('tenant1')
         # Check ranges are not empty.
-        self.assertEqual(len(level_ranges), len(content_data['levels']))
+        self.assertEqual(len(self.level_ranges), len(self.content_data['levels']))
         # Check ranges are formed correctly.
-        for (level_min, level_max) in level_ranges:
+        for (level_min, level_max) in self.level_ranges:
             self.assertGreater(level_max, level_min)
             self.assertNotEqual(level_min, level_max)
         # Check that final range has max level as maximum
-        self.assertEqual(level_ranges[len(level_ranges) - 1][1], content_data['levels_max'])
+        self.assertEqual(self.level_ranges[-1][1], self.content_data['levels_max'])
 
-    def score_to_level_key_test(self):
+    def get_level_key_test(self):
         """Tests that a score returns the correct level key"""
-        content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
-        levels = content_data['levels']
-        level_ranges = get_tenant_level_ranges('tenant1')
+        levels = self.content_data['levels']
         # Check scores are classified correctly.
         for idx, level in enumerate(levels.keys()):
             if idx != 0:
                 # If score is less than boundary the its the level before
                 previous_level = levels.keys()[idx - 1]
                 self.assertEqual(
-                    get_level_key(level_ranges, level - 0.1),
+                    get_level_key(self.level_ranges, level - 0.1),
                     previous_level
                 )
             # If score is boundary then its the level
             self.assertEqual(
-                get_level_key(level_ranges, level),
+                get_level_key(self.level_ranges, level),
                 level
             )
             if idx != len(levels.keys()) - 1:
                 # If score is more than boundary but less than the one above its still the level
                 self.assertEqual(
-                    get_level_key(level_ranges, level + 0.1),
+                    get_level_key(self.level_ranges, level + 0.1),
                     level
                 )
+        # Check scores outside ranges are classified correctly.
+        self.assertEqual(
+            get_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
+            self.level_ranges[0][0]
+        )
+        self.assertEqual(
+            get_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
+            self.level_ranges[-1][0]
+        )
 
-    def score_to_level_info_test(self):
+    def get_next_level_key_test(self):
+        """Tests that the next level of a score is calculated correctly."""
+        # Check that the next level of a non-top-level score is correct.
+        self.assertEqual(
+            get_next_level_key(self.level_ranges, self.level_ranges[0][0]),
+            self.level_ranges[0][1]
+        )
+        # Check that the next level of a top-level score is correct.
+        self.assertEqual(
+            get_next_level_key(self.level_ranges, self.level_ranges[-1][1]),
+            self.level_ranges[-1][0]
+        )
+        # Check scores outside ranges are classified correctly.
+        self.assertEqual(
+            get_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
+            self.level_ranges[0][0]
+        )
+        self.assertEqual(
+            get_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
+            self.level_ranges[-1][0]
+        )
+
+    def is_top_level_test(self):
+        """Tests that a top score is classified correctly."""
+        # Check that a top score is has the highest level.
+        high_score = self.level_ranges[-1][1]
+        level = get_level_key(self.level_ranges, high_score)
+        self.assertTrue(in_top_level(self.level_ranges, level))
+
+    def is_not_top_level_test(self):
+        """Tests that a non-top score is classified correctly."""
+        # Check that a low score does not have the highest level.
+        low_score = self.level_ranges[0][0]
+        level = get_level_key(self.level_ranges, low_score)
+        self.assertFalse(in_top_level(self.level_ranges, level))
+
+    def get_level_info_test(self):
         """Tests that a score returns the correct level information"""
-        content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
-        levels = content_data['levels']
-        level_ranges = get_tenant_level_ranges('tenant1')
+        levels = self.content_data['levels']
         # Check correct level info is given for each level.
         for level in levels.keys():
-            level_info = get_level_info('tenant1', level_ranges, level)
+            level_info = get_level_info('tenant1', level, self.level_ranges)
             self.assertEqual(level, level_info['value'])
             self.assertEqual(levels[level], level_info['name'])
-            self.assertEqual(content_data['level_descriptions'][level], level_info['description'])
+            self.assertEqual(self.content_data['level_descriptions'][level], level_info['description'])
 
-    def score_is_top_level_test(self):
-        """Tests that a top score is classified correctly."""
-        level_ranges = get_tenant_level_ranges('tenant1')
-        # Check that a top score is has the highest level.
-        high_score = level_ranges[len(level_ranges) - 1][1]
-        level = get_level_key(level_ranges, high_score)
-        self.assertTrue(is_top_level(level_ranges, level))
-
-    def score_is_not_top_level_test(self):
-        """Tests that a non-top score is classified correctly."""
-        level_ranges = get_tenant_level_ranges('tenant1')
-        # Check that a low score does not have the highest level.
-        low_score = level_ranges[0][0]
-        level = get_level_key(level_ranges, low_score)
-        self.assertFalse(is_top_level(level_ranges, level))
+    def get_dimension_level_info_test(self):
+        """Tests that a score returns the correct dimension level info"""
+        levels = self.content_data['levels']
+        # Check correct level info is given for each level.
+        for level in levels.keys():
+            level_info = get_dimension_level_info('tenant1', 'ads', level, self.level_ranges)
+            self.assertEqual(level, level_info['value'])
+            self.assertEqual(levels[level], level_info['name'])
+            self.assertEqual(
+                self.content_data['dimension_level_description']['ads'][level],
+                level_info['description']
+            )
