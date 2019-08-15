@@ -1,10 +1,10 @@
 .dmb-button {
   align-items: center;
   background: $dmb-color-blue-alice;
-  border-radius: $dmb-border-radius-large;
+  border-radius: $dmb-border-radius-medium;
   display: flex;
-  font-family: 'Google Sans Display', 'Google Sans', 'Roboto', Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-family: $dmb-alt-font-family;
+  font-size: 14px;
   font-weight: 500;
   margin: 0;
   padding: 9px 12px;

@@ -1,10 +1,10 @@
 .dmb-svg {
   &--inline {
-    align-self: center;
-    height: 1em;
-    margin-left: .5em;
+    height: .9em;
     margin-right: .5em;
-    width: 1em;
+    position: relative;
+    top: .08em;
+    width: .9em;
   }
 
   // Put color styles for specific SVGs here.

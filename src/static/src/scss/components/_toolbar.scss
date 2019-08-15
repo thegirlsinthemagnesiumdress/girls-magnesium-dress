@@ -1,17 +1,21 @@
 .dmb-toolbar {
   &__heading {
-    display: flex;
+    display: inline-flex;
   }
 
   &__heading-icon {
-    height: 24px;
+    fill: $dmb-color-grey-shuttle;
     margin: 0 24px 0 8px;
-    width: 24px;
+  }
+
+  &__right-col {
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__search {
-    border-radius: $dmb-border-radius-large;
-    display: none;
+    border-radius: $dmb-border-radius-medium;
+    display: none; // Remove once search is enabled
     flex-grow: 1;
     margin-right: 24px;
   }
@@ -19,11 +23,6 @@
   &__btns {
     align-items: center;
     display: flex;
-  }
-
-  &__right-col {
-    display: flex;
-    justify-content: flex-end;
   }
 
   &__export-btn {
