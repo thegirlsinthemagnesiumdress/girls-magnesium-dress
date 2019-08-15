@@ -152,12 +152,12 @@ def admin(request, tenant):
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
-    return render(request, 'public/admin.html', {
+    return render(request, 'public/accounts.html', {
         'content_data': '',
         'other_tenants': get_other_tenant_footers(tenant),
         'product_name': get_tenant_product_name(tenant),
         'slug': get_tenant_slug(tenant),
-        'surveys': Survey.objects.filter(tenant=tenant),
+        'accounts': Survey.objects.filter(tenant=tenant),
         'tenant': tenant,
         # 'engagement_lead': request.user.engagement_lead,
         # 'industries': industries,
