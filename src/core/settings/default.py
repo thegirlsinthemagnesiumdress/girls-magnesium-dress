@@ -143,6 +143,7 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', 'English'),
     ('es', 'Español'),
+    ('it', 'Italiano'),
     ('tr', 'Türkçe'),
 ]
 
