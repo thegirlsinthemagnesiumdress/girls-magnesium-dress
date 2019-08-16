@@ -23,9 +23,33 @@
       <div class="dmb-toolbar__search"></div>
 
       <div class="dmb-toolbar__btns">
-        <button class="dmb-toolbar__export-btn">
+
+        <div
+            class="dmb-toolbar__export"
+            ng-controller="ExportReportsCtrl as exportsCtrl">
+          <form
+              action="{% url 'reports_export' slug|ng_mark_safe %}"
+              method="post"
+              name="export"
+              ng-submit="exportsCtrl.export($event, '{{ engagement_lead|ng_mark_safe }}')"
+              novalidate>
+            <button
+                class="dmb-toolbar__export-btn dmb-tooltip"
+                id="dmb-export-btn"
+                ng-disabled="exportsCtrl.submitting"
+                type="submit">
           {% include 'core/inc/svg.html' with id='export' size="24px" %}
+              <span class="dmb-toolbar__export-tooltip-text dmb-tooltip__text">
+                Export the data from all your surveys. Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
+              </span>
         </button>
+          </form>
+          <div
+              class="dmb-toast"
+              ng-if="exportsCtrl.showToast">
+            {[exportsCtrl.toastText]}
+          </div>
+        </div>
 
         <a
             class="dmb-button"
