@@ -137,10 +137,12 @@ def thank_you(request, tenant):
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
+
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
     return redirect(reverse('admin', kwargs={'tenant': get_tenant_slug(tenant)}))
+
 
 @login_required
 @survey_admin_required
@@ -156,7 +158,7 @@ def admin(request, tenant):
         'content_data': '',
         'other_tenants': get_other_tenant_footers(tenant),
         'product_name': get_tenant_product_name(tenant),
-        'slug': get_tenant_slug(tenant),
+        'slug': slug,
         'accounts': Survey.objects.filter(tenant=tenant),
         'tenant': tenant,
         'engagement_lead': request.user.engagement_lead,
