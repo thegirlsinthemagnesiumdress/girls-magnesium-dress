@@ -3,11 +3,44 @@
 
 {% block main %}
 {% djangoblock %}
-<div class="h-c-page">
-  <h2 class="h-c-headline h-c-headline--three">{{ account.name }}</h2>
-  <p>{{ account.account_id }} {{ account.country }} {{ account.industry }}</p>
+<main id="dmb-account" class="dmb-account h-c-page dmb-u-m-t-m">
+  <div class="dmb-banner dmb-u-m-b-m">
+    <div class="dmb-banner__back">
+      <a href="{% url 'reports' slug %}">
+        {% include 'core/inc/svg.html' with id='back' size='24px' %}
+      </a>
+    </div>
 
-  <hr>
+    <div class="dmb-banner__main">
+      <h1 class="dmb-banner__heading h-c-headline h-c-headline--two">
+        {{ account.name }}
+      </h1>
+      <div class="dmb-banner__details">
+        <ul class="dmb-banner__details-list">
+          <li class="dmb-banner__details-list-item">
+            {% include 'core/inc/svg.html' with id='greentea' size='24px' %}
+            <span>{{ account.id }}</span>
+          </li>
+          <li class="dmb-banner__details-list-item">
+            {% include 'core/inc/svg.html' with id='globe' size='24px' %}
+            <span>{{ account.country }}</span>
+          </li>
+          <li class="dmb-banner__details-list-item">
+            {% include 'core/inc/svg.html' with id='briefcase' size='24px' %}
+            <span>{{ account.industry }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="dmb-banner__btns h-u-text-right">
+      <button class="dmb-banner__btn">
+        {% include 'core/inc/svg.html' with id='edit' size='24px' %}
+      </button>
+      <button class="dmb-banner__btn">
+        {% include 'core/inc/svg.html' with id='export' size='24px' %}
+      </button>
+    </div>
+  </div>
 
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--6">
@@ -42,6 +75,6 @@
         </ul>
     </div>
   </div>
-</div>
+</main>
 {% enddjangoblock %}
 {% endblock %}
