@@ -159,11 +159,11 @@ def admin(request, tenant):
         'slug': get_tenant_slug(tenant),
         'accounts': Survey.objects.filter(tenant=tenant),
         'tenant': tenant,
-        # 'engagement_lead': request.user.engagement_lead,
-        # 'industries': industries,
-        # 'countries': COUNTRIES_TUPLE,
-        # 'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
-        # 'bootstrap_data': JSONRenderer().render(api_data),
+        'engagement_lead': request.user.engagement_lead,
+        'industries': industries,
+        'countries': COUNTRIES_TUPLE,
+        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
+        'bootstrap_data': JSONRenderer().render(api_data),
     })
 
 
