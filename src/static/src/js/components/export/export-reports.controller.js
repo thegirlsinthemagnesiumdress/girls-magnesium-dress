@@ -1,8 +1,5 @@
 goog.module.declareNamespace('dmb.components.exportReports.controller');
 
-const TOAST_SUCCESS_MESSAGE = `Data export requested. This may take up to 5 minutes. Please check your email inbox.`;
-const TOAST_ERROR_MESSAGE = `Sorry there was an error, please try again`;
-
 /**
  * Export reports controller
  */
@@ -44,12 +41,6 @@ class ExportReportsController {
 
     /**
      * @export
-     * @type {string}
-     */
-    this.toastText = '';
-
-    /**
-     * @export
      * @type {Function}
      */
     this.timeout = $timeout;
@@ -79,17 +70,15 @@ class ExportReportsController {
       }
     ).then(() => {
       this.exportSuccess = true;
-      this.toastText = TOAST_SUCCESS_MESSAGE;
     }, (err) => {
       this.exportError = true;
-      this.toastText = TOAST_ERROR_MESSAGE;
       console.error(err);
     }).finally(()=> {
       this.showToast = true;
       this.submitting = false;
       this.timeout(() => {
         this.showToast = false;
-      }, 10000);
+      }, 7000);
     });
   }
 

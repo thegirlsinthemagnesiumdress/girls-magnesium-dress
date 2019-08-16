@@ -38,16 +38,21 @@
                 id="dmb-export-btn"
                 ng-disabled="exportsCtrl.submitting"
                 type="submit">
-          {% include 'core/inc/svg.html' with id='export' size="24px" %}
+              {% include 'core/inc/svg.html' with id='export' size="24px" %}
               <span class="dmb-toolbar__export-tooltip-text dmb-tooltip__text">
                 Export the data from all your surveys. Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
               </span>
-        </button>
+            </button>
           </form>
           <div
               class="dmb-toast"
               ng-if="exportsCtrl.showToast">
-            {[exportsCtrl.toastText]}
+            <span ng-if="!exportError">
+              {% trans "Data export requested. This may take up to 5 minutes. Please check your email inbox." %}
+            </span>
+            <span ng-if="exportError">
+              {% trans "Sorry there was an error, please try again." %}
+            </span>
           </div>
         </div>
 
@@ -69,79 +74,123 @@
         class="dmb-table__empty-table-block h-u-text-center"
         ng-if="reportAdminCtrl.surveys.length < 1">
       {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
-        <h2 class="h-c-headline h-c-headline--five">
-          Add an account to get started
-        </h2>
-      </div>
+      <h2 class="h-c-headline h-c-headline--five">
+        Add an account to get started
+      </h2>
+    </div>
 
     <div
         class="h-c-table__overflowcontainer"
         ng-if="reportAdminCtrl.surveys.length > 0">
-        <table
-            class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
-            role="table"
-            summary="{% trans 'List of accounts you are subscribed to' %}">
-          <thead>
-            <tr>
-              <th scope="col">
-                Organization
-              </th>
-              <th scope="col">
-                Country
-              </th>
-              <th scope="col">
-                Industry
-              </th>
-              <th
-                  scope="col">
-                Int. Score
-              </th>
-              <th scope="col">
-                Int. Maturity
-              </th>
-              <th
-                  scope="col">
-                Ext. Score
-              </th>
-              <th scope="col">
-                Ext. Maturity
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+      <table
+          class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
+          role="table"
+          summary="{% trans 'List of accounts you are subscribed to' %}">
+        <thead>
+          <tr>
+            <th scope="col">
+              Organization
+            </th>
+            <th scope="col">
+              Country
+            </th>
+            <th scope="col">
+              Industry
+            </th>
+            <th
+                scope="col">
+              Int. Score
+            </th>
+            <th scope="col">
+              Int. Maturity
+            </th>
+            <th
+                scope="col">
+              Ext. Score
+            </th>
+            <th scope="col">
+              Ext. Maturity
+            </th>
+          </tr>
+        </thead>
+        <tbody>
 
-            <!-- Repeat -->
+          <!-- Repeat -->
           <tr ng-repeat="survey in reportAdminCtrl.surveys">
-                <td data-colheader="Organization">
+            <td data-colheader="Organization">
               <a href="/{[ survey.account_id ]}">
                 {[ survey.company_name ]}
-                  </a>
-                </td>
+              </a>
+            </td>
             <td data-colheader="Country">
               {[ survey.company_name ]}
-                </td>
+            </td>
             <td data-colheader="Industry">
               {[ survey.industry_name ]}
-                </td>
+            </td>
             <td data-colheader="Int. Maturity" class="h-c-table__cell--numerical">
               {[ survey.last_survey_result.dmb|number:1 ]}
             </td>
             <td data-colheader="Int. Maturity">
-              {[ reportAdminCtrl.dmbLevelsFactory(survey.last_survey_result.dmb)['current']['value'] ]}
+              {[ reportAdminCtrl.dmbLevelsFactory(survey.last_survey_result.dmb)['current']['mapValue'] ]}
             </td>
             <td data-colheader="Ext. Maturity" class="h-c-table__cell--numerical">
               {[ survey.last_internal_result.dmb|number:1 ]}
-                </td>
+            </td>
             <td data-colheader="Ext. Maturity">
-              {[ reportAdminCtrl.dmbLevelsFactory(survey.last_internal_result.dmb)['current']['value'] ]}
-                </td>
-              </tr>
+              {[ reportAdminCtrl.dmbLevelsFactory(survey.last_internal_result.dmb)['current']['mapValue'] ]}
+            </td>
+          </tr>
           <!-- EndRepeat -->
 
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </main>
+
+{% comment %}
+<main id="dmb-account" class="dmb-account h-c-page">
+  <div class="dmb-banner">
+    <div class="dmb-banner__back">
+      <button class="dmb-banner__back-btn">
+        {% include 'core/inc/svg.html' with id='back' size='24px' class='dmb-banner__back-btn' %}
+      </button>
+    </div>
+    <div class="dmb-banner__main">
+      <h1 class="dmb-banner__heading h-c-headline h-c-headline--two">
+        Potato London
+      </h1>
+      <div class="dmb-banner__details">
+        <ul class="dmb-banner__details-list">
+          <li class="dmb-banner__details-list-item">
+            {% include 'core/inc/svg.html' with id='greentea' size='24px' inline=True %}
+            <span>7149807</span>
+          </li>
+          <li class="dmb-banner__details-list-item">
+            {% include 'core/inc/svg.html' with id='globe' size='24px' inline=True %}
+            <span>United Kingdom</span>
+          </li>
+          <li class="dmb-banner__details-list-item">
+            {% include 'core/inc/svg.html' with id='briefcase' size='24px' inline=True %}
+            <span>Technology</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="dmb-banner__btns">
+      <button>
+        {% include 'core/inc/svg.html' with id='edit' size='24px' %}
+      </button>
+      <button>
+        {% include 'core/inc/svg.html' with id='export' size='24px' %}
+      </button>
+    </div>
+  </div>
+</main>
+{% endcomment %}
+
+
+
 {% endblock %}

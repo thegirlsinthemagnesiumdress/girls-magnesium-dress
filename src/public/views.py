@@ -154,7 +154,7 @@ def admin(request, tenant):
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
-    return render(request, 'public/accounts.html', {
+    return render(request, 'public/admin/accounts.html', {
         'accounts': Survey.objects.filter(tenant=tenant),
         'bootstrap_data': JSONRenderer().render(api_data),
         'content_data':  _dump_tenant_content_data(tenant),
