@@ -157,16 +157,15 @@ def admin(request, tenant):
     return render(request, 'public/admin/accounts.html', {
         'accounts': Survey.objects.filter(tenant=tenant),
         'bootstrap_data': JSONRenderer().render(api_data),
-        'content_data':  _dump_tenant_content_data(tenant),
+        'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'other_tenants': get_other_tenant_footers(tenant),
         'product_name': get_tenant_product_name(tenant),
         'slug': slug,
-        'accounts': Survey.objects.filter(tenant=tenant),
         'tenant': tenant,
-        # 'industries': industries,
-        # 'countries': COUNTRIES_TUPLE,
-        # 'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
+        'industries': industries,
+        'countries': COUNTRIES_TUPLE,
+        'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
     })
 
 
