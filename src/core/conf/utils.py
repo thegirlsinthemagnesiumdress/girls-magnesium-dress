@@ -217,7 +217,7 @@ def get_next_level_key(level_ranges, score):
     """
     # If the level is the max score then return the highest level (min of the final range).
     max_range = level_ranges[-1]
-    if score >= max_range[1]:
+    if score >= max_range[0]:
         return max_range[0]
     # Otherwise loop through the ranges and find the range containing the score.
     for (level_min, level_max) in level_ranges:
@@ -299,11 +299,11 @@ def get_dimension_level_info(tenant, dimension, score, level_ranges=None):
         "current": {
             "value": level,
             "name": content_data['levels'][level],
-            "description": content_data['dimension_level_description'][level],
+            "description": content_data['dimension_level_description'][dimension][level],
         },
         "next": {
             "value": next_level,
             "name": content_data['levels'][next_level],
-            "description": content_data['dimension_level_description'][next_level],
+            "description": content_data['dimension_level_description'][dimension][next_level],
         }
     }
