@@ -262,15 +262,19 @@ def get_level_info(tenant, score, level_ranges=None):
     next_level = get_next_level_key(level_ranges, score)
     # Form the level info object.
     return {
-        "current": {
-            "value": level,
-            "name": content_data['levels'][level],
-            "description": content_data['level_descriptions'][level],
-        },
-        "next": {
-            "value": next_level,
-            "name": content_data['levels'][next_level],
-            "description": content_data['level_descriptions'][next_level],
+        "value": score,
+        "inTopLevel": in_top_level(level_ranges, score),
+        "levels": {
+            "current": {
+                "value": level,
+                "name": content_data['levels'][level],
+                "description": content_data['level_descriptions'][level],
+            },
+            "next": {
+                "value": next_level,
+                "name": content_data['levels'][next_level],
+                "description": content_data['level_descriptions'][next_level],
+            }
         }
     }
 
@@ -283,7 +287,8 @@ def get_dimension_level_info(tenant, dimension, score, level_ranges=None):
         dimension (string): The dimension to pull level content from.
         score (number): The raw qualtrics result.
         level_ranges ([(number, number)], optional): Array of tuples for calculating scores' level
-            should only be set for testing as is found in content data. Defaults to None.
+                                                     should only be set for testing as is found in
+                                                     content data. Defaults to None.
 
     Returns:
         object: An object containing the value, name, and description of the current and next dimension level.
@@ -296,14 +301,81 @@ def get_dimension_level_info(tenant, dimension, score, level_ranges=None):
     next_level = get_next_level_key(level_ranges, score)
     # Form the level info object.
     return {
-        "current": {
-            "value": level,
-            "name": content_data['levels'][level],
-            "description": content_data['dimension_level_description'][dimension][level],
-        },
-        "next": {
-            "value": next_level,
-            "name": content_data['levels'][next_level],
-            "description": content_data['dimension_level_description'][dimension][next_level],
+        "value": score,
+        "inTopLevel": in_top_level(level_ranges, score),
+        "levels": {
+            "current": {
+                "value": level,
+                "name": content_data['levels'][level],
+                "description": content_data['dimension_level_description'][dimension][level],
+            },
+            "next": {
+                "value": next_level,
+                "name": content_data['levels'][next_level],
+                "description": content_data['dimension_level_description'][dimension][next_level],
+            }
         }
     }
+
+
+def get_detailed_survey_result_data(tenant, survey_result, level_ranges=None):
+    """Gets data on the overall and dimension scores for a particular survey result.
+
+    Args:
+        tenant (string): The tenant to pull level content from.
+        survey_result (core.models.SurveyResult): The survey result to gather data on.
+        level_ranges ([(number, number)], optional): Array of tuples for calculating scores' level
+                                                     should only be set for testing as is found in
+                                                     content data. Defaults to None.
+
+    Returns:
+        object: An object containing level information about the overall and dimension scores,
+                as well as if the score is in the top level and when the survey was taken.
+                For use in the Admin's Account Details page.
+    """
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+    # If level ranges have not been provided use the ones defined in the content data.
+    if not level_ranges:
+        level_ranges = content_data['level_ranges']
+    # Construct the data object.
+    survey_result_data = {
+        "date": survey_result.loaded_at,
+        "overall": get_level_info(tenant, survey_result.dmb, level_ranges),
+        "dimensions": {dimension: get_dimension_level_info(tenant, dimension, value, level_ranges)
+                       for dimension, value in survey_result.dmb_d.items()}
+    }
+    return survey_result_data
+
+
+def get_account_detail_data(tenant, account, level_ranges=None):
+    """Gets requied data for the account detail page.
+
+    Args:
+        tenant (string): The tenant to pull content from.
+        account (Survey): The account to gather data and survey results from.
+        level_ranges ([(number, number)], optional): Array of tuples for calculating scores' level
+                                                     should only be set for testing as is found in
+                                                     content data. Defaults to None.
+
+    Returns:
+        object, object, object: 3 Objects representing the account information, external survey
+                                result data, and internal survey result data.
+    """
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+    # If level ranges have not been provided use the ones defined in the content data.
+    if not level_ranges:
+        level_ranges = content_data['level_ranges']
+    # Construct the account info object.
+    account_info = {
+        "id": account.account_id,
+        "name": account.company_name,
+        "country": settings.COUNTRIES[account.country],
+        "industry": account.get_industry_display(),
+    }
+    # Construct the internal and external survey info arrays.
+    external_surveys = [get_detailed_survey_result_data(tenant, survey_result, level_ranges)
+                        for survey_result in account.survey_results.all()]
+    internal_surveys = [get_detailed_survey_result_data(tenant, survey_result, level_ranges)
+                        for survey_result in account.survey_results.all()]
+    # Return the tuple of objects.
+    return account_info, external_surveys, internal_surveys

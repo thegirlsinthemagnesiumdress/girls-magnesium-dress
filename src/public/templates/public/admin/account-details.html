@@ -4,8 +4,8 @@
 {% block main %}
 {% djangoblock %}
 <div class="h-c-page">
-  <h2 class="h-c-headline h-c-headline--three">{{ account.company_name }}</h2>
-  <p>{{ account.account_id }} { country }} {{ industry }}</p>
+  <h2 class="h-c-headline h-c-headline--three">{{ account.name }}</h2>
+  <p>{{ account.account_id }} {{ account.country }} {{ account.industry }}</p>
 
   <hr>
 
@@ -13,12 +13,12 @@
     <div class="h-c-grid__col h-c-grid__col--6">
       <p>External Results:</p>
       <ul>
-        {% for result in account.survey_results.all %}
+        {% for result in external_results %}
           <li>
-            {{ result.started_at }} [{{ result.dmb }}]
+            {{ result.date }} [{{ result.overall.value }}]
             <ul>
-              {% for dimension, score in result.dmb_d.items %}
-                <li>{{ dimension }} [{{ score }}]</li>
+              {% for dimension, dimension_info in result.dimensions.items %}
+                <li>{{ dimension }} [{{ dimension_info.value }}]</li>
               {% endfor %}
             </ul>
           </li>
@@ -29,12 +29,12 @@
     <div class="h-c-grid__col h-c-grid__col--6">
         <p>Internal Results:</p>
         <ul>
-          {% for result in account.internal_results.all %}
+          {% for result in internal_results %}
             <li>
-              {{ result.started_at }} [{{ result.dmb }}]
+              {{ result.date }} [{{ result.overall.value }}]
               <ul>
-                {% for dimension, score in result.dmb_d.items %}
-                  <li>{{ dimension }} [{{ score }}]</li>
+                {% for dimension, dimension_info in result.dimensions.items %}
+                  <li>{{ dimension }} [{{ dimension_info.value }}]</li>
                 {% endfor %}
               </ul>
             </li>

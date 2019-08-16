@@ -11,7 +11,14 @@ from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name, version_info
+from core.conf.utils import (
+    flatten,
+    get_tenant_slug,
+    get_other_tenant_footers,
+    get_tenant_product_name,
+    version_info,
+    get_account_detail_data,
+)
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
@@ -166,15 +173,14 @@ def reports_admin(request, tenant):
 def account_detail(request, tenant, account_id):
     account = get_object_or_404(Survey, account_id=account_id)
 
-    tenant_conf = settings.TENANTS[tenant]
-    industries = {k: v for (k, v) in flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])}
+    account_info, external_surveys, internal_surveys = get_account_detail_data(tenant, account)
 
-    return render(request, 'public/admin/account-detail.html', {
+    return render(request, 'public/admin/account-details.html', {
         'tenant': tenant,
         'slug': get_tenant_slug(tenant),
-        'account': account,
-        'country': settings.COUNTRIES[account.country],
-        'industry': industries[account.industry],
+        'account': account_info,
+        'external_results': external_surveys,
+        'internal_results': internal_surveys,
         'content_data': _dump_tenant_content_data(tenant),
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),

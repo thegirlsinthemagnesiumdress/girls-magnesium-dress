@@ -9,13 +9,15 @@ from core.conf.utils import (
     in_top_level,
     get_level_info,
     get_dimension_level_info,
+    get_detailed_survey_result_data,
 )
 import mock
 from djangae.test import TestCase
 from collections import OrderedDict
 from django.test import override_settings
 from django.conf import settings
-from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
+from core.tests.mocks import MOCKED_TENANTS
+from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
 class MapIndustriesTest(TestCase):
@@ -408,20 +410,29 @@ class GetLevelAttributesTest(TestCase):
         """Tests that a score returns the correct level information"""
         levels = self.content_data['levels']
         # Check correct level info is given for each level.
-        for level in levels.keys():
-            level_info = get_level_info('tenant1', level, self.level_ranges)
+        for idx, level in enumerate(levels.keys()):
+            level_info = get_level_info('tenant1', level, self.level_ranges)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
             self.assertEqual(self.content_data['level_descriptions'][level], level_info['current']['description'])
-            # TODO: Check next level info
+            # Check next level info
+            if idx != len(levels.keys()) - 1:
+                next_level = levels.keys()[idx + 1]
+                next_level_info = get_level_info('tenant1', next_level, self.level_ranges)['levels']
+                self.assertEqual(next_level, next_level_info['current']['value'])
+                self.assertEqual(levels[next_level], next_level_info['current']['name'])
+                self.assertEqual(
+                    self.content_data['level_descriptions'][next_level],
+                    next_level_info['current']['description']
+                )
 
     def get_dimension_level_info_test(self):
         """Tests that a score returns the correct dimension level info"""
         levels = self.content_data['levels']
         # Check correct level info is given for each level.
-        for level in levels.keys():
-            level_info = get_dimension_level_info('tenant1', 'ads', level, self.level_ranges)
+        for idx, level in enumerate(levels.keys()):
+            level_info = get_dimension_level_info('tenant1', 'ads', level, self.level_ranges)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
@@ -429,4 +440,42 @@ class GetLevelAttributesTest(TestCase):
                 self.content_data['dimension_level_description']['ads'][level],
                 level_info['current']['description']
             )
-            # TODO: Check next level info
+            # Check next level info
+            if idx != len(levels.keys()) - 1:
+                next_level = levels.keys()[idx + 1]
+                next_level_info = get_dimension_level_info('tenant1', 'ads', next_level, self.level_ranges)['levels']
+                self.assertEqual(next_level, next_level_info['current']['value'])
+                self.assertEqual(levels[next_level], next_level_info['current']['name'])
+                self.assertEqual(
+                    self.content_data['dimension_level_description']['ads'][next_level],
+                    next_level_info['current']['description']
+                )
+
+    def get_detailed_survey_result_data_test(self):
+        """Tests that a survey results data is correctly returned"""
+        # Make fake survey results.
+        survey = make_survey(tenant="tenant1")
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"ads": 0.4, u"access": 1.6}
+        )
+        # Get survey result data.
+        survey_result_data = get_detailed_survey_result_data(
+            "tenant1",
+            survey_result,
+            self.level_ranges
+        )
+        # Check required fields are present
+        self.assertIsNotNone(survey_result_data['date'])
+        self.assertIsNotNone(survey_result_data['overall'])
+        self.assertEqual(survey_result_data['overall']['value'], 1)
+
+        for dimension in self.content_data['dimensions']:
+            self.assertEqual(
+                survey_result_data['dimensions'][dimension]['value'],
+                survey_result.dmb_d[dimension]
+            )
+            self.assertEqual(survey_result_data['dimensions'][dimension]['inTopLevel'], False)
+            self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
