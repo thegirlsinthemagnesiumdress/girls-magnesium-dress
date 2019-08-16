@@ -12,9 +12,11 @@ class ReportAdminController {
    * @param {!angular.$http} $http
    * @param {String} csrfToken
    * @param {Object} bootstrapData
+   * @param {!Function} dmbLevelsFactory
+   *
    * @ngInject
    */
-  constructor($http, csrfToken, bootstrapData) {
+  constructor($http, csrfToken, bootstrapData, dmbLevelsFactory) {
     this._ngHttp = $http;
     this._csrfToken = csrfToken;
 
@@ -64,6 +66,13 @@ class ReportAdminController {
      * @export
      */
     this.serverError = false;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
   }
 
 
