@@ -79,26 +79,19 @@ class AdminSurveyResultSerializer(ModelSerializer):
 
 
 class AdminSurveyResultsSerializer(ModelSerializer):
-    last_survey_result = AdminSurveyResultSerializer(read_only=True)
+    last_survey_result = SurveyResultSerializer(read_only=True)
+    last_internal_result = SurveyResultSerializer(read_only=True)
     country_name = CharField(source='get_country_display')
-    industry_name = CharField(source='get_industry_display')
-    last_survey_result_link = CharField(read_only=True)
-    survey_results = AdminSurveyResultSerializer(many=True, read_only=True)
+    industry_name = CharField(source='get_parent_industry_display')
 
     class Meta:
         model = Survey
         fields = (
             'account_id',
-            'sid',
             'company_name',
-            'industry',
             'industry_name',
             'country_name',
             'last_survey_result',
+            'last_internal_result',
             'created_at',
-            'last_survey_result_link',
-            'survey_results',
-            'link_sponsor',
-            'link',
-            'engagement_lead',
         )

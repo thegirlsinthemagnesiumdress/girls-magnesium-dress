@@ -163,6 +163,9 @@ def admin(request, tenant):
         'product_name': get_tenant_product_name(tenant),
         'slug': get_tenant_slug(tenant),
         'tenant': tenant,
+        # 'industries': industries,
+        # 'countries': COUNTRIES_TUPLE,
+        # 'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
     })
 
 
