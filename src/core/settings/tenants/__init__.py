@@ -131,7 +131,7 @@ ALL_TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Cloud Maturity Assessment",
-        'enabled': False,
+        'enabled': True,
     },
 }
 
