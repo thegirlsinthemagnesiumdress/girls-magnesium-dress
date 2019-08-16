@@ -137,10 +137,12 @@ def thank_you(request, tenant):
         'other_tenants': get_other_tenant_footers(tenant),
     })
 
+
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
     return redirect(reverse('admin', kwargs={'tenant': get_tenant_slug(tenant)}))
+
 
 @login_required
 @survey_admin_required
@@ -153,17 +155,14 @@ def admin(request, tenant):
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
     return render(request, 'public/accounts.html', {
-        'content_data': '',
+        'accounts': Survey.objects.filter(tenant=tenant),
+        'bootstrap_data': JSONRenderer().render(api_data),
+        'content_data':  _dump_tenant_content_data(tenant),
+        'engagement_lead': request.user.engagement_lead,
         'other_tenants': get_other_tenant_footers(tenant),
         'product_name': get_tenant_product_name(tenant),
         'slug': get_tenant_slug(tenant),
-        'accounts': Survey.objects.filter(tenant=tenant),
         'tenant': tenant,
-        # 'engagement_lead': request.user.engagement_lead,
-        # 'industries': industries,
-        # 'countries': COUNTRIES_TUPLE,
-        # 'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
-        # 'bootstrap_data': JSONRenderer().render(api_data),
     })
 
 

@@ -15,14 +15,15 @@
     fill: $dmb-color-grey-zircon;
   }
 
-  th, td {
+  th,
+  td {
     word-wrap: none;
   }
 
 
   th {
-    white-space: nowrap;
     font-weight: $h-font-weight-medium;
+    white-space: nowrap;
 
     @include dmb-mq($from: desktop) {
       padding: 20px 24px;
@@ -39,8 +40,8 @@
     }
 
     &:first-of-type {
-      font-weight: $h-font-weight-medium;
       font-family: $dmb-alt-font-family;
+      font-weight: $h-font-weight-medium;
 
       a {
         color: inherit;
