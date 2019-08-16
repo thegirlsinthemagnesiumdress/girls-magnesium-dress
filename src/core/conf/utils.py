@@ -243,24 +243,67 @@ def in_top_level(level_ranges, score):
 
 
 def get_level_info(tenant, score, level_ranges=None):
+    """Gets the current and next level's value, name, and description.
+
+    Args:
+        tenant (string): The tenant to pull level content from.
+        score (number): The raw qualtrics result.
+        level_ranges ([(number, number)], optional): Array of tuples for calculating scores' level
+            should only be set for testing as is found in content data. Defaults to None.
+
+    Returns:
+        object: An object containing the value, name, and description of the current and next level.
+    """
     content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+    # If level ranges have not been provided use the ones defined in the content data.
     if not level_ranges:
         level_ranges = content_data['level_ranges']
     level = get_level_key(level_ranges, score)
+    next_level = get_next_level_key(level_ranges, score)
+    # Form the level info object.
     return {
-        "value": level,
-        "name": content_data['levels'][level],
-        "description": content_data['level_descriptions'][level],
+        "current": {
+            "value": level,
+            "name": content_data['levels'][level],
+            "description": content_data['level_descriptions'][level],
+        },
+        "next": {
+            "value": next_level,
+            "name": content_data['levels'][next_level],
+            "description": content_data['level_descriptions'][next_level],
+        }
     }
 
 
 def get_dimension_level_info(tenant, dimension, score, level_ranges=None):
+    """Gets the current and next dimension level's value, name, and description.
+
+    Args:
+        tenant (string): The tenant to pull level content from.
+        dimension (string): The dimension to pull level content from.
+        score (number): The raw qualtrics result.
+        level_ranges ([(number, number)], optional): Array of tuples for calculating scores' level
+            should only be set for testing as is found in content data. Defaults to None.
+
+    Returns:
+        object: An object containing the value, name, and description of the current and next dimension level.
+    """
     content_data = settings.TENANTS[tenant]['CONTENT_DATA']
+    # If level ranges have not been provided use the ones defined in the content data.
     if not level_ranges:
         level_ranges = content_data['level_ranges']
     level = get_level_key(level_ranges, score)
+    next_level = get_next_level_key(level_ranges, score)
+    # Form the level info object.
     return {
-        "value": level,
-        "name": content_data['levels'][level],
-        "description": content_data['dimension_level_description'][dimension][level],
+        "current": {
+            "value": level,
+            "name": content_data['levels'][level],
+            "description": content_data['dimension_level_description'][level],
+        },
+        "next": {
+            "value": next_level,
+            "name": content_data['levels'][next_level],
+            "description": content_data['dimension_level_description'][next_level],
+        }
     }

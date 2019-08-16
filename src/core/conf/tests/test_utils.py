@@ -410,9 +410,11 @@ class GetLevelAttributesTest(TestCase):
         # Check correct level info is given for each level.
         for level in levels.keys():
             level_info = get_level_info('tenant1', level, self.level_ranges)
-            self.assertEqual(level, level_info['value'])
-            self.assertEqual(levels[level], level_info['name'])
-            self.assertEqual(self.content_data['level_descriptions'][level], level_info['description'])
+            # Check current level info
+            self.assertEqual(level, level_info['current']['value'])
+            self.assertEqual(levels[level], level_info['current']['name'])
+            self.assertEqual(self.content_data['level_descriptions'][level], level_info['current']['description'])
+            # TODO: Check next level info
 
     def get_dimension_level_info_test(self):
         """Tests that a score returns the correct dimension level info"""
@@ -420,9 +422,11 @@ class GetLevelAttributesTest(TestCase):
         # Check correct level info is given for each level.
         for level in levels.keys():
             level_info = get_dimension_level_info('tenant1', 'ads', level, self.level_ranges)
-            self.assertEqual(level, level_info['value'])
-            self.assertEqual(levels[level], level_info['name'])
+            # Check current level info
+            self.assertEqual(level, level_info['current']['value'])
+            self.assertEqual(levels[level], level_info['current']['name'])
             self.assertEqual(
                 self.content_data['dimension_level_description']['ads'][level],
-                level_info['description']
+                level_info['current']['description']
             )
+            # TODO: Check next level info
