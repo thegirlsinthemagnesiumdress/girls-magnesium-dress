@@ -70,7 +70,7 @@ ALL_TENANTS[NEWS]['QUALTRICS_SURVEY_ID'] = 'SV_elGBArRfIATLYwt'
 ALL_TENANTS[RETAIL]['QUALTRICS_SURVEY_ID'] = 'SV_abpqjuBRjJ9iy6F'
 
 # explicitly disable tenant
-INTERNAL_TENANTS[CLOUD]['enabled'] = False
+ALL_TENANTS[CLOUD]['enabled'] = False
 
 # Lock prod for now.
 MIDDLEWARE_CLASSES = tuple(
