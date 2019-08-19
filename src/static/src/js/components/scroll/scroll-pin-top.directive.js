@@ -2,6 +2,8 @@
 goog.module.declareNamespace('dmb.components.scroll.pinTopDirective');
 
 
+export const CONTENT_UPDATED_EVENT = 'content-updated';
+
 /**
  * Sets a class when the element's parent gets to the top of the viewport.
  * It remove the class when scrolling back up.
@@ -39,9 +41,11 @@ function pinTopDirective(scrollService, $timeout) {
 
       scrollService.addListener(ctrl.checkElementPosition);
       window.addEventListener('resize', ctrl.onResize);
+      // Reset the cache once things like images have finished loading in, handle this like a resize
+      window.addEventListener('DOMContentLoaded', () => ctrl.onResize);
       scope.$on('$destroy', onDestroy);
 
-      scope.$on('content-updated', () => {
+      scope.$on(CONTENT_UPDATED_EVENT, () => {
         ctrl.cacheValid = false;
         ctrl.onReady();
       });
@@ -96,7 +100,7 @@ function pinTopDirective(scrollService, $timeout) {
       }
 
       /**
-       * Simply flags the dimentions to be recalculated after a resize
+       * Simply flags the dimensions to be recalculated after a resize
        */
       function onResize() {
         ctrl.cacheValid = false;
