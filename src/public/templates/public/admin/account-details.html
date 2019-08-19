@@ -47,7 +47,9 @@
       <div class="dmb-list-card">
         <div class="dmb-list-card__header">
           <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">Internal</h2>
-          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">{{ internal_results|length }} completion{{ internal_results|length|pluralize }} </span>
+          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
+            {{ internal_results|length }} completion{{ internal_results|length|pluralize }}
+          </span>
           <button class="dmb-list-card__header-right dmb-button">
             {% include 'core/inc/svg.html' with id='int-assessment' size='24px' %}
             <span>Assess client</span>
@@ -61,7 +63,7 @@
           <div class="dmb-list-card dmb-exp-panels__panel dmb-exp-panels__panel--level-{{forloop.counter0}} glue-expansion-panel">
             <div class="dmb-list-card__header dmb-exp-panels__heading dmb-exp-panels__toggle glue-expansion-panel-toggle">
               <div class="dmb-list-card__header-left">
-                Q{{ result.date|date:"n Y" }}
+                Q{{ result.date|fiscal }} {{ result.date|date:"Y" }}
                 <span class="dmb-u-text-muted">&#8226; {{ result.date|date:"F j" }}</span>
               </div>
               <div class="dmb-list-card__header-right">
@@ -106,7 +108,9 @@
       <div class="dmb-list-card">
         <div class="dmb-list-card__header">
           <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">External</h2>
-          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">{{ external_results|length }} completion{{ external_results|length|pluralize }} </span>
+          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
+            {{ external_results|length }} completion{{ external_results|length|pluralize }}
+          </span>
           <button class="dmb-list-card__header-right h-c-button h-c-button--flat">
             {% include 'core/inc/svg.html' with id='ext-assessment' size='24px' %}
             <span>Send assessment to client</span>
@@ -120,7 +124,7 @@
           <div class="dmb-list-card dmb-exp-panels__panel dmb-exp-panels__panel--level-{{forloop.counter0}} glue-expansion-panel">
             <div class="dmb-list-card__header dmb-exp-panels__heading dmb-exp-panels__toggle glue-expansion-panel-toggle">
               <div class="dmb-list-card__header-left">
-                Q{{ result.date|date:"n Y" }}
+                Q{{ result.date|fiscal }} {{ result.date|date:"Y" }}
                 <span class="dmb-u-text-muted">&#8226; {{ result.date|date:"F j" }}</span>
               </div>
               <div class="dmb-list-card__header-right">
