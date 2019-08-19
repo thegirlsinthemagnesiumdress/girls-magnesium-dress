@@ -146,7 +146,7 @@ def reports_admin(request, tenant):
 
 @login_required
 @survey_admin_required
-def admin(request, tenant):
+def accounts(request, tenant):
     tenant_conf = settings.TENANTS[tenant]
     industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
 
