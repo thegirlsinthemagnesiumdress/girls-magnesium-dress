@@ -1,0 +1,82 @@
+.dmb-list-card {
+  border-radius: $dmb-border-radius-large;
+  box-shadow: 0 1px 2px 0 rgba($dmb-color-blue-charade, .3), 0 2px 6px 2px rgba($dmb-color-blue-charade, .15);
+  padding: 0 16px;
+
+  &__header {
+    align-items: baseline;
+    display: flex;
+    padding: 14px 0;
+
+    &-left {
+      flex-grow: 1;
+    }
+
+    &-right {
+      flex-shrink: 0;
+    }
+  }
+
+  svg {
+    margin-right: 4px;
+    position: relative;
+    top: .3em;
+  }
+
+  .h-c-button--flat {
+    svg {
+      fill: #1a73e8;
+    }
+  }
+
+  &__subtext {
+    margin-left: 16px;
+  }
+
+  &__toggle {
+    align-self: center;
+  }
+
+  &__content {
+    padding: 8px 0 24px;
+
+    @include dmb-mq($from: tablet) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__overall {
+    flex-shrink: 0;
+    padding: 8px 0;
+    width: 120px;
+
+    &-text {
+      font-size: 18px !important;
+      margin-top: 8px;
+    }
+
+    &-score {
+      font-size: 24px !important;
+      margin-top: 8px;
+    }
+  }
+
+  &__dimension-list {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    list-style: none;
+    margin: 0;
+
+    @include dmb-mq($from: tablet) {
+      justify-content: space-between;
+    }
+  }
+
+  &__dimension-list-item {
+    padding: 8px;
+    width: 120px;
+  }
+}

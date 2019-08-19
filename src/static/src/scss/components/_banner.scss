@@ -64,5 +64,7 @@
 
   svg {
     fill: $dmb-color-grey-shuttle;
+    position: relative;
+    top: -.03em;
   }
 }

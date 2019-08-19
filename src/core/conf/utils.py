@@ -376,6 +376,6 @@ def get_account_detail_data(tenant, account, level_ranges=None):
     external_surveys = [get_detailed_survey_result_data(tenant, survey_result, level_ranges)
                         for survey_result in account.survey_results.all()]
     internal_surveys = [get_detailed_survey_result_data(tenant, survey_result, level_ranges)
-                        for survey_result in account.survey_results.all()]
+                        for survey_result in account.internal_results.all()]
     # Return the tuple of objects.
     return account_info, external_surveys, internal_surveys

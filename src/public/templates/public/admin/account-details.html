@@ -3,7 +3,7 @@
 
 {% block main %}
 {% djangoblock %}
-<main id="dmb-account" class="dmb-account h-c-page dmb-u-m-t-m">
+<main id="dmb-account" class="dmb-account h-c-page dmb-u-m-t-m h-u-font-weight-regular">
   <div class="dmb-banner dmb-u-m-b-m">
     <div class="dmb-banner__back">
       <a href="{% url 'reports' slug %}">
@@ -44,35 +44,121 @@
 
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--6">
-      <p>External Results:</p>
-      <ul>
-        {% for result in external_results %}
-          <li>
-            {{ result.date }} [{{ result.overall.value }}]
-            <ul>
-              {% for dimension, dimension_info in result.dimensions.items %}
-                <li>{{ dimension }} [{{ dimension_info.value }}]</li>
-              {% endfor %}
-            </ul>
-          </li>
+      <div class="dmb-list-card">
+        <div class="dmb-list-card__header">
+          <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">Internal</h2>
+          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">{{ internal_results|length }} completion{{ internal_results|length|pluralize }} </span>
+          <button class="dmb-list-card__header-right dmb-button">
+            {% include 'core/inc/svg.html' with id='int-assessment' size='24px' %}
+            <span>Assess client</span>
+          </button>
+        </div>
+      </div>
+      <!-- Expansion Panels Component -->
+      <div class="dmb-exp-panels glue-expansion-panels">
+        {% for result in internal_results %}
+
+          <div class="dmb-list-card dmb-exp-panels__panel dmb-exp-panels__panel--level-{{forloop.counter0}} glue-expansion-panel">
+            <div class="dmb-list-card__header dmb-exp-panels__heading dmb-exp-panels__toggle glue-expansion-panel-toggle">
+              <div class="dmb-list-card__header-left">
+                Q{{ result.date|date:"n Y" }}
+                <span class="dmb-u-text-muted">&#8226; {{ result.date|date:"F j" }}</span>
+              </div>
+              <div class="dmb-list-card__header-right">
+                {{ result.overall.value|floatformat }}
+                <span class="dmb-list-card__subtext dmb-u-text-muted">{{ result.overall.levels.current.name }}</span>
+              </div>
+              <button
+                  aria-label="toggle panel expansion"
+                  class="dmb-list-card__toggle dmb-exp-panels__toggle"
+                  data-glue-expansion-panel-toggle-for="level-{{forloop.counter0}}">
+                <svg class="dmb-exp-panels__arrow" role="img" width="12" height="8">
+                  <use xlink:href="#mi-chevron"></use>
+                </svg>
+              </button>
+            </div>
+            <div
+                class="dmb-list-card__content dmb-exp-panels__content glue-expansion-panel-content"
+                {% if forloop.counter0 == 0 %} data-glue-expansion-panel-initial="expanded"{% endif %}
+                id="level-{{forloop.counter0}}">
+              <div class="dmb-list-card__overall">
+                <div>Overall</div>
+                <div class="dmb-list-card__overall-text">{{ result.overall.levels.current.name }}</div>
+                <div class="dmb-list-card__overall-score">{{ result.overall.value|floatformat }}</div>
+              </div>
+              <ul class="dmb-list-card__dimension-list">
+                {% for dimension, dimension_info in result.dimensions.items %}
+                  <li class="dmb-list-card__dimension-list-item">
+                    <div>{{ dimension|capfirst }}</div>
+                    <div class="dmb-u-text-muted">{{ dimension_info.levels.current.name }}</div>
+                    <div class="dmb-u-text-muted">{{ dimension_info.value|floatformat }}</div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
         {% endfor %}
-      </ul>
+      </div> <!--/expansion panels -->
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--6">
-        <p>Internal Results:</p>
-        <ul>
-          {% for result in internal_results %}
-            <li>
-              {{ result.date }} [{{ result.overall.value }}]
-              <ul>
+      <div class="dmb-list-card">
+        <div class="dmb-list-card__header">
+          <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">External</h2>
+          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">{{ external_results|length }} completion{{ external_results|length|pluralize }} </span>
+          <button class="dmb-list-card__header-right h-c-button h-c-button--flat">
+            {% include 'core/inc/svg.html' with id='ext-assessment' size='24px' %}
+            <span>Send assessment to client</span>
+          </button>
+        </div>
+      </div>
+      <!-- Expansion Panels Component -->
+      <div class="dmb-exp-panels glue-expansion-panels">
+        {% for result in external_results %}
+
+          <div class="dmb-list-card dmb-exp-panels__panel dmb-exp-panels__panel--level-{{forloop.counter0}} glue-expansion-panel">
+            <div class="dmb-list-card__header dmb-exp-panels__heading dmb-exp-panels__toggle glue-expansion-panel-toggle">
+              <div class="dmb-list-card__header-left">
+                Q{{ result.date|date:"n Y" }}
+                <span class="dmb-u-text-muted">&#8226; {{ result.date|date:"F j" }}</span>
+              </div>
+              <div class="dmb-list-card__header-right">
+                {{ result.overall.value|floatformat }}
+                <span class="dmb-list-card__subtext dmb-u-text-muted">{{ result.overall.levels.current.name }}</span>
+              </div>
+              <button
+                  aria-label="toggle panel expansion"
+                  class="dmb-list-card__toggle dmb-exp-panels__toggle"
+                  data-glue-expansion-panel-toggle-for="level-{{forloop.counter0}}">
+                <svg class="dmb-exp-panels__arrow" role="img" width="12" height="8">
+                  <use xlink:href="#mi-chevron"></use>
+                </svg>
+              </button>
+            </div>
+            <div
+                class="dmb-list-card__content dmb-exp-panels__content glue-expansion-panel-content"
+                {% if forloop.counter0 == 0 %} data-glue-expansion-panel-initial="expanded"{% endif %}
+                id="level-{{forloop.counter0}}">
+              <div class="dmb-list-card__overall">
+                <div>Overall</div>
+                <div class="dmb-list-card__overall-text">{{ result.overall.levels.current.name }}</div>
+                <div class="dmb-list-card__overall-score">{{ result.overall.value|floatformat }}</div>
+              </div>
+              <ul class="dmb-list-card__dimension-list">
                 {% for dimension, dimension_info in result.dimensions.items %}
-                  <li>{{ dimension }} [{{ dimension_info.value }}]</li>
+                  <li class="dmb-list-card__dimension-list-item">
+                    <div>{{ dimension|capfirst }}</div>
+                    <div class="dmb-u-text-muted">{{ dimension_info.levels.current.name }}</div>
+                    <div class="dmb-u-text-muted">{{ dimension_info.value|floatformat }}</div>
+                  </li>
                 {% endfor %}
               </ul>
-            </li>
-          {% endfor %}
-        </ul>
+            </div>
+          </div>
+
+        {% endfor %}
+      </div> <!--/expansion panels -->
     </div>
   </div>
 </main>

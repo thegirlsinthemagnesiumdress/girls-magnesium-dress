@@ -1,0 +1,25 @@
+.dmb-exp-panels {
+  padding-top: 10px;
+
+  &__panel + &__panel {
+    margin-top: 24px;
+  }
+
+  &__toggle {
+    align-items: center;
+    display: flex;
+  }
+
+  &__heading {
+    flex-grow: 1;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    margin: 0 8px;
+
+    .glue-is-collapsed & {
+      transform: rotate(180deg);
+    }
+  }
+}
