@@ -1,6 +1,5 @@
 .dmb-button {
   align-items: center;
-  background: $dmb-color-blue-alice;
   border-radius: $dmb-border-radius-medium;
   display: flex;
   font-family: $dmb-alt-font-family;
@@ -12,6 +11,10 @@
   &,
   &:visited {
     color: $dmb-color-blue-denim;
+  }
+
+  &:hover {
+    background: $dmb-color-blue-alice;
   }
 
   svg {

@@ -34,24 +34,31 @@
               ng-submit="exportsCtrl.export($event, '{{ engagement_lead|ng_mark_safe }}')"
               novalidate>
             <button
+                aria-label="Export survey data"
+                aria-describedby="export-tooltip"
+                aria-controls="toast"
                 class="dmb-toolbar__export-btn dmb-tooltip"
                 id="dmb-export-btn"
                 ng-disabled="exportsCtrl.submitting"
                 type="submit">
               {% include 'core/inc/svg.html' with id='export' size="24px" %}
-              <span class="dmb-toolbar__export-tooltip-text dmb-tooltip__text">
+              <div
+                  class="dmb-toolbar__export-tooltip-text dmb-tooltip__text"
+                  id="export-tooltip">
                 Export the data from all your surveys. Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
-              </span>
+              </div>
             </button>
           </form>
           <div
+              aria-live="assertive"
               class="dmb-toast"
+              id="toast"
               ng-if="exportsCtrl.showToast">
             <span ng-if="!exportError">
-              {% trans "Data export requested. This may take up to 5 minutes. Please check your email inbox." %}
+              Data export requested. This may take up to 5 minutes. Please check your email inbox.
             </span>
             <span ng-if="exportError">
-              {% trans "Sorry there was an error, please try again." %}
+              Sorry there was an error, please try again.
             </span>
           </div>
         </div>
@@ -85,7 +92,7 @@
       <table
           class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
           role="table"
-          summary="{% trans 'List of accounts you are subscribed to' %}">
+          summary="List of accounts you are subscribed to">
         <thead>
           <tr>
             <th scope="col">
@@ -116,9 +123,10 @@
         <tbody>
 
           <!-- Repeat -->
-          <tr ng-repeat="survey in reportAdminCtrl.surveys">
+          <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index">
             <td data-colheader="Organization">
-              <a href="/{[ survey.account_id ]}">
+              <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
+              <a ng-href="/accounts/{[ survey.account_id ]}">
                 {[ survey.company_name ]}
               </a>
             </td>
@@ -132,13 +140,13 @@
               {[ survey.last_survey_result.dmb|number:1 ]}
             </td>
             <td data-colheader="Int. Maturity">
-              {[ reportAdminCtrl.dmbLevelsFactory(survey.last_survey_result.dmb)['current']['mapValue'] ]}
+              {[ survey.externalCurrentLevelData['mapValue'] ]}
             </td>
             <td data-colheader="Ext. Maturity" class="h-c-table__cell--numerical">
               {[ survey.last_internal_result.dmb|number:1 ]}
             </td>
             <td data-colheader="Ext. Maturity">
-              {[ reportAdminCtrl.dmbLevelsFactory(survey.last_internal_result.dmb)['current']['mapValue'] ]}
+              {[ reportAdminCtrl.internalCurrentLevelData['mapValue'] ]}
             </td>
           </tr>
           <!-- EndRepeat -->
