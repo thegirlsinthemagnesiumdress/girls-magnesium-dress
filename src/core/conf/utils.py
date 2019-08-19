@@ -301,6 +301,7 @@ def get_dimension_level_info(tenant, dimension, score, level_ranges=None):
     next_level = get_next_level_key(level_ranges, score)
     # Form the level info object.
     return {
+        "name": content_data['dimension_labels'][dimension],
         "value": score,
         "inTopLevel": in_top_level(level_ranges, score),
         "levels": {

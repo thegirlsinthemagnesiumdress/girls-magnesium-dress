@@ -91,7 +91,7 @@
               <ul class="dmb-list-card__dimension-list">
                 {% for dimension, dimension_info in result.dimensions.items %}
                   <li class="dmb-list-card__dimension-list-item">
-                    <div>{{ dimension|capfirst }}</div>
+                    <div>{{ dimension_info.name|capfirst }}</div>
                     <div class="dmb-u-text-muted">{{ dimension_info.levels.current.name }}</div>
                     <div class="dmb-u-text-muted">{{ dimension_info.value|floatformat }}</div>
                   </li>
@@ -152,7 +152,7 @@
               <ul class="dmb-list-card__dimension-list">
                 {% for dimension, dimension_info in result.dimensions.items %}
                   <li class="dmb-list-card__dimension-list-item">
-                    <div>{{ dimension|capfirst }}</div>
+                    <div>{{ dimension_info.name|capfirst }}</div>
                     <div class="dmb-u-text-muted">{{ dimension_info.levels.current.name }}</div>
                     <div class="dmb-u-text-muted">{{ dimension_info.value|floatformat }}</div>
                   </li>

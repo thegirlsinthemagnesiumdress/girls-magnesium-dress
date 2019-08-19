@@ -430,24 +430,25 @@ class GetLevelAttributesTest(TestCase):
     def get_dimension_level_info_test(self):
         """Tests that a score returns the correct dimension level info"""
         levels = self.content_data['levels']
+        dimension = 'dim1'
         # Check correct level info is given for each level.
         for idx, level in enumerate(levels.keys()):
-            level_info = get_dimension_level_info('tenant1', 'ads', level, self.level_ranges)['levels']
+            level_info = get_dimension_level_info('tenant1', dimension, level, self.level_ranges)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
             self.assertEqual(
-                self.content_data['dimension_level_description']['ads'][level],
+                self.content_data['dimension_level_description'][dimension][level],
                 level_info['current']['description']
             )
             # Check next level info
             if idx != len(levels.keys()) - 1:
                 next_level = levels.keys()[idx + 1]
-                next_level_info = get_dimension_level_info('tenant1', 'ads', next_level, self.level_ranges)['levels']
+                next_level_info = get_dimension_level_info('tenant1', dimension, next_level, self.level_ranges)['levels']
                 self.assertEqual(next_level, next_level_info['current']['value'])
                 self.assertEqual(levels[next_level], next_level_info['current']['name'])
                 self.assertEqual(
-                    self.content_data['dimension_level_description']['ads'][next_level],
+                    self.content_data['dimension_level_description'][dimension][next_level],
                     next_level_info['current']['description']
                 )
 
@@ -459,7 +460,7 @@ class GetLevelAttributesTest(TestCase):
             survey=survey,
             response_id='AAA',
             dmb=1,
-            dmb_d={u"ads": 0.4, u"access": 1.6}
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6}
         )
         # Get survey result data.
         survey_result_data = get_detailed_survey_result_data(
@@ -476,6 +477,10 @@ class GetLevelAttributesTest(TestCase):
             self.assertEqual(
                 survey_result_data['dimensions'][dimension]['value'],
                 survey_result.dmb_d[dimension]
+            )
+            self.assertEqual(
+                survey_result_data['dimensions'][dimension]['name'],
+                self.content_data['dimension_labels'][dimension]
             )
             self.assertEqual(survey_result_data['dimensions'][dimension]['inTopLevel'], False)
             self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])

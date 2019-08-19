@@ -72,24 +72,24 @@ MOCKED_CONTENT_DATA_TENANT_1 = {
         2: 'level_2_description'
     },
     'dimensions': [
-        'ads',
-        'access',
+        'dim1',
+        'dim2',
     ],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_1,
     'dimension_header_descriptions': {
-        'ads': 'ads_header_description',
-        'access': 'access_header_description',
+        'dim1': 'dim1_header_description',
+        'dim2': 'dim2_header_description',
     },
     'dimension_level_description': {
-        'ads': {
-            0: 'ads_level_0_description',
-            1: 'ads_level_1_description',
-            2: 'ads_level_2_description'
+        'dim1': {
+            0: 'dim1_level_0_description',
+            1: 'dim1_level_1_description',
+            2: 'dim1_level_2_description'
         },
-        'access': {
-            0: 'access_level_0_description',
-            1: 'access_level_1_description',
-            2: 'access_level_2_description'
+        'dim2': {
+            0: 'dim2_level_0_description',
+            1: 'dim2_level_1_description',
+            2: 'dim2_level_2_description'
         },
     },
     'dimension_recommendations': {},
