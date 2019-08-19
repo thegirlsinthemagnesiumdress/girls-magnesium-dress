@@ -22,7 +22,6 @@ import * as reportList from './components/report-admin/report-admin';
 import * as progressCircle from './components/progress-circle/progress-circle';
 import * as progressGrid from './components/progress-grid/progress-grid';
 import * as progressTable from './components/progress-table/progress-table';
-import * as dimensionTab from './components/dimension-tab/dimension-tab';
 import * as forceReflow from './components/force-reflow/force-reflow';
 import * as tenant from './tenants/tenantconf';
 import * as languageSelector from './components/language-selector/language-selector';
@@ -45,7 +44,6 @@ export const module = angular.module('dmb', [
   progressCircle.module.name,
   progressGrid.module.name,
   progressTable.module.name,
-  dimensionTab.module.name,
   forceReflow.module.name,
   tenant.module.name,
   languageSelector.module.name,
