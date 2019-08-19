@@ -83,7 +83,7 @@ def _get_definition(tenant, survey_id):
     return last_survey_definition
 
 
-def _get_results(tenant, survey_definition, get_survey_result_func):
+def _get_results(tenant, survey_definition, get_individual_result_func):
     """Download survey results from Qualtrics.
 
     :param tenant: dictionary containing 'QUALTRICS_SURVEY_ID', 'EMAIL_TO', 'EMAIL_BCC' keys
@@ -110,7 +110,7 @@ def _get_results(tenant, survey_definition, get_survey_result_func):
 
         merged_responses = _update_responses_with_text(responses, responses_text)
 
-        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant, get_survey_result_func)  # noqa
+        new_survey_results = _create_survey_results(merged_responses.values(), survey_definition, tenant, get_individual_result_func)  # noqa
         new_response_ids = [result.response_id for result in new_survey_results]
 
         email_to, email_bcc = tenant.get('EMAIL_TO'), tenant.get('EMAIL_BCC')
@@ -145,7 +145,7 @@ def _update_responses_with_text(responses, text_responses):
     return merged_responses
 
 
-def _create_survey_results(results_data, last_survey_definition, tenant, get_survey_result_func):
+def _create_survey_results(results_data, last_survey_definition, tenant, get_individual_result_func):
     """Create `SurveyResult` given a list of `result_data`.
 
     :param results_data: dictionary containing the downloaded responses
@@ -158,7 +158,7 @@ def _create_survey_results(results_data, last_survey_definition, tenant, get_sur
     new_survey_results = []
     for data in results_data:
         try:
-            new_survey_result = get_survey_result_func(data, last_survey_definition, tenant)  # noqa
+            new_survey_result = get_individual_result_func(data, last_survey_definition, tenant)  # noqa
             if new_survey_result:
                 new_survey_results.append(new_survey_result)
         except exceptions.InvalidResponseData as e:
