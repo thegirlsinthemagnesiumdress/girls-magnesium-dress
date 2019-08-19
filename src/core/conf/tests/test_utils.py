@@ -444,7 +444,12 @@ class GetLevelAttributesTest(TestCase):
             # Check next level info
             if idx != len(levels.keys()) - 1:
                 next_level = levels.keys()[idx + 1]
-                next_level_info = get_dimension_level_info('tenant1', dimension, next_level, self.level_ranges)['levels']
+                next_level_info = get_dimension_level_info(
+                    'tenant1',
+                    dimension,
+                    next_level,
+                    self.level_ranges
+                )['levels']
                 self.assertEqual(next_level, next_level_info['current']['value'])
                 self.assertEqual(levels[next_level], next_level_info['current']['name'])
                 self.assertEqual(
