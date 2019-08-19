@@ -35,6 +35,12 @@
 
   &__toggle {
     align-self: center;
+
+    svg {
+      margin-right: 0;
+      position: relative;
+      top: 0;
+    }
   }
 
   &__content {
