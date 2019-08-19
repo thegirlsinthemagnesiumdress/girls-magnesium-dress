@@ -16,7 +16,8 @@
     transition: .3s linear .2s;
     visibility: hidden;
 
-    #{$block}:hover & {
+    #{$block}:hover &,
+    #{$block}:focus & {
       opacity: 1;
       visibility: visible;
     }
