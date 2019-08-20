@@ -41,7 +41,6 @@
     align-items: center;
     color: $dmb-color-grey-shuttle;
     display: flex;
-    font-weight: 400;
 
     @include dmb-mq($from: desktop) {
       font-size: 18px;

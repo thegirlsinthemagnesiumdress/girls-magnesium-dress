@@ -1,12 +1,12 @@
 .dmb-list-card {
   border-radius: $dmb-border-radius-large;
-  box-shadow: 0 1px 2px 0 rgba($dmb-color-blue-charade, .3), 0 2px 6px 2px rgba($dmb-color-blue-charade, .15);
-  padding: 0 16px;
+  box-shadow: $dmb-box-shadow;
+  padding: 0 $dmb-spacing-s;
 
   &__header {
-    align-items: baseline;
+    align-items: center;
     display: flex;
-    padding: 14px 0;
+    padding: $dmb-spacing-s 0;
 
     &-left {
       flex-grow: 1;
@@ -17,9 +17,17 @@
     }
   }
 
+  &__header-left {
+    flex-grow: 1;
+  }
+
+  &__header-right {
+    flex-shrink: 0;
+  }
+
   .dmb-button {
     svg {
-      fill: #1a73e8;
+      fill: $dmb-color-blue-royal;
       margin-right: 4px;
       position: relative;
       top: .15em;
@@ -27,7 +35,7 @@
   }
 
   &__subtext {
-    margin-left: 16px;
+    margin-left: $dmb-spacing-s;
   }
 
   &__toggle {
@@ -41,7 +49,7 @@
   }
 
   &__content {
-    padding: 8px 0 24px;
+    padding: $dmb-spacing-xs 0 $dmb-spacing-m;
 
     @include dmb-mq($from: tablet) {
       display: flex;
@@ -51,17 +59,17 @@
 
   &__overall {
     flex-shrink: 0;
-    padding: 8px 0;
+    padding: $dmb-spacing-xs 0;
     width: 120px;
 
     &-text {
-      font-size: 18px !important;
-      margin-top: 8px;
+      font-size: 18px;
+      margin-top: $dmb-spacing-xs;
     }
 
     &-score {
-      font-size: 24px !important;
-      margin-top: 8px;
+      font-size: 16px;
+      margin-top: $dmb-spacing-xs;
     }
   }
 
@@ -79,7 +87,7 @@
   }
 
   &__dimension-list-item {
-    padding: 8px;
-    width: 120px;
+    padding: $dmb-spacing-xs;
+    min-width: 120px;
   }
 }

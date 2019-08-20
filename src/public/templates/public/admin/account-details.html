@@ -4,81 +4,16 @@
 {% block main %}
 {% djangoblock %}
 <main id="dmb-account" class="dmb-account h-c-page dmb-u-m-t-m h-u-font-weight-regular">
-  <div class="dmb-banner dmb-u-m-b-m">
-    <div class="dmb-banner__back">
-      <a href="{% url 'reports' slug %}">
-        {% include 'core/inc/svg.html' with id='back' size='24px' %}
-      </a>
-    </div>
 
-    <div class="dmb-banner__main">
-      <h1 class="dmb-banner__heading h-c-headline h-c-headline--two">
-        {{ account.name }}
-      </h1>
-      <div class="dmb-banner__details">
-        <ul class="dmb-banner__details-list">
-          <li class="dmb-banner__details-list-item">
-            {% include 'core/inc/svg.html' with id='greentea' size='24px' %}
-            <span>{{ account.id }}</span>
-          </li>
-          <li class="dmb-banner__details-list-item">
-            {% include 'core/inc/svg.html' with id='globe' size='24px' %}
-            <span>{{ account.country }}</span>
-          </li>
-          <li class="dmb-banner__details-list-item">
-            {% include 'core/inc/svg.html' with id='briefcase' size='24px' %}
-            <span>{{ account.industry }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="dmb-banner__btns h-u-text-right">
-      <button class="dmb-banner__btn">
-        {% include 'core/inc/svg.html' with id='edit' size='24px' %}
-      </button>
-      <button class="dmb-banner__btn">
-        {% include 'core/inc/svg.html' with id='export' size='24px' %}
-      </button>
-    </div>
-  </div>
+  {% include 'public/admin/inc/account-details-banner.inc.html' with account=account %}
 
   <div class="h-c-grid">
     <div class="h-c-grid__col h-c-grid__col--6">
-      <div class="dmb-list-card">
-        <div class="dmb-list-card__header">
-          <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">Internal</h2>
-          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
-            {{ internal_results|length }} completion{{ internal_results|length|pluralize }}
-          </span>
-          <button class="dmb-list-card__header-right dmb-button">
-            {% include 'core/inc/svg.html' with id='int-assessment' size='24px' %}
-            <span>
-              <a href="{{ account.internal_link }}">Assess client</a>
-            </span>
-          </button>
-        </div>
-      </div>
-      <!-- Expansion Panels Component -->
-      {% include 'public/admin/inc/account-details-card-list.inc.html' with results=internal_results %}
-      <!--/expansion panels -->
+      {% include 'public/admin/inc/account-details-result-list.inc.html' with list_name='internal' results=internal_results %}
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--6">
-      <div class="dmb-list-card">
-        <div class="dmb-list-card__header">
-          <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">External</h2>
-          <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
-            {{ external_results|length }} completion{{ external_results|length|pluralize }}
-          </span>
-          <button class="dmb-list-card__header-right dmb-button">
-            {% include 'core/inc/svg.html' with id='ext-assessment' size='24px' %}
-            <span>Send assessment to client</span>
-          </button>
-        </div>
-      </div>
-      <!-- Expansion Panels Component -->
-      {% include 'public/admin/inc/account-details-card-list.inc.html' with results=external_results %}
-      <!--/expansion panels -->
+      {% include 'public/admin/inc/account-details-result-list.inc.html' with list_name='external' results=external_results %}
     </div>
   </div>
 </main>
