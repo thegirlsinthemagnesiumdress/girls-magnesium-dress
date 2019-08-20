@@ -35,7 +35,7 @@ class ReportsAdminTestCase(TestCase):
         reload_urlconf()
 
     def setUp(self):
-        self.url = reverse('admin', kwargs={'tenant': 'tenant1-slug'})
+        self.url = reverse('accounts', kwargs={'tenant': 'tenant1-slug'})
         self.survey_1 = make_survey(tenant='tenant1')
         self.survey_2 = make_survey(tenant='tenant1')
         self.survey_3 = make_survey(tenant='tenant2')
@@ -91,7 +91,7 @@ class ReportsAdminTestCase(TestCase):
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in_tenant_2(self):
         """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
-        url = reverse('admin', kwargs={'tenant': 'tenant2-slug'})
+        url = reverse('accounts', kwargs={'tenant': 'tenant2-slug'})
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'accounts.html'):
             response = self.client.get(url)
