@@ -7,6 +7,8 @@ from core.tasks import (
     send_emails_for_new_reports,
     is_valid_email,
     _create_survey_results,
+    _create_survey_result,
+    _create_internal_result,
     generate_csv_export,
     _update_responses_with_text,
     _get_definition,
@@ -22,6 +24,7 @@ from mocks import (
     get_mocked_results_unfished,
     get_survey_definition,
     MOCKED_TENANTS,
+    MOCKED_INTERNAL_TENANTS,
 )
 from mommy_recepies import make_survey, make_survey_result, make_survey_definition, make_survey_with_result
 from core.qualtrics.exceptions import FetchResultException
@@ -63,7 +66,7 @@ class sync_qualtricsTestCase(TestCase):
         all_calls = get_result_mock.call_args_list
 
         args, kwargs = all_calls[0]
-        self.assertEqual(len(args), 2)
+        self.assertEqual(len(args), 3)
         self.assertIsNotNone(args[0])
 
     @mock.patch('core.tasks._get_definition', return_value=None)
@@ -72,6 +75,41 @@ class sync_qualtricsTestCase(TestCase):
         sync_qualtrics()
         self.assertEqual(get_survey_definition_mock.call_count, len(MOCKED_TENANTS.keys()))
         self.assertEqual(get_result_mock.call_count, 0)
+
+    @override_settings(
+        INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
+    )
+    @mock.patch('core.tasks._get_definition', return_value='something')
+    @mock.patch('core.tasks._get_results', return_value='something')
+    def test_correct_survey_definition(self, get_result_mock, get_survey_definition_mock):
+        """Check that survey definitions are found correctly for internal and external tenants using the tenants' key"""
+        sync_qualtrics()
+        # Check the number of calls is equal to the number of internal and external tenants
+        self.assertEqual(
+            get_survey_definition_mock.call_count,
+            len(MOCKED_TENANTS.keys()) + len(MOCKED_INTERNAL_TENANTS.keys())
+        )
+        # Get all the calls and args
+        all_calls = get_survey_definition_mock.call_args_list
+        for args, kwargs in all_calls:
+            # Check tenant and sid are passed
+            self.assertEqual(len(args), 2)
+            # Check tenant is not null
+            tenant, qualtrics_id = args
+            self.assertIsNotNone(tenant)
+            # Check that if a tenant has an internal version that an additonal call
+            # was made using the internal tenant key and correct qualtrics ID.
+            if MOCKED_INTERNAL_TENANTS.get(tenant):
+                get_survey_definition_mock.assert_any_call(
+                    MOCKED_INTERNAL_TENANTS[tenant]['key'],
+                    MOCKED_INTERNAL_TENANTS[tenant]['QUALTRICS_SURVEY_ID']
+                )
+            elif MOCKED_TENANTS.get(tenant):
+                # Check tenant has called the get definition with the correct params.
+                get_survey_definition_mock.assert_any_call(
+                    MOCKED_TENANTS[tenant]['key'],
+                    MOCKED_TENANTS[tenant]['QUALTRICS_SURVEY_ID']
+                )
 
 
 @override_settings(
@@ -102,7 +140,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _get_results(self.tenant, make_survey_definition())
+        _get_results(self.tenant, make_survey_definition(), _create_survey_result)
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -136,7 +174,7 @@ class GetResultsTestCase(TestCase):
         make_survey()
         make_survey()
 
-        _get_results(self.tenant, make_survey_definition())
+        _get_results(self.tenant, make_survey_definition(), _create_survey_result)
 
         survey_1 = Survey.objects.get(pk=survey.sid)
 
@@ -169,7 +207,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _get_results(self.tenant, make_survey_definition())
+        _get_results(self.tenant, make_survey_definition(), _create_survey_result)
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
@@ -200,7 +238,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 1)
 
-        _get_results(self.tenant, make_survey_definition())
+        _get_results(self.tenant, make_survey_definition(), _create_survey_result)
 
         # no new Survey objects are created
         self.assertEqual(Survey.objects.count(), 3)
@@ -245,7 +283,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(SurveyResult.objects.count(), 1)
 
         with mock.patch('core.tasks._create_survey_results') as survey_result_mock:
-            _get_results(self.tenant, make_survey_definition())
+            _get_results(self.tenant, make_survey_definition(), _create_survey_result)
             survey_result_mock.assert_not_called()
             download_mock.assert_called_once_with(self.tenant['QUALTRICS_SURVEY_ID'], started_after=survey_started_at)
             self.assertEqual(Survey.objects.count(), 1)
@@ -269,7 +307,7 @@ class GetResultsTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _get_results(self.tenant, make_survey_definition())
+        _get_results(self.tenant, make_survey_definition(), _create_survey_result)
 
         self.assertEqual(Survey.objects.count(), 3)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -288,7 +326,7 @@ class GetResultsTestCase(TestCase):
         make_survey()
         make_survey()
 
-        _get_results(self.tenant, make_survey_definition())
+        _get_results(self.tenant, make_survey_definition(), _create_survey_result)
 
         self.assertTrue(download_mock.called)
         self.assertEqual(download_mock.call_count, 2)
@@ -346,12 +384,17 @@ class CreateSurveyResultTestCase(TestCase):
 
     def test_survey_result_created(self):
         """`SurveyResult` is always created."""
-        make_survey()
+        survey = make_survey(pk=1)
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)  # noqa
         got_ids = [result.response_id for result in got_survey_results]
+
+        # Test result have survey_id set but not internal_survey_id
+        for survey_result in got_survey_results:
+            self.assertIsNone(survey_result.internal_survey_id)
+            self.assertIsNotNone(survey_result.survey_id)
 
         self.assertEqual(Survey.objects.count(), 1)
         # mocked data contains 3 finished survey results
@@ -361,12 +404,16 @@ class CreateSurveyResultTestCase(TestCase):
         for response_id in self.response_ids:
             self.assertTrue(response_id in got_ids)
 
+        # mocked survey has a internal response and no external responses
+        self.assertEqual(survey.internal_results.count(), 0)
+        self.assertEqual(survey.survey_results.count(), 1)
+
     def test_survey_result_created_no_survey_found(self):
         """When a Survey is not found, `SurveyResult` is created anyway."""
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)  # noqa
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -389,7 +436,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 3)
 
-        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant)
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)  # noqa
         got_ids = [result.response_id for result in got_survey_results]
 
         self.assertEqual(Survey.objects.count(), 0)
@@ -410,7 +457,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition, self.tenant)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)
 
         data_to_questions_mock.assert_called()
         data_to_questions_text_mock.assert_called()
@@ -433,7 +480,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition, tenant)
+        _create_survey_results(self.responses, self.survey_definition, tenant, _create_survey_result)
 
         data_to_questions_mock.assert_called()
         data_to_questions_text_mock.assert_called()
@@ -460,7 +507,7 @@ class CreateSurveyResultTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition, tenant)
+        _create_survey_results(self.responses, self.survey_definition, tenant, _create_survey_result)
 
         data_to_questions_mock.assert_called()
         data_to_questions_text_mock.assert_called()
@@ -471,6 +518,110 @@ class CreateSurveyResultTestCase(TestCase):
         args, kwargs = all_calls[0]
         self.assertIsNotNone(kwargs.get('dimensions_weights'))
         self.assertDictEqual(kwargs.get('dimensions_weights'), tenant['DIMENSIONS_WEIGHTS'])
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
+)
+class CreateInternalSurveyResultTestCase(TestCase):
+    """Tests for _create_survey_results function, when an internal survey has been completed."""
+    def setUp(self):
+        responses_values = get_mocked_results().get('responses')
+        responses_text = get_mocked_results(text=True).get('responses')
+        self.responses = _update_responses_with_text(responses_values, responses_text).values()
+        self.response_ids = [response['value'].get('ResponseID') for response in self.responses
+                             if response['value'].get('Finished') == '1']
+        self.tenant = settings.INTERNAL_TENANTS['tenant1']
+        self.survey_definition = make_survey_definition(tenant=self.tenant['key'])
+
+    def test_internal_survey_result_created(self):
+        """`SurveyResult` is always created and correctly links to survey if it exists."""
+        survey = make_survey(sid=1)
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)  # noqa
+        got_ids = [result.response_id for result in got_survey_results]
+
+        # Test result have internal_survey_id set but not survey_id
+        for survey_result in got_survey_results:
+            self.assertIsNotNone(survey_result.internal_survey_id)
+            self.assertIsNone(survey_result.survey_id)
+
+        self.assertEqual(Survey.objects.count(), 1)
+        # mocked data contains 3 finished survey results
+        self.assertEqual(SurveyResult.objects.count(), 3)
+        self.assertTrue(isinstance(got_ids, list))
+        self.assertTrue(len(got_ids) == len(self.response_ids))
+        for response_id in self.response_ids:
+            self.assertTrue(response_id in got_ids)
+
+        # mocked survey has a internal response and no external responses
+        self.assertEqual(survey.internal_results.count(), 1)
+        self.assertEqual(survey.survey_results.count(), 0)
+
+    def test_internal_survey_result_created_no_survey_found(self):
+        """When a Survey is not found, `SurveyResult` is created anyway."""
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)  # noqa
+        got_ids = [result.response_id for result in got_survey_results]
+
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 3)
+        self.assertTrue(isinstance(got_ids, list))
+        self.assertTrue(len(got_ids) == len(self.response_ids))
+        for response_id in self.response_ids:
+            self.assertTrue(response_id in got_ids)
+
+    def test_internal_survey_result_not_duplicated(self):
+        """When a SurveyResult with a specific response_id already exists, it won't be created again."""
+        # presave finished surveys
+        for response in self.responses:
+            response_value = response['value']
+            if response_value.get('Finished') == '1':
+                make_survey_result(
+                    started_at=response_value.get('StartDate'),
+                    response_id=response_value.get('ResponseID'))
+
+        self.assertEqual(Survey.objects.count(), 0)
+        self.assertEqual(SurveyResult.objects.count(), 3)
+
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)  # noqa
+        got_ids = [result.response_id for result in got_survey_results]
+
+        # Test result have internal_survey_id set but not survey_id
+        for survey_result in got_survey_results:
+            self.assertIsNone(survey_result.internal_survey_id)
+            self.assertIsNone(survey_result.survey_id)
+
+        self.assertEqual(Survey.objects.count(), 0)
+        # no new results are created
+        self.assertEqual(SurveyResult.objects.count(), 3)
+        self.assertTrue(isinstance(got_ids, list))
+        self.assertEqual(len(got_ids), 0)
+
+    @mock.patch('core.qualtrics.benchmark.calculate_response_benchmark', return_value=(None, None))
+    @mock.patch('core.qualtrics.question.get_question')
+    @mock.patch('core.qualtrics.question.data_to_questions_text')
+    @mock.patch('core.qualtrics.question.data_to_questions')
+    def test_create_internal_survey_results_call_correctly_underlying_functions(
+        self, data_to_questions_mock, data_to_questions_text_mock, get_question_mock, calculate_response_benchmark_mock
+    ):
+        """_create_survey_results is calling with correct parameters the underlying functions."""
+        make_survey()
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)
+
+        data_to_questions_mock.assert_called()
+        data_to_questions_text_mock.assert_called()
+        calculate_response_benchmark_mock.assert_called()
+        # expected get_question function not to be called, if tenant is not NEWS
+        get_question_mock.assert_not_called()
 
 
 @override_settings(
@@ -491,7 +642,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition, self.tenant)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)
 
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -501,7 +652,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
-        _create_survey_results(self.responses, self.survey_definition, self.tenant)
+        _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)
 
         self.assertEqual(Survey.objects.count(), 0)
         self.assertEqual(SurveyResult.objects.count(), 0)
@@ -513,7 +664,7 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 
         # Asserting we're logging a message if survey is not completed
         with mock.patch('logging.warning') as logging_mock:
-            _create_survey_results(self.responses, self.survey_definition, self.tenant)
+            _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_survey_result)
             self.assertTrue(logging_mock.called)
 
         self.assertEqual(Survey.objects.count(), 0)
