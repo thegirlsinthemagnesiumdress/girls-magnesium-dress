@@ -141,7 +141,7 @@ def thank_you(request, tenant):
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
-    return redirect(reverse('admin', kwargs={'tenant': get_tenant_slug(tenant)}))
+    return redirect(reverse('accounts', kwargs={'tenant': get_tenant_slug(tenant)}))
 
 
 @login_required
