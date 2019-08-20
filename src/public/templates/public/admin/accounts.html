@@ -36,7 +36,6 @@
             <button
                 aria-label="Export survey data"
                 aria-describedby="export-tooltip"
-                aria-controls="toast"
                 class="dmb-toolbar__export-btn dmb-tooltip"
                 id="dmb-export-btn"
                 ng-disabled="exportsCtrl.submitting"
@@ -53,7 +52,8 @@
               aria-live="assertive"
               class="dmb-toast"
               id="toast"
-              ng-if="exportsCtrl.showToast">
+              ng-if="exportsCtrl.showToast"
+              ng-cloak>
             <span ng-if="!exportError">
               Data export requested. This may take up to 5 minutes. Please check your email inbox.
             </span>
@@ -79,7 +79,8 @@
       ng-class="{'dmb-table--empty': reportAdminCtrl.surveys.length < 1}">
     <div
         class="dmb-table__empty-table-block h-u-text-center"
-        ng-if="reportAdminCtrl.surveys.length < 1">
+        ng-if="reportAdminCtrl.surveys.length < 1"
+        ng-cloak>
       {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
       <h2 class="h-c-headline h-c-headline--five">
         Add an account to get started
@@ -123,7 +124,7 @@
         <tbody>
 
           <!-- Repeat -->
-          <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index">
+          <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index" ng-cloak>
             <td data-colheader="Organization">
               <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
               <a ng-href="/accounts/{[ survey.account_id ]}">
