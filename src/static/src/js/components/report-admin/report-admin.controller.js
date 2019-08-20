@@ -12,9 +12,11 @@ class ReportAdminController {
    * @param {!angular.$http} $http
    * @param {String} csrfToken
    * @param {Object} bootstrapData
+   * @param {!Function} dmbLevelsFactory
+   *
    * @ngInject
    */
-  constructor($http, csrfToken, bootstrapData) {
+  constructor($http, csrfToken, bootstrapData, dmbLevelsFactory) {
     this._ngHttp = $http;
     this._csrfToken = csrfToken;
 
@@ -43,10 +45,6 @@ class ReportAdminController {
      */
     this.newAccountIds = [];
 
-    this.surveys.forEach((survey) => {
-      this.newAccountIds.push(survey['account_id']);
-    });
-
     /**
      * @type {String}
      * @export
@@ -64,6 +62,31 @@ class ReportAdminController {
      * @export
      */
     this.serverError = false;
+
+    /**
+     *
+     * @type {Function}
+     * @export
+     */
+    this.dmbLevelsFactory = dmbLevelsFactory;
+
+    /**
+     *
+     * @type {Object}
+     * @export
+     */
+    this.currentLevelData = {};
+
+
+    this.surveys.forEach((survey, index, array) => {
+      this.newAccountIds.push(survey['account_id']);
+      if (survey.last_survey_result) {
+        array[index].externalCurrentLevelData = this.dmbLevelsFactory(survey.last_survey_result.dmb)['current'];
+      }
+      if (survey.last_internal_result) {
+        array[index].internalCurrentLevelData = this.dmbLevelsFactory(survey.last_internal_result.dmb)['current'];
+      }
+    });
   }
 
 

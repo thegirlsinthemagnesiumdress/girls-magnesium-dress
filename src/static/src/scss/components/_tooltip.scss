@@ -1,0 +1,25 @@
+/* Tooltip container */
+.dmb-tooltip {
+  $block: &;
+  position: relative;
+
+  &__text {
+    @extend .dmb-overlay;
+
+    font-size: 14px;
+    opacity: 0;
+    padding: 8px 16px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    transition: .3s linear .2s;
+    visibility: hidden;
+
+    #{$block}:hover &,
+    #{$block}:focus & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

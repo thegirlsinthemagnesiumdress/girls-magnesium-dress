@@ -1,0 +1,23 @@
+.dmb-button {
+  align-items: center;
+  border-radius: $dmb-border-radius-medium;
+  display: flex;
+  font-family: $dmb-alt-font-family;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  padding: 8px 12px;
+
+  &,
+  &:visited {
+    color: $dmb-color-blue-denim;
+  }
+
+  &:hover {
+    background: $dmb-color-blue-alice;
+  }
+
+  svg {
+    margin: -.2em .5em 0 0;
+  }
+}

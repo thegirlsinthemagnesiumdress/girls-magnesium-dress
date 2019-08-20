@@ -35,7 +35,7 @@ class ReportsAdminTestCase(TestCase):
         reload_urlconf()
 
     def setUp(self):
-        self.url = reverse('reports', kwargs={'tenant': 'tenant1-slug'})
+        self.url = reverse('accounts', kwargs={'tenant': 'tenant1-slug'})
         self.survey_1 = make_survey(tenant='tenant1')
         self.survey_2 = make_survey(tenant='tenant1')
         self.survey_3 = make_survey(tenant='tenant2')
@@ -65,7 +65,7 @@ class ReportsAdminTestCase(TestCase):
         self.survey_1.save()
 
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
-        with TempTemplateFolder(templates_path, 'reports-list.html'):
+        with TempTemplateFolder(templates_path, 'accounts.html'):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
 
@@ -74,31 +74,26 @@ class ReportsAdminTestCase(TestCase):
 
             self.assertTrue(surveys)
             self.assertEqual(len(surveys), 1)
-            self.assertEqual(surveys[0]['engagement_lead'], self.survey_1.engagement_lead)
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in(self):
         """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
-        with TempTemplateFolder(templates_path, 'reports-list.html'):
+        with TempTemplateFolder(templates_path, 'accounts.html'):
             response = self.client.get(self.url)
             self.assertEqual(response.status_code, 200)
             bootstrap_data = get_bootstrap_data(response.context)
             surveys = bootstrap_data.get('results')
 
-            engagement_lead_ids = [el['engagement_lead'] for el in surveys]
-
             self.assertTrue(surveys)
             self.assertEqual(len(surveys), 2)
-            self.assertTrue(self.survey_1.engagement_lead in engagement_lead_ids)
-            self.assertTrue(self.survey_2.engagement_lead in engagement_lead_ids)
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in_tenant_2(self):
         """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
-        url = reverse('reports', kwargs={'tenant': 'tenant2-slug'})
+        url = reverse('accounts', kwargs={'tenant': 'tenant2-slug'})
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
-        with TempTemplateFolder(templates_path, 'reports-list.html'):
+        with TempTemplateFolder(templates_path, 'accounts.html'):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
             bootstrap_data = get_bootstrap_data(response.context)

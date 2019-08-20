@@ -398,7 +398,9 @@ MOCKED_INTERNAL_TENANTS = {
         'key': 'tenant1',
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'QUALTRICS_SURVEY_ID': 'SV_in1xxxxxxxxxxxx',
-        'WEIGHTS': MOCKED_WEIGHTS
+        'WEIGHTS': MOCKED_WEIGHTS,
+        'MULTI_ANSWER_QUESTIONS': [],
+        'EXCLUDED_TIME_THRESHOLD': 5,
     }
 }
 

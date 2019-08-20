@@ -68,3 +68,5 @@ DIMENSIONS = {
         'Q39',
     ],
 }
+
+MULTI_ANSWER_QUESTIONS = []

@@ -71,6 +71,13 @@ class Survey(models.Model):
         industry = industries_dict.get(self.industry)
         return industry.decode('utf-8') if industry else None
 
+    def get_parent_industry_display(self, *args, **kwargs):
+        t = settings.TENANTS[self.tenant]
+        industries_dict = t['HIERARCHICAL_INDUSTRIES']
+        mapped_industries = utils.map_industries(industries_dict, None, {})
+        label, parent_industry = mapped_industries.get(self.industry)
+        return label
+
     def build_qualtrics_link(self, qualtrics_survey_id, i18n=False):
         """
         Builds a qualtrics link for a specified qualtrics survey

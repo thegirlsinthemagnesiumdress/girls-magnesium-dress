@@ -133,3 +133,10 @@ $positions: (top, bottom);
 .dmb-u-text-muted {
   color: $dmb-color-grey-shuttle !important;
 }
+
+.dmb-overlay {
+  background-color: $dmb-color-grey-shuttle;
+  border-radius: $dmb-border-radius-medium;
+  color: #fff;
+  z-index: 1;
+}
