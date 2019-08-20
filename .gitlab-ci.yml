@@ -50,7 +50,6 @@ fe-lint:
     - rm /tmp/$CI_PIPELINE_ID.json
 
 
-
 deploy_ads_nightly:
   extends: .deploy
   only:
@@ -62,6 +61,19 @@ deploy_ads_nightly:
     - echo $DEPLOY_KEY_NIGHTLY > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud --quiet --project gweb-digitalmaturity-staging app deploy --no-promote -v ads-nightly
+
+
+deploy_ads_internal_nightly:
+  extends: .deploy
+  only:
+    - ads-internal-master
+  environment:
+    name: Nightly
+    url: https://ads-internal-nightly-dot-gweb-digitalmaturity-staging.appspot.com
+  script:
+    - echo $DEPLOY_KEY_NIGHTLY > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud --quiet --project gweb-digitalmaturity-staging app deploy --no-promote -v ads-internal-nightly
 
 
 deploy_cloud_nightly:
