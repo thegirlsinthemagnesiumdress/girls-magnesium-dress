@@ -52,7 +52,9 @@
           </span>
           <button class="dmb-list-card__header-right dmb-button">
             {% include 'core/inc/svg.html' with id='int-assessment' size='24px' %}
-            <span>Assess client</span>
+            <span>
+              <a href="{{ account.internal_link }}">Assess client</a>
+            </span>
           </button>
         </div>
       </div>

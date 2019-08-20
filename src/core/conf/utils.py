@@ -372,6 +372,8 @@ def get_account_detail_data(tenant, account, level_ranges=None):
         "name": account.company_name,
         "country": settings.COUNTRIES[account.country],
         "industry": account.get_industry_display(),
+        "internal_link": account.internal_link,
+        "external_link": account.link,
     }
     # Construct the internal and external survey info arrays.
     external_surveys = [get_detailed_survey_result_data(tenant, survey_result, level_ranges)
