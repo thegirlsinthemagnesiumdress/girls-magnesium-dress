@@ -309,7 +309,7 @@
     </div>
   </div>
 
-  <div class="dmb-table h-c-table__overflowcontainer">
+  <div class="dmb-legacy-table h-c-table__overflowcontainer">
     <table
         class="h-c-table h-c-table--datatable h-c-table--datatable-altrows"
         role="table"
@@ -388,13 +388,13 @@
         <tr
             data-index={[$index]}
             ng-class="{
-                'dmb-table__expanded-row': reportAdminCtrl.expandedRows[$index],
-                'dmb-table__editing-account-row': reportAdminCtrl.rowToEdit == $index }"
+                'dmb-legacy-table__expanded-row': reportAdminCtrl.expandedRows[$index],
+                'dmb-legacy-table__editing-account-row': reportAdminCtrl.rowToEdit == $index }"
             ng-repeat="survey in reportAdminCtrl.surveys"
             role="row">
 
           <td
-              class="dmb-table__org-td"
+              class="dmb-legacy-table__org-td"
               role="rowheader"
               title="{[survey.company_name]}">
             {[survey.company_name]}
@@ -404,34 +404,34 @@
             <td
                 role="rowheader"
                 title="{[survey.account_id]}">
-              <div class="dmb-table__account-wrapper">
+              <div class="dmb-legacy-table__account-wrapper">
                 &#x200b;
-                <span class="dmb-table__account-text">
+                <span class="dmb-legacy-table__account-text">
                   {[survey.account_id]}
                 </span>
                 <button
                     aria-label="Edit Greentea ID (division)"
-                    class="dmb-table__account-edit-btn h-c-button h-c-button--flat"
+                    class="dmb-legacy-table__account-edit-btn h-c-button h-c-button--flat"
                     ng-click="reportAdminCtrl.editAccountID($event, $index)"
                     ng-disabled="reportAdminCtrl.submitting">
                   {% include 'core/inc/svg.html' with id='edit' size='20px' only %}
                 </button>
 
                 <form
-                    class="dmb-table__account-form"
+                    class="dmb-legacy-table__account-form"
                     data-url="/api/survey/{[survey.sid]}/"
                     method="put"
                     ng-submit="reportAdminCtrl.submitAccountIDEdit($event,$index)">
                   <input
                       aria-label="Enter Greentea ID (division)"
-                      class="dmb-table__account-input"
+                      class="dmb-legacy-table__account-input"
                       name="account-id"
                       ng-model="reportAdminCtrl.newAccountIds[$index]"
                       type="text">
 
                   <button
                       aria-label="Submit Greentea ID (division) change"
-                      class="dmb-table__account-submit h-c-button h-c-button--flat"
+                      class="dmb-legacy-table__account-submit h-c-button h-c-button--flat"
                       ng-if="!reportAdminCtrl.submitting && reportAdminCtrl.newAccountIds[$index] !== survey.account_id"
                       type="submit">
                     {% include 'core/inc/svg.html' with id='success' size='24px' only %}
@@ -439,7 +439,7 @@
 
                   <button
                       aria-label="Cancel Greentea ID (division) change"
-                      class="dmb-table__account-cancel h-c-button h-c-button--flat"
+                      class="dmb-legacy-table__account-cancel h-c-button h-c-button--flat"
                       type="button"
                       ng-click="reportAdminCtrl.cancelAccountIDEdit()"
                       ng-if="!reportAdminCtrl.submitting">
@@ -460,7 +460,7 @@
             {% comment %}
               This is used by tablesort-utility.js module to sort by date, please update it if this changes
             {% endcomment %}
-            <span class="dmb-table__date">
+            <span class="dmb-legacy-table__date">
               utc={[survey.created_at]}
             </span>
           </td>
@@ -468,7 +468,7 @@
           <td role="gridcell">
             {[ survey.survey_results.length ]}
             <button
-                class="dmb-table__history-btn h-c-button h-c-button--flat"
+                class="dmb-legacy-table__history-btn h-c-button h-c-button--flat"
                 ng-if="survey.survey_results.length > 1"
                 ng-click="reportAdminCtrl.viewHistory($index)">
               View history
@@ -477,7 +477,7 @@
               </svg>
             </button>
             <div
-                class="dmb-table__subcell dmb-table__subcell--first"
+                class="dmb-legacy-table__subcell dmb-legacy-table__subcell--first"
                 ng-repeat="r in survey.survey_results">
               {[r.started_at|date:"d/M/yyyy hh:mm"]}
             </div>
@@ -494,7 +494,7 @@
 
           <td role="gridcell">
             <a
-                class="h-c-button h-c-button--flat dmb-table__top-report-cell"
+                class="h-c-button h-c-button--flat dmb-legacy-table__top-report-cell"
                 ng-if="survey.survey_results.length > 0"
                 ng-href="{[survey.last_survey_result_link]}"
                 target="_blank">
@@ -505,7 +505,7 @@
               -
             </span>
             <div
-                class="dmb-table__subcell"
+                class="dmb-legacy-table__subcell"
                 ng-repeat="r in survey.survey_results">
               <a
                   class="h-c-button h-c-button--flat"
@@ -518,7 +518,7 @@
 
           <td role="gridcell">
             <a
-                class="h-c-button h-c-button--flat dmb-table__top-report-cell"
+                class="h-c-button h-c-button--flat dmb-legacy-table__top-report-cell"
                 ng-href="{[survey.last_survey_result.detail_link]}"
                 ng-if="survey.last_survey_result.detail_link"
                 target="_blank">
@@ -528,7 +528,7 @@
               -
             </span>
             <div
-                class="dmb-table__subcell"
+                class="dmb-legacy-table__subcell"
                 ng-repeat="r in survey.survey_results">
               <a
                   class="h-c-button h-c-button--flat"
@@ -544,7 +544,7 @@
           </td>
 
           <td
-              class="dmb-table__ind-td"
+              class="dmb-legacy-table__ind-td"
               ng-attr-title="{[survey.industry_name]}"
               role="gridcell">
                 {[survey.industry_name]}

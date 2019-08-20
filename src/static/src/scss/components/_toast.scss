@@ -1,0 +1,11 @@
+.dmb-toast {
+  @extend .dmb-overlay;
+
+  bottom: 32px;
+  left: 50%;
+  min-width: 500px;
+  padding: 20px;
+  position: fixed;
+  text-align: center;
+  transform: translateX(-50%);
+}

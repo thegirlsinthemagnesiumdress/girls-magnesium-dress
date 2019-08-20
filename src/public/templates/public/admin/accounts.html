@@ -1,0 +1,162 @@
+{% extends 'public/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load angular %}
+
+{# Marking this safe because is not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
+{% block bootstrap_data %}{{bootstrap_data|ng_mark_safe}}{% endblock %}
+
+{% block body_class %}dmb-account-list{% endblock %}
+
+{% block main %}
+
+<main id="dmb-account-list" dmb-reports-admin class="h-c-page">
+  <div class="dmb-toolbar dmb-u-m-t-s dmb-u-m-b-s h-c-grid ">
+    <div class="h-c-grid__col h-c-grid__col--7">
+      <h1 class="dmb-toolbar__heading h-c-headline h-c-headline--subhead dmb-u-no-margin">
+        {% include 'core/inc/svg.html' with id='account' size='24px' class='dmb-toolbar__heading-icon' %}
+        <span class="dmb-toolbar__heading-text">Accounts</span>
+      </h1>
+    </div>
+
+    <div class="h-c-grid__col h-c-grid__col--5 dmb-toolbar__right-col">
+      <div class="dmb-toolbar__search"></div>
+
+      <div class="dmb-toolbar__btns">
+
+        <div
+            class="dmb-toolbar__export"
+            ng-controller="ExportReportsCtrl as exportsCtrl">
+          <form
+              action="{% url 'reports_export' slug|ng_mark_safe %}"
+              method="post"
+              name="export"
+              ng-submit="exportsCtrl.export($event, '{{ engagement_lead|ng_mark_safe }}')"
+              novalidate>
+            <button
+                aria-label="Export survey data"
+                aria-describedby="export-tooltip"
+                class="dmb-toolbar__export-btn dmb-tooltip"
+                id="dmb-export-btn"
+                ng-disabled="exportsCtrl.submitting"
+                type="submit">
+              {% include 'core/inc/svg.html' with id='export' size="24px" %}
+              <div
+                  class="dmb-toolbar__export-tooltip-text dmb-tooltip__text"
+                  id="export-tooltip">
+                Export the data from all your surveys. Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
+              </div>
+            </button>
+          </form>
+          <div
+              aria-live="assertive"
+              class="dmb-toast"
+              id="toast"
+              ng-if="exportsCtrl.showToast"
+              ng-cloak>
+            <span ng-if="!exportError">
+              Data export requested. This may take up to 5 minutes. Please check your email inbox.
+            </span>
+            <span ng-if="exportError">
+              Sorry there was an error, please try again.
+            </span>
+          </div>
+        </div>
+
+        <a
+            class="dmb-button"
+            href="#">
+          {% include 'core/inc/svg.html' with id='add' inline=True %}
+            Add Account
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div
+      class="dmb-table dmb-u-m-b-l"
+      ng-class="{'dmb-table--empty': reportAdminCtrl.surveys.length < 1}">
+    <div
+        class="dmb-table__empty-table-block h-u-text-center"
+        ng-if="reportAdminCtrl.surveys.length < 1"
+        ng-cloak>
+      {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
+      <h2 class="h-c-headline h-c-headline--five">
+        Add an account to get started
+      </h2>
+    </div>
+
+    <div
+        class="h-c-table__overflowcontainer"
+        ng-if="reportAdminCtrl.surveys.length > 0">
+      <table
+          class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
+          role="table"
+          summary="List of accounts you are subscribed to">
+        <thead>
+          <tr>
+            <th scope="col">
+              Organization
+            </th>
+            <th scope="col">
+              Country
+            </th>
+            <th scope="col">
+              Industry
+            </th>
+            <th
+                scope="col">
+              Int. Score
+            </th>
+            <th scope="col">
+              Int. Maturity
+            </th>
+            <th
+                scope="col">
+              Ext. Score
+            </th>
+            <th scope="col">
+              Ext. Maturity
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- Repeat -->
+          <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index" ng-cloak>
+            <td data-colheader="Organization">
+              <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
+              <a ng-href="/accounts/{[ survey.account_id ]}">
+                {[ survey.company_name ]}
+              </a>
+            </td>
+            <td data-colheader="Country">
+              {[ survey.company_name ]}
+            </td>
+            <td data-colheader="Industry">
+              {[ survey.industry_name ]}
+            </td>
+            <td data-colheader="Int. Maturity" class="h-c-table__cell--numerical">
+              {[ survey.last_survey_result.dmb|number:1 ]}
+            </td>
+            <td data-colheader="Int. Maturity">
+              {[ survey.externalCurrentLevelData['mapValue'] ]}
+            </td>
+            <td data-colheader="Ext. Maturity" class="h-c-table__cell--numerical">
+              {[ survey.last_internal_result.dmb|number:1 ]}
+            </td>
+            <td data-colheader="Ext. Maturity">
+              {[ reportAdminCtrl.internalCurrentLevelData['mapValue'] ]}
+            </td>
+          </tr>
+          <!-- EndRepeat -->
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+.dmb-toolbar {
+  &__heading {
+    display: inline-flex;
+  }
+
+  &__heading-icon {
+    fill: $dmb-color-grey-shuttle;
+    margin: 0 24px 0 8px;
+  }
+
+  &__right-col {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__search {
+    border-radius: $dmb-border-radius-medium;
+    display: none; // Remove once search is enabled
+    flex-grow: 1;
+    margin-right: 24px;
+  }
+
+  &__btns {
+    align-items: center;
+    display: flex;
+  }
+
+  &__export-btn {
+    display: inline-flex;
+    margin-right: 24px;
+  }
+
+  &__export-tooltip-text {
+    width: 500px;
+  }
+}

@@ -47,6 +47,7 @@
 @import 'general';
 
 // DMB Components
+@import 'components/buttons';
 @import 'components/card';
 @import 'components/card-on-bg';
 @import 'components/collaboration';
@@ -61,6 +62,7 @@
 @import 'components/img-text';
 @import 'components/img-text-collage';
 @import 'components/inline-img-text';
+@import 'components/legacy-table';
 @import 'components/outline-button';
 @import 'components/panel-trigger';
 @import 'components/product-hero';
@@ -79,6 +81,9 @@
 @import 'components/step-heading';
 @import 'components/svg';
 @import 'components/table';
+@import 'components/toast';
+@import 'components/toolbar';
+@import 'components/tooltip';
 @import 'components/tile-carousel';
 
 
