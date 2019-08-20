@@ -126,7 +126,8 @@ class Survey(models.Model):
         if internal_tenant is None:
             return None
         qualtrics_survey_id = internal_tenant.get('QUALTRICS_SURVEY_ID')
-        return self.build_qualtrics_link(qualtrics_survey_id)
+        survey_link = "{}&account_id={}".format(self.build_qualtrics_link(qualtrics_survey_id), self.account_id)
+        return survey_link
 
     @property
     def link_sponsor(self):
