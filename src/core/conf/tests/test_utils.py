@@ -10,13 +10,14 @@ from core.conf.utils import (
     get_level_info,
     get_dimension_level_info,
     get_detailed_survey_result_data,
+    get_account_detail_data,
 )
 import mock
 from djangae.test import TestCase
 from collections import OrderedDict
 from django.test import override_settings
 from django.conf import settings
-from core.tests.mocks import MOCKED_TENANTS
+from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
@@ -315,6 +316,7 @@ class GetOtherTenantFootersTest(TestCase):
 
 @override_settings(
     TENANTS=MOCKED_TENANTS,
+    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
 )
 class GetLevelAttributesTest(TestCase):
     """Test for functions in `core.utils` for getting level-dependent properties/attributes."""
@@ -489,3 +491,12 @@ class GetLevelAttributesTest(TestCase):
             )
             self.assertEqual(survey_result_data['dimensions'][dimension]['inTopLevel'], False)
             self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
+
+    def get_empty_account_detail_data_test(self):
+        """Tests that correct value is returned when a empty account is provided."""
+        # Make fake survey results.
+        survey = make_survey(tenant="tenant1")
+        account_info, external_surveys, internal_surveys = get_account_detail_data("tenant1", survey, self.level_ranges)
+        self.assertIsNotNone(account_info)
+        self.assertListEqual(external_surveys, [])
+        self.assertListEqual(internal_surveys, [])
