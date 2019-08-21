@@ -47,7 +47,7 @@ export default class Clippy {
         toast.classList.add('dmb-toast__active');
         setTimeout(() => {
           toast.classList.remove('dmb-toast__active');
-        }, 5000);
+        }, 2500);
       });
       e.clearSelection();
     });
