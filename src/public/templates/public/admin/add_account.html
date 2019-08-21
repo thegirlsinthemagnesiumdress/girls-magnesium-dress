@@ -1,0 +1,69 @@
+{% extends 'public/base.html' %}
+{% load staticfiles %}
+{% load angular %}
+
+{# Marking this safe because is not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
+{% block bootstrap_data %}{{bootstrap_data|ng_mark_safe}}{% endblock %}
+
+{% block body_class %}dmb-account-list{% endblock %}
+
+{% block main %}
+{% djangoblock %}
+<main id="dmb-account-list" dmb-reports-admin class="h-c-page">
+  <div class="dmb-toolbar dmb-u-m-t-s dmb-u-m-b-s h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--7">
+      <h1 class="dmb-toolbar__heading h-c-headline h-c-headline--subhead dmb-u-no-margin">
+        {% include 'core/inc/svg.html' with id='back' size='20px' class='dmb-toolbar__heading-icon' %}
+        <span class="dmb-toolbar__heading-text">Add a new account</span>
+      </h1>
+    </div>
+  </div>
+
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--6">
+      <div class="dmb-container">
+        <h2 class="dmb-container__title h-u-font-weight-regular">Create a new account</h2>
+        <p>Fill in these details to create a new account</p>
+
+        <div class="dmb-container__input">
+          <label for="organisationName">Organisation name</label>
+          <input id="organisationName" type="text" placeholder="Enter the organisation name">
+        </div>
+
+        <div class="dmb-container__input">
+          <label for="greenteaId">Greentea Division ID &#8226; <a>Where can I find this?</a></label>
+          <input id="greenteaId" type="text" placeholder="Enter the Greentea ID">
+        </div>
+
+        <div class="dmb-container__input">
+          <label for="industry">Industry</label>
+          <select id="industry" class="h-c-form__dropdown" placeholder="Select a industry">
+            {% for industry in industries %}
+              <option value="{{ industry.0 }}">
+                {{ industry.1 }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="dmb-container__input">
+          <label for="country">Country</label>
+          <select id="country" class="h-c-form__dropdown" placeholder="Select a country">
+            {% for country in countries %}
+              <option value="{{ country.0 }}">
+                {{ country.1 }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button class="dmb-button h-c-button h-c-button--primary">Add Account</button>
+        <button class="dmb-button dmb-outline-button">Cancel</button>
+      </div>
+    </div>
+  </div>
+</main>
+{% enddjangoblock %}
+{% endblock %}

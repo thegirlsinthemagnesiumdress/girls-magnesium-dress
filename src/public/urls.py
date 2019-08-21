@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^createsurvey/$', views.registration, name="registration"),
     url(r'^reports/$', views.reports_admin, name="reports"),
     url(r'^accounts/$', views.accounts, name="accounts"),
+    url(r'^accounts/add/$', views.add_account, name="add_account"),
     url(r'^reports/export$', views.generate_spreadsheet_export, name="reports_export"),
     url(r'^reports/(?P<sid>[\w]+)/$', views.report_static, name="report"),
     url(r'^reports/internal/(?P<sid>[\w]+)/$', views.internal_report, name="report-internal"),

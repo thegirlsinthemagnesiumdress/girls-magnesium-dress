@@ -171,6 +171,29 @@ def accounts(request, tenant):
 
 @login_required
 @survey_admin_required
+def add_account(request, tenant):
+    tenant_conf = settings.TENANTS[tenant]
+    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
+
+    slug = get_tenant_slug(tenant)
+
+    api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
+
+    return render(request, 'public/admin/add_account.html', {
+        'bootstrap_data': JSONRenderer().render(api_data),
+        'content_data': _dump_tenant_content_data(tenant),
+        'engagement_lead': request.user.engagement_lead,
+        'other_tenants': get_other_tenant_footers(tenant),
+        'product_name': get_tenant_product_name(tenant),
+        'slug': slug,
+        'tenant': tenant,
+        'industries': industries,
+        'countries': COUNTRIES_TUPLE,
+    })
+
+
+@login_required
+@survey_admin_required
 def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
