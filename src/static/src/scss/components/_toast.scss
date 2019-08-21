@@ -1,11 +1,39 @@
 .dmb-toast {
   @extend .dmb-overlay;
 
-  bottom: 32px;
+  bottom: 48px;
+  display: none;
   left: 50%;
-  min-width: 500px;
-  padding: 20px;
+  min-width: 360px;
+  padding: 14px 30px;
   position: fixed;
   text-align: center;
   transform: translateX(-50%);
+
+  &__active {
+    animation: toast 2.5s linear;
+    display: block;
+  }
+}
+
+@keyframes toast {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(.9);
+  }
+
+  5% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  95% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(.9);
+  }
 }
