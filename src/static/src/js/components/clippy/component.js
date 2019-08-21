@@ -9,13 +9,19 @@ import ClipboardJs from 'clipboard';
  * Add the 'dmb-clippy' attribute to the element and assign
  * the attribute the value you want copied, e.g:
  *
- * <button id="clippy-example" class="dmb-button" dmb-clippy="https://p.ota.to">Copy Potato</button>
+ * <button id="clippy-example" class="dmb-button" dmb-clippy="https://p.ota.to">
+ *  Copy Potato
+ * </button>
  *
  * If a toast notification is wanted then append the 'dmb-clippy-toast' attribute
  * with a value of the id of the dmb-clippy control onto the element and,
  * optionally, use the 'dmb-toast' class. E.g:
  *
- * <div class="dmb-toast" dmb-clippy-toast="clippy-example">Copied to clipboard</div>
+ * <div class="dmb-toast" dmb-clippy-toast="clippy-example" aria-live="assertive">
+ *  Copied to clipboard
+ * </div>
+ *
+ * Remember to add 'aria-live="assertive"' for accessibility
  */
 export default class Clippy {
   /**
