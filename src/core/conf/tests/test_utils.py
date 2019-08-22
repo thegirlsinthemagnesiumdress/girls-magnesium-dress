@@ -324,59 +324,63 @@ class GetLevelAttributesTest(TestCase):
         self.content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
         self.level_ranges = self.content_data['level_ranges']
 
-    def get_level_key_test(self):
-        """Tests that a score returns the correct level key"""
-        levels = self.content_data['levels']
-        # Check scores are classified correctly.
-        for idx, level in enumerate(levels.keys()):
-            if idx != 0:
-                # If score is less than boundary the its the level before
-                previous_level = levels.keys()[idx - 1]
-                self.assertEqual(
-                    get_level_key(self.level_ranges, level - 0.1),
-                    previous_level
-                )
-            # If score is boundary then its the level
-            self.assertEqual(
-                get_level_key(self.level_ranges, level),
-                level
-            )
-            if idx != len(levels.keys()) - 1:
-                # If score is more than boundary but less than the one above its still the level
-                self.assertEqual(
-                    get_level_key(self.level_ranges, level + 0.1),
-                    level
-                )
+    def get_lower_bound_level_key_test(self):
+        """Checks that values on the level boundary and just above are clasified corrctly"""
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 1
+        # If score is boundary then its the level
+        self.assertEqual(
+            get_level_key(level_ranges, level),
+            level
+        )
+        # If score is more than boundary but less than the one above its still the level
+        self.assertEqual(
+            get_level_key(level_ranges, level + 0.1),
+            level
+        )
+
+    def get_upper_bound_level_key_test(self):
+        """Checks that values just below the next level boundary are clasified corrctly"""
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 1
+        # If score is more than boundary but less than the one above its still the level
+        self.assertEqual(
+            get_level_key(level_ranges, 2 - 0.1),
+            level
+        )
 
     def get_level_key_out_of_bounds_test(self):
         """Tests that a scores out of bounds return the correct level key"""
         # Check scores outside ranges are classified correctly.
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
         self.assertEqual(
-            get_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
-            self.level_ranges[0][0]
+            get_level_key(level_ranges, level_ranges[0][0] - 100),
+            level_ranges[0][0]
         )
         self.assertEqual(
-            get_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
-            self.level_ranges[-1][0]
+            get_level_key(level_ranges, level_ranges[-1][1] + 100),
+            level_ranges[-1][0]
         )
 
     def get_next_level_key_test(self):
         """Tests that the next level of a score is calculated correctly."""
-        levels = self.content_data['levels']
-        # Check scores are classified correctly.
-        for idx, level in enumerate(levels.keys()):
-            if idx == len(levels.keys()) - 1:
-                # If score is in top level then suggestion should be same level.
-                self.assertEqual(
-                    get_next_level_key(self.level_ranges, level),
-                    levels.keys()[idx]
-                )
-            else:
-                # If level is not in top range then next level should be one above.
-                self.assertEqual(
-                    get_next_level_key(self.level_ranges, level),
-                    levels.keys()[idx + 1]
-                )
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 1
+        # If level is not in top range then next level should be one above.
+        self.assertEqual(
+            get_next_level_key(level_ranges, level),
+            2
+        )
+
+    def get_top_next_level_key_test(self):
+        """Tests that the next level of a score is calculated correctly."""
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 2
+        # If level is not in top range then next level should be one above.
+        self.assertEqual(
+            get_next_level_key(level_ranges, level),
+            2
+        )
 
     def get_next_level_key_out_of_bounds_test(self):
         """Tests that a scores out of bounds return the correct level key"""
@@ -393,62 +397,55 @@ class GetLevelAttributesTest(TestCase):
     def is_top_level_test(self):
         """Tests that a top score is classified correctly."""
         # Check that a top score is has the highest level.
-        high_score = self.level_ranges[-1][1]
-        level = get_level_key(self.level_ranges, high_score)
-        self.assertTrue(in_top_level(self.level_ranges, level))
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 3
+        self.assertTrue(in_top_level(level_ranges, level))
 
     def is_not_top_level_test(self):
         """Tests that a non-top score is classified correctly."""
         # Check that a low score does not have the highest level.
-        low_score = self.level_ranges[0][0]
-        level = get_level_key(self.level_ranges, low_score)
-        self.assertFalse(in_top_level(self.level_ranges, level))
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 0
+        self.assertFalse(in_top_level(level_ranges, level))
 
     def get_level_info_test(self):
         """Tests that a score returns the correct level information"""
         levels = self.content_data['levels']
+        level = levels.keys()[1]
         # Check correct level info is given for each level.
-        for idx, level in enumerate(levels.keys()):
-            level_info = get_level_info(self.content_data, level)['levels']
-            # Check current level info
-            self.assertEqual(level, level_info['current']['value'])
-            self.assertEqual(levels[level], level_info['current']['name'])
-            self.assertEqual(self.content_data['level_descriptions'][level], level_info['current']['description'])
-            # Check next level info
-            if idx != len(levels.keys()) - 1:
-                next_level = levels.keys()[idx + 1]
-                next_level_info = get_level_info(self.content_data, next_level)['levels']
-                self.assertEqual(next_level, next_level_info['current']['value'])
-                self.assertEqual(levels[next_level], next_level_info['current']['name'])
-                self.assertEqual(
-                    self.content_data['level_descriptions'][next_level],
-                    next_level_info['current']['description']
-                )
+        level_info = get_level_info(self.content_data, level)['levels']
+        # Check current level info
+        self.assertEqual(level, level_info['current']['value'])
+        self.assertEqual(levels[level], level_info['current']['name'])
+        self.assertEqual(self.content_data['level_descriptions'][level], level_info['current']['description'])
+        # Check next level info
+        next_level = levels.keys()[2]
+        self.assertEqual(next_level, level_info['next']['value'])
+        self.assertEqual(levels[next_level], level_info['next']['name'])
+        self.assertEqual(self.content_data['level_descriptions'][next_level], level_info['next']['description'])
 
     def get_dimension_level_info_test(self):
         """Tests that a score returns the correct dimension level info"""
         levels = self.content_data['levels']
+        level = levels.keys()[1]
         dimension = 'dim1'
         # Check correct level info is given for each level.
-        for idx, level in enumerate(levels.keys()):
-            level_info = get_dimension_level_info(self.content_data, dimension, level)['levels']
-            # Check current level info
-            self.assertEqual(level, level_info['current']['value'])
-            self.assertEqual(levels[level], level_info['current']['name'])
-            self.assertEqual(
-                self.content_data['dimension_level_description'][dimension][level],
-                level_info['current']['description']
-            )
-            # Check next level info
-            if idx != len(levels.keys()) - 1:
-                next_level = levels.keys()[idx + 1]
-                next_level_info = get_dimension_level_info(self.content_data, dimension, next_level)['levels']
-                self.assertEqual(next_level, next_level_info['current']['value'])
-                self.assertEqual(levels[next_level], next_level_info['current']['name'])
-                self.assertEqual(
-                    self.content_data['dimension_level_description'][dimension][next_level],
-                    next_level_info['current']['description']
-                )
+        level_info = get_dimension_level_info(self.content_data, dimension, level)['levels']
+        # Check current level info
+        self.assertEqual(level, level_info['current']['value'])
+        self.assertEqual(levels[level], level_info['current']['name'])
+        self.assertEqual(
+            self.content_data['dimension_level_description'][dimension][level],
+            level_info['current']['description']
+        )
+        # Check next level info
+        next_level = levels.keys()[2]
+        self.assertEqual(next_level, level_info['next']['value'])
+        self.assertEqual(levels[next_level], level_info['next']['name'])
+        self.assertEqual(
+            self.content_data['dimension_level_description'][dimension][next_level],
+            level_info['next']['description']
+        )
 
     def get_detailed_survey_result_data_test(self):
         """Tests that a survey results data is correctly returned"""
@@ -467,17 +464,17 @@ class GetLevelAttributesTest(TestCase):
         self.assertIsNotNone(survey_result_data['overall'])
         self.assertEqual(survey_result_data['overall']['value'], 1)
 
-        for dimension in self.content_data['dimensions']:
-            self.assertEqual(
-                survey_result_data['dimensions'][dimension]['value'],
-                survey_result.dmb_d[dimension]
-            )
-            self.assertEqual(
-                survey_result_data['dimensions'][dimension]['name'],
-                self.content_data['dimension_labels'][dimension]
-            )
-            self.assertEqual(survey_result_data['dimensions'][dimension]['in_top_level'], False)
-            self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
+        dimension = self.content_data['dimensions'][0]
+        self.assertEqual(
+            survey_result_data['dimensions'][dimension]['value'],
+            survey_result.dmb_d[dimension]
+        )
+        self.assertEqual(
+            survey_result_data['dimensions'][dimension]['name'],
+            self.content_data['dimension_labels'][dimension]
+        )
+        self.assertEqual(survey_result_data['dimensions'][dimension]['in_top_level'], False)
+        self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
 
     def get_empty_account_detail_data_test(self):
         """Tests that correct value is returned when a empty account is provided."""
