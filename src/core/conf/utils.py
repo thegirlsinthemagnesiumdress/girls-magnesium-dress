@@ -349,7 +349,7 @@ def get_detailed_survey_result_data(tenant, survey_result, level_ranges=None):
 
 
 def get_account_detail_data(tenant, account, level_ranges=None):
-    """Gets requied data for the account detail page.
+    """Gets required data for the account detail page.
 
     Args:
         tenant (string): The tenant to pull content from.
