@@ -323,10 +323,7 @@ class GetLevelAttributesTest(TestCase):
 
     def setUp(self):
         self.content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
-        self.level_ranges = get_tenant_level_ranges(
-            self.content_data['levels'],
-            self.content_data['levels_max']
-        )
+        self.level_ranges = self.content_data['level_ranges']
 
     def get_level_ranges_test(self):
         """Test that a tenants level ranges are assembled correctly"""
@@ -413,7 +410,7 @@ class GetLevelAttributesTest(TestCase):
         levels = self.content_data['levels']
         # Check correct level info is given for each level.
         for idx, level in enumerate(levels.keys()):
-            level_info = get_level_info('tenant1', level, self.level_ranges)['levels']
+            level_info = get_level_info('tenant1', level)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
@@ -421,7 +418,7 @@ class GetLevelAttributesTest(TestCase):
             # Check next level info
             if idx != len(levels.keys()) - 1:
                 next_level = levels.keys()[idx + 1]
-                next_level_info = get_level_info('tenant1', next_level, self.level_ranges)['levels']
+                next_level_info = get_level_info('tenant1', next_level)['levels']
                 self.assertEqual(next_level, next_level_info['current']['value'])
                 self.assertEqual(levels[next_level], next_level_info['current']['name'])
                 self.assertEqual(
@@ -435,7 +432,7 @@ class GetLevelAttributesTest(TestCase):
         dimension = 'dim1'
         # Check correct level info is given for each level.
         for idx, level in enumerate(levels.keys()):
-            level_info = get_dimension_level_info('tenant1', dimension, level, self.level_ranges)['levels']
+            level_info = get_dimension_level_info('tenant1', dimension, level)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
@@ -446,12 +443,7 @@ class GetLevelAttributesTest(TestCase):
             # Check next level info
             if idx != len(levels.keys()) - 1:
                 next_level = levels.keys()[idx + 1]
-                next_level_info = get_dimension_level_info(
-                    'tenant1',
-                    dimension,
-                    next_level,
-                    self.level_ranges
-                )['levels']
+                next_level_info = get_dimension_level_info('tenant1', dimension, next_level)['levels']
                 self.assertEqual(next_level, next_level_info['current']['value'])
                 self.assertEqual(levels[next_level], next_level_info['current']['name'])
                 self.assertEqual(
@@ -470,11 +462,7 @@ class GetLevelAttributesTest(TestCase):
             dmb_d={u"dim1": 0.4, u"dim2": 1.6}
         )
         # Get survey result data.
-        survey_result_data = get_detailed_survey_result_data(
-            "tenant1",
-            survey_result,
-            self.level_ranges
-        )
+        survey_result_data = get_detailed_survey_result_data("tenant1", survey_result)
         # Check required fields are present
         self.assertIsNotNone(survey_result_data['date'])
         self.assertIsNotNone(survey_result_data['overall'])
@@ -496,7 +484,7 @@ class GetLevelAttributesTest(TestCase):
         """Tests that correct value is returned when a empty account is provided."""
         # Make fake survey results.
         survey = make_survey(tenant="tenant1")
-        account_info, external_surveys, internal_surveys = get_account_detail_data("tenant1", survey, self.level_ranges)
+        account_info, external_surveys, internal_surveys = get_account_detail_data("tenant1", survey)
         self.assertIsNotNone(account_info)
         self.assertListEqual(external_surveys, [])
         self.assertListEqual(internal_surveys, [])

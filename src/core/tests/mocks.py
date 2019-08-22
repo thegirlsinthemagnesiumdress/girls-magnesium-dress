@@ -4,6 +4,7 @@
 from django.utils import dateparse
 from collections import OrderedDict
 from django.utils.translation import ugettext_lazy as _
+from core.conf.utils import get_tenant_level_ranges
 
 
 MOCKED_DIMENSIONS = {
@@ -59,13 +60,18 @@ MOCKED_DIMENSION_TITLES_TENANT_2 = {
     'dim22': 'Dimension 22'
 }
 
+MOCKED_LEVELS_TENANT_1 = {
+    0: 'level_0',
+    1: 'level_1',
+    2: 'level_2'
+}
+
+MOCKED_MAX_LEVEL_TENANT_1 = 3
+
 MOCKED_CONTENT_DATA_TENANT_1 = {
-    'levels': {
-        0: 'level_0',
-        1: 'level_1',
-        2: 'level_2'
-    },
-    'levels_max': 3,
+    'levels': MOCKED_LEVELS_TENANT_1,
+    'levels_max': MOCKED_MAX_LEVEL_TENANT_1,
+    'level_ranges': get_tenant_level_ranges(MOCKED_LEVELS_TENANT_1, MOCKED_MAX_LEVEL_TENANT_1),
     'level_descriptions': {
         0: 'level_0_description',
         1: 'level_1_description',

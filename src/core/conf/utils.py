@@ -332,7 +332,6 @@ def get_detailed_survey_result_data(tenant, survey_result, level_ranges=None):
     Returns:
         object: An object containing level information about the overall and dimension scores,
                 as well as if the score is in the top level and when the survey was taken.
-                For use in the Admin's Account Details page.
     """
     content_data = settings.TENANTS[tenant]['CONTENT_DATA']
     # If level ranges have not been provided use the ones defined in the content data.
