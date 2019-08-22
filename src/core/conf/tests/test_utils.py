@@ -324,17 +324,6 @@ class GetLevelAttributesTest(TestCase):
         self.content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
         self.level_ranges = self.content_data['level_ranges']
 
-    def get_level_ranges_test(self):
-        """Test that a tenants level ranges are assembled correctly"""
-        # Check ranges are not empty.
-        self.assertEqual(len(self.level_ranges), len(self.content_data['levels']))
-        # Check ranges are formed correctly.
-        for (level_min, level_max) in self.level_ranges:
-            self.assertGreater(level_max, level_min)
-            self.assertNotEqual(level_min, level_max)
-        # Check that final range has max level as maximum
-        self.assertEqual(self.level_ranges[-1][1], self.content_data['levels_max'])
-
     def get_level_key_test(self):
         """Tests that a score returns the correct level key"""
         levels = self.content_data['levels']
@@ -358,6 +347,9 @@ class GetLevelAttributesTest(TestCase):
                     get_level_key(self.level_ranges, level + 0.1),
                     level
                 )
+
+    def get_level_key_out_of_bounds_test(self):
+        """Tests that a scores out of bounds return the correct level key"""
         # Check scores outside ranges are classified correctly.
         self.assertEqual(
             get_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
@@ -385,6 +377,9 @@ class GetLevelAttributesTest(TestCase):
                     get_next_level_key(self.level_ranges, level),
                     levels.keys()[idx + 1]
                 )
+
+    def get_next_level_key_out_of_bounds_test(self):
+        """Tests that a scores out of bounds return the correct level key"""
         # Check scores outside ranges are classified correctly.
         self.assertEqual(
             get_next_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
@@ -414,7 +409,7 @@ class GetLevelAttributesTest(TestCase):
         levels = self.content_data['levels']
         # Check correct level info is given for each level.
         for idx, level in enumerate(levels.keys()):
-            level_info = get_level_info('tenant1', level)['levels']
+            level_info = get_level_info(self.content_data, level)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
@@ -422,7 +417,7 @@ class GetLevelAttributesTest(TestCase):
             # Check next level info
             if idx != len(levels.keys()) - 1:
                 next_level = levels.keys()[idx + 1]
-                next_level_info = get_level_info('tenant1', next_level)['levels']
+                next_level_info = get_level_info(self.content_data, next_level)['levels']
                 self.assertEqual(next_level, next_level_info['current']['value'])
                 self.assertEqual(levels[next_level], next_level_info['current']['name'])
                 self.assertEqual(
@@ -436,7 +431,7 @@ class GetLevelAttributesTest(TestCase):
         dimension = 'dim1'
         # Check correct level info is given for each level.
         for idx, level in enumerate(levels.keys()):
-            level_info = get_dimension_level_info('tenant1', dimension, level)['levels']
+            level_info = get_dimension_level_info(self.content_data, dimension, level)['levels']
             # Check current level info
             self.assertEqual(level, level_info['current']['value'])
             self.assertEqual(levels[level], level_info['current']['name'])
@@ -447,7 +442,7 @@ class GetLevelAttributesTest(TestCase):
             # Check next level info
             if idx != len(levels.keys()) - 1:
                 next_level = levels.keys()[idx + 1]
-                next_level_info = get_dimension_level_info('tenant1', dimension, next_level)['levels']
+                next_level_info = get_dimension_level_info(self.content_data, dimension, next_level)['levels']
                 self.assertEqual(next_level, next_level_info['current']['value'])
                 self.assertEqual(levels[next_level], next_level_info['current']['name'])
                 self.assertEqual(
@@ -466,7 +461,7 @@ class GetLevelAttributesTest(TestCase):
             dmb_d={u"dim1": 0.4, u"dim2": 1.6}
         )
         # Get survey result data.
-        survey_result_data = get_detailed_survey_result_data("tenant1", survey_result)
+        survey_result_data = get_detailed_survey_result_data(self.content_data, survey_result)
         # Check required fields are present
         self.assertIsNotNone(survey_result_data['date'])
         self.assertIsNotNone(survey_result_data['overall'])
@@ -481,14 +476,14 @@ class GetLevelAttributesTest(TestCase):
                 survey_result_data['dimensions'][dimension]['name'],
                 self.content_data['dimension_labels'][dimension]
             )
-            self.assertEqual(survey_result_data['dimensions'][dimension]['inTopLevel'], False)
+            self.assertEqual(survey_result_data['dimensions'][dimension]['in_top_level'], False)
             self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
 
     def get_empty_account_detail_data_test(self):
         """Tests that correct value is returned when a empty account is provided."""
         # Make fake survey results.
         survey = make_survey(tenant="tenant1")
-        account_info, external_surveys, internal_surveys = get_account_detail_data("tenant1", survey)
+        account_info, external_surveys, internal_surveys = get_account_detail_data(self.content_data, survey)
         self.assertIsNotNone(account_info)
         self.assertListEqual(external_surveys, [])
         self.assertListEqual(internal_surveys, [])

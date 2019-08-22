@@ -195,11 +195,17 @@ _TRANSFORMATIONAL = 'Transformational'
 
 LEVELS = {
     LEVEL_0: _TACTICAL,
-    LEVEL_1: _TACTICAL,
     LEVEL_2: _STRATEGIC,
-    LEVEL_3: _STRATEGIC,
     LEVEL_4: _TRANSFORMATIONAL,
 }
+
+LEVELS_RANGES = [
+    (LEVEL_0, LEVEL_1),
+    (LEVEL_1, LEVEL_2),
+    (LEVEL_2, LEVEL_3),
+    (LEVEL_3, LEVEL_4),
+    (LEVEL_4, LEVELS_MAX)
+]
 
 _TACTICAL_LEVEL_DESCRIPTION = 'Organizations in this phase often have individual cloud workloads in place, but no coherent plan encompassing all of them nor a strategy for building out for the future. The focus is on reducing the cost of discrete systems and on getting to the cloud with minimal disruption. The wins are quick, but there is no provision for scale.'
 _STRATEGIC_LEVEL_DESCRIPTION = 'Organizations in this phase have a broad vision that governs individual workloads, which are designed and developed with an eye to future needs and scale. The organization has started to embrace change, and the people and process portion of the equation are now involved. IT teams are both efficient and effective, increasing the value of harnessing the cloud for business operations.'
@@ -844,7 +850,7 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'levels_max': LEVELS_MAX,
-    'level_ranges': utils.get_tenant_level_ranges(LEVELS, LEVELS_MAX),
+    'level_ranges': LEVELS_RANGES,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
