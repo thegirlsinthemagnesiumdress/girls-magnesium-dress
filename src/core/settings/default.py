@@ -144,6 +144,7 @@ LANGUAGES = [
     ('en', 'English'),
     ('es', 'Español'),
     ('it', 'Italiano'),
+    ('pl', 'Polski'),
     ('tr', 'Türkçe'),
 ]
 
@@ -310,6 +311,7 @@ QUALTRICS_LANGS = {
     'ES-ES': 'es',
     'TR': 'tr',
     'IT': 'it',
+    'PL': 'pl',
 }
 
 QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }
