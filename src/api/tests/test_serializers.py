@@ -21,7 +21,8 @@ class AdminSurveyResultsSerializerTests(TestCase):
 
         self.assertSetEqual(
             set(serializer.data.keys()),
-            set(['account_id',
+            set(['sid',
+                 'account_id',
                  'company_name',
                  'industry_name',
                  'country_name',

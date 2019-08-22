@@ -178,8 +178,8 @@ def accounts(request, tenant):
 
 @login_required
 @survey_admin_required
-def account_detail(request, tenant, account_id):
-    account = get_object_or_404(Survey, account_id=account_id)
+def account_detail(request, tenant, sid):
+    account = get_object_or_404(Survey, sid=sid)
 
     account_info, external_surveys, internal_surveys = get_account_detail_data(tenant, account)
 

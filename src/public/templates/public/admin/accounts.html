@@ -127,7 +127,7 @@
           <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index" ng-cloak>
             <td data-colheader="Organization">
               <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
-              <a ng-href="/accounts/{[ survey.account_id ]}">
+              <a ng-href="/accounts/{[ survey.sid ]}">
                 {[ survey.company_name ]}
               </a>
             </td>

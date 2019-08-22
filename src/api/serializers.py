@@ -71,13 +71,6 @@ class SurveyWithResultSerializer(ModelSerializer):
         )
 
 
-class AdminSurveyResultSerializer(ModelSerializer):
-
-    class Meta:
-        model = SurveyResult
-        fields = ('response_id', 'detail_link', 'report_link', 'started_at')
-
-
 class AdminSurveyResultsSerializer(ModelSerializer):
     last_survey_result = SurveyResultSerializer(read_only=True)
     last_internal_result = SurveyResultSerializer(read_only=True)
@@ -87,6 +80,7 @@ class AdminSurveyResultsSerializer(ModelSerializer):
     class Meta:
         model = Survey
         fields = (
+            'sid',
             'account_id',
             'company_name',
             'industry_name',
