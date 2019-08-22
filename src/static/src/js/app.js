@@ -29,6 +29,9 @@ import * as copyComponent from './components/copy-component/copy-component';
 import * as exportReports from './components/export/export-reports';
 import * as languageCode from './components/language-code/language-code';
 
+// Vanilla JS Copy Component
+import Clippy from './components/clippy/component';
+
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
   focusControl.module.name,
@@ -81,3 +84,6 @@ glueApp.bootstrap(module.name);
 
 // Initialise GLue Vanilla components
 document.querySelectorAll('.glue-header').forEach(Header.attachTo);
+
+// Attach copy component to elements with the custom dmb-copy-to-clipboard attribute.
+document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
