@@ -10,7 +10,7 @@
   text-align: center;
   transform: translateX(-50%);
 
-  &__active {
+  &--active {
     animation: toast 2.5s linear;
     display: block;
   }

@@ -25,31 +25,50 @@ import ClipboardJs from 'clipboard';
  */
 export default class Clippy {
   /**
-   * Attachs clippy functionality to element.
-   * @param {Node} elem : Element to attach Clippy to.
+   * Attaches methods to provided element.
+   * @param {Node} elem : Element to attach clippy functionality to.
    */
-  static attachTo(elem) {
+  constructor(elem) {
+    this.root = elem;
     // Create new clipboard JS object which gets the value of the dmb-clipp attribute.
-    let clipboard = new ClipboardJs(elem, {
+    this.selector = 'dmb-clippy';
+    this.clipboard = new ClipboardJs(this.root, {
       text: (trigger) => {
-        return trigger.getAttribute('dmb-clippy');
+        return trigger.getAttribute(this.selector);
       },
     });
     // Find toast notifcations for this dmb-clippy.
-    const toasts = Array.from(document.querySelectorAll('[dmb-clippy-toast]'))
+    this.toastSelector = 'dmb-clippy-toast';
+    this.toasts = Array.from(document.querySelectorAll(`[${this.toastSelector}]`))
     .filter((toast) => {
-      return toast.getAttribute('dmb-clippy-toast') == elem.id;
+      return toast.getAttribute(this.toastSelector) == this.root.id;
     });
     // On success clear the selection and show a toast notification.
-    clipboard.on('success', (e) => {
-      // Add timeout to toasts to show and hide them.
-      toasts.forEach((toast) => {
-        toast.classList.add('dmb-toast__active');
-        setTimeout(() => {
-          toast.classList.remove('dmb-toast__active');
-        }, 2500);
-      });
-      e.clearSelection();
+    this.clipboard.on('success', this.onSuccess.bind(this));
+  }
+
+  /**
+   * Attachs clippy functionality to element.
+   * @param {Node} elem : Element to attach Clippy to.
+   * @return {Clippy} : Returns a reference to the clippy instance created.
+   */
+  static attachTo(elem) {
+    return new Clippy(elem);
+  }
+
+  /**
+   * Callback function for ClipboardJS onSuccess event.
+   * @param {Event} e : Event returned from ClipboardJS success.
+   */
+  onSuccess(e) {
+    const className = 'dmb-toast--active';
+    // Add timeout to toasts to show and hide them.
+    this.toasts.forEach((toast) => {
+      toast.classList.add(className);
+      setTimeout(() => {
+        toast.classList.remove(className);
+      }, 2500);
     });
+    e.clearSelection();
   }
 }
