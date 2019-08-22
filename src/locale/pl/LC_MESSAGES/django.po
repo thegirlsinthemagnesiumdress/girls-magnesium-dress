@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-04 15:50+0000\n"
+"POT-Creation-Date: 2019-08-22 11:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,144 +20,6 @@ msgstr ""
 
 msgid "all"
 msgstr "wszystko"
-
-msgid "Accommodation and food service"
-msgstr "Hotelarstwo i gastronomia"
-
-msgid "Arts, entertainment & recreation"
-msgstr "Sztuka, rozrywka i rekreacja"
-
-msgid "Construction"
-msgstr "Budownictwo"
-
-msgid "Education"
-msgstr "Edukacja"
-
-msgid "Further education"
-msgstr "Doskonalenie zawodowe"
-
-msgid "Other"
-msgstr "Inna"
-
-msgid "Primary education"
-msgstr "Edukacja podstawowa"
-
-msgid "Secondary education"
-msgstr "Edukacja ponadpodstawowa"
-
-msgid "Electricity, gas, steam, water"
-msgstr "Elektryczność, gaz, para, woda"
-
-msgid "Financial and Insurance"
-msgstr "Finanse i ubezpieczenia"
-
-msgid "Banking"
-msgstr "Bankowość"
-
-msgid "Insurance"
-msgstr "Ubezpieczenia"
-
-msgid "Human health & social work"
-msgstr "Ochrona zdrowia i pomoc społeczna"
-
-msgid "Information and Communication"
-msgstr "Informacja i komunikacja"
-
-msgid "Books, news, periodicals, journals"
-msgstr "Książki, gazety codzienne, magazyny, czasopisma tematyczne"
-
-msgid "Software"
-msgstr "Oprogramowanie"
-
-msgid "TV, radio, movies, video, music"
-msgstr "Telewizja, radio, filmy, wideo, muzyka"
-
-msgid "Telecommunications"
-msgstr "Telekomunikacja"
-
-msgid "Manufacturing"
-msgstr "Produkcja"
-
-msgid "Chemicals"
-msgstr "Chemikalia"
-
-msgid "Cosmetics, toiletries, detergents"
-msgstr "Kosmetyki, przybory toaletowe, detergenty"
-
-msgid "Electronics"
-msgstr "Elektronika"
-
-msgid "Food & beverages"
-msgstr "Jedzenie i napoje"
-
-msgid "Furniture"
-msgstr "Meble"
-
-msgid "Machinery & equipment"
-msgstr "Maszyny i urządzenia"
-
-msgid "Pharmaceuticals"
-msgstr "Produkty farmaceutyczne"
-
-msgid "Textiles, footwear & apparel"
-msgstr "Tekstylia, obuwie i odzież"
-
-msgid "Toys & games"
-msgstr "Zabawki i gry"
-
-msgid "Vehicles"
-msgstr "Pojazdy"
-
-msgid "Other service activities - Other"
-msgstr "Inna działalność usługowa - inna"
-
-msgid "Other service activities - Printing"
-msgstr "Inna działalność usługowa - druk"
-
-msgid "Professional activities"
-msgstr "Działalność zawodowa"
-
-msgid "Consultancy"
-msgstr "Doradztwo"
-
-msgid "Legal"
-msgstr "Prawo"
-
-msgid "Research"
-msgstr "Badania"
-
-msgid "Public administration & political organisations"
-msgstr "Administracja publiczna i organizacje polityczne"
-
-msgid "Real estate"
-msgstr "Nieruchomości"
-
-msgid "Retail trade"
-msgstr "Handel detaliczny"
-
-msgid "Multi-category"
-msgstr "Obsługa wielu kategorii"
-
-msgid "Books, music, video"
-msgstr "Książki, muzyka, wideo"
-
-msgid "Food and beverages"
-msgstr "Jedzenie i napoje"
-
-msgid "Household goods"
-msgstr "Artykuły gospodarstwa domowego"
-
-msgid "Transportation and Travel"
-msgstr "Transport i turystyka"
-
-msgid "Railway, flight, land & water transport"
-msgstr "Transport kolejowy, lotniczy, lądowy i wodny"
-
-msgid "Travel agency & tour operator"
-msgstr "Biuro podróży i organizator turystyki"
-
-msgid "Wholesale trade"
-msgstr "Sprzedaż hurtowa"
 
 msgid "Afghanistan"
 msgstr "Afganistan"
@@ -909,11 +771,28 @@ msgstr "Zimbabwe"
 msgid "Advertisers"
 msgstr "Reklamodawcy"
 
+msgid "Advertiser Marketing Maturity"
+msgstr "Dojrzałość marketingowa reklamodawcy"
+
 msgid "News"
 msgstr "Aktualności"
 
+msgid "News Publisher Data Transformation"
+msgstr "Transformacja danych wydawcy wiadomości"
+
 msgid "Retail"
 msgstr "Handel detaliczny"
+
+msgid "Retail Data Transformation"
+msgstr "Transformacja danych sprzedawcy detalicznego"
+
+msgid "Cloud"
+msgstr ""
+
+#, fuzzy
+#| msgid "Data Maturity Benchmark"
+msgid "Cloud Maturity Benchmark"
+msgstr "Test dojrzałości danych"
 
 msgid "Assets and ads"
 msgstr "Zasoby i reklamy"
@@ -1461,8 +1340,151 @@ msgstr "Możliwość optymalizacji działań marketingowych, by zwiększyć rent
 msgid "The capability to improve decision-making and results by working collaboratively across teams and with specialised partners."
 msgstr "Możliwość usprawnienia procesu podejmowania decyzji i poprawy wyników dzięki współpracy z różnymi zespołami i partnerami specjalizacyjnymi."
 
-msgid "Digital Maturity Benchmark"
-msgstr "Test dojrzałości cyfrowej"
+msgid "Accommodation and food service"
+msgstr "Hotelarstwo i gastronomia"
+
+msgid "Arts, entertainment & recreation"
+msgstr "Sztuka, rozrywka i rekreacja"
+
+msgid "Construction"
+msgstr "Budownictwo"
+
+msgid "Education"
+msgstr "Edukacja"
+
+msgid "Further education"
+msgstr "Doskonalenie zawodowe"
+
+msgid "Other"
+msgstr "Inna"
+
+msgid "Primary education"
+msgstr "Edukacja podstawowa"
+
+msgid "Secondary education"
+msgstr "Edukacja ponadpodstawowa"
+
+msgid "Electricity, gas, steam, water"
+msgstr "Elektryczność, gaz, para, woda"
+
+msgid "Financial and Insurance"
+msgstr "Finanse i ubezpieczenia"
+
+msgid "Banking"
+msgstr "Bankowość"
+
+msgid "Insurance"
+msgstr "Ubezpieczenia"
+
+msgid "Human health & social work"
+msgstr "Ochrona zdrowia i pomoc społeczna"
+
+msgid "Information and Communication"
+msgstr "Informacja i komunikacja"
+
+msgid "Books, news, periodicals, journals"
+msgstr "Książki, gazety codzienne, magazyny, czasopisma tematyczne"
+
+msgid "Software"
+msgstr "Oprogramowanie"
+
+msgid "TV, radio, movies, video, music"
+msgstr "Telewizja, radio, filmy, wideo, muzyka"
+
+msgid "Telecommunications"
+msgstr "Telekomunikacja"
+
+msgid "Manufacturing"
+msgstr "Produkcja"
+
+msgid "Chemicals"
+msgstr "Chemikalia"
+
+msgid "Cosmetics, toiletries, detergents"
+msgstr "Kosmetyki, przybory toaletowe, detergenty"
+
+msgid "Electronics"
+msgstr "Elektronika"
+
+msgid "Food & beverages"
+msgstr "Jedzenie i napoje"
+
+msgid "Furniture"
+msgstr "Meble"
+
+msgid "Machinery & equipment"
+msgstr "Maszyny i urządzenia"
+
+msgid "Pharmaceuticals"
+msgstr "Produkty farmaceutyczne"
+
+msgid "Textiles, footwear & apparel"
+msgstr "Tekstylia, obuwie i odzież"
+
+msgid "Toys & games"
+msgstr "Zabawki i gry"
+
+msgid "Vehicles"
+msgstr "Pojazdy"
+
+msgid "Other service activities - Other"
+msgstr "Inna działalność usługowa - inna"
+
+msgid "Other service activities - Printing"
+msgstr "Inna działalność usługowa - druk"
+
+msgid "Professional activities"
+msgstr "Działalność zawodowa"
+
+msgid "Consultancy"
+msgstr "Doradztwo"
+
+msgid "Legal"
+msgstr "Prawo"
+
+msgid "Research"
+msgstr "Badania"
+
+msgid "Public administration & political organisations"
+msgstr "Administracja publiczna i organizacje polityczne"
+
+msgid "Real estate"
+msgstr "Nieruchomości"
+
+msgid "Retail trade"
+msgstr "Handel detaliczny"
+
+msgid "Multi-category"
+msgstr "Obsługa wielu kategorii"
+
+msgid "Books, music, video"
+msgstr "Książki, muzyka, wideo"
+
+msgid "Food and beverages"
+msgstr "Jedzenie i napoje"
+
+msgid "Household goods"
+msgstr "Artykuły gospodarstwa domowego"
+
+msgid "Transportation and Travel"
+msgstr "Transport i turystyka"
+
+msgid "Railway, flight, land & water transport"
+msgstr "Transport kolejowy, lotniczy, lądowy i wodny"
+
+msgid "Travel agency & tour operator"
+msgstr "Biuro podróży i organizator turystyki"
+
+msgid "Wholesale trade"
+msgstr "Sprzedaż hurtowa"
+
+#, fuzzy
+#| msgid "Information and Communication"
+msgid "Información y comunicación"
+msgstr "Informacja i komunikacja"
+
+msgid "Libros, noticias, periódicos y revistas"
+msgstr ""
 
 msgid "Your results are ready!"
 msgstr "Twoje wyniki są już gotowe."
@@ -1613,33 +1635,6 @@ msgstr "Firma BCG zidentyfikowała te dane, analizując czynniki sukcesu i moż
 
 msgid "read more"
 msgstr "więcej informacji"
-
-msgid "Ready to benchmark your company’s digital maturity?"
-msgstr "Chcesz sprawdzić dojrzałość cyfrową swojej firmy?"
-
-msgid "Let’s start with some details about your organisation:"
-msgstr "Zacznijmy od kilku szczegółów na temat Twojej organizacji:"
-
-msgid "How we keep your information safe"
-msgstr "Jak dbamy o bezpieczeństwo Twoich informacji"
-
-msgid "Enter the organisation name"
-msgstr "Podaj nazwę organizacji"
-
-msgid "Select an industry"
-msgstr "Wybierz branżę"
-
-msgid "Select a country"
-msgstr "Wybierz kraj"
-
-msgid "This field is required!"
-msgstr "To pole jest wymagane."
-
-msgid "Progress to my assessment"
-msgstr "Postęp w mojej ocenie"
-
-msgid "Oops, something went wrong!"
-msgstr "Ups, coś poszło nie tak."
 
 msgid "Appendix"
 msgstr "Dodatek"
@@ -1795,18 +1790,6 @@ msgstr "Źródło: dane Google, EMEA, okres styczeń - grudzień 2015 r. w por.
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
 msgstr "Źródło: Econsultancy/Google, “An Audience of Individuals”, 2017 r., liczba ankietowanych: 514, dyrektorzy ds. marketingu i pomiarów w firmach z Ameryki Północnej uzyskujących przychody powyżej 250 mln USD; liczba ankietowanych: 133 najlepszych marketerów, którzy zgłosili, że ich wyniki marketingowe wyraźnie przekroczyły najważniejsze cele biznesowe w 2016 r., liczba ankietowanych: 381 marketerów mainstreamowych pozostała część próby)."
 
-msgid "Nice Work!"
-msgstr "Dobra robota!"
-
-msgid "Your response has been submitted and your report is being generated."
-msgstr "Twoja odpowiedź została przesłana, a Twój raport jest generowany."
-
-msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
-msgstr "Gotowy raport prześlemy <strong>e-mailem</strong>.<br> Jego wygenerowanie <strong>może zająć do 15 minut</strong>."
-
-msgid "Back to website"
-msgstr "Powrót do strony internetowej"
-
 msgid "You are "
 msgstr "Obecny poziom Twojej firmy: "
 
@@ -1913,15 +1896,6 @@ msgstr "więcej"
 msgid "less"
 msgstr "mniej"
 
-msgid "Advertiser Marketing Maturity"
-msgstr "Dojrzałość marketingowa reklamodawcy"
-
-msgid "News Publisher Data Transformation"
-msgstr "Transformacja danych wydawcy wiadomości"
-
-msgid "Retail Data Transformation"
-msgstr "Transformacja danych sprzedawcy detalicznego"
-
 msgid "Privacy"
 msgstr "Prywatność"
 
@@ -1937,8 +1911,8 @@ msgstr "Usługi Google"
 msgid "Contact us"
 msgstr "Kontakt"
 
-msgid "Data Maturity Benchmark"
-msgstr "Test dojrzałości danych"
+msgid "Change language or region"
+msgstr ""
 
 msgid "Skip to content"
 msgstr "Przejdź do treści"
@@ -1976,10 +1950,61 @@ msgstr "Aby udostępnić ten raport, skopiuj link i wyślij go swoim współpra
 msgid "Dimensions of marketing maturity"
 msgstr "Wymiary dojrzałości marketingowej"
 
-msgid "Levels of data maturity"
+#, fuzzy
+#| msgid "Levels of data maturity"
+msgid "Levels of Digital Maturity"
 msgstr "Poziomy dojrzałości danych"
 
-msgid "Woops.. that page doesn’t seem to exist, or the link is broken."
+msgid "Ready to benchmark your company’s digital maturity?"
+msgstr "Chcesz sprawdzić dojrzałość cyfrową swojej firmy?"
+
+msgid "Let’s start with some details about your organisation:"
+msgstr "Zacznijmy od kilku szczegółów na temat Twojej organizacji:"
+
+msgid "How we keep your information safe"
+msgstr "Jak dbamy o bezpieczeństwo Twoich informacji"
+
+msgid "Enter the organisation name"
+msgstr "Podaj nazwę organizacji"
+
+#, fuzzy
+#| msgid "Organisation"
+msgid "Organization name"
+msgstr "Organizacja"
+
+#, fuzzy
+#| msgid "Enter the organisation name"
+msgid "Enter the organization name"
+msgstr "Podaj nazwę organizacji"
+
+msgid "Select an industry"
+msgstr "Wybierz branżę"
+
+msgid "Select a country"
+msgstr "Wybierz kraj"
+
+msgid "Progress to my assessment"
+msgstr "Postęp w mojej ocenie"
+
+msgid "Oops, something went wrong!"
+msgstr "Ups, coś poszło nie tak."
+
+msgid "Nice Work!"
+msgstr "Dobra robota!"
+
+msgid "Your response has been submitted and your report is being generated."
+msgstr "Twoja odpowiedź została przesłana, a Twój raport jest generowany."
+
+msgid "You will receive it in your <strong>email inbox</strong> when it’s done.<br> Be patient, <strong>it may take up to 15 minutes</strong>."
+msgstr "Gotowy raport prześlemy <strong>e-mailem</strong>.<br> Jego wygenerowanie <strong>może zająć do 15 minut</strong>."
+
+msgid "View the study while you wait"
+msgstr ""
+
+msgid "Back to website"
+msgstr "Powrót do strony internetowej"
+
+msgid "Woops.. that page doesn't seem to exist, or the link is broken."
 msgstr "Wygląda na to, że ta strona nie istnieje lub link jest uszkodzony."
 
 msgid "Try returning to the homepage."
@@ -1991,3 +2016,8 @@ msgstr "Powrót do strony głównej"
 msgid "Woops.. there was an internal server error."
 msgstr "Wystąpił wewnętrzny błąd serwera."
 
+#~ msgid "Digital Maturity Benchmark"
+#~ msgstr "Test dojrzałości cyfrowej"
+
+#~ msgid "This field is required!"
+#~ msgstr "To pole jest wymagane."
