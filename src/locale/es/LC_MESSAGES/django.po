@@ -1724,7 +1724,7 @@ msgstr "En los últimos dos años, las búsquedas móviles sobre los mejores acc
 
 #, python-format
 msgid "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2 years.&nbsp;"
-msgstr "También en los dos últimos años, las búsquedas móviles sobre listas de nacimiento y listas de la compra de alimentos saludables han aumentado un 180 %%.&nbsp;"
+msgstr "También en los dos últimos años, las búsquedas móviles sobre “listas de nacimiento” y “listas de la compra de alimentos saludables” han aumentado un 180 %%.&nbsp;"
 
 msgid "Demanding"
 msgstr "Exigentes"
