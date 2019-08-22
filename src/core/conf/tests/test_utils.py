@@ -3,7 +3,6 @@ from core.conf.utils import (
     flatten,
     version_info,
     get_other_tenant_footers,
-    get_tenant_level_ranges,
     get_level_key,
     get_next_level_key,
     in_top_level,
@@ -371,23 +370,28 @@ class GetLevelAttributesTest(TestCase):
 
     def get_next_level_key_test(self):
         """Tests that the next level of a score is calculated correctly."""
-        # Check that the next level of a non-top-level score is correct.
-        self.assertEqual(
-            get_next_level_key(self.level_ranges, self.level_ranges[0][0]),
-            self.level_ranges[0][1]
-        )
-        # Check that the next level of a top-level score is correct.
-        self.assertEqual(
-            get_next_level_key(self.level_ranges, self.level_ranges[-1][1]),
-            self.level_ranges[-1][0]
-        )
+        levels = self.content_data['levels']
+        # Check scores are classified correctly.
+        for idx, level in enumerate(levels.keys()):
+            if idx == len(levels.keys()) - 1:
+                # If score is in top level then suggestion should be same level.
+                self.assertEqual(
+                    get_next_level_key(self.level_ranges, level),
+                    levels.keys()[idx]
+                )
+            else:
+                # If level is not in top range then next level should be one above.
+                self.assertEqual(
+                    get_next_level_key(self.level_ranges, level),
+                    levels.keys()[idx + 1]
+                )
         # Check scores outside ranges are classified correctly.
         self.assertEqual(
-            get_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
-            self.level_ranges[0][0]
+            get_next_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
+            self.level_ranges[0][1]
         )
         self.assertEqual(
-            get_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
+            get_next_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
             self.level_ranges[-1][0]
         )
 
