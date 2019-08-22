@@ -263,7 +263,7 @@ def get_level_info(tenant, score, level_ranges=None):
     # Form the level info object.
     return {
         "value": score,
-        "inTopLevel": in_top_level(level_ranges, score),
+        "in_top_level": in_top_level(level_ranges, score),
         "levels": {
             "current": {
                 "value": level,
