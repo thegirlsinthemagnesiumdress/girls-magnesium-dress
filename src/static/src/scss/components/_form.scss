@@ -1,11 +1,25 @@
 .dmb-form {
+  $block: &;
+
+  &__inputs-wrapper {
+    border: 1px solid $dmb-color-grey-zircon;
+    border-radius: $dmb-border-radius-large;
+    padding: 40px 56px 56px;
+  }
+
   &__input-wrapper {
-    margin-bottom: 30px;
+    &:not(:last-of-type) {
+      margin-bottom: 30px;
+    }
   }
 
   label {
     display: block;
     margin-bottom: 10px;
+
+    .h-c-inline-link {
+      @extend .h-u-font-weight-regular;
+    }
   }
 
   &__input,
@@ -31,5 +45,31 @@
 
   &__error {
     color: $dmb-color-red-fire-engine;
+  }
+
+  &__btns-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    .h-c-button {
+      margin-left: 8px;
+    }
+  }
+
+  &--admin {
+    label {
+      font-size: 14px;
+    }
+
+    #{$block}__input,
+    #{$block}__select {
+      border-radius: $dmb-border-radius-medium;
+    }
+
+    #{$block}__input::placeholder,
+    #{$block}__select {
+      color: $dmb-color-grey-chateau;
+    }
   }
 }
