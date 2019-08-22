@@ -138,16 +138,16 @@
               {[ survey.industry_name ]}
             </td>
             <td data-colheader="Int. Maturity" class="h-c-table__cell--numerical">
-              {[ survey.last_survey_result.dmb|number:1 ]}
-            </td>
-            <td data-colheader="Int. Maturity">
-              {[ survey.externalCurrentLevelData['mapValue'] ]}
-            </td>
-            <td data-colheader="Ext. Maturity" class="h-c-table__cell--numerical">
               {[ survey.last_internal_result.dmb|number:1 ]}
             </td>
+            <td data-colheader="Int. Maturity">
+              {[ survey.internalCurrentLevelData['mapValue'] ]}
+            </td>
+            <td data-colheader="Ext. Maturity" class="h-c-table__cell--numerical">
+              {[ survey.last_survey_result.dmb|number:1 ]}
+            </td>
             <td data-colheader="Ext. Maturity">
-              {[ reportAdminCtrl.internalCurrentLevelData['mapValue'] ]}
+              {[ survey.externalCurrentLevelData['mapValue'] ]}
             </td>
           </tr>
           <!-- EndRepeat -->
