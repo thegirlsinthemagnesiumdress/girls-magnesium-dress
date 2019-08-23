@@ -141,11 +141,11 @@ def thank_you(request, tenant):
 @login_required
 @survey_admin_required
 def internal_survey_completion(request, tenant):
-    slug = get_tenant_slug(tenant)
+    slug = utils.get_tenant_slug(tenant)
     return render(request, 'public/admin/survey-completion.html', {
         'content_data': _dump_tenant_content_data(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
-        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
         'slug': slug,
         'tenant': tenant,
     })
