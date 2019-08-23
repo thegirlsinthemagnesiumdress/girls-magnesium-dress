@@ -23,6 +23,7 @@
 
   th {
     font-weight: $h-font-weight-medium;
+    padding: 10px;
     white-space: nowrap;
 
     @include dmb-mq($from: desktop) {
@@ -31,12 +32,12 @@
   }
 
   td {
-    @include dmb-mq($until: tablet) {
-      padding: 10px;
-    }
+    padding: 0;
 
-    @include dmb-mq($from: desktop) {
-      padding: 24px;
+    &::before {
+      @include dmb-mq($until: tablet)	{
+        padding: 10px;
+      }
     }
 
     &:first-of-type {
@@ -53,6 +54,26 @@
 
       &:not(.h-c-table__cell--numerical) {
         color: $dmb-color-grey-shuttle;
+      }
+    }
+
+    a {
+      color: inherit;
+      display: block;
+      height: 100%;
+      max-width: 35ch;
+      overflow: hidden;
+      padding: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+
+      &:visited {
+        color: inherit;
+      }
+
+      @include dmb-mq($from: desktop) {
+        padding: 24px;
       }
     }
   }

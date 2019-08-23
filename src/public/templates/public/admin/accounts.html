@@ -127,26 +127,38 @@
             <td data-colheader="Organization">
               <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
               <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ survey.company_name ]}
+                {[ survey.company_name || '&#x200b;' ]}
               </a>
             </td>
             <td data-colheader="Country">
-              {[ survey.company_name ]}
+              <a ng-href="/accounts/{[ survey.sid ]}">
+                {[ survey.country_name || '&#x200b;' ]}
+              </a>
             </td>
             <td data-colheader="Industry">
-              {[ survey.industry_name ]}
+              <a ng-href="/accounts/{[ survey.sid ]}">
+                {[ survey.industry_name || '&#x200b;' ]}
+              </a>
             </td>
-            <td data-colheader="Int. Maturity" class="h-c-table__cell--numerical">
-              {[ survey.last_internal_result.dmb|number:1 ]}
+            <td data-colheader="Int. Maturity Score" class="h-c-table__cell--numerical">
+              <a ng-href="/accounts/{[ survey.sid ]}">
+                {[ (survey.last_internal_result.dmb|number:1) || '&#x200b;' ]}
+              </a>
             </td>
-            <td data-colheader="Int. Maturity">
-              {[ survey.internalCurrentLevelData['mapValue'] ]}
+            <td data-colheader="Int. Maturity Level">
+              <a ng-href="/accounts/{[ survey.sid ]}">
+                {[ survey.internalCurrentLevelData['mapValue'] || '&#x200b;' ]}
+              </a>
             </td>
-            <td data-colheader="Ext. Maturity" class="h-c-table__cell--numerical">
-              {[ survey.last_survey_result.dmb|number:1 ]}
+            <td data-colheader="Ext. Maturity Score" class="h-c-table__cell--numerical">
+              <a ng-href="/accounts/{[ survey.sid ]}">
+                {[ (survey.last_survey_result.dmb|number:1) || '&#x200b;' ]}
+              </a>
             </td>
-            <td data-colheader="Ext. Maturity">
-              {[ survey.externalCurrentLevelData['mapValue'] ]}
+            <td data-colheader="Ext. Maturity Level">
+              <a ng-href="/accounts/{[ survey.sid ]}">
+                {[ survey.externalCurrentLevelData['mapValue'] || '&#x200b;' ]}
+              </a>
             </td>
           </tr>
           <!-- EndRepeat -->
