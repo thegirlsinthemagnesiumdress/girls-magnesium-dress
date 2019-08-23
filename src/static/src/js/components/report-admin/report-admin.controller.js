@@ -80,10 +80,10 @@ class ReportAdminController {
 
     this.surveys.forEach((survey, index, array) => {
       this.newAccountIds.push(survey['account_id']);
-      if (survey.last_survey_result) {
+      if (survey['last_survey_result']) {
         survey['externalCurrentLevelData'] = this.dmbLevelsFactory(survey['last_survey_result']['dmb'])['current'];
       }
-      if (survey.last_internal_result) {
+      if (survey['last_internal_result']) {
         survey['internalCurrentLevelData'] = this.dmbLevelsFactory(survey['last_internal_result']['dmb'])['current'];
       }
     });
