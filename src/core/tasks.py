@@ -115,7 +115,7 @@ def _get_results(tenant, survey_definition, get_individual_result_func):
 
         email_to, email_bcc = tenant.get('EMAIL_TO'), tenant.get('EMAIL_BCC')
 
-        if email_to and email_bcc:
+        if email_to:
             langs_dict = settings.QUALTRICS_LANGS
 
             email_list = [(item.get(email_to),
