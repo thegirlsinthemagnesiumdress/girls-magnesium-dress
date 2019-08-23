@@ -49,17 +49,10 @@ DIMENSIONS = {
         'Q22',
         'Q23',
         'Q24',
-        'Q25',
-        'Q26',
     ],
     DIMENSION_AUTOMATION: [
-        'Q28',
-        'Q29',
         'Q30',
         'Q31',
-        'Q32',
-        'Q33',
-        'Q34',
     ],
     DIMENSION_ORGANIZATION: [
         'Q36',
@@ -69,4 +62,6 @@ DIMENSIONS = {
     ],
 }
 
-MULTI_ANSWER_QUESTIONS = []
+MULTI_ANSWER_QUESTIONS = [
+    'Q22'
+]
