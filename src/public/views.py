@@ -76,6 +76,13 @@ def report_static(request, tenant, sid):
     if not survey.last_survey_result:
         raise Http404
 
+    all_dimensions = settings.TENANTS[tenant]['CONTENT_DATA']['dimensions']
+    dimension_scores = survey.last_survey_result.dmb_d
+    report_dimensions = []
+    for dimension in all_dimensions:
+        if dimension_scores[dimension] is not None:
+            report_dimensions.append(dimension)
+
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'staging': STAGING,
         'tenant': tenant,
@@ -84,7 +91,8 @@ def report_static(request, tenant, sid):
         'product_name': get_tenant_product_name(tenant),
         'other_tenants': get_other_tenant_footers(tenant),
         'is_nightly': version_info(request.get_host())[1],
-        'dimensions': settings.TENANTS[tenant]['CONTENT_DATA']['dimensions'],
+        'dimensions': all_dimensions,
+        'report_dimensions': report_dimensions,
         'dimension_results': survey.last_survey_result.dmb_d,
     })
 
