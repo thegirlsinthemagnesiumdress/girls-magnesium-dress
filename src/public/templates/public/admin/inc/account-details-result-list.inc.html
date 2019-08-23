@@ -5,12 +5,12 @@
       <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
         {{ internal_results|length }} completion{{ internal_results|length|pluralize }}
       </span>
-      <button class="dmb-list-card__header-right dmb-button">
+      <a class="dmb-list-card__header-right dmb-button" href="{{ account.internal_link }}">
         {% include 'core/inc/svg.html' with id='clipboard' size='24px' %}
         <span>
-          <a href="{{ account.internal_link }}">Assess client</a>
+          Assess client
         </span>
-      </button>
+      </a>
     {% elif list_name == 'external' %}
       <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
         {{ external_results|length }} completion{{ external_results|length|pluralize }}
