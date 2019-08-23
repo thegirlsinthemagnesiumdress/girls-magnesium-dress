@@ -12,5 +12,6 @@ INTERNAL_TENANTS = {
         'WEIGHTS': ads_internal_conf.WEIGHTS,
         'MULTI_ANSWER_QUESTIONS': ads_internal_conf.MULTI_ANSWER_QUESTIONS,
         'EXCLUDED_TIME_THRESHOLD': 5,
+        'EMAIL_TO': 'Q3_4_TEXT',
     }
 }
