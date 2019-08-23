@@ -1,0 +1,31 @@
+<div class="dmb-banner dmb-u-m-b-m">
+  <div class="dmb-banner__back">
+    <a href="{% url 'reports' slug %}">
+      {% include 'core/inc/svg.html' with id='back' size='24px' %}
+    </a>
+  </div>
+
+  <div class="dmb-banner__main">
+    <h1 class="dmb-banner__heading h-c-headline h-c-headline--two">
+      {{ account.name }}
+    </h1>
+    <div class="dmb-banner__details">
+      <ul class="dmb-banner__details-list">
+        <li class="dmb-banner__details-list-item h-u-font-weight-regular">
+          {% include 'core/inc/svg.html' with id='greentea' size='24px' %}
+          <span>{{ account.id }}</span>
+        </li>
+        <li class="dmb-banner__details-list-item h-u-font-weight-regular">
+          {% include 'core/inc/svg.html' with id='globe' size='24px' %}
+          <span>{{ account.country }}</span>
+        </li>
+        <li class="dmb-banner__details-list-item h-u-font-weight-regular">
+          {% include 'core/inc/svg.html' with id='briefcase' size='24px' %}
+          <span>{{ account.industry }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {% include 'public/admin/inc/edit-export-buttons.inc.html' %}
+</div>

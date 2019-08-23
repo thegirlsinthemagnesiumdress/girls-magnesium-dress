@@ -159,3 +159,182 @@ def version_info(domain):
         is_staging = True
         is_nightly = 'nightly' in version
     return (version, is_nightly, is_development, is_staging)
+
+
+def get_level_key(level_ranges, score):
+    """Gets the level key for level dictionaries based on the score.
+
+    Args:
+        level_ranges ([(number number)]): An array of ranges representing the level boundaries.
+        score (number): The score for a dimension or overall.
+
+    Returns:
+        number: The key for dictionaries using level values (e.g. level descriptions).
+    """
+    # If the level is the max score then return the highest level (min of the final range).
+    max_range = level_ranges[-1]
+    if score >= max_range[1]:
+        return max_range[0]
+    # Otherwise loop through the ranges and find the range containing the score.
+    for (level_min, level_max) in level_ranges:
+        if level_min <= score < level_max:
+            return level_min
+    # Else return the minimum level.
+    return level_ranges[0][0]
+
+
+def get_next_level_key(level_ranges, score):
+    """Gets the next levels' key for level dictionaries based on the score.
+
+    Args:
+        level_ranges ([(number number)]): An array of ranges representing the level boundaries.
+        score (number): The score for a dimension or overall.
+
+    Returns:
+        number: The key for the next level for dictionaries using level values (e.g. level descriptions).
+    """
+    # If the level is the max score then return the highest level (min of the final range).
+    max_range = level_ranges[-1]
+    if score >= max_range[0]:
+        return max_range[0]
+    # Otherwise loop through the ranges and find the range containing the score.
+    for (level_min, level_max) in level_ranges:
+        if level_min <= score < level_max:
+            return level_max
+    # Else return the maximum of the lowest range.
+    return level_ranges[0][1]
+
+
+def in_top_level(level_ranges, score):
+    """Checks if a score is in the top level.
+
+    Args:
+        level_ranges ([(number, number)]): The level ranges to test the score on.
+        score (number): The raw score from qualtrics.
+
+    Returns:
+        boolean: True if the score is in the top level.
+    """
+    level = get_level_key(level_ranges, score)
+    top_level = level_ranges[-1][0]
+    return level >= top_level
+
+
+def get_level_info(content_data, score):
+    """Gets the current and next level's value, name, and description.
+
+    Args:
+        tenant (string): The tenant to pull level content from.
+        score (number): The raw qualtrics result.
+        level_ranges ([(number, number)]): Array of tuples for calculating scores'.
+
+    Returns:
+        object: An object containing the value, name, and description of the current and next level.
+    """
+    level_ranges = content_data['level_ranges']
+    level = get_level_key(level_ranges, score)
+    next_level = get_next_level_key(level_ranges, score)
+    # Form the level info object.
+    return {
+        "value": score,
+        "in_top_level": in_top_level(level_ranges, score),
+        "levels": {
+            "current": {
+                "value": level,
+                "name": content_data['levels'][level],
+                "description": content_data['level_descriptions'][level],
+            },
+            "next": {
+                "value": next_level,
+                "name": content_data['levels'][next_level],
+                "description": content_data['level_descriptions'][next_level],
+            }
+        }
+    }
+
+
+def get_dimension_level_info(content_data, dimension, score):
+    """Gets the current and next dimension level's value, name, and description.
+
+    Args:
+        tenant (string): The tenant to pull level content from.
+        dimension (string): The dimension to pull level content from.
+        score (number): The raw qualtrics result.
+        level_ranges ([(number, number)]): Array of tuples for calculating scores'
+
+    Returns:
+        object: An object containing the value, name, and description of the current and next dimension level.
+    """
+    level_ranges = content_data['level_ranges']
+    level = get_level_key(level_ranges, score)
+    next_level = get_next_level_key(level_ranges, score)
+    # Form the level info object.
+    return {
+        "name": content_data['dimension_labels'][dimension],
+        "value": score,
+        "in_top_level": in_top_level(level_ranges, score),
+        "levels": {
+            "current": {
+                "value": level,
+                "name": content_data['levels'][level],
+                "description": content_data['dimension_level_description'][dimension][level],
+            },
+            "next": {
+                "value": next_level,
+                "name": content_data['levels'][next_level],
+                "description": content_data['dimension_level_description'][dimension][next_level],
+            }
+        }
+    }
+
+
+def get_detailed_survey_result_data(content_data, survey_result):
+    """Gets data on the overall and dimension scores for a particular survey result.
+
+    Args:
+        tenant (string): The tenant to pull level content from.
+        survey_result (core.models.SurveyResult): The survey result to gather data on.
+        level_ranges ([(number, number)],): Array of tuples for calculating scores'
+
+    Returns:
+        object: An object containing level information about the overall and dimension scores,
+                as well as if the score is in the top level and when the survey was taken.
+    """
+    # Construct the data object.
+    survey_result_data = {
+        "date": survey_result.loaded_at,
+        "overall": get_level_info(content_data, survey_result.dmb),
+        "dimensions": {dimension: get_dimension_level_info(content_data, dimension, value)
+                       for dimension, value in survey_result.dmb_d.items()}
+    }
+    return survey_result_data
+
+
+def get_account_detail_data(content_data, account):
+    """Gets required data for the account detail page.
+
+    Args:
+        tenant (string): The tenant to pull content from.
+        account (Survey): The account to gather data and survey results from.
+        level_ranges ([(number, number)], optional): Array of tuples for calculating scores'
+
+    Returns:
+        object, object, object: 3 Objects representing the account information, external survey
+                                result data, and internal survey result data.
+    """
+    # Construct the account info object.
+    account_info = {
+        "id": account.account_id,
+        "name": account.company_name,
+        "country": settings.COUNTRIES[account.country],
+        "industry": account.get_industry_display(),
+        "internal_link": account.internal_link,
+        "external_link": account.link,
+    }
+    # Construct the internal and external survey info arrays.
+    external_surveys = [get_detailed_survey_result_data(content_data, survey_result)
+                        for survey_result in account.survey_results.all()]
+    internal_surveys = [get_detailed_survey_result_data(content_data, survey_result)
+                        for survey_result in account.internal_results.all()]
+    # Return the tuple of objects.
+    return account_info, external_surveys, internal_surveys

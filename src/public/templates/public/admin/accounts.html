@@ -1,6 +1,5 @@
 {% extends 'public/base.html' %}
 {% load staticfiles %}
-{% load i18n %}
 {% load angular %}
 
 {# Marking this safe because is not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
@@ -127,7 +126,7 @@
           <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index" ng-cloak>
             <td data-colheader="Organization">
               <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
-              <a ng-href="/accounts/{[ survey.account_id ]}">
+              <a ng-href="/accounts/{[ survey.sid ]}">
                 {[ survey.company_name ]}
               </a>
             </td>

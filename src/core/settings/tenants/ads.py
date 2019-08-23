@@ -151,6 +151,13 @@ LEVELS = {
     LEVEL_3: _(u'Multi-moment'),
 }
 
+LEVELS_RANGES = [
+    (LEVEL_0, LEVEL_1),
+    (LEVEL_1, LEVEL_2),
+    (LEVEL_2, LEVEL_3),
+    (LEVEL_3, LEVELS_MAX)
+]
+
 LEVELS_DESCRIPTIONS = {
     LEVEL_0: _(u'Marketing campaigns use mainly external data and direct buys, with limited links to sales.'),
     LEVEL_1: _(u'Some use of owned data in automated buying with single-channel optimisation and testing.'),
@@ -588,6 +595,7 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'levels_max': LEVELS_MAX,
+    'level_ranges': LEVELS_RANGES,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,

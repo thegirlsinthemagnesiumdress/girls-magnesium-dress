@@ -189,17 +189,34 @@ DIMENSIONS = {
 
 MULTI_ANSWER_QUESTIONS = []
 
+_TACTICAL = 'Tactical'
+_STRATEGIC = 'Strategic'
+_TRANSFORMATIONAL = 'Transformational'
 
 LEVELS = {
-    LEVEL_0: 'Tactical',
-    LEVEL_2: 'Strategic',
-    LEVEL_4: 'Transformational',
+    LEVEL_0: _TACTICAL,
+    LEVEL_2: _STRATEGIC,
+    LEVEL_4: _TRANSFORMATIONAL,
 }
 
+LEVELS_RANGES = [
+    (LEVEL_0, LEVEL_1),
+    (LEVEL_1, LEVEL_2),
+    (LEVEL_2, LEVEL_3),
+    (LEVEL_3, LEVEL_4),
+    (LEVEL_4, LEVELS_MAX)
+]
+
+_TACTICAL_LEVEL_DESCRIPTION = 'Organizations in this phase often have individual cloud workloads in place, but no coherent plan encompassing all of them nor a strategy for building out for the future. The focus is on reducing the cost of discrete systems and on getting to the cloud with minimal disruption. The wins are quick, but there is no provision for scale.'
+_STRATEGIC_LEVEL_DESCRIPTION = 'Organizations in this phase have a broad vision that governs individual workloads, which are designed and developed with an eye to future needs and scale. The organization has started to embrace change, and the people and process portion of the equation are now involved. IT teams are both efficient and effective, increasing the value of harnessing the cloud for business operations.'
+_TRANSFORMATIONAL_LEVEL_DESCRIPTION = 'Organizations in this phase have cloud operations functioning smoothly, and have turned their attention to integrating the data and insights garnered from working in the cloud. Existing data is transparently shared. New data is collected and analyzed. The predictive and prescriptive analytics of machine learning applied. People and processes are being transformed, which further supports the technological changes. IT is no longer a cost center, but has become a partner to the business.'
+
 LEVELS_DESCRIPTIONS = {
-    LEVEL_0: 'Organizations in this phase often have individual cloud workloads in place, but no coherent plan encompassing all of them nor a strategy for building out for the future. The focus is on reducing the cost of discrete systems and on getting to the cloud with minimal disruption. The wins are quick, but there is no provision for scale.',
-    LEVEL_2: 'Organizations in this phase have a broad vision that governs individual workloads, which are designed and developed with an eye to future needs and scale. The organization has started to embrace change, and the people and process portion of the equation are now involved. IT teams are both efficient and effective, increasing the value of harnessing the cloud for business operations.',
-    LEVEL_4: 'Organizations in this phase have cloud operations functioning smoothly, and have turned their attention to integrating the data and insights garnered from working in the cloud. Existing data is transparently shared. New data is collected and analyzed. The predictive and prescriptive analytics of machine learning applied. People and processes are being transformed, which further supports the technological changes. IT is no longer a cost center, but has become a partner to the business.',
+    LEVEL_0: _TACTICAL_LEVEL_DESCRIPTION,
+    LEVEL_1: _TACTICAL_LEVEL_DESCRIPTION,
+    LEVEL_2: _STRATEGIC_LEVEL_DESCRIPTION,
+    LEVEL_3: _STRATEGIC_LEVEL_DESCRIPTION,
+    LEVEL_4: _TRANSFORMATIONAL,
 }
 
 REPORT_LEVEL_DESCRIPTIONS = {
@@ -833,6 +850,7 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'levels_max': LEVELS_MAX,
+    'level_ranges': LEVELS_RANGES,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,

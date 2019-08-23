@@ -1,0 +1,26 @@
+<div class="dmb-list-card">
+  <div class="dmb-list-card__header">
+    <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">{{ list_name|title }}</h2>
+    {% if list_name == 'internal' %}
+      <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
+        {{ internal_results|length }} completion{{ internal_results|length|pluralize }}
+      </span>
+      <button class="dmb-list-card__header-right dmb-button">
+        {% include 'core/inc/svg.html' with id='clipboard' size='24px' %}
+        <span>
+          <a href="{{ account.internal_link }}">Assess client</a>
+        </span>
+      </button>
+    {% elif list_name == 'external' %}
+      <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
+        {{ external_results|length }} completion{{ external_results|length|pluralize }}
+      </span>
+      <button class="dmb-list-card__header-right dmb-button">
+        {% include 'core/inc/svg.html' with id='screen-with-arrow' size='24px' %}
+        <span>Send assessment to client</span>
+      </button>
+    {% endif %}
+  </div>
+</div>
+
+{% include 'public/admin/inc/account-details-card-list.inc.html' with results=results %}

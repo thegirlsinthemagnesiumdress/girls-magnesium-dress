@@ -1,0 +1,24 @@
+{% extends 'public/base.html' %}
+{% load angular %}
+
+{% block main %}
+<main id="dmb-survey-thank-you" class="dmb-card-on-bg">
+  <div class="dmb-card-on-bg__bg"></div>
+  <div class="dmb-card-on-bg__card">
+    <h1 class="dmb-primary-heading h-c-headline h-c-headline--two">
+      Nice Work!
+    </h1>
+    <h2  class="h-c-headline h-c-headline--four">
+      Your responses have been submitted and the results are being generated.
+    </h2>
+    <p class="dmb-u-m-b-s">
+      Your results will appear in your <strong>admin dashboard</strong>.<br>
+      You will receive an email when it’s ready, this may take up to 15 minutes.
+    </p>
+    <a
+        class="h-c-button h-c-button--primary"
+        href="{% url 'accounts' slug|ng_mark_safe %}{{ request.GET.account_id }}">
+      Back to dashboard
+    </a>
+</main>
+{% endblock %}
