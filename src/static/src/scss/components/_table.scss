@@ -53,6 +53,10 @@
     a {
       color: inherit;
       display: block;
+      max-width: 35ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       &:visited {
         color: inherit;
