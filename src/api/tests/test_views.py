@@ -211,6 +211,7 @@ class CreateSurveyTest(APITestCase):
 
         self.assertEqual(response.status_code, 201)
         self.assertEqual(set(response_data_keys), {
+            'sid',
             'company_name',
             'link',
             'link_sponsor',
