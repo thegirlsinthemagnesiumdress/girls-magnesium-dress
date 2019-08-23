@@ -30,7 +30,7 @@ export default class Clippy {
     this.root = elem;
     // Create new clipboard JS object which gets the value of the dmb-clipp attribute.
     this.selector = 'dmb-clippy';
-    this.clipboard = new window.ClipboardJs(this.root, {
+    this.clipboard = new window['ClipboardJS'](this.root, {
       text: (trigger) => {
         return trigger.getAttribute(this.selector);
       },

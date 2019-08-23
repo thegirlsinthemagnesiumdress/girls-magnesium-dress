@@ -186,8 +186,9 @@ def accounts(request, tenant):
 @survey_admin_required
 def account_detail(request, tenant, sid):
     account = get_object_or_404(Survey, sid=sid)
+    content_data = settings.TENANTS[tenant]['CONTENT_DATA']
 
-    account_info, external_surveys, internal_surveys = utils.get_account_detail_data(tenant, account)
+    account_info, external_surveys, internal_surveys = utils.get_account_detail_data(content_data, account)
 
     return render(request, 'public/admin/account-details.html', {
         'tenant': tenant,
