@@ -1,5 +1,7 @@
 goog.module.declareNamespace('dmb.components.progressGrid.controller');
 
+import {CONTENT_UPDATED_EVENT} from '../scroll/scroll-pin-top.directive';
+
 /**
  * ProgressGrid class controller.
  */
@@ -7,12 +9,13 @@ class ProgressGridController {
   /**
    * ProgressGrid controller
    *
+   * @param {!angular.$rootScope} $rootScope
    * @param {!Object} tenantConf
    * @param {!Function} dmbLevelsFactory
    *
    * @ngInject
    */
-  constructor(tenantConf, dmbLevelsFactory) {
+  constructor($rootScope, tenantConf, dmbLevelsFactory) {
     /**
      * @type {string}
      * @export
@@ -42,6 +45,12 @@ class ProgressGridController {
      * @export
      */
     this.industryReady;
+
+    /**
+     * @type {angular.$rootScope}
+     * @export
+     */
+    this.$rootScope = $rootScope;
 
     /**
      * @type {Object}
@@ -103,6 +112,7 @@ class ProgressGridController {
    */
   $onChanges() {
     this.updateLevelsData();
+    this.$rootScope.$broadcast(CONTENT_UPDATED_EVENT);
   }
 
   /**

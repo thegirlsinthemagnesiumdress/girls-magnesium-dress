@@ -74,9 +74,9 @@ $block: '.dmb-tabs';
   z-index: $_h-header-bar-z-index + 1;
 
   #{$block}__toggles {
-    min-height: $_h-header-height--full-size;
     margin: 0 auto;
     max-width: 1280px;
+    min-height: $_h-header-height--full-size;
     padding: 10px 0;
   }
 
@@ -112,6 +112,6 @@ $block: '.dmb-tabs';
   }
 
   & + #{$block}__tabs {
-    padding-top: 120px;
+    padding-top: 142px;
   }
 }
