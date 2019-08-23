@@ -23,6 +23,7 @@
 
   th {
     font-weight: $h-font-weight-medium;
+    padding: 10px;
     white-space: nowrap;
 
     @include dmb-mq($from: desktop) {
@@ -32,6 +33,12 @@
 
   td {
     padding: 0;
+
+    &::before {
+      @include dmb-mq($until: tablet)	{
+        padding: 10px;
+      }
+    }
 
     &:first-of-type {
       font-family: $dmb-alt-font-family;
@@ -53,17 +60,16 @@
     a {
       color: inherit;
       display: block;
+      height: 100%;
       max-width: 35ch;
       overflow: hidden;
+      padding: 10px;
       text-overflow: ellipsis;
       white-space: nowrap;
+      width: 100%;
 
       &:visited {
         color: inherit;
-      }
-
-      @include dmb-mq($until: tablet) {
-        padding: 10px;
       }
 
       @include dmb-mq($from: desktop) {
