@@ -36,7 +36,6 @@
           autocomplete="off"
           class="dmb-form dmb-form--admin"
           name="registration"
-          ng-if="!registrationCtrl.link"
           ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'"
           ng-submit="registrationCtrl.submit()"
           novalidate>
@@ -163,11 +162,6 @@
         </div>
 
       </form>
-
-      <div
-          ng-if="registrationCtrl.link">
-        Account Created    
-      </div>
     </div>
 
     <div class="h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-1">
@@ -183,7 +177,7 @@
             Once created, other Googlers will be able to add this account to their dashboard and view the maturity results.
           </p>
           <p>
-            The detailed responses given for internal assessments are not shared. 
+            The detailed responses given for internal assessments are not shared.
           </p>
         </div>
       </div>

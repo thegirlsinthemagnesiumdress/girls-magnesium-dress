@@ -87,7 +87,7 @@ class RegistrationController {
      * @export
      * @type {boolean}
      */
-    this.hideConfirmationPage = false;
+    this.redirectToQualtrics = false;
   }
 
   /**
@@ -117,14 +117,14 @@ class RegistrationController {
         'X-CSRFToken': this._csrfToken,
       },
     }).then((res) => {
-      if (this.hideConfirmationPage) {
+      if (this.redirectToQualtrics) {
         // go redirect to qualtrics survey page
-        domSafe.setLocationHref(document.location, res['data']['link']);
+        this.link = res['data']['link'];
       } else {
         // legacy for reports list page where no redirect is required
-        this.link = res['data']['link'];
-        this.companyName = res['data']['company_name'];
+        this.link = `/${res['data']['slug']}/admin/accounts/${res['data']['account_id']}`;
       }
+      domSafe.setLocationHref(document.location, this.link);
     }, () => {
       this.serverError = true;
     });
