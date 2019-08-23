@@ -17,6 +17,7 @@ class SurveySerializer(ModelSerializer):
             'country',
             'tenant',
             'slug',
+            'sid',
         )
 
     def validate(self, data):
