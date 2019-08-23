@@ -118,11 +118,9 @@ class RegistrationController {
       },
     }).then((res) => {
       if (this.redirectToQualtrics) {
-        // go redirect to qualtrics survey page
         this.link = res['data']['link'];
       } else {
-        // legacy for reports list page where no redirect is required
-        this.link = `/${res['data']['slug']}/admin/accounts/${res['data']['account_id']}`;
+        this.link = `/${res['data']['slug']}/accounts/${res['data']['sid']}`;
       }
       domSafe.setLocationHref(document.location, this.link);
     }, () => {
