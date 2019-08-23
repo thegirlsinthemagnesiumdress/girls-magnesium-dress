@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from core.models import Survey
+from core.models import Survey, SurveyResult
 import logging
 
 
@@ -19,6 +19,9 @@ def migrate_to_dmblite_survey():
             survey.save()
         except AssertionError:
             logging.error("Something went wrong migrating survey {} ".format(survey.sid))
+
+    for survey_result in SurveyResult.objects.all():
+        survey_result.save()
     # Disable all tenants after task
     logging.info("Disabling cloud tenant")
     settings.ALL_TENANTS['cloud']['enabled'] = False
