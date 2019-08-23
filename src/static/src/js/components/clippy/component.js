@@ -1,5 +1,3 @@
-import ClipboardJs from 'clipboard';
-
 /**
  * Component which copies an elements content to the clipboard
  * when clicked, using clipboard.js and displays a toast
@@ -32,7 +30,7 @@ export default class Clippy {
     this.root = elem;
     // Create new clipboard JS object which gets the value of the dmb-clipp attribute.
     this.selector = 'dmb-clippy';
-    this.clipboard = new ClipboardJs(this.root, {
+    this.clipboard = new window.ClipboardJs(this.root, {
       text: (trigger) => {
         return trigger.getAttribute(this.selector);
       },
