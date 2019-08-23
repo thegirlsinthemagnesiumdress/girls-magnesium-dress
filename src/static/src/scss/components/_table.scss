@@ -31,13 +31,7 @@
   }
 
   td {
-    @include dmb-mq($until: tablet) {
-      padding: 10px;
-    }
-
-    @include dmb-mq($from: desktop) {
-      padding: 24px;
-    }
+    padding: 0;
 
     &:first-of-type {
       font-family: $dmb-alt-font-family;
@@ -53,6 +47,23 @@
 
       &:not(.h-c-table__cell--numerical) {
         color: $dmb-color-grey-shuttle;
+      }
+    }
+
+    a {
+      color: inherit;
+      display: block;
+
+      &:visited {
+        color: inherit;
+      }
+
+      @include dmb-mq($until: tablet) {
+        padding: 10px;
+      }
+
+      @include dmb-mq($from: desktop) {
+        padding: 24px;
       }
     }
   }
