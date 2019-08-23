@@ -1,0 +1,69 @@
+.dmb-banner {
+  border-bottom: 1px solid $dmb-color-grey-zircon;
+  padding-bottom: 24px;
+
+  @include dmb-mq($from: tablet) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__back {
+    @include dmb-mq($from: tablet) {
+      margin-right: 24px;
+      padding-top: 8px;
+    }
+  }
+
+  &__main {
+    flex-grow: 1;
+
+    @include dmb-mq($until: tablet) {
+      margin: 20px 0;
+    }
+  }
+
+  &__btn {
+    &:not(:first-of-type) {
+      margin-left: 16px;
+    }
+  }
+
+  &__details-list {
+    list-style-type: none;
+    margin: 0;
+
+    @include dmb-mq($from: desktop) {
+      display: flex;
+    }
+  }
+
+  &__details-list-item {
+    align-items: center;
+    color: $dmb-color-grey-shuttle;
+    display: flex;
+
+    @include dmb-mq($from: desktop) {
+      font-size: 18px;
+    }
+
+    &:not(:first-of-type) {
+      @include dmb-mq($until: desktop) {
+        margin-top: 10px;
+      }
+
+      @include dmb-mq($from: desktop) {
+        margin-left: 24px;
+      }
+    }
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+
+  svg {
+    fill: $dmb-color-grey-shuttle;
+    position: relative;
+    top: -.03em;
+  }
+}

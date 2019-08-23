@@ -59,14 +59,50 @@ MOCKED_DIMENSION_TITLES_TENANT_2 = {
     'dim22': 'Dimension 22'
 }
 
+MOCKED_LEVELS_TENANT_1 = {
+    0: 'level_0',
+    1: 'level_1',
+    2: 'level_2'
+}
+
+MOCKED_MAX_LEVEL_TENANT_1 = 3
+
+MOCKED_LEVELS_RANGES_TENANT_1 = [
+    (0, 1),
+    (1, 2),
+    (2, 3)
+]
+
 MOCKED_CONTENT_DATA_TENANT_1 = {
-    'levels': {},
-    'levels_max': 1,
-    'level_descriptions': {},
-    'dimensions': [],
+    'levels': MOCKED_LEVELS_TENANT_1,
+    'levels_max': MOCKED_MAX_LEVEL_TENANT_1,
+    'level_ranges': MOCKED_LEVELS_RANGES_TENANT_1,
+    'level_descriptions': {
+        0: 'level_0_description',
+        1: 'level_1_description',
+        2: 'level_2_description'
+    },
+    'dimensions': [
+        'dim1',
+        'dim2',
+    ],
     'dimension_labels': MOCKED_DIMENSION_TITLES_TENANT_1,
-    'dimension_header_descriptions': {},
-    'dimension_level_description': {},
+    'dimension_header_descriptions': {
+        'dim1': 'dim1_header_description',
+        'dim2': 'dim2_header_description',
+    },
+    'dimension_level_description': {
+        'dim1': {
+            0: 'dim1_level_0_description',
+            1: 'dim1_level_1_description',
+            2: 'dim1_level_2_description'
+        },
+        'dim2': {
+            0: 'dim2_level_0_description',
+            1: 'dim2_level_1_description',
+            2: 'dim2_level_2_description'
+        },
+    },
     'dimension_recommendations': {},
 }
 
@@ -370,7 +406,7 @@ MOCKED_TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in MOCKED_TENANTS.items()}
 
 MOCKED_INTERNAL_TENANTS = {
     'tenant1': {
-        'key': 'tenant1_internal',
+        'key': 'tenant1',
         'DIMENSIONS': MOCKED_DIMENSIONS,
         'QUALTRICS_SURVEY_ID': 'SV_in1xxxxxxxxxxxx',
         'WEIGHTS': MOCKED_WEIGHTS,

@@ -130,6 +130,10 @@ $positions: (top, bottom);
   border-radius: 8px;
 }
 
+.dmb-u-text-muted {
+  color: $dmb-color-grey-shuttle !important;
+}
+
 .dmb-overlay {
   background-color: $dmb-color-grey-shuttle;
   border-radius: $dmb-border-radius-medium;

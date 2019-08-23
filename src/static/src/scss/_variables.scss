@@ -3,11 +3,13 @@
 // with $dmb-color-<hue>-<color-name>
 // if color name contains the hue this can be omitted
 $dmb-color-black-russian: #202124;
+$dmb-color-blue-charade: #3c4043;
 $dmb-color-grey-shuttle: #5f6368;
 $dmb-color-grey-chateau: #959ca5;
 $dmb-color-grey-zircon: #dfe1e5;
 $dmb-color-blue-solitude: #f1f3f4;
 
+$dmb-color-blue-alice-blue: #e8f0fe;
 $dmb-color-blue-royal: #1a73e8;
 $dmb-color-blue-royal2: #255fdb;
 $dmb-color-blue-egyptian: #0e3ec1;
@@ -28,10 +30,14 @@ $dmb-interactive-color: $dmb-color-blue-royal;
 
 
 // VARIABLES
+$dmb-spacing-xs: 8px;
+$dmb-spacing-s: 16px;
+$dmb-spacing-m: 24px;
 $dmb-border-radius: 2px;
 $dmb-border-radius-medium: 4px;
 $dmb-border-radius-large: 8px;
 $dmb-alt-font-family: $h-font-family-google-sans;
+$dmb-box-shadow: 0 1px 2px 0 rgba($dmb-color-blue-charade, .3), 0 2px 6px 2px rgba($dmb-color-blue-charade, .15);
 
 // Vertical spacing
 $dmb-vertical-spacings: (

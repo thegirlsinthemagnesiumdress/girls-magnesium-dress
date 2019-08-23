@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.http import Http404
 from core.response_detail import get_response_detail
-from core.conf.utils import flatten, get_tenant_slug, get_other_tenant_footers, get_tenant_product_name, version_info
+from core.conf import utils
 import json
 from django.utils.translation import ugettext as _
 from core.encoders import LazyEncoder
@@ -27,7 +27,7 @@ import os
 
 COUNTRIES_TUPLE = [(k, v)for k, v in settings.COUNTRIES.items()]
 
-version, is_nightly, is_development, is_staging = version_info(os.environ['HTTP_HOST'])
+version, is_nightly, is_development, is_staging = utils.version_info(os.environ['HTTP_HOST'])
 STAGING = is_staging
 
 
@@ -60,15 +60,15 @@ def _dump_tenant_content_data(tenant):
 def registration(request, tenant):
 
     tenant_conf = settings.TENANTS[tenant]
-    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
+    industries = utils.flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
     return render(request, 'public/registration.html', {
         'tenant': tenant,
-        'slug': get_tenant_slug(tenant),
+        'slug': utils.get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
     })
 
 
@@ -80,11 +80,11 @@ def report_static(request, tenant, sid):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'staging': STAGING,
         'tenant': tenant,
-        'slug': get_tenant_slug(tenant),
+        'slug': utils.get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
-        'is_nightly': version_info(request.get_host())[1],
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
+        'is_nightly': utils.version_info(request.get_host())[1],
     })
 
 
@@ -95,11 +95,11 @@ def internal_report(request, tenant, sid):
 
     return render(request, 'public/{}/report-internal.html'.format(tenant), {
         'tenant': tenant,
-        'slug': get_tenant_slug(tenant),
+        'slug': utils.get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
-        'is_nightly': version_info(request.get_host())[1],
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
+        'is_nightly': utils.version_info(request.get_host())[1],
     })
 
 
@@ -108,33 +108,33 @@ def report_result_static(request, tenant, response_id):
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'staging': STAGING,
         'tenant': tenant,
-        'slug': get_tenant_slug(tenant),
+        'slug': utils.get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
-        'is_nightly': version_info(request.get_host())[1],
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
+        'is_nightly': utils.version_info(request.get_host())[1],
     })
 
 
 def index_static(request, tenant):
-    slug = get_tenant_slug(tenant)
+    slug = utils.get_tenant_slug(tenant)
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
     })
 
 
 def thank_you(request, tenant):
-    slug = get_tenant_slug(tenant)
+    slug = utils.get_tenant_slug(tenant)
     return render(request, 'public/thank-you.html', {
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
     })
 
 
@@ -154,16 +154,16 @@ def internal_survey_completion(request, tenant):
 @login_required
 @survey_admin_required
 def reports_admin(request, tenant):
-    return redirect(reverse('accounts', kwargs={'tenant': get_tenant_slug(tenant)}))
+    return redirect(reverse('accounts', kwargs={'tenant': utils.get_tenant_slug(tenant)}))
 
 
 @login_required
 @survey_admin_required
 def accounts(request, tenant):
     tenant_conf = settings.TENANTS[tenant]
-    industries = flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
+    industries = utils.flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
 
-    slug = get_tenant_slug(tenant)
+    slug = utils.get_tenant_slug(tenant)
 
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
@@ -172,13 +172,32 @@ def accounts(request, tenant):
         'bootstrap_data': JSONRenderer().render(api_data),
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
-        'other_tenants': get_other_tenant_footers(tenant),
-        'product_name': get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
         'slug': slug,
         'tenant': tenant,
         'industries': industries,
         'countries': COUNTRIES_TUPLE,
         'create_survey_url': request.build_absolute_uri(reverse('registration', kwargs={'tenant': slug})),
+    })
+
+
+@login_required
+@survey_admin_required
+def account_detail(request, tenant, sid):
+    account = get_object_or_404(Survey, sid=sid)
+
+    account_info, external_surveys, internal_surveys = utils.get_account_detail_data(tenant, account)
+
+    return render(request, 'public/admin/account-details.html', {
+        'tenant': tenant,
+        'slug': utils.get_tenant_slug(tenant),
+        'account': account_info,
+        'external_results': external_surveys,
+        'internal_results': internal_surveys,
+        'content_data': _dump_tenant_content_data(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
     })
 
 
@@ -195,13 +214,13 @@ def result_detail(request, tenant, response_id):
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,
-        'slug': get_tenant_slug(tenant),
+        'slug': utils.get_tenant_slug(tenant),
         'content_data': _dump_tenant_content_data(tenant),
         'result_detail': result_detail,
         'survey_result': survey_result,
         'survey': survey_result.survey,
-        'product_name': get_tenant_product_name(tenant),
-        'other_tenants': get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
+        'other_tenants': utils.get_other_tenant_footers(tenant),
     })
 
 

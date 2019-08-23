@@ -1,0 +1,7 @@
+<div class="dmb-exp-panels glue-expansion-panels">
+  {% for result in results %}
+    <div class="dmb-list-card dmb-exp-panels__panel dmb-exp-panels__panel--level-{{forloop.counter0}} glue-expansion-panel">
+      {% include 'public/admin/inc/account-details-card.inc.html' with result=result %}
+    </div>
+  {% endfor %}
+</div>

@@ -97,6 +97,13 @@ LEVELS = {
     LEVEL_3: 'Leading',
 }
 
+LEVELS_RANGES = [
+    (LEVEL_0, LEVEL_1),
+    (LEVEL_1, LEVEL_2),
+    (LEVEL_2, LEVEL_3),
+    (LEVEL_3, LEVELS_MAX)
+]
+
 LEVELS_DESCRIPTIONS = {
     LEVEL_0: 'Organizations at this stage have the basic tools, but they often face cultural challenges to truly embracing data-supported decision-making.',
     LEVEL_1: 'These organizations are able to drive value from data in some pockets of their business. Leadership recognises data as a priority, but is unclear on how to unlock the best returns.',
@@ -436,6 +443,7 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'levels_max': LEVELS_MAX,
+    'level_ranges': LEVELS_RANGES,
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,

@@ -1,0 +1,21 @@
+{% extends "public/base.html" %}
+{% load angular %}
+
+{% block main %}
+{% djangoblock %}
+<main id="dmb-account" class="dmb-account h-c-page dmb-u-m-t-m h-u-font-weight-regular">
+
+  {% include 'public/admin/inc/account-details-banner.inc.html' with account=account %}
+
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--6">
+      {% include 'public/admin/inc/account-details-result-list.inc.html' with list_name='internal' results=internal_results %}
+    </div>
+
+    <div class="h-c-grid__col h-c-grid__col--6">
+      {% include 'public/admin/inc/account-details-result-list.inc.html' with list_name='external' results=external_results %}
+    </div>
+  </div>
+</main>
+{% enddjangoblock %}
+{% endblock %}
