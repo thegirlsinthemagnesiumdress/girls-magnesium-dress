@@ -1,16 +1,4 @@
-from core.conf.utils import (
-    map_industries,
-    flatten,
-    version_info,
-    get_other_tenant_footers,
-    get_level_key,
-    get_next_level_key,
-    in_top_level,
-    get_level_info,
-    get_dimension_level_info,
-    get_detailed_survey_result_data,
-    get_account_detail_data,
-)
+from core.conf import utils
 import mock
 from djangae.test import TestCase
 from collections import OrderedDict
@@ -29,7 +17,7 @@ class MapIndustriesTest(TestCase):
             ('afs', ('Accommodation and food service', None)),
         ])
 
-        mapped_repr = map_industries(industries, None, {})
+        mapped_repr = utils.map_industries(industries, None, {})
 
         self.assertEqual(len(mapped_repr), 1)
         label, parent_industry = mapped_repr.get('afs')
@@ -46,7 +34,7 @@ class MapIndustriesTest(TestCase):
             ]))),
         ])
 
-        mapped_repr = map_industries(industries, None, {})
+        mapped_repr = utils.map_industries(industries, None, {})
 
         self.assertEqual(len(mapped_repr), 4)
         # all children of Education have Education as parent
@@ -71,7 +59,7 @@ class MapIndustriesTest(TestCase):
             ]))),
         ])
 
-        mapped_repr = map_industries(industries, None, {})
+        mapped_repr = utils.map_industries(industries, None, {})
 
         self.assertEqual(len(mapped_repr), 6)
         label, parent_industry = mapped_repr.get('afs')
@@ -90,7 +78,7 @@ class MapIndustriesTest(TestCase):
         ])
         parent_prefix = 'root'
 
-        mapped_repr = map_industries(industries, parent_prefix, {})
+        mapped_repr = utils.map_industries(industries, parent_prefix, {})
 
         self.assertEqual(len(mapped_repr), 6)
         label, parent_industry = mapped_repr.get('afs')
@@ -100,14 +88,14 @@ class MapIndustriesTest(TestCase):
 
 
 class FlatIndustriesTest(TestCase):
-    """Test case for `core.conf.utils.flat` function."""
+    """Test case for `core.conf.utils.flatten` function."""
 
     def test_dictionary_flattened_correctly_single(self):
         industries = OrderedDict([
             ('afs', ('Accommodation and food service', None)),
         ])
 
-        flattened_repr = flatten(industries)
+        flattened_repr = utils.flatten(industries)
 
         self.assertEqual(len(flattened_repr), 1)
 
@@ -120,7 +108,7 @@ class FlatIndustriesTest(TestCase):
             ]))),
         ])
 
-        flattened_repr = flatten(industries)
+        flattened_repr = utils.flatten(industries)
 
         self.assertEqual(len(flattened_repr), 3)
         for el in flattened_repr:
@@ -144,14 +132,14 @@ class FlatIndustriesTest(TestCase):
             ('edu-se', 'Education - Secondary education'),
         ]
 
-        flattened_repr = flatten(industries)
+        flattened_repr = utils.flatten(industries)
 
         self.assertEqual(flattened_repr, flattened_expected)
 
     def test_dictionary_flattened_correctly_empty(self):
         industries = OrderedDict()
 
-        flattened_repr = flatten(industries)
+        flattened_repr = utils.flatten(industries)
 
         self.assertEqual(len(flattened_repr), 0)
 
@@ -165,7 +153,7 @@ class FlatIndustriesTest(TestCase):
             ]))),
         ])
 
-        flattened_repr = flatten(industries, leaf_only=False)
+        flattened_repr = utils.flatten(industries, leaf_only=False)
 
         flattened_expected = [
             ('afs', 'Accommodation and food service'),
@@ -182,7 +170,7 @@ class VersionInfoTest(TestCase):
 
     @mock.patch('djangae.environment.is_development_environment', return_value=False)
     def production_domain_test(self, is_prod_mock):
-        version, is_nightly, is_development, is_staging = version_info('somedomain')
+        version, is_nightly, is_development, is_staging = utils.version_info('somedomain')
 
         is_prod_mock.assert_called()
         self.assertFalse(is_development)
@@ -194,7 +182,7 @@ class VersionInfoTest(TestCase):
     def localhost_domain_test(self, is_prod_mock):
         domain = 'localhost:8000'
         expected_version = 'localhost'
-        version, is_nightly, is_development, is_staging = version_info(domain)
+        version, is_nightly, is_development, is_staging = utils.version_info(domain)
         self.assertEqual(version, expected_version)
         self.assertTrue(is_development)
         self.assertFalse(is_nightly)
@@ -204,7 +192,7 @@ class VersionInfoTest(TestCase):
     def localhost_domain_test_different_domain(self, is_prod_mock):
         domain = '0.0.0.0:8000'
         expected_version = 'localhost'
-        version, is_nightly, is_development, is_staging = version_info(domain)
+        version, is_nightly, is_development, is_staging = utils.version_info(domain)
         self.assertEqual(version, expected_version)
         self.assertTrue(is_development)
         self.assertFalse(is_nightly)
@@ -215,7 +203,7 @@ class VersionInfoTest(TestCase):
     def staging_domain_test(self, app_id_mock, is_prod_mock):
         domain = 'gweb-digitalmaturity-staging.appspot.com'
         expected_version = 'staging'
-        version, is_nightly, is_development, is_staging = version_info(domain)
+        version, is_nightly, is_development, is_staging = utils.version_info(domain)
         self.assertEqual(version, expected_version)
         self.assertFalse(is_development)
         self.assertFalse(is_nightly)
@@ -226,7 +214,7 @@ class VersionInfoTest(TestCase):
     def nightly_domain_test(self, app_id_mock, is_prod_mock):
         domain = 'ads-nightly-dot-gweb-digitalmaturity-staging.appspot.com'
         expected_version = 'ads-nightly'
-        version, is_nightly, is_development, is_staging = version_info(domain)
+        version, is_nightly, is_development, is_staging = utils.version_info(domain)
         self.assertFalse(is_development)
         self.assertTrue(is_nightly)
         self.assertTrue(is_staging)
@@ -237,7 +225,7 @@ class VersionInfoTest(TestCase):
     def tenant_not_nightly_domain_test(self, app_id_mock, is_prod_mock):
         domain = 'ads-dot-gweb-digitalmaturity-staging.appspot.com'
         expected_version = 'ads'
-        version, is_nightly, is_development, is_staging = version_info(domain)
+        version, is_nightly, is_development, is_staging = utils.version_info(domain)
         self.assertEqual(version, expected_version)
         self.assertFalse(is_nightly)
         self.assertFalse(is_development)
@@ -252,7 +240,7 @@ class GetOtherTenantFootersTest(TestCase):
 
     def one_result_test(self):
         expected = [('Tenant 2 Footer Label', 'tenant2-slug')]
-        got = get_other_tenant_footers('tenant1')
+        got = utils.get_other_tenant_footers('tenant1')
 
         self.assertListEqual(expected, got)
 
@@ -277,7 +265,7 @@ class GetOtherTenantFootersTest(TestCase):
     )
     def mulitple_results_test(self):
         expected = [('Tenant 3 Footer Label', 'tenant3-slug'), ('Tenant 2 Footer Label', 'tenant2-slug')]
-        got = get_other_tenant_footers('tenant1')
+        got = utils.get_other_tenant_footers('tenant1')
 
         self.assertListEqual(expected, got)
 
@@ -302,15 +290,111 @@ class GetOtherTenantFootersTest(TestCase):
     )
     def not_in_dmb_test(self):
         expected = []
-        got = get_other_tenant_footers('tenant3')
+        got = utils.get_other_tenant_footers('tenant3')
 
         self.assertListEqual(expected, got)
 
     def no_in_tenant_list_test(self):
         expected = []
-        got = get_other_tenant_footers('tenant4')
+        got = utils.get_other_tenant_footers('tenant4')
 
         self.assertListEqual(expected, got)
+
+
+class GetLevelKey(TestCase):
+    """Test for functions in `core.utils.get_level_key`."""
+
+    def get_lower_bound_level_key_test(self):
+        """Checks that values on the level boundary and just above are clasified corrctly"""
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 1
+        # If score is boundary then its the level
+        self.assertEqual(
+            utils.get_level_key(level_ranges, level),
+            level
+        )
+        # If score is more than boundary but less than the one above its still the level
+        self.assertEqual(
+            utils.get_level_key(level_ranges, level + 0.1),
+            level
+        )
+
+    def get_upper_bound_level_key_test(self):
+        """Checks that values just below the next level boundary are clasified corrctly"""
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 1
+        # If score is more than boundary but less than the one above its still the level
+        self.assertEqual(
+            utils.get_level_key(level_ranges, 2 - 0.1),
+            level
+        )
+
+    def get_level_key_out_of_bounds_test(self):
+        """Tests that a scores out of bounds return the correct level key"""
+        # Check scores outside ranges are classified correctly.
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        self.assertEqual(
+            utils.get_level_key(level_ranges, level_ranges[0][0] - 100),
+            level_ranges[0][0]
+        )
+        self.assertEqual(
+            utils.get_level_key(level_ranges, level_ranges[-1][1] + 100),
+            level_ranges[-1][0]
+        )
+
+
+class GetNextLevelKey(TestCase):
+    """Test for functions in `core.utils.get_next_level_key`."""
+    def setUp(self):
+        self.level_ranges = [(0, 1), (1, 2), (2, 3)]
+
+    def get_next_level_key_test(self):
+        """Tests that the next level of a score is calculated correctly."""
+        level = 1
+        # If level is not in top range then next level should be one above.
+        self.assertEqual(
+            utils.get_next_level_key(self.level_ranges, level),
+            2
+        )
+
+    def get_top_next_level_key_test(self):
+        """Tests that the next level of a score is calculated correctly."""
+        level = 2
+        # If level is not in top range then next level should be one above.
+        self.assertEqual(
+            utils.get_next_level_key(self.level_ranges, level),
+            2
+        )
+
+    def get_next_level_key_out_of_bounds_test(self):
+        """Tests that a scores out of bounds return the correct level key"""
+        # Check scores outside ranges are classified correctly.
+        self.assertEqual(
+            utils.get_next_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
+            self.level_ranges[0][1]
+        )
+        self.assertEqual(
+            utils.get_next_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
+            self.level_ranges[-1][0]
+        )
+
+
+class InTopLevel(TestCase):
+    """Test for functions in `core.utils.in_top_level`."""
+
+    def is_top_level_test(self):
+        """Tests that a top score is classified correctly."""
+        # Check that a top score is has the highest level.
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 3
+        self.assertTrue(utils.in_top_level(level_ranges, level))
+
+    def is_not_top_level_test(self):
+        """Tests that a non-top score is classified correctly."""
+        # Check that a low score does not have the highest level.
+        level_ranges = [(0, 1), (1, 2), (2, 3)]
+        level = 0
+        self.assertFalse(utils.in_top_level(level_ranges, level))
 
 
 @override_settings(
@@ -324,96 +408,12 @@ class GetLevelAttributesTest(TestCase):
         self.content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
         self.level_ranges = self.content_data['level_ranges']
 
-    def get_lower_bound_level_key_test(self):
-        """Checks that values on the level boundary and just above are clasified corrctly"""
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        level = 1
-        # If score is boundary then its the level
-        self.assertEqual(
-            get_level_key(level_ranges, level),
-            level
-        )
-        # If score is more than boundary but less than the one above its still the level
-        self.assertEqual(
-            get_level_key(level_ranges, level + 0.1),
-            level
-        )
-
-    def get_upper_bound_level_key_test(self):
-        """Checks that values just below the next level boundary are clasified corrctly"""
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        level = 1
-        # If score is more than boundary but less than the one above its still the level
-        self.assertEqual(
-            get_level_key(level_ranges, 2 - 0.1),
-            level
-        )
-
-    def get_level_key_out_of_bounds_test(self):
-        """Tests that a scores out of bounds return the correct level key"""
-        # Check scores outside ranges are classified correctly.
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        self.assertEqual(
-            get_level_key(level_ranges, level_ranges[0][0] - 100),
-            level_ranges[0][0]
-        )
-        self.assertEqual(
-            get_level_key(level_ranges, level_ranges[-1][1] + 100),
-            level_ranges[-1][0]
-        )
-
-    def get_next_level_key_test(self):
-        """Tests that the next level of a score is calculated correctly."""
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        level = 1
-        # If level is not in top range then next level should be one above.
-        self.assertEqual(
-            get_next_level_key(level_ranges, level),
-            2
-        )
-
-    def get_top_next_level_key_test(self):
-        """Tests that the next level of a score is calculated correctly."""
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        level = 2
-        # If level is not in top range then next level should be one above.
-        self.assertEqual(
-            get_next_level_key(level_ranges, level),
-            2
-        )
-
-    def get_next_level_key_out_of_bounds_test(self):
-        """Tests that a scores out of bounds return the correct level key"""
-        # Check scores outside ranges are classified correctly.
-        self.assertEqual(
-            get_next_level_key(self.level_ranges, self.level_ranges[0][0] - 100),
-            self.level_ranges[0][1]
-        )
-        self.assertEqual(
-            get_next_level_key(self.level_ranges, self.level_ranges[-1][1] + 100),
-            self.level_ranges[-1][0]
-        )
-
-    def is_top_level_test(self):
-        """Tests that a top score is classified correctly."""
-        # Check that a top score is has the highest level.
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        level = 3
-        self.assertTrue(in_top_level(level_ranges, level))
-
-    def is_not_top_level_test(self):
-        """Tests that a non-top score is classified correctly."""
-        # Check that a low score does not have the highest level.
-        level_ranges = [(0, 1), (1, 2), (2, 3)]
-        level = 0
-        self.assertFalse(in_top_level(level_ranges, level))
-
     def get_level_info_test(self):
         """Tests that a score returns the correct level information"""
         levels = self.content_data['levels']
         level = levels.keys()[1]
         # Check correct level info is given for each level.
-        level_info = get_level_info(self.content_data, level)['levels']
+        level_info = utils.get_level_info(self.content_data, level)['levels']
         # Check current level info
         self.assertEqual(level, level_info['current']['value'])
         self.assertEqual(levels[level], level_info['current']['name'])
@@ -424,13 +424,29 @@ class GetLevelAttributesTest(TestCase):
         self.assertEqual(levels[next_level], level_info['next']['name'])
         self.assertEqual(self.content_data['level_descriptions'][next_level], level_info['next']['description'])
 
+    def get_level_info_last_level_test(self):
+        """Tests that a score returns the correct level information, when we are in the next level"""
+        levels = self.content_data['levels']
+        level = 2
+        next_level = 2
+        # Check correct level info is given for each level.
+        level_info = utils.get_level_info(self.content_data, level)['levels']
+        # Check current level info
+        self.assertEqual(level, level_info['current']['value'])
+        self.assertEqual(levels[level], level_info['current']['name'])
+        self.assertEqual(self.content_data['level_descriptions'][level], level_info['current']['description'])
+        # Check next level info
+        self.assertEqual(next_level, level_info['next']['value'])
+        self.assertEqual(levels[next_level], level_info['next']['name'])
+        self.assertEqual(self.content_data['level_descriptions'][next_level], level_info['next']['description'])
+
     def get_dimension_level_info_test(self):
         """Tests that a score returns the correct dimension level info"""
         levels = self.content_data['levels']
         level = levels.keys()[1]
         dimension = 'dim1'
         # Check correct level info is given for each level.
-        level_info = get_dimension_level_info(self.content_data, dimension, level)['levels']
+        level_info = utils.get_dimension_level_info(self.content_data, dimension, level)['levels']
         # Check current level info
         self.assertEqual(level, level_info['current']['value'])
         self.assertEqual(levels[level], level_info['current']['name'])
@@ -447,6 +463,13 @@ class GetLevelAttributesTest(TestCase):
             level_info['next']['description']
         )
 
+    def get_dimension_level_info_dimension_does_not_exist_test(self):
+        """Tests that a score returns the correct dimension level info"""
+        level = 1
+        dimension = 'dim5'
+        # If a dimensions does not exist, we raise a KeyError.
+        self.assertRaises(KeyError, utils.get_dimension_level_info, self.content_data, dimension, level)
+
     def get_detailed_survey_result_data_test(self):
         """Tests that a survey results data is correctly returned"""
         # Make fake survey results.
@@ -458,7 +481,7 @@ class GetLevelAttributesTest(TestCase):
             dmb_d={u"dim1": 0.4, u"dim2": 1.6}
         )
         # Get survey result data.
-        survey_result_data = get_detailed_survey_result_data(self.content_data, survey_result)
+        survey_result_data = utils.get_detailed_survey_result_data(self.content_data, survey_result)
         # Check required fields are present
         self.assertIsNotNone(survey_result_data['date'])
         self.assertIsNotNone(survey_result_data['overall'])
@@ -480,7 +503,55 @@ class GetLevelAttributesTest(TestCase):
         """Tests that correct value is returned when a empty account is provided."""
         # Make fake survey results.
         survey = make_survey(tenant="tenant1")
-        account_info, external_surveys, internal_surveys = get_account_detail_data(self.content_data, survey)
+        account_info, external_surveys, internal_surveys = utils.get_account_detail_data(self.content_data, survey)
         self.assertIsNotNone(account_info)
         self.assertListEqual(external_surveys, [])
         self.assertListEqual(internal_surveys, [])
+
+    def get_account_detail_data_external_test(self):
+        """Tests that correct value is returned when an account is provided."""
+        # Make survey with 2 results.
+        survey = make_survey(tenant="tenant1")
+        make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6}
+        )
+        survey_result_2 = make_survey_result(
+            survey=survey,
+            response_id='BBB',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6}
+        )
+        survey.last_survey_result = survey_result_2
+        survey.save()
+
+        account_info, external_surveys, internal_surveys = utils.get_account_detail_data(self.content_data, survey)
+        self.assertIsNotNone(account_info)
+        self.assertEqual(len(external_surveys), 2)
+        self.assertEqual(len(internal_surveys), 0)
+
+    def get_account_detail_data_internal_test(self):
+        """Tests that correct value is returned when an account is provided."""
+        # Make survey with 2 internal results.
+        survey = make_survey(tenant="tenant1")
+        make_survey_result(
+            internal_survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6}
+        )
+        survey_result_2 = make_survey_result(
+            internal_survey=survey,
+            response_id='BBB',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6}
+        )
+        survey.last_internal_result = survey_result_2
+        survey.save()
+
+        account_info, external_surveys, internal_surveys = utils.get_account_detail_data(self.content_data, survey)
+        self.assertIsNotNone(account_info)
+        self.assertEqual(len(external_surveys), 0)
+        self.assertEqual(len(internal_surveys), 2)
