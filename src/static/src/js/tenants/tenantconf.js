@@ -121,10 +121,18 @@ class TenantConfiguration {
     this.industryBestDescription = this.contentData['industry_best_description'];
     this.dimensionSidepanelHeading = this.contentData['dimension_sidepanel_heading'];
     this.dimensionSidepanelDescriptions = this.contentData['dimension_sidepanel_descriptions'];
+
     this.subdimensions = this.contentData['subdimensions'];
-    this.subdimensionDescription = this.contentData['subdimension_description'];
-    this.subdimensionHeaders = this.contentData['subdimension_labels'];
-    this.subdimensionDescriptions = this.contentData['subdimension_descriptions'];
+    if (this.subdimensions) {
+      this.subdimensionsIntroHeading = this.contentData['subdimensions_intro_heading'];
+      this.subdimensionsIntroSubheading = this.contentData['subdimensions_intro_subheading'];
+      this.subdimensionsIntroText = this.contentData['subdimensions_intro_text'];
+      this.subdimensionsIntroCta = this.contentData['subdimensions_intro_cta'];
+      this.subdimensionsSidepanelHeading = this.contentData['subdimensions_sidepanel_heading'];
+
+      this.subdimensionNames = this.contentData['subdimension_names'];
+      this.subdimensionDescriptions = this.contentData['subdimension_descriptions'];
+    }
   }
 }
 

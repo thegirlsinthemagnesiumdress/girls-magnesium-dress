@@ -185,16 +185,40 @@ class ReportController {
     this.subdimensions = tenantConf.subdimensions;
 
     /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsIntroHeading = tenantConf.subdimensionsIntroHeading;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsIntroSubheading = tenantConf.subdimensionsIntroSubheading;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsIntroCta = tenantConf.subdimensionsIntroCta;
+
+    /**
      * @type {!Object}
      * @export
      */
-    this.subdimensionDescription = $sce.trustAsHtml(tenantConf.subdimensionDescription);
+    this.subdimensionsIntroText = $sce.trustAsHtml(tenantConf.subdimensionsIntroText);
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsSidepanelHeading = tenantConf.subdimensionsSidepanelHeading;
 
     /**
      * @type {Object}
      * @export
      */
-    this.subdimensionHeaders = tenantConf.subdimensionHeaders;
+    this.subdimensionNames = tenantConf.subdimensionNames;
 
     /**
      * @type {Object}

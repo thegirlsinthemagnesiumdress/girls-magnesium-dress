@@ -48,8 +48,12 @@ def _dump_tenant_content_data(tenant):
         'dimension_sidepanel_heading': content_data.get('dimension_sidepanel_heading'),
         'dimension_sidepanel_descriptions': content_data.get('dimension_sidepanel_descriptions'),
         'subdimensions': content_data.get('subdimensions'),
-        'subdimension_description': content_data.get('subdimension_description'),
-        'subdimension_labels': content_data.get('subdimension_labels'),
+        'subdimensions_intro_heading': content_data.get('subdimensions_intro_heading'),
+        'subdimensions_intro_subheading': content_data.get('subdimensions_intro_subheading'),
+        'subdimensions_intro_text': content_data.get('subdimensions_intro_text'),
+        'subdimensions_intro_cta': content_data.get('subdimensions_intro_cta'),
+        'subdimensions_sidepanel_heading': content_data.get('subdimensions_sidepanel_heading'),
+        'subdimension_names': content_data.get('subdimension_names'),
         'subdimension_descriptions': content_data.get('subdimension_descriptions'),
     }
 
