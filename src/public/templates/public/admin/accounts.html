@@ -64,7 +64,7 @@
 
         <a
             class="dmb-button"
-            href="#">
+            href="{% url 'add_account' slug|ng_mark_safe %}">
           {% include 'core/inc/svg.html' with id='add' inline=True %}
             Add Account
         </a>

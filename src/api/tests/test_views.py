@@ -219,6 +219,7 @@ class CreateSurveyTest(APITestCase):
             'country',
             'tenant',
             'account_id',
+            'slug',
         })
         self.assertEqual(Survey.objects.count(), survey_count + 1)
 

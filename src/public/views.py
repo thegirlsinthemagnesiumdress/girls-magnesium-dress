@@ -184,6 +184,26 @@ def accounts(request, tenant):
 
 @login_required
 @survey_admin_required
+def add_account(request, tenant):
+    tenant_conf = settings.TENANTS[tenant]
+    industries = utils.flatten(tenant_conf['HIERARCHICAL_INDUSTRIES'])
+
+    slug = utils.get_tenant_slug(tenant)
+
+    return render(request, 'public/admin/add_account.html', {
+        'content_data': _dump_tenant_content_data(tenant),
+        'engagement_lead': request.user.engagement_lead,
+        'other_tenants': utils.get_other_tenant_footers(tenant),
+        'product_name': utils.get_tenant_product_name(tenant),
+        'slug': slug,
+        'tenant': tenant,
+        'industries': industries,
+        'countries': COUNTRIES_TUPLE,
+    })
+
+
+@login_required
+@survey_admin_required
 def account_detail(request, tenant, sid):
     account = get_object_or_404(Survey, sid=sid)
 
