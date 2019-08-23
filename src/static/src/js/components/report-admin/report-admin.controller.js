@@ -81,10 +81,10 @@ class ReportAdminController {
     this.surveys.forEach((survey, index, array) => {
       this.newAccountIds.push(survey['account_id']);
       if (survey.last_survey_result) {
-        array[index]['externalCurrentLevelData'] = this.dmbLevelsFactory(survey.last_survey_result.dmb)['current'];
+        survey['externalCurrentLevelData'] = this.dmbLevelsFactory(survey['last_survey_result']['dmb'])['current'];
       }
       if (survey.last_internal_result) {
-        array[index]['internalCurrentLevelData'] = this.dmbLevelsFactory(survey.last_internal_result.dmb)['current'];
+        survey['internalCurrentLevelData'] = this.dmbLevelsFactory(survey['last_internal_result']['dmb'])['current'];
       }
     });
   }
