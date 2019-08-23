@@ -15,10 +15,13 @@
       Your results will appear in your <strong>admin dashboard</strong>.<br>
       You will receive an email when it’s ready, this may take up to 15 minutes.
     </p>
+
+    {% with sid=request.GET.sid %}
     <a
         class="h-c-button h-c-button--primary"
-        href="{% url 'accounts' slug|ng_mark_safe %}{{ request.GET.account_id }}">
+        href="{% url 'account-detail' slug|ng_mark_safe sid %}">
       Back to dashboard
     </a>
+    {% endwith %}
 </main>
 {% endblock %}
