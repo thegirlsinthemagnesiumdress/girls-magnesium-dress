@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressGrid.directive');
-
 import * as progressGridCtrl from './progress-grid.controller';
 
 const progressGridTemplateUrl = '/angular/progress-grid';

@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressGrid');
-
 import * as directive from './progress-grid.directive';
 
 

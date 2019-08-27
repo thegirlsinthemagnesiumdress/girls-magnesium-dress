@@ -1,6 +1,3 @@
-goog.module.declareNamespace('dmb.components.languageSelector.controller');
-
-
 /**
  * LanguageSelector class controller.
  */

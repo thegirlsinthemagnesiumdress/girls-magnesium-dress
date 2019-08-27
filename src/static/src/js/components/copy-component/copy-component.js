@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.copyComponent');
-
 import * as controller from '../copy-component/copy-component.controller';
 
 

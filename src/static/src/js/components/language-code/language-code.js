@@ -1,6 +1,3 @@
-goog.module.declareNamespace('dmb.components.languageCode');
-
-
 /** @const {string} */
 const MODULE_NAME = 'languageCode';
 

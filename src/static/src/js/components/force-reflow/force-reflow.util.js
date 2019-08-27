@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.forceReflow.util');
-
 /**
  * It forces a browser reflow.
  * @param {HTMLElement} element

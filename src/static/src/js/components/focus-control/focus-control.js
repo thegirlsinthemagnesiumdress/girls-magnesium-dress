@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.focusControl');
-
 import * as run from './focus-control.run';
 
 

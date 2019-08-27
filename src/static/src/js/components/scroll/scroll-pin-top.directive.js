@@ -1,7 +1,3 @@
-
-goog.module.declareNamespace('dmb.components.scroll.pinTopDirective');
-
-
 export const CONTENT_UPDATED_EVENT = 'content-updated';
 
 /**

@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.languageSelector');
-
 import * as controller from './language-selector.controller';
 
 

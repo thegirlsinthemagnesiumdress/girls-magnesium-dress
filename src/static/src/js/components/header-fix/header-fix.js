@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.headerFix');
-
 import {cssClasses as headerCssClasses} from '@google/glue/lib/ui/header/constants';
 
 
