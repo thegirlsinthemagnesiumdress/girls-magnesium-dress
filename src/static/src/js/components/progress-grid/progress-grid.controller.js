@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressGrid.controller');
-
 import {CONTENT_UPDATED_EVENT} from '../scroll/scroll-pin-top.directive';
 
 /**

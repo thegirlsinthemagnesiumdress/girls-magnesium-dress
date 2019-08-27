@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.report.controller');
-
 const surveyEndpoint = '/api/report/company/';
 const resultEndpoint = '/api/report/result/';
 const industryEndpoint = '/api/report/industry/';

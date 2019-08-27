@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.exportReports');
-
 import * as controller from './export-reports.controller';
 
 

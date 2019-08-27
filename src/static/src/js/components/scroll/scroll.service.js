@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.scroll.service');
-
 /**
  * scrollService angular factory
  * @return {Object} The external bindings for the factory

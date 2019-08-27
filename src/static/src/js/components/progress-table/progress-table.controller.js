@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressTable.controller');
-
 /**
  * ProgressTable class controller.
  */

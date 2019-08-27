@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.report');
-
 import * as directive from './report.directive';
 import * as service from './report.service';
 

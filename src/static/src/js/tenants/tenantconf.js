@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.tenant');
-
 const tenantDataElementName = 'bootstrap-data';
 
 /** @const {string} */

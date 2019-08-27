@@ -1,4 +1,4 @@
-goog.module.declareNamespace('dmb.app');
+goog.declareModuleId('dmb.app');
 
 // In src/app.js
 import * as glueApp from '@google/glue/lib/app/app';

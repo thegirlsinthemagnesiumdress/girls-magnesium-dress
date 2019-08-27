@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressTable');
-
 import * as directive from './progress-table.directive';
 
 
