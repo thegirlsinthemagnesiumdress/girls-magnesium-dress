@@ -36,10 +36,7 @@ class ReportController {
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
     const responseId = responseIdMatches ? responseIdMatches[1] : null;
-
-    // /** @private {!angular.$timeout} */
-    // this.ngTimeout_ = $timeout;
-
+  
     /**
      * @type {Object}
      * @export
@@ -177,13 +174,13 @@ class ReportController {
     this.result = null;
 
     /**
-     * @type {!Object}
+     * @type {Object}
      * @export
      */
     this.subdimensionLists = tenantConf.subdimensionLists;
 
     /**
-     * @type {!Object}
+     * @type {Object}
      * @export
      */
     this.subdimensions = {};
@@ -195,7 +192,7 @@ class ReportController {
     this.subdimensionsReportHeading = tenantConf.subdimensionsReportHeading;
 
     /**
-     * @type {!Object}
+     * @type {Object}
      * @export
      */
     this.subdimensionsReportDescription = $sce.trustAsHtml(tenantConf.subdimensionsReportDescription);
@@ -334,37 +331,37 @@ class ReportController {
 
     const dimensionObj = {};
 
-    dimensionObj.name = this.tenantConf.dimensionTitles[dimension];
-    dimensionObj.description = this.trustAsHtml(
+    dimensionObj['result'] = value;
+
+    dimensionObj['name'] = this.tenantConf.dimensionTitles[dimension];
+    dimensionObj['description'] = this.trustAsHtml(
       this.tenantConf.dimensionHeaderDescriptions[dimension]
     );
 
-    dimensionObj.result = value;
-
     const levelsData = this.dmbLevelsFactory(value);
-    const dimensionCurrentLevelObject = levelsData.current;
-    const dimensionNextLevelObject = levelsData.next;
-    const dimensionLevel = levelsData.current.value;
+    const dimensionCurrentLevelObject = levelsData['current'];
+    const dimensionNextLevelObject = levelsData['next'];
+    const dimensionLevel = levelsData['current']['value'];
 
-    dimensionObj.levels = {
-      current: {
-        description: this.trustAsHtml(
+    dimensionObj['levels'] = {
+      'current': {
+        'description': this.trustAsHtml(
           this.tenantConf.dimensionLevelDescription[dimension][dimensionLevel]
         ),
-        name: dimensionCurrentLevelObject.mapValue,
-        value: dimensionCurrentLevelObject.value,
+        'name': dimensionCurrentLevelObject['mapValue'],
+        'value': dimensionCurrentLevelObject['value'],
       },
-      next: {
-        name: dimensionNextLevelObject.mapValue,
-        value: dimensionNextLevelObject.value,
+      'next': {
+        'name': dimensionNextLevelObject['mapValue'],
+        'value': dimensionNextLevelObject['value'],
       },
     };
 
-    dimensionObj.inTopLevel = this.resultInTopLevel(value);
-    dimensionObj.recommendations = this.tenantConf.dimensionRecommendations[dimension][dimensionLevel];
-    dimensionObj.indResults = {
-      average: null,
-      best: null,
+    dimensionObj['inTopLevel'] = this.resultInTopLevel(value);
+    dimensionObj['recommendations'] = this.tenantConf.dimensionRecommendations[dimension][dimensionLevel];
+    dimensionObj['indResults'] = {
+      'average': null,
+      'best': null,
     };
 
     this.dimensions[dimension] = dimensionObj;
@@ -383,25 +380,26 @@ class ReportController {
 
     const dimensionObj = {};
 
-    dimensionObj.name = this.tenantConf.subdimensionNames[subdimension];
-    dimensionObj.description = this.trustAsHtml(
+    dimensionObj['result'] = value;
+
+    dimensionObj['name'] = this.tenantConf.subdimensionNames[subdimension];
+    dimensionObj['description'] = this.trustAsHtml(
       this.tenantConf.subdimensionDescriptions[subdimension]
     );
 
-    dimensionObj.result = value;
 
     const levelsData = this.dmbLevelsFactory(value);
     const dimensionCurrentLevelObject = levelsData.current;
     const dimensionNextLevelObject = levelsData.next;
 
-    dimensionObj.levels = {
-      current: {
-        name: dimensionCurrentLevelObject.mapValue,
-        value: dimensionCurrentLevelObject.value,
+    dimensionObj['levels'] = {
+      ['current']: {
+        ['name']: dimensionCurrentLevelObject.mapValue,
+        ['value']: dimensionCurrentLevelObject.value,
       },
-      next: {
-        name: dimensionNextLevelObject.mapValue,
-        value: dimensionNextLevelObject.value,
+      ['next']: {
+        ['name']: dimensionNextLevelObject.mapValue,
+        ['value']: dimensionNextLevelObject.value,
       },
     };
 

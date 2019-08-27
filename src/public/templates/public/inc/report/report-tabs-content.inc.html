@@ -33,7 +33,11 @@
           {[ reportCtrl.dimensions['{{dimension}}']['levels']['current']['name'] ]}
         </div>
         <div class="dmb-dimension-tabs__results-subheading h-u-font-weight-regular">
-          {% trans "in this dimension" %}
+          {% if tenant == 'cloud' %}
+            in this theme
+          {% else %}
+            {% trans "in this dimension" %}
+          {% endif %}
         </div>
         <div class="dmb-dimension-tabs__results-value h-c-headline h-c-headline--three">
           {[ reportCtrl.dimensions['{{dimension}}'].result|number:1 ]}/{[ reportCtrl.levelsMax ]}
