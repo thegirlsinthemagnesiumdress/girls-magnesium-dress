@@ -5,8 +5,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
+from core.tests.mommy_recepies import make_survey, make_survey_result
 
 import os
+import numpy
+import random
 import logging
 
 logger = logging.getLogger(__name__)
@@ -94,11 +97,13 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
     # Loop through tenants
     for tenant_name, tenant in tenants.items():
         logging.info('Taking screenshots for {}'.format(tenant_name))
+        # Create fake survey result
+        report_id = create_sample_survey(tenant_name)
         # If tenant supports i18n then repeat for each language
         if tenant['i18n']:
             for locale in languages:
                 driver.get('http://localhost:8000/{}/{}/reports/{}'
-                           .format(locale, tenant['slug'], tenant['screenshot_report_id']))
+                           .format(locale, tenant['slug'], report_id))
                 path = BASE_PATH + "/{}/home".format(tenant_name)
                 if locale != 'en':
                     path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
@@ -106,10 +111,24 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
                 take_screenshots(driver, screens, path, retina)
         else:
             driver.get('http://localhost:8000/{}/reports/{}'
-                       .format(tenant['slug'], tenant['screenshot_report_id']))
+                       .format(tenant['slug'], report_id))
             path = BASE_PATH + "/{}/home".format(tenant_name)
             logging.info('Taking for language: en')
             take_screenshots(driver, screens, path, retina)
+
+
+def create_sample_survey(tenant):
+    logging.info('Creating sample survey for {}'.format(tenant))
+    # Create a blank survey to tie the results to.
+    survey = make_survey(company_name='ACME Inc.', tenant=tenant)
+    # Create sample survey result
+    dimensions = DEFAULT_TENANTS[tenant]['CONTENT_DATA']['dimensions']
+    max_level = DEFAULT_TENANTS[tenant]['CONTENT_DATA']['levels_max']
+    dmb_d = {d: random.random() * max_level for d in dimensions}
+    dmb = numpy.average(dmb_d.values())
+    result = make_survey_result(survey=survey, dmb=dmb, dmb_d=dmb_d)
+    # Return response id for forming URL
+    return result.response_id
 
 
 class Command(BaseCommand):
