@@ -115,7 +115,7 @@ class ReportController {
      * @type {Array.<string>}
      * @export
      */
-    this.dimensionList = tenantConf.dimensions;
+    this.dimensionList = tenantConf.dimensionList;
 
     /**
      * Dimensions object for dimension tabss
@@ -182,43 +182,43 @@ class ReportController {
      * @type {!Object}
      * @export
      */
-    this.subdimensions = tenantConf.subdimensions;
-
-    /**
-     * @type {string}
-     * @export
-     */
-    this.subdimensionsIntroHeading = tenantConf.subdimensionsIntroHeading;
-
-    /**
-     * @type {string}
-     * @export
-     */
-    this.subdimensionsIntroSubheading = tenantConf.subdimensionsIntroSubheading;
-
-    /**
-     * @type {string}
-     * @export
-     */
-    this.subdimensionsIntroCta = tenantConf.subdimensionsIntroCta;
+    this.subdimensionLists = tenantConf.subdimensionLists;
 
     /**
      * @type {!Object}
      * @export
      */
-    this.subdimensionsIntroText = $sce.trustAsHtml(tenantConf.subdimensionsIntroText);
+    this.subdimensions = {};
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportHeading = tenantConf.subdimensionsReportHeading;
+
+    /**
+     * @type {!Object}
+     * @export
+     */
+    this.subdimensionsReportDescription = $sce.trustAsHtml(tenantConf.subdimensionsReportDescription);
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportCta = tenantConf.subdimensionsReportCta;
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportSubheading = tenantConf.subdimensionsReportSubheading;
 
     /**
      * @type {string}
      * @export
      */
     this.subdimensionsSidepanelHeading = tenantConf.subdimensionsSidepanelHeading;
-
-    /**
-     * @type {Object}
-     * @export
-     */
-    this.subdimensionNames = tenantConf.subdimensionNames;
 
     /**
      * @type {Object}
@@ -263,6 +263,7 @@ class ReportController {
     $http.get(reportEndpoint).then((res)=> {
       this.survey = res.data;
       this.result = this.survey['survey_result'];
+      this.result['dmb']
 
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE
@@ -272,7 +273,16 @@ class ReportController {
 
       this.dimensionList.forEach((dimension) => {
         this.setDimensionResult(dimension, this.result['dmb_d'][dimension]);
+
+        if (!this.subdimensionLists) {
+          return
+        }
+
+        this.subdimensionLists[dimension].forEach((subdimension) => {
+          this.setSubdimensionResult(subdimension, this.result['dmb_d'][subdimension]);
+        })
       });
+
 
       // Get industry results
       $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
@@ -327,7 +337,7 @@ class ReportController {
 
     const dimensionObj = {};
 
-    dimensionObj.name = this.tenantConf.dimensionHeaders[dimension];
+    dimensionObj.name = this.tenantConf.dimensionTitles[dimension];
     dimensionObj.description = this.trustAsHtml(
       this.tenantConf.dimensionHeaderDescriptions[dimension]
     );
@@ -363,18 +373,43 @@ class ReportController {
     this.dimensions[dimension] = dimensionObj;
   }
 
-  // /**
-  //  * Sets values for overall result
-  //  * @param {string} dimension
-  //  * @param {number} newValue
-  //  */
-  // setDimensionsResult(dimension, newValue) {
-  //   if (!angular.isDefined(newValue)) {
-  //     return;
-  //   }
+  /**
+   * Sets this.subdimensions object with the correct data for a given subdimension and result
+   * @param {string} subdimension
+   * @param {number} value
+   * @export
+   */
+  setSubdimensionResult(subdimension, value) {
+    if (!angular.isDefined(value)) {
+      return;
+    }
 
-  //   // this.dimensionResults[dimension] = newValue;
-  // }
+    const dimensionObj = {};
+
+    dimensionObj.name = this.tenantConf.subdimensionNames[subdimension];
+    dimensionObj.description = this.trustAsHtml(
+      this.tenantConf.subdimensionDescriptions[subdimension]
+    );
+
+    dimensionObj.result = value;
+
+    const levelsData = this.dmbLevelsFactory(value);
+    const dimensionCurrentLevelObject = levelsData.current;
+    const dimensionNextLevelObject = levelsData.next;
+
+    dimensionObj.levels = {
+      current: {
+        name: dimensionCurrentLevelObject.mapValue,
+        value: dimensionCurrentLevelObject.value,
+      },
+      next: {
+        name: dimensionNextLevelObject.mapValue,
+        value: dimensionNextLevelObject.value,
+      },
+    };
+
+    this.subdimensions[subdimension] = dimensionObj;
+  }
 
   /**
    * @export

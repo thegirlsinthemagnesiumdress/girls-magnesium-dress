@@ -53,28 +53,16 @@ class TenantConfiguration {
     this.reportLevelDescriptions = {};
 
     /**
-     * @type {Object}
-     * @export
-     */
-    this.industryAvgDescription = null;
-
-    /**
-     * @type {Object}
-     * @export
-     */
-    this.industryBestDescription = null;
-
-    /**
      * @type {Array}
      * @export
      */
-    this.dimensions = [];
+    this.dimensionList = [];
 
     /**
      * @type {Object}
      * @export
      */
-    this.dimensionHeaders = {};
+    this.dimensionTitles = {};
 
     /**
      * @type {Object}
@@ -98,15 +86,86 @@ class TenantConfiguration {
      * @type {Object}
      * @export
      */
+    this.industryAvgDescription = null;
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.industryBestDescription = null;
+
+    /**
+     * @type {Object}
+     * @export
+     */
     this.contentData = {};
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.dimensionSidepanelHeading = '';
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensions = {};
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionLists = {};
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportHeading = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportDescription = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportCta = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsReportSubheading = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.subdimensionsSidepanelHeading = '';
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionNames = {};
+
+    /**
+     * @type {Object}
+     * @export
+     */
+    this.subdimensionDescriptions = {};
+
 
     const tenantDataElement = document.getElementById(tenantDataElementName);
     this.tenant = tenantDataElement.dataset['tenant'];
 
     this.contentData = JSON.parse(tenantDataElement.dataset['contentData']);
 
-    this.dimensionHeaders = this.contentData['dimension_labels'];
-    this.dimensions = this.contentData['dimensions'];
     this.levels = this.contentData['levels'];
     this.levelsMax = this.contentData['levels_max'];
     const levelKeys = Object.keys(this.levels);
@@ -114,6 +173,9 @@ class TenantConfiguration {
     this.levelsArray = levelKeys.sort();
     this.levelDescriptions = this.contentData['level_descriptions'];
     this.reportLevelDescriptions = this.contentData['report_level_descriptions'];
+
+    this.dimensionList = this.contentData['dimensions'];
+    this.dimensionTitles = this.contentData['dimension_titles'];
     this.dimensionHeaderDescriptions = this.contentData['dimension_header_descriptions'];
     this.dimensionLevelDescription = this.contentData['dimension_level_description'];
     this.dimensionRecommendations = this.contentData['dimension_recommendations'];
@@ -122,12 +184,12 @@ class TenantConfiguration {
     this.dimensionSidepanelHeading = this.contentData['dimension_sidepanel_heading'];
     this.dimensionSidepanelDescriptions = this.contentData['dimension_sidepanel_descriptions'];
 
-    this.subdimensions = this.contentData['subdimensions'];
-    if (this.subdimensions) {
-      this.subdimensionsIntroHeading = this.contentData['subdimensions_intro_heading'];
-      this.subdimensionsIntroSubheading = this.contentData['subdimensions_intro_subheading'];
-      this.subdimensionsIntroText = this.contentData['subdimensions_intro_text'];
-      this.subdimensionsIntroCta = this.contentData['subdimensions_intro_cta'];
+    this.subdimensionLists = this.contentData['subdimension_lists'];
+    if (this.subdimensionLists) {
+      this.subdimensionsReportHeading = this.contentData['subdimensions_report_heading'];
+      this.subdimensionsReportSubheading = this.contentData['subdimensions_report_subheading'];
+      this.subdimensionsReportDescription = this.contentData['subdimensions_report_description'];
+      this.subdimensionsReportCta = this.contentData['subdimensions_report_cta'];
       this.subdimensionsSidepanelHeading = this.contentData['subdimensions_sidepanel_heading'];
 
       this.subdimensionNames = this.contentData['subdimension_names'];

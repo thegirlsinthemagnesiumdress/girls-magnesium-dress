@@ -36,7 +36,7 @@
           {% trans "in this dimension" %}
         </div>
         <div class="dmb-dimension-tabs__results-value h-c-headline h-c-headline--three">
-          {[ reportCtrl.dimensions['{{dimension}}'].result|number:1 ]}/{[reportCtrl.levelsMax]}
+          {[ reportCtrl.dimensions['{{dimension}}'].result|number:1 ]}/{[ reportCtrl.levelsMax ]}
         </div>
       </div>
       <div class="h-c-grid__col h-c-grid__col--7">
@@ -57,24 +57,24 @@
   </div>
 
 
-  <!-- Epics -->
-  <div ng-if="reportCtrl.subdimensions">
+  <!-- Subdimensions -->
+  <div ng-if="reportCtrl.subdimensionLists">
     <div class="h-c-grid">
       <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
         <h2 class="h-c-headline h-c-headline--three">
-          Epics
+          {[ reportCtrl.subdimensionsReportHeading ]}
         </h2>
         <p
             class="dmb-u-m-b-s"
-            ng-bind-html="reportCtrl.subdimensionDescription"></p>
+            ng-bind-html="reportCtrl.subdimensionsReportDescription"></p>
         <button
             class="dmb-report-overall__link h-c-link dmb-u-m-b-s"
             dmb-side-panel-trigger="#dmb-subdimension-side-panel">
-          Learn more about epics
+          {[ reportCtrl.subdimensionsReportCta ]}
         </button>
 
         <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-m">
-          Here's how you score for the epics in this theme:
+          {[ reportCtrl.subdimensionsReportSubheading ]}:
         </h3>
       </div>
     </div>
@@ -82,33 +82,33 @@
     <div class="dmb-u-m-b-m h-c-grid">
       <div
           class="h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1"
-          ng-repeat="subdimension in reportCtrl.subdimensions['{{dimension}}']">
+          ng-repeat="subdimension in reportCtrl.subdimensionLists['{{dimension}}']">
         <div
             class="
                 dmb-progress-circle
                 dmb-progress-circle--small
-                dmb-progress-circle--level-{[ reportCtrl.dimensionLevels[subdimension] ]}
+                dmb-progress-circle--level-{[ reportCtrl.subdimensions[subdimension]['levels']['current']['value'] ]}
                 dmb-u-m-b-s"
-            data-progress="reportCtrl.subdimensionResults[subdimension]">
+            data-progress="reportCtrl.subdimensions[subdimension]['result']">
           <svg
               class="dmb-progress-circle__prog-svg"
-              dmb-progress-circle="reportCtrl.subdimensionResults[subdimension]"
+              dmb-progress-circle="reportCtrl.subdimensions[subdimension]['result']"
               viewbox="0 0 120 120">
             <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
             <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
           </svg>
           <div class="dmb-progress-circle__text">
             <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
-              {[ reportCtrl.subdimensionResults[subdimension]|number:1 ]}
+              {[ reportCtrl.subdimensions[subdimension]['result']|number:1 ]}
             </span>
           </div>
         </div>
 
         <h4 class="h-c-headline h-c-headline--four">
-          {[ reportCtrl.subdimensionHeaders[subdimension] ]}
+          {[ reportCtrl.subdimensions[subdimension]['name'] ]}
         </h4>
         <p class="dmb-u-m-b-m">
-          {[ reportCtrl.subdimensionDescriptions[subdimension] ]}
+          {[ reportCtrl.subdimensions[subdimension]['description'] ]}
         </p>
       </div>
     </div>
@@ -149,17 +149,17 @@
               class="dmb-dimension-tabs__recommendation"
               ng-repeat="recommendation in reportCtrl.dimensions['{{dimension}}'].recommendations">
             <h5 class="dmb-dimension-tabs__recommendation-heading h-c-headline h-c-headline--subhead h-u-font-weight-medium">
-              {[recommendation.header]}
+              {[ recommendation.header ]}
             </h5>
             <p>
-              {[recommendation.text]}
+              {[ recommendation.text ]}
             </p>
             <a
                 class="dmb-dimension-tabs__recommendation-cta dmb-h-hidden--print h-c-button h-c-button--secondary"
-                href="{[recommendation.cta.link]}"
+                href="{[ recommendation.cta.link ]}"
                 ng-if="recommendation.cta"
                 target="_blank">
-              {[recommendation.cta.text]}
+              {[ recommendation.cta.text ]}
             </a>
           </li>
         </ul>

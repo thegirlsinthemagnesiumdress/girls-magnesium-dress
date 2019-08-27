@@ -86,13 +86,14 @@ SUBDIMENSION_ORDER = {
     ]
 }
 
-SUBDIMENSIONS_INTRO_HEADING = 'Epics'
+SUBDIMENSIONS_REPORT_HEADING = 'Epics'
 
-SUBDIMENSIONS_INTRO_SUBHEADING = 'Here’s how you score for the epics in this theme'
+SUBDIMENSIONS_REPORT_DESCRIPTION = 'Epics are clearly defined, nonoverlapping workstreams tied back to the four themes of cloud maturity. You should design programs around the epics to help you solidify your maturity in any given phase, or take it to the next level. More information on the themes and epics of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
 
-SUBDIMENSIONS_INTRO_TEXT = 'Epics are clearly defined, nonoverlapping workstreams tied back to the four themes of cloud maturity. You should design programs around the epics to help you solidify your maturity in any given phase, or take it to the next level. More information on the themes and epics of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
+SUBDIMENSIONS_REPORT_CTA = 'Learn more about epics'
 
-SUBDIMENSIONS_INTRO_CTA = 'Learn more about epics'
+SUBDIMENSIONS_REPORT_SUBHEADING = 'Here’s how you score for the epics in this theme'
+
 
 SUBDIMENSION_DESCRIPTIONS = {
     SUBDIMENSION_EXTERNAL_EXPERIENCE: 'Accelerating cloud adoption by applying best practices and other organizational lessons learned from day one, through experienced subject matter experts.',
@@ -219,7 +220,6 @@ REPORT_LEVEL_DESCRIPTIONS = {
 INDUSTRY_AVG_DESCRIPTION = 'How organizations perform on average; dynamically calculated based on the results of those who have completed this survey.'
 
 INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participant who has taken the Google Cloud Maturity Assessment.'
-
 
 
 DIMENSION_HEADER_DESCRIPTIONS = {
@@ -827,7 +827,6 @@ DIMENSION_RECOMMENDATIONS = {
 
 DIMENSION_SIDEPANEL_HEADING = 'We measure cloud maturity across four themes that define the foundation of cloud readiness. An organization\'s readiness for success in the cloud is determined by current business practices in each of these four themes. More information on the themes of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
 
-SUBDIMENSIONS_SIDEPANEL_HEADING = 'Cloud adoption epics'
 
 DIMENSION_SIDEPANEL_DESCRIPTIONS = {
     DIMENSION_LEARN: 'The quality and scale of the learning programs in place to upskill technical teams, and the ability to augment IT staff with experienced partners.',
@@ -836,6 +835,8 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
     DIMENSION_SECURE: 'The capability to protect services from unauthorized and inappropriate access with a multilayered, identity-centric security model.',
 }
 
+SUBDIMENSIONS_SIDEPANEL_HEADING = 'Cloud adoption epics'
+
 
 CONTENT_DATA = {
     'levels': LEVELS,
@@ -843,7 +844,7 @@ CONTENT_DATA = {
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
-    'dimension_labels': DIMENSION_TITLES,
+    'dimension_titles': DIMENSION_TITLES,
     'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
@@ -851,11 +852,12 @@ CONTENT_DATA = {
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
-    'subdimensions': SUBDIMENSION_ORDER,
-    'subdimensions_intro_heading': SUBDIMENSIONS_INTRO_HEADING,
-    'subdimensions_intro_subheading': SUBDIMENSIONS_INTRO_SUBHEADING,
-    'subdimensions_intro_text': SUBDIMENSIONS_INTRO_TEXT,
-    'subdimensions_intro_cta': SUBDIMENSIONS_INTRO_CTA,
+    'subdimension_lists': SUBDIMENSION_ORDER,
+
+    'subdimensions_report_heading': SUBDIMENSIONS_REPORT_HEADING,
+    'subdimensions_report_description': SUBDIMENSIONS_REPORT_DESCRIPTION,
+    'subdimensions_report_cta': SUBDIMENSIONS_REPORT_CTA,
+    'subdimensions_report_subheading': SUBDIMENSIONS_REPORT_SUBHEADING,
     'subdimensions_sidepanel_heading': SUBDIMENSIONS_SIDEPANEL_HEADING,
     'subdimension_names': SUBDIMENSION_NAMES,
     'subdimension_descriptions': SUBDIMENSION_DESCRIPTIONS,

@@ -21,7 +21,7 @@
     </h1>
     <p
         class="dmb-u-m-b-m"
-        ng-bind-html="reportCtrl.subdimensionDescription">
+        ng-bind-html="reportCtrl.subdimensionsReportDescription">
     </p>
 
 
@@ -43,13 +43,13 @@
       </h2>
 
       <div
-          ng-repeat="subdimension in reportCtrl.subdimensions[dimension]">
+          ng-repeat="subdimension in reportCtrl.subdimensionLists[dimension]">
         <h3 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
-          {[ reportCtrl.subdimensionNames[subdimension] ]}
+          {[ reportCtrl.subdimensions[subdimension]['name'] ]}
         </h3>
         <p
-          ng-class="{'dmb-u-m-b-s':!$last}">
-          {[ reportCtrl.subdimensionDescriptions[subdimension] ]}
+            ng-class="{'dmb-u-m-b-s':!$last}">
+          {[ reportCtrl.subdimensions[subdimension]['description'] ]}
         </p>
       </div>
     </div>
