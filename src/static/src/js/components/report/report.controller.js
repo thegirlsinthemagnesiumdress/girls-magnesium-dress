@@ -261,7 +261,6 @@ class ReportController {
     $http.get(reportEndpoint).then((res)=> {
       this.survey = res.data;
       this.result = this.survey['survey_result'];
-      this.result['dmb']
 
       // DRF returns decimal fields as strings. We should probably look into this
       // on the BE but until we do let's fix this on the FE
@@ -273,12 +272,12 @@ class ReportController {
         this.setDimensionResult(dimension, this.result['dmb_d'][dimension]);
 
         if (!this.subdimensionLists) {
-          return
+          return;
         }
 
         this.subdimensionLists[dimension].forEach((subdimension) => {
           this.setSubdimensionResult(subdimension, this.result['dmb_d'][subdimension]);
-        })
+        });
       });
 
 
