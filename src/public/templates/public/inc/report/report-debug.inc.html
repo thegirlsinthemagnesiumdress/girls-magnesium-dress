@@ -25,13 +25,13 @@
         type="number">
 
     <div ng-repeat="(key, dimension) in reportCtrl.dimensions">
-      <label for="{[ dimension ]}">
-        {[ dimension.name ]}:
+      <label for="{[ key ]}">
+        {[ dimension['name'] ]}:
       </label>
       <input
-          id="{[ dimension ]}"
-          ng-model="debugDimensionResults[dimension]"
-          ng-change="reportCtrl.setDimensionResult(key, debugDimensionResults[dimension])"
+          id="{[ key ]}"
+          ng-model="debugDimensionResults[key]"
+          ng-change="reportCtrl.setDimensionResult(key, debugDimensionResults[key])"
           min="{[ reportCtrl.levelsMin ]}"
           max="{[ reportCtrl.levelsMax ]}"
           step="0.1"
