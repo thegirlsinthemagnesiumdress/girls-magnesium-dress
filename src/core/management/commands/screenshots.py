@@ -78,11 +78,12 @@ def take_screenshots(driver, screen_sizes, path, retina=False):
         )
         if screen_name == 'mobile':
             # Wait until the graph data has loaded
-            _ = WebDriverWait(driver, 1).until(
+            _ = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located(
                     (By.CLASS_NAME, 'dmb-progress-grid')
                 )
             )
+        logging.info('Taking for screen size: ({}, {})'.format(w, h))
         if retina:
             take_screenshot(driver, element, path + '/{}@2x.png'.format(screen_name))
         else:
@@ -92,6 +93,7 @@ def take_screenshots(driver, screen_sizes, path, retina=False):
 def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
     # Loop through tenants
     for tenant_name, tenant in tenants.items():
+        logging.info('Taking screenshots for {}'.format(tenant_name))
         # If tenant supports i18n then repeat for each language
         if tenant['i18n']:
             for locale in languages:
@@ -100,11 +102,13 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
                 path = BASE_PATH + "/{}/home".format(tenant_name)
                 if locale != 'en':
                     path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
+                logging.info('Taking for language: {}'.format(locale))
                 take_screenshots(driver, screens, path, retina)
         else:
             driver.get('http://localhost:8000/{}/reports/{}'
                        .format(tenant['slug'], tenant['screenshot_report_id']))
             path = BASE_PATH + "/{}/home".format(tenant_name)
+            logging.info('Taking for language: en')
             take_screenshots(driver, screens, path, retina)
 
 
@@ -149,15 +153,17 @@ class Command(BaseCommand):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--force-device-scale-factor=1")
         # Launch in app mode to remove navbar and point to phony url to save loading time
-        chrome_options.add_argument("--app=http://localhost:8000/notaurl")
-        driver = webdriver.Chrome(options=chrome_options)
+        chrome_options.add_argument("--app=http://localhost:8000/not-a-url")
+        driver = webdriver.Chrome(chrome_options=chrome_options)
+        logging.info('<----- Taking @1x Screenshots ----->')
         take_tenant_screenshots(driver, tenants, languages, screens)
         driver.close()
         # Take 2x screenshots
         retina_options = webdriver.ChromeOptions()
         retina_options.add_argument("--force-device-scale-factor=2")
         # Launch in app mode to remove navbar and point to phony url to save loading time
-        retina_options.add_argument("--app=http://localhost:8000/notaurl")
-        retina_driver = webdriver.Chrome(options=retina_options)
+        retina_options.add_argument("--app=http://localhost:8000/not-a-url")
+        retina_driver = webdriver.Chrome(chrome_options=retina_options)
+        logging.info('<----- Taking @2x Screenshots ----->')
         take_tenant_screenshots(retina_driver, tenants, languages, screens, retina=True)
         retina_driver.close()
