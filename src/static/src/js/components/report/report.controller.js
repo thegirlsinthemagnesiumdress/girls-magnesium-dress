@@ -14,7 +14,6 @@ class ReportController {
    *
    * @param {!angular.$http} $http
    * @param {!angular.$location} $location
-   * @param {!angular.$timeout} $timeout
    * @param {!angular.$sce} $sce
    * @param {!Function} dmbLevelsFactory
    * @param {!Function} resultInTopLevel
@@ -26,7 +25,6 @@ class ReportController {
   constructor(
     $http,
     $location,
-    $timeout,
     $sce,
     dmbLevelsFactory,
     resultInTopLevel,
@@ -36,7 +34,7 @@ class ReportController {
     const responseIdMatches = $location.absUrl().match(resultResponseIdRegex);
     const surveyId = sidMatches ? sidMatches[1] : null;
     const responseId = responseIdMatches ? responseIdMatches[1] : null;
-  
+
     /**
      * @type {Object}
      * @export
