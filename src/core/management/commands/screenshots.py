@@ -190,6 +190,12 @@ class Command(BaseCommand):
             help='Only take screenshots for a specified language (if tenant specified, ensure is i18n)',
             type=str
         )
+        parser.add_argument(
+            '--no-optim',
+            help='Prevents images from being optimised (should only be used for development processes to check screenshot positioning',  # noqa
+            type=bool,
+            default=False
+        )
 
     def handle(self, *args, **options):
         # Set list of tenants, languages, and screens to default before altering them based on flags.
@@ -222,6 +228,18 @@ class Command(BaseCommand):
             take_screenshots(tenants, languages, screens)
             # Take 2x screenshots
             take_screenshots(tenants, languages, screens, retina=True)
+            # Optimise images
+            if not options.get('no_optim'):
+                subprocess.call(
+                    "cd ./src/static/src/img && open -a ImageOptim {**/home/*.png,**/**/home/*.png}",
+                    shell=True
+                )
+            else:
+                logging.warn("""
+                    Calling screenshots with no optimisation, if deploying remeber to manually run:
+                    'cd ./src/static/src/img && open -a ImageOptim {**/home/*.png,**/**/home/*.png}'
+                    in the root directory to optimise the images.
+                """)
         finally:
             logging.info("Cleaning up example surveys.")
             # Clean up example surveys
