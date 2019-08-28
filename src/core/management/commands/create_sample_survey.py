@@ -16,7 +16,7 @@ class Command(BaseCommand):
         for tenant in tenants.keys():
             # Create a blank survey to tie the results to.
             with transaction.atomic(xg=True):
-                survey = make_survey(company_name='ACME Inc.', tenant=tenant)
+                survey = make_survey(company_name='ACME Corp.', tenant=tenant)
                 # Create sample survey result
                 dimensions = tenants[tenant]['CONTENT_DATA']['dimensions']
                 max_level = tenants[tenant]['CONTENT_DATA']['levels_max']

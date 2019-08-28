@@ -3,15 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from core.models import Survey
 from django.conf import settings
+from core.models import Survey, SurveyResult
 from django.core.management.base import BaseCommand
 
 import os
 import logging
 import subprocess
-
-logger = logging.getLogger(__name__)
 
 DEFAULT_SCREEN_SIZES = {
     'laptop': {
@@ -128,8 +126,8 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
         # Get the example report/survey for this tenant
         report_id = Survey.objects.filter(
             tenant=tenant_name,
-            company_name='ACME Inc.'
-        ).order_by('-created_at').first().last_survey_response_id
+            company_name='ACME Corp.'
+        ).order_by('-created_at').first().sid
         # If tenant supports i18n then repeat for each language
         if tenant['i18n']:
             for locale in languages:
@@ -174,6 +172,7 @@ def take_screenshots(tenants, languages, screens, retina=False):
     try:
         take_tenant_screenshots(driver, tenants, languages, screens, retina)
     finally:
+        logging.info("Cleaning up Selenium Chrome driver")
         driver.close()
 
 
@@ -201,7 +200,7 @@ class Command(BaseCommand):
         if options['tenant'] and options['tenant'] in DEFAULT_TENANTS:
             tenants = {options['tenant']: DEFAULT_TENANTS[options['tenant']]}
         elif options['tenant'] not in DEFAULT_TENANTS and options['tenant'] is not None:
-            logger.error("Invalid tenant slug, aborting!")
+            logging.error("Invalid tenant slug, aborting!")
             return
         # If we have a language passed make sure language code is valid
         # and that tentants have i18n enabled (unless lang=en)
@@ -209,11 +208,11 @@ class Command(BaseCommand):
             if options['lang'] != 'en':
                 tenants = {k: v for k, v in tenants.items() if v['i18n']}
                 if len(tenants) == 0:
-                    logger.error("No i18n capable tenants selected, aborting!")
+                    logging.error("No i18n capable tenants selected, aborting!")
                     return
             languages = [options['lang']]
         elif options['lang'] not in DEFAULT_LANGUAGE_CODES and options['lang'] is not None:
-            logger.error("Invalid language code, aborting!")
+            logging.error("Invalid language code, aborting!")
             return
         # Wrap in try catch to discard of any created example surveys if an error occurs.
         try:
@@ -224,9 +223,12 @@ class Command(BaseCommand):
             # Take 2x screenshots
             take_screenshots(tenants, languages, screens, retina=True)
         finally:
+            logging.info("Cleaning up example surveys.")
             # Clean up example surveys
-            for tenant in tenants:
-                Survey.objects.filter(
+            for tenant in DEFAULT_TENANTS.keys():
+                survey = Survey.objects.filter(
                     tenant=tenant,
-                    company_name='ACME Inc.'
-                ).order_by('-created_at').first().delete()
+                    company_name='ACME Corp.'
+                ).order_by('-created_at').first()
+                SurveyResult.objects.all().filter(survey_id=survey.sid).delete()
+                survey.delete()
