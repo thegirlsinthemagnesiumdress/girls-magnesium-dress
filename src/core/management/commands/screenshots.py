@@ -129,7 +129,7 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
         report_id = Survey.objects.filter(
             tenant=tenant_name,
             company_name='ACME Inc.'
-        ).order_by('-created_at').first().sid
+        ).order_by('-created_at').first().last_survey_response_id
         # If tenant supports i18n then repeat for each language
         if tenant['i18n']:
             for locale in languages:
@@ -170,8 +170,11 @@ def take_screenshots(tenants, languages, screens, retina=False):
     # Launch in app mode to remove navbar and point to phony url to save loading time
     chrome_options.add_argument("--app=http://localhost:8000/not-a-url")
     driver = webdriver.Chrome(chrome_options=chrome_options)
-    take_tenant_screenshots(driver, tenants, languages, screens, retina)
-    driver.close()
+    # Wrap in try catch to discard of driver if an error occurs.
+    try:
+        take_tenant_screenshots(driver, tenants, languages, screens, retina)
+    finally:
+        driver.close()
 
 
 class Command(BaseCommand):
@@ -212,15 +215,18 @@ class Command(BaseCommand):
         elif options['lang'] not in DEFAULT_LANGUAGE_CODES and options['lang'] is not None:
             logger.error("Invalid language code, aborting!")
             return
-        # Create fake results for screenshots.
-        subprocess.call("./manage.py create_sample_survey", shell=True)
-        # Take 1x screenshots
-        take_screenshots(tenants, languages, screens)
-        # Take 2x screenshots
-        take_screenshots(tenants, languages, screens, retina=True)
-        # Clean up example surveys
-        for tenant in tenants:
-            Survey.objects.filter(
-                tenant=tenant,
-                company_name='ACME Inc.'
-            ).order_by('-created_at').first().delete()
+        # Wrap in try catch to discard of any created example surveys if an error occurs.
+        try:
+            # Create fake results for screenshots.
+            subprocess.call("./manage.py create_sample_survey", shell=True)
+            # Take 1x screenshots
+            take_screenshots(tenants, languages, screens)
+            # Take 2x screenshots
+            take_screenshots(tenants, languages, screens, retina=True)
+        finally:
+            # Clean up example surveys
+            for tenant in tenants:
+                Survey.objects.filter(
+                    tenant=tenant,
+                    company_name='ACME Inc.'
+                ).order_by('-created_at').first().delete()
