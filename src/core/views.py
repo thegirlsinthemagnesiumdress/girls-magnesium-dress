@@ -71,6 +71,25 @@ def generate_exports_task(request):
         'advertising_revenue',
     ]
 
+    retail_survey_fields = [
+        'id',
+        'company_name',
+        'industry',
+        'country',
+        'created_at',
+        'engagement_lead',
+        'tenant',
+        'excluded_from_best_practice',
+        'dmb',
+    ]
+
+    retail_survey_result_fields = [
+        'strategic_direction',
+        'user_engagement',
+        'core_sales',
+        'emerging_monetization',
+    ]
+
     deferred.defer(
         generate_csv_export,
         settings.ADS,
@@ -88,6 +107,16 @@ def generate_exports_task(request):
         settings.NEWS,
         _queue='default',
     )
+
+    deferred.defer(
+        generate_csv_export,
+        settings.RETAIL,
+        retail_survey_fields,
+        retail_survey_result_fields,
+        settings.RETAIL,
+        _queue='default',
+    )
+
 
     return HttpResponse(msg)
 
