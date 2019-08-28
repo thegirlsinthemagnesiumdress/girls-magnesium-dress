@@ -152,18 +152,11 @@ LEVELS = {
 }
 
 LEVEL_DESCRIPTIONS = {
-    LEVEL_0: _('Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales.'),
-    LEVEL_1: _('In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing.'),
-    LEVEL_2: _('By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.'),
-    LEVEL_3: _('At this stage, businesses have dynamic execution optimised towards a single-customer view across channels.'),
+    LEVEL_0: _(u'Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales.'),
+    LEVEL_1: _(u'In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing.'),
+    LEVEL_2: _(u'By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.'),
+    LEVEL_3: _(u'At this stage, businesses have dynamic execution optimised towards a single-customer view across channels.'),
 }
-
-# SIDEPANEL_LEVEL_DESCRIPTIONS = {
-#     LEVEL_0: _('Marketing campaigns use mainly external data and direct buys, with limited links to sales.'),
-#     LEVEL_1: _('Some use of owned data in automated buying with single-channel optimisation and testing.'),
-#     LEVEL_2: _('Data integrated and activated across channels with demonstrated link to ROI or sales proxies.'),
-#     LEVEL_3: _('Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
-# }
 
 REPORT_LEVEL_DESCRIPTIONS = {
     LEVEL_0: _(u'This is the most basic of the 4 levels of maturity. Your marketing campaigns use mainly external data and direct buys, with limited links to sales.'),
