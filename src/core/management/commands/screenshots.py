@@ -3,14 +3,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from core.models import Survey
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from core.tests.mommy_recepies import make_survey, make_survey_result
 
 import os
-import numpy
-import random
+import pdb
 import logging
+import subprocess
 
 logger = logging.getLogger(__name__)
 
@@ -57,7 +57,7 @@ def take_screenshot(driver, focused_element, path):
     driver.save_screenshot(path)
 
 
-def take_screenshots(driver, screen_sizes, path, retina=False):
+def take_sized_screenshots(driver, screen_sizes, path, retina=False):
     # Hide the scrollbar
     driver.execute_script(
         "document.body.style.overflowY = 'hidden'"
@@ -86,7 +86,7 @@ def take_screenshots(driver, screen_sizes, path, retina=False):
                     (By.CLASS_NAME, 'dmb-progress-grid')
                 )
             )
-        logging.info('Taking for screen size: ({}, {})'.format(w, h))
+        logging.info('Taking for screen size: (%d, %d)', w, h)
         if retina:
             take_screenshot(driver, element, path + '/{}@2x.png'.format(screen_name))
         else:
@@ -96,9 +96,12 @@ def take_screenshots(driver, screen_sizes, path, retina=False):
 def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
     # Loop through tenants
     for tenant_name, tenant in tenants.items():
-        logging.info('Taking screenshots for {}'.format(tenant_name))
-        # Create fake survey result
-        report_id = create_sample_survey(tenant_name)
+        logging.info('Taking screenshots for %s', tenant_name)
+        # Get the example report/survey for this tenant
+        report_id = Survey.objects.filter(
+            tenant=tenant_name,
+            company_name='ACME Inc.'
+        ).order_by('-created_at').first().sid
         # If tenant supports i18n then repeat for each language
         if tenant['i18n']:
             for locale in languages:
@@ -107,28 +110,29 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
                 path = BASE_PATH + "/{}/home".format(tenant_name)
                 if locale != 'en':
                     path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
-                logging.info('Taking for language: {}'.format(locale))
-                take_screenshots(driver, screens, path, retina)
+                logging.info('Taking for language: %s', locale)
+                take_sized_screenshots(driver, screens, path, retina)
         else:
             driver.get('http://localhost:8000/{}/reports/{}'
                        .format(tenant['slug'], report_id))
             path = BASE_PATH + "/{}/home".format(tenant_name)
             logging.info('Taking for language: en')
-            take_screenshots(driver, screens, path, retina)
+            take_sized_screenshots(driver, screens, path, retina)
 
 
-def create_sample_survey(tenant):
-    logging.info('Creating sample survey for {}'.format(tenant))
-    # Create a blank survey to tie the results to.
-    survey = make_survey(company_name='ACME Inc.', tenant=tenant)
-    # Create sample survey result
-    dimensions = DEFAULT_TENANTS[tenant]['CONTENT_DATA']['dimensions']
-    max_level = DEFAULT_TENANTS[tenant]['CONTENT_DATA']['levels_max']
-    dmb_d = {d: random.random() * max_level for d in dimensions}
-    dmb = numpy.average(dmb_d.values())
-    result = make_survey_result(survey=survey, dmb=dmb, dmb_d=dmb_d)
-    # Return response id for forming URL
-    return result.response_id
+def take_screenshots(tenants, languages, screens, retina=False):
+    chrome_options = webdriver.ChromeOptions()
+    if not retina:
+        logging.info('<----- Taking @1x Screenshots ----->')
+        chrome_options.add_argument("--force-device-scale-factor=1")
+    else:
+        logging.info('<----- Taking @2x Screenshots ----->')
+        chrome_options.add_argument("--force-device-scale-factor=2")
+    # Launch in app mode to remove navbar and point to phony url to save loading time
+    chrome_options.add_argument("--app=http://localhost:8000/not-a-url")
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    take_tenant_screenshots(driver, tenants, languages, screens, retina)
+    driver.close()
 
 
 class Command(BaseCommand):
@@ -168,21 +172,15 @@ class Command(BaseCommand):
         elif options['lang'] not in DEFAULT_LANGUAGE_CODES and options['lang'] is not None:
             logger.error("Invalid language code, aborting!")
             return
+        # Create fake results for screenshots.
+        subprocess.call("./manage.py create_sample_survey", shell=True)
         # Take 1x screenshots
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("--force-device-scale-factor=1")
-        # Launch in app mode to remove navbar and point to phony url to save loading time
-        chrome_options.add_argument("--app=http://localhost:8000/not-a-url")
-        driver = webdriver.Chrome(chrome_options=chrome_options)
-        logging.info('<----- Taking @1x Screenshots ----->')
-        take_tenant_screenshots(driver, tenants, languages, screens)
-        driver.close()
+        take_screenshots(tenants, languages, screens)
         # Take 2x screenshots
-        retina_options = webdriver.ChromeOptions()
-        retina_options.add_argument("--force-device-scale-factor=2")
-        # Launch in app mode to remove navbar and point to phony url to save loading time
-        retina_options.add_argument("--app=http://localhost:8000/not-a-url")
-        retina_driver = webdriver.Chrome(chrome_options=retina_options)
-        logging.info('<----- Taking @2x Screenshots ----->')
-        take_tenant_screenshots(retina_driver, tenants, languages, screens, retina=True)
-        retina_driver.close()
+        take_screenshots(tenants, languages, screens, retina=True)
+        # Clean up example surveys
+        for tenant in tenants:
+            Survey.objects.filter(
+                tenant=tenant,
+                company_name='ACME Inc.'
+            ).order_by('-created_at').first().delete()
