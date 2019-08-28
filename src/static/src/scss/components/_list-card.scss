@@ -1,12 +1,13 @@
 .dmb-list-card {
+  $dmb-card-actions-height: 48px;
+
   border-radius: $dmb-border-radius-large;
   box-shadow: $dmb-box-shadow;
-  padding: 0 $dmb-spacing-s;
 
   &__header {
     align-items: center;
     display: flex;
-    padding: $dmb-spacing-s 0;
+    padding: $dmb-spacing-s;
 
     &-left {
       flex-grow: 1;
@@ -49,7 +50,8 @@
   }
 
   &__content {
-    padding: $dmb-spacing-xs 0 $dmb-spacing-m;
+    padding: $dmb-spacing-xs $dmb-spacing-s #{$dmb-spacing-m + $dmb-card-actions-height};
+    position: relative;
 
     @include dmb-mq($from: tablet) {
       display: flex;
@@ -89,5 +91,22 @@
   &__dimension-list-item {
     min-width: 120px;
     padding: $dmb-spacing-xs;
+  }
+
+  &__actions {
+    align-items: center;
+    border-top: 1px solid $dmb-color-grey-shady-lady;
+    bottom: 0;
+    display: flex;
+    height: $dmb-card-actions-height;
+    justify-content: flex-end;
+    padding: 0 $dmb-spacing-s;
+    position: absolute;
+    right: 0;
+    width: 100%;
+  }
+
+  &__action + &__action {
+    margin-left: $dmb-spacing-s;
   }
 }

@@ -219,6 +219,9 @@ class SurveyResult(models.Model):
 
     @property
     def report_link(self):
+        if not self.survey:
+            return None
+
         return reverse('report_result', kwargs={'tenant': self.survey.slug, 'response_id': self.response_id})
 
     @property
@@ -227,6 +230,9 @@ class SurveyResult(models.Model):
             return None
 
         if not self.survey_definition_id:
+            return None
+
+        if not self.survey:
             return None
 
         return reverse(
@@ -239,10 +245,16 @@ class SurveyResult(models.Model):
 
     @property
     def absolute_report_link(self):
+        if not self.report_link:
+            return None
+
         return "http://{}{}".format(settings.DOMAIN, self.report_link)
 
     @property
     def absolute_detail_link(self):
+        if not self.detail_link:
+            return None
+
         return "http://{}{}".format(settings.DOMAIN, self.detail_link)
 
     class Meta:

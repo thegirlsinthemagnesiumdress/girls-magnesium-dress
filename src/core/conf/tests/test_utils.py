@@ -4,7 +4,8 @@ from djangae.test import TestCase
 from collections import OrderedDict
 from django.test import override_settings
 from django.conf import settings
-from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
+from core.test import reload_urlconf
+from core.tests import mocks
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
 
@@ -233,7 +234,7 @@ class VersionInfoTest(TestCase):
 
 
 @override_settings(
-    TENANTS=MOCKED_TENANTS,
+    TENANTS=mocks.MOCKED_TENANTS,
 )
 class GetOtherTenantFootersTest(TestCase):
     """Test for `core.utils.get_other_tenant_footers` function."""
@@ -398,11 +399,24 @@ class InTopLevel(TestCase):
 
 
 @override_settings(
-    TENANTS=MOCKED_TENANTS,
-    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
+    TENANTS=mocks.MOCKED_TENANTS,
+    I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
+    NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
+    TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
+    DEFAULT_TENANT='tenant1',
 )
 class GetLevelAttributesTest(TestCase):
     """Test for functions in `core.utils` for getting level-dependent properties/attributes."""
+
+    @classmethod
+    def tearDownClass(cls):
+        super(GetLevelAttributesTest, cls).tearDownClass()
+        reload_urlconf()
+
+    @classmethod
+    def setUpClass(cls):
+        super(GetLevelAttributesTest, cls).setUpClass()
+        reload_urlconf()
 
     def setUp(self):
         self.content_data = settings.TENANTS['tenant1']['CONTENT_DATA']
@@ -498,6 +512,8 @@ class GetLevelAttributesTest(TestCase):
         )
         self.assertEqual(survey_result_data['dimensions'][dimension]['in_top_level'], False)
         self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
+        self.assertIsNotNone(survey_result_data['report_link'])
+        self.assertIsNone(survey_result_data['detail_link'])
 
     def get_empty_account_detail_data_test(self):
         """Tests that correct value is returned when a empty account is provided."""

@@ -302,6 +302,8 @@ def get_detailed_survey_result_data(content_data, survey_result):
     """
     # Construct the data object.
     survey_result_data = {
+        "report_link": survey_result.report_link,
+        "detail_link": survey_result.detail_link,
         "date": survey_result.loaded_at,
         "overall": get_level_info(content_data, survey_result.dmb),
         "dimensions": {dimension: get_dimension_level_info(content_data, dimension, value)

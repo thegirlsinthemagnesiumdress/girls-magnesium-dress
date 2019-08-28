@@ -39,4 +39,13 @@
       </li>
     {% endfor %}
   </ul>
+
+  <div class="dmb-list-card__actions">
+    {% if result.detail_link %}
+      <a class="dmb-list-card__action dmb-button" target="_blank" href="{{result.detail_link}}">Responses</a>
+    {% endif %}
+    {% if result.report_link %}
+      <a class="dmb-list-card__action dmb-button" target="_blank" href="{{result.report_link}}">Report</a>
+    {% endif %}
+  </div>
 </div>
