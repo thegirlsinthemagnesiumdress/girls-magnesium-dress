@@ -275,22 +275,24 @@ class ReportController {
         });
       });
 
-
       // Get industry results
-      $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`).then((res) => {
-        this.industryResult = res.data;
-        this.industryAvgSource = this.industryResult['dmb_industry'];
-        this.industryBestSource = this.industryResult['dmb_bp_industry'];
+      return $http.get(`${industryEndpoint}${this.survey['industry']}?tenant=${this.survey['tenant']}`);
+    })
+    .then((res) => {
+      this.industryResult = res.data;
+      this.industryAvgSource = this.industryResult['dmb_industry'];
+      this.industryBestSource = this.industryResult['dmb_bp_industry'];
 
-        this.dimensionList.forEach((dimension) => {
-          if (this.industryResult['dmb_d']) {
-            this.dimensions[dimension].indResults.average = this.industryResult['dmb_d'][dimension];
-          }
-          if (this.industryResult['dmb_d_bp']) {
-            this.dimensions[dimension].indResults.best = this.industryResult['dmb_d_bp'][dimension];
-          }
-        });
+      this.dimensionList.forEach((dimension) => {
+        if (this.industryResult['dmb_d']) {
+          this.dimensions[dimension].indResults.average = this.industryResult['dmb_d'][dimension];
+        }
+        if (this.industryResult['dmb_d_bp']) {
+          this.dimensions[dimension].indResults.best = this.industryResult['dmb_d_bp'][dimension];
+        }
       });
+    }).catch((e) => {
+      console.error(`HTTP Request Error: ${e.status}, ${e.statusText}`);
     });
   }
 
