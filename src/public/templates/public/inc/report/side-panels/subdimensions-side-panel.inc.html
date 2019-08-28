@@ -37,7 +37,7 @@
                 ng-src="{[ reportCtrl.dmbStaticUrl ]}img/{{ tenant|ng_mark_safe }}/dimensions/{[ dimension|underscoreToHyphen ]}.svg">
           </div>
           <div class="dmb-inline-img-text__text">
-            {[ reportCtrl.dimensions[dimension].name ]}
+            {[ reportCtrl.dimensions[dimension]['name'] ]}
           </div>
         </div>
       </h2>
