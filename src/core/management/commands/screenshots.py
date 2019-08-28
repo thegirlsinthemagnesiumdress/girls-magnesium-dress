@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import os
-import pdb
 import logging
 import subprocess
 
@@ -44,6 +43,14 @@ BASE_PATH = os.path.join(settings.BASE_DIR, "static/src/img/")
 
 
 def take_screenshot(driver, focused_element, path):
+    """Takes an individual screenshot of a specific element and saves it to
+    a specified path.
+
+    Args:
+        driver (ChromeDriver): The selenium web driver to use to take the screenshot.
+        focused_element (string): Selector for the element to be focused in the screenshot.
+        path (string): File path for where to save the screenshot to.
+    """
     driver.execute_script("arguments[0].scrollIntoView();", focused_element)
     # Arbitrary padding
     driver.execute_script("window.scrollBy(0, -15);")
@@ -58,6 +65,16 @@ def take_screenshot(driver, focused_element, path):
 
 
 def take_sized_screenshots(driver, screen_sizes, path, retina=False):
+    """Takes an individual screenshot for the specified screen sizes and
+    saves them as the designated path.
+
+    Args:
+        driver (ChromeDriver): The selenium web driver to use to take the screenshot.
+        screen_sizes ([(number, number)]): A list of screen sizes to take screenshots for different screen sizes.
+        path (string): File path for where to save the screenshot to.
+        retina (bool, optional): Whether the screenshots are being taken for retina to append the right
+                                 file prefixes. Defaults to False.
+    """
     # Hide the scrollbar
     driver.execute_script(
         "document.body.style.overflowY = 'hidden'"
@@ -94,6 +111,17 @@ def take_sized_screenshots(driver, screen_sizes, path, retina=False):
 
 
 def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
+    """Takes screenshots for all tenants on all the specified languages (if enabled) and
+    screen sizes.
+
+    Args:
+        driver (ChromeDriver): The selenium web driver to use to take the screenshots.
+        tenants ([Tenant]): A list of tenant objects specifying which tenant sites to screenshot.
+        languages ([string]): A list of language codes to screenshot for on appropriate tenants.
+        screens ([(number, number)]): A list of screen sizes to take screenshots for different screen sizes.
+        retina (bool, optional): Whether the screenshots are being taken for retina to append the right
+                                 file prefixes. Defaults to False.
+    """
     # Loop through tenants
     for tenant_name, tenant in tenants.items():
         logging.info('Taking screenshots for %s', tenant_name)
@@ -121,6 +149,17 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
 
 
 def take_screenshots(tenants, languages, screens, retina=False):
+    """ Sets up the chrome driver and takes screenshots for all tenants on all the
+    specified languages (if enabled) and screen sizes.
+
+    Args:
+        tenants ([Tenant]): A list of tenant objects specifying which tenant sites to screenshot.
+        languages ([string]): A list of language codes to screenshot for on appropriate tenants.
+        screens ([(number, number)]): A list of screen sizes to take screenshots for different screen sizes.
+        retina (bool, optional): Whether the screenshots are being taken for retina to append the right
+                                 file prefixes. Defaults to False.
+    """
+    # Form the options for chomre based on if we are taking retina screenshots or not.
     chrome_options = webdriver.ChromeOptions()
     if not retina:
         logging.info('<----- Taking @1x Screenshots ----->')
@@ -151,6 +190,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        # Set list of tenants, languages, and screens to default before altering them based on flags.
         tenants = DEFAULT_TENANTS
         languages = DEFAULT_LANGUAGE_CODES
         screens = DEFAULT_SCREEN_SIZES

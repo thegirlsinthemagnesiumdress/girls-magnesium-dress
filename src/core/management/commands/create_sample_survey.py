@@ -23,6 +23,7 @@ class Command(BaseCommand):
                 dmb_d = {d: random.random() * max_level for d in dimensions}
                 dmb = numpy.average(dmb_d.values())
                 result = make_survey_result(survey=survey, dmb=dmb, dmb_d=dmb_d)
+                # Explicitly links the result to the survey as this isn't always completed.
                 survey.last_survey_result = result
                 survey.save()
                 logging.info('Created survey and result for {} with id {}'.format(tenant, survey.sid))
