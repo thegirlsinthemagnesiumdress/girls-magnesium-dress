@@ -24,6 +24,6 @@ export default (el) => {
     }
 
     domSafe.setLocationHref(document.location, pageEl.href);
-    targetTabLink.focus();
+    pageEl.focus();
   });
 };
