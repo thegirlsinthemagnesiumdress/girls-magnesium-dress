@@ -62,11 +62,16 @@ export default class Clippy {
     const className = 'dmb-toast--active';
     // Add timeout to toasts to show and hide them.
     this.toasts.forEach((toast) => {
-      toast.classList.add(className);
-      setTimeout(() => {
+      if (toast.classList.contains(className)) {
+        return;
+      }
+      const onAnimationEnd = function() {
         toast.classList.remove(className);
-      }, 2500);
+        toast.removeEventListener('animationend', onAnimationEnd);
+      };
+      toast.addEventListener('animationend', onAnimationEnd);
+      toast.classList.add(className);
     });
-    e.clearSelection();
+    e['clearSelection']();
   }
 }

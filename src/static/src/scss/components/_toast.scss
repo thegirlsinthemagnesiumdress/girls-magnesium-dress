@@ -1,5 +1,6 @@
 .dmb-toast {
   @extend .dmb-overlay;
+  $block: &;
 
   bottom: 48px;
   display: none;
@@ -11,8 +12,13 @@
   transform: translateX(-50%);
 
   &--active {
-    animation: toast 2.5s linear;
+    animation: toast 7s linear forwards;
     display: block;
+
+  }
+
+  &--short#{$block}--active {
+    animation-duration: 2.5s;
   }
 }
 
@@ -22,12 +28,12 @@
     transform: translateX(-50%) scale(.9);
   }
 
-  5% {
+  2.5% {
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
 
-  95% {
+  97.5% {
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
