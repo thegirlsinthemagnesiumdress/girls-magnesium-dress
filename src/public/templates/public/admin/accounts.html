@@ -50,6 +50,7 @@
           <div
               aria-live="assertive"
               class="dmb-toast"
+              ng-class="{'dmb-toast--active': exportsCtrl.showToast}"
               id="toast"
               ng-if="exportsCtrl.showToast"
               ng-cloak>
