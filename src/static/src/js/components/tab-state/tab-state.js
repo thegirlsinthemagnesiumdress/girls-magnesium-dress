@@ -1,5 +1,4 @@
 import {ModelFactory} from '@google/glue/lib/ui/pagination/modelfactory';
-const domSafe = goog.require('goog.dom.safe');
 const pageAttrName = 'data-glue-pagination-page';
 
 // Function that adds the dimension to the URL and if a dimension is present
@@ -23,7 +22,6 @@ export default (el) => {
       return;
     }
 
-    domSafe.setLocationHref(document.location, pageEl.href);
-    pageEl.focus();
+    window.history.replaceState({}, '', pageEl.href);
   });
 };
