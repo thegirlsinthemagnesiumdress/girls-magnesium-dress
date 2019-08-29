@@ -6,7 +6,7 @@ from django.test import override_settings
 from django.conf import settings
 from core.test import reload_urlconf
 from core.tests import mocks
-from core.tests.mommy_recepies import make_survey, make_survey_result
+from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_definition
 
 
 class MapIndustriesTest(TestCase):
@@ -488,11 +488,14 @@ class GetLevelAttributesTest(TestCase):
         """Tests that a survey results data is correctly returned"""
         # Make fake survey results.
         survey = make_survey(tenant="tenant1")
+        definition = make_survey_definition()
         survey_result = make_survey_result(
             survey=survey,
             response_id='AAA',
             dmb=1,
-            dmb_d={u"dim1": 0.4, u"dim2": 1.6}
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            raw='raw data',
+            survey_definition=definition,
         )
         # Get survey result data.
         survey_result_data = utils.get_detailed_survey_result_data(self.content_data, survey_result)
@@ -513,7 +516,7 @@ class GetLevelAttributesTest(TestCase):
         self.assertEqual(survey_result_data['dimensions'][dimension]['in_top_level'], False)
         self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])
         self.assertIsNotNone(survey_result_data['report_link'])
-        self.assertIsNone(survey_result_data['detail_link'])
+        self.assertIsNotNone(survey_result_data['detail_link'])
 
     def get_empty_account_detail_data_test(self):
         """Tests that correct value is returned when a empty account is provided."""

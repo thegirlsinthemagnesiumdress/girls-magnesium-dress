@@ -2,7 +2,7 @@
 import re
 
 from core.models import Survey, User
-from core.tests.mommy_recepies import make_survey
+from core.tests.mommy_recepies import make_survey, make_survey_result
 from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
 from djangae.test import TestCase
 from django.test import override_settings
@@ -99,6 +99,33 @@ class SurveyTest(TestCase):
     def test_save_invalid_tenant(self):
         """Saving a tenant that is not in tenant list, should raise AssertionError."""
         self.assertRaises(Survey.objects.create, company_name="test", country="IT", industry="re", tenant='tenant3')
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS
+)
+class SurveyResponseTest(TestCase):
+
+    def test_report_link_external_result(self):
+        survey = make_survey(tenant="tenant1")
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+        )
+        self.assertIsNotNone(survey_result.report_link)
+
+    def test_report_link_internal_result(self):
+        survey = make_survey(tenant="tenant1")
+        survey_result = make_survey_result(
+            internal_survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+        )
+        self.assertIsNone(survey_result.report_link)
 
 
 class UserTest(TestCase):
