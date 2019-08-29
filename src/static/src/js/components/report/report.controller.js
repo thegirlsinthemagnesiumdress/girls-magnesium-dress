@@ -111,7 +111,7 @@ class ReportController {
     this.dimensionList = tenantConf.dimensionList;
 
     /**
-     * Dimensions object for dimension tabss
+     * Dimensions object for dimension tabs
      * @type {Object}
      * @export
      */
@@ -292,7 +292,7 @@ class ReportController {
         }
       });
     }).catch((e) => {
-      console.error(`HTTP Request Error: ${e.status}, ${e.statusText}`);
+      console.error(`HTTP Request Error: ${e['status']}, ${e['statusText']}`);
     });
   }
 
