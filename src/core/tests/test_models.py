@@ -3,11 +3,16 @@ import re
 
 from core.models import Survey, User
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_definition
-from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS, MOCKED_I18N_TENANTS
+from core.tests.mocks import (
+    MOCKED_TENANTS,
+    MOCKED_INTERNAL_TENANTS,
+    MOCKED_I18N_TENANTS,
+    MOCKED_TENANTS_SLUG_TO_KEY
+)
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_user
-from core.test import with_appengine_admin, with_appengine_user
+from core.test import with_appengine_admin, with_appengine_user, reload_urlconf
 
 
 @override_settings(
@@ -104,9 +109,21 @@ class SurveyTest(TestCase):
 @override_settings(
     TENANTS=MOCKED_TENANTS,
     I18N_TENANTS=MOCKED_I18N_TENANTS,
-    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS
+    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
+    TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
+    DEFAULT_TENANT='tenant1',
 )
 class SurveyResponseTest(TestCase):
+
+    @classmethod
+    def tearDownClass(cls):
+        super(SurveyResponseTest, cls).tearDownClass()
+        reload_urlconf()
+
+    @classmethod
+    def setUpClass(cls):
+        super(SurveyResponseTest, cls).setUpClass()
+        reload_urlconf()
 
     def test_report_link_external_result(self):
         survey = make_survey(tenant="tenant1")
