@@ -113,7 +113,7 @@ class GenerateExportsTask(TestCase):
         ]
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(mock_defer.call_count, 2)
+        self.assertEqual(mock_defer.call_count, 3)
 
         # check paremeters for advertisers call
         args, kwargs = mock_defer.call_args_list[0]
@@ -146,7 +146,7 @@ class GenerateExportsTask(TestCase):
         ]
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(mock_defer.call_count, 2)
+        self.assertEqual(mock_defer.call_count, 3)
 
         # check paremeters for news call
         args, kwargs = mock_defer.call_args_list[1]

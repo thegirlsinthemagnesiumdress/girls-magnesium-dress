@@ -117,7 +117,6 @@ def generate_exports_task(request):
         _queue='default',
     )
 
-
     return HttpResponse(msg)
 
 
