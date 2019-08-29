@@ -191,10 +191,9 @@ class Command(BaseCommand):
             type=str
         )
         parser.add_argument(
-            '--no-optim',
-            help='Prevents images from being optimised (should only be used for development processes to check screenshot positioning',  # noqa
-            type=bool,
-            default=False
+            '--optimise',
+            help='Determines if the images should be optimised or not (True by default)',
+            action='store_true',
         )
 
     def handle(self, *args, **options):
@@ -229,7 +228,7 @@ class Command(BaseCommand):
             # Take 2x screenshots
             take_screenshots(tenants, languages, screens, retina=True)
             # Optimise images
-            if not options.get('no_optim'):
+            if options.get('optimise'):
                 subprocess.call(
                     "cd ./src/static/src/img && open -a ImageOptim {**/home/*.png,**/**/home/*.png}",
                     shell=True

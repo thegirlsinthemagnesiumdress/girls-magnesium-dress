@@ -103,12 +103,12 @@ When building these files are build (as per gulpfile.js) and then output to:
  This command (especially with image optimisations) will take a significant amount of time to run and so should not be run often. Ideally this command should only be run before deployment to production and, even then, it should only need to be run when a asthetic change to the report page has occured.
 
  ### Usage
- To run the command simply type `./manage.py screenshots` when in the root directory of the project. This will take screenshots of all tenants for all their supported languages on mobile, tablet, and laptop sizes.
+ To run the command simply type `./manage.py screenshots` when in the root directory of the project. This will take screenshots of all tenants for all their supported languages on mobile, tablet, and laptop sizes. **If running for production append the flag `--optimise` to optimise the images before deploying**.
 
  The command has several flags to simplify or shorten the screenshotting procedure:
   - `--tenant` which takes a specified tenant key (e.g. `ads`) and will only screenshot for that tenant.
   - `--lang` which takes a specified language code (e.g. `es`) and will only screen shot for that language (on i18n enabled tenants).
-  - `--no-optim` which takes a boolean value and will prevent image optimisation at the end of the process (as it can be quite a lengthy process).
+  - `--optimise` Will trigger image optimisation occurs at the end of the process (as it can be quite a lengthy process) if present.
 
  ### Additional Notes
  This command also depends on the `create_sample_survey` command which generates sample survey and survey result objects to be used to generate reports. This management command is called from within a subprocess of the screenshot command and the surveys' it creates are cleaned up (deleted) in the event of an exception occuring in the execution.
