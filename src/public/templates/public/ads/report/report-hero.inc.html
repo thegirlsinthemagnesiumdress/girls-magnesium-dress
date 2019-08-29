@@ -9,7 +9,7 @@
           {[ reportCtrl.survey.company_name ]}
         </div>
         <div class="dmb-report-hero__date h-c-headline h-c-headline--subhead">
-          {[ reportCtrl.result.started_at|date:'MMMM yyyy' ]}
+          {% djangoblock %} {{ started_at }} {% enddjangoblock %}
         </div>
       </div>
       <div class="dmb-report-hero__subheading h-c-headline h-c-headline--subhead">

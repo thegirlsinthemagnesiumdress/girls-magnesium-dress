@@ -494,7 +494,7 @@ class GetLevelAttributesTest(TestCase):
             response_id='AAA',
             dmb=1,
             dmb_d={u"dim1": 0.4, u"dim2": 1.6},
-            raw='raw data',
+            raw='{}',
             survey_definition=definition,
         )
         # Get survey result data.

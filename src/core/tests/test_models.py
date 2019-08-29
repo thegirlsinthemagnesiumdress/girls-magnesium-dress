@@ -2,8 +2,8 @@
 import re
 
 from core.models import Survey, User
-from core.tests.mommy_recepies import make_survey, make_survey_result
-from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
+from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_definition
+from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS, MOCKED_I18N_TENANTS
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_user
@@ -103,6 +103,7 @@ class SurveyTest(TestCase):
 
 @override_settings(
     TENANTS=MOCKED_TENANTS,
+    I18N_TENANTS=MOCKED_I18N_TENANTS,
     INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS
 )
 class SurveyResponseTest(TestCase):
@@ -126,6 +127,31 @@ class SurveyResponseTest(TestCase):
             dmb_d={u"dim1": 0.4, u"dim2": 1.6},
         )
         self.assertIsNone(survey_result.report_link)
+
+    def test_detail_link_with_raw(self):
+        survey = make_survey(tenant="tenant1")
+        definition = make_survey_definition()
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            raw='{}',
+            survey_definition=definition,
+        )
+        self.assertIsNotNone(survey_result.detail_link)
+
+    def test_detail_link_no_raw(self):
+        survey = make_survey(tenant="tenant1")
+        definition = make_survey_definition()
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            survey_definition=definition,
+        )
+        self.assertIsNone(survey_result.detail_link)
 
 
 class UserTest(TestCase):
