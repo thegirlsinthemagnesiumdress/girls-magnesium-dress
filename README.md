@@ -94,30 +94,34 @@ When building these files are build (as per gulpfile.js) and then output to:
  On the home page there are several screenshots of the report page which are placed on various devices to show the final output of the tool to customers. These screenshots can be taken automatically using the `./manage.py screenshots` command.
 
  ### Requirements
- To run the `screenshots` management commnd you must have installed:
-  - Google Chrome or Google Chrome Driver
-  - ImageOptim (not the NPM package)
-  - Latest version of project dependencies from `./bin/install_deps` so Selenium is installed.
+To run the `screenshots` management commnd you must have installed:
+- Google Chrome and Google Chrome Driver (recommend `brew install cask chromedriver`)
+- [ImageOptim](https://imageoptim.com/mac) (not the NPM package)
+- Latest version of project dependencies from `./bin/install_deps` so Selenium is installed.
 
- ### When to use
- This command (especially with image optimisations) will take a significant amount of time to run and so should not be run often. Ideally this command should only be run before deployment to production and, even then, it should only need to be run when a asthetic change to the report page has occured.
+### When to use
+This command (especially with image optimisations) will take a significant amount of time to run and so should not be run often. Ideally this command should only be run before deployment to production and, even then, it should only need to be run when a asthetic change to the report page has occured.
 
- ### Usage
- To run the command simply type `./manage.py screenshots` when in the root directory of the project. This will take screenshots of all tenants for all their supported languages on mobile, tablet, and laptop sizes. **If running for production append the flag `--optimise` to optimise the images before deploying**.
+### Usage
+First you'll need to have the server running in a separate terminal `./manage.py runserver`
 
- The command has several flags to simplify or shorten the screenshotting procedure:
-  - `--tenant` which takes a specified tenant key (e.g. `ads`) and will only screenshot for that tenant.
-  - `--lang` which takes a specified language code (e.g. `es`) and will only screen shot for that language (on i18n enabled tenants).
-  - `--optimise` Will trigger image optimisation occurs at the end of the process (as it can be quite a lengthy process) if present.
+Then, to run the command type `./manage.py screenshots` when in the root directory of the project. This will take screenshots of all tenants for all their supported languages on mobile, tablet, and laptop sizes. **If running for production append the flag `--optimise` to optimise the images before deploying**.
 
- ### Additional Notes
- This command also depends on the `create_sample_survey` command which generates sample survey and survey result objects to be used to generate reports. This management command is called from within a subprocess of the screenshot command and the surveys' it creates are cleaned up (deleted) in the event of an exception occuring in the execution.
+The command has several flags to simplify or shorten the screenshotting procedure:
+- `--tenant` which takes a specified tenant key (e.g. `ads`) and will only screenshot for that tenant.
+- `--lang` which takes a specified language code (e.g. `es`) and will only screen shot for that language (on i18n enabled tenants).
+- `--optimise` Will trigger image optimisation occurs at the end of the process (as it can be quite a lengthy process) if present.
 
- # Deploy
- The deployment script is inside `scripts` folder and it can be called with or without parameters. Calling the script without parameters will deploy a version based on the last tagged version where the current hash commit is appended. Alternatively, the deploy script can be called with the following paramenters:
- - `major`: it will generate a new major version number and deploy it;
- - `minor`: it will generate a new minor version number and deploy it;
- - `patch`: it will generate a new patch version number and deploy it.
+### Additional Notes
+This command also depends on the `create_sample_survey` command which generates sample survey and survey result objects to be used to generate reports. This management command is called from within a subprocess of the screenshot command and the surveys' it creates are cleaned up (deleted) in the event of an exception occuring in the execution.
+
+You might see changes to index.yaml after running this command, please don't commit these as we'll never need it in production
+
+# Deploy
+The deployment script is inside `scripts` folder and it can be called with or without parameters. Calling the script without parameters will deploy a version based on the last tagged version where the current hash commit is appended. Alternatively, the deploy script can be called with the following paramenters:
+- `major`: it will generate a new major version number and deploy it;
+- `minor`: it will generate a new minor version number and deploy it;
+- `patch`: it will generate a new patch version number and deploy it.
 
 By default the script deploy to the staging instance `gweb-digitalmaturity-staging`, it's possibile to pass
 a `-p` flag to deploy to the production instance `gweb-digitalmaturity`.
