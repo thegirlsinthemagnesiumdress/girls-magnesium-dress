@@ -1972,8 +1972,6 @@ msgstr "Podaj nazwę organizacji"
 msgid "Organization name"
 msgstr "Organizacja"
 
-#, fuzzy
-#| msgid "Enter the organisation name"
 msgid "Enter the organization name"
 msgstr "Podaj nazwę organizacji"
 

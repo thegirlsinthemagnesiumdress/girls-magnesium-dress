@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-15 13:33+0000\n"
+"POT-Creation-Date: 2019-08-29 11:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1510,8 +1510,6 @@ msgstr "Entra in contatto con Google"
 msgid "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email."
 msgstr "Ti abbiamo inviato questa email perché hai completato un sondaggio Digital Maturity Benchmark di Google. Se l’hai ricevuta per sbaglio, ignorala."
 
-#, fuzzy
-#| msgid "We've finished analyzing your survey responses to find out where you can improve your marketing strategy. Here’s the link to access your report:"
 msgid "We've finished analyzing your survey responses to find out where you can improve your marketing strategy. Here's the link to access your report:"
 msgstr "Abbiamo completato l’analisi delle tue risposte al sondaggio per scoprire come puoi migliorare la tua strategia di marketing. Ecco il link per accedere al tuo rapporto:"
 
@@ -1805,13 +1803,9 @@ msgstr "Complimenti"
 msgid "you're in the top 2%% for marketing maturity"
 msgstr "sei nel gruppo migliore (pari al 2%%) per la maturità del marketing"
 
-#, fuzzy
-#| msgid "Here’s how you get there:"
 msgid "Here's how you get there:"
 msgstr "Ecco come puoi arrivarci:"
 
-#, fuzzy
-#| msgid "Here’s how to get even better:"
 msgid "Here's how to get even better:"
 msgstr "Ecco come puoi ottenere risultati ancora migliori:"
 
@@ -1976,8 +1970,6 @@ msgstr "Inserisci il nome dell’organizzazione"
 msgid "Organization name"
 msgstr "Organizzazione"
 
-#, fuzzy
-#| msgid "Enter the organisation name"
 msgid "Enter the organization name"
 msgstr "Inserisci il nome dell’organizzazione"
 
@@ -2008,8 +2000,6 @@ msgstr ""
 msgid "Back to website"
 msgstr "Torna al sito web"
 
-#, fuzzy
-#| msgid "Woops.. that page doesn’t seem to exist, or the link is broken."
 msgid "Woops.. that page doesn't seem to exist, or the link is broken."
 msgstr "Spiacenti. La pagina non esiste o il link è inaccessibile."
 
