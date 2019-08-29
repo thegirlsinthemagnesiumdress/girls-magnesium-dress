@@ -101,6 +101,7 @@ class GenerateExportsTask(TestCase):
             'tenant',
             'excluded_from_best_practice',
             'dmb',
+            'account_id',
         ]
 
         survey_result_fields = [
@@ -136,6 +137,7 @@ class GenerateExportsTask(TestCase):
             'tenant',
             'excluded_from_best_practice',
             'dmb',
+            'account_id',
         ]
 
         survey_result_fields = [

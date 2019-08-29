@@ -41,6 +41,7 @@ def generate_exports_task(request):
         'tenant',
         'excluded_from_best_practice',
         'dmb',
+        'account_id',
     ]
 
     advertisers_survey_result_fields = [
@@ -62,6 +63,7 @@ def generate_exports_task(request):
         'tenant',
         'excluded_from_best_practice',
         'dmb',
+        'account_id',
     ]
 
     publishers_survey_result_fields = [
@@ -81,6 +83,7 @@ def generate_exports_task(request):
         'tenant',
         'excluded_from_best_practice',
         'dmb',
+        'account_id',
     ]
 
     retail_survey_result_fields = [
