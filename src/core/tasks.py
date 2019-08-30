@@ -518,6 +518,31 @@ def _get_exportable_surveys(tenant, is_super_admin, engagement_lead):
     return data
 
 
+def _get_export_column_data(survey_result, dmb_d, col, dateformat):
+    # Check if the col is a dimension in dmb_d
+    if hasattr(dmb_d, col):
+        dim = dmb_d.get(col)
+        # If dimension exists but is None then append empty string
+        if dim is None:
+            return ''
+        else:
+            return dmb_d.get(col)
+    elif hasattr(survey_result, col):
+        # Else, check if col is a attribute of SurveyResult
+        attr = getattr(survey_result, col)
+        # If attribute exists but is None then append empty string
+        if attr is None:
+            return ''
+        else:
+            return _format_type(getattr(survey_result, col), dateformat=dateformat)
+    else:
+        # Otherwise, raise an exception to indicate a malformed object
+        raise Exception('No attribute or dimension {} in SurveyResult {}'.format(
+            col,
+            survey_result.response_id)
+        )
+
+
 def export_tenant_data(
         title,
         tenant,
@@ -550,30 +575,8 @@ def export_tenant_data(
                     if dim_dict:
                         survey_result_data = []
                         for col in survey_result_columns:
-                            # Check if the col is a dimension in dmb_d
-                            if hasattr(dim_dict, col):
-                                dim = dim_dict.get(col)
-                                # If dimension exists but is None then append empty string
-                                if dim is None:
-                                    survey_result_data.append('')
-                                else:
-                                    survey_result_data.append(dim_dict.get(col))
-                            elif hasattr(survey_result, col):
-                                # Else, check if col is a attribute of SurveyResult
-                                attr = getattr(survey_result, col)
-                                # If attribute exists but is None then append empty string
-                                if attr is None:
-                                    survey_result_data.append('')
-                                else:
-                                    survey_result_data.append(
-                                        _format_type(getattr(survey_result, col), dateformat=dateformat)
-                                    )
-                            else:
-                                # Otherwise, raise an exception to indicate a malformed object
-                                raise Exception('No attribute or dimension {} in SurveyResult {}'.format(
-                                    col,
-                                    survey_result.response_id)
-                                )
+                            col_data = _get_export_column_data(survey_result, dim_dict, col, dateformat)
+                            survey_result.append(col_data)
             except SurveyResult.DoesNotExist:
                 # In case we have a survey, but has not been completed yet
                 pass
