@@ -834,6 +834,7 @@ class GenerateExportTestCase(TestCase):
             'tenant',
             'excluded_from_best_practice',
             'dmb',
+            'account_id'
         ]
         self.survey_result_fields = [
             'access',
