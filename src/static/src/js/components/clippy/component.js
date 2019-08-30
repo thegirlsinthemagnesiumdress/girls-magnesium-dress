@@ -1,7 +1,9 @@
+import Toast from '../toast/toast.class';
+
 /**
  * Component which copies an elements content to the clipboard
  * when clicked, using clipboard.js and displays a toast
- * notifcation to signal the action has been completed.
+ * notification to signal the action has been completed.
  *
  * Usage:
  * Add the 'dmb-clippy' attribute to the element and assign
@@ -28,25 +30,26 @@ export default class Clippy {
    */
   constructor(elem) {
     this.root = elem;
-    // Create new clipboard JS object which gets the value of the dmb-clipp attribute.
+    // Create new clipboard JS object which gets the value of the dmb-clip attribute.
     this.selector = 'dmb-clippy';
     this.clipboard = new window['ClipboardJS'](this.root, {
       text: (trigger) => {
         return trigger.getAttribute(this.selector);
       },
     });
-    // Find toast notifcations for this dmb-clippy.
+    // Find toast notifications for this dmb-clippy.
     this.toastSelector = 'dmb-clippy-toast';
     this.toasts = Array.from(document.querySelectorAll(`[${this.toastSelector}]`))
-    .filter((toast) => {
-      return toast.getAttribute(this.toastSelector) == this.root.id;
-    });
+      .filter((toast) => {
+        return toast.getAttribute(this.toastSelector) == this.root.id;
+      })
+      .map(Toast.attachTo);
     // On success clear the selection and show a toast notification.
     this.clipboard.on('success', this.onSuccess.bind(this));
   }
 
   /**
-   * Attachs clippy functionality to element.
+   * Attaches clippy functionality to element.
    * @param {Node} elem : Element to attach Clippy to.
    * @return {Clippy} : Returns a reference to the clippy instance created.
    */
@@ -59,19 +62,7 @@ export default class Clippy {
    * @param {Event} e : Event returned from ClipboardJS success.
    */
   onSuccess(e) {
-    const className = 'dmb-toast--active';
-    // Add timeout to toasts to show and hide them.
-    this.toasts.forEach((toast) => {
-      if (toast.classList.contains(className)) {
-        return;
-      }
-      const onAnimationEnd = function() {
-        toast.classList.remove(className);
-        toast.removeEventListener('animationend', onAnimationEnd);
-      };
-      toast.addEventListener('animationend', onAnimationEnd);
-      toast.classList.add(className);
-    });
+    this.toasts.forEach((toast) => toast.show());
     e['clearSelection']();
   }
 }
