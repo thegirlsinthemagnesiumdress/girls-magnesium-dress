@@ -89,11 +89,11 @@ When building these files are build (as per gulpfile.js) and then output to:
  - 'src/static/dev' - When in development mode
  - 'src/static/dist' - When in production mode (this is what's deployed)
 
- # Pre-Deployment
- ## Screenshots
- On the home page there are several screenshots of the report page which are placed on various devices to show the final output of the tool to customers. These screenshots can be taken automatically using the `./manage.py screenshots` command.
+# Pre-Deployment
+## Screenshots
+On the home page there are several screenshots of the report page which are placed on various devices to show the final output of the tool to customers. These screenshots can be taken automatically using the `./manage.py screenshots` command.
 
- ### Requirements
+### Requirements
 To run the `screenshots` management commnd you must have installed:
 - Google Chrome and Google Chrome Driver (recommend `brew install cask chromedriver`)
 - [ImageOptim](https://imageoptim.com/mac) (not the NPM package)

@@ -6,8 +6,8 @@
   Arguments:
     img: image file path relative to static/img directory without file extension
     ext: image file extension
+    alt: image alt text
     classes: (optional) space-separated classnames to give image
-    alt: (optional) image alt text
 
   Usage:
 
@@ -21,4 +21,4 @@
   srcset="{% static_i18n img %}.{{ext}} 1x, {% static_i18n img %}@2x.{{ext}} 2x"
   src="{% static_i18n img %}.{{ext}}"
   {% if class %}class="{{class}}"{% endif %}
-  {% if alt %}alt="{{alt}}"{% endif %} />
+  alt="{{alt}}" />

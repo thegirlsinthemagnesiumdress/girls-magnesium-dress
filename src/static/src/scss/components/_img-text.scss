@@ -51,19 +51,27 @@
   }
 
   &__tablet {
-    border-radius: 10px;
+    border-radius: .5vw;
     left: 42.5%;
     position: absolute;
     top: 4%;
     width: 53%;
+
+    @include dmb-mq($from: desktop) {
+      border-radius: 10px;
+    }
   }
 
   &__mobile {
-    border-radius: 10px;
+    border-radius: .5vw;
     position: absolute;
     right: 74%;
     width: 24%;
 
     @include dmb-resp-prop(top, 22.5%, 20%, 20%, 21.5%);
+
+    @include dmb-mq($from: desktop) {
+      border-radius: 10px;
+    }
   }
 }
