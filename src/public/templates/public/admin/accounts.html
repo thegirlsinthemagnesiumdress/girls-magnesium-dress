@@ -25,19 +25,18 @@
 
         <div
             class="dmb-toolbar__export"
-            ng-controller="ExportReportsCtrl as exportsCtrl">
+            dmb-export-reports
+            data-export-engagement-lead="{{ engagement_lead|ng_mark_safe }}">
           <form
               action="{% url 'reports_export' slug|ng_mark_safe %}"
               method="post"
               name="export"
-              ng-submit="exportsCtrl.export($event, '{{ engagement_lead|ng_mark_safe }}')"
               novalidate>
             <button
                 aria-label="Export survey data"
                 aria-describedby="export-tooltip"
                 class="dmb-toolbar__export-btn dmb-tooltip"
                 id="dmb-export-btn"
-                ng-disabled="exportsCtrl.submitting"
                 type="submit">
               {% include 'core/inc/svg.html' with id='export' size="24px" %}
               <div
@@ -50,14 +49,12 @@
           <div
               aria-live="assertive"
               class="dmb-toast"
-              ng-class="{'dmb-toast--active': exportsCtrl.showToast}"
               id="toast"
-              ng-if="exportsCtrl.showToast"
-              ng-cloak>
-            <span ng-if="!exportError">
+              data-export-toast>
+            <span data-toast-state="success">
               Data export requested. This may take up to 5 minutes. Please check your email inbox.
             </span>
-            <span ng-if="exportError">
+            <span data-toast-state="error">
               Sorry there was an error, please try again.
             </span>
           </div>

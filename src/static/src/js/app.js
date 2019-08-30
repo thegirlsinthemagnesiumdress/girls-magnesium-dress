@@ -29,8 +29,10 @@ import * as copyComponent from './components/copy-component/copy-component';
 import * as exportReports from './components/export/export-reports';
 import * as languageCode from './components/language-code/language-code';
 
-// Vanilla JS Copy Component
+// Vanilla JS DMB Components
+import {csrfToken} from './components/csrf/csrf';
 import Clippy from './components/clippy/component';
+import ExportReports from './components/export/export-reports.class';
 
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
@@ -67,9 +69,6 @@ try {
   console.warn('Not valid json');
 }
 
-
-const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
-const csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 module.constant('csrfToken', csrfToken);
 
 const bootstrapDataElement = document.getElementById('bootstrap-data');
@@ -87,3 +86,4 @@ document.querySelectorAll('.glue-header').forEach(Header.attachTo);
 
 // Attach copy component to elements with the custom dmb-copy-to-clipboard attribute.
 document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
+document.querySelectorAll('[dmb-export-reports]').forEach(ExportReports.attachTo);
