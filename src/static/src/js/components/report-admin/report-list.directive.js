@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.reportAdmin.directive');
-
 import * as reportAdminCtrl from './report-admin.controller';
 
 /**

@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.focusControl.run');
-
 /**
  * Class for handling focus control on the page. Hiding all outlines when the
  * user uses the mouse, but showing the outlines again when the tab key is

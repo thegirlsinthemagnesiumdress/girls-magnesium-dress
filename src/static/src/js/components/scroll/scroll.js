@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.scroll');
-
 import * as scrollService from './scroll.service';
 import * as directive from './scroll-aware.directive';
 import * as pinTopDirective from './scroll-pin-top.directive';

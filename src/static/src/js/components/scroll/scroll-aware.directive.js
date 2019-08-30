@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.scroll.directive');
-
 /**
  * @param {!Object} scrollService
  * @param {!angular.$timeout} $timeout

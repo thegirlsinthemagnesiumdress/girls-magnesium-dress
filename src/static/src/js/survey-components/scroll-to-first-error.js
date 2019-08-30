@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.survey.scrollToFirstError');
-
 const selector = '.Highlight .ValidationError';
 
 /**
