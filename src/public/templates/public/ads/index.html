@@ -47,7 +47,9 @@
 
     {% include 'public/ads/home/icon-text-cta.inc.html' %}
 
-    {% include 'public/ads/home/home-tabs.inc.html' with class="dmb-u-m-t-l dmb-u-m-b-m" %}
+    {% trans "How it works" as home_tabs_section_heading %}
+    {% trans "Benchmark which stage your organisation is at on our digital maturity scale." as home_tabs_section_subheading %}
+    {% include 'public/inc/home/home-tabs-section.inc.html' with class="dmb-u-m-t-l dmb-u-m-b-l" heading=home_tabs_section_heading subheading=home_tabs_section_subheading levels=levels_info only %}
 
     {% include 'public/ads/home/tile-carousel.inc.html' %}
 

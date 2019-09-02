@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.survey.stickyProgress');
-
 import * as scrollServiceConfig from '../components/scroll/scroll.service';
 
 

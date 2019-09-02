@@ -2,7 +2,7 @@
  * @fileoverview Initial feature detections that allow us to style the page
  * differently and prevent FOUC.
  */
-goog.module.declareNamespace('dmb.detect');
+goog.declareModuleId('dmb.detect');
 
 
 import * as glueApp from '@google/glue/lib/app/app';

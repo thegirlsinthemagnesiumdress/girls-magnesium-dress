@@ -34,6 +34,8 @@ $block: '.dmb-progress-grid';
     align-self: start;
     margin: 20px 8px 0;
     text-align: center;
+
+    @include dmb-resp-prop(font-size, 14px, 16px, 18px);
   }
 
   &__v-bar,

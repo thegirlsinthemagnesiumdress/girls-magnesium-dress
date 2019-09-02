@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.survey.sidePanel');
-
 import {SidePanel} from '../components/side-panel/side-panel.class';
 
 /**

@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.reportAdmin');
-
 import * as directive from './report-list.directive';
 
 /** @const {string} */
