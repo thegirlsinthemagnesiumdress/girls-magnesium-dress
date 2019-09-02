@@ -417,7 +417,8 @@ def generate_csv_export(tenant, survey_fields, survey_result_fields, prefix):
                     'country': settings.COUNTRIES.get(survey.country),
                     'created_at': survey.created_at,
                     'engagement_lead': survey.engagement_lead,
-                    'tenant': survey.tenant
+                    'tenant': survey.tenant,
+                    'account_id': survey.account_id,
                 })
                 if survey.last_survey_result:
                     survey_data['excluded_from_best_practice'] = survey.last_survey_result.excluded_from_best_practice
