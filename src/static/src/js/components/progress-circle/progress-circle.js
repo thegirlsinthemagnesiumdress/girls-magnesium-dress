@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressCircle');
-
 import * as directive from './progress-circle.directive';
 
 

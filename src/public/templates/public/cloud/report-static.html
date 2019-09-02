@@ -1,20 +1,17 @@
 {% extends 'public/base.html' %}
 
-{% load angular %}
-
 {% block body_class %}dmb-report{% endblock %}
 
 {% block main %}
 <main id="dmb-report" dmb-report ng-cloak>
-  <div ng-if="reportCtrl.overallResult !== null">
-    {% include 'public/cloud/report/report-intro.inc.html' %}
-    {% include 'public/cloud/report/report-hero.inc.html' %}
-    {% include 'public/cloud/report/report-overall.inc.html' %}
-    {% include 'public/cloud/report/report-dimensions.inc.html' %}
-  </div>
-    {% if debug or is_nightly %}
-      {% include 'public/inc/report/report-debug.inc.html' %}
-    {% endif %}
+  {% include 'public/cloud/report/report-intro.inc.html' %}
+  {% include 'public/cloud/report/report-hero.inc.html' %}
+  {% include 'public/cloud/report/report-overall.inc.html' %}
+  {% include 'public/cloud/report/report-dimensions.inc.html' %}
+
+  {% if debug or is_nightly %}
+    {% include 'public/inc/report/report-debug.inc.html' %}
+  {% endif %}
 </main>
 
 <div class="dmb-report-page__appendix dmb-h-hidden--screen">

@@ -5,13 +5,11 @@
 
 {% block main %}
 <main id="dmb-report" dmb-report ng-cloak>
-  <div ng-if="reportCtrl.overallResult !== null">
-    {% include 'public/ads/report/report-intro.inc.html' %}
-    {% include 'public/ads/report/report-hero.inc.html' %}
-    {% include 'public/ads/report/report-overall.inc.html' %}
-    {% include 'public/ads/report/report-dimensions.inc.html' %}
-    {% include 'public/inc/report/report-footer.inc.html' %}
-  </div>
+  {% include 'public/ads/report/report-intro.inc.html' %}
+  {% include 'public/ads/report/report-hero.inc.html' %}
+  {% include 'public/ads/report/report-overall.inc.html' %}
+  {% include 'public/ads/report/report-dimensions.inc.html' %}
+  {% include 'public/inc/report/report-footer.inc.html' %}
 
   {% if debug or staging %}
     {% include 'public/inc/report/report-debug.inc.html' %}

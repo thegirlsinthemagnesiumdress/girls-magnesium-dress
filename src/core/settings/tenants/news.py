@@ -503,7 +503,7 @@ CONTENT_DATA = {
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
-    'dimension_labels': DIMENSION_TITLES,
+    'dimension_titles': DIMENSION_TITLES,
     'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_recommendations': DIMENSION_RECOMMENDATIONS,

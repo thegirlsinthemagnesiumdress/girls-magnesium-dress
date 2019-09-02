@@ -50,7 +50,7 @@ DIMENSION_ORDER = [
 ]
 
 
-SUBDIMENSION_TITLES = {
+SUBDIMENSION_NAMES = {
     SUBDIMENSION_EXTERNAL_EXPERIENCE: 'External Experience',
     SUBDIMENSION_UPSKILLING: 'Upskilling',
     SUBDIMENSION_TEAMWORK: 'Teamwork',
@@ -86,8 +86,13 @@ SUBDIMENSION_ORDER = {
     ]
 }
 
+SUBDIMENSIONS_REPORT_HEADING = 'Epics'
 
-SUBDIMENSION_DESCRIPTION = 'Epics are clearly defined, nonoverlapping workstreams tied back to the four themes of cloud maturity. You should design programs around the epics to help you solidify your maturity in any given phase, or take it to the next level. More information on the themes and epics of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
+SUBDIMENSIONS_REPORT_DESCRIPTION = 'Epics are clearly defined, nonoverlapping workstreams tied back to the four themes of cloud maturity. You should design programs around the epics to help you solidify your maturity in any given phase, or take it to the next level. More information on the themes and epics of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
+
+SUBDIMENSIONS_REPORT_CTA = 'Learn more about epics'
+
+SUBDIMENSIONS_REPORT_SUBHEADING = 'Here’s how you score for the epics in this theme'
 
 
 SUBDIMENSION_DESCRIPTIONS = {
@@ -103,6 +108,7 @@ SUBDIMENSION_DESCRIPTIONS = {
     SUBDIMENSION_IDENTITY_MANAGEMENT: 'Reliably authenticating users’ or services’ identity and guarding against loss of credentials and attempts at impersonation.',
     SUBDIMENSION_ACCESS_MANAGEMENT: 'Ensuring that only the right people and services are authorized to perform the right actions on the right resources.',
 }
+
 
 DIMENSIONS = {
     DIMENSION_LEARN: [
@@ -231,7 +237,6 @@ REPORT_LEVEL_DESCRIPTIONS = {
 INDUSTRY_AVG_DESCRIPTION = 'How organizations perform on average; dynamically calculated based on the results of those who have completed this survey.'
 
 INDUSTRY_BEST_DESCRIPTION = 'This is the highest recorded score from a participant who has taken the Google Cloud Maturity Assessment.'
-
 
 
 DIMENSION_HEADER_DESCRIPTIONS = {
@@ -839,12 +844,15 @@ DIMENSION_RECOMMENDATIONS = {
 
 DIMENSION_SIDEPANEL_HEADING = 'We measure cloud maturity across four themes that define the foundation of cloud readiness. An organization\'s readiness for success in the cloud is determined by current business practices in each of these four themes. More information on the themes of cloud maturity can be found in the <a class="h-c-inline-link" href="https://cloud.google.com/adoption-framework/">Google Cloud Adoption Framework</a> whitepaper.'
 
+
 DIMENSION_SIDEPANEL_DESCRIPTIONS = {
     DIMENSION_LEARN: 'The quality and scale of the learning programs in place to upskill technical teams, and the ability to augment IT staff with experienced partners.',
     DIMENSION_LEAD: 'The extent to which IT teams are supported by a mandate from leadership to migrate to the cloud, and the degree in which the teams themselves are cross-functional, collaborative, and self-motivated.',
     DIMENSION_SCALE: 'The extent to which cloud-native services are used that reduce operational overhead and automate manual processes and policies.',
     DIMENSION_SECURE: 'The capability to protect services from unauthorized and inappropriate access with a multilayered, identity-centric security model.',
 }
+
+SUBDIMENSIONS_SIDEPANEL_HEADING = 'Cloud adoption epics'
 
 
 CONTENT_DATA = {
@@ -854,7 +862,7 @@ CONTENT_DATA = {
     'level_descriptions': LEVELS_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
-    'dimension_labels': DIMENSION_TITLES,
+    'dimension_titles': DIMENSION_TITLES,
     'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_recommendations': DIMENSION_RECOMMENDATIONS,
@@ -862,9 +870,14 @@ CONTENT_DATA = {
     'industry_best_description': INDUSTRY_BEST_DESCRIPTION,
     'dimension_sidepanel_heading': DIMENSION_SIDEPANEL_HEADING,
     'dimension_sidepanel_descriptions': DIMENSION_SIDEPANEL_DESCRIPTIONS,
-    'subdimensions': SUBDIMENSION_ORDER,
-    'subdimension_description': SUBDIMENSION_DESCRIPTION,
-    'subdimension_labels': SUBDIMENSION_TITLES,
+    'subdimension_lists': SUBDIMENSION_ORDER,
+
+    'subdimensions_report_heading': SUBDIMENSIONS_REPORT_HEADING,
+    'subdimensions_report_description': SUBDIMENSIONS_REPORT_DESCRIPTION,
+    'subdimensions_report_cta': SUBDIMENSIONS_REPORT_CTA,
+    'subdimensions_report_subheading': SUBDIMENSIONS_REPORT_SUBHEADING,
+    'subdimensions_sidepanel_heading': SUBDIMENSIONS_SIDEPANEL_HEADING,
+    'subdimension_names': SUBDIMENSION_NAMES,
     'subdimension_descriptions': SUBDIMENSION_DESCRIPTIONS,
 }
 
@@ -872,7 +885,7 @@ CONTENT_DATA = {
 GOOGLE_SHEET_EXPORT_SURVEY_FIELDS = GOOGLE_SHEET_BASE_SURVEY_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS = GOOGLE_SHEET_BASE_RESULT_FIELDS.copy()
 GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(DIMENSION_TITLES)
-GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(SUBDIMENSION_TITLES)
+GOOGLE_SHEET_EXPORT_RESULT_FIELDS.update(SUBDIMENSION_NAMES)
 #####  END OF GOOGLE SHEETS EXPORT TENANT CUSTOMIZATION #####
 
 HIERARCHICAL_INDUSTRIES = OrderedDict([
