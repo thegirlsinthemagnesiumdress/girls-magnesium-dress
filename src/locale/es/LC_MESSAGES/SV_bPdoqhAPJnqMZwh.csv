@@ -1,0 +1,301 @@
+PhraseID,ES-ES
+SV_bPdoqhAPJnqMZwh,
+QID177_QuestionText,"<div class=""dmb-survey-hero""><div class=""dmb-survey-hero__lockup dmb-u-m-b-s""><svg class=""dmb-survey-hero__company-logo"" viewBox=""0 0 74 24"" width=""100%"" height=""100%""><path fill=""#4285F4"" d=""M9.24 8.19v2.46h5.88c-.18 1.38-.64 2.39-1.34 3.1-.86.86-2.2 1.8-4.54 1.8-3.62 0-6.45-2.92-6.45-6.54s2.83-6.54 6.45-6.54c1.95 0 3.38.77 4.43 1.76L15.4 2.5C13.94 1.08 11.98 0 9.24 0 4.28 0 .11 4.04.11 9s4.17 9 9.13 9c2.68 0 4.7-.88 6.28-2.52 1.62-1.62 2.13-3.91 2.13-5.75 0-.57-.04-1.1-.13-1.54H9.24z""></path><path fill=""#EA4335"" d=""M25 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52z""></path><path fill=""#4285F4"" d=""M53.58 7.49h-.09c-.57-.68-1.67-1.3-3.06-1.3C47.53 6.19 45 8.72 45 12c0 3.26 2.53 5.81 5.43 5.81 1.39 0 2.49-.62 3.06-1.32h.09v.81c0 2.22-1.19 3.41-3.1 3.41-1.56 0-2.53-1.12-2.93-2.07l-2.22.92c.64 1.54 2.33 3.43 5.15 3.43 2.99 0 5.52-1.76 5.52-6.05V6.49h-2.42v1zm-2.93 8.03c-1.76 0-3.1-1.5-3.1-3.52 0-2.05 1.34-3.52 3.1-3.52 1.74 0 3.1 1.5 3.1 3.54.01 2.03-1.36 3.5-3.1 3.5z""></path><path fill=""#FBBC05"" d=""M38 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52z""></path><path fill=""#34A853"" d=""M58 .24h2.51v17.57H58z""></path><path fill=""#EA4335"" d=""M68.26 15.52c-1.3 0-2.22-.59-2.82-1.76l7.77-3.21-.26-.66c-.48-1.3-1.96-3.7-4.97-3.7-2.99 0-5.48 2.35-5.48 5.81 0 3.26 2.46 5.81 5.76 5.81 2.66 0 4.2-1.63 4.84-2.57l-1.98-1.32c-.66.96-1.56 1.6-2.86 1.6zm-.18-7.15c1.03 0 1.91.53 2.2 1.28l-5.25 2.17c0-2.44 1.73-3.45 3.05-3.45z""></path></svg><span class=""dmb-survey-hero__product-logo h-c-header__product-logo-text"">➘➘➘Digital Maturity Benchmark➘ ➘➘</span>➘</div><br>➘<h1 class=""dmb-primary-heading h-c-headline h-c-headline--two dmb-u-m-b-s"">${e://Field/company_name}<br>➘➘➘Evaluación del nivel de desarrollo de marketing➘ ➘➘</h1><p class=""h-c-headline h-c-headline--four dmb-u-m-b-s"">➘➘➘Esta evaluación detallada consta de 50 preguntas sobre 6 dimensiones relativas al marketing basado en datos. Puede rellenarse individualmente o en grupo, pero debe hacerlo alguien que conozca bien todos los aspectos de tu organización.➘➘➘</p><button class=""dmb-survey-hero__panel-button h-c-button h-c-button--flat"" dmb-side-panel-trigger=""#checklist"">➘➘➘Información que debes saber➘➘➘</button><div class=""dmb-collaboration""><div class=""dmb-collaboration__text h-c-footnote"">➘➘➘En asociación con ➘➘➘</div><div class=""dmb-collaboration__logos dmb-collaboration__logos--large""><img class=""dmb-collaboration__img dmb-collaboration__img--large"" srcset=""${e://Field/static_url}/img/partners/bcg-logo.png 1x,${e://Field/static_url}/img/partners/bcg-logo@2x.png 2x"" src=""${e://Field/static_url}/img/partners/bcg-logo.png"" alt=""BCG logo""></div></div>"
+QID178_QuestionText,"<div class=""dmb-survey-hero__instructions""><h2 class=""h-c-headline h-c-headline--subhead"">➘➘➘Rellenar la evaluación➘➘➘</h2><p class=""dmb-u-m-b-s"">➘➘➘Las respuestas se van guardando a medida que avanzas. Si tienes que hacer una pausa o necesitas preguntar a otros compañeros, puedes usar este enlace para volver inmediatamente al punto donde lo habías dejado. Debes terminar la evaluación y enviarla en un plazo de 30 días desde el momento en que la inicias.➘➘➘</p><h2 class=""h-c-headline h-c-headline--subhead"">➘➘➘¿Quieres compartir esta evaluación?➘➘➘</h2><p class=""dmb-u-m-b-s"">➘➘➘Si sabes todo lo necesario para responder las preguntas, puedes hacerlo individualmente. Si no, puedes reunirte con otros miembros de tu equipo o compartir esta evaluación con ellos para responderlas juntos.➘➘➘</p><p class=""dmb-u-m-b-s"">➘➘➘Para compartir esta evaluación, haz clic en el botón para copiar el enlace único y guárdalo en un lugar seguro.➘➘➘</p><div class=""dmb-survey-copy-url""><input id=""dmb-survey-url"" class=""dmb-survey-copy-url__text""><button id=""dmb-copy-btn"" class=""dmb-survey-copy-url__button dmb-outline-button h-c-button"" ng-click=""registrationCtrl.copy()"">➘➘➘Copiar➘➘➘</button><p id=""dmb-copy-message"" class=""dmb-survey-copy-url__message"">​<span class=""dmb-survey-copy-url__message-text dmb-survey-copy-url__message-text--success"">➘➘➘Se ha copiado en el portapapeles.➘➘➘</span><span class=""dmb-survey-copy-url__message-text dmb-survey-copy-url__message-text--error"">➘➘➘No se ha podido copiar.➘➘➘</span></p></div></div>"
+QID179_QuestionText,"Una vez terminada la evaluación, ¿dónde debemos enviar los resultados?"
+QID179_Choice4,Introduce tu dirección de correo electrónico (obligatorio)
+QID179_Choice5,¿A qué otras direcciones se debería enviar el informe? (opcional)
+QID180_QuestionText,"<div class=""dmb-survey-privacy-policy dmb-u-m-b-s""><p class=""h-u-font-weight-regular"">➘➘➘Para que podamos crear el informe, debes aceptar que usemos las respuestas.➘➘➘➘</p><p class=""h-c-footnote"">➘➘➘Al usar esta herramienta aceptas que el informe que se generará se te proporciona tal cual, sin ningún tipo de garantía implícita ni explícita de ser adecuado para ninguna finalidad concreta, ni de no incumplir ningún requisito. Tampoco se asegura que la información contenida en el informe sea precisa ni fiable, ni que no contenga errores. Todo riesgo derivado de su uso es responsabilidad tuya. Entiendes y aceptas que toda acción que lleves a cabo basándote en los datos del informe la realizarás a tu discreción y asumiendo cualquier riesgo relacionado. Google y algunos terceros pueden usar de forma agregada y anónima todos los datos que introduzcas en la herramienta.➘➘➘<a href=""https://policies.google.com/privacy?hl=es"" target=""_blank"" class=""h-c-inline-link"">➘➘➘Privacidad y términos➘➘➘</a></p></div>"
+QID180_Choice1,Acepto la política de privacidad y las condiciones del servicio de Google.
+QID181_QuestionText,"<div class=""dmb-side-panel dmb-side-panel--narrow"" dmb-side-panel="""" id=""checklist""><button class=""dmb-side-panel__fab dmb-fab"" dmb-side-panel-close=""""><span class=""dmb-fab__icon""><svg height=""24"" viewbox=""0 0 24 24"" width=""24"" xmlns=""http://www.w3.org/2000/svg""><path d=""M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z""></path><path d=""M0 0h24v24H0z"" fill=""none""></path></svg></span><span class=""dmb-fab__text"">➘➘➘Cerrar➘➘➘</span></button><div class=""dmb-side-panel__inner""><h1 class=""h-c-headline h-c-headline--two"">➘➘➘Temas que se tratan en la evaluación➘➘➘</h1><p>➘➘➘En la evaluación se hacen preguntas sobre los aspectos siguientes de la estrategia de marketing de tu organización:➘➘➘</p><ul class=""dmb-styled-list""><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Cómo está organizado el equipo de marketing y cómo colabora con otros equipos (por ejemplo, el de compra de medios) y partners externos.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Hasta qué punto se personaliza el mensaje en cada canal.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Qué plataformas tecnológicas se usan en el marketing (analíticas de datos, gestión de contenidos, generación de insights, publicación de anuncios, medición).➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Cómo se usan los datos para crear campañas, anuncios y sitios web.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Cómo se supervisan la calidad y el éxito de las campañas de marketing.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Con qué frecuencia se llevan a cabo experimentos o auditorías en las campañas.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Qué procesos son manuales y cuáles automáticos.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘La velocidad de carga y la usabilidad de los canales de los que la organización es propietaria directa.➘➘➘</li><li class=""dmb-styled-list__item dmb-u-m-b-s"">➘➘➘Cómo se crean audiencias.➘➘➘</li></ul></div></div><div class=""dmb-button-text dmb-button-text--prev"">➘➘➘Anterior➘➘➘</div><div class=""dmb-button-text dmb-button-text--next"">➘➘➘Siguiente➘➘➘</div>"
+QID182_QuestionText,"<div class=""dmb-survey-banner""><div class=""dmb-survey-banner__logo""><svg width=""68px"" height=""22px"" viewBox=""0 0 68 22"" xmlns=""http://www.w3.org/2000/svg""><g fill=""none"" fill-rule=""evenodd""><path d=""M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z"" fill=""#4285F4""></path><path d=""M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413"" fill=""#EA4335""></path><path d=""M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413"" fill=""#FBBC05""></path><path d=""M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z"" fill=""#4285F4""></path><path fill=""#34A853"" d=""M53.75 16.486h2.379V.574h-2.38z""></path><path d=""M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496"" fill=""#EA4335""></path></g></svg></div><div class=""dmb-survey-banner__title"">${e://Field/company_name} <br>➘➘➘Evaluación del nivel de desarrollo digital➘➘➘</div></div>"
+QID148_QuestionText,"<h2 class=""dmb-dimension-header h-c-headline h-c-headline--two""><img class=""dmb-dimension-header__icon dmb-u-m-b-s"" src=""${e://Field/static_url}/img/${e://Field/tenant}/dimensions/organization.svg"">➘➘➘Organización➘➘➘</h2>➘➘➘¿Desde qué nivel de la jerarquía de la organización se aboga por el marketing basado en datos?"
+QID148_Choice1,Los cargos sénior defienden su uso hasta cierto punto.
+QID148_Choice2,"Los cargos medios, como los directores locales, defienden su uso."
+QID148_Choice3,"Los altos cargos, como el vicepresidente, defienden su uso."
+QID148_Choice4,"Algunos cargos sénior, como el CMO, CTO o COO, defienden su uso."
+QID148_Choice5,El CEO defiende su uso.
+QID153_QuestionText,¿Cuál de las afirmaciones siguientes describe mejor el proceso de ejecución de la estrategia de marketing de la organización?
+QID153_Choice1,Los recursos internos o equipos independientes que llevan a cabo la estrategia de marketing no son quienes la deciden.
+QID153_Choice2,Tenemos cargos dedicados que se ocupan de varios canales y partners que colaboran en el lanzamiento de las campañas de más envergadura. La interacción diaria es limitada.
+QID153_Choice3,Hemos definido procesos diarios y puntos de contacto para los encargados de los distintos canales y partners externos.
+QID153_Choice4,Aplicamos procesos totalmente integrados y ágiles de cooperación entre equipos de varios canales e incluimos ecosistemas de partners relevantes.
+QID155_QuestionText,¿Cuáles de estas prácticas se siguen de manera uniforme en la organización? Selecciona todas las respuestas que correspondan.
+QID155_Choice1,"Seguimos procesos ágiles; por ejemplo, trabajamos por equipos multifunción que se organizan por sprints."
+QID155_Choice2,Seguimos un enfoque de experimentación y reservamos presupuesto para hacer experimentos.
+QID155_Choice3,"Compartimos prácticas recomendadas de marketing, por ejemplo, de una campaña o región a otra."
+QID155_Choice4,"Organizamos a los miembros de los equipos multifuncionales en la misma ubicación; por ejemplo, todos los miembros de un equipo están ubicados en una misma planta."
+QID154_QuestionText,¿Cuál de las siguientes afirmaciones describe mejor la forma de cooperar de las agencias que la organización tiene como partners?
+QID154_Choice1,Las agencias trabajan principalmente de manera independiente.
+QID154_Choice2,"Hay cierta colaboración entre agencias; por ejemplo, la agencia trabaja con los responsables de gestionar la publicidad de display, pero no con quienes gestionan la de búsqueda."
+QID154_Choice3,"Hay colaboración entre agencias, y se organizan reuniones regularmente en las que todas participan, por ejemplo, para planificar campañas."
+QID154_Choice4,"Todas las agencias colaboran activamente, por ejemplo, en proyectos conjuntos de varias agencias o en equipos de campaña virtuales."
+QID152_QuestionText,¿Cómo se fijan los objetivos de los canales de marketing en la organización?
+QID152_Choice1,Se marcan objetivos independientes para cada canal.
+QID152_Choice2,"Los objetivos son bastante independientes de un canal a otro, pero hay ciertos objetivos comunes."
+QID152_Choice3,"Hay objetivos comunes a varios canales, por ejemplo, a todos los canales digitales."
+QID152_Choice4,Hay objetivos comunes a todos los canales digitales y no digitales. Los objetivos están vinculados con el rendimiento general de la empresa.
+QID150_QuestionText,"En la organización, ¿hay personal dedicado a la medición que se centra en la actividad del marketing digital?"
+QID150_Choice1,No.
+QID150_Choice2,"Sí, pero no se dedican completamente a ello."
+QID150_Choice3,"Sí, hay recursos dedicados completamente a ello."
+QID149_QuestionText,"En la organización, ¿hay científicos de datos centrados en la actividad del marketing digital?"
+QID149_Choice1,No.
+QID149_Choice2,"Sí, pero no se dedican completamente a ello."
+QID149_Choice3,"Sí, hay recursos dedicados completamente a ello."
+QID151_QuestionText,"En la organización, ¿hay especialistas centrados en actividades de marketing digital y dedicados a canales concretos (como la Búsqueda, los medios sociales o la programática)?"
+QID151_Choice1,No.
+QID151_Choice2,"Sí, pero no se dedican completamente a ello."
+QID151_Choice3,"Sí, hay recursos dedicados completamente a ello."
+QID183_QuestionText,"<div class=""dmb-survey-banner""><div class=""dmb-survey-banner__logo""><svg width=""68px"" height=""22px"" viewBox=""0 0 68 22"" xmlns=""http://www.w3.org/2000/svg""><g fill=""none"" fill-rule=""evenodd""><path d=""M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z"" fill=""#4285F4""></path><path d=""M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413"" fill=""#EA4335""></path><path d=""M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413"" fill=""#FBBC05""></path><path d=""M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z"" fill=""#4285F4""></path><path fill=""#34A853"" d=""M53.75 16.486h2.379V.574h-2.38z""></path><path d=""M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496"" fill=""#EA4335""></path></g></svg></div><div class=""dmb-survey-banner__title"">${e://Field/company_name} <br>➘➘➘Evaluación del nivel de desarrollo digital➘➘➘</div></div>"
+QID117_QuestionText,"<h2 class=""dmb-dimension-header h-c-headline h-c-headline--two""><img class=""dmb-dimension-header__icon dmb-u-m-b-s"" src=""${e://Field/static_url}/img/${e://Field/tenant}/dimensions/access.svg"">➘➘➘Acceso➘➘➘</h2>➘➘➘➘¿Cuál de las opciones siguientes describe mejor la forma en la que la organización compra medios digitales?"
+QID117_Choice1,Solemos comprar directamente de los editores (reserva) o de redes publicitarias.
+QID117_Choice2,Compramos principalmente publicidad programática mediante subastas abiertas o funciones de programática directa. Optimizamos las compras de manera independiente en cada canal.
+QID117_Choice3,Compramos principalmente publicidad programática mediante subastas abiertas o funciones de programática directa. Optimizamos las compras de manera conjunta en los canales digitales.
+QID117_Choice4,"Compramos principalmente publicidad programática mediante distintos tipos de acuerdos, como subastas abiertas y privadas, acuerdos preferentes o programática garantizada. Optimizamos las compras de medios en los canales digitales. Compramos de manera programática parte de los medios no digitales."
+QID118_QuestionText,¿Cómo de diversa es la estrategia de marketing de display y de vídeo de la organización?
+QID118_Choice1,Compramos principalmente publicidad de display y de vídeo para ordenadores.
+QID118_Choice2,Compramos publicidad de display y de vídeo para ordenadores y para sitios web móviles. Seguimos una estrategia de audiencia diferente en función del canal o del formato.
+QID118_Choice3,"Compramos publicidad de display y de vídeo para ordenadores, sitios web y aplicaciones móviles, tanto en medios nativos como no nativos. Aplicamos estrategias de audiencia y segmentación en algunos de los canales o formatos."
+QID118_Choice4,"Compramos en todos los canales, dispositivos y formatos. También incluimos publicidad en exteriores y televisión digitales. Seguimos una estrategia de audiencia integral en todos los canales."
+QID161_QuestionText,¿Cómo enfoca la organización la seguridad de marca al comprar medios digitales?
+QID161_Choice1,Usamos las medidas disponibles en la configuración predeterminada de la plataforma en cuestión.
+QID161_Choice2,"Usamos la configuración predeterminada de la plataforma y evaluamos la seguridad de marca mediante informes para añadir sitios web concretos a la lista blanca o la negra, o retirarlos de ellas."
+QID161_Choice3,Usamos una solución de seguridad de marca dedicada en nuestros canales más importantes y supervisamos informes para actualizar nuestros filtros de categorías.
+QID161_Choice4,"Usamos una solución de seguridad de marca dedicada en todos los canales, supervisamos informes, actualizamos nuestros filtros de categorías y analizamos insights para mejorar nuestra solución."
+QID120_QuestionText,¿Como se asegura la organización de que la publicidad de vídeo y display que compra tiene suficiente visibilidad?
+QID120_Choice1,No usamos herramientas de medición de visibilidad.
+QID120_Choice2,Medimos la visibilidad mediante informes post-campaña.
+QID120_Choice3,"Usamos las métricas de visibilidad para fundamentar las decisiones de compra de medios futuras, por ejemplo, para reasignar presupuestos."
+QID120_Choice4,Las métricas de visibilidad se usan de forma activa como señal de compra en las plataformas de programática.
+QID162_QuestionText,¿Cómo se asegura la organización de que la publicidad de vídeo y display que compra tiene buena calidad?
+QID162_Choice1,"La calidad de la publicidad no tiene relevancia para nosotros, o apenas la tiene, ya que compramos medios principalmente a sitios web que conocemos y en los que confiamos, por ejemplo, de reserva."
+QID162_Choice2,"Sabemos que los archivos ads.txt declaran vendedores autorizados y, si identificamos algún problema, supervisamos nuestros informes para detectar posibles fraudes."
+QID162_Choice3,"Supervisamos los informes de fraude regularmente y optimizamos nuestras compras de medios; por ejemplo, retiramos los sitios web o vendedores sospechosos del inventario agregado."
+QID162_Choice4,Supervisamos y optimizamos las compras de medios de manera activa. Estamos en contacto con los editores para prevenir el fraude.
+QID116_QuestionText,¿Cuál es el enfoque de la organización respecto a la limitación de frecuencia?
+QID116_Choice1,"Solemos aplicar una limitación arbitraria, o no la aplicamos en absoluto."
+QID116_Choice2,Aplicamos limitaciones de frecuencia en función de nuestros propios informes sobre rutas de conversión.
+QID116_Choice3,Basamos nuestras limitaciones de frecuencia en los insights que obtenemos de nuestras propias campañas. Hacemos pruebas para encontrar el equilibrio óptimo entre frecuencia y cobertura en todas nuestras compras de medios.
+QID116_Choice4,Basamos nuestras limitaciones de frecuencia en los insights que obtenemos de nuestras propias campañas. Hemos consolidado casi todas las compras de medios y gestionamos la frecuencia en todas ellas para maximizar la cobertura y el rendimiento.
+QID119_QuestionText,¿Cómo de diversa es la estrategia de marketing en buscadores de la organización?
+QID119_Choice1,Hacemos publicidad basándonos en palabras clave relacionadas con nuestra marca y nuestros productos más importantes. Usamos principalmente anuncios de búsqueda estándar.
+QID119_Choice2,"Hacemos publicidad basándonos en palabras clave relacionadas con nuestra marca y todos nuestros productos y sus categorías. Usamos principalmente anuncios de búsqueda estándar y hemos empezado a utilizar formatos especializados, como anuncios locales y de Shopping."
+QID119_Choice3,"Hacemos publicidad basándonos en palabras clave relacionadas con nuestra marca, todos nuestros productos y sus categorías, y otros términos relevantes. Usamos una combinación de anuncios de búsqueda estándar y formatos especializados, como anuncios locales y de Shopping."
+QID119_Choice4,"Hacemos publicidad basándonos en un conjunto exhaustivo de palabras clave que contiene todos los términos relevantes. Usamos todos los formatos de anuncio de búsqueda (como el estándar, el local y el de Shopping) en todas las plataformas relevantes y en todos los tipos de dispositivos. Si el sistema nos ofrece una selección automática de palabras clave, no dudamos en usarla (por ejemplo, en los anuncios de búsqueda dinámicos)."
+QID121_QuestionText,¿Cómo se asegura la organización de que la publicidad de búsqueda que compra tiene buena calidad?
+QID121_Choice1,"Aplicamos principalmente los métodos predeterminados de la plataforma que utilizamos, como la inhabilitación de las combinaciones de palabras clave con bajo rendimiento."
+QID121_Choice2,Creamos listas de palabras clave negativas basadas en prácticas recomendadas del sector y pruebas circunstanciales.
+QID121_Choice3,Creamos listas de palabras clave negativas basadas en informes sobre consultas de búsqueda de campañas anteriores.
+QID121_Choice4,"Buscamos activamente palabras negativas potenciales, supervisamos el rendimiento y compartimos listas de palabras clave entre todas las campañas."
+QID184_QuestionText,"<div class=""dmb-survey-banner""><div class=""dmb-survey-banner__logo""><svg width=""68px"" height=""22px"" viewBox=""0 0 68 22"" xmlns=""http://www.w3.org/2000/svg""><g fill=""none"" fill-rule=""evenodd""><path d=""M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z"" fill=""#4285F4""></path><path d=""M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413"" fill=""#EA4335""></path><path d=""M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413"" fill=""#FBBC05""></path><path d=""M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z"" fill=""#4285F4""></path><path fill=""#34A853"" d=""M53.75 16.486h2.379V.574h-2.38z""></path><path d=""M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496"" fill=""#EA4335""></path></g></svg></div><div class=""dmb-survey-banner__title"">${e://Field/company_name} <br>➘➘➘Evaluación del nivel de desarrollo digital➘➘➘</div></div>"
+QID128_QuestionText,"<h2 class=""dmb-dimension-header h-c-headline h-c-headline--two""><img class=""dmb-dimension-header__icon dmb-u-m-b-s"" src=""${e://Field/static_url}/img/${e://Field/tenant}/dimensions/audience.svg"">➘➘➘Audiencia➘➘➘</h2>➘➘➘➘¿Cuáles de los siguientes métodos de segmentación usa la organización? Selecciona todas las respuestas que correspondan."
+QID128_Choice1,"Orientamos la publicidad al embudo superior; por ejemplo, para aumentar la notoriedad."
+QID128_Choice2,"Orientamos la publicidad al embudo inferior; por ejemplo, para impulsar las ventas."
+QID128_Choice3,"Orientamos la publicidad al embudo intermedio; por ejemplo, para aumentar la consideración."
+QID126_QuestionText,¿Cuál de las siguientes afirmaciones describe mejor la consideración que la organización tiene de la audiencia?
+QID126_Choice1,Se trata la audiencia como un único segmento.
+QID126_Choice2,Se divide la audiencia en varios segmentos en función de datos sociodemográficos o de gasto.
+QID126_Choice3,"Se divide la audiencia en varios segmentos en función de perfiles de usuario, que se definen en función de comportamientos o intereses comunes."
+QID126_Choice4,"Se divide la audiencia en varios segmentos en función de analíticas avanzadas, incluidos métodos de aprendizaje automático."
+QID127_QuestionText,¿A cuántos segmentos de audiencia estratégicos se dirige la organización?
+QID127_Choice1,No usamos segmentos de audiencia.
+QID127_Choice2,2 o 3 segmentos.
+QID127_Choice3,4 o 5 segmentos.
+QID127_Choice4,6 segmentos o más.
+QID122_QuestionText,¿Qué fuentes de insights usa la organización para crear las audiencias de las campañas de display y de vídeo?
+QID122_Choice1,Nos basamos principalmente en datos de terceros proporcionados por las plataformas en las que nos anunciamos.
+QID122_Choice2,Usamos datos de terceros y propios que recogemos en cada canal.
+QID122_Choice3,Usamos datos de terceros y propios que recogemos en este canal y en otros.
+QID122_Choice4,"Usamos datos de terceros y propios, que conforman una fuente exhaustiva de insights que abarca tanto el comportamiento online como el offline."
+QID123_QuestionText,¿Qué fuentes de insights usa la organización para crear las audiencias de las campañas de búsqueda?
+QID123_Choice1,Nos basamos principalmente en datos de terceros proporcionados por las plataformas en las que nos anunciamos.
+QID123_Choice2,Usamos datos de terceros y propios que recogemos en este canal.
+QID123_Choice3,Usamos datos de terceros y propios que recogemos en este canal y en otros.
+QID123_Choice4,"Usamos datos de terceros y propios, que conforman una fuente exhaustiva de insights que abarca tanto el comportamiento online como el offline."
+QID124_QuestionText,¿Qué fuentes de insights usa la organización para crear las audiencias de las campañas de redes sociales?
+QID124_Choice1,Nos basamos principalmente en datos de terceros proporcionados por las plataformas en las que nos anunciamos.
+QID124_Choice2,Usamos datos de terceros y propios que recogemos en este canal.
+QID124_Choice3,Usamos datos de terceros y propios que recogemos en este canal y en otros.
+QID124_Choice4,"Usamos datos de terceros y propios, que conforman una fuente exhaustiva de insights que abarca tanto el comportamiento online como el offline."
+QID125_QuestionText,¿Qué fuentes de insights usa la organización para crear las audiencias de las campañas de correo electrónico?
+QID125_Choice1,Nos basamos principalmente en datos de terceros proporcionados por las plataformas en las que nos anunciamos.
+QID125_Choice2,Usamos datos de terceros y propios que recogemos en este canal.
+QID125_Choice3,Usamos datos de terceros y propios que recogemos en este canal y en otros.
+QID125_Choice4,"Usamos datos de terceros y propios, que conforman una fuente exhaustiva de insights que abarca tanto el comportamiento online como el offline."
+QID131_QuestionText,¿Cuál de estas afirmaciones describe mejor la manera en que la organización conecta los sistemas que le permiten transformar datos en insights y mejorar la activación del marketing?
+QID131_Choice1,"Los sistemas están conectados de forma limitada. Usamos datos independientes en cada canal; por ejemplo, datos de terceros para la publicidad de display y datos de CRM para el marketing por correo electrónico."
+QID131_Choice2,"Los sistemas de los canales online están conectados; por ejemplo, creamos modelos de audiencia mediante una combinación de datos propios y de terceros."
+QID131_Choice3,"Tenemos conectados los sistemas online y offline; por ejemplo, los sistemas de correo directo están vinculados con los que gestionan los datos propios."
+QID131_Choice4,"Tenemos conectados los sistemas online y offline, e incluimos otros datos contextuales. Por ejemplo, gestionamos datos propios y de terceros sobre el rendimiento de la empresa y sobre otros aspectos mediante una plataforma de gestión de datos."
+QID130_QuestionText,¿Qué medidas de mantenimiento aplica la organización a las listas de remarketing?
+QID130_Choice1,"No tenemos ninguna estrategia de mantenimiento de audiencias; por ejemplo, creamos listas específicas para cada campaña."
+QID130_Choice2,"Aplicamos medidas de mantenimiento de audiencias de manera retrospectiva; por ejemplo, actualizamos la lista de audiencias objetivo una vez terminada la campaña correspondiente."
+QID130_Choice3,Actualizamos las audiencias mientras las campañas están en marcha.
+QID130_Choice4,"Aplicamos medidas de mantenimiento de audiencias de manera continua; por ejemplo, actualizamos las listas de audiencias objetivo mediante reglas y automatización."
+QID132_QuestionText,¿En la organización o agencia se usan herramientas de CRM?
+QID132_Choice1,"No, o no lo sé."
+QID132_Choice2,"Sí, se ocupa de ellas un partner externo, como una agencia."
+QID132_Choice3,"Sí, nos ocupamos de ellas personalmente."
+QID132_Choice4,"Sí, nos ocupamos de ellas personalmente y están conectadas a otros sistemas, por ejemplo, una plataforma de gestión de datos."
+QID129_QuestionText,¿En la organización se usa alguna plataforma de gestión de datos?
+QID129_Choice1,"No, o no lo sé."
+QID129_Choice2,"Sí, se ocupa de ellas un partner externo, como una agencia."
+QID129_Choice3,"Sí, nos ocupamos de ellas personalmente."
+QID129_Choice4,"Sí, nos ocupamos de ella personalmente y está conectada a otros sistemas; por ejemplo, a una herramienta de CRM."
+QID185_QuestionText,"<div class=""dmb-survey-banner""><div class=""dmb-survey-banner__logo""><svg width=""68px"" height=""22px"" viewBox=""0 0 68 22"" xmlns=""http://www.w3.org/2000/svg""><g fill=""none"" fill-rule=""evenodd""><path d=""M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z"" fill=""#4285F4""></path><path d=""M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413"" fill=""#EA4335""></path><path d=""M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413"" fill=""#FBBC05""></path><path d=""M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z"" fill=""#4285F4""></path><path fill=""#34A853"" d=""M53.75 16.486h2.379V.574h-2.38z""></path><path d=""M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496"" fill=""#EA4335""></path></g></svg></div><div class=""dmb-survey-banner__title"">${e://Field/company_name} <br>➘➘➘Evaluación del nivel de desarrollo digital➘➘➘</div></div>"
+QID133_QuestionText,"<h2 class=""dmb-dimension-header h-c-headline h-c-headline--two""><img class=""dmb-dimension-header__icon dmb-u-m-b-s"" src=""${e://Field/static_url}/img/${e://Field/tenant}/dimensions/automation.svg"">➘➘➘Automatización➘➘➘</h2>➘➘➘➘En la organización, ¿cómo se gestionan el alojamiento y la publicación de creatividades?"
+QID133_Choice1,No se hace o no lo sé.
+QID133_Choice2,Algunas creatividades se alojan en un servidor de anuncios.
+QID133_Choice3,Todas las creatividades estáticas se alojan en un servidor de anuncios.
+QID133_Choice4,"Todas las creatividades se alojan en un servidor de anuncios, junto con algunos de los recursos dinámicos."
+QID163_QuestionText,¿Hasta qué punto ha automatizado la organización la optimización de la efectividad de las creatividades?
+QID163_Choice1,Creamos y optimizamos los anuncios manualmente.
+QID163_Choice2,"Creamos la mayoría de los anuncios manualmente y usamos las funciones estándar de cada plataforma, como la rotación de creatividades. Optimizamos la efectividad manualmente."
+QID163_Choice3,"Producimos creatividades dinámicas aplicando principalmente feeds de datos; por ejemplo, personalizamos el texto de los anuncios en función de la ubicación de los usuarios y de las palabras clave de sus consultas. Optimizamos las creatividades tanto de manera automática como manual. Centramos la automatización principalmente en un canal."
+QID163_Choice4,"Producimos creatividades dinámicas que adaptan el mensaje en tiempo real en función de feeds de datos, señales de comportamiento o datos de terceros. Hemos automatizado la mayor parte de la optimización en varios canales."
+QID163_Choice5,Producimos creatividades dinámicas que adaptan el mensaje en tiempo real en función señales de comportamiento (como qué usuarios abandonan el carrito o qué productos han visto) o datos de terceros. Automatizamos prácticamente la optimización de todos canales.
+QID136_QuestionText,¿Cuál de las afirmaciones siguientes describe mejor la técnica que la organización usa para ajustar las pujas de búsqueda?
+QID136_Choice1,Ajustamos las pujas de forma principalmente manual.
+QID136_Choice2,Utilizamos ajustes de puja (multiplicadores de pujas) basados en señales como el uso de dispositivos móviles o la ubicación de los usuarios. Actualizamos los ajustes de puja de manera frecuente.
+QID136_Choice3,Utilizamos ajustes basados en varias señales y aplicamos reglas automatizadas sencillas.
+QID136_Choice4,"Usamos pujas automáticas basadas en muchos factores, como la ubicación de los usuarios, su tipo de dispositivo, su comportamiento multidispositivo, la atribución basada en datos y otras señales."
+QID137_QuestionText,¿Cuál de las afirmaciones siguientes describe mejor la técnica que la organización usa para ajustar las pujas de búsqueda y de display?
+QID137_Choice1,Ajustamos las pujas de forma principalmente manual.
+QID137_Choice2,Utilizamos ajustes de puja (multiplicadores de pujas) basados en señales como el uso de dispositivos móviles o la ubicación de los usuarios. Actualizamos los ajustes de puja de manera frecuente.
+QID137_Choice3,Utilizamos ajustes basados en varias señales y aplicamos reglas automatizadas sencillas.
+QID137_Choice4,"Usamos pujas automáticas basadas en muchos factores, como la ubicación de los usuarios, su tipo de dispositivo, su comportamiento multidispositivo, la atribución basada en datos y otras señales."
+QID138_QuestionText,¿Hasta qué punto la organización ha automatizado la segmentación?
+QID138_Choice1,"Seleccionamos manualmente la mayoría de criterios de segmentación, como las palabras clave y los sitios web en los que se publican nuestros anuncios."
+QID138_Choice15,"Hemos empezado a usar funciones de automatización de la segmentación, indicando un único objetivo de campaña (por ejemplo, CPA objetivo), un presupuesto, y subiendo recursos de creatividades de búsqueda y de display."
+QID138_Choice16,"Usamos soluciones completas de automatización de la segmentación, indicando un único objetivo de campaña (por ejemplo, CPA objetivo), un presupuesto, y subiendo recursos de creatividades de búsqueda o de display."
+QID138_Choice17,"Usamos soluciones completas de automatización de la segmentación, indicando un único objetivo de campaña (por ejemplo, CPA objetivo), un presupuesto, y subiendo recursos de creatividades de búsqueda y de display."
+QID134_QuestionText,"En la organización, ¿se usa alguna plataforma de demanda?"
+QID134_Choice1,"No, o no lo sé."
+QID134_Choice2,"Sí, se ocupa de ella un partner externo, como una agencia."
+QID134_Choice3,"Sí, nos ocupamos de ella personalmente."
+QID134_Choice4,"Sí, nos ocupamos de ella personalmente y está conectada a otros sistemas, por ejemplo, a una herramienta de analítica web."
+QID135_QuestionText,¿Cuál de las afirmaciones siguientes describe mejor la manera en que la organización configura y gestiona las campañas?
+QID135_Choice1,"No lo sé, una agencia o partner se encarga de configurar y gestionar todas la campañas."
+QID135_Choice2,Configuramos y gestionamos nuestras campañas principalmente mediante la interfaz de usuario de la plataforma de anuncios que usamos actualmente.
+QID135_Choice3,"Configuramos y gestionamos nuestras campañas mediante la interfaz de la plataforma de anuncios que usamos actualmente, pero también usamos las API de dicha plataforma."
+QID135_Choice4,Configuramos y gestionamos las plataformas principalmente mediante las API y los archivos de datos estructurados de la plataforma que usamos actualmente.
+QID135_Choice5,"Configuramos, mantenemos y optimizamos las campañas, y creamos informes relacionados, mediante las API y los archivos de datos de estructurados de la plataforma que usamos actualmente."
+QID186_QuestionText,"<div class=""dmb-survey-banner""><div class=""dmb-survey-banner__logo""><svg width=""68px"" height=""22px"" viewBox=""0 0 68 22"" xmlns=""http://www.w3.org/2000/svg""><g fill=""none"" fill-rule=""evenodd""><path d=""M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z"" fill=""#4285F4""></path><path d=""M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413"" fill=""#EA4335""></path><path d=""M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413"" fill=""#FBBC05""></path><path d=""M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z"" fill=""#4285F4""></path><path fill=""#34A853"" d=""M53.75 16.486h2.379V.574h-2.38z""></path><path d=""M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496"" fill=""#EA4335""></path></g></svg></div><div class=""dmb-survey-banner__title"">${e://Field/company_name} <br>➘➘➘Evaluación del nivel de desarrollo digital➘➘➘</div></div>"
+QID139_QuestionText,"<h2 class=""dmb-dimension-header h-c-headline h-c-headline--two""><img class=""dmb-dimension-header__icon dmb-u-m-b-s"" src=""${e://Field/static_url}/img/${e://Field/tenant}/dimensions/attribution.svg"">➘➘➘Atribución➘➘➘</h2>➘➘➘¿Qué tipo de seguimiento y etiquetas se usan en la organización?"
+QID139_Choice1,Usamos seguimiento digital y etiquetas en algunos canales.
+QID139_Choice2,Aplicamos distintas formas de seguimiento digital y etiquetas en todos los canales.
+QID139_Choice3,Hemos unificado la nomenclatura del seguimiento digital y de las etiquetas en todos los canales y la de los eventos importantes de nuestros sitios web.
+QID139_Choice4,"Hacemos un seguimiento digital coherente mediante etiquetas de contenedor en todos los sitios web y todas las aplicaciones, y todas las campañas tienen etiquetas. Se capturan los eventos offline importantes."
+QID143_QuestionText,¿Qué metodologías de medición se aplican en la organización? Selecciona todas las respuestas que correspondan.
+QID143_Choice1,Aplicamos el seguimiento de marca.
+QID143_Choice2,Hacemos encuestas a consumidores.
+QID143_Choice3,Usamos modelos mixtos de marketing (econometría).
+QID143_Choice4,"Hacemos experimentos controlados, como de ubicación geográfica."
+QID143_Choice5,Usamos modelos de atribución.
+QID146_QuestionText,¿Con qué frecuencia se llevan a cabo pruebas A/B en la organización? Selecciona la opción más pertinente.
+QID146_Choice1,No hacemos pruebas A/B.
+QID146_Choice2,Menos de una vez por trimestre.
+QID146_Choice3,Una vez al mes.
+QID146_Choice4,Una vez a la semana.
+QID146_Choice5,Más de una vez a la semana.
+QID140_QuestionText,¿Cuál de los métricas de rendimiento siguientes se usan en la organización para evaluar la eficacia del marketing? Selecciona todas las respuestas que correspondan.
+QID140_Choice1,"Métricas de campaña, como el coste por clic."
+QID140_Choice2,"Métricas de conversión, como el número de conversiones."
+QID140_Choice3,"Métricas que son indicadores indirectos de conversiones, como la afluencia de visitantes a las tiendas físicas o los clientes potenciales que quieren hacer una prueba de conducción."
+QID140_Choice4,"Métricas de ingresos o rentabilidad, como los ingresos totales o el retorno de la inversión publicitaria."
+QID140_Choice5,Aumento de los ingresos y del valor del tiempo de vida de los clientes.
+QID141_QuestionText,¿En la organización o en la agencia se usan herramientas coherentes de analítica web?
+QID141_Choice1,"No, o no lo sé."
+QID141_Choice2,"Sí, se ocupa de ellas un partner externo, como una agencia."
+QID141_Choice3,"Sí, nos ocupamos de ellas personalmente."
+QID141_Choice4,"Sí, nos ocupamos de ellas personalmente y están conectadas a otros sistemas, por ejemplo, a una plataforma de demanda."
+QID144_QuestionText,¿Qué tipo de modelo de atribución usa principalmente la organización en los canales digitales?
+QID144_Choice1,No tenemos modelo de atribución.
+QID144_Choice2,Usamos un modelo de último clic.
+QID144_Choice3,"Usamos un modelo estándar basado en reglas, como un modelo basado en el declive en el tiempo."
+QID144_Choice4,Usamos un modelo personalizado basado en reglas que se ha desarrollado de acuerdo con nuestras especificaciones.
+QID144_Choice5,"Usamos un modelo multicontacto, fraccional y basado en datos, o algorítmico."
+QID145_QuestionText,¿Qué datos se tienen en cuenta en el modelo de atribución de la organización? Selecciona todas las respuestas que correspondan.
+QID145_Choice1,No tenemos modelo de atribución.
+QID145_Choice2,"Usamos datos de varios canales digitales, como la red de vídeo, de Búsqueda y de Display."
+QID145_Choice3,Usamos datos de todos los canales digitales.
+QID145_Choice4,Tenemos en cuenta el comportamiento multidispositivo.
+QID145_Choice5,"Tenemos en cuenta el comportamiento offline de los usuarios, como las visitas a tienda o las interacciones con centros de llamadas."
+QID142_QuestionText,¿Cuál es el grado de consolidación e integración de los informes en la organización?
+QID142_Choice1,Creamos informes independientes para cada canal y cada plataforma. El rendimiento se evalúa a nivel de campaña.
+QID142_Choice2,"Anulamos los duplicados hasta cierto punto en la publicidad de búsqueda y de display, y tenemos en cuenta el comportamiento multidispositivo."
+QID142_Choice3,"Tenemos una única fuente de información veraz relativa a los canales digitales. Tenemos en cuenta todos los puntos de contacto de medios digitales y el comportamiento en el sitio web. Tenemos en cuenta algunos datos no digitales, como las relaciones con los clientes o las visitas a tienda."
+QID142_Choice4,"Tenemos una única fuente de información veraz relativa a los canales digitales y no digitales. Dicha fuente incluye el comportamiento de los consumidores en las tiendas, los datos de producto y del sistema de CRM."
+QID147_QuestionText,"En la estrategia de marketing de la organización, ¿cómo se gestionan las pruebas y los resultados obtenidos?"
+QID147_Choice1,Hacemos un número de pruebas limitado. Los resultados obtenidos influyen en la planificación anual.
+QID147_Choice2,Hacemos pruebas habitualmente. Los resultados obtenidos influyen en la campaña siguiente.
+QID147_Choice3,Siempre estamos haciendo pruebas. Usamos los resultados para optimizar las campañas mientras se están publicando.
+QID147_Choice4,Siempre estamos haciendo pruebas. Usamos los resultados para optimizar las campañas mientras se están publicando en todos los canales.
+QID187_QuestionText,"<div class=""dmb-survey-banner""><div class=""dmb-survey-banner__logo""><svg width=""68px"" height=""22px"" viewBox=""0 0 68 22"" xmlns=""http://www.w3.org/2000/svg""><g fill=""none"" fill-rule=""evenodd""><path d=""M8.53 16.814C3.895 16.814 0 13.042 0 8.407 0 3.773 3.896 0 8.53 0c2.563 0 4.388 1.005 5.762 2.317l-1.62 1.62c-.984-.923-2.317-1.64-4.143-1.64-3.382 0-6.027 2.727-6.027 6.11 0 3.383 2.645 6.11 6.027 6.11 2.195 0 3.445-.881 4.245-1.681.656-.656 1.087-1.6 1.25-2.891H8.53V7.648h7.73c.083.41.124.903.124 1.435 0 1.723-.472 3.856-1.989 5.373-1.476 1.538-3.363 2.358-5.865 2.358z"" fill=""#4285F4""></path><path d=""M26.004 11.4c0-1.947-1.39-3.28-3-3.28s-3 1.333-3 3.28c0 1.928 1.39 3.281 3 3.281s3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413s-5.335-2.297-5.335-5.413c0-3.138 2.396-5.413 5.335-5.413 2.94 0 5.335 2.275 5.335 5.413"" fill=""#EA4335""></path><path d=""M37.964 11.4c0-1.947-1.389-3.28-3-3.28-1.61 0-3 1.333-3 3.28 0 1.928 1.39 3.281 3 3.281 1.611 0 3-1.353 3-3.28m2.335 0c0 3.116-2.396 5.413-5.335 5.413-2.94 0-5.335-2.297-5.335-5.413 0-3.138 2.395-5.413 5.335-5.413s5.335 2.275 5.335 5.413"" fill=""#FBBC05""></path><path d=""M49.869 11.421c0-1.906-1.272-3.302-2.891-3.302-1.64 0-3.014 1.396-3.014 3.302 0 1.887 1.374 3.26 3.014 3.26 1.62 0 2.89-1.373 2.89-3.26zm2.091-5.106v9.72c0 3.998-2.358 5.639-5.146 5.639-2.625 0-4.203-1.764-4.798-3.2l2.07-.86c.37.88 1.272 1.927 2.728 1.927 1.783 0 2.891-1.107 2.891-3.178v-.78h-.083c-.533.657-1.558 1.23-2.849 1.23-2.707 0-5.187-2.357-5.187-5.392 0-3.055 2.48-5.434 5.187-5.434 1.291 0 2.316.575 2.85 1.21h.082v-.882h2.255z"" fill=""#4285F4""></path><path fill=""#34A853"" d=""M53.75 16.486h2.379V.574h-2.38z""></path><path d=""M59.8 11.237l4.839-2.01c-.268-.676-1.067-1.148-2.01-1.148-1.21 0-2.89 1.066-2.83 3.158m5.68 1.948l1.845 1.23c-.594.882-2.03 2.399-4.51 2.399-3.075 0-5.297-2.379-5.297-5.413 0-3.22 2.241-5.414 5.03-5.414 2.809 0 4.183 2.235 4.634 3.445l.245.615-7.238 2.994c.555 1.086 1.415 1.64 2.626 1.64 1.209 0 2.05-.594 2.665-1.496"" fill=""#EA4335""></path></g></svg></div><div class=""dmb-survey-banner__title"">${e://Field/company_name} <br>➘➘➘Evaluación del nivel de desarrollo digital➘➘➘</div></div>"
+QID103_QuestionText,"<h2 class=""dmb-dimension-header h-c-headline h-c-headline--two""><img class=""dmb-dimension-header__icon dmb-u-m-b-s"" src=""${e://Field/static_url}/img/${e://Field/tenant}/dimensions/ads.svg"">➘➘➘Recursos y anuncios➘➘➘</h2>➘➘➘¿Cómo definirías la conexión entre los canales de comunicación que usa la organización?"
+QID103_Choice1,"Gestionamos cada canal (p. ej. display, búsqueda, redes sociales o correo electrónico) de forma bastante independiente."
+QID103_Choice2,"Hay coordinación entre los canales online, pero no hay un sistema de gestión simultánea."
+QID103_Choice3,Hay coordinación entre los canales online y la gestión es simultánea.
+QID103_Choice4,"Hay coordinación entre los canales online y offline, y la gestión es simultánea para todos."
+QID104_QuestionText,¿Cómo colaboran el equipo de compra de medios y el de elaboración de creatividades?
+QID104_Choice1,Colaboran poco o no trabajan juntos; tienen procesos creativos independientes y separados con conjuntos de herramientas propios.
+QID104_Choice2,"Hay cierta colaboración entre ellos, pero cada uno usa conjuntos de herramientas propios."
+QID104_Choice3,Trabajan conjuntamente y comparten herramientas de gestión de proyectos.
+QID104_Choice4,"Trabajan codo con codo desde la planificación hasta la publicación y usan herramientas colaborativas, como plataformas de gestión de creatividades."
+QID105_QuestionText,¿Cómo describirías los métodos que la organización usa para probar y mejorar la eficacia de las creatividades?
+QID105_Choice1,No hacemos pruebas o hacemos pocas.
+QID105_Choice2,"Se hacen pruebas a nivel individual, pero no forman parte de un plan de pruebas más amplio."
+QID105_Choice3,Hacemos pruebas A/B habitualmente. Los resultados suelen aprovecharse en las campañas siguientes. Los equipos no comparten datos o los comparten de forma limitada.
+QID105_Choice4,"Los equipos aplican una combinación de pruebas A/B potentes, encuestas a los consumidores y optimización en tiempo real. Los resultados siempre se aprovechan en las campañas siguientes. Los equipos digitales comparten datos."
+QID105_Choice5,"Los equipos aplican una combinación de pruebas A/B potentes, encuestas a los consumidores y optimización en tiempo real. Los resultados siempre se aprovechan en las campañas siguientes. Los equipos digitales y los no digitales comparten datos."
+QID102_QuestionText,¿Cuál de las siguientes afirmaciones describe mejor hasta qué punto la organización usa los datos para fundamentar el desarrollo de creatividades?
+QID102_Choice1,Las creatividades se basan principalmente en los principios de la marca y de los productos.
+QID102_Choice2,Las creatividades se basan principalmente en datos de un canal digital concreto y en analíticas avanzadas.
+QID102_Choice3,Las creatividades se basan principalmente en datos de todos los canales digitales relevantes y en analíticas avanzadas.
+QID102_Choice4,"Las creatividades se basan principalmente en datos de todos los canales digitales y no digitales, y en los principios de la marca y de los productos."
+QID106_QuestionText,"¿Cuánto tardan en cargar en dispositivos móviles los canales de los que la organización es propietaria directa (por ejemplo, su sitio web móvil, su aplicación nativa o su aplicación web)?➘<p class=""h-c-footnote"">Puedes hacer una prueba <a href=""https://testmysite.withgoogle.com/"" target=""_blank"" rel=""noopener"">con esta herramienta</a>.</p>"
+QID106_Choice1,Más de 8 segundos.
+QID106_Choice2,"Entre 8 y 5,1 segundos."
+QID106_Choice3,"Entre 5 y 3,1 segundos."
+QID106_Choice4,3 segundos o menos.
+QID107_QuestionText,¿Cómo calificarías la experiencia de usuario en los canales móviles de los que la organización es propietaria directa?
+QID107_Choice1,No hemos invertido en mejorar específicamente la experiencia en canales móviles.
+QID107_Choice2,"Las funciones básicas van bien en dispositivos móviles, pero no hemos optimizado los canales para este tipo de uso."
+QID107_Choice3,Todas las partes de la experiencia que ofrecemos son adecuadas para usuarios de móviles.
+QID107_Choice4,"La experiencia que ofrecemos aprovecha las características para móviles más recientes (como el acceso único, Accelerated Mobile Pages, las aplicaciones web progresivas o las Aplicaciones Instantáneas) y se considera una de las mejores."
+QID108_QuestionText,"¿Qué métodos usa la organización para personalizar los canales de los que es propietaria directa (por ejemplo, su sitio web móvil, su aplicación nativa o su aplicación web)?"
+QID108_Choice1,No personalizamos el sitio web.
+QID108_Choice2,"Personalizamos el sitio web aplicando algunos criterios básicos según unos pocos segmentos de clientes, como los usuarios nuevos o los que han iniciado sesión."
+QID108_Choice3,"Personalizamos el sitio web aplicando criterios avanzados, haciendo pruebas constantemente en función del historial de datos de las cookies y de modelos predictivos aplicados en tiempo real, como las recomendaciones de artículos. Usamos principalmente datos online."
+QID108_Choice4,"Personalizamos el sitio web aplicando criterios avanzados, haciendo pruebas constantemente en función del historial de datos de las cookies y de modelos predictivos aplicados en tiempo real, como las recomendaciones de artículos. Usamos datos online y offline, como los del sistema o los de los programas de fidelización de las tiendas."
+QID109_QuestionText,¿Qué nivel de personalización aplica la organización al mensaje que envía a la audiencia de la publicidad de display?
+QID109_Choice1,No usamos este canal o mostramos el mismo mensaje a todos los usuarios.
+QID109_Choice2,"Personalizamos los mensajes en función de amplios segmentos de usuarios, como clientes que ya tenemos frente a clientes potenciales."
+QID109_Choice3,Personalizamos los mensajes en función de todos los segmentos disponibles.
+QID109_Choice4,"Personalizamos los mensajes en función de todos los segmentos disponibles y de otros datos, como la ubicación o la hora del día."
+QID110_QuestionText,¿Qué nivel de personalización aplica la organización al mensaje que envía a la audiencia de la publicidad de vídeo?
+QID110_Choice1,No usamos este canal o mostramos el mismo mensaje a todos los usuarios.
+QID110_Choice2,"Personalizamos los mensajes en función de amplios segmentos de usuarios, como clientes que ya tenemos frente a clientes potenciales."
+QID110_Choice3,Personalizamos los mensajes en función de todos los segmentos disponibles.
+QID110_Choice4,"Personalizamos los mensajes en función de todos los segmentos disponibles y de otros datos, como la ubicación o la hora del día."
+QID112_QuestionText,¿Qué nivel de personalización aplica la organización al mensaje que envía a la audiencia de la publicidad de búsqueda?
+QID112_Choice1,No usamos este canal o mostramos el mismo mensaje a todos los usuarios.
+QID112_Choice2,"Personalizamos los mensajes en función de amplios segmentos de usuarios, como clientes que ya tenemos frente a clientes potenciales."
+QID112_Choice3,Personalizamos los mensajes en función de todos los segmentos disponibles.
+QID112_Choice4,"Personalizamos los mensajes en función de todos los segmentos disponibles y de otros datos, como la ubicación o la hora del día."
+QID113_QuestionText,¿Qué nivel de personalización aplica la organización al mensaje que envía a la audiencia de la publicidad de medios sociales?
+QID113_Choice1,No usamos este canal o mostramos el mismo mensaje a todos los usuarios.
+QID113_Choice2,"Personalizamos los mensajes en función de amplios segmentos de usuarios, como clientes que ya tenemos frente a clientes potenciales."
+QID113_Choice3,Personalizamos los mensajes en función de todos los segmentos disponibles.
+QID113_Choice4,"Personalizamos los mensajes en función de todos los segmentos disponibles y de otros datos, como la ubicación o la hora del día."
+QID114_QuestionText,¿Qué nivel de personalización aplica la organización al mensaje que envía a la audiencia de la publicidad de correo electrónico?
+QID114_Choice1,No usamos este canal o mostramos el mismo mensaje a todos los usuarios.
+QID114_Choice2,"Personalizamos los mensajes en función de amplios segmentos de usuarios, como clientes que ya tenemos frente a clientes potenciales."
+QID114_Choice3,Personalizamos los mensajes en función de todos los segmentos disponibles.
+QID114_Choice4,"Personalizamos los mensajes en función de todos los segmentos disponibles y de otros datos, como la ubicación o la hora del día."
+QID115_QuestionText,"¿Cómo usa la organización los insights procedentes de recursos online para mejorar las experiencias offline, como las visitas a tienda, los eventos o los centros de llamadas?"
+QID115_Choice1,Usamos los insights de recursos online de manera limitada o no los usamos.
+QID115_Choice2,"A veces, compartimos insights de los canales online con los equipos offline."
+QID115_Choice3,Seguimos un proceso sólido para mejorar las experiencias de los usuarios que deciden pasar de los recursos online a los puntos de contacto offline.
+QID115_Choice4,"Seguimos un proceso sólido y hemos conectado los sistemas online y offline; por ejemplo, usamos datos de analítica web para proporcionar experiencias personalizadas en las tiendas."

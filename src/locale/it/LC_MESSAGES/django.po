@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 11:36+0000\n"
+"POT-Creation-Date: 2019-08-30 13:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1896,14 +1896,26 @@ msgstr "altro"
 msgid "less"
 msgstr "meno"
 
+msgid "https://www.google.com/intl/en/policies/privacy/"
+msgstr "https://www.google.com/intl/it/policies/privacy/"
+
 msgid "Privacy"
 msgstr "Privacy"
+
+msgid "https://www.google.com/intl/en/policies/terms/"
+msgstr "https://www.google.com/intl/it/policies/terms/"
 
 msgid "Terms"
 msgstr "Termini"
 
+msgid "https://www.google.com/intl/en/about/"
+msgstr "https://www.google.com/intl/it/about/"
+
 msgid "About Google"
 msgstr "Informazioni su Google"
+
+msgid "https://www.google.com/intl/en/about/products/"
+msgstr "https://www.google.com/intl/it/about/products/"
 
 msgid "Google Products"
 msgstr "Prodotti Google"

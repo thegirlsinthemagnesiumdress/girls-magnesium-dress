@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-09 18:15+0000\n"
+"POT-Creation-Date: 2019-08-30 14:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1478,6 +1478,14 @@ msgstr "Agencias de viajes y operadores turísticos"
 msgid "Wholesale trade"
 msgstr "Comercio mayorista"
 
+#, fuzzy
+#| msgid "Information and Communication"
+msgid "Información y comunicación"
+msgstr "Información y comunicación"
+
+msgid "Libros, noticias, periódicos y revistas"
+msgstr ""
+
 msgid "Your results are ready!"
 msgstr "¡Ya tenemos los resultados!"
 
@@ -1735,6 +1743,7 @@ msgstr "Quieren experiencias relevantes y personalizadas, y esperan que las marc
 msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
 msgstr "En Europa, África y Oriente Medio, las búsquedas móviles que contienen \"cerca\" se han multiplicado por 4,5 en la Búsqueda de Google y por 6 en Google Maps en los dos últimos años.&nbsp;"
 
+#, python-format
 msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
 msgstr "Según el 89 %% de los profesionales del marketing, la clave del desarrollo de las marcas está en ofrecer experiencias útiles en el recorrido del cliente."
 
@@ -1768,6 +1777,7 @@ msgstr "Ser rápido"
 msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
 msgstr "Cumple las expectativas de los consumidores ofreciéndoles experiencias rápidas y sin complicaciones en el canal móvil."
 
+#, python-format
 msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
 msgstr "<strong>Si los clientes ganan, las empresas también ganan,</strong> aunque les está costando ponerlo todo en práctica. Según el estudio que realizamos junto con BCG, solo el 2 %% de las marcas son conscientes del potencial que tiene el marketing basado en datos."
 
@@ -1886,14 +1896,26 @@ msgstr "más"
 msgid "less"
 msgstr "menos"
 
+msgid "https://www.google.com/intl/en/policies/privacy/"
+msgstr "https://www.google.com/intl/es/policies/privacy/"
+
 msgid "Privacy"
 msgstr "Privacidad"
+
+msgid "https://www.google.com/intl/en/policies/terms/"
+msgstr "https://www.google.com/intl/es/policies/terms/"
 
 msgid "Terms"
 msgstr "Condiciones"
 
+msgid "https://www.google.com/intl/en/about/"
+msgstr "https://www.google.com/intl/es/about/"
+
 msgid "About Google"
 msgstr "Acerca de Google"
+
+msgid "https://www.google.com/intl/en/about/products/"
+msgstr "https://www.google.com/intl/es/about/products/"
 
 msgid "Google Products"
 msgstr "Productos de Google"
@@ -1954,6 +1976,11 @@ msgstr "Información sobre la protección de datos"
 
 msgid "Enter the organisation name"
 msgstr "Escribe el nombre de la organización"
+
+#, fuzzy
+#| msgid "Organisation"
+msgid "Organization name"
+msgstr "Organización"
 
 msgid "Enter the organization name"
 msgstr "Escribe el nombre de la organización"
