@@ -1,4 +1,4 @@
-goog.module.declareNamespace('dmb.survey');
+goog.declareModuleId('dmb.survey');
 
 /**
  * Defining the properties we use on the globally provided Qualtrics instance

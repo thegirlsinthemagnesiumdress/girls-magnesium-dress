@@ -28,9 +28,9 @@
         ng-bind-html="reportCtrl.trustAsHtml(reportCtrl.dimensionSidepanelHeading)">
     </p>
 
-    <div ng-repeat="dimension in reportCtrl.dimensions">
+    <div ng-repeat="dimension in reportCtrl.dimensionList">
       <h2 class="h-c-headline h-c-headline--four h-u-font-weight-medium">
-        {[ reportCtrl.dimensionHeaders[dimension] ]}
+        {[ reportCtrl.dimensions[dimension]['name'] ]}
       </h2>
       <p ng-class="{'dmb-u-m-b-m':!$last}">
         {[ reportCtrl.dimensionSidepanelDescriptions[dimension] ]}

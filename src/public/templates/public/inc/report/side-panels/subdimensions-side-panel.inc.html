@@ -17,19 +17,17 @@
 
   <div class="dmb-side-panel__inner">
     <h1 class="h-c-headline h-c-headline--three dmb-u-m-b-m dmb-u-underlined-heading">
-      {% if tenant|ng_mark_safe == 'cloud' %}
-        Cloud adoption epics
-      {% endif %}
+      {[ reportCtrl.subdimensionsSidepanelHeading ]}
     </h1>
     <p
         class="dmb-u-m-b-m"
-        ng-bind-html="reportCtrl.subdimensionDescription">
+        ng-bind-html="reportCtrl.subdimensionsReportDescription">
     </p>
 
 
     <div
         ng-class="{'dmb-u-m-b-m':!$last}"
-        ng-repeat="dimension in reportCtrl.dimensions">
+        ng-repeat="dimension in reportCtrl.dimensionList">
       <h2 class="h-c-headline h-c-headline--four">
         <div class="dmb-inline-img-text dmb-inline-img-text--large">
           <div class="dmb-inline-img-text__img-wrp">
@@ -39,19 +37,19 @@
                 ng-src="{[ reportCtrl.dmbStaticUrl ]}img/{{ tenant|ng_mark_safe }}/dimensions/{[ dimension|underscoreToHyphen ]}.svg">
           </div>
           <div class="dmb-inline-img-text__text">
-        {[ reportCtrl.dimensionHeaders[dimension] ]}
+            {[ reportCtrl.dimensions[dimension]['name'] ]}
           </div>
         </div>
       </h2>
 
       <div
-          ng-repeat="subdimension in reportCtrl.subdimensions[dimension]">
+          ng-repeat="subdimension in reportCtrl.subdimensionLists[dimension]">
         <h3 class="h-c-headline h-c-headline--subhead dmb-u-m-b-xs">
-          {[ reportCtrl.subdimensionHeaders[subdimension] ]}
+          {[ reportCtrl.subdimensions[subdimension]['name'] ]}
         </h3>
         <p
-          ng-class="{'dmb-u-m-b-s':!$last}">
-          {[ reportCtrl.subdimensionDescriptions[subdimension] ]}
+            ng-class="{'dmb-u-m-b-s':!$last}">
+          {[ reportCtrl.subdimensions[subdimension]['description'] ]}
         </p>
       </div>
     </div>

@@ -1,5 +1,3 @@
- goog.module.declareNamespace('dmb.components.sidePanel.directive');
-
 import {SidePanel} from './side-panel.class';
 
 /**

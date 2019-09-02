@@ -1,15 +1,16 @@
-goog.module.declareNamespace('dmb.app');
+goog.declareModuleId('dmb.app');
 
 // In src/app.js
 import * as glueApp from '@google/glue/lib/app/app';
 
 // Glue Angular
 import * as glueCommon from '@google/glue/lib/ng/common/common';
-import * as glueZippy from '@google/glue/lib/ng/zippy/zippy';
-import * as tabby from '@google/glue/lib/ng/tabby/tabby';
 
 // Glue Vanilla
+import {GlueExpansionPanelsPanelGroup} from '@google/glue/lib/ui/expansionpanels/panelgroup/component';
 import {Header} from '@google/glue/lib/ui/header/component';
+import {PaginationPages} from '@google/glue/lib/ui/pagination/pages/component';
+import {Tabs} from '@google/glue/lib/ui/tabs/component';
 
 import * as focusControl from './components/focus-control/focus-control';
 import * as headerFix from './components/header-fix/header-fix';
@@ -21,19 +22,18 @@ import * as reportList from './components/report-admin/report-admin';
 import * as progressCircle from './components/progress-circle/progress-circle';
 import * as progressGrid from './components/progress-grid/progress-grid';
 import * as progressTable from './components/progress-table/progress-table';
-import * as dimensionTab from './components/dimension-tab/dimension-tab';
 import * as forceReflow from './components/force-reflow/force-reflow';
 import * as tenant from './tenants/tenantconf';
 import * as languageSelector from './components/language-selector/language-selector';
 import * as copyComponent from './components/copy-component/copy-component';
 import * as exportReports from './components/export/export-reports';
 import * as languageCode from './components/language-code/language-code';
+import tabState from './components/tab-state/tab-state';
 
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
   focusControl.module.name,
   glueCommon.module.name, // Progressive enhancement/browser detections.
-  glueZippy.module.name,
   'ngAnimate',
   headerFix.module.name,
   registration.module.name,
@@ -44,8 +44,6 @@ export const module = angular.module('dmb', [
   progressCircle.module.name,
   progressGrid.module.name,
   progressTable.module.name,
-  dimensionTab.module.name,
-  tabby.module.name,
   forceReflow.module.name,
   tenant.module.name,
   languageSelector.module.name,
@@ -79,5 +77,11 @@ module.constant('cssGridSupport', cssGridSupport);
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);
 
-// Initialise GLue Vanilla components
+// Initialise Glue Vanilla components
 document.querySelectorAll('.glue-header').forEach(Header.attachTo);
+document.querySelectorAll('.glue-expansion-panels').forEach(GlueExpansionPanelsPanelGroup.attachTo);
+document.querySelectorAll('.glue-tabs').forEach(Tabs.attachTo);
+document.querySelectorAll('.glue-pagination-pages').forEach(PaginationPages.attachTo);
+
+// Initialise Vanilla DMB components
+document.querySelectorAll('[data-glue-pagination]').forEach(tabState);

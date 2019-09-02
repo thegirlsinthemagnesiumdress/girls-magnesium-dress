@@ -1,6 +1,3 @@
-goog.module.declareNamespace('dmb.components.report.service');
-
-
 /**
  * Report class service
  * We had to create this service because Glue Tabs mess the scopes

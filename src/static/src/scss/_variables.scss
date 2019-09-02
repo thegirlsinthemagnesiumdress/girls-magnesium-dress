@@ -29,6 +29,7 @@ $dmb-interactive-color: $dmb-color-blue-royal;
 $dmb-border-radius: 2px;
 $dmb-progress-grid-switch-bp: 1024px;
 $dmb-alt-font-family: $h-font-family-google-sans;
+$dmb-box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
 
 
 // Vertical spacing
@@ -39,7 +40,6 @@ $dmb-vertical-spacings: (
 );
 
 // Animations
-
 $dmb-easing-cubic: cubic-bezier(.4, 0, .2, 1);
 $dmb-transition-duration: .15s;
 $dmb-progress-trans-time: 1.5s;
