@@ -74,96 +74,54 @@
   <div
       class="dmb-table dmb-u-m-b-l"
       ng-class="{'dmb-table--empty': reportAdminCtrl.surveys.length < 1}">
-    <div
-        class="dmb-table__empty-table-block h-u-text-center"
-        ng-if="reportAdminCtrl.surveys.length < 1"
-        ng-cloak>
-      {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
-      <h2 class="h-c-headline h-c-headline--five">
-        Add an account to get started
-      </h2>
-    </div>
 
-    <div
-        class="h-c-table__overflowcontainer"
-        ng-if="reportAdminCtrl.surveys.length > 0">
-      <table
-          class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
-          role="table"
-          summary="List of accounts you are subscribed to">
-        <thead>
-          <tr>
-            <th scope="col">
-              Organization
-            </th>
-            <th scope="col">
-              Country
-            </th>
-            <th scope="col">
-              Industry
-            </th>
-            <th
-                scope="col">
-              Int. Score
-            </th>
-            <th scope="col">
-              Int. Maturity
-            </th>
-            <th
-                scope="col">
-              Ext. Score
-            </th>
-            <th scope="col">
-              Ext. Maturity
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+    {% if accounts|length == 0 %}
+      <div class="dmb-table__empty-table-block h-u-text-center">
+        {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
+        <h2 class="h-c-headline h-c-headline--five">
+          Add an account to get started
+        </h2>
+      </div>
+    {% endif %}
 
-          <!-- Repeat -->
-          <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index" ng-cloak>
-            <td data-colheader="Organization">
-              <!-- TODO: Replace the ng-href value with django url include once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
-              <a ng-href="{[ survey.sid ]}">
-                {[ survey.company_name || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Country">
-              <a ng-href="{[ survey.sid ]}">
-                {[ survey.country_name || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Industry">
-              <a ng-href="{[ survey.sid ]}">
-                {[ survey.industry_name || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Int. Maturity Score" class="h-c-table__cell--numerical">
-              <a ng-href="{[ survey.sid ]}">
-                {[ (survey.last_internal_result.dmb|number:1) || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Int. Maturity Level">
-              <a ng-href="{[ survey.sid ]}">
-                {[ survey.internalCurrentLevelData['mapValue'] || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Ext. Maturity Score" class="h-c-table__cell--numerical">
-              <a ng-href="{[ survey.sid ]}">
-                {[ (survey.last_survey_result.dmb|number:1) || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Ext. Maturity Level">
-              <a ng-href="{[ survey.sid ]}">
-                {[ survey.externalCurrentLevelData['mapValue'] || '&#x200b;' ]}
-              </a>
-            </td>
-          </tr>
-          <!-- EndRepeat -->
-
-        </tbody>
-      </table>
-    </div>
+    {% if accounts|length > 0 %}
+      <div class="h-c-table__overflowcontainer">
+        <table
+            dmb-accounts-list
+            class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
+            role="table"
+            summary="List of accounts you are subscribed to">
+          <thead>
+            <tr>
+              <th scope="col">
+                Organization
+              </th>
+              <th scope="col">
+                Country
+              </th>
+              <th scope="col">
+                Industry
+              </th>
+              <th
+                  scope="col">
+                Int. Score
+              </th>
+              <th scope="col">
+                Int. Maturity
+              </th>
+              <th
+                  scope="col">
+                Ext. Score
+              </th>
+              <th scope="col">
+                Ext. Maturity
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    {% endif %}
 
   </div>
 </main>

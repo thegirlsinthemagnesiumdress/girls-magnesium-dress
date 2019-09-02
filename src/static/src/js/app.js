@@ -31,6 +31,8 @@ import * as languageCode from './components/language-code/language-code';
 
 // Vanilla JS DMB Components
 import {csrfToken} from './components/csrf/csrf';
+import {bootstrapData} from './components/bootstrap/bootstrap-data';
+import AccountsList from './components/accounts-list/accounts-list';
 import Clippy from './components/clippy/component';
 import ExportReports from './components/export/export-reports.class';
 
@@ -61,15 +63,8 @@ export const module = angular.module('dmb', [
   languageCode.module.name,
 ]);
 
-try {
-  const bootstrapDatString = document.querySelector('[data-bootstrap-data]').dataset['bootstrapData'];
-  const bootstrapData = bootstrapDatString ? JSON.parse(bootstrapDatString) : {};
-  module.constant('bootstrapData', bootstrapData);
-} catch (e) {
-  console.warn('Not valid json');
-}
-
 module.constant('csrfToken', csrfToken);
+module.constant('bootstrapData', bootstrapData);
 
 const bootstrapDataElement = document.getElementById('bootstrap-data');
 // Add static url as constant
@@ -85,5 +80,6 @@ glueApp.bootstrap(module.name);
 document.querySelectorAll('.glue-header').forEach(Header.attachTo);
 
 // Attach copy component to elements with the custom dmb-copy-to-clipboard attribute.
+document.querySelectorAll('[dmb-accounts-list]').forEach(AccountsList.attachTo);
 document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
 document.querySelectorAll('[dmb-export-reports]').forEach(ExportReports.attachTo);
