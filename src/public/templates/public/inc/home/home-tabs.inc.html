@@ -1,0 +1,75 @@
+{% load angular %}
+
+{% comment %}
+  The breakpoint at which the expansion panels (.dmb-exp-panels) are hidden and the tabs (.dmb-tabs) are shown is determined by `$dmb-exp-to-tabs-switch-bp` in `_home.scss`.
+{% endcomment %}
+
+<!-- Expansion Panels Component -->
+<div class="dmb-exp-panels glue-expansion-panels">
+  {% for level in levels %}
+
+    <div class="dmb-exp-panels__panel dmb-exp-panels__panel--level-{{forloop.counter0}} glue-expansion-panel">
+      <div
+          class="dmb-exp-panels__toggle glue-expansion-panel-toggle"
+          data-glue-expansion-panel-toggle-for="level-{{forloop.counter0}}">
+        <h2
+            class="dmb-exp-panels__heading h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-no-margin">
+          {{level.heading|ng_mark_safe}}
+        </h2>
+        <svg class="dmb-exp-panels__arrow" role="img" width="12" height="8">
+          <use xlink:href="#mi-chevron"></use>
+        </svg>
+      </div>
+      <p
+          class="dmb-exp-panels__content glue-expansion-panel-content"
+          {% if forloop.counter0 == 0 %} data-glue-expansion-panel-initial="expanded"{% endif %}
+          id="level-{{forloop.counter0}}">
+        {{level.text|ng_mark_safe}}
+      </p>
+    </div>
+
+  {% endfor %}
+</div> <!--/expansion panels -->
+
+<!-- Tabs Component -->
+<div
+    aria-hidden="true"
+    class="dmb-tabs glue-c-tabset dmb-u-hide-mobile">
+
+  <!-- Tab toggles -->
+  <ul class="dmb-tabs__toggles glue-tabs glue-c-tabset__tablist">
+    {% for level in levels %}
+      <li class="dmb-tabs__toggle dmb-tabs__toggle--level-{{forloop.counter0}} glue-c-tabset__tab">
+        <a
+            class="dmb-tabs__toggle-link h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-no-margin glue-c-tabset__button"
+            data-glue-pagination-page="{{forloop.counter}}"
+            href="#level-{{forloop.counter0}}">
+          {{level.heading|ng_mark_safe}}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Tabs content -->
+  <ul class="dmb-tabs__tabs glue-pagination-pages glue-c-tabset__panel-container">
+    {% for level in levels %}
+      <li
+          class="dmb-tabs__tab dmb-tabs__tab--level-{{forloop.counter0}} glue-o-pagination__page glue-c-tabset__page"
+          id="level-{{forloop.counter0}}">
+        <div class="h-c-grid">
+          <div class="h-c-grid__col h-c-grid__col--4 dmb-u-hide-mobile">
+            <h2 class="dmb-tabs__tab-heading h-c-headline h-c-headline--two dmb-u-no-margin">
+              {{level.heading|ng_mark_safe}}
+            </h2>
+          </div>
+          <div class="h-c-grid__col h-c-grid__col--8">
+            <p>
+              {{level.text|ng_mark_safe}}
+            </p>
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+
+  </ul>
+</div>

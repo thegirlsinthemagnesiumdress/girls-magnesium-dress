@@ -151,11 +151,11 @@ LEVELS = {
     LEVEL_3: _(u'Multi-moment'),
 }
 
-LEVELS_DESCRIPTIONS = {
-    LEVEL_0: _(u'Marketing campaigns use mainly external data and direct buys, with limited links to sales.'),
-    LEVEL_1: _(u'Some use of owned data in automated buying with single-channel optimisation and testing.'),
-    LEVEL_2: _(u'Data integrated and activated across channels with demonstrated link to ROI or sales proxies.'),
-    LEVEL_3: _(u'Dynamic execution across multiple channels, optimised toward individual customer business outcomes and transactions.'),
+LEVEL_DESCRIPTIONS = {
+    LEVEL_0: _(u'Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales.'),
+    LEVEL_1: _(u'In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing.'),
+    LEVEL_2: _(u'By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies.'),
+    LEVEL_3: _(u'At this stage, businesses have dynamic execution optimised towards a single-customer view across channels.'),
 }
 
 REPORT_LEVEL_DESCRIPTIONS = {
@@ -588,10 +588,10 @@ DIMENSION_SIDEPANEL_DESCRIPTIONS = {
 CONTENT_DATA = {
     'levels': LEVELS,
     'levels_max': LEVELS_MAX,
-    'level_descriptions': LEVELS_DESCRIPTIONS,
+    'level_descriptions': LEVEL_DESCRIPTIONS,
     'report_level_descriptions': REPORT_LEVEL_DESCRIPTIONS,
     'dimensions': DIMENSION_ORDER,
-    'dimension_labels': DIMENSION_TITLES,
+    'dimension_titles': DIMENSION_TITLES,
     'dimension_header_descriptions': DIMENSION_HEADER_DESCRIPTIONS,
     'dimension_level_description': DIMENSION_LEVEL_DESCRIPTION,
     'dimension_recommendations': DIMENSION_RECOMMENDATIONS,

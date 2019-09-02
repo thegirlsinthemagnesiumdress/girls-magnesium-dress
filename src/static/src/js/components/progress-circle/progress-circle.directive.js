@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressCircle.directive');
-
 import * as reportCtrl from '../progress-circle/progress-circle.controller';
 
 /**

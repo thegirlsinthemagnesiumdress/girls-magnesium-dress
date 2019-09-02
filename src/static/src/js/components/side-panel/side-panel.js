@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.sidePanel');
-
 import * as directive from './side-panel.directive';
 import * as triggerDirective from './side-panel-trigger.directive';
 import * as service from './side-panel.service';

@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.forceReflow');
-
 import {forceReflow} from './force-reflow.util';
 
 /** @const {string} */

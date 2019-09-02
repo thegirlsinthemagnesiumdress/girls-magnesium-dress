@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressTable.directive');
-
 import * as progTableCtrl from './progress-table.controller';
 
 const progressTableTemplateUrl = '/angular/progress-table';
