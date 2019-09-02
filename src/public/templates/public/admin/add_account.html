@@ -92,29 +92,47 @@
                 type="text">
           </div>
 
-          <div class="dmb-form__input-wrapper">
-            <label for="industry">
-              Industry
-            </label>
-            <select
-                class="dmb-form__select dmb-dropdown-arrow"
-                id="industry"
+          {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
+            <div class="dmb-form__input-wrapper">
+              <label for="industry">
+                Industry
+              </label>
+              <select
+                  class="dmb-form__select dmb-dropdown-arrow"
+                  id="industry"
+                  name="industry"
+                  ng-model="registrationCtrl.industry"
+                  required>
+                <option
+                    disabled
+                    selected
+                    value="">
+                  Select an industry
+                </option>
+                  {% for i_key, i_text in industries %}
+                    <option value="{{i_key|ng_mark_safe}}">
+                      {{i_text|ng_mark_safe}}
+                    </option>
+                  {% endfor %}
+              </select>
+            </div>
+          {% elif tenant|ng_mark_safe == 'news' %}
+            <input
+                aria-hidden="true"
+                id="prodId"
                 name="industry"
-                ng-model="registrationCtrl.industry"
-                required>
-              <option
-                  disabled
-                  selected
-                  value="">
-                Select an industry
-              </option>
-                {% for i_key, i_text in industries %}
-                  <option value="{{i_key|ng_mark_safe}}">
-                    {{i_text|ng_mark_safe}}
-                  </option>
-                {% endfor %}
-            </select>
-          </div>
+                ng-init="registrationCtrl.industry='ic-bnpj'"
+                type="hidden"
+                value="ic-bnpj">
+          {% elif tenant|ng_mark_safe == 'retail' %}
+            <input
+                aria-hidden="true"
+                id="prodId"
+                name="industry"
+                ng-init="registrationCtrl.industry='rt-o'"
+                type="hidden"
+                value="rt-o">
+          {% endif %}
 
           <div class="dmb-form__input-wrapper">
             <label for="country">
