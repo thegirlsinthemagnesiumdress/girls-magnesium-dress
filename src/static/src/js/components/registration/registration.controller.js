@@ -1,4 +1,3 @@
-goog.module.declareNamespace('dmb.components.registration.controller');
 const domSafe = goog.require('goog.dom.safe');
 
 const SURVEY_ENDPOINT = '/api/survey';

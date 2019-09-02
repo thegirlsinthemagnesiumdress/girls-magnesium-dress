@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.progressCircle.controller');
-
 /**
  * DOM selectors used by component.
  *

@@ -1,0 +1,116 @@
+$block: '.dmb-tabs';
+
+#{$block} {
+  &__toggles {
+    background: #fff;
+    display: flex;
+  }
+
+  &__toggle {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    &.glue-c-tabset__tab {
+      margin: 0;
+    }
+  }
+
+  &__toggle-link {
+    height: 100%;
+    margin: 0;
+    padding: 20px 10px;
+    text-align: center;
+    width: 100%;
+
+    &:focus,
+    &:visited {
+      color: inherit;
+    }
+
+    &:focus {
+      background: none;
+      outline: 4px solid rgba($dmb-interactive-color, .75);
+    }
+
+    &.glue-c-tabset__button {
+      border: 0;
+      border-bottom: 4px solid $dmb-color-grey-zircon;
+
+      &[aria-selected='true'] {
+        border-bottom: 4px solid $dmb-interactive-color;
+        font-weight: 500;
+      }
+
+      &[aria-selected='true']:focus,
+      &:hover {
+        color: inherit;
+      }
+    }
+
+    // Glue has a bug where clicks on child elements of glue-c-tabset__button are ignored
+    > * {
+      pointer-events: none;
+    }
+
+    .dmb-progress-circle {
+      display: block;
+      margin: 0 auto 10px;
+    }
+  }
+
+  &__tabs {
+    border: 0;
+    padding: 0;
+  }
+}
+
+.dmb-pinned {
+  background: #fff;
+  box-shadow: $dmb-box-shadow;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $_h-header-bar-z-index + 1;
+
+  #{$block}__toggles {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 10px 0;
+  }
+
+
+  #{$block}__toggle {
+    align-items: center;
+    color: $dmb-color-grey-shuttle;
+    display: flex;
+    justify-content: center;
+  }
+
+  #{$block}__toggle-link {
+    border-radius: $dmb-border-radius;
+    font-size: 16px;
+    font-weight: 400;
+    height: auto;
+    padding: 8px 20px;
+    width: auto;
+
+    &,
+    &[aria-selected='true'],
+    &:focus {
+      border-bottom: 0;
+    }
+
+    &[aria-selected='true'] {
+      background-color: $dmb-color-blue-solitude;
+    }
+  }
+
+  .dmb-progress-circle {
+    display: none;
+  }
+
+  & + #{$block}__tabs {
+    padding-top: 142px;
+  }
+}

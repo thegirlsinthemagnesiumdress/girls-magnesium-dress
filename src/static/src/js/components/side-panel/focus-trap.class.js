@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.sidePanel.focusTrap');
-
 const FOCUSABLE_ELEMENT_SELECTOR = [
   'a',
   'audio',

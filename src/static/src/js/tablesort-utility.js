@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.tableCustomSort');
-
 export const configureAdditionalSortTypes = ['glueTableSortServiceProvider', function(glueTableSortServiceProvider) {
   glueTableSortServiceProvider.setSortType('datetime-custom', function(a, b) {
     const dateA = Date.parse(a.trim().split('utc=')[1]);
