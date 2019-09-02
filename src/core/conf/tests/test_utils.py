@@ -511,7 +511,7 @@ class GetLevelAttributesTest(TestCase):
         )
         self.assertEqual(
             survey_result_data['dimensions'][dimension]['name'],
-            self.content_data['dimension_labels'][dimension]
+            self.content_data['dimension_titles'][dimension]
         )
         self.assertEqual(survey_result_data['dimensions'][dimension]['in_top_level'], False)
         self.assertIsNotNone(survey_result_data['dimensions'][dimension]['levels'])

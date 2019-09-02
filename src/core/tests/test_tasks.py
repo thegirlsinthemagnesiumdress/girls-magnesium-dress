@@ -1764,7 +1764,7 @@ class ExportTenantDataSuperAdmin(TestCase):
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
 
-        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+        for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
 
     @mock.patch('core.googleapi.sheets.export_data')
@@ -1795,7 +1795,7 @@ class ExportTenantDataSuperAdmin(TestCase):
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
 
-        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+        for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
 
     @mock.patch('core.googleapi.sheets.export_data')
@@ -1826,7 +1826,7 @@ class ExportTenantDataSuperAdmin(TestCase):
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
 
-        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+        for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
 
 
@@ -1998,7 +1998,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         # make sure only the requested engagement lead is exported
         self.assertEqual(len(got_rows), 2)
 
-        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+        for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
 
     @mock.patch('core.googleapi.sheets.export_data')
@@ -2032,7 +2032,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
 
-        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+        for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
 
     @mock.patch('core.googleapi.sheets.export_data')
@@ -2066,5 +2066,5 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         self.assertItemsEqual(got_headers, expected_headers)
         self.assertEqual(len(got_rows), 2)
 
-        for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
+        for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))

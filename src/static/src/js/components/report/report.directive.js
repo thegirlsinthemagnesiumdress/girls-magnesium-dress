@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.report.directive');
-
 import * as reportCtrl from './report.controller';
 
 /**

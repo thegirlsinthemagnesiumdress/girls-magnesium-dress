@@ -1,5 +1,17 @@
-.dmb-report-intro {
-  @include print-styles {
-    padding: 0;
+// sass-lint:disable no-ids
+#dmb-report {
+  //Tabs
+  $dmb-exp-to-tabs-switch-bp: desktop;
+
+  .dmb-exp-panels {
+    @include dmb-mq($from: #{$dmb-exp-to-tabs-switch-bp}) {
+      display: none;
+    }
+  }
+
+  .dmb-tabs {
+    @include dmb-mq($until: #{$dmb-exp-to-tabs-switch-bp}) {
+      display: none;
+    }
   }
 }

@@ -1,4 +1,3 @@
-goog.module.declareNamespace('dmb.components.registration.controller');
 const domSafe = goog.require('goog.dom.safe');
 
 const SURVEY_ENDPOINT = '/api/survey';
@@ -120,7 +119,7 @@ class RegistrationController {
       if (this.redirectToQualtrics) {
         this.link = res['data']['link'];
       } else {
-        this.link = `/${res['data']['slug']}/accounts/${res['data']['sid']}`;
+        this.link = `/${res['data']['slug']}/admin/accounts/${res['data']['sid']}`;
       }
       domSafe.setLocationHref(document.location, this.link);
     }, () => {

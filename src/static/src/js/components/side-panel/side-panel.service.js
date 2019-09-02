@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.sidePanel.service');
-
 /**
  * Sidepanel service.
  */

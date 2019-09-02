@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.exportReports.controller');
-
 /**
  * Export reports controller
  */

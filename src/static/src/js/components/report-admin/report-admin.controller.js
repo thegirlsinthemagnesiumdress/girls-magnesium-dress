@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.reportAdmin.controller');
-
 const accountIdInputClass = '.dmb-reports-admin__table-account-input';
 
 /**

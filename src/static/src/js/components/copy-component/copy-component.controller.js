@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.copyComponent.controller');
-
 const MESSAGE_CLASS = 'dmb-copy-comp__message';
 const MESSAGE_SUCCESS_CLASS = `${MESSAGE_CLASS}--success`;
 const MESSAGE_ERROR_CLASS = `${MESSAGE_CLASS}--error`;

@@ -128,7 +128,7 @@ class ReportDetailTestCase(TestCase):
 
     def setUp(self):
         reload_urlconf()
-        self.tenant_slug = 'tenant1-slug'
+        self.tenant_slug = 'tenant2-slug'
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()
 
@@ -151,7 +151,7 @@ class ReportDetailTestCase(TestCase):
 
     def test_survey_has_survey_result(self):
         """If a a`Survey` exists and it has a result, it should return 200."""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'report-static.html'):
             url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)
@@ -159,7 +159,7 @@ class ReportDetailTestCase(TestCase):
 
     def test_survey_has_internal_result(self):
         """If a survey exists and it has an internal result it should return 200."""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'report-internal.html'):
             url = reverse('report-internal', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)
@@ -184,7 +184,7 @@ class ReportDetailTestCase(TestCase):
 
     def test_staging_context_variable(self):
         """Tests if the staging boolean is passed into the context to trigger the debug menu"""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'report-static.html'):
             url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)
