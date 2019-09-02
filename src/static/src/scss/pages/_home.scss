@@ -122,23 +122,6 @@
           }
         }
       }
-
-
-      // IMAGE TEXT IMAGE
-      .dmb-img-text {
-        @include dmb-mq(tablet) {
-          background-image: url('../img/#{$tenant}/home/img-text-img.jpg');
-          background-position: right -50px top;
-
-          @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            background-image: url('../img/#{$tenant}/home/img-text-img@2x.jpg');
-          }
-        }
-
-        @include dmb-mq($from: 700px) {
-          background-position: right top;
-        }
-      }
     }
   }
 }
