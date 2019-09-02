@@ -518,9 +518,9 @@ def _get_exportable_surveys(tenant, is_super_admin, engagement_lead):
     return data
 
 
-def _get_export_column_data(survey_result, dmb_d, col, dateformat):
+def _get_export_column_data(survey_result, dmb_d, col, dateformat="%Y/%m/%d %H:%M:%S"):
     # Check if the col is a dimension in dmb_d
-    if hasattr(dmb_d, col):
+    if col in dmb_d:
         dim = dmb_d.get(col)
         # If dimension exists but is None then append empty string
         if dim is None:
@@ -537,9 +537,11 @@ def _get_export_column_data(survey_result, dmb_d, col, dateformat):
             return _format_type(getattr(survey_result, col), dateformat=dateformat)
     else:
         # Otherwise, raise an exception to indicate a malformed object
-        raise Exception('No attribute or dimension {} in SurveyResult {}'.format(
-            col,
-            survey_result.response_id)
+        raise Exception(
+            'No attribute or dimension {} in SurveyResult {}'.format(
+                col,
+                survey_result.response_id
+            )
         )
 
 
@@ -576,7 +578,7 @@ def export_tenant_data(
                         survey_result_data = []
                         for col in survey_result_columns:
                             col_data = _get_export_column_data(survey_result, dim_dict, col, dateformat)
-                            survey_result.append(col_data)
+                            survey_result_data.append(col_data)
             except SurveyResult.DoesNotExist:
                 # In case we have a survey, but has not been completed yet
                 pass

@@ -16,6 +16,7 @@ from core.tasks import (
     calculate_industry_benchmark,
     render_email_template,
     export_tenant_data,
+    _get_export_column_data,
 )
 from djangae.test import TestCase
 from mocks import (
@@ -2067,3 +2068,93 @@ class ExportTenantDataNotSuperAdmin(TestCase):
 
         for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+)
+class ExportColumnData(TestCase):
+    """Tests for _get_export_column_data function"""
+
+    def setUp(self):
+        self.share_with = "share_with@email.com"
+        self.is_super_admin = False
+
+    def test_column_data_in_dmb_d(self):
+        """Tests that given a column contained in dmb_d it is retrieved correctly."""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'ads')
+        self.assertEqual(column_data, 0.5)
+
+    def test_none_column_data_in_dmb_d(self):
+        """tests that given a column in dmb_d with a value of None an empty string is returned."""
+        dmb_d = {
+            'ads': 0.5,
+            'access': None,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'access')
+        self.assertEqual(column_data, '')
+
+    def test_column_data_in_result(self):
+        """Tests that given a column not in dmb_d but in the SurveyResult it is retrieved correctly."""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb=2.5, dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'dmb')
+        self.assertEqual(column_data, u'2.5')
+
+    def test_none_column_data_in_result(self):
+        """Tests that given a column with value None not in dmb_d but in the SurveyResult, empty string is returned"""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(survey=None, dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'survey')
+        self.assertEqual(column_data, '')
+
+    def test_non_existant_column(self):
+        """Tests that given a column which doesn't exist in dmb_d or SurveyResult an exception is thrown."""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb_d=dmb_d)
+        # Check exception is thrown
+        with self.assertRaises(Exception):
+            _get_export_column_data(survey_result, dmb_d, 'non-existant')
