@@ -72,8 +72,7 @@
           </svg>{% trans "Contact us" %}
         </a>
       </li>
-      {% comment %}
-      {% if tenant|ng_mark_safe == 'ads' %}
+      {% if tenant|ng_mark_safe == 'ads' and LANGUAGES|length > 1 %}
       <li class="h-c-footer__global-links-list-item h-c-footer__global-links-list-item--extra">
         <label for="lang-selector" class="h-u-visually-hidden">{% trans "Change language or region" %}</label>
           {% get_language_info_list for LANGUAGES as languages %}
@@ -99,7 +98,6 @@
           </form>
       </li>
       {% endif %}
-      {% endcomment %}
     </ul>
   </section>
 </footer>

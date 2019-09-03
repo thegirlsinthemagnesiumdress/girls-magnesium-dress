@@ -2,15 +2,15 @@
 import os
 import sys
 
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-APPENGINE_DIR = os.path.join(THIS_DIR, "third_party", "google_appengine")
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+APPENGINE_DIR = os.path.join(PROJECT_DIR, "third_party", "google_appengine")
 
 # We add the symlinked version of this folder, inside the GAE project folder, otherwise it's not
 # accessible when running the local server because it's outside the sandbox
-DEVELOPMENT_DIR = os.path.join(THIS_DIR, "src", "sitepackages_local")
+DEVELOPMENT_DIR = os.path.join(PROJECT_DIR, "src", "sitepackages_local")
 
 sys.path[0:0] = [
-    os.path.join(THIS_DIR, 'src'),
+    os.path.join(PROJECT_DIR, "src"),
     APPENGINE_DIR,
     DEVELOPMENT_DIR
 ]
@@ -35,7 +35,7 @@ _SERVICE_ACCOUNT_INFO_MESSAGE = (
 
 
 def _configure_service_account():
-    PEM_FILE = os.path.join(THIS_DIR, "keys", "secret.pem")
+    PEM_FILE = os.path.join(PROJECT_DIR, "src", "keys", "secret.pem")
     if not os.path.exists(PEM_FILE):
         print(_SERVICE_ACCOUNT_MISSING_CONF_MESSAGE)
         return {}
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.local"
         test_execute_from_command_line(sys.argv)
     else:
-        print("NOTE: Using core.settings.loca as we are on local env")
+        print("NOTE: Using core.settings.local as we are on local env")
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
         kwargs = _configure_service_account()
         execute_from_command_line(sys.argv, **kwargs)

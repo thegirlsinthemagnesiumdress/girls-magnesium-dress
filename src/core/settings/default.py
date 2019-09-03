@@ -142,6 +142,10 @@ LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', 'English'),
+    ('es', 'Español'),
+    ('it', 'Italiano'),
+    ('pl', 'Polski'),
+    ('tr', 'Türkçe'),
 ]
 
 TIME_ZONE = 'UTC'
@@ -307,6 +311,8 @@ QUALTRICS_LANGS = {
     'EN': 'en',
     'ES-ES': 'es',
     'TR': 'tr',
+    'IT': 'it',
+    'PL': 'pl',
 }
 
 QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }

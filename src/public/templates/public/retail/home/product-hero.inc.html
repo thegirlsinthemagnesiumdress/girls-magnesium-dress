@@ -6,7 +6,8 @@
       src="{% static 'img/retail/home/product-hero-bg.svg' %}"
       alt="background image">
 
-  {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img' img='img/retail/home/laptop' ext='png' alt='laptop screen demo' %}
+  {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img-outer' img='img/laptop-outer' ext='png' alt="laptop screen demo" %}
+  {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-product-hero__img-inner' img='retail/home/laptop' ext='png' alt="laptop screen demo" %}
 
   <div class="dmb-product-hero__color-bg"></div>
 </section>
