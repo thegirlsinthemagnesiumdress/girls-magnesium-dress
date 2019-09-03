@@ -8,13 +8,14 @@ from core.models import Survey, SurveyResult
 from django.core.management.base import BaseCommand
 
 import os
+import time
 import logging
 import subprocess
 
 DEFAULT_SCREEN_SIZES = {
     'laptop': {
         'size': (1440, 900),
-        'focused_element': 'dmb-dimension-tabs'
+        'focused_element': 'dmb-tabs'
     },
     'tablet': {
         'size': (600, 860),
@@ -89,7 +90,7 @@ def take_sized_screenshots(driver, screen_sizes, path, retina=False):
         """, w, h)
         driver.set_window_size(*window_size)
         # Wait until the angular content has loaded
-        element = WebDriverWait(driver, 1).until(
+        element = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located(
                 (By.CLASS_NAME, screen['focused_element'])
             )
@@ -133,6 +134,7 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
             for locale in languages:
                 driver.get('http://localhost:8000/{}/{}/reports/{}'
                            .format(locale, tenant['slug'], report_id))
+                time.sleep(2)
                 path = BASE_PATH + "/{}/home".format(tenant_name)
                 if locale != 'en':
                     path = BASE_PATH + "/{}/{}/home".format(locale, tenant_name)
@@ -141,6 +143,7 @@ def take_tenant_screenshots(driver, tenants, languages, screens, retina=False):
         else:
             driver.get('http://localhost:8000/{}/reports/{}'
                        .format(tenant['slug'], report_id))
+            time.sleep(2)
             path = BASE_PATH + "/{}/home".format(tenant_name)
             logging.info('Taking for language: en')
             take_sized_screenshots(driver, screens, path, retina)

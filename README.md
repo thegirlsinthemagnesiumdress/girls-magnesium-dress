@@ -95,7 +95,7 @@ On the home page there are several screenshots of the report page which are plac
 
 ### Requirements
 To run the `screenshots` management commnd you must have installed:
-- Google Chrome and Google Chrome Driver (recommend `brew install cask chromedriver`)
+- Google Chrome and Google Chrome Driver (recommend `brew cask install chromedriver`)
 - [ImageOptim](https://imageoptim.com/mac) (not the NPM package)
 - Latest version of project dependencies from `./bin/install_deps` so Selenium is installed.
 
