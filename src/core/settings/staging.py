@@ -25,7 +25,7 @@ ALL_TENANTS[RETAIL]['QUALTRICS_SURVEY_ID'] = 'SV_b1OV8m7xVD337rD'
 ALL_TENANTS[CLOUD]['QUALTRICS_SURVEY_ID'] = 'SV_eRioRXZ4UcKYpVj'
 
 # explicitly disable tenant
-ALL_TENANTS[CLOUD]['enabled'] = False
+INTERNAL_TENANTS[CLOUD]['enabled'] = True
 
 # explicitly set enabled LANGUAGES
 LANGUAGES = [
