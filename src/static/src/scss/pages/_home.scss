@@ -109,8 +109,7 @@
               color: map-get($value, color);
             }
 
-            #{$dmb-tabs}__toggle-link[aria-selected='true'],
-            #{$dmb-tabs}__toggle-link:focus {
+            #{$dmb-tabs}__toggle-link[aria-selected='true'] {
               border-color: map-get($value, color);
             }
           }
