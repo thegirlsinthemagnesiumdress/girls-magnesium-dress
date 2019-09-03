@@ -24,6 +24,18 @@ INTERNAL_TENANTS[NEWS]['QUALTRICS_SURVEY_ID'] = 'SV_4JxgntrYg5uiMyp'
 INTERNAL_TENANTS[RETAIL]['QUALTRICS_SURVEY_ID'] = 'SV_b1OV8m7xVD337rD'
 INTERNAL_TENANTS[CLOUD]['QUALTRICS_SURVEY_ID'] = 'SV_eRioRXZ4UcKYpVj'
 
+# explicitly disable tenant
+INTERNAL_TENANTS[CLOUD]['enabled'] = False
+
+# explicitly set enabled LANGUAGES
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Español'),
+    ('it', 'Italiano'),
+    ('pl', 'Polski'),
+    ('tr', 'Türkçe'),
+]
+
 
 TENANTS = {k: v for k, v in INTERNAL_TENANTS.items() if v['enabled']}
 
