@@ -95,7 +95,7 @@ DOMAIN = 'digitalmaturitybenchmark.withgoogle.com'
 REVISIONED_STATIC = True
 
 
-TENANTS = {k: v for k, v in INTERNAL_TENANTS.items() if v['enabled']}
+TENANTS = {k: v for k, v in ALL_TENANTS.items() if v['enabled']}
 
 I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if v['i18n']])
 NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if not v['i18n']])
