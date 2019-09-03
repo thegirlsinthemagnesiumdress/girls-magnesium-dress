@@ -1,6 +1,8 @@
 from django.conf import settings
 from djangae.db import transaction
 from django.core.management.base import BaseCommand
+from core.tasks import calculate_industry_benchmark
+from core.models import IndustryBenchmark
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
 import numpy
@@ -36,6 +38,64 @@ SAMPLE_DMB_D = {
     }
 }
 
+INITIAL_INDUSTRY_BENCHMARKS = {
+    'ads': {
+        "organization": 2.5,
+        "attribution": 1,
+        "access": 3.2,
+        "ads": 3,
+        "audience": 1,
+        "automation": 2.0
+    },
+    'retail': {
+        "emerging_monetization": 1.5,
+        "user_engagement": 2.4,
+        "core_sales": 3.0,
+        "strategic_direction": 1.3
+    },
+    'news': {
+        "reader_revenue": 1,
+        "reader_engagement": 3,
+        "strategic_direction": 2.3,
+        "advertising_revenue": 1.4
+    },
+    'cloud': {
+        "learn": 1.5,
+        "lead": 0.5,
+        "scale": 3,
+        "secure": 2.6
+    }
+}
+
+BP_INDUSTRY_BENCHMARKS = {
+    'ads': {
+        "organization": 3.5,
+        "attribution": 2,
+        "access": 3.8,
+        "ads": 3.5,
+        "audience": 2,
+        "automation": 3.0
+    },
+    'retail': {
+        "emerging_monetization": 2.5,
+        "user_engagement": 3.4,
+        "core_sales": 3.5,
+        "strategic_direction": 2.3
+    },
+    'news': {
+        "reader_revenue": 2,
+        "reader_engagement": 3,
+        "strategic_direction": 2.8,
+        "advertising_revenue": 1.9
+    },
+    'cloud': {
+        "learn": 2.5,
+        "lead": 1.5,
+        "scale": 3,
+        "secure": 2.9
+    }
+}
+
 
 class Command(BaseCommand):
     help = 'Generates sample surveys and survey results'
@@ -54,3 +114,20 @@ class Command(BaseCommand):
                 survey.last_survey_result = result
                 survey.save()
                 logging.info('Created survey and result for {} with id {}'.format(tenant, survey.sid))
+
+            # Create a mock industry benchmark for this tenant.
+            initial_benchmark_dmb_d = INITIAL_INDUSTRY_BENCHMARKS[tenant]
+            bp_benchmark_dmb_d = BP_INDUSTRY_BENCHMARKS[tenant]
+            initial_benchmark_dmb = numpy.average(initial_benchmark_dmb_d.values())
+            bp_benchmark_dmb = numpy.average(bp_benchmark_dmb_d.values())
+            IndustryBenchmark.objects.update_or_create(
+                industry=survey.industry,
+                tenant=tenant,
+                defaults={
+                    'dmb_value': initial_benchmark_dmb,
+                    'dmb_d_value': initial_benchmark_dmb_d,
+                    'dmb_bp_value': bp_benchmark_dmb,
+                    'dmb_d_bp_value': bp_benchmark_dmb_d
+                }
+            )
+            logging.info('Created industry benchmark for tenant {}'.format(tenant))

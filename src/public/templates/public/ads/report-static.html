@@ -12,6 +12,7 @@
   {% include 'public/inc/report/report-footer.inc.html' %}
 
   {% if debug or staging %}
+    <div id="dmb-shotty-ready" ng-if="reportCtrl.industryResult"></div>
     {% include 'public/inc/report/report-debug.inc.html' %}
   {% endif %}
 </main>
