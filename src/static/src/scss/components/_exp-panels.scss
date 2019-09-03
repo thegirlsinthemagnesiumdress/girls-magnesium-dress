@@ -1,4 +1,5 @@
 .dmb-exp-panels {
+  $block: &;
   padding-top: 10px;
 
   &__panel + &__panel {
@@ -20,6 +21,14 @@
 
     .glue-is-collapsed & {
       transform: rotate(180deg);
+    }
+  }
+
+  &--list {
+    padding-top: 0;
+
+    #{$block}__panel {
+      margin: 0;
     }
   }
 }

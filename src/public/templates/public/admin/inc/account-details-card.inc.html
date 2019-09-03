@@ -1,4 +1,5 @@
-<div class="dmb-list-card__header dmb-exp-panels__heading dmb-exp-panels__toggle glue-expansion-panel-toggle">
+<div class="dmb-list-card__header dmb-exp-panels__heading dmb-exp-panels__toggle glue-expansion-panel-toggle"
+    data-glue-expansion-panel-toggle-for="{{list_name}}-card-{{forloop.counter0}}">
   <div class="dmb-list-card__header-left">
     Q{{ result.date|fiscal }} {{ result.date|date:"Y" }}
     <span class="dmb-u-text-muted">&#8226; {{ result.date|date:"F j" }}</span>
@@ -13,8 +14,7 @@
 
   <button
       aria-label="toggle panel expansion"
-      class="dmb-list-card__toggle dmb-exp-panels__toggle"
-      data-glue-expansion-panel-toggle-for="level-{{forloop.counter0}}">
+      class="dmb-list-card__toggle dmb-exp-panels__toggle">
     <svg class="dmb-exp-panels__arrow" role="img" width="12" height="8">
       <use xlink:href="#mi-chevron"></use>
     </svg>
@@ -23,7 +23,8 @@
 
 <div
     class="dmb-list-card__content dmb-exp-panels__content glue-expansion-panel-content"
-    id="level-{{forloop.counter0}}">
+    {% if forloop.counter0 == 0 %} data-glue-expansion-panel-initial="expanded"{% endif %}
+    id="{{list_name}}-card-{{forloop.counter0}}">
   <div class="dmb-list-card__overall">
     <div>Overall</div>
     <div class="dmb-list-card__overall-text">{{ result.overall.levels.current.name }}</div>
