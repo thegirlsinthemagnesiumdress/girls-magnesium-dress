@@ -1963,7 +1963,7 @@ msgid "Dimensions of marketing maturity"
 msgstr "Áreas del nivel de desarrollo del marketing"
 
 msgid "Levels of Digital Maturity"
-msgstr "Niveles de desarrollo de datos"
+msgstr "Niveles de Madurez Digital"
 
 msgid "Ready to benchmark your company’s digital maturity?"
 msgstr "¿Quieres comparar el nivel de desarrollo digital de tu empresa con el de otras?"
