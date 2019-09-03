@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load staticfiles %}
+
+<section class="dmb-product-hero h-u-text-center{% if class %} {{class}}{% endif %}">
+  <img
+      class="dmb-product-hero__bg-img"
+      src="{% static 'img/'|add:tenant|add:'/home/product-hero-bg.svg' %}"
+      alt="background image">
+
+  {% trans "laptop screen demo" as alt_text %}
+  {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-product-hero__img-outer' img='img/laptop-outer' ext='png' alt=alt_text %}
+  {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-product-hero__img-inner' img=tenant|add:'/home/laptop' ext='png' alt=alt_text %}
+
+  <div class="dmb-product-hero__color-bg"></div>
+</section>
