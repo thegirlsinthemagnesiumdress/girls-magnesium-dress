@@ -78,10 +78,12 @@ module.constant('cssGridSupport', cssGridSupport);
 glueApp.bootstrap(module.name);
 
 // Initialise Glue Vanilla components
-document.querySelectorAll('.glue-header').forEach(Header.attachTo);
-document.querySelectorAll('.glue-expansion-panels').forEach(GlueExpansionPanelsPanelGroup.attachTo);
-document.querySelectorAll('.glue-tabs').forEach(Tabs.attachTo);
-document.querySelectorAll('.glue-pagination-pages').forEach(PaginationPages.attachTo);
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.glue-expansion-panels').forEach(GlueExpansionPanelsPanelGroup.attachTo);
+  document.querySelectorAll('.glue-header').forEach(Header.attachTo);
+  document.querySelectorAll('.glue-pagination-pages').forEach(PaginationPages.attachTo);
+  document.querySelectorAll('.glue-tabs').forEach(Tabs.attachTo);
+});
 
 // Initialise Vanilla DMB components
 document.querySelectorAll('[data-glue-pagination]').forEach(tabState);
