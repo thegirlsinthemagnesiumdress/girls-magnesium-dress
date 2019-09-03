@@ -1,8 +1,21 @@
 .dmb-list-card {
   $dmb-card-actions-height: 48px;
 
-  border-radius: $dmb-border-radius-large;
-  box-shadow: $dmb-box-shadow;
+  &,
+  &--title {
+    border: 1px solid $dmb-color-grey-zircon;
+    padding: 0 $dmb-spacing-s;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 $dmb-border-radius-large $dmb-border-radius-large;
+  }
+
+  &.glue-is-expanded {
+    border-radius: $dmb-border-radius-large;
+    box-shadow: $dmb-box-shadow;
+    margin: $dmb-spacing-xs 0;
+  }
 
   &__header {
     align-items: center;
@@ -61,7 +74,7 @@
 
   &__overall {
     flex-shrink: 0;
-    padding: $dmb-spacing-xs 0;
+    padding-top: $dmb-spacing-xs;
     width: 120px;
 
     &-text {
@@ -81,7 +94,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     list-style: none;
-    margin: 0;
+    margin-bottom: 24px;
 
     @include dmb-mq($from: tablet) {
       justify-content: space-between;
@@ -108,5 +121,9 @@
 
   &__action + &__action {
     margin-left: $dmb-spacing-s;
+  }
+
+  &--title {
+    border-radius: $dmb-border-radius-large $dmb-border-radius-large 0 0;
   }
 }
