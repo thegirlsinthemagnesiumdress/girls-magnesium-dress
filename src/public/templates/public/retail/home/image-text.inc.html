@@ -5,11 +5,16 @@
         <div class="dmb-img-text__heading">
           {% include 'public/inc/global/step-heading.inc.html' with text='Use these insights to identify where you need to develop to drive your organization to the next level' svg='shield' numbered=True only %}
         </div>
+      </div>
 
-        {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-img-text__img dmb-u-m-b-s dmb-u-only-mobile' img='img/retail/home/img-text-img-mobile' ext='jpg' alt='product image' %}
-
-        {% include 'public/inc/global/collaboration.inc.html' with partner1='deloitte' %}
+      <div class="dmb-img-text__img-wrapper">
+        {% include 'public/inc/global/responsive-image.inc.html' with img='img/mobile-tablet-outer' ext='png' alt='alt_text' %}
+        {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-img-text__tablet' img='retail/home/tablet' ext='png' alt='alt_text' %}
+        {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-img-text__mobile' img='retail/home/mobile' ext='png' alt='alt_text' %}
       </div>
     </div>
+
+    {% include 'public/inc/global/collaboration.inc.html' with partner1='deloitte' only %}
+
   </div>
 </section>

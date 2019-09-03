@@ -1,3 +1,4 @@
+import os
 from django.conf import settings
 
 from django.core.management import call_command
@@ -11,4 +12,6 @@ class Command(BaseCommand):
         languages = [code for code, _ in settings.LANGUAGES]
         call_command("gulp", "build", settings=options['settings'])
         call_command("collectstatic", settings=options['settings'], interactive=False)
+        os.chdir("src")
         call_command("compilemessages", locale=languages, settings=options['settings'])
+        os.chdir("..")

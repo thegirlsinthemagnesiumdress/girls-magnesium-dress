@@ -10,10 +10,27 @@
     z-index: -1;
   }
 
-  &__img {
+  &__img-outer {
     max-width: 950px;
     min-width: 288px;
     width: 65%;
+  }
+
+  &__img-inner {
+    border-radius: .25vw;
+    left: 50%;
+    position: absolute;
+    top: 3%;
+    transform: translateX(-50%);
+    width: 49%;
+
+    @include dmb-mq($from: desktop) {
+      border-radius: 5px;
+    }
+
+    @include dmb-mq($from: wide) {
+      max-width: 725px;
+    }
   }
 
   &__color-bg {

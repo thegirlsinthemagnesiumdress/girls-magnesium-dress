@@ -72,6 +72,13 @@ ALL_TENANTS[RETAIL]['QUALTRICS_SURVEY_ID'] = 'SV_abpqjuBRjJ9iy6F'
 # explicitly disable tenant
 ALL_TENANTS[CLOUD]['enabled'] = False
 
+
+# explicitly set enabled LANGUAGES
+LANGUAGES = [
+    ('en', 'English'),
+]
+
+
 # Lock prod for now.
 MIDDLEWARE_CLASSES = tuple(
     list(MIDDLEWARE_CLASSES)

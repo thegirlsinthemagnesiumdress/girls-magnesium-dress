@@ -9,11 +9,15 @@
         <div class="dmb-img-text__heading">
           {% include 'public/inc/global/step-heading.inc.html' with text=image_text_heading svg='shield' numbered=True only %}
         </div>
-
-        {% include 'public/inc/global/responsive-image.inc.html' with class='dmb-img-text__img dmb-u-m-b-s dmb-u-only-mobile' img='img/ads/home/img-text-img-mobile' ext='jpg' alt='image_alt_text' only %}
-
-        {% include 'public/inc/global/collaboration.inc.html' with partner1='bcg' text=collab_text %}
+      </div>
+      <div class="dmb-img-text__img-wrapper">
+        {% include 'public/inc/global/responsive-image.inc.html' with img='img/mobile-tablet-outer' ext='png' alt='' %}
+        {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-img-text__tablet' img='ads/home/tablet' ext='png' alt='tablet screen demo' %}
+        {% include 'public/inc/global/i18n-image.inc.html' with class='dmb-img-text__mobile' img='ads/home/mobile' ext='png' alt='mobile screen demo' %}
       </div>
     </div>
+
+    {% include 'public/inc/global/collaboration.inc.html' with partner1='bcg' text=collab_text only %}
+
   </div>
 </section>
