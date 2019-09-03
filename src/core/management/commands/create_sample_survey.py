@@ -1,7 +1,6 @@
 from django.conf import settings
 from djangae.db import transaction
 from django.core.management.base import BaseCommand
-from core.tasks import calculate_industry_benchmark
 from core.models import IndustryBenchmark
 from core.tests.mommy_recepies import make_survey, make_survey_result
 
