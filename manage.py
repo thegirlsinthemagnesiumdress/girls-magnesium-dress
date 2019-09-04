@@ -68,9 +68,21 @@ if __name__ == "__main__":
     from djangae.core.management import test_execute_from_command_line
 
     kwargs = {}
-    if "deploy" in sys.argv and "--settings" not in sys.argv:
-        print("NOTE: Using core.settings.live as we are deploying")
-        os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.live"
+    if "deploy" in sys.argv:
+        print("NOTE: Deployement starting")
+        params = [True if '--settings' in x else False for x in sys.argv]
+        settings_specified = any([True if '--settings' in x else False for x in sys.argv])
+        if not settings_specified:
+            print("NOTE: Using core.settings.live as no other settings are specified")
+            os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.live"
+            sys.argv.append("--settings=core.settings.live")
+        else:
+            setting_index = params.index(True)
+            setting_name = sys.argv[setting_index].replace("--settings=", "")
+            if setting_name not in ["core.settings.local", "core.settings.staging", "core.settings.live"]:
+                raise Exception("--settings does not contain a valid setting")
+            print("NOTE: Using {} as specified on settings parameter".format(setting_name))
+            os.environ["DJANGO_SETTINGS_MODULE"] = setting_name
         execute_from_command_line(sys.argv, **kwargs)
     elif "test" in sys.argv:
         print("NOTE: Using core.settings.local as we are testing")
