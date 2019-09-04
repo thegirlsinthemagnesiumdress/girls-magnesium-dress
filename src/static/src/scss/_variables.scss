@@ -10,13 +10,14 @@ $dmb-color-grey-shady-lady: #979797;
 $dmb-color-grey-zircon: #dfe1e5;;
 $dmb-color-blue-solitude: #f1f3f4;
 
-$dmb-color-blue-alice-blue: #e8f0fe;
+$dmb-color-blue-alice: #e8f0fe;
+$dmb-color-blue-lavender: #d2e3fc;
 $dmb-color-blue-royal: #1a73e8;
 $dmb-color-blue-royal2: #255fdb;
+$dmb-color-blue-cornflower: #4285f4;
 $dmb-color-blue-egyptian: #0e3ec1;
-$dmb-color-blue-dark-cerulean: #053975;
-$dmb-color-blue-alice: #e8f0fe;
 $dmb-color-blue-denim: #1967d2;
+$dmb-color-blue-dark-cerulean: #053975;
 
 $dmb-color-green-eucalyptus: #34a853;
 $dmb-color-green-salem: #1e8e3e;
@@ -40,6 +41,7 @@ $dmb-border-radius-large: 8px;
 $dmb-progress-grid-switch-bp: 1024px;
 $dmb-alt-font-family: $h-font-family-google-sans;
 $dmb-box-shadow: 0 1px 2px 0 rgba($dmb-color-blue-charade, .3), 0 2px 6px 2px rgba($dmb-color-blue-charade, .15);
+$dmb-hover-opacity: .04;
 
 // Vertical spacing
 $dmb-vertical-spacings: (

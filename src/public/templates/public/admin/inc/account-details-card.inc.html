@@ -3,8 +3,11 @@
     data-glue-expansion-panel-toggle-for="{{list_name}}-card-{{forloop.counter0}}">
   <div class="dmb-list-card__header-left">
     {{ result.date|date:"Y" }} Q{{ result.date|fiscal }}
-    <span class="dmb-u-text-muted">
-      &#8226; {{ result.date|date:"F j" }}
+    <span class="dmb-bullet dmb-u-text-muted">
+      &#8226;
+    </span>
+    <span class="dmb-list-card__date dmb-u-text-muted">
+      {{ result.date|date:"F j" }}
     </span>
   </div>
 
@@ -29,36 +32,37 @@
     {% if forloop.counter0 == 0 %} data-glue-expansion-panel-initial="expanded"{% endif %}
     id="{{list_name}}-card-{{forloop.counter0}}">
   <div class="dmb-list-card__results">
-  <div class="dmb-list-card__overall">
-      <div>
+    <div class="dmb-list-card__overall">
+      <div class="dmb-list-card__overall-title dmb-u-text-semi-muted h-u-font-weight-medium">
         Overall
-  </div>
-      <div class="dmb-list-card__overall-text">
+      </div>
+      <div class="dmb-list-card__overall-level dmb-u-alt-font">
         {{ result.overall.levels.current.name }}
       </div>
-      <div class="dmb-list-card__overall-score">
-        {{ result.overall.value|floatformat }}
+      <div class="dmb-list-card__overall-score dmb-u-text-semi-muted h-u-font-weight-medium dmb-u-alt-font">
+        {{ result.overall.value|floatformat:1 }}
       </div>
     </div>
 
     {% if result.dimensions.items %}
-  <ul class="dmb-list-card__dimension-list">
-    {% for dimension, dimension_info in result.dimensions.items %}
-      <li class="dmb-list-card__dimension-list-item">
-            <div>
+      <ul class="dmb-list-card__dimension-list">
+        {% for dimension, dimension_info in result.dimensions.items %}
+          <li class="dmb-list-card__dimension-list-item">
+            <div class="dmb-list-card__dimension-list-item-title dmb-u-text-semi-muted h-u-font-weight-medium">
               {{ dimension_info.name|capfirst }}
             </div>
-            <div class="dmb-u-text-muted">
+            <div class="dmb-list-card__dimension-list-level dmb-u-text-muted">
               {{ dimension_info.levels.current.name }}
             </div>
-            <div class="dmb-u-text-muted">
-              {{ dimension_info.value|floatformat }}
+            <div class="dmb-list-card__dimension-list-score dmb-u-text-muted">
+              {{ dimension_info.value|floatformat:1 }}
             </div>
-      </li>
-    {% endfor %}
-  </ul>
+          </li>
+        {% endfor %}
+      </ul>
     {% endif %}
   </div>
+
   {% if result.detail_link or result.report_link %}
     <div class="dmb-list-card__actions">
       {% if result.detail_link %}
