@@ -25,8 +25,8 @@
   &__header {
     align-items: center;
     display: flex;
-    padding: $dmb-spacing-s;
     font-size: 14px;
+    padding: $dmb-spacing-s;
   }
 
   &__header-left {
@@ -95,10 +95,10 @@
 
 
   &__dimension-list {
-    justify-self: flex-end;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    justify-self: flex-end;
     list-style: none;
     margin: 0;
     max-width: 415px;
@@ -112,7 +112,7 @@
   }
 
   &__dimension-list-item-title {
-    font-size: 0.8em;
+    font-size: .8em;
     margin-bottom: $dmb-spacing-xs;
   }
 

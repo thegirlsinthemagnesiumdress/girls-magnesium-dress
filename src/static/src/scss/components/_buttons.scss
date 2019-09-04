@@ -26,8 +26,8 @@
   }
 
   &--secondary {
-    color: $dmb-color-blue-denim !important;
     background: $dmb-color-blue-alice;
+    color: $dmb-color-blue-denim !important;
 
     &:hover {
       background: $dmb-color-blue-lavender;
