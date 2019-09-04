@@ -8,12 +8,12 @@
     </span>
   </div>
 
-  {% comment %} Hidden until glue upgrade is complete for expension panels
   <div class="dmb-list-card__header-right">
     {{ result.overall.value|floatformat }}
-    <span class="dmb-list-card__subtext dmb-u-text-muted">{{ result.overall.levels.current.name }}</span>
+    <span class="dmb-list-card__subtext dmb-u-text-muted">
+      {{ result.overall.levels.current.name }}
+    </span>
   </div>
-  {% endcomment %}
 
   <button
       aria-label="toggle panel expansion"
