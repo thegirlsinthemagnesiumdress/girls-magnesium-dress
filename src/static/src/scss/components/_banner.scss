@@ -7,10 +7,14 @@
     flex-wrap: wrap;
   }
 
+  &__heading {
+    margin-bottom: $dmb-spacing-s;
+  }
+
   &__back {
     @include dmb-mq($from: tablet) {
       margin-right: 24px;
-      padding-top: 16px;
+      padding-top: $dmb-spacing-xs;
     }
   }
 
@@ -40,7 +44,7 @@
     display: flex;
 
     @include dmb-mq($from: desktop) {
-      font-size: 18px;
+      font-size: 14px;
     }
 
     &:not(:first-of-type) {
@@ -53,7 +57,7 @@
   }
 
   svg {
-    fill: $dmb-color-grey-shuttle;
+    fill: $dmb-color-grey-chateau;
     position: relative;
     top: -.03em;
   }
