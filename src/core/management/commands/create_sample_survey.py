@@ -39,18 +39,18 @@ SAMPLE_DMB_D = {
 
 INITIAL_INDUSTRY_BENCHMARKS = {
     'ads': {
-        "organization": 2.5,
+        "organization": 2,
         "attribution": 1,
-        "access": 3.2,
-        "ads": 3,
+        "access": 2,
+        "ads": 2,
         "audience": 1,
-        "automation": 2.0
+        "automation": 2
     },
     'retail': {
-        "emerging_monetization": 1.5,
-        "user_engagement": 2.4,
-        "core_sales": 3.0,
-        "strategic_direction": 1.3
+        "emerging_monetization": 1,
+        "user_engagement": 2,
+        "core_sales": 2.5,
+        "strategic_direction": 1
     },
     'news': {
         "reader_revenue": 1,
@@ -69,7 +69,7 @@ INITIAL_INDUSTRY_BENCHMARKS = {
 BP_INDUSTRY_BENCHMARKS = {
     'ads': {
         "organization": 3.5,
-        "attribution": 2,
+        "attribution": 2.5,
         "access": 3.8,
         "ads": 3.5,
         "audience": 2,
@@ -123,6 +123,10 @@ class Command(BaseCommand):
                 industry=survey.industry,
                 tenant=tenant,
                 defaults={
+                    'initial_dmb': initial_benchmark_dmb,
+                    'initial_dmb_d': initial_benchmark_dmb_d,
+                    'initial_best_practice': bp_benchmark_dmb,
+                    'initial_best_practice_d': bp_benchmark_dmb_d,
                     'dmb_value': initial_benchmark_dmb,
                     'dmb_d_value': initial_benchmark_dmb_d,
                     'dmb_bp_value': bp_benchmark_dmb,
