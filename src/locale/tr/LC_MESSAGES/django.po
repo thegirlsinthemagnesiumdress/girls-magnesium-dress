@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-12 09:44+0000\n"
+"POT-Creation-Date: 2019-08-30 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1478,6 +1478,14 @@ msgstr "Seyahat acentesi ve tur operatörü"
 msgid "Wholesale trade"
 msgstr "Toptan ticaret"
 
+#, fuzzy
+#| msgid "Information and Communication"
+msgid "Información y comunicación"
+msgstr "Bilgi ve İletişim"
+
+msgid "Libros, noticias, periódicos y revistas"
+msgstr ""
+
 msgid "Your results are ready!"
 msgstr "Sonuçlarınız hazır."
 
@@ -1511,6 +1519,7 @@ msgstr "Yanıt hazır."
 msgid "Your roadmap to digital marketing maturity"
 msgstr "Dijital pazarlamada olgunluk için yol haritanız"
 
+#, python-format
 msgid "The <strong>%(prod_name)s</strong> is a diagnostic tool developed based on our in-depth research with BCG."
 msgstr "<strong>%(prod_name)s</strong>, BCG ile yürüttüğümüz kapsamlı çalışmaya dayalı olarak geliştirdiğimiz bir teşhis aracıdır."
 
@@ -1734,6 +1743,7 @@ msgstr "Alakalı ve kendileri için özel olarak oluşturulmuş deneyimler istiy
 msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
 msgstr "\"Yakınımdaki\" aramaları son 2 yılda Avrupa, Orta Doğu ve Afrika'da Google Arama için 4,5 ve Google Haritalar için 6 katına çıktı.&nbsp;"
 
+#, python-format
 msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
 msgstr "Pazarlamacıların %%89'u, müşteri ihtiyaçlarını önceden kestirmenin ve tüketici yolculuğu boyunca faydalı deneyimler sunmanın markalarının büyümesi açısından kritik öneme sahip olduğunu söylüyor."
 
@@ -1886,14 +1896,26 @@ msgstr "daha fazla"
 msgid "less"
 msgstr "daha az"
 
+msgid "https://www.google.com/intl/en/policies/privacy/"
+msgstr "https://www.google.com/intl/tr/policies/privacy/"
+
 msgid "Privacy"
 msgstr "Gizlilik"
+
+msgid "https://www.google.com/intl/en/policies/terms/"
+msgstr "https://www.google.com/intl/tr/policies/terms/"
 
 msgid "Terms"
 msgstr "Şartlar"
 
+msgid "https://www.google.com/intl/en/about/"
+msgstr "https://www.google.com/intl/tr/about/"
+
 msgid "About Google"
 msgstr "Google Hakkında"
+
+msgid "https://www.google.com/intl/en/about/products/"
+msgstr "https://www.google.com/intl/tr/about/products/"
 
 msgid "Google Products"
 msgstr "Google Ürünleri"
