@@ -3,7 +3,9 @@
 
 {% block main %}
 {% djangoblock %}
-<main id="dmb-account-details" class="dmb-account-details h-c-page dmb-u-m-t-m h-u-font-weight-regular">
+<main
+    class="dmb-account-details dmb-u-m-t-s h-u-font-weight-regular"
+    id="dmb-account-details">
 
   {% include 'public/admin/inc/account-details-banner.inc.html' with account=account %}
 
