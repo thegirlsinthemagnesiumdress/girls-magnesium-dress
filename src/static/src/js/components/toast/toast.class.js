@@ -24,7 +24,7 @@ export default class Toast {
   }
 
   /**
-   * @param {String} state
+   * @param {string} state
    * @export
    */
   setState(state) {

@@ -1,4 +1,5 @@
 import {bootstrapData} from '../bootstrap/bootstrap-data';
+const domSafe = goog.require('goog.dom.safe');
 
 /**
  * Component for building out the AccountsList
@@ -36,7 +37,7 @@ export default class AccountsList {
      * Format a number to a fixed number of decimal places, corrects the rounding issue of just using .toFixed()
      * @param {!number} number The number to format
      * @param {number=} dp (Optional) the number of decimal places to format to (defaults to 1)
-     * @return {number}
+     * @return {string}
      */
     function formatNumber(number, dp=1) {
       return (Math.round(number * 10) / 10).toFixed(dp);
@@ -95,7 +96,8 @@ export default class AccountsList {
         const td = document.createElement('td');
         td.setAttribute('data-colheader', column.header);
         const a = document.createElement('a');
-        a.href = `${column.id}/`; // TODO (mstrutt) link should come from the backend
+        domSafe.setAnchorHref(a, `${column.id}/`); // TODO (mstrutt) link should come from the backend
+        // a.href = `${column.id}/`;
         a.textContent = column.content;
         td.appendChild(a);
         tr.appendChild(td);
