@@ -232,13 +232,15 @@ class SurveyResult(models.Model):
         if not self.survey_definition_id:
             return None
 
-        if not self.survey:
+        if not self.survey and not self.internal_survey:
             return None
+
+        slug = self.survey.slug if self.survey else self.internal_survey.slug
 
         return reverse(
             'result-detail',
             kwargs={
-                'tenant': self.survey.slug,
+                'tenant': slug,
                 'response_id': self.response_id,
             },
         )
