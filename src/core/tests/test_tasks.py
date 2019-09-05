@@ -36,6 +36,7 @@ import pytz
 from collections import OrderedDict
 from django.conf import settings
 from django.template.loader import get_template
+from djangae.deferred import PermanentTaskFailure
 import unittest
 
 
@@ -2068,6 +2069,29 @@ class ExportTenantDataNotSuperAdmin(TestCase):
 
         for dim in tenant_conf['CONTENT_DATA']['dimension_labels'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
+
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_export_fail(self, mocked_export, mocked_col_export):
+        """When export column data fails check that the KeyError raised causes a PermanentTaskFailure"""
+        tenant = 'retail'
+        engagement_lead = '111111'
+        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead)
+
+        tenant_conf = settings.TENANTS[tenant]
+        retail_title = "Retail Export"
+        invalid_cols = ['not-a-column']
+
+        # Check that export tenant data raises the expected exception.
+        with self.assertRaises(PermanentTaskFailure):
+            export_tenant_data(
+                retail_title,
+                tenant,
+                self.is_super_admin,
+                engagement_lead,
+                tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
+                invalid_cols,
+                self.share_with,
+            )
 
 
 @override_settings(
