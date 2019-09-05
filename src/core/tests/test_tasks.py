@@ -2071,7 +2071,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
             self.assertTrue(dim in got_headers, "{} error".format(dim))
 
     @mock.patch('core.googleapi.sheets.export_data')
-    def test_export_fail(self, mocked_export, mocked_col_export):
+    def test_export_fail(self, mocked_export):
         """When export column data fails check that the KeyError raised causes a PermanentTaskFailure"""
         tenant = 'retail'
         engagement_lead = '111111'
