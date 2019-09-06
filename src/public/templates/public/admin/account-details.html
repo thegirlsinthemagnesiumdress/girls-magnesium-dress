@@ -10,13 +10,13 @@
   {% include 'public/admin/inc/account-details-banner.inc.html' with account=account %}
 
   <div class="h-c-grid">
-    {% if tenant == 'ads' %}
+    {% if tenant|ng_mark_safe == 'ads' %}
       <div class="h-c-grid__col h-c-grid__col-l--6 dmb-u-m-b-s">
         {% include 'public/admin/inc/account-details-result-list.inc.html' with list_name='internal' results=internal_results %}
       </div>
     {% endif %}
 
-    <div class="h-c-grid__col{% if tenant == 'ads' %} h-c-grid__col-l--6{% else %} h-c-grid__col-l--7{% endif %} dmb-u-m-b-s">
+    <div class="h-c-grid__col{% if tenant|ng_mark_safe == 'ads' %} h-c-grid__col-l--6{% else %} h-c-grid__col-l--7{% endif %} dmb-u-m-b-s">
       {% include 'public/admin/inc/account-details-result-list.inc.html' with list_name='external' results=external_results %}
     </div>
   </div>
