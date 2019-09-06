@@ -38,6 +38,7 @@
     "gulp-sass-lint": "1.4.0",
     "gulp-sourcemaps": "2.6.4",
     "gulp-svg-symbols": "^3.2.3",
+    "imageoptim-cli": "^2.3.9",
     "lazypipe": "1.0.1",
     "webpack-stream": "^5.2.1",
     "webpack-wrapper-plugin": "^1.0.1"

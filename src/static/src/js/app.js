@@ -80,15 +80,16 @@ module.constant('cssGridSupport', cssGridSupport);
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);
 
-// Initialise Glue Vanilla components
-document.querySelectorAll('.glue-header').forEach(Header.attachTo);
-
 // Attach copy component to elements with the custom dmb-copy-to-clipboard attribute.
 document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
 
-document.querySelectorAll('.glue-expansion-panels').forEach(GlueExpansionPanelsPanelGroup.attachTo);
-document.querySelectorAll('.glue-tabs').forEach(Tabs.attachTo);
-document.querySelectorAll('.glue-pagination-pages').forEach(PaginationPages.attachTo);
+// Initialise Glue Vanilla components
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.glue-expansion-panels').forEach(GlueExpansionPanelsPanelGroup.attachTo);
+  document.querySelectorAll('.glue-header').forEach(Header.attachTo);
+  document.querySelectorAll('.glue-pagination-pages').forEach(PaginationPages.attachTo);
+  document.querySelectorAll('.glue-tabs').forEach(Tabs.attachTo);
+});
 
 // Initialise Vanilla DMB components
 document.querySelectorAll('[data-glue-pagination]').forEach(tabState);
