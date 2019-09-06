@@ -76,6 +76,7 @@ INTERNAL_TENANTS[CLOUD]['enabled'] = False
 # explicitly set enabled LANGUAGES
 LANGUAGES = [
     ('en', 'English'),
+    ('es', 'Español'),
 ]
 
 
