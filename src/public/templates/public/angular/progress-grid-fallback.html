@@ -1,82 +1,133 @@
 {% load i18n %}
 {% trans "Get more information about the industry average" as industry_avg_aria_text %}
 {% trans "Get more information about the industry best" as industry_best_aria_text %}
-<div class="dmb-progress-table">
+<div class="dmb-progress-table dmb-progress-table--level-{[ progressGridCtrl.ratingMainData['current']['value'] ]}">
   <div class="dmb-progress-table__col"></div>
   <div class="dmb-progress-table__col dmb-progress-table__col--level-0">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressGridCtrl.levels[0]]}</h3>
+    <h3
+        aria-hidden="true"
+        class="dmb-progress-table__col-heading">
+      {[ progressGridCtrl.levels[0] ]}
+    </h3>
+
     <div class="dmb-progress-table__row-wrp">
-      <div class="dmb-progress-table__row dmb-progress-table__row--main"
+      <div
+          aria-label="Your Company is {[ progressGridCtrl.ratingMainData['current']['mapValue'] ]}"
+          data-rating="{[ progressGridCtrl.ratingMain|number:1 ]}"
+          class="dmb-progress-table__row dmb-progress-table__row--main"
           ng-class="{
-            'dmb-progress-table__row--no-value': ratingMain == null,
-            'dmb-progress-table__row--value-four': ratingMain == 4
+            'dmb-progress-table__row--no-value':
+              progressGridCtrl.ratingMain == null,
+            'dmb-progress-table__row--value-max':
+              progressGridCtrl.ratingMain == progressGridCtrl.levelsMax
           }"
-          ng-style="{width: progressGridCtrl.getProgress(ratingMain)}"
-          aria-label="Your Company is {[progressGridCtrl.getLevelName(ratingMain)]}"
-          data-rating="{[ratingMain|number:1]}">
-        <div class="dmb-progress-table__label" aria-hidden="true">
-          <span class="dmb-progress-table__company">{[companyName]}</span>
-          <span class="dmb-progress-table__rating" aria-label="Your company rating">{[ratingMain|number:1]}</span>
+          ng-style="{
+            width: progressGridCtrl.getProgress(progressGridCtrl.ratingMain)
+          }">
+        <div
+            aria-hidden="true"
+            class="dmb-progress-table__label">
+          <span class="dmb-progress-table__company">
+            {[ progressGridCtrl.companyName ]}
+          </span>
+          <span
+              aria-label="Your company rating"
+              class="dmb-progress-table__rating">
+            {[ progressGridCtrl.ratingMain|number:1 ]}
+          </span>
         </div>
       </div>
     </div>
+
     <div class="dmb-progress-table__row-wrp">
-      <div ng-if="industryReady && !industryAvg" class="dmb-progress-table__banner">
+      <div
+          class="dmb-progress-table__banner"
+          ng-if="progressGridCtrl.industryReady && !progressGridCtrl.industryAvg">
         {% trans "Industry average is not available yet, sorry!" %}
       </div>
       <div
-        class="dmb-progress-table__row dmb-progress-table__row--ind-avg"
+          class="dmb-progress-table__row dmb-progress-table__row--ind-avg"
+          data-rating="{[ progressGridCtrl.industryAvg|number:1 ]}"
           ng-class="{
-            'dmb-progress-table__row--no-value': industryAvg == null,
-            'dmb-progress-table__row--value-four': industryAvg == 4
+            'dmb-progress-table__row--no-value':
+              progressGridCtrl.industryAvg == null,
+            'dmb-progress-table__row--value-max':
+              progressGridCtrl.industryAvg == progressGridCtrl.levelsMax
           }"
-          ng-style="{width: progressGridCtrl.getProgress(industryAvg)}"
-          data-rating="{[industryAvg|number:1]}">
+          ng-style="{
+            width: progressGridCtrl.getProgress(progressGridCtrl.industryAvg)
+          }">
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
-            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-                aria-label="{{industry_avg_aria_text}}">
+            <button
+                aria-label="{{ industry_avg_aria_text }}"
+                class="dmb-report-page__info"
+                dmb-side-panel-trigger="#dmb-industry-side-panel">
               <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
                 <use xlink:href="#info-dark"></use>
               </svg>
-            </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">{% trans "Industry average" %}</span>
+            </button>&nbsp;<span aria-hidden="{[ progressGridCtrl.industryAvg == null ]}">
+              {% trans "Industry average" %}
+            </span>
           </span>
-          <span class="dmb-progress-table__rating" aria-label="industry average rating">{[industryAvg|number:1]}</span>
+          <span
+              aria-label="industry average rating"
+              class="dmb-progress-table__rating">
+            {[ progressGridCtrl.industryAvg|number:1 ]}
+          </span>
         </div>
       </div>
     </div>
+
     <div class="dmb-progress-table__row-wrp">
-      <div ng-if="industryReady && !industryBest" class="dmb-progress-table__banner">
+      <div
+          class="dmb-progress-table__banner"
+          ng-if="progressGridCtrl.industryReady && !progressGridCtrl.industryBest">
         {% trans "Industry best is not available yet, sorry!" %}
       </div>
-      <div class="dmb-progress-table__row dmb-progress-table__row--ind-best"
+      <div
+          class="dmb-progress-table__row dmb-progress-table__row--ind-best"
+          data-rating="{[ progressGridCtrl.industryBest|number:1 ]}"
           ng-class="{
-            'dmb-progress-table__row--no-value': industryBest == null,
-            'dmb-progress-table__row--value-four': industryBest == 4
+            'dmb-progress-table__row--no-value':
+              progressGridCtrl.industryBest == null,
+            'dmb-progress-table__row--value-max':
+              progressGridCtrl.industryBest == progressGridCtrl.levelsMax
           }"
-          ng-style="{width: progressGridCtrl.getProgress(industryBest)}"
-          data-rating="{[industryBest|number:1]}">
+          ng-style="{
+            width: progressGridCtrl.getProgress(progressGridCtrl.industryBest)
+          }">
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
-            <button class="dmb-report-page__info" dmb-side-panel-trigger="#dmb-report-left-side-panel-two"
-                aria-label="{{industry_best_aria_text}}">
+            <button
+                aria-label="{{ industry_best_aria_text }}"
+                class="dmb-report-page__info"
+                dmb-side-panel-trigger="#dmb-industry-side-panel">
               <svg role="img" class="dmb-svg dmb-svg--info" width="20px" height="20px">
                 <use xlink:href="#info-dark"></use>
               </svg>
-            </button>&nbsp;<span aria-hidden="{[industryAvg == null]}">{% trans "Industry best" %}</span>
+            </button>&nbsp;<span aria-hidden="{[ progressGridCtrl.industryAvg == null ]}">
+              {% trans "Industry best" %}
+            </span>
           </span>
-          <span class="dmb-progress-table__rating" aria-label="industry best rating">{[industryBest|number:1]}</span>
+          <span 
+              aria-label="industry best rating"
+              class="dmb-progress-table__rating">
+            {[ progressGridCtrl.industryBest|number:1 ]}
+          </span>
         </div>
       </div>
     </div>
   </div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--level-1">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressGridCtrl.levels[1]]}</h3>
-  </div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--level-2">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressGridCtrl.levels[2]]}</h3>
-  </div>
-  <div class="dmb-progress-table__col dmb-progress-table__col--level-3">
-    <h3 class="dmb-progress-table__col-heading" aria-hidden="true">{[progressGridCtrl.levels[3]]}</h3>
+
+  <div
+      class="dmb-progress-table__col dmb-progress-table__col--level-{[ level ]}"
+      ng-if="$index > 0"
+      ng-repeat="level in progressGridCtrl.levelsArray">
+    <h3
+        aria-hidden="true"
+        class="dmb-progress-table__col-heading">
+      {[ progressGridCtrl.levels[level] ]}
+    </h3>
   </div>
 </div>
