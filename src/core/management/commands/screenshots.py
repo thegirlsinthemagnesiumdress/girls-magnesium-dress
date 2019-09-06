@@ -90,6 +90,11 @@ def take_sized_screenshots(driver, screen_sizes, path, retina=False):
         """, w, h)
         driver.set_window_size(*window_size)
         # Wait until the angular content has loaded
+        _ = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located(
+                (By.ID, 'dmb-shotty-ready')
+            )
+        )
         element = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located(
                 (By.CLASS_NAME, screen['focused_element'])
@@ -179,6 +184,26 @@ def take_screenshots(tenants, languages, screens, retina=False):
         driver.close()
 
 
+def optimise_images(tenants, languages):
+    """Runs imageoptim and imagealpha on the images for the specified tenants and languages
+
+    Args:
+        tenants ([string]): A list of tentants to optimise images for.
+        languages ([string]): A list of language codes to optimise images for.
+    """
+    # Create the glob pattern for the imageoptim command.
+    tenants_glob = "{,%s}" % ','.join(tenants)
+    languages_glob = "{,%s}" % ','.join(languages)
+    glob = "./src/static/src/img/%s/%s/home/{laptop,mobile,tablet,laptop@2x,tablet@2x,mobile@2x}.png" % (
+        languages_glob,
+        tenants_glob
+    )
+    subprocess.call(
+        "./node_modules/.bin/imageoptim -a %s" % glob,
+        shell=True
+    )
+
+
 class Command(BaseCommand):
     help = 'Takes screenshots of the reports page for all tenants and different screen sizes for landing page'
 
@@ -232,14 +257,11 @@ class Command(BaseCommand):
             take_screenshots(tenants, languages, screens, retina=True)
             # Optimise images
             if options.get('optimise'):
-                subprocess.call(
-                    "cd ./src/static/src/img && open -a ImageOptim {**/home/*.png,**/**/home/*.png}",
-                    shell=True
-                )
+                optimise_images(tenants, languages)
             else:
                 logging.warn("""
                     Calling screenshots with no optimisation, if deploying remeber to manually run:
-                    'cd ./src/static/src/img && open -a ImageOptim {**/home/*.png,**/**/home/*.png}'
+                    'imageoptim -a ./src/static/src/img/{**/home/*.png,**/**/home/*.png}'
                     in the root directory to optimise the images.
                 """)
         finally:

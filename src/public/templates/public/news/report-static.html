@@ -10,6 +10,7 @@
   {% include 'public/news/report/report-dimensions.inc.html' %}
 
   {% if debug or is_nightly %}
+    <div id="dmb-shotty-ready" ng-if="reportCtrl.industryResult"></div>
     {% include 'public/inc/report/report-debug.inc.html' %}
   {% endif %}
 </main>
