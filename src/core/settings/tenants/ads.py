@@ -151,6 +151,7 @@ LEVELS = {
     LEVEL_3: _(u'Multi-moment'),
 }
 
+
 LEVELS_RANGES = [
     (LEVEL_0, LEVEL_1),
     (LEVEL_1, LEVEL_2),
