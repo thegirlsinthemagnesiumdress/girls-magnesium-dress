@@ -1,2 +1,2 @@
 {% load i18n %}
-{% trans "Internal response is ready!" %}
+{% trans "Your internal assessment results are ready - " %} {{company_name}}

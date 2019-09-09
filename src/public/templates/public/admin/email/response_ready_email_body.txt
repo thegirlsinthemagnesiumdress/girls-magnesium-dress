@@ -1,2 +1,2 @@
 {% load i18n %}
-{% trans "We've finished analyzing your survey responses to find out where your client can improve their marketing strategy. Here's the link to access your report:" %} {{url}}
+{% trans "View results:" %} {{url}}
