@@ -347,7 +347,7 @@ def render_email_template(template_folder, context, language):
     cur_language = translation.get_language()
     try:
         translation.activate(language)
-        import pdb; pdb.set_trace()
+
         subject_template = get_template(os.path.join(template_folder, "response_ready_email_subject.txt"))
         html_message_template = get_template(os.path.join(template_folder, "response_ready_email_body.html"))
         text_message_template = get_template(os.path.join(template_folder, "response_ready_email_body.txt"))
