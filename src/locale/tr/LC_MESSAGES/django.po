@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-30 14:32+0000\n"
+"POT-Creation-Date: 2019-09-09 10:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1529,24 +1529,6 @@ msgstr "Müşterilerle bağlantı kurmak için hiçbir fırsatı kaçırmayın"
 msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
 msgstr "Veriye dayalı pazarlamanızın durumunu öğrenin ve dijital olgunluk yol haritanızı keşfedin."
 
-msgid "How it works"
-msgstr "İşleyiş şekli"
-
-msgid "Benchmark which stage your organisation is at on our digital maturity scale."
-msgstr "Organizasyonunuzun dijital olgunluk ölçeğimizin hangi kademesinde olduğunu ölçün."
-
-msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
-msgstr "Bu kademedeki işletmeler kampanya bazında faaliyet gösteren işletmelerdir. Harici veriler ile doğrudan satın almalardan yararlanırlar ve satış bağlantıları sınırlıdır."
-
-msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
-msgstr "Bu işletmelerde, sahip olunan verilerin bir kısmının otomatik satın almada tek kanallı optimizasyon ve test ile kullanımı söz konusudur."
-
-msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
-msgstr "Şu an itibarıyla veriler YG veya satış bağlantısı olduğu kanıtlanmış farklı kanallarda entegre ediliyor ve etkinleştiriliyor."
-
-msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
-msgstr "Bu kademede, işletmeler kanallar arasında tek müşteri görünümü için optimize edilmiş dinamik yürütmeye sahiptir."
-
 msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
 msgstr "Araç, işletmenizin tam veriye dayalı pazarlama ve ilişkilendirme yolundaki konumunu analiz eder. Ardından, kişiselleştirilmiş, danışmanlık amaçlı ve etkileşimli bir rapor üretir. Bu raporda, işletmeniz sektörünüzdeki diğer organizasyonlarla karşılaştırılır. Ayrıca, olgunluk düzeyinizin yükselmesini sağlayacak stratejik ve taktik öneriler sunulur."
 
@@ -1562,9 +1544,6 @@ msgstr "Organizasyonunuzu bir sonraki düzeye nasıl taşıyacağınızı öğre
 
 msgid "devices running the tool"
 msgstr "aracı çalıştıran cihazlar"
-
-msgid "laptop screen demo"
-msgstr "dizüstü ekran demosu"
 
 msgid "These businesses have a sustainable competitive advantage"
 msgstr "Bu işletmeler sürdürülebilir rekabet avantajına sahiptir"
@@ -1629,6 +1608,12 @@ msgstr "Değerlendirmeyi hemen başlatın"
 
 msgid "This in-depth assessment takes around 30 minutes to complete."
 msgstr "Kapsamlı değerlendirme yaklaşık 30 dakika sürer."
+
+msgid "How it works"
+msgstr "İşleyiş şekli"
+
+msgid "Benchmark which stage your organisation is at on our digital maturity scale."
+msgstr "Organizasyonunuzun dijital olgunluk ölçeğimizin hangi kademesinde olduğunu ölçün."
 
 msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
 msgstr "BCG, bu rakamları belirlerken 8 sektörden 40'ın üzerinde şirketteki başarı faktörlerini ve yetenekleri incelemiştir"
@@ -1790,34 +1775,6 @@ msgstr "Kaynak: Google Verileri, Avrupa, Orta Doğu ve Afrika, Oca - Ara 2015 ve
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
 msgstr "Kaynak: Econsultancy/Google, “An Audience of Individuals” (“Birey Kitlesi”) 2017, katılımcı sayısı=514, 250 milyon $'ın üzerinde gelire sahip Kuzey Amerika şirketlerinde görev yapan pazarlama ve ölçüm yetkilileri; katılımcı sayısı=133, 2016 yılında pazarlama sonuçlarının üst düzey işletme hedeflerini önemli ölçüde aştığını bildiren önde gelen pazarlamacılar, katılımcı sayısı=381, ana akım pazarlamacılar (örneklemin geri kalanı)."
 
-msgid "You are "
-msgstr "Şu anki düzeyiniz: "
-
-msgid "You could be"
-msgstr "Gelebileceğiniz düzey:"
-
-msgid "Congratulations"
-msgstr "Tebrikler"
-
-#, python-format
-msgid "you're in the top 2%% for marketing maturity"
-msgstr "pazarlamada olgunluk bakımından %%2'lik grubun içindesiniz"
-
-msgid "Here's how you get there:"
-msgstr "Oraya ulaşmak için yapmanız gerekenler:"
-
-msgid "Here's how to get even better:"
-msgstr "Daha iyi olmak için yapmanız gerekenler:"
-
-msgid "logo"
-msgstr "logo"
-
-msgid "in this dimension"
-msgstr "bu boyutta"
-
-msgid "Congratulations, you're in the top group for data maturity"
-msgstr "Tebrikler. Verilerle ilgili olgunluk bakımından en üst gruptasınız."
-
 msgid "Get more information about the industry average"
 msgstr "Sektör ortalaması hakkında daha fazla bilgi edinin"
 
@@ -1935,6 +1892,9 @@ msgstr "Hemen başlayın"
 msgid "In partnership with The Boston Consulting Group"
 msgstr "Boston Consulting Group iş birliğiyle"
 
+msgid "laptop screen demo"
+msgstr "dizüstü ekran demosu"
+
 msgid "Next steps"
 msgstr "Sonraki adımlar"
 
@@ -1958,6 +1918,24 @@ msgstr "Bu raporu iş arkadaşlarınızla paylaşın"
 
 msgid "To share this report, copy the link and send it to your colleagues."
 msgstr "Bu raporu paylaşmak için, bağlantıyı kopyalayın ve iş arkadaşlarınıza gönderin."
+
+msgid "logo"
+msgstr "logo"
+
+msgid "in this dimension"
+msgstr "bu boyutta"
+
+msgid "You could be"
+msgstr "Gelebileceğiniz düzey:"
+
+msgid "Congratulations, you're in the top group for data maturity"
+msgstr "Tebrikler. Verilerle ilgili olgunluk bakımından en üst gruptasınız."
+
+msgid "Here's how you get there:"
+msgstr "Oraya ulaşmak için yapmanız gerekenler:"
+
+msgid "Here's how to get even better:"
+msgstr "Daha iyi olmak için yapmanız gerekenler:"
 
 msgid "Dimensions of marketing maturity"
 msgstr "Pazarlamada olgunluğun boyutları"
@@ -2025,6 +2003,28 @@ msgstr "Ana sayfaya dön"
 
 msgid "Woops.. there was an internal server error."
 msgstr "Dahili sunucu hatası oluştu."
+
+#~ msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
+#~ msgstr "Bu kademedeki işletmeler kampanya bazında faaliyet gösteren işletmelerdir. Harici veriler ile doğrudan satın almalardan yararlanırlar ve satış bağlantıları sınırlıdır."
+
+#~ msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
+#~ msgstr "Bu işletmelerde, sahip olunan verilerin bir kısmının otomatik satın almada tek kanallı optimizasyon ve test ile kullanımı söz konusudur."
+
+#~ msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+#~ msgstr "Şu an itibarıyla veriler YG veya satış bağlantısı olduğu kanıtlanmış farklı kanallarda entegre ediliyor ve etkinleştiriliyor."
+
+#~ msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
+#~ msgstr "Bu kademede, işletmeler kanallar arasında tek müşteri görünümü için optimize edilmiş dinamik yürütmeye sahiptir."
+
+#~ msgid "You are "
+#~ msgstr "Şu anki düzeyiniz: "
+
+#~ msgid "Congratulations"
+#~ msgstr "Tebrikler"
+
+#, python-format
+#~ msgid "you're in the top 2%% for marketing maturity"
+#~ msgstr "pazarlamada olgunluk bakımından %%2'lik grubun içindesiniz"
 
 #~ msgid "Digital Maturity Benchmark"
 #~ msgstr "Digital Maturity Benchmark"
