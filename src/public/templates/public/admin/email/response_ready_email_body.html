@@ -1,0 +1,214 @@
+{% load i18n %}
+<style type="text/css">
+    /* CLIENT-SPECIFIC STYLES */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; }
+
+    /* RESET STYLES */
+    img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    table { border-collapse: collapse !important; }
+    body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+
+    /* iOS BLUE LINKS */
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    /* MEDIA QUERIES */
+    @media screen and (max-width: 480px) {
+
+      *{font-family: 'Roboto', sans-serif !important;}
+
+      .mobile-none {
+        display: none !important;
+      }
+      .mobile-center {
+        text-align: center !important;
+      }
+      .mobile-fluid {
+        width: 100% !important;
+      }
+      .snippet{font-size: 14px!important;line-height: 16px!important;}
+      .headline{font-size: 34px!important;line-height: 38px!important;}
+      .subhead{font-size: 20px!important;line-height: 24px!important;}
+      .body-line{font-size: 18px!important;line-height: 24px!important;}
+      .footnote{font-size: 14px!important;line-height: 18px!important; padding: 0 15px 15px;}
+     }
+      /*
+      snippet,headline,subhead,body-line,btn-line,contact-map-card,contact-card
+      */
+
+      /* ANDROID CENTER FIX */
+      div[style*="margin: 16px 0;"] { margin: 0 !important; }
+</style>
+<div id="wrapper">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-height: 100%;">
+    <tr>
+      <td align="center" style="background-color: #F5F5F5;" bgcolor="#F5F5F5">
+          <!--[if (gte mso 9)|(IE)]>
+          <table align="center" border="0" cellspacing="0" cellpadding="0" width="480">
+          <tr>
+          <td align="center" valign="top" width="480">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:480px;">
+
+              <!-- logo row start -->
+              <tr>
+                <td align="center" style="padding: 40px 15px 25px; background-color: #F5F5F5;" bgcolor="#F5F5F5">
+
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:480px;">
+                    <tr>
+                      <td align="left" valign="bottom" width="74px" style="width: 74px; vertical-align: bottom;">
+                        <img alt="Google" src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" width="74" style="display: block; border: 0px;"/>
+                      </td>
+                      <td align="left" style="padding-left: 6px; color: #5F6368; font-family: Arial,Helvetica,sans-serif; font-size: 22px; font-style: normal; font-weight: 400;">
+                        {% with prod_name=product_name %}
+                        {% trans prod_name %}
+                        {% endwith %}
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- logo row end -->
+
+              <!-- content row start -->
+              <tr>
+                <td align="center" style="padding: 0 30px; background-color: #FFFFFF;" bgcolor="#FFFFFF">
+
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:480px;">
+
+                    <tr>
+                      <td align="left" style="font-family: Google Sans, Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 28px; font-weight: 700; line-height: 32px; color: #444444; padding-top: 50px; padding-bottom: 40px; text-align: center;" class="headline">
+                          {% trans "Your results are ready!" %}
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td align="center" style="font-family: Google Sans, Arial, Open Sans, Helvetica, sans-serif; font-size: 24px;line-height: 24px; color: #5F6368; font-weight: 700; letter-spacing: 0px;padding-bottom: 10px;" class="body-line">
+                        {{company_name}}
+                    </tr>
+
+                    <tr>
+                      <td align="center" style="font-family: Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 16px;line-height: 24px; color: #5F6368; font-style: 400; letter-spacing: 0px;padding-bottom: 40px;" class="body-line">
+                        <b>{% trans "Country" %}:</b> {{country}}<br />
+                        <b>{% trans "Industry" %}:</b> {{industry}}
+                    </tr>
+
+                    <tr>
+                      <td align="center" style="font-family: Roboto, Arial, Open Sans, Helvetica, sans-serif; font-size: 16px;line-height: 24px; color: #5F6368; font-style: 400; letter-spacing: 0px;padding-bottom: 46px;" class="body-line">
+                        {% trans "We've finished analysing your survey responses to find out where your client can improve their marketing strategy." %}
+                        <br /><br />
+                        {% trans "Click the button below to access your digital maturity report and see the results of your survey." %}
+                      </td>
+                    </tr>
+
+                    <!-- CTA -->
+                    <tr>
+                        <td align="center" style="padding: 6px 0 40px;" class="btn-line">
+                          <table border="0" cellspacing="0" cellpadding="0" width="75%"><tr><td align="center" style="background-color: #1A73E8; border-radius: 2px;" bgcolor="#1A73E8" height="50"><a href="{{url}}" target="_blank" style="display: block; font-family: Roboto, Arial, Helvetica, sans-serif; color: #ffffff; font-weight: 500; font-size: 13pt; padding: 8px 22px; text-decoration: none; letter-spacing: 0.5px;"><span contenteditable="false">{% trans "Access your report" %}</span></a></td></tr></table>
+                        </td>
+                    </tr>
+                    <!-- CTA -->
+
+                    <tr>
+                      <td align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 2px; font-weight: 400; line-height: 2px; color: #444444; padding-bottom: 20px;">
+                        <img src="http://dummyimage.com/30X2/dcdcdc/dcdcdc.png" width="30" style="display: inline-block; border: 0px;"/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-family: Robto, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; color: #444444; padding-bottom: 8px;"  class="body-line">
+                        {% trans "Connect with Google" %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; color: #444444; padding-bottom: 30px;">
+
+                          <table cellpadding="0" cellspacing="0" style="border-collapse: collapse; color: #444444; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">
+                            <tr>
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; color: #444444;padding:0; margin: 0;" align="left" valign="top">
+                                  <a href="https://twitter.com/google" target="_blank" style="display: inline-block;text-decoration: none;">
+                                    <img alt="Twitter" src="http://www.gstatic.com/gmktg/f1015/partners_social_icons_twitter.png" width="36"style="display: inline-block; border: 0px; margin-right: 16px;"/>
+                                  </a>
+                                </td>
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; color: #444444;padding:0; margin: 0;" align="left" valign="top">
+                                  <a href="https://www.linkedin.com/company/google" target="_blank" style="display: inline-block;text-decoration: none;">
+                                    <img alt="Linkedin" src="http://www.gstatic.com/gmktg/f1015/partners_social_icons_linkedin.png" width="36"style="display: inline-block; border: 0px; margin-right: 16px;"/>
+                                  </a>
+                                </td>
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; color: #444444;padding:0;  margin: 0;" align="left" valign="top">
+                                  <a href="https://www.youtube.com/Google" target="_blank" style="display: inline-block;text-decoration: none;">
+                                    <img alt="YouTube" src="http://www.gstatic.com/gmktg/f1015/partners_social_icons_youtube.png" width="36"style="display: inline-block; border: 0px; margin-right: 16px;"/>
+                                  </a>
+                                </td>
+                             </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- content row end -->
+
+                  <!-- footer row start -->
+                  <tr>
+                    <td align="center" style="padding: 15px 0; background-color: #F5F5F8;" bgcolor="#F5F5F8">
+
+                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:480px;">
+
+                        <tr>
+                            <td class="footnote" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 16px; color: #999999; font-style: 400; letter-spacing: 0px; padding-bottom: 15px;" align="center">
+                               {% trans "You received this email because you completed a Google Digital Maturity Benchmark survey. If this was not you, please ignore this email." %}
+                             </td>
+                        </tr>
+
+                        <tr>
+                          <td align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 2px; font-weight: 400; line-height: 2px; color: #999999; padding-top: 15px; padding-bottom: 20px;">
+                            <img src="http://dummyimage.com/30X2/dcdcdc/dcdcdc.png" width="30" style="display: inline-block; border: 0px;"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <img alt="Google logo" src="http://www.gstatic.com/gmktg/logo/google_footer_logo_updated.png" width="76" style="display: block; border: 0px;"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 16px; color: #999999;font-style: 400; letter-spacing: 0px; padding-top: 10px; padding-bottom: 15px;" class="footnote">
+                            <span style="width: 300px; margin: 0 auto; display: block;">Google Ireland Ltd, Gordon House, <br>Barrow Street, Dublin 4, <br>Ireland.</span>
+                          </td>
+                        </tr>
+
+                      </table>
+
+                    </td>
+                  </tr>
+
+                  <!-- footer row end -->
+
+                </table>
+                <!-- Gmail for mobile app spacers -->
+                <table class="mobile-none" style="-premailer-cellpadding:0; -premailer-cellspacing:0; border:0; border-collapse:collapse; color:#4d4d4d; font-family:Arial, Helvetica, sans-serif; font-size:1px" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="line-height:1px; margin:0; padding:0; text-align:left" align="left"><img src="http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" width="100" height="1"style="border:none; display:block; outline:none"></td>
+                    <td style="line-height:1px; margin:0; padding:0; text-align:left" align="left"><img src="http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" width="100" height="1"style="border:none; display:block; outline:none"></td>
+                    <td style="line-height:1px; margin:0; padding:0; text-align:left" align="left"><img src="http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" width="100" height="1"style="border:none; display:block; outline:none"></td>
+                    <td style="line-height:1px; margin:0; padding:0; text-align:left" align="left"><img src="http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" width="100" height="1"style="border:none; display:block; outline:none"></td>
+                    <td style="line-height:1px; margin:0; padding:0; text-align:left" align="left"><img src="http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" width="100" height="1"style="border:none; display:block; outline:none"></td>
+                    <td style="line-height:1px; margin:0; padding:0; text-align:left" align="left"><img src="http://www.gstatic.com/gmktg/dub-img/1x1_transparent.png" width="100" height="1"style="border:none; display:block; outline:none"></td>
+                  </tr>
+                </table>
+      <!--[if (gte mso 9)|(IE)]>
+      </td>
+      </tr>
+      </table>
+      <![endif]-->
+    </td>
+  </tr>
+  </table>
+</div>
