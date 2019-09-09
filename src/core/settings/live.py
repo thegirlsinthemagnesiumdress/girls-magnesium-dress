@@ -1,4 +1,5 @@
 # flake8: noqa
+# coding=utf-8
 import os
 from core.settings.default import *
 
