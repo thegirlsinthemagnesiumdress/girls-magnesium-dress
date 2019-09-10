@@ -38,8 +38,13 @@ class CreateSurveyView(CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         # Link the new account to the current logged in user.
-        request.data['creator'] = request.user.id
+        self.request = request
         return self.create(request, *args, **kwargs)
+
+    def get_serializer(self, *args, **kwargs):
+        serializer = super(CreateSurveyView, self).get_serializer(*args, **kwargs)
+        serializer.request = self.request
+        return serializer
 
 
 class UpdateAccountIdView(UpdateAPIView):

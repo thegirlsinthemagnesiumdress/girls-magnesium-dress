@@ -216,6 +216,7 @@ class CreateSurveyTest(APITestCase):
             'link',
             'link_sponsor',
             'engagement_lead',
+            'creator',
             'industry',
             'country',
             'tenant',
