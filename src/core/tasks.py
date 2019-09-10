@@ -45,7 +45,7 @@ def sync_qualtrics():
             internal_survey_definition = _get_definition(internal_tenant['key'], internal_tenant['QUALTRICS_SURVEY_ID'])
 
             if internal_survey_definition:
-                _get_results(internal_tenant, internal_survey_definition, _create_internal_result)
+                _get_results(internal_tenant, internal_survey_definition, _create_internal_result, True)
             else:
                 logging.error('Fetching internal survey definition failed, not fetching results')
 
@@ -83,7 +83,7 @@ def _get_definition(tenant, survey_id):
     return last_survey_definition
 
 
-def _get_results(tenant, survey_definition, get_individual_result_func):
+def _get_results(tenant, survey_definition, get_individual_result_func, internal=False):
     """Download survey results from Qualtrics.
 
     :param tenant: dictionary containing 'QUALTRICS_SURVEY_ID', 'EMAIL_TO', 'EMAIL_BCC' keys
@@ -126,7 +126,7 @@ def _get_results(tenant, survey_definition, get_individual_result_func):
 
             if email_list:
                 template_folder = tenant.get('EMAIL_TEMPLATE_FOLDER')
-                send_emails_for_new_reports(email_list, template_folder)
+                send_emails_for_new_reports(email_list, template_folder, internal)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
 
@@ -274,7 +274,7 @@ def _response_benchmark(questions, response_data, tenant):
     return benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
 
 
-def send_emails_for_new_reports(email_list, template_folder):
+def send_emails_for_new_reports(email_list, template_folder, internal=False):
     """Send an email for every element of `email_list`.
 
     :param email_list: tuple of element (to, bcc, sid, Q_Language)
@@ -294,7 +294,11 @@ def send_emails_for_new_reports(email_list, template_folder):
             if is_valid_email(to):
                 bcc = [bcc] if is_valid_email(bcc) else None
                 slug = get_tenant_slug(tenant)
-                link = _localised_link(q_lang, slug, sid)
+                link = None
+                if internal:
+                    link = reverse('account-detail', kwargs={'tenant': slug, 'sid': sid})
+                else:
+                    link = _localised_link(q_lang, slug, sid)
                 context = {
                     'url': "http://{}{}".format(settings.DOMAIN, link),
                     'company_name': company_name,
