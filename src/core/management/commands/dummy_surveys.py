@@ -24,7 +24,13 @@ def create_surveys(quantity):
             company_name = 'ACME Corp. {}'.format(i)
             try:
                 survey = Survey.objects.create(company_name=company_name, tenant=tenant, country='IT', industry='edu')
-                result = SurveyResult.objects.create(survey=survey, dmb=dmb, dmb_d=dmb_d, started_at=timezone.now(), response_id='R_xxxxx{}'.format(i))
+                result = SurveyResult.objects.create(
+                    survey=survey,
+                    dmb=dmb,
+                    dmb_d=dmb_d,
+                    started_at=timezone.now(),
+                    response_id='R_xxxxx{}'.format(i)
+                )
                 survey.last_survey_result = result
                 survey.save()
                 print("Company:  {}  created".format(company_name))
