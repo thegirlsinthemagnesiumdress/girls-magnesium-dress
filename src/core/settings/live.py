@@ -1,4 +1,5 @@
 # flake8: noqa
+# coding=utf-8
 import os
 from core.settings.default import *
 
@@ -76,6 +77,7 @@ ALL_TENANTS[CLOUD]['enabled'] = False
 # explicitly set enabled LANGUAGES
 LANGUAGES = [
     ('en', 'English'),
+    ('es', 'Español'),
 ]
 
 
