@@ -30,8 +30,7 @@ import * as exportReports from './components/export/export-reports';
 import * as languageCode from './components/language-code/language-code';
 import tabState from './components/tab-state/tab-state';
 
-// Vanilla JS Copy Component
-import Clippy from './components/clippy/component';
+import Clippy from './components/clippy/clippy';
 
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
