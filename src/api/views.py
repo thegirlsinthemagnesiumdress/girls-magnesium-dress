@@ -31,10 +31,15 @@ class CreateSurveyView(CreateAPIView):
     """
     Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
     """
-    authentication_classes = ()
+    authentication_classes = (SessionAuthentication, )
     permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        # Link the new account to the current logged in user.
+        request.data['creator'] = request.user.id
+        return self.create(request, *args, **kwargs)
 
 
 class UpdateAccountIdView(UpdateAPIView):
