@@ -1,7 +1,7 @@
 import hashlib
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
-from djangae.fields import JSONField
+from djangae.fields import JSONField, RelatedSetField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -15,6 +15,7 @@ from collections import OrderedDict
 
 
 class User(GaeAbstractDatastoreUser):
+    accounts = RelatedSetField('Survey')
 
     @property
     def is_super_admin(self):
@@ -64,6 +65,7 @@ class Survey(models.Model):
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
     parent_id = models.CharField(max_length=64, blank=True, null=True)
+    creator = models.ForeignKey('User', null=True, related_name='+')
 
     def get_industry_display(self, *args, **kwargs):
         t = settings.TENANTS[self.tenant]
@@ -245,8 +247,8 @@ class SurveyResult(models.Model):
     def absolute_detail_link(self):
         return "http://{}{}".format(settings.DOMAIN, self.detail_link)
 
-    class Meta:
-        ordering = ('-started_at',)
+    # class Meta:
+    #     ordering = ('-started_at',)
 
 
 class SurveyDefinition(models.Model):
