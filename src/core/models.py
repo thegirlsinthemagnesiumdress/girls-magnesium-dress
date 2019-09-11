@@ -9,9 +9,14 @@ from django.utils import translation
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.settings.default import QUALTRICS_LANGS_REV
-from core.managers import NotExcludedFromBestPracticeManager
+from core.managers import NotExcludedFromBestPracticeManager, AccountManager
 from core.conf import utils
 from collections import OrderedDict
+from search import (
+    indexers as search_indexers,
+    fields as search_fields
+)
+from search.django.decorators import searchable
 
 
 class User(GaeAbstractDatastoreUser):
@@ -33,6 +38,7 @@ class User(GaeAbstractDatastoreUser):
         return m.hexdigest()
 
 
+@searchable(add_default_queryset_search_method=False)
 class Survey(models.Model):
     """
     Models the surveys (internal and external)
@@ -64,6 +70,24 @@ class Survey(models.Model):
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
     parent_id = models.CharField(max_length=64, blank=True, null=True)
+
+    class SearchMeta:
+        fields = ['account_id', 'company_name']
+        field_types = {
+            'account_id': search_fields.TextField,
+            'company_name': search_fields.TextField,
+
+        }
+        field_mappers = {
+            'account_id_lower': lambda o: o.account_id,
+            'company_name_lower': lambda o: o.company_name.lower(),
+        }
+        corpus = {
+            'account_id': search_indexers.contains,
+            'company_name': search_indexers.contains,
+        }
+
+    objects = AccountManager()
 
     def get_industry_display(self, *args, **kwargs):
         t = settings.TENANTS[self.tenant]

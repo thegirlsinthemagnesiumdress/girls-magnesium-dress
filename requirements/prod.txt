@@ -12,3 +12,4 @@ git+https://github.com/potatolondon/django-angular-protect.git@dd6aa0a1ae7db8826
 unicodecsv==0.14.1
 oauth2client==4.1.3
 google-api-python-client==1.7.8
+git+https://github.com/potatolondon/search.git
