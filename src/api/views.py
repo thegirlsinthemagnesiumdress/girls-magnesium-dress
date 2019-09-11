@@ -41,10 +41,13 @@ class CreateSurveyView(CreateAPIView):
         self.request = request
         return self.create(request, *args, **kwargs)
 
-    def get_serializer(self, *args, **kwargs):
-        serializer = super(CreateSurveyView, self).get_serializer(*args, **kwargs)
-        serializer.request = self.request
-        return serializer
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
+        survey = Survey.objects.get(sid=serializer.data['sid'])
+        # Don't add the account if the user already has it
+        if survey.sid not in self.request.user.accounts_ids:
+            self.request.user.accounts.add(survey)
+            self.request.user.save()
 
 
 class UpdateAccountIdView(UpdateAPIView):

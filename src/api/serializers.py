@@ -32,10 +32,6 @@ class SurveySerializer(ModelSerializer):
                 raise ValidationError("Industry does not belong to a set of valid industrues for this tenant")
         return data
 
-    def save(self):
-        creator = self.request.user if not self.request.user.is_anonymous() else None
-        super(SurveySerializer, self).save(creator=creator)
-
 
 class SurveyAccountIdSerializer(ModelSerializer):
 
