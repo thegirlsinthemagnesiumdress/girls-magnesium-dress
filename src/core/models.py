@@ -1,7 +1,7 @@
 import hashlib
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
-from djangae.fields import JSONField, RelatedSetField
+from djangae.fields import JSONField, RelatedListField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -15,7 +15,7 @@ from collections import OrderedDict
 
 
 class User(GaeAbstractDatastoreUser):
-    accounts = RelatedSetField('Survey')
+    accounts = RelatedListField('Survey')
 
     @property
     def is_super_admin(self):
