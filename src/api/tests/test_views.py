@@ -1,5 +1,6 @@
 from core.models import Survey
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 import mock
@@ -150,7 +151,7 @@ class CreateSurveyTest(APITestCase):
     """Tests for `api.views.CreateSurveyView` view."""
 
     def setUp(self):
-        user = User.objects.create(
+        self.user = User.objects.create(
             username='test1',
             email='test@example.com',
             password='pass',
@@ -163,7 +164,7 @@ class CreateSurveyTest(APITestCase):
             'tenant': 'ads',
         }
 
-        self.client.force_authenticate(user)
+        self.client.force_authenticate(self.user)
         self.url = reverse('create_survey')
 
     def test_unauthenticated_user(self):
@@ -184,6 +185,7 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(post_response.get('link'), survey_db.link)
         self.assertEqual(post_response.get('link_sponsor'), survey_db.link_sponsor)
         self.assertEqual(post_response.get('engagement_lead'), survey_db.engagement_lead)
+        self.assertEqual(post_response.get('creator'), self.user.pk)
 
     def test_required_fields_not_matched(self):
         """Posting data not matching required parameters should fail."""
@@ -244,6 +246,29 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(response_data['company_name'], survey.company_name)
         self.assertEqual(response_data['account_id'], survey.account_id)
         self.assertEqual(response_data['tenant'], survey.tenant)
+        self.assertEqual(response_data['creator'], self.user.pk)
+
+    def test_non_admin_survey_is_created_correctly(self):
+        """Posting valid data from a non-admin user should create survey"""
+        self.client.force_authenticate(AnonymousUser())
+        data = {
+            'company_name': 'test company',
+            'industry': 'ic-o',
+            'country': 'GB',
+            'tenant': 'ads',
+            'account_id': '123123',
+        }
+
+        response = self.client.post(self.url, data)
+        response_data = response.json()
+        self.assertEqual(response.status_code, 201)
+
+        survey = Survey.objects.first()
+
+        self.assertEqual(response_data['company_name'], survey.company_name)
+        self.assertEqual(response_data['account_id'], survey.account_id)
+        self.assertEqual(response_data['tenant'], survey.tenant)
+        self.assertEqual(response_data['creator'], None)
 
 
 @override_settings(
