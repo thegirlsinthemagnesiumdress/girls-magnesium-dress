@@ -296,8 +296,6 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 CSRF_USE_SESSIONS = True
 
 ANGULAR_TEMPLATES = [
-    'dimension-tab-legacy',
-    'dimension-tab',
     'progress-grid',
     'progress-grid-fallback',
     'progress-table',
