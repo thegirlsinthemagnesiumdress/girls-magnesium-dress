@@ -165,3 +165,17 @@ def receive_bounce(request, *args, **kwargs):
     logging.error('Email bounced back original-to: {} , original-from: {}'.format(original_to, original_from))
     logging.error('Email bounced back original-text: {}'.format(request.POST['original-text']))
     return HttpResponse(status=200)
+
+
+@task_or_admin_only
+def create_dummy_surveys_task(request):
+    """Create a bunch of dummy surveys"""
+    msg = "Create some dummy surveys"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.create_dummy_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

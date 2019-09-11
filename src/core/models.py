@@ -83,8 +83,8 @@ class Survey(models.Model):
             'company_name_lower': lambda o: o.company_name.lower(),
         }
         corpus = {
-            'account_id': search_indexers.contains,
-            'company_name': search_indexers.contains,
+            'account_id': search_indexers.startswith,
+            'company_name': search_indexers.startswith,
         }
 
     objects = AccountManager()

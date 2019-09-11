@@ -1,6 +1,7 @@
 from django.conf import settings
 
 from core.models import Survey, SurveyResult
+from core.management.commands import dummy_surveys
 import logging
 
 
@@ -26,3 +27,7 @@ def migrate_to_dmblite_survey():
     logging.info("Disabling cloud tenant")
     settings.ALL_TENANTS['cloud']['enabled'] = False
     settings.TENANTS = {k: v for k, v in settings.ALL_TENANTS.items() if v['enabled']}
+
+
+def create_dummy_surveys():
+    dummy_surveys.create_surveys(100)
