@@ -175,13 +175,6 @@ class AccountViewSet(ListAPIView):
     serializer_class = SearchSurveySerializer
     pagination_class = None
 
-    # def get_serializer_class(self, *args, **kwargs):
-    #     return (
-    #         AccountListSerializer if
-    #         self.action == 'list' else
-    #         AccountDetailSerializer
-    #     )
-
     def get_queryset(self):
         """
         This view should return a list of all the accounts shared with the
@@ -190,9 +183,6 @@ class AccountViewSet(ListAPIView):
         query = self.request.query_params.get('q')
         tenant = self.kwargs['tenant']
         queryset = Survey.objects.filter(tenant=tenant)
-
-        # import pdb; pdb.set_trace()
-
         if query is not None:
             queryset = Survey.objects.search(query)
 

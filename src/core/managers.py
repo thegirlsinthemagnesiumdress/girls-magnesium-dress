@@ -9,10 +9,6 @@ class NotExcludedFromBestPracticeManager(models.Manager):
 
 class AccountQuerySet(models.QuerySet):
 
-    # def for_user(self, user_email):
-    #     return self.filter(models.Q(is_private=False) |
-    #                        models.Q(emails_shared_with__contains=user_email))
-
     def search(self, term):
         # The default implementation of the `search` queryset method from the
         # search library doesn't use the `corpus` field to search against, but
@@ -29,9 +25,6 @@ class AccountManager(models.Manager):
 
     def get_queryset(self):
         return AccountQuerySet(self.model, using=self._db)
-
-    # def for_user(self, user_email):
-    #     return self.get_queryset().for_user(user_email=user_email)
 
     def search(self, term):
         return self.get_queryset().search(term)
