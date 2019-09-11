@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^cron/update_benchmarks/$', views.update_industries_benchmarks_task, name="update-benchmarks"),
     url(r'^migrations/migrate_to_dmblite_survey/$', views.update_survey_model_task, name="migrate_to_dmblite_survey"),
     url(r'^migrations/create_dummy_surveys/$', views.create_dummy_surveys_task, name="create_dummy_surveys"),
+    url(r'^migrations/resave_surveys/$', views.resave_surveys_task, name="resave_surveys"),
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]

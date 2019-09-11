@@ -31,3 +31,11 @@ def migrate_to_dmblite_survey():
 
 def create_dummy_surveys():
     dummy_surveys.create_surveys(100)
+
+
+def resave_surveys():
+    for s in Survey.objects.all():
+        try:
+            s.save()
+        except AssertionError:
+            logging.error("Could not save {} ".format(s.sid))
