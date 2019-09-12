@@ -42,10 +42,11 @@ class CreateSurveyView(CreateAPIView):
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
-        serializer.save(creator=self.request.user)
-        survey = Survey.objects.get(sid=serializer.data['sid'])
-        # Don't add the account if the user already has it
-        if survey.sid not in self.request.user.accounts_ids:
+        if self.request.user.is_anonymous:
+            serializer.save(creator=None)
+        else:
+            serializer.save(creator=self.request.user)
+            survey = Survey.objects.get(sid=serializer.data['sid'])
             self.request.user.accounts.add(survey)
             self.request.user.save()
 

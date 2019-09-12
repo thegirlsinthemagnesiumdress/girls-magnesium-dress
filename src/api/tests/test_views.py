@@ -273,7 +273,7 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(self.user.accounts.count(), 0)
 
     def test_adding_duplicate_account(self):
-        """Posting duplicate data should not add another account to the user"""
+        """Posting duplicate data should add another account to the user (for now...)"""
         data = {
             'company_name': 'test company',
             'industry': 'ic-o',
@@ -289,17 +289,9 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(survey.creator, self.user)
         self.assertEqual(self.user.accounts.count(), 1)
 
-        data = {
-            'sid': response_data['sid'],
-            'company_name': 'test company',
-            'industry': 'ic-o',
-            'country': 'GB',
-            'tenant': 'ads',
-            'account_id': '123123',
-        }
         self.client.post(self.url, data)
 
-        self.assertEqual(self.user.accounts.count(), 1)
+        self.assertEqual(self.user.accounts.count(), 2)
 
 
 @override_settings(
