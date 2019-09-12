@@ -183,6 +183,6 @@ class AccountViewSet(ListAPIView):
         tenant = self.kwargs['tenant']
         queryset = Survey.objects.filter(tenant=tenant)
         if query is not None:
-            queryset = Survey.objects.search(query)
+            queryset = queryset.search(query)
 
         return queryset

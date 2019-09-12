@@ -72,7 +72,7 @@ class Survey(models.Model):
     parent_id = models.CharField(max_length=64, blank=True, null=True)
 
     class SearchMeta:
-        fields = ['account_id', 'company_name']
+        fields = ['account_id', 'company_name', 'tenant']
         field_types = {
             'account_id': search_fields.TextField,
             'company_name': search_fields.TextField,
