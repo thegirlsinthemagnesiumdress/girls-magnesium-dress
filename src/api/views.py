@@ -4,6 +4,7 @@ from api.serializers import (
     SurveySerializer,
     SurveyWithResultSerializer,
     SurveyAccountIdSerializer,
+    SurveySidSerializer,
 )
 from api.serializers import AdminSurveyResultsSerializer
 from core.models import Survey, SurveyResult
@@ -49,6 +50,25 @@ class CreateSurveyView(CreateAPIView):
             survey = Survey.objects.get(sid=serializer.data['sid'])
             self.request.user.accounts.add(survey)
             self.request.user.save()
+
+
+class AddSurveyView(UpdateAPIView):
+    """
+    """
+    authentication_classes = (SessionAuthentication, )
+    permission_classes = (AllowAny,)
+    serializer_class = SurveySidSerializer
+    lookup_field = 'sid'
+    lookup_url_kwarg = 'sid'
+    queryset = Survey.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        if request.user.is_anonymous:
+            return self.update(request, *args, **kwargs)
+        else:
+            survey = Survey.objects.get(sid=kwargs['sid'])
+            request.user.accounts.add(survey)
+            return self.update(request, *args, **kwargs)
 
 
 class UpdateAccountIdView(UpdateAPIView):

@@ -1,8 +1,8 @@
 from core.models import Survey
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.test import override_settings
+from django.urls import NoReverseMatch
 import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -229,15 +229,7 @@ class CreateSurveyTest(APITestCase):
 
     def test_survey_is_created_correctly(self):
         """Posting valid data should create survey"""
-        data = {
-            'company_name': 'test company',
-            'industry': 'ic-o',
-            'country': 'GB',
-            'tenant': 'ads',
-            'account_id': '123123',
-        }
-
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, self.data)
         response_data = response.json()
         self.assertEqual(response.status_code, 201)
 
@@ -252,15 +244,7 @@ class CreateSurveyTest(APITestCase):
     def test_non_admin_survey_is_created_correctly(self):
         """Posting valid data from a non-admin user should create survey"""
         self.client.force_authenticate(None)
-        data = {
-            'company_name': 'test company',
-            'industry': 'ic-o',
-            'country': 'GB',
-            'tenant': 'ads',
-            'account_id': '123123',
-        }
-
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, self.data)
         response_data = response.json()
         self.assertEqual(response.status_code, 201)
 
@@ -272,16 +256,9 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(response_data['creator'], None)
         self.assertEqual(self.user.accounts.count(), 0)
 
-    def test_adding_duplicate_account(self):
+    def test_creating_duplicate_survey(self):
         """Posting duplicate data should add another account to the user (for now...)"""
-        data = {
-            'company_name': 'test company',
-            'industry': 'ic-o',
-            'country': 'GB',
-            'tenant': 'ads',
-            'account_id': '123123',
-        }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, self.data)
         response_data = response.json()
 
         survey = Survey.objects.get(sid=response_data['sid'])
@@ -289,9 +266,62 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(survey.creator, self.user)
         self.assertEqual(self.user.accounts.count(), 1)
 
-        self.client.post(self.url, data)
+        self.client.post(self.url, self.data)
 
         self.assertEqual(self.user.accounts.count(), 2)
+
+
+class AddSurveyTest(APITestCase):
+    """Tests for `api.views.AddSurveyView` view."""
+
+    def setUp(self):
+        self.user = User.objects.create(
+            username='test1',
+            email='test@example.com',
+            password='pass',
+        )
+
+        self.client.force_authenticate(self.user)
+
+    def test_adding_survey(self):
+        """Adding an survey should add it to the users' account list"""
+        survey = make_survey()
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid})
+        self.client.put(url)
+
+        self.assertEqual(self.user.accounts.count(), 1)
+        self.assertEqual(self.user.accounts.first(), survey)
+
+    def test_adding_invalid_survey(self):
+        """Adding an non-existant survey should not create it or add it to the users' account list"""
+        with self.assertRaises(NoReverseMatch):
+            reverse('add_survey', kwargs={'sid': 'random53dd2e47e6aa85c77318f4a0e9'})
+
+        self.assertEqual(self.user.accounts.count(), 0)
+
+    def test_adding_duplicate_survey(self):
+        """Adding an survey that has already added should not add it again"""
+        survey = make_survey()
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid})
+        self.client.put(url)
+        self.client.put(url)
+
+        self.assertEqual(self.user.accounts.count(), 1)
+
+    def test_adding_survey_not_creator(self):
+        """Adding an survey which you did not create should not set you as the creator"""
+        self.client.force_authenticate(None)
+        survey = make_survey()
+        self.client.force_authenticate(self.user)
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid})
+        self.client.put(url)
+
+        self.assertEqual(survey.creator, None)
+        self.assertEqual(self.user.accounts.count(), 1)
+        self.assertEqual(self.user.accounts.first(), survey)
 
 
 @override_settings(

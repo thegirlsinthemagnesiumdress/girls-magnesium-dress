@@ -6,8 +6,6 @@ from core.tests.mommy_recepies import make_survey
 from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
 from djangae.test import TestCase
 from django.test import override_settings
-from django.core.urlresolvers import reverse
-from django.contrib.auth.models import AnonymousUser
 from core.tests.mommy_recepies import make_user
 from core.test import with_appengine_admin, with_appengine_user
 

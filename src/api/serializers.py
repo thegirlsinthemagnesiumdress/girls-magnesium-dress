@@ -33,6 +33,15 @@ class SurveySerializer(ModelSerializer):
         return data
 
 
+class SurveySidSerializer(ModelSerializer):
+
+    class Meta:
+        model = Survey
+        fields = (
+            'sid',
+        )
+
+
 class SurveyAccountIdSerializer(ModelSerializer):
 
     class Meta:
