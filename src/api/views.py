@@ -19,7 +19,7 @@ from rest_framework.generics import (
     ListAPIView,
     UpdateAPIView,
 )
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core import aggregate
@@ -42,6 +42,7 @@ class UpdateAccountIdView(UpdateAPIView):
     Internal API endpoint to update `Account Id` (also called Green Tea Id) for a given survey.
     """
     authentication_classes = (SessionAuthentication, )
+    permission_classes = (IsAuthenticated,)
     serializer_class = SurveyAccountIdSerializer
     lookup_field = 'sid'
     lookup_url_kwarg = 'sid'
@@ -57,6 +58,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     # Only using session authentication by default everywhere else
     # locks out anyone with a token from using any of the other endpoints
     authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = SurveyCompanyNameSerializer
     queryset = Survey.objects.all()
     lookup_field = 'sid'

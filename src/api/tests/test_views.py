@@ -448,6 +448,12 @@ class AdminSurveyListViewTest(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    @with_appengine_user("test@gmail.com")
+    def test_survey__user_does_not_have_permission(self):
+        """Should return the `company_name` related to `sid` provided."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
 
 class UpdateAccountIdSurveyTest(APITestCase):
     """Tests for `api.views.UpdateAccountIdSurvey` view."""
