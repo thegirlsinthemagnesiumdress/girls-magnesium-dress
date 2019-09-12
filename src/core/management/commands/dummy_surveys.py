@@ -419,7 +419,12 @@ def create_surveys(quantity):
                 random.choice(company_set_3).lower()
             )
             try:
-                survey = Survey.objects.create(company_name=company_name.decode('utf-8'), tenant=tenant, country='IT', industry='edu')
+                survey = Survey.objects.create(
+                    company_name=company_name.decode('utf-8'),
+                    tenant=tenant,
+                    country='IT',
+                    industry='edu'
+                )
                 result = SurveyResult.objects.create(
                     survey=survey,
                     dmb=dmb,

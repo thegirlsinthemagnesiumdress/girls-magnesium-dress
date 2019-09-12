@@ -1,7 +1,6 @@
 from django.conf import settings
 
 from core.models import Survey, SurveyResult
-from core.management.commands import dummy_surveys
 import logging
 
 

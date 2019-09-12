@@ -90,7 +90,7 @@ def take_sized_screenshots(driver, screen_sizes, path, retina=False):
         """, w, h)
         driver.set_window_size(*window_size)
         # Wait until the angular content has loaded
-        _ = WebDriverWait(driver, 5).until(
+        WebDriverWait(driver, 5).until(
             EC.presence_of_element_located(
                 (By.ID, 'dmb-shotty-ready')
             )
@@ -102,7 +102,7 @@ def take_sized_screenshots(driver, screen_sizes, path, retina=False):
         )
         if screen_name == 'mobile':
             # Wait until the graph data has loaded
-            _ = WebDriverWait(driver, 5).until(
+            WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located(
                     (By.CLASS_NAME, 'dmb-progress-grid')
                 )
