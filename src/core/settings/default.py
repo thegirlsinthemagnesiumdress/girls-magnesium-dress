@@ -142,6 +142,10 @@ LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', 'English'),
+    ('es', 'Español'),
+    ('it', 'Italiano'),
+    ('pl', 'Polski'),
+    ('tr', 'Türkçe'),
 ]
 
 TIME_ZONE = 'UTC'
@@ -293,8 +297,6 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 CSRF_USE_SESSIONS = True
 
 ANGULAR_TEMPLATES = [
-    'dimension-tab-legacy',
-    'dimension-tab',
     'progress-grid',
     'progress-grid-fallback',
     'progress-table',
@@ -307,6 +309,8 @@ QUALTRICS_LANGS = {
     'EN': 'en',
     'ES-ES': 'es',
     'TR': 'tr',
+    'IT': 'it',
+    'PL': 'pl',
 }
 
 QUALTRICS_LANGS_REV = { v: k for k, v in QUALTRICS_LANGS.items() }

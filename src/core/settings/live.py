@@ -1,4 +1,5 @@
 # flake8: noqa
+# coding=utf-8
 import os
 from core.settings.default import *
 
@@ -72,6 +73,14 @@ ALL_TENANTS[RETAIL]['QUALTRICS_SURVEY_ID'] = 'SV_abpqjuBRjJ9iy6F'
 # explicitly disable tenant
 ALL_TENANTS[CLOUD]['enabled'] = False
 
+
+# explicitly set enabled LANGUAGES
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Español'),
+]
+
+
 # Lock prod for now.
 MIDDLEWARE_CLASSES = tuple(
     list(MIDDLEWARE_CLASSES)
@@ -86,3 +95,14 @@ CSP_SCRIPT_SRC += (
 DOMAIN = 'digitalmaturitybenchmark.withgoogle.com'
 
 REVISIONED_STATIC = True
+
+
+TENANTS = {k: v for k, v in ALL_TENANTS.items() if v['enabled']}
+
+I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if v['i18n']])
+NOT_I18N_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items() if not v['i18n']])
+ENABLED_TENANTS = '|'.join([v['slug'] for k, v in TENANTS.items()])
+
+
+TENANTS_SLUG_TO_KEY = {v['slug']: k for k, v in TENANTS.items()}
+TENANTS_CHOICES = [(k, v['label']) for k, v in TENANTS.items()]

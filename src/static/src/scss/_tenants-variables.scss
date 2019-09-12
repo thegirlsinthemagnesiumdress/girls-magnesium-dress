@@ -2,7 +2,7 @@
 $tenants: (
   ads: (
     primary-color: $dmb-text-color,
-    progress-grid-switch-bp: 800px,
+    progress-grid-switch-bp: $dmb-progress-grid-switch-bp,
     levels: (
       0: (
         color: $h-gm-blue-500
@@ -20,7 +20,7 @@ $tenants: (
   ),
   news: (
     primary-color: $dmb-color-green-eucalyptus,
-    progress-grid-switch-bp: 800px,
+    progress-grid-switch-bp: $dmb-progress-grid-switch-bp,
     levels: (
       0: (
         color: $dmb-color-green-eucalyptus
@@ -38,7 +38,7 @@ $tenants: (
   ),
   retail: (
     primary-color: $dmb-text-color,
-    progress-grid-switch-bp: 800px,
+    progress-grid-switch-bp: $dmb-progress-grid-switch-bp,
     levels: (
       0: (
         color: $dmb-color-green-eucalyptus

@@ -53,8 +53,8 @@
   <div class="dmb-dimension-tabs__progress-grid">
     <dmb-progress-grid
         data-company-name="{[ reportCtrl.survey.company_name ]}"
-        data-industry-avg="reportCtrl.dimensionsIndAvgs[dimension]"
-        data-industry-best="reportCtrl.dimensionsIndBests[dimension]"
+        data-industry-avg="reportCtrl.dimensions[dimension]['indResults']['average']"
+        data-industry-best="reportCtrl.dimensions[dimension]['indResults']['best']"
         data-industry-ready="!!reportCtrl.industryResult"
         data-rating-main="reportCtrl.dimensions[dimension].result">
     </dmb-progress-grid>

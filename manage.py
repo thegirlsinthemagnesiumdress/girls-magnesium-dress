@@ -2,15 +2,15 @@
 import os
 import sys
 
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-APPENGINE_DIR = os.path.join(THIS_DIR, "third_party", "google_appengine")
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+APPENGINE_DIR = os.path.join(PROJECT_DIR, "third_party", "google_appengine")
 
 # We add the symlinked version of this folder, inside the GAE project folder, otherwise it's not
 # accessible when running the local server because it's outside the sandbox
-DEVELOPMENT_DIR = os.path.join(THIS_DIR, "src", "sitepackages_local")
+DEVELOPMENT_DIR = os.path.join(PROJECT_DIR, "src", "sitepackages_local")
 
 sys.path[0:0] = [
-    os.path.join(THIS_DIR, 'src'),
+    os.path.join(PROJECT_DIR, "src"),
     APPENGINE_DIR,
     DEVELOPMENT_DIR
 ]
@@ -35,7 +35,7 @@ _SERVICE_ACCOUNT_INFO_MESSAGE = (
 
 
 def _configure_service_account():
-    PEM_FILE = os.path.join(THIS_DIR, "keys", "secret.pem")
+    PEM_FILE = os.path.join(PROJECT_DIR, "src", "keys", "secret.pem")
     if not os.path.exists(PEM_FILE):
         print(_SERVICE_ACCOUNT_MISSING_CONF_MESSAGE)
         return {}
@@ -68,16 +68,28 @@ if __name__ == "__main__":
     from djangae.core.management import test_execute_from_command_line
 
     kwargs = {}
-    if "deploy" in sys.argv and "--settings" not in sys.argv:
-        print("NOTE: Using core.settings.live as we are deploying")
-        os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.live"
+    if "deploy" in sys.argv:
+        print("NOTE: Deployement starting")
+        params = [True if '--settings' in x else False for x in sys.argv]
+        settings_specified = any([True if '--settings' in x else False for x in sys.argv])
+        if not settings_specified:
+            print("NOTE: Using core.settings.live as no other settings are specified")
+            os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.live"
+            sys.argv.append("--settings=core.settings.live")
+        else:
+            setting_index = params.index(True)
+            setting_name = sys.argv[setting_index].replace("--settings=", "")
+            if setting_name not in ["core.settings.local", "core.settings.staging", "core.settings.live"]:
+                raise Exception("--settings does not contain a valid setting")
+            print("NOTE: Using {} as specified on settings parameter".format(setting_name))
+            os.environ["DJANGO_SETTINGS_MODULE"] = setting_name
         execute_from_command_line(sys.argv, **kwargs)
     elif "test" in sys.argv:
         print("NOTE: Using core.settings.local as we are testing")
         os.environ["DJANGO_SETTINGS_MODULE"] = "core.settings.local"
         test_execute_from_command_line(sys.argv)
     else:
-        print("NOTE: Using core.settings.loca as we are on local env")
+        print("NOTE: Using core.settings.local as we are on local env")
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
         kwargs = _configure_service_account()
         execute_from_command_line(sys.argv, **kwargs)

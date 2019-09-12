@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-09 18:15+0000\n"
+"POT-Creation-Date: 2019-09-09 10:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1478,6 +1478,14 @@ msgstr "Agencias de viajes y operadores turísticos"
 msgid "Wholesale trade"
 msgstr "Comercio mayorista"
 
+#, fuzzy
+#| msgid "Information and Communication"
+msgid "Información y comunicación"
+msgstr "Información y comunicación"
+
+msgid "Libros, noticias, periódicos y revistas"
+msgstr ""
+
 msgid "Your results are ready!"
 msgstr "¡Ya tenemos los resultados!"
 
@@ -1521,24 +1529,6 @@ msgstr "Aprovecha cualquier momento para conectar con los clientes"
 msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
 msgstr "Averigua qué nivel de desarrollo del marketing basado en datos tiene tu empresa y descubre qué puedes hacer para alcanzar el máximo potencial."
 
-msgid "How it works"
-msgstr "Cómo funciona"
-
-msgid "Benchmark which stage your organisation is at on our digital maturity scale."
-msgstr "Compara el nivel de desarrollo digital de tu organización con el de otras empresas."
-
-msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
-msgstr "En esta fase, las empresas adoptan una estrategia de marketing distinta en cada campaña, y se centran en datos externos y compras directas que muestran una relación limitada con las ventas."
-
-msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
-msgstr "Estas empresas utilizan algunos datos propios en compras automatizadas, y optimizan y hacen pruebas en un solo canal."
-
-msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
-msgstr "En este nivel de desarrollo, los datos están integrados y activados en varios canales que muestran una relación directa con el retorno de inversión y las acciones que conducen a las compras."
-
-msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
-msgstr "En esta fase, las empresas han optimizado la ejecución dinámica de campañas y pueden ofrecer experiencias personalizadas a los clientes en varios canales."
-
 msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
 msgstr "La herramienta analiza dónde se encuentra tu empresa en el camino hacia la atribución y el marketing basados en datos. Además, genera un informe personalizado e interactivo con el correspondiente asesoramiento, en el que se compara tu organización con otras empresas del sector y se incluyen recomendaciones de estrategias y tácticas que te ayudarán a mejorar."
 
@@ -1554,9 +1544,6 @@ msgstr "Averigua cómo puedes mejorar tu organización con los datos del informe
 
 msgid "devices running the tool"
 msgstr "dispositivos que usan la herramienta"
-
-msgid "laptop screen demo"
-msgstr "demostración en un portátil"
 
 msgid "These businesses have a sustainable competitive advantage"
 msgstr "Estas empresas cuentan con ventajas competitivas sostenibles"
@@ -1621,6 +1608,12 @@ msgstr "Empezar la evaluación ahora"
 
 msgid "This in-depth assessment takes around 30 minutes to complete."
 msgstr "Esta evaluación exhaustiva te llevará unos 30 minutos."
+
+msgid "How it works"
+msgstr "Cómo funciona"
+
+msgid "Benchmark which stage your organisation is at on our digital maturity scale."
+msgstr "Compara el nivel de desarrollo digital de tu organización con el de otras empresas."
 
 msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
 msgstr "BCG identificó estas cifras analizando los factores y las capacidades que han contribuido al éxito de más de 40 empresas de ocho sectores."
@@ -1724,7 +1717,7 @@ msgstr "En los últimos dos años, las búsquedas móviles sobre los mejores acc
 
 #, python-format
 msgid "Mobile searches for “baby shopping lists” and “healthy shopping lists” are up 180%% in the last 2 years.&nbsp;"
-msgstr "También en los dos últimos años, las búsquedas móviles sobre listas de nacimiento y listas de la compra de alimentos saludables han aumentado un 180 %%.&nbsp;"
+msgstr "También en los dos últimos años, las búsquedas móviles sobre “listas de nacimiento” y “listas de la compra de alimentos saludables” han aumentado un 180 %%.&nbsp;"
 
 msgid "Demanding"
 msgstr "Exigentes"
@@ -1735,6 +1728,7 @@ msgstr "Quieren experiencias relevantes y personalizadas, y esperan que las marc
 msgid "\"Near me\" searches have grown 4.5x on Google search and 6x on Google Maps on mobile in the last 2 years in EMEA.&nbsp;"
 msgstr "En Europa, África y Oriente Medio, las búsquedas móviles que contienen \"cerca\" se han multiplicado por 4,5 en la Búsqueda de Google y por 6 en Google Maps en los dos últimos años.&nbsp;"
 
+#, python-format
 msgid "89%% of marketers say anticipating customer needs and providing helpful experiences along the consumer journey is critical to their brand’s growth."
 msgstr "Según el 89 %% de los profesionales del marketing, la clave del desarrollo de las marcas está en ofrecer experiencias útiles en el recorrido del cliente."
 
@@ -1768,6 +1762,7 @@ msgstr "Ser rápido"
 msgid "Deliver the speedy, frictionless experiences on mobile that consumers expect."
 msgstr "Cumple las expectativas de los consumidores ofreciéndoles experiencias rápidas y sin complicaciones en el canal móvil."
 
+#, python-format
 msgid "<strong>Of course, if customers benefit, businesses benefit</strong> - but they’re struggling to put it all into practice. Our research with BCG shows only 2%% of brands are realising the full potential of data-driven marketing."
 msgstr "<strong>Si los clientes ganan, las empresas también ganan,</strong> aunque les está costando ponerlo todo en práctica. Según el estudio que realizamos junto con BCG, solo el 2 %% de las marcas son conscientes del potencial que tiene el marketing basado en datos."
 
@@ -1779,34 +1774,6 @@ msgstr "Fuente: Datos de Google, Europa, África y Medio Oriente, periodo de ene
 
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
 msgstr "Fuente: Econsultancy y Google, “An Audience of Individuals“ (Una audiencia formada por personas individuales), 2017; n=514 ejecutivos de marketing y medición de empresas ubicadas principalmente en Norteamérica y cuyos ingresos superan los 250 millones de USD; n=133 profesionales del marketing que afirmaron que el departamento de marketing había superado con creces su principal objetivo de negocio en el 2016, n=381 otros profesionales del marketing (resto de la muestra)."
-
-msgid "You are "
-msgstr "Tu empresa está "
-
-msgid "You could be"
-msgstr "Podrías ser"
-
-msgid "Congratulations"
-msgstr "Enhorabuena,"
-
-#, python-format
-msgid "you're in the top 2%% for marketing maturity"
-msgstr "tu empresa se encuentra entre el 2 %% de empresas con el mejor nivel de desarrollo de marketing"
-
-msgid "Here's how you get there:"
-msgstr "Para conseguir este objetivo:"
-
-msgid "Here's how to get even better:"
-msgstr "Para mejorar:"
-
-msgid "logo"
-msgstr "logotipo"
-
-msgid "in this dimension"
-msgstr "en esta área"
-
-msgid "Congratulations, you're in the top group for data maturity"
-msgstr "Enhorabuena, tu empresa se encuentra entre las que tienen el mayor nivel de desarrollo de datos"
 
 msgid "Get more information about the industry average"
 msgstr "Más información sobre la media del sector"
@@ -1886,14 +1853,26 @@ msgstr "más"
 msgid "less"
 msgstr "menos"
 
+msgid "https://www.google.com/intl/en/policies/privacy/"
+msgstr "https://www.google.com/intl/es/policies/privacy/"
+
 msgid "Privacy"
 msgstr "Privacidad"
+
+msgid "https://www.google.com/intl/en/policies/terms/"
+msgstr "https://www.google.com/intl/es/policies/terms/"
 
 msgid "Terms"
 msgstr "Condiciones"
 
+msgid "https://www.google.com/intl/en/about/"
+msgstr "https://www.google.com/intl/es/about/"
+
 msgid "About Google"
 msgstr "Acerca de Google"
+
+msgid "https://www.google.com/intl/en/about/products/"
+msgstr "https://www.google.com/intl/es/about/products/"
 
 msgid "Google Products"
 msgstr "Productos de Google"
@@ -1912,6 +1891,9 @@ msgstr "Empezar ahora"
 
 msgid "In partnership with The Boston Consulting Group"
 msgstr "En colaboración con The Boston Consulting Group"
+
+msgid "laptop screen demo"
+msgstr "demostración en un portátil"
 
 msgid "Next steps"
 msgstr "Pasos siguientes"
@@ -1937,11 +1919,29 @@ msgstr "Comparte este informe con tus compañeros"
 msgid "To share this report, copy the link and send it to your colleagues."
 msgstr "Para compartir este informe, copia el enlace y envíaselo a tus compañeros."
 
+msgid "logo"
+msgstr "logotipo"
+
+msgid "in this dimension"
+msgstr "en esta área"
+
+msgid "You could be"
+msgstr "Podrías ser"
+
+msgid "Congratulations, you're in the top group for data maturity"
+msgstr "Enhorabuena, tu empresa se encuentra entre las que tienen el mayor nivel de desarrollo de datos"
+
+msgid "Here's how you get there:"
+msgstr "Para conseguir este objetivo:"
+
+msgid "Here's how to get even better:"
+msgstr "Para mejorar:"
+
 msgid "Dimensions of marketing maturity"
 msgstr "Áreas del nivel de desarrollo del marketing"
 
 msgid "Levels of Digital Maturity"
-msgstr "Niveles de desarrollo de datos"
+msgstr "Niveles de Madurez Digital"
 
 msgid "Ready to benchmark your company’s digital maturity?"
 msgstr "¿Quieres comparar el nivel de desarrollo digital de tu empresa con el de otras?"
@@ -1954,6 +1954,11 @@ msgstr "Información sobre la protección de datos"
 
 msgid "Enter the organisation name"
 msgstr "Escribe el nombre de la organización"
+
+#, fuzzy
+#| msgid "Organisation"
+msgid "Organization name"
+msgstr "Organización"
 
 msgid "Enter the organization name"
 msgstr "Escribe el nombre de la organización"
@@ -1996,3 +2001,25 @@ msgstr "Volver a la página principal"
 
 msgid "Woops.. there was an internal server error."
 msgstr "Vaya... Se ha producido un error de servidor interno."
+
+#~ msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
+#~ msgstr "En esta fase, las empresas adoptan una estrategia de marketing distinta en cada campaña, y se centran en datos externos y compras directas que muestran una relación limitada con las ventas."
+
+#~ msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
+#~ msgstr "Estas empresas utilizan algunos datos propios en compras automatizadas, y optimizan y hacen pruebas en un solo canal."
+
+#~ msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+#~ msgstr "En este nivel de desarrollo, los datos están integrados y activados en varios canales que muestran una relación directa con el retorno de inversión y las acciones que conducen a las compras."
+
+#~ msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
+#~ msgstr "En esta fase, las empresas han optimizado la ejecución dinámica de campañas y pueden ofrecer experiencias personalizadas a los clientes en varios canales."
+
+#~ msgid "You are "
+#~ msgstr "Tu empresa está "
+
+#~ msgid "Congratulations"
+#~ msgstr "Enhorabuena,"
+
+#, python-format
+#~ msgid "you're in the top 2%% for marketing maturity"
+#~ msgstr "tu empresa se encuentra entre el 2 %% de empresas con el mejor nivel de desarrollo de marketing"
