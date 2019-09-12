@@ -247,10 +247,11 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(response_data['account_id'], survey.account_id)
         self.assertEqual(response_data['tenant'], survey.tenant)
         self.assertEqual(response_data['creator'], self.user.pk)
+        self.assertEqual(self.user.accounts.count(), 1)
 
     def test_non_admin_survey_is_created_correctly(self):
         """Posting valid data from a non-admin user should create survey"""
-        self.client.force_authenticate(AnonymousUser())
+        self.client.force_authenticate(None)
         data = {
             'company_name': 'test company',
             'industry': 'ic-o',
@@ -269,6 +270,36 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(response_data['account_id'], survey.account_id)
         self.assertEqual(response_data['tenant'], survey.tenant)
         self.assertEqual(response_data['creator'], None)
+        self.assertEqual(self.user.accounts.count(), 0)
+
+    def test_adding_duplicate_account(self):
+        """Posting duplicate data should not add another account to the user"""
+        data = {
+            'company_name': 'test company',
+            'industry': 'ic-o',
+            'country': 'GB',
+            'tenant': 'ads',
+            'account_id': '123123',
+        }
+        response = self.client.post(self.url, data)
+        response_data = response.json()
+
+        survey = Survey.objects.get(sid=response_data['sid'])
+
+        self.assertEqual(survey.creator, self.user)
+        self.assertEqual(self.user.accounts.count(), 1)
+
+        data = {
+            'sid': response_data['sid'],
+            'company_name': 'test company',
+            'industry': 'ic-o',
+            'country': 'GB',
+            'tenant': 'ads',
+            'account_id': '123123',
+        }
+        self.client.post(self.url, data)
+
+        self.assertEqual(self.user.accounts.count(), 1)
 
 
 @override_settings(

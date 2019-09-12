@@ -152,23 +152,3 @@ class UserTest(TestCase):
         response = self.client.get('/')
         user = response.wsgi_request.user
         self.assertTrue(user.is_super_admin)
-
-    @with_appengine_admin('standard@google.com')
-    def test_admin_created_survey_links_to_user(self):
-        data = {
-            'company_name': 'test company',
-            'industry': 'ic-o',
-            'country': 'GB',
-            'tenant': 'ads',
-        }
-        url = reverse('create_survey')
-        response = self.client.post(url, data)
-        user = response.wsgi_request.user
-
-        user_survey = Survey.objects.first()
-        anon_survey = make_survey()
-        make_survey()
-
-        self.assertEqual(user_survey.creator, user)
-        self.assertEqual(anon_survey.creator, None)
-        self.assertEqual(user.accounts.count(), 1)
