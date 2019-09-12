@@ -29,10 +29,6 @@ def migrate_to_dmblite_survey():
     settings.TENANTS = {k: v for k, v in settings.ALL_TENANTS.items() if v['enabled']}
 
 
-def create_dummy_surveys():
-    dummy_surveys.create_surveys(100)
-
-
 def resave_surveys():
     for s in Survey.objects.all():
         try:

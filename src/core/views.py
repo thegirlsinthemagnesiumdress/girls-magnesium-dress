@@ -168,20 +168,6 @@ def receive_bounce(request, *args, **kwargs):
 
 
 @task_or_admin_only
-def create_dummy_surveys_task(request):
-    """Create a bunch of dummy surveys"""
-    msg = "Create some dummy surveys"
-    logging.info(msg)
-
-    deferred.defer(
-        migrations.create_dummy_surveys,
-        _queue='default',
-    )
-
-    return HttpResponse(msg)
-
-
-@task_or_admin_only
 def resave_surveys_task(request):
     msg = "resave surveys"
     logging.info(msg)
