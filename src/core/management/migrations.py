@@ -39,3 +39,16 @@ def resave_surveys():
             s.save()
         except AssertionError:
             logging.error("Could not save {} ".format(s.sid))
+
+
+def drop_search_index():
+    from google.appengine.api import search
+    for index in search.get_indexes(fetch_schema=True):
+        logging.info("index %s", index.name)
+        logging.info("schema: %s", index.schema)
+        document_ids = [
+            document.doc_id
+            for document
+            in index.get_range(ids_only=True)]
+        index.delete(document_ids)
+        index.delete_schema()

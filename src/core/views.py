@@ -192,3 +192,16 @@ def resave_surveys_task(request):
     )
 
     return HttpResponse(msg)
+
+
+@task_or_admin_only
+def drop_search_index_task(request):
+    msg = "drop_search_index"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.drop_search_index,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
