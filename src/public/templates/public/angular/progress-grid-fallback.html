@@ -22,7 +22,7 @@
               progressGridCtrl.ratingMain == progressGridCtrl.levelsMax
           }"
           ng-style="{
-            width: progressGridCtrl.getProgress(progressGridCtrl.ratingMain)
+            width: progressGridCtrl.ratingMainProgress
           }">
         <div
             aria-hidden="true"
@@ -55,7 +55,7 @@
               progressGridCtrl.industryAvg == progressGridCtrl.levelsMax
           }"
           ng-style="{
-            width: progressGridCtrl.getProgress(progressGridCtrl.industryAvg)
+            width: progressGridCtrl.industryAvgProgress
           }">
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
@@ -95,7 +95,7 @@
               progressGridCtrl.industryBest == progressGridCtrl.levelsMax
           }"
           ng-style="{
-            width: progressGridCtrl.getProgress(progressGridCtrl.industryBest)
+            width: progressGridCtrl.industryBestProgress
           }">
         <div class="dmb-progress-table__label">
           <span class="dmb-progress-table__company">
@@ -110,7 +110,7 @@
               {% trans "Industry best" %}
             </span>
           </span>
-          <span 
+          <span
               aria-label="industry best rating"
               class="dmb-progress-table__rating">
             {[ progressGridCtrl.industryBest|number:1 ]}
