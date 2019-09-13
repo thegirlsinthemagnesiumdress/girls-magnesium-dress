@@ -529,3 +529,88 @@ class UpdateAccountIdSurveyTest(APITestCase):
         content = response.json()
         # account id should still be the odl value
         self.assertEqual(content.get('account_id'), '111111')
+
+
+class AccountViewSet(APITestCase):
+    """Tests for `api.views.AccountViewSet` view."""
+
+    def setUp(self):
+        make_survey(company_name='test company', country="IT", tenant="ads")
+        make_survey(company_name='test company 2', country="IT", tenant="ads", account_id='22222')
+        make_survey(company_name='company 3', country="IT", tenant="ads", account_id='111111')
+
+        slug = get_tenant_slug('ads')
+        self.url = reverse('admin_surveys_search', kwargs={'tenant': slug})
+
+    @with_appengine_anon
+    def test_unauthenticated_user(self):
+        """Unauthenticated users should return 403 Forbidden."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_user("test@example.com")
+    def test_get_without_q_param(self):
+        """
+        Get method without `q` parameter, it should return 200 as well as the list
+        of `Survey` objects belonging to a `tenant`."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 3)
+
+    @with_appengine_user("test@example.com")
+    def test_get_with_q_param(self):
+        """
+        Get method with `q` parameter, it should return 200 as well as the list
+        of `Survey` objects belonging to a `tenant` filtered by search term."""
+        response = self.client.get(self.url, {
+            'q': 'test',
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
+    @with_appengine_user("test@example.com")
+    def test_get_with_q_param_empty(self):
+        """
+        Get method with empty `q` parameter, it should return 200 as well as the list
+        of `Survey` objects belonging to a `tenant` filtered by search term."""
+        response = self.client.get(self.url, {
+            'q': '',
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+
+    @with_appengine_user("test@example.com")
+    def test_get_with_q_param_search_by_account_id(self):
+        """
+        Get method without `q` parameter, it should return 200 as well as the list
+        of `Survey` objects belonging to a `tenant` filtered by search term."""
+        account_id = '22222'
+        response = self.client.get(self.url, {
+            'q': account_id,
+        })
+        first_el = response.data[0]
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(first_el.get('account_id'), account_id)
+
+    @with_appengine_user("test@example.com")
+    def test_get_empty_tenant_should_return_empty(self):
+        """
+        Get method without `q` parameter, it should return 200 as well as an empty list."""
+        slug = get_tenant_slug('retail')
+        url_retail = reverse('admin_surveys_search', kwargs={'tenant': slug})
+        response = self.client.get(url_retail)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+
+    @with_appengine_user("test@example.com")
+    def test_get_empty_tenant_with_q_param_should_return_empty(self):
+        """
+        Get method with `q` parameter, it should return 200 as well as an empty list."""
+        slug = get_tenant_slug('retail')
+        url_retail = reverse('admin_surveys_search', kwargs={'tenant': slug})
+        response = self.client.get(url_retail, {
+            'q': 'test',
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
