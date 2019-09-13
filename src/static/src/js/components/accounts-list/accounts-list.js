@@ -1,4 +1,5 @@
 import {bootstrapData} from '../bootstrap/bootstrap-data';
+import {dmbLevels} from '../report/report-factories';
 const domSafe = goog.require('goog.dom.safe');
 
 /**
@@ -41,6 +42,13 @@ export default class AccountsList {
      */
     function formatNumber(number, dp=1) {
       return (Math.round(number * 10) / 10).toFixed(dp);
+    }
+
+    if (account['last_survey_result']) {
+      account['externalCurrentLevelData'] = dmbLevels(account['last_survey_result']['dmb'])['current'];
+    }
+    if (account['last_internal_result']) {
+      account['internalCurrentLevelData'] = dmbLevels(account['last_internal_result']['dmb'])['current'];
     }
 
     const zeroWidthSpace = '​';
