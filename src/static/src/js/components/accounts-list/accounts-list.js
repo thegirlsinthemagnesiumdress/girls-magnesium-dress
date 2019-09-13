@@ -105,7 +105,6 @@ export default class AccountsList {
         td.setAttribute('data-colheader', column.header);
         const a = document.createElement('a');
         domSafe.setAnchorHref(a, `${column.id}/`); // TODO (mstrutt) link should come from the backend
-        // a.href = `${column.id}/`;
         a.textContent = column.content;
         td.appendChild(a);
         tr.appendChild(td);
