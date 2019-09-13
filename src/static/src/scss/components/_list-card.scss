@@ -1,9 +1,10 @@
 .dmb-list-card {
+  $block: &;
+  $dmb-card-actions-height: 48px;
 
   &,
   &--title {
     border: 1px solid $dmb-color-grey-zircon;
-    padding: 0 $dmb-spacing-s;
   }
 
   &:last-of-type {
@@ -11,48 +12,46 @@
   }
 
   &.glue-is-expanded {
+    border-bottom-width: 1px;
     border-radius: $dmb-border-radius-large;
     box-shadow: $dmb-box-shadow;
     margin: $dmb-spacing-xs 0;
+
+    #{$block}__header-right {
+      display: none;
+    }
   }
 
   &__header {
     align-items: center;
     display: flex;
-    padding: $dmb-spacing-s 0;
-
-    &-left {
-      flex-grow: 1;
-    }
-
-    &-right {
-      flex-shrink: 0;
-    }
+    font-size: 14px;
+    padding: $dmb-spacing-s;
   }
 
   &__header-left {
     flex-grow: 1;
   }
 
-  &__header-right {
-    flex-shrink: 0;
+  &__title-heading {
+    font-size: 16px;
+    margin-right: $dmb-spacing-s;
   }
 
-  .dmb-button {
-    svg {
-      fill: $dmb-color-blue-royal;
-      margin-right: 4px;
-      position: relative;
-      top: .15em;
-    }
+  &__title-subheading {
+    font-size: 12px;
   }
 
   &__subtext {
     margin-left: $dmb-spacing-s;
+
+    @include dmb-mq($from: desktop, $until: wide) {
+      margin-left: $dmb-spacing-xs;
+    }
   }
 
   &__toggle {
-    align-self: center;
+    margin-left: 24px;
 
     svg {
       margin-right: 0;
@@ -61,48 +60,93 @@
     }
   }
 
-  &__content {
-    @include dmb-mq($from: tablet) {
+
+  &__results {
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    @include dmb-mq($from: tablet, $until: desktop) {
       display: flex;
-      justify-content: space-between;
+    }
+
+    @include dmb-mq($from: wide) {
+      display: flex;
     }
   }
+
 
   &__overall {
-    flex-shrink: 0;
-    padding-top: $dmb-spacing-xs;
-    width: 120px;
-
-    &-text {
-      font-size: 18px;
-      margin-top: $dmb-spacing-xs;
-    }
-
-    &-score {
-      font-size: 16px;
-      margin-top: $dmb-spacing-xs;
-    }
+    padding: $dmb-spacing-xs $dmb-spacing-s;
   }
+
+  &__overall-title {
+    font-size: 12px;
+    margin-bottom: $dmb-spacing-xs;
+  }
+
+  &__overall-level {
+    font-size: 18px;
+    margin-bottom: $dmb-spacing-xs;
+  }
+
+  &__overall-score {
+    font-size: 22px;
+  }
+
 
   &__dimension-list {
     display: flex;
-    flex-grow: 1;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    justify-self: flex-end;
     list-style: none;
-    margin-bottom: 24px;
-
-    @include dmb-mq($from: tablet) {
-      justify-content: space-between;
-    }
+    margin: 0;
+    max-width: 415px;
   }
 
   &__dimension-list-item {
-    min-width: 120px;
-    padding: $dmb-spacing-xs;
+    flex-shrink: 0;
+    font-size: 14px;
+    padding: $dmb-spacing-xs $dmb-spacing-s;
+    width: 33%;
+  }
+
+  &__dimension-list-item-title {
+    font-size: .8em;
+    margin-bottom: $dmb-spacing-xs;
+  }
+
+
+  &__actions {
+    align-items: center;
+    border-top: 1px solid $dmb-color-grey-zircon;
+    display: flex;
+    justify-content: flex-end;
+    padding: $dmb-spacing-xs $dmb-spacing-s;
+  }
+
+  &__action + &__action {
+    margin-left: $dmb-spacing-s;
   }
 
   &--title {
     border-radius: $dmb-border-radius-large $dmb-border-radius-large 0 0;
+
+    #{$block}__header-left {
+      align-items: baseline;
+      display: flex;
+      flex-grow: 1;
+      flex-wrap: wrap;
+    }
+
+    #{$block}__header-right {
+      align-self: flex-end;
+      flex-shrink: 0;
+      margin-left: $dmb-spacing-s;
+    }
   }
+}
+
+.dmb-bullet {
+  margin: 0 $dmb-spacing-xs;
 }

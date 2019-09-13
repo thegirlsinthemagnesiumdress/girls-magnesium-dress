@@ -94,8 +94,27 @@ class ProgressGridController {
      */
     this.dmbLevelsFactory = dmbLevelsFactory;
 
+    /**
+     * @type {string}
+     * @export
+     */
+    this.industryAvgProgress = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.industryBestProgress = '';
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.ratingMainProgress = '';
+
     // Bind for external use
     this.updateLevelsData = this.updateLevelsData.bind(this);
+    this.updateProgressData = this.updateProgressData.bind(this);
   }
 
   /**
@@ -103,6 +122,7 @@ class ProgressGridController {
    */
   $onInit() {
     this.updateLevelsData();
+    this.updateProgressData();
   }
 
   /**
@@ -110,6 +130,7 @@ class ProgressGridController {
    */
   $onChanges() {
     this.updateLevelsData();
+    this.updateProgressData();
     this.$rootScope.$broadcast(CONTENT_UPDATED_EVENT);
   }
 
@@ -120,6 +141,15 @@ class ProgressGridController {
     this.ratingMainData = this.dmbLevelsFactory(this.ratingMain);
     this.industryBestData = this.dmbLevelsFactory(this.industryBest);
     this.industryAvgData = this.dmbLevelsFactory(this.industryAvg);
+  }
+
+  /**
+   * Updates the stored progress percentages
+   */
+  updateProgressData() {
+    this.ratingMainProgress = this.getProgress(this.ratingMain);
+    this.industryBestProgress = this.getProgress(this.industryBest);
+    this.industryAvgProgress = this.getProgress(this.industryAvg);
   }
 
   /**

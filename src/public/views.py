@@ -96,6 +96,7 @@ def report_static(request, tenant, sid):
         'product_name': utils.get_tenant_product_name(tenant),
         'other_tenants': utils.get_other_tenant_footers(tenant),
         'is_nightly': utils.version_info(request.get_host())[1],
+        'started_at': survey.last_survey_result.started_at,
     })
 
 
