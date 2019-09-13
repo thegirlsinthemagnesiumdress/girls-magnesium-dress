@@ -271,8 +271,8 @@ class SurveyResult(models.Model):
     def absolute_detail_link(self):
         return "http://{}{}".format(settings.DOMAIN, self.detail_link)
 
-    # class Meta:
-    #     ordering = ('-started_at',)
+    class Meta:
+        ordering = ('-started_at',)
 
 
 class SurveyDefinition(models.Model):

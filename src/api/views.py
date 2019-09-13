@@ -32,7 +32,6 @@ class CreateSurveyView(CreateAPIView):
     """
     Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
     """
-    authentication_classes = (SessionAuthentication, )
     permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
@@ -54,9 +53,9 @@ class CreateSurveyView(CreateAPIView):
 
 class AddSurveyView(UpdateAPIView):
     """
+    Internal API endpoint to Add a account to a users' list of accounts
     """
-    authentication_classes = (SessionAuthentication, )
-    permission_classes = (AllowAny,)
+    authentication_classes = (SessionAuthentication,)
     serializer_class = SurveySidSerializer
     lookup_field = 'sid'
     lookup_url_kwarg = 'sid'
