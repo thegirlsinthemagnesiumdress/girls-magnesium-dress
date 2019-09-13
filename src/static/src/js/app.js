@@ -31,7 +31,7 @@ import tabState from './components/tab-state/tab-state';
 import {csrfToken} from './components/csrf/csrf';
 import {bootstrapData} from './components/bootstrap/bootstrap-data';
 import AccountsList from './components/accounts-list/accounts-list';
-import Clippy from './components/clippy/component';
+import Clippy from './components/clippy/clippy';
 import ExportReports from './components/export/export-reports';
 import FuzzySearch from './components/fuzzy-search/fuzzy-search';
 
