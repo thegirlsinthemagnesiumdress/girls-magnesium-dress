@@ -6,7 +6,7 @@ from api.serializers import (
     SurveyAccountIdSerializer,
     SurveySidSerializer,
 )
-from api.serializers import AdminSurveyResultsSerializer
+from api.serializers import AdminSurveyResultsSerializer, SearchSurveySerializer
 from core.models import Survey, SurveyResult
 from django.conf import settings
 from django.http import Http404
@@ -20,7 +20,7 @@ from rest_framework.generics import (
     ListAPIView,
     UpdateAPIView,
 )
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core import aggregate
@@ -91,6 +91,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     # Only using session authentication by default everywhere else
     # locks out anyone with a token from using any of the other endpoints
     authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = SurveyCompanyNameSerializer
     queryset = Survey.objects.all()
     lookup_field = 'sid'
@@ -195,4 +196,27 @@ class AdminSurveyListView(ListAPIView):
         queryset = Survey.objects.order_by('-created_at').prefetch_related('last_survey_result', 'last_internal_result').filter(tenant=tenant)  # noqa
         if not user.is_super_admin:
             queryset = queryset.filter(engagement_lead=user.engagement_lead)
+        return queryset
+
+
+class AccountViewSet(ListAPIView):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    authentication_classes = (SessionAuthentication,)
+    queryset = Survey.objects.all()
+    serializer_class = SearchSurveySerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the accounts shared with the
+        authenticated user.
+        """
+        query = self.request.query_params.get('q')
+        tenant = self.kwargs['tenant']
+        queryset = Survey.objects.filter(tenant=tenant)
+        if query is not None:
+            queryset = queryset.search(query)
+
         return queryset
