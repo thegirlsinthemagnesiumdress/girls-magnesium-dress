@@ -3,10 +3,10 @@ goog.declareModuleId('dmb.app');
 // In src/app.js
 import * as glueApp from '@google/glue/lib/app/app';
 
-// Glue Angular
+// Glue Angular Components
 import * as glueCommon from '@google/glue/lib/ng/common/common';
 
-// Glue Vanilla
+// Glue Vanilla Components
 import {GlueExpansionPanelsPanelGroup} from '@google/glue/lib/ui/expansionpanels/panelgroup/component';
 import {Header} from '@google/glue/lib/ui/header/component';
 import {PaginationPages} from '@google/glue/lib/ui/pagination/pages/component';
@@ -31,6 +31,7 @@ import * as languageCode from './components/language-code/language-code';
 import tabState from './components/tab-state/tab-state';
 
 import Clippy from './components/clippy/clippy';
+import FuzzySearch from './components/fuzzy-search/fuzzy-search';
 
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
@@ -79,9 +80,6 @@ module.constant('cssGridSupport', cssGridSupport);
 // Conditionally start the app if it's a supported browser.
 glueApp.bootstrap(module.name);
 
-// Attach copy component to elements with the custom dmb-copy-to-clipboard attribute.
-document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
-
 // Initialise Glue Vanilla components
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.glue-expansion-panels').forEach(GlueExpansionPanelsPanelGroup.attachTo);
@@ -91,4 +89,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Initialise Vanilla DMB components
+document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
+document.querySelectorAll('[dmb-fuzzy-search]').forEach(FuzzySearch.attachTo);
 document.querySelectorAll('[data-glue-pagination]').forEach(tabState);

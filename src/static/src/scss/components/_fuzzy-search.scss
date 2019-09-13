@@ -1,0 +1,65 @@
+.dmb-fuzzy-search {
+  &__input-wrapper {
+    margin-bottom: 183px;
+    position: relative;
+  }
+
+  &__input {
+    // to override `input[type="search"]{box-sizing: border-box}` from normalize.scss:
+    &[type='search'] {
+      box-sizing: border-box;
+    }
+  }
+
+  &__results {
+    background: #fff;
+    border-radius: $dmb-border-radius-medium;
+    bottom: 0;
+    box-shadow: $dmb-box-shadow;
+    display: none;
+    left: 0;
+    margin-top: 8px;
+    position: absolute;
+    right: 0;
+    transform: translateY(calc(100% + #{$dmb-spacing-xs}));
+  }
+
+  &__results-count {
+    padding: $dmb-spacing-xs $dmb-spacing-s;
+  }
+
+  &__results-list {
+    $results-list-border: 1px solid $dmb-color-grey-zircon;
+
+    border-bottom: $results-list-border;
+    border-top: $results-list-border;
+    list-style: none;
+    margin: 0;
+    max-height: 316px;
+    overflow-y: auto;
+  }
+
+  &__result-item,
+  &__no-results {
+    padding: $dmb-spacing-s;
+  }
+
+  &__result-item {
+    cursor: pointer;
+
+    &:hover,
+    &[aria-selected='true'] {
+      background: $dmb-color-blue-solitude;
+    }
+  }
+
+
+  &__no-results {
+    display: block;
+
+    &:focus {
+      background: inherit;
+      outline: $dmb-focus-outline;
+    }
+  }
+}
