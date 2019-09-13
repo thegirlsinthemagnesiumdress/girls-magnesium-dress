@@ -42,7 +42,6 @@ class UpdateAccountIdView(UpdateAPIView):
     Internal API endpoint to update `Account Id` (also called Green Tea Id) for a given survey.
     """
     authentication_classes = (SessionAuthentication, )
-    permission_classes = (IsAuthenticated,)
     serializer_class = SurveyAccountIdSerializer
     lookup_field = 'sid'
     lookup_url_kwarg = 'sid'
