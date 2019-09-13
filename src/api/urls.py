@@ -6,6 +6,7 @@ from api.views import (
     SurveyResultDetailView,
     AdminSurveyListView,
     UpdateAccountIdView,
+    AccountViewSet,
 )
 from django.conf.urls import url
 from django.conf import settings
@@ -19,4 +20,5 @@ urlpatterns = [
     url(r'^report/result/(?P<response_id>\w+)/$', SurveyResultDetailView.as_view(), name='survey_result_report'),
     url(r'^report/industry/(?P<industry>[\w&-]+)/$', SurveyResultsIndustryDetail.as_view(), name='survey_industry'),
     url(r'^(?P<tenant>{})/admin/surveys/$'.format(settings.ENABLED_TENANTS), AdminSurveyListView.as_view(), name='admin_surveys'),  # noqa
+    url(r'^(?P<tenant>{})/admin/surveys/search$'.format(settings.ENABLED_TENANTS), AccountViewSet.as_view(), name='admin_surveys_search'),  # noqa
 ]

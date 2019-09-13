@@ -91,3 +91,14 @@ class AdminSurveyResultsSerializer(ModelSerializer):
             'last_internal_result',
             'created_at',
         )
+
+
+class SearchSurveySerializer(ModelSerializer):
+
+    class Meta:
+        model = Survey
+        fields = (
+            'sid',
+            'account_id',
+            'company_name',
+        )
