@@ -96,7 +96,7 @@ export default class FuzzySearch {
     const resultsCount = parseInt(this.resultsEl.getAttribute('data-results-count'), 10);
 
     // If less than two elements ignore arrow keys
-    if (resultsCount < 2) {
+    if (resultsCount < 2 || !resultsCount) {
       return;
     }
 
