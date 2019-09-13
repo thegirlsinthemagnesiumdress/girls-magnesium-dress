@@ -448,6 +448,18 @@ class AdminSurveyListViewTest(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    @with_appengine_user("test@gmail.com")
+    def test_survey__user_does_not_have_permission(self):
+        """Should return the `company_name` related to `sid` provided."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_anon
+    def test_survey__anonn_does_not_have_permission(self):
+        """Should return the `company_name` related to `sid` provided."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
 
 class UpdateAccountIdSurveyTest(APITestCase):
     """Tests for `api.views.UpdateAccountIdSurvey` view."""
@@ -470,13 +482,13 @@ class UpdateAccountIdSurveyTest(APITestCase):
         response = self.client.put(self.url_1, self.data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_post_is_not_allowed(self):
         """Post method should not be allowed, it should return 405."""
         response = self.client.post(self.url_1, self.data)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_only_account_id_is_updated(self):
         """Updating data matching required parameters should succed."""
         self.data["company_name"] = "New company name"
@@ -494,7 +506,7 @@ class UpdateAccountIdSurveyTest(APITestCase):
         self.assertEqual(content.get('account_id'), '123456')
         self.assertEqual(self.survey_2.company_name, 'test company 2')
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_fields_other_than_account_id_are_ignored_invalid_key(self):
         """Updating data with random keys should return 200 and ignore invalid keys."""
         response = self.client.put(self.url_1, {'randomkey': 'randomvalue'})
@@ -509,7 +521,7 @@ class UpdateAccountIdSurveyTest(APITestCase):
         # account id should still be the odl value
         self.assertEqual(content.get('account_id'), '111111')
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_fields_other_than_account_id_are_ignored_invalid_value(self):
         """Updating data with invalid values for fields, it still succedes."""
         invalid_data = {
@@ -527,3 +539,10 @@ class UpdateAccountIdSurveyTest(APITestCase):
         content = response.json()
         # account id should still be the odl value
         self.assertEqual(content.get('account_id'), '111111')
+
+    @with_appengine_user("test@example.com")
+    def test_not_admin_forbidden(self):
+        """Updating data matching required parameters should succed."""
+        self.data["company_name"] = "New company name"
+        response = self.client.put(self.url_1, self.data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

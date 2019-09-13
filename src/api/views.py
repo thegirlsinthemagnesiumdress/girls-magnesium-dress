@@ -19,7 +19,7 @@ from rest_framework.generics import (
     ListAPIView,
     UpdateAPIView,
 )
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core import aggregate
@@ -57,6 +57,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     # Only using session authentication by default everywhere else
     # locks out anyone with a token from using any of the other endpoints
     authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = SurveyCompanyNameSerializer
     queryset = Survey.objects.all()
     lookup_field = 'sid'
