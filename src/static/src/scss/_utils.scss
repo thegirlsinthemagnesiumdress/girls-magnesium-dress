@@ -130,8 +130,16 @@ $positions: (top, bottom);
   border-radius: 8px;
 }
 
+.dmb-u-text-semi-muted {
+  color: $dmb-color-blue-charade !important;
+}
+
 .dmb-u-text-muted {
   color: $dmb-color-grey-shuttle !important;
+}
+
+.dmb-u-small-text {
+  font-size: 12px !important;
 }
 
 .dmb-overlay {
