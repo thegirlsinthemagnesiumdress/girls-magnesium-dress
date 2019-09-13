@@ -7,10 +7,14 @@
     flex-wrap: wrap;
   }
 
+  &__heading {
+    margin-bottom: $dmb-spacing-s;
+  }
+
   &__back {
     @include dmb-mq($from: tablet) {
       margin-right: 24px;
-      padding-top: 8px;
+      padding-top: $dmb-spacing-xs;
     }
   }
 
@@ -29,12 +33,9 @@
   }
 
   &__details-list {
+    display: flex;
     list-style-type: none;
     margin: 0;
-
-    @include dmb-mq($from: desktop) {
-      display: flex;
-    }
   }
 
   &__details-list-item {
@@ -43,17 +44,11 @@
     display: flex;
 
     @include dmb-mq($from: desktop) {
-      font-size: 18px;
+      font-size: 14px;
     }
 
     &:not(:first-of-type) {
-      @include dmb-mq($until: desktop) {
-        margin-top: 10px;
-      }
-
-      @include dmb-mq($from: desktop) {
-        margin-left: 24px;
-      }
+      margin-left: 24px;
     }
 
     svg {
@@ -62,7 +57,7 @@
   }
 
   svg {
-    fill: $dmb-color-grey-shuttle;
+    fill: $dmb-color-grey-chateau;
     position: relative;
     top: -.03em;
   }

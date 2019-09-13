@@ -1,23 +1,36 @@
 .dmb-button {
   align-items: center;
   border-radius: $dmb-border-radius-medium;
-  display: flex;
+  color: $dmb-color-blue-royal;
+  display: inline-flex;
   font-family: $dmb-alt-font-family;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: $h-font-weight-medium;
   margin: 0;
-  padding: 8px 12px;
+  padding: 10px 16px;
 
   &,
   &:visited {
-    color: $dmb-color-blue-denim;
+    color: $dmb-color-blue-royal;
   }
 
   &:hover {
-    background: $dmb-color-blue-alice;
+    background: rgba($dmb-color-blue-cornflower, $dmb-hover-opacity);
   }
 
   svg {
-    margin: -.2em .5em 0 0;
+    display: block;
+    fill: currentColor;
+    height: 18px;
+    margin: -.2em $dmb-spacing-xs 0 0;
+  }
+
+  &--secondary {
+    background: $dmb-color-blue-alice;
+    color: $dmb-color-blue-denim !important;
+
+    &:hover {
+      background: $dmb-color-blue-lavender;
+    }
   }
 }
