@@ -55,5 +55,6 @@ def link_surveys():
         for survey in surveys:
             survey.creator = user
             survey.save()
-            user.accounts.add(survey)
-            user.save()
+            if survey.sid not in user.accounts_ids:
+                user.accounts.add(survey)
+                user.save()
