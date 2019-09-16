@@ -19,6 +19,7 @@ $dmb-prog-table-active-color: $dmb-color-blue-navy;
 $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
 
 .dmb-progress-table {
+  $block: &;
   display: flex;
   font-family: $h-font-family-google-sans;
   margin: 0 auto;
@@ -159,7 +160,7 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
       border-top-width: $dmb-prog-table-row-height-desktop / 2;
       font-size: 16px;
 
-      &.dmb-progress-table__row--value-four::after {
+      &.dmb-progress-table__row--value-max::after {
         background: linear-gradient(90deg, rgba($h-white, 0) 0%, rgba($dmb-prog-table-active-bg-color, 1) 100%);
         content: '';
         height: 12px;
@@ -198,7 +199,7 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
   }
 
   &__banner {
-    background: $h-gm-grey-100;
+    background: $h-gm-grey-400;
     border-radius: 5px;
     font-size: 14px;
     margin-top: -6px;
@@ -211,7 +212,7 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
     z-index: 1;
 
     @include bp(s) {
-      background: rgba($h-gm-grey-100, .7);
+      background: rgba($h-gm-grey-400, .7);
       margin-left: 10px;
       padding: 2px 20px;
       width: auto;
@@ -245,19 +246,19 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
     }
   }
 
-  $dimensions: nascent, emerging, connected, multimoment;
-  @each $dimension in $dimensions {
-    &--#{$dimension} {
-      .dmb-progress-table__col--#{$dimension} {
-        background-color: $dmb-prog-table-active-bg-color;
+  @each $tenant, $value in $tenants {
+    $tenant-levels: map-get($value, levels);
 
-        @include print-styles {
-          border-left: 1px solid rgba($dmb-prog-table-border-color, .5);
-          border-right: 1px solid rgba($dmb-prog-table-border-color, .5);
-        }
+    #dmb-#{$tenant} & { // sass-lint:disable-line no-ids
+      @each $level, $value in $tenant-levels {
+        &#{$block}--level-#{$level} {
+          #{$block}__col--level-#{$level} {
+            background-color: $dmb-prog-grid-col-bg-color;
+          }
 
-        .dmb-progress-table__col-heading {
-          display: block;
+          #{$block}__row--main {
+            border-color: map-get($value, color);
+          }
         }
       }
     }
@@ -269,7 +270,8 @@ $dmb-prog-table-banner-color:  $dmb-color-blue-charade;
     display: none;
     height: 18px;
     margin-right: 5px;
-    top: 3px;
+    position: relative;
+    top: 4px;
 
     @include bp(s) {
       display: inline-block;
