@@ -191,3 +191,16 @@ def drop_search_index_task(request):
     )
 
     return HttpResponse(msg)
+
+
+@task_or_admin_only
+def link_surveys_task(request):
+    msg = "Lnking surveys to creators"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.link_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

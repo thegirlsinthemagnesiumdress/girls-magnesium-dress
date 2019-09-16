@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from core.models import Survey, SurveyResult
+from core.models import Survey, SurveyResult, User
 import logging
 
 
@@ -47,3 +47,13 @@ def drop_search_index():
             in index.get_range(ids_only=True)]
         index.delete(document_ids)
         index.delete_schema()
+
+
+def link_surveys():
+    for user in User.objects.all():
+        surveys = Survey.objects.filter(engagement_lead=user.engagement_lead)
+        for survey in surveys:
+            survey.creator = user
+            survey.save()
+            user.accounts.add(survey)
+            user.save()
