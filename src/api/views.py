@@ -192,9 +192,7 @@ class AdminSurveyListView(ListAPIView):
         """
         tenant = self.kwargs['tenant']
         user = self.request.user
-        queryset = Survey.objects.order_by('-created_at').prefetch_related('last_survey_result', 'last_internal_result').filter(tenant=tenant)  # noqa
-        if not user.is_super_admin:
-            queryset = queryset.filter(engagement_lead=user.engagement_lead)
+        queryset = user.accounts.order_by('company_name').prefetch_related('last_survey_result', 'last_internal_result').filter(tenant=tenant)  # noqa
         return queryset
 
 
