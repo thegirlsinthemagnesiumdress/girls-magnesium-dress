@@ -1,7 +1,7 @@
 import hashlib
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
-from djangae.fields import JSONField
+from djangae.fields import JSONField, RelatedListField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -20,6 +20,7 @@ from search.django.decorators import searchable
 
 
 class User(GaeAbstractDatastoreUser):
+    accounts = RelatedListField('Survey')
 
     @property
     def is_super_admin(self):
@@ -70,6 +71,7 @@ class Survey(models.Model):
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
     parent_id = models.CharField(max_length=64, blank=True, null=True)
+    creator = models.ForeignKey('User', null=True, related_name='+')
 
     class SearchMeta:
         fields = ['account_id', 'company_name', 'tenant']
