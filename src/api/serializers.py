@@ -94,6 +94,8 @@ class AdminSurveyResultsSerializer(ModelSerializer):
 
 
 class SearchSurveySerializer(ModelSerializer):
+    country_name = CharField(source='get_country_display')
+    industry_name = CharField(source='get_industry_display')
 
     class Meta:
         model = Survey
@@ -101,4 +103,6 @@ class SearchSurveySerializer(ModelSerializer):
             'sid',
             'account_id',
             'company_name',
+            'industry_name',
+            'country_name',
         )
