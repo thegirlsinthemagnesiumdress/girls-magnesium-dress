@@ -220,3 +220,22 @@ class UserTest(TestCase):
         response = self.client.get('/')
         user = response.wsgi_request.user
         self.assertTrue(user.is_super_admin)
+
+    @with_appengine_admin('standard@google.com')
+    def test_user_surveys_ordering_correct(self):
+        email = "user@gmail.com"
+        user = make_user(email=email)
+
+        s1 = make_survey(company_name="I'm number 1", creator=user)
+        user.accounts.add(s1)
+        s2 = make_survey(company_name="I'm number 2", creator=user)
+        user.accounts.add(s2)
+        s3 = make_survey(company_name="I'm number 3", creator=user)
+        user.accounts.add(s3)
+
+        self.assertEqual(user.accounts.count(), 3)
+
+        accounts = [account.company_name for account in user.accounts.all()]
+        self.assertEqual(accounts[0], "I'm number 1")
+        self.assertEqual(accounts[1], "I'm number 2")
+        self.assertEqual(accounts[2], "I'm number 3")
