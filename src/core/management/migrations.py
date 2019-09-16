@@ -2,7 +2,11 @@ from django.conf import settings
 
 from core.models import Survey, SurveyResult
 import logging
+from core.googleapi import sheets
 
+from google.oauth2 import service_account
+import unicodecsv as csv
+from core.management.dmb_lite import csv_string
 
 def migrate_to_dmblite_survey():
     # Enable all tenants since the Survey.save method will
@@ -47,3 +51,10 @@ def drop_search_index():
             in index.get_range(ids_only=True)]
         index.delete(document_ids)
         index.delete_schema()
+
+
+def import_dmb_lite(date):
+    reader = csv.reader(csv_string, delimiter=',')
+
+    for row in readCSV:
+        print row
