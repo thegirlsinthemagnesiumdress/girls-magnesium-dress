@@ -192,7 +192,10 @@ class AdminSurveyListView(ListAPIView):
         """
         tenant = self.kwargs['tenant']
         user = self.request.user
-        queryset = user.accounts.order_by('company_name').prefetch_related('last_survey_result', 'last_internal_result').filter(tenant=tenant)  # noqa
+        queryset = user.accounts.filter(tenant=tenant).prefetch_related('last_survey_result', 'last_internal_result')
+        # Convert the queryset to a list since the RelatedListField maintains order.
+        queryset = list(queryset)
+        queryset.sort(key=lambda x: x.company_name)
         return queryset
 
 
