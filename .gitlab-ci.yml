@@ -4,6 +4,7 @@ be-test:
   - apt-get update -qy
   - apt-get install -y python-pip
   - ./bin/install_deps --python-only
+  - touch src/core/templates/core/inc/_dmb-svgs.inc.html
   - python manage.py test
 
 be-lint:

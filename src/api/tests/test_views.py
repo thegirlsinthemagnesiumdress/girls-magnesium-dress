@@ -550,7 +550,6 @@ class UpdateAccountIdSurveyTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
-
 class AccountViewSet(APITestCase):
     """Tests for `api.views.AccountViewSet` view."""
 
@@ -568,7 +567,7 @@ class AccountViewSet(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_get_without_q_param(self):
         """
         Get method without `q` parameter, it should return 200 as well as the list
@@ -577,7 +576,7 @@ class AccountViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_get_with_q_param(self):
         """
         Get method with `q` parameter, it should return 200 as well as the list
@@ -588,7 +587,7 @@ class AccountViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_get_with_q_param_empty(self):
         """
         Get method with empty `q` parameter, it should return 200 as well as the list
@@ -599,7 +598,7 @@ class AccountViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_get_with_q_param_search_by_account_id(self):
         """
         Get method without `q` parameter, it should return 200 as well as the list
@@ -613,7 +612,7 @@ class AccountViewSet(APITestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(first_el.get('account_id'), account_id)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_get_empty_tenant_should_return_empty(self):
         """
         Get method without `q` parameter, it should return 200 as well as an empty list."""
@@ -623,7 +622,7 @@ class AccountViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
 
-    @with_appengine_user("test@example.com")
+    @with_appengine_user("test@google.com")
     def test_get_empty_tenant_with_q_param_should_return_empty(self):
         """
         Get method with `q` parameter, it should return 200 as well as an empty list."""
