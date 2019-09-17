@@ -226,12 +226,9 @@ class UserTest(TestCase):
         email = "user@gmail.com"
         user = make_user(email=email)
 
-        s1 = make_survey(company_name="I'm number 1", creator=user)
-        user.accounts.add(s1)
-        s2 = make_survey(company_name="I'm number 2", creator=user)
-        user.accounts.add(s2)
-        s3 = make_survey(company_name="I'm number 3", creator=user)
-        user.accounts.add(s3)
+        make_survey(company_name="I'm number 1", creator=user)
+        make_survey(company_name="I'm number 2", creator=user)
+        make_survey(company_name="I'm number 3", creator=user)
 
         self.assertEqual(user.accounts.count(), 3)
 
