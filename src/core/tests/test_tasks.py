@@ -564,7 +564,7 @@ class CreateInternalSurveyResultTestCase(TestCase):
         self.assertEqual(survey.survey_results.count(), 0)
 
     def test_internal_survey_set_completed_by(self):
-        survey = make_survey(sid=1)
+        make_survey(sid=1)
         self.assertEqual(Survey.objects.count(), 1)
         self.assertEqual(SurveyResult.objects.count(), 0)
 
@@ -572,7 +572,6 @@ class CreateInternalSurveyResultTestCase(TestCase):
 
         self.assertEqual(got_survey_results[1].completed_by.pk, self.user.pk)
         self.assertIsNone(got_survey_results[0].completed_by)
-
 
     def test_internal_survey_result_created_no_survey_found(self):
         """When a Survey is not found, `SurveyResult` is created anyway."""

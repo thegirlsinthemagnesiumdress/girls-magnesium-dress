@@ -236,8 +236,7 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
-        logging.warning('Result with id {} for company with sid:{} has been completed by not-existing User with email {}'
-            .format(response_id, response_data.get('sid'), email))
+        logging.warning('Result with id {} for company with sid:{} has been completed by not-existing User with email {}'.format(response_id, response_data.get('sid'), email)) # noqa
 
     new_survey_result = None
     try:
