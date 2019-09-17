@@ -4,6 +4,7 @@ from api.serializers import (
     SurveySerializer,
     SurveyWithResultSerializer,
     SurveyAccountIdSerializer,
+    SurveySidSerializer,
 )
 from api.serializers import AdminSurveyResultsSerializer, SearchSurveySerializer
 from core.models import Survey, SurveyResult
@@ -31,10 +32,42 @@ class CreateSurveyView(CreateAPIView):
     """
     Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
     """
-    authentication_classes = ()
     permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        # Link the new account to the current logged in user.
+        self.request = request
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        if self.request.user.is_anonymous:
+            serializer.save(creator=None)
+        else:
+            serializer.save(creator=self.request.user)
+            survey = Survey.objects.get(sid=serializer.data['sid'])
+            self.request.user.accounts.add(survey)
+            self.request.user.save()
+
+
+class AddSurveyView(UpdateAPIView):
+    """
+    Internal API endpoint to Add a account to a users' list of accounts
+    """
+    authentication_classes = (SessionAuthentication,)
+    serializer_class = SurveySidSerializer
+    lookup_field = 'sid'
+    lookup_url_kwarg = 'sid'
+    queryset = Survey.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        if request.user.is_anonymous:
+            return self.update(request, *args, **kwargs)
+        else:
+            survey = Survey.objects.get(sid=kwargs['sid'])
+            request.user.accounts.add(survey)
+            return self.update(request, *args, **kwargs)
 
 
 class UpdateAccountIdView(UpdateAPIView):

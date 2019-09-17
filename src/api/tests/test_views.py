@@ -2,6 +2,7 @@ from core.models import Survey
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import override_settings
+from django.urls import NoReverseMatch
 import mock
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -150,7 +151,7 @@ class CreateSurveyTest(APITestCase):
     """Tests for `api.views.CreateSurveyView` view."""
 
     def setUp(self):
-        user = User.objects.create(
+        self.user = User.objects.create(
             username='test1',
             email='test@example.com',
             password='pass',
@@ -163,7 +164,7 @@ class CreateSurveyTest(APITestCase):
             'tenant': 'ads',
         }
 
-        self.client.force_authenticate(user)
+        self.client.force_authenticate(self.user)
         self.url = reverse('create_survey')
 
     def test_unauthenticated_user(self):
@@ -184,6 +185,7 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(post_response.get('link'), survey_db.link)
         self.assertEqual(post_response.get('link_sponsor'), survey_db.link_sponsor)
         self.assertEqual(post_response.get('engagement_lead'), survey_db.engagement_lead)
+        self.assertEqual(post_response.get('creator'), self.user.pk)
 
     def test_required_fields_not_matched(self):
         """Posting data not matching required parameters should fail."""
@@ -216,6 +218,7 @@ class CreateSurveyTest(APITestCase):
             'link',
             'link_sponsor',
             'engagement_lead',
+            'creator',
             'industry',
             'country',
             'tenant',
@@ -226,15 +229,7 @@ class CreateSurveyTest(APITestCase):
 
     def test_survey_is_created_correctly(self):
         """Posting valid data should create survey"""
-        data = {
-            'company_name': 'test company',
-            'industry': 'ic-o',
-            'country': 'GB',
-            'tenant': 'ads',
-            'account_id': '123123',
-        }
-
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, self.data)
         response_data = response.json()
         self.assertEqual(response.status_code, 201)
 
@@ -243,6 +238,116 @@ class CreateSurveyTest(APITestCase):
         self.assertEqual(response_data['company_name'], survey.company_name)
         self.assertEqual(response_data['account_id'], survey.account_id)
         self.assertEqual(response_data['tenant'], survey.tenant)
+        self.assertEqual(response_data['creator'], self.user.pk)
+        self.assertEqual(self.user.accounts.count(), 1)
+
+    def test_non_admin_survey_is_created_correctly(self):
+        """Posting valid data from a non-admin user should create survey"""
+        self.client.force_authenticate(None)
+        response = self.client.post(self.url, self.data)
+        response_data = response.json()
+        self.assertEqual(response.status_code, 201)
+
+        survey = Survey.objects.first()
+
+        self.assertEqual(response_data['company_name'], survey.company_name)
+        self.assertEqual(response_data['account_id'], survey.account_id)
+        self.assertEqual(response_data['tenant'], survey.tenant)
+        self.assertEqual(response_data['creator'], None)
+        self.assertEqual(self.user.accounts.count(), 0)
+
+    def test_creating_duplicate_survey(self):
+        """Posting duplicate data should add another account to the user (for now...)"""
+        response = self.client.post(self.url, self.data)
+        response_data = response.json()
+
+        survey = Survey.objects.get(sid=response_data['sid'])
+
+        self.assertEqual(survey.creator, self.user)
+        self.assertEqual(self.user.accounts.count(), 1)
+
+        self.client.post(self.url, self.data)
+
+        self.assertEqual(self.user.accounts.count(), 2)
+
+
+class AddSurveyTest(APITestCase):
+    """Tests for `api.views.AddSurveyView` view."""
+
+    def setUp(self):
+        self.user = User.objects.create(
+            username='test1',
+            email='test@google.com',
+            password='pass',
+        )
+
+    @with_appengine_anon
+    def test_anon_adding_survey(self):
+        """Adding an survey should add it to the users' account list"""
+        survey = make_survey(tenant='ads')
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
+        response = self.client.put(url)
+
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_user("test@example.com")
+    def test_non_admin_adding_survey(self):
+        """Adding an survey should add it to the users' account list"""
+        survey = make_survey(tenant='ads')
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
+        response = self.client.put(url)
+
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_user("test@google.com")
+    def test_admin_adding_survey(self):
+        """Adding an survey should add it to the users' account list"""
+        survey = make_survey(tenant='ads')
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
+        response = self.client.put(url)
+        user = response.wsgi_request.user
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(user.accounts.count(), 1)
+        self.assertEqual(user.accounts.first(), survey)
+
+    @with_appengine_user("test@google.com")
+    def test_adding_invalid_survey(self):
+        """Adding an non-existant survey should not create it or add it to the users' account list"""
+        with self.assertRaises(NoReverseMatch):
+            reverse('add_survey', kwargs={'sid': 'random53dd2e47e6aa85c77318f4a0e9', 'tenant': 'advertisers'})
+
+        self.assertEqual(self.user.accounts.count(), 0)
+
+    @with_appengine_user("test@google.com")
+    def test_adding_duplicate_survey(self):
+        """Adding an survey that has already added should not add it again"""
+        survey = make_survey(tenant='ads')
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
+        response = self.client.put(url)
+        self.client.put(url)
+        user = response.wsgi_request.user
+
+        self.assertEqual(user.accounts.count(), 1)
+
+    @with_appengine_user("test@google.com")
+    def test_adding_survey_not_creator(self):
+        """Adding an survey which you did not create should not set you as the creator"""
+        self.client.force_authenticate(None)
+        survey = make_survey(tenant='ads')
+        self.client.force_authenticate(self.user)
+
+        url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
+        self.client.put(url)
+
+        self.assertEqual(survey.creator, None)
+        self.assertEqual(self.user.accounts.count(), 1)
+        self.assertEqual(self.user.accounts.first(), survey)
 
 
 @override_settings(
@@ -563,6 +668,12 @@ class AccountViewSet(APITestCase):
 
     @with_appengine_anon
     def test_unauthenticated_user(self):
+        """Unauthenticated users should return 403 Forbidden."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_user("test@example.com")
+    def test_non_admin_user(self):
         """Unauthenticated users should return 403 Forbidden."""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

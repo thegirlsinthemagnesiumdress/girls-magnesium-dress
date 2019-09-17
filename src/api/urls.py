@@ -1,5 +1,6 @@
 from api.views import (
     CreateSurveyView,
+    AddSurveyView,
     SurveyCompanyNameFromUIDView,
     SurveyResultsIndustryDetail,
     SurveyDetailView,
@@ -20,5 +21,6 @@ urlpatterns = [
     url(r'^report/result/(?P<response_id>\w+)/$', SurveyResultDetailView.as_view(), name='survey_result_report'),
     url(r'^report/industry/(?P<industry>[\w&-]+)/$', SurveyResultsIndustryDetail.as_view(), name='survey_industry'),
     url(r'^(?P<tenant>{})/admin/surveys/$'.format(settings.ENABLED_TENANTS), AdminSurveyListView.as_view(), name='admin_surveys'),  # noqa
-    url(r'^(?P<tenant>{})/admin/surveys/search$'.format(settings.ENABLED_TENANTS), AccountViewSet.as_view(), name='admin_surveys_search'),  # noqa
+    url(r'^(?P<tenant>{})/admin/surveys/search/$'.format(settings.ENABLED_TENANTS), AccountViewSet.as_view(), name='admin_surveys_search'),  # noqa
+    url(r'^(?P<tenant>{})/admin/surveys/add/{}/$'.format(settings.ENABLED_TENANTS, "(?P<sid>[0-9a-f]{32})"), AddSurveyView.as_view(), name='add_survey'),  # noqa
 ]
