@@ -205,6 +205,15 @@ def get_next_level_key(level_ranges, score):
     return level_ranges[0][1]
 
 
+def get_top_level(level_ranges):
+    """Gets the top score of a level range
+
+    Args:
+        level_ranges ([(number, number)]): The level ranges to test the score on.
+    """
+    return level_ranges[-1][1]
+
+
 def in_top_level(level_ranges, score):
     """Checks if a score is in the top level.
 
@@ -237,6 +246,7 @@ def get_level_info(content_data, score):
     # Form the level info object.
     return {
         "value": score,
+        "top_level": get_top_level(level_ranges),
         "in_top_level": in_top_level(level_ranges, score),
         "levels": {
             "current": {
@@ -272,6 +282,7 @@ def get_dimension_level_info(content_data, dimension, score):
     return {
         "name": content_data['dimension_titles'][dimension],
         "value": score,
+        "top_level": get_top_level(level_ranges),
         "in_top_level": in_top_level(level_ranges, score),
         "levels": {
             "current": {

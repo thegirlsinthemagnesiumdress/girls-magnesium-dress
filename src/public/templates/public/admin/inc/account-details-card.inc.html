@@ -39,8 +39,13 @@
       <div class="dmb-list-card__overall-level dmb-u-alt-font">
         {{ result.overall.levels.current.name }}
       </div>
-      <div class="dmb-list-card__overall-score dmb-u-text-semi-muted h-u-font-weight-medium dmb-u-alt-font">
-        {{ result.overall.value|floatformat:1 }}
+      <div class="dmb-list-card__overall-score">
+        <span class="dmb-u-text-semi-muted h-c-headline h-c-headline--four h-u-font-weight-medium dmb-u-alt-font">
+          {{ result.overall.value|floatformat:1 }}
+        </span>
+        <span class="dmb-u-text-muted h-u-font-weight-light dmb-u-alt-font">
+          /{{ result.overall.top_level|floatformat:0 }}
+        </span>
       </div>
     </div>
 
