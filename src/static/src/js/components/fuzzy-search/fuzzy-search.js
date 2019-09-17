@@ -1,17 +1,14 @@
 import {throttle} from '../throttle/throttle';
+import {KEY_CODES} from '../../constants/key-codes';
 
-const KEY_CODES = {
-  ENTER: 13,
-  UP: 38,
-  DOWN: 40,
+export const DATA_ATTRS = {
+  API_ENDPOINT: 'data-api-endpoint',
+  NO_RESULTS: 'data-no-results',
+  RESULT: 'data-result',
+  SID: 'data-sid',
 };
 
-const DATA_ATTRS = {
-  SID: `data-sid`,
-  NO_RESULTS: `data-no-results`,
-};
-
-const ELEM_CONSTS = {
+export const ELEM_CONSTS = {
   INPUT: {
     CLASS: 'dmb-fuzzy-search__input',
     ATTR: 'dmb-fuzzy-search-input',
@@ -42,6 +39,8 @@ const ELEM_CONSTS = {
   },
 };
 
+export const SELECTED_EVENT = 'selectResult';
+
 /**
  * Fuzzy search component
  *
@@ -55,6 +54,7 @@ export default class FuzzySearch {
   constructor(elem) {
     this.elem = elem;
 
+    this.results = [];
     this.resultsCount = null;
     this.selectedResultIndex = null;
 
@@ -66,24 +66,21 @@ export default class FuzzySearch {
     this.serverErrorEl = elem.querySelector(`[${ELEM_CONSTS.ERROR.ATTR}]`);
 
     // Get search API endpoint
-    this.apiEndpoint = elem.getAttribute('data-api-endpoint');
+    this.apiEndpoint = elem.getAttribute(DATA_ATTRS.API_ENDPOINT);
 
     // Methods
     this.search = this.search.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleKeydown = this.handleKeydown.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
     this.throttledSearch = throttle(this.search, 300);
+
 
     // Attach event listeners
     this.searchInputEl.addEventListener('input', this.handleInput);
     this.searchInputEl.addEventListener('keydown', this.handleKeydown);
-
-    this.resultsEl.addEventListener('click', (e) => {
-      if (e.target && e.target.hasAttribute(ELEM_CONSTS.RESULTS_LIST_ITEM.ATTR)) {
-        const sid = e.target.getAttribute(DATA_ATTRS.SID);
-        this.selectHandler(sid);
-      }
-    });
+    this.resultsEl.addEventListener('click', this.handleClick);
   }
 
 
@@ -101,6 +98,25 @@ export default class FuzzySearch {
     }
 
     this.throttledSearch(query);
+  }
+
+  /**
+   * Handle click event in search box
+   *
+   * @param {Event} e : Event
+   *
+   */
+  handleClick(e) {
+    if (!e.target) {
+      return;
+    }
+
+    const selectedResultItemEl = e.target.closest(`[${ELEM_CONSTS.RESULT_ITEM.ATTR}]`);
+
+    if (selectedResultItemEl) {
+      const index = [...selectedResultItemEl.parentElement.children].indexOf(selectedResultItemEl);
+      this.selectHandler(index);
+    }
   }
 
 
@@ -140,7 +156,7 @@ export default class FuzzySearch {
         return;
       }
 
-      this.selectHandler(selectedResult.getAttribute(DATA_ATTRS.SID));
+      this.selectHandler(this.selectedResultIndex);
       return;
     }
 
@@ -210,7 +226,10 @@ export default class FuzzySearch {
           return;
         }
 
-        this.renderResults(results);
+        this.results = results;
+        this.resultsCount = results.length;
+
+        this.renderResults();
       })
       .catch(() => {
         this.serverErrorEl.style.display = 'block';
@@ -223,22 +242,19 @@ export default class FuzzySearch {
    *
    * @param {Array.<Object>} results
    */
-  renderResults(results) {
-    this.resultsCount = results.length;
-
+  renderResults() {
     // Update the results count element
-    if (results.length === 0) {
+    if (this.resultsCount === 0) {
       this.resultsListEl.innerHTML = '';
       this.resultsCountEl.textContent = this.resultsCountEl
         .getAttribute(DATA_ATTRS.NO_RESULTS);
     }
 
-    if (results.length !== 0) {
+    if (this.resultsCount !== 0) {
       this.resultsCountEl.textContent =
-        `${results.length} result${results.length === 1 ? '' : 's'}`;
+        `${this.resultsCount} result${this.resultsCount === 1 ? '' : 's'}`;
 
-      // Create temporary element to store
-      // results list item elements
+      // Create temporary element to store results list item elements
       const tempEl = this._createEl(
         'ul',
         ELEM_CONSTS.RESULTS_LIST.CLASS
@@ -246,7 +262,7 @@ export default class FuzzySearch {
 
       tempEl.setAttribute(ELEM_CONSTS.RESULTS_LIST.ATTR, '');
 
-      results.forEach((result, index) => {
+      this.results.forEach((result, index) => {
         const resultItemEl = this._createEl(
           'li',
           ELEM_CONSTS.RESULT_ITEM.CLASS
@@ -267,9 +283,10 @@ export default class FuzzySearch {
         );
 
         resultItemEl.setAttribute(ELEM_CONSTS.RESULT_ITEM.ATTR, '');
+        resultItemEl.setAttribute(ELEM_CONSTS.RESULT_ITEM.ATTR, '');
         resultItemEl.setAttribute('role', 'option');
 
-        resultItemEl.setAttribute(DATA_ATTRS.SID, `${result['sid']}`);
+        resultItemEl.setAttribute(DATA_ATTRS.RESULT, JSON.stringify(result));
 
         // Set first result as selected
         if (index === 0) {
@@ -299,12 +316,13 @@ export default class FuzzySearch {
 
 
   /**
-   * Handle when a result is selected
+   * Handle when a result is selected by firing custom selectResult event
    *
-   * @param {string} sid
+   * @param {Object} result
    */
-  selectHandler(sid) {
-    console.log(sid);
+  selectHandler(selectedResultIndex) {
+    const event = new Event('selectResult', this.results[selectedResultIndex]);
+    window.dispatchEvent(event);
   }
 
 

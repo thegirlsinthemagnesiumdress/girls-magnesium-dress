@@ -54,11 +54,8 @@
 
   &__no-results {
     display: block;
-
-    &:focus {
-      background: inherit;
-      outline: $dmb-focus-outline;
-    }
+    text-align: left;
+    width: 100%;
   }
 
   &__server-error {
