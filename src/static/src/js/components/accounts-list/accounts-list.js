@@ -110,7 +110,9 @@ export default class AccountsList {
       accountColumns.forEach((column) => {
         const td = document.createElement('td');
         td.setAttribute('data-colheader', column.header);
-        td.className = column.class;
+        if (column.class) {
+          td.classList.add(column.class);
+        }
         const a = document.createElement('a');
         domSafe.setAnchorHref(a, `${column.id}/`); // TODO (mstrutt) link should come from the backend
         a.textContent = column.content;
