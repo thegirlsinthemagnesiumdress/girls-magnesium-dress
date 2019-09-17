@@ -209,7 +209,7 @@ def add_account(request, tenant):
 
     slug = utils.get_tenant_slug(tenant)
 
-    return render(request, 'public/admin/add_account.html', {
+    return render(request, 'public/admin/add-account.html', {
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'other_tenants': utils.get_other_tenant_footers(tenant),
