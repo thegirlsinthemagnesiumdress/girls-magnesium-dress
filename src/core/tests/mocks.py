@@ -150,6 +150,7 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '2',
+            'Q97_4_TEXT': 'test@google.com',
             'Finished': '1',
         },
         {
@@ -182,6 +183,7 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '0',
+            'Q97_4_TEXT': 'test@google.com',
             'Finished': '0',
         },
         {
@@ -214,6 +216,7 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '4',
+            'Q97_4_TEXT': 'test@google.com',
             'Finished': '1',
         },
         {
@@ -246,6 +249,7 @@ qualtrics_export = {
             'Q10': '0',
             'Q11': '1',
             'Q12': '4',
+            'Q97_4_TEXT': 'test@google.com',
             'Finished': '1',
         }
     ],
@@ -408,6 +412,7 @@ MOCKED_INTERNAL_TENANTS = {
     'tenant1': {
         'key': 'tenant1',
         'DIMENSIONS': MOCKED_DIMENSIONS,
+        'EMAIL_TO': 'Q97_4_TEXT',
         'QUALTRICS_SURVEY_ID': 'SV_in1xxxxxxxxxxxx',
         'WEIGHTS': MOCKED_WEIGHTS,
         'MULTI_ANSWER_QUESTIONS': [],

@@ -120,6 +120,7 @@ class GetResultsTestCase(TestCase):
 
     def setUp(self):
         self.tenant = MOCKED_TENANTS['tenant1']
+        self.user = make_user(email="test@google.com")
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
@@ -534,6 +535,7 @@ class CreateInternalSurveyResultTestCase(TestCase):
                              if response['value'].get('Finished') == '1']
         self.tenant = settings.INTERNAL_TENANTS['tenant1']
         self.survey_definition = make_survey_definition(tenant=self.tenant['key'])
+        self.user = make_user(email="test@google.com")
 
     def test_internal_survey_result_created(self):
         """`SurveyResult` is always created and correctly links to survey if it exists."""
