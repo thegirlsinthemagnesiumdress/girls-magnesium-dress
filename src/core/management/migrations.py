@@ -4,9 +4,28 @@ from core.models import Survey, SurveyResult
 import logging
 from core.googleapi import sheets
 
-from google.oauth2 import service_account
 import unicodecsv as csv
 from core.management.dmb_lite import csv_string
+from core.models import User, Survey
+from os.path import join
+
+
+CSV_PATH = join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
+
+# INDUSTRY_MAP = {
+#     'Automotive': 'ma-v',
+#     'Retail': 'rt-o',
+#     'Healthcare': 'ic-o',
+#     'Education & Government': 'edu-o',
+#     'Technology': 'ic-o',
+#     'Services All Verticals': 'other',
+#     'Finance': 'fi-o',
+#     'Consumer Packaged Goods':
+#     Classifieds & Local
+#     Business & Industrial Markets
+#     Travel
+#     Media & Entertainment
+# }
 
 def migrate_to_dmblite_survey():
     # Enable all tenants since the Survey.save method will
@@ -53,8 +72,40 @@ def drop_search_index():
         index.delete_schema()
 
 
-def import_dmb_lite(date):
-    reader = csv.reader(csv_string, delimiter=',')
+def import_dmb_lite():
+    print(CSV_PATH)
+    csvfile = open(CSV_PATH, 'r')
+    reader = csv.reader(csvfile, delimiter=",")
 
-    for row in readCSV:
-        print row
+
+    for i, row in enumerate(reader):
+        if i > 3:
+
+            ldap = row[8]
+            company_name = row[2]
+            industry = 'other' # need to wait for mapping
+            country = row[9]
+            user = create_user_(ldap)
+            tenant = "ads"
+            account_id = row[3] if row[3] != 'undefined' else row[4]
+            user = create_user_(ldap)
+
+            existing_accounts = Survey.objects.filter(company_name=company_name, account_id=account_id, country=country)
+
+            if existing_accounts.count() == 0:
+                s = Survey(company_name=company_name, industry=industry, country=country, tenant=tenant, account_id=account_id, creator=user)
+                s.save()
+            else:
+                s = existing_accounts[0]
+
+            if not user.accounts.filter(pk=s.pk).exists():
+                user.accounts.add(s)
+                user.save()
+
+
+
+def create_user_(ldap):
+    email = '{}@google.com'.format(ldap.lower())
+    user, _ = User.objects.get_or_create(email_lower=email, defaults={"email": email})
+
+    return user

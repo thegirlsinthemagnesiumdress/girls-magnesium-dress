@@ -191,3 +191,16 @@ def drop_search_index_task(request):
     )
 
     return HttpResponse(msg)
+
+
+@task_or_admin_only
+def import_lite_users_and_accounts(request):
+    msg = "Migrating users and accounts from csv"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.import_dmb_lite,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

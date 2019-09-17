@@ -1,0 +1,84 @@
+# coding=utf-8
+
+from core.management.migrations import import_dmb_lite
+from djangae.test import TestCase
+import mock
+from django.conf import settings
+from os.path import join
+
+
+from core.models import User, Survey
+
+@mock.patch('core.management.migrations.CSV_PATH', join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv"))
+class TestDMBLiteImport(TestCase):
+
+    def setUp(self):
+        import_dmb_lite()
+
+
+    def test_it_creates_users(self):
+        users = set([
+            u'thorntonm@google.com',
+            u'pchillari@google.com',
+            u'pchillari@google.com',
+            u'agatap@google.com',
+            u'bbelcastro@google.com',
+        ])
+
+        self.assertEqual(User.objects.all().count(), 4)
+        saved_users = set( [u.email for u in User.objects.all()])
+        self.assertEqual(saved_users, users)
+
+
+    def test_it_creates_accounts(self):
+
+        accounts = set([
+            u'Bell',
+            u'Bell',
+            u'šai',
+            u'IPF Provident',
+
+        ])
+        self.assertEqual(Survey.objects.all().count(), 4)
+
+        saved_accounts = set( [a.company_name for a in Survey.objects.all()])
+        self.assertEqual(saved_accounts, accounts)
+
+
+    def test_it_adds_survey_to_user(self):
+        user = User.objects.filter(email="pchillari@google.com")[0]
+        self.assertEqual(user.accounts.count(), 2)
+
+
+    def test_it_creates_users_not_again(self):
+        users = set([
+            u'thorntonm@google.com',
+            u'pchillari@google.com',
+            u'pchillari@google.com',
+            u'agatap@google.com',
+            u'bbelcastro@google.com',
+        ])
+        import_dmb_lite()
+        self.assertEqual(User.objects.all().count(), 4)
+        saved_users = set( [u.email for u in User.objects.all()])
+        self.assertEqual(saved_users, users)
+
+
+    def test_it_creates_accounts_not_again(self):
+        import_dmb_lite()
+        accounts = set([
+            u'Bell',
+            u'Bell',
+            u'šai',
+            u'IPF Provident',
+
+        ])
+        self.assertEqual(Survey.objects.all().count(), 4)
+
+        saved_accounts = set( [a.company_name for a in Survey.objects.all()])
+        self.assertEqual(saved_accounts, accounts)
+
+    def test_it_adds_survey_to_user_not_again(self):
+        import_dmb_lite()
+        user = User.objects.filter(email="pchillari@google.com")[0]
+        self.assertEqual(user.accounts.count(), 2)
