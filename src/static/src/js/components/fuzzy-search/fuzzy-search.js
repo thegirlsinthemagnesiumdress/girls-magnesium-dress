@@ -1,9 +1,49 @@
 import {throttle} from '../throttle/throttle';
 
+const KEY_CODES = {
+  ENTER: 13,
+  UP: 38,
+  DOWN: 40,
+};
+
+const DATA_ATTRS = {
+  SID: `data-sid`,
+  NO_RESULTS: `data-no-results`,
+};
+
+const ELEM_CONSTS = {
+  INPUT: {
+    CLASS: 'dmb-fuzzy-search__input',
+    ATTR: 'dmb-fuzzy-search-input',
+  },
+  RESULTS: {
+    CLASS: 'dmb-fuzzy-search__results',
+    ATTR: 'dmb-fuzzy-search-results',
+  },
+  RESULTS_COUNT: {
+    ATTR: 'dmb-fuzzy-search-results-count',
+  },
+  RESULTS_LIST: {
+    CLASS: 'dmb-fuzzy-search__results-list',
+    ATTR: 'dmb-fuzzy-search-results-list',
+  },
+  RESULT_ITEM: {
+    CLASS: 'dmb-fuzzy-search__result-item',
+    ATTR: 'dmb-fuzzy-search-result-item',
+  },
+  RESULT_ITEM_HEADING: {
+    CLASS: 'dmb-fuzzy-search__result-item-heading',
+  },
+  RESULT_ITEM_SUBHEADING: {
+    CLASS: 'dmb-fuzzy-search__result-item-subheading',
+  },
+  ERROR: {
+    ATTR: 'dmb-fuzzy-search-server-error',
+  },
+};
+
 /**
- *
- * Usage:
- *
+ * Fuzzy search component
  *
  */
 export default class FuzzySearch {
@@ -15,40 +55,52 @@ export default class FuzzySearch {
   constructor(elem) {
     this.elem = elem;
 
+    this.resultsCount = null;
     this.selectedResultIndex = null;
 
     // Get DOM elements
-    this.searchInputEl = elem.querySelector('.dmb-fuzzy-search__input');
-    this.resultsEl = elem.querySelector('.dmb-fuzzy-search__results');
-    this.resultsCountEl = this.resultsEl.querySelector('.dmb-fuzzy-search__results-count');
+    this.searchInputEl = elem.querySelector(`[${ELEM_CONSTS.INPUT.ATTR}]`);
+    this.resultsEl = elem.querySelector(`[${ELEM_CONSTS.RESULTS.ATTR}]`);
+    this.resultsCountEl = this.resultsEl.querySelector(`[${ELEM_CONSTS.RESULTS_COUNT.ATTR}]`);
+    this.resultsListEl = this.resultsEl.querySelector(`[${ELEM_CONSTS.RESULTS_LIST.ATTR}]`);
+    this.serverErrorEl = elem.querySelector(`[${ELEM_CONSTS.ERROR.ATTR}]`);
 
-    // Get API endpoint
+    // Get search API endpoint
     this.apiEndpoint = elem.getAttribute('data-api-endpoint');
 
-    // Attach event listeners
-    this.searchInputEl.addEventListener(
-      'input',
-      throttle(
-        (e) => {
-          const query = e.target.value;
-          if (query.length === 0) {
-            this.clearResults();
-            return;
-          }
-          return this.search(query);
-        },
-        1000
-      )
-    );
+    // Methods
+    this.search = this.search.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
+    this.throttledSearch = throttle(this.search, 300);
 
-    this.searchInputEl.addEventListener('keydown', (e) => this.handleKeydown(e));
+    // Attach event listeners
+    this.searchInputEl.addEventListener('input', this.handleInput);
+    this.searchInputEl.addEventListener('keydown', this.handleKeydown);
 
     this.resultsEl.addEventListener('click', (e) => {
-      if (e.target && e.target.className.includes('dmb-fuzzy-search__result-item')) {
-        const sid = e.target.getAttribute('data-sid');
+      if (e.target && e.target.hasAttribute(ELEM_CONSTS.RESULTS_LIST_ITEM.ATTR)) {
+        const sid = e.target.getAttribute(DATA_ATTRS.SID);
         this.selectHandler(sid);
       }
     });
+  }
+
+
+  /**
+   * Handle input in search box
+   *
+   * @param {Event} e : Event
+   *
+   */
+  handleInput(e) {
+    const query = e.target.value;
+    if (query.length === 0) {
+      this.clearResults();
+      return;
+    }
+
+    this.throttledSearch(query);
   }
 
 
@@ -73,7 +125,7 @@ export default class FuzzySearch {
     // If up or down arrow key pressed determine which element to set as selected
     const keyCode = e.keyCode ? e.keyCode : e.which;
 
-    if (!(keyCode == 38 || keyCode == 40 || keyCode == 13)) {
+    if (!(keyCode === KEY_CODES.UP || keyCode == KEY_CODES.DOWN || keyCode == KEY_CODES.ENTER)) {
       return;
     }
 
@@ -83,47 +135,46 @@ export default class FuzzySearch {
     const selectedResult = this.resultsEl.querySelector('[aria-selected="true"]');
 
     // If Enter key pressed run selectHandler
-    if (keyCode == 13) {
+    if (keyCode == KEY_CODES.ENTER) {
       if (!selectedResult) {
         return;
       }
 
-      this.selectHandler(selectedResult.getAttribute('data-sid'));
+      this.selectHandler(selectedResult.getAttribute(DATA_ATTRS.SID));
       return;
     }
 
     // Get number of elements in DOM
-    const resultsCount = parseInt(this.resultsEl.getAttribute('data-results-count'), 10);
+    // const resultsCount = parseInt(this.resultsEl.getAttribute('data-results-count'), 10);
 
     // If less than two elements ignore arrow keys
-    if (resultsCount < 2 || !resultsCount) {
+    if (!this.resultsCount || this.resultsCount < 2) {
       return;
     }
 
     // Unselect currently selected element
     selectedResult.setAttribute('aria-selected', 'false');
 
-    if (keyCode == 40) {
+    if (keyCode == KEY_CODES.DOWN) {
       // If down arrow key pressed select next item in list
       // or loop back to first item from last item
       this.selectedResultIndex++;
 
-      if (this.selectedResultIndex === resultsCount) {
+      if (this.selectedResultIndex === this.resultsCount) {
         this.selectedResultIndex = 0;
       }
-    } else if (keyCode == 38) {
+    } else if (keyCode == KEY_CODES.UP) {
       // If up arrow key pressed select previous item in list
       // or loop to last item from first item
       this.selectedResultIndex--;
 
       if (this.selectedResultIndex < 0) {
-        this.selectedResultIndex = resultsCount - 1;
+        this.selectedResultIndex = this.resultsCount - 1;
       }
     }
 
     // Set aria-selected of selected element to true
-    const resultsListEl = this.resultsEl.querySelector('.dmb-fuzzy-search__results-list');
-    const selectedResultEl = resultsListEl.childNodes[this.selectedResultIndex];
+    const selectedResultEl = this.resultsListEl.childNodes[this.selectedResultIndex];
 
     selectedResultEl.setAttribute('aria-selected', 'true');
 
@@ -161,8 +212,8 @@ export default class FuzzySearch {
 
         this.renderResults(results);
       })
-      .catch((err) => {
-        console.error(`Error: `, err);
+      .catch(() => {
+        this.serverErrorEl.style.display = 'block';
       });
   }
 
@@ -173,19 +224,13 @@ export default class FuzzySearch {
    * @param {Array.<Object>} results
    */
   renderResults(results) {
-    const resultsListEl = this.resultsEl
-      .querySelector('.dmb-fuzzy-search__results-list');
-
-    this.resultsEl.setAttribute(
-      'data-results-count',
-      results.length
-    );
+    this.resultsCount = results.length;
 
     // Update the results count element
     if (results.length === 0) {
-      resultsListEl.innerHTML = '';
+      this.resultsListEl.innerHTML = '';
       this.resultsCountEl.textContent = this.resultsCountEl
-        .getAttribute('data-no-results');
+        .getAttribute(DATA_ATTRS.NO_RESULTS);
     }
 
     if (results.length !== 0) {
@@ -196,55 +241,58 @@ export default class FuzzySearch {
       // results list item elements
       const tempEl = this._createEl(
         'ul',
-        'dmb-fuzzy-search__results-list'
+        ELEM_CONSTS.RESULTS_LIST.CLASS
       );
 
+      tempEl.setAttribute(ELEM_CONSTS.RESULTS_LIST.ATTR, '');
+
       results.forEach((result, index) => {
-        const resultsListItemEl = this._createEl(
+        const resultItemEl = this._createEl(
           'li',
-          'dmb-fuzzy-search__result-item'
+          ELEM_CONSTS.RESULT_ITEM.CLASS
         );
 
         const companyNameEl = this._createEl(
           'div',
-          'dmb-fuzzy-search__result-item-heading',
+          ELEM_CONSTS.RESULT_ITEM_HEADING.CLASS,
           `${result['company_name']}`
         );
 
         const accountIdEl = this._createEl(
           'div',
-          'dmb-fuzzy-search__result-item-subheading dmb-u-small-text dmb-u-text-muted',
-          `${result['account_id'] ? result['account_id'] : '\u200B'}`
+          `${ELEM_CONSTS.RESULT_ITEM_SUBHEADING.CLASS} dmb-u-small-text dmb-u-text-muted`,
+          `
+            ${result['account_id'] ? result['account_id'] : '\u200B'}
+          `
         );
 
-        resultsListItemEl.setAttribute(
-          'data-sid',
-          `${result['sid']}`
-        );
+        resultItemEl.setAttribute(ELEM_CONSTS.RESULT_ITEM.ATTR, '');
+        resultItemEl.setAttribute('role', 'option');
 
-        resultsListItemEl.setAttribute('role', 'option');
+        resultItemEl.setAttribute(DATA_ATTRS.SID, `${result['sid']}`);
 
         // Set first result as selected
         if (index === 0) {
-          resultsListItemEl.setAttribute('aria-selected', 'true');
+          resultItemEl.setAttribute('aria-selected', 'true');
         }
 
-        resultsListItemEl.appendChild(companyNameEl);
-        resultsListItemEl.appendChild(accountIdEl);
+        resultItemEl.appendChild(companyNameEl);
+        resultItemEl.appendChild(accountIdEl);
 
-        tempEl.appendChild(resultsListItemEl);
+        tempEl.appendChild(resultItemEl);
       });
 
-      resultsListEl.parentNode.replaceChild(
+      this.resultsListEl.parentNode.replaceChild(
         tempEl,
-        resultsListEl
+        this.resultsListEl
       );
+      this.resultsListEl = tempEl;
 
       this.selectedResultIndex = 0;
     }
 
     // Show the results list if hidden
-    if (window.getComputedStyle(this.resultsEl, null).display === 'none') {
+    if (this.resultsEl.style.display !== 'block') {
       this.resultsEl.style.display = 'block';
     }
   }
@@ -265,7 +313,7 @@ export default class FuzzySearch {
    *
    */
   clearResults() {
-    this.resultsEl.querySelector('.dmb-fuzzy-search__results-list').innerHTML = '';
+    this.resultsListEl.innerHTML = '';
     this.resultsEl.style.display = 'none';
   }
 

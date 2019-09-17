@@ -1,8 +1,6 @@
 .dmb-fuzzy-search {
-  &__input-wrapper {
-    margin-bottom: 183px;
-    position: relative;
-  }
+  margin-bottom: 183px;
+  position: relative;
 
   &__input {
     // to override `input[type="search"]{box-sizing: border-box}` from normalize.scss:
@@ -61,5 +59,10 @@
       background: inherit;
       outline: $dmb-focus-outline;
     }
+  }
+
+  &__server-error {
+    display: none;
+    margin-top: 10px;
   }
 }

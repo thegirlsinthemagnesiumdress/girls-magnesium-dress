@@ -46,26 +46,33 @@
               Enter the client name or Greentea ID to lookup existing accounts
             </p>
 
-            <div class="dmb-form__input-wrapper dmb-fuzzy-search__input-wrapper">
+            <div class="dmb-fuzzy-search dmb-form__input-wrapper">
               <label for="dmb-account-lookup-input">
                 Organisation
               </label>
               <input
-                  class="dmb-fuzzy-search--accounts dmb-fuzzy-search__input dmb-form__input"
+                  class="dmb-fuzzy-search__input dmb-form__input"
+                  dmb-fuzzy-search-input
                   id="dmb-account-lookup-input"
                   placeholder="Enter the client name or Greentea ID"
                   type="text">
               <div
-                  aria-live="polite"
-                  class="dmb-fuzzy-search__results dmb-u-text-semi-muted">
+                  class="dmb-fuzzy-search__results dmb-u-text-semi-muted"
+                  dmb-fuzzy-search-results>
                 <div
                     class="dmb-fuzzy-search__results-count dmb-u-small-text"
-                    data-no-results="No results - have you entered the name correctly?">
+                    data-no-results="No results - have you entered the name correctly?"
+                    dmb-fuzzy-search-results-count>
                 </div>
 
-                <ul class="dmb-fuzzy-search__results-list"></ul>
+                <ul
+                    class="dmb-fuzzy-search__results-list"
+                    dmb-fuzzy-search-results-list>
+                </ul>
 
-                <a class="dmb-fuzzy-search__no-results dmb-u-text-semi-muted" tabindex="0">
+                <a
+                    class="dmb-fuzzy-search__no-results dmb-u-text-semi-muted"
+                    tabindex="0">
                   <div class="dmb-u-alt-font h-u-font-weight-medium">
                     Not found?
                   </div>
@@ -74,6 +81,11 @@
                   </div>
                 </a>
               </div>
+              <p
+                  class="dmb-fuzzy-search__server-error dmb-error"
+                  dmb-fuzzy-search-server-error>
+                Sorry, there was a server error.
+              </p>
 
             </div>
           </div>
