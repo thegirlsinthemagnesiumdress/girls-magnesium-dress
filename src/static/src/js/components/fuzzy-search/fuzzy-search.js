@@ -313,6 +313,7 @@ export default class FuzzySearch {
    *
    */
   clearResults() {
+    this.resultsCount = 0;
     this.resultsListEl.innerHTML = '';
     this.resultsEl.style.display = 'none';
   }
