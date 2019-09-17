@@ -512,10 +512,10 @@ def get_survey_data(survey, survey_columns, dateformat):
     return survey_data
 
 
-def _get_exportable_surveys(tenant, is_super_admin, share_with):
+def _get_exportable_surveys(tenant, is_super_admin, user_email):
     data = Survey.objects.filter(tenant=tenant)
     if not is_super_admin:
-        user = User.objects.filter(email=share_with).first()
+        user = User.objects.filter(email=user_email).first()
         data = user.accounts.filter(tenant=tenant)
     return data
 
