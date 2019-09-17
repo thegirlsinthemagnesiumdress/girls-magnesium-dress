@@ -55,36 +55,43 @@ export default class AccountsList {
     return [
       {
         id: account['sid'],
+        class: '',
         header: 'Organization',
         content: account['company_name'] || zeroWidthSpace,
       }, {
         id: account['sid'],
+        class: '',
         header: 'Country',
         content: account['country_name'] || zeroWidthSpace,
       }, {
         id: account['sid'],
+        class: '',
         header: 'Industry',
         content: account['industry_name'] || zeroWidthSpace,
       }, {
         id: account['sid'],
-        header: 'Int. Maturity Score" class="h-c-table__cell--numerical',
+        class: 'h-c-table__cell--numerical',
+        header: 'Int. Maturity Score',
         content: account['last_internal_result'] ?
-            formatNumber(account['last_internal_result']['dmb']) : zeroWidthSpace,
+            formatNumber(account['last_internal_result']['dmb']) : '-',
       }, {
         id: account['sid'],
+        class: '',
         header: 'Int. Maturity Level',
         content: account['internalCurrentLevelData'] ?
-            account['internalCurrentLevelData']['mapValue'] : zeroWidthSpace,
+            account['internalCurrentLevelData']['mapValue'] : 'Unscored',
       }, {
         id: account['sid'],
-        header: 'Ext. Maturity Score" class="h-c-table__cell--numerical',
+        class: 'h-c-table__cell--numerical',
+        header: 'Ext. Maturity Score',
         content: account['last_survey_result'] ?
-            formatNumber(account['last_survey_result']['dmb']) : zeroWidthSpace,
+            formatNumber(account['last_survey_result']['dmb']) : '-',
       }, {
         id: account['sid'],
+        class: '',
         header: 'Ext. Maturity Level',
         content: account['externalCurrentLevelData'] ?
-            account['externalCurrentLevelData']['mapValue'] : zeroWidthSpace,
+            account['externalCurrentLevelData']['mapValue'] : 'Unscored',
       },
     ];
   }
@@ -103,6 +110,7 @@ export default class AccountsList {
       accountColumns.forEach((column) => {
         const td = document.createElement('td');
         td.setAttribute('data-colheader', column.header);
+        td.className = column.class;
         const a = document.createElement('a');
         domSafe.setAnchorHref(a, `${column.id}/`); // TODO (mstrutt) link should come from the backend
         a.textContent = column.content;
