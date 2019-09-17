@@ -230,9 +230,15 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
         return
 
     email = response_data[tenant.get('EMAIL_TO')]
-    user = User.objects.get(email=email)
-
+    user = None
     response_id = response_data['ResponseID']
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        logging.warning('Result with id {} for company with sid:{} has been completed by not-existing User with email {}'
+            .format(response_id, response_data.get('sid'), email))
+
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):

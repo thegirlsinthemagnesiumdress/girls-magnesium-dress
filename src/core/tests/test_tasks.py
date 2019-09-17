@@ -549,7 +549,6 @@ class CreateInternalSurveyResultTestCase(TestCase):
         # Test result have internal_survey_id set but not survey_id
         for survey_result in got_survey_results:
             self.assertIsNotNone(survey_result.internal_survey_id)
-            self.assertEqual(survey_result.completed_by.pk, self.user.pk)
             self.assertIsNone(survey_result.survey_id)
 
         self.assertEqual(Survey.objects.count(), 1)
@@ -563,6 +562,17 @@ class CreateInternalSurveyResultTestCase(TestCase):
         # mocked survey has a internal response and no external responses
         self.assertEqual(survey.internal_results.count(), 1)
         self.assertEqual(survey.survey_results.count(), 0)
+
+    def test_internal_survey_set_completed_by(self):
+        survey = make_survey(sid=1)
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)  # noqa
+
+        self.assertEqual(got_survey_results[1].completed_by.pk, self.user.pk)
+        self.assertIsNone(got_survey_results[0].completed_by)
+
 
     def test_internal_survey_result_created_no_survey_found(self):
         """When a Survey is not found, `SurveyResult` is created anyway."""
