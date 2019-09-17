@@ -318,7 +318,7 @@ export default class FuzzySearch {
   /**
    * Handle when a result is selected by firing custom selectResult event
    *
-   * @param {Object} result
+   * @param {number} selectedResultIndex
    */
   selectHandler(selectedResultIndex) {
     const event = new Event('selectResult', this.results[selectedResultIndex]);
