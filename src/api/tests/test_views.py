@@ -549,11 +549,11 @@ class AdminSurveyListViewTest(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    @with_appengine_user("test@google.com")
+    @with_appengine_user("test@gmail.com")
     def test_authenicated_user(self):
-        """Ensure and authenitcated user can hit the api"""
+        """Ensure authenitcated user, not admin cannot hit the api"""
         response = self.client.get(self.url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @with_appengine_admin("test@google.com")
     def test_admin_user(self):
