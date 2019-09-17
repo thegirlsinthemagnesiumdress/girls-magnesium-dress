@@ -228,7 +228,7 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
     if not _survey_completed(response_data.get('Finished')):
         logging.warning('Found unfinshed survey {}: SKIP'.format(response_data.get('sid')))
         return
-    import pdb; pdb.set_trace()
+
     email = response_data[tenant.get('EMAIL_TO')]
     user = User.objects.get(email=email)
 
