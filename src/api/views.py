@@ -4,8 +4,9 @@ from api.serializers import (
     SurveySerializer,
     SurveyWithResultSerializer,
     SurveyAccountIdSerializer,
+    SurveySidSerializer,
 )
-from api.serializers import AdminSurveyResultsSerializer
+from api.serializers import AdminSurveyResultsSerializer, SearchSurveySerializer
 from core.models import Survey, SurveyResult
 from django.conf import settings
 from django.http import Http404
@@ -19,7 +20,7 @@ from rest_framework.generics import (
     ListAPIView,
     UpdateAPIView,
 )
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core import aggregate
@@ -31,10 +32,42 @@ class CreateSurveyView(CreateAPIView):
     """
     Internal API endpoint to create a survey and return the created survey data including both link and link_sponsor.
     """
-    authentication_classes = ()
     permission_classes = (AllowAny,)
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        # Link the new account to the current logged in user.
+        self.request = request
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        if self.request.user.is_anonymous:
+            serializer.save(creator=None)
+        else:
+            serializer.save(creator=self.request.user)
+            survey = Survey.objects.get(sid=serializer.data['sid'])
+            self.request.user.accounts.add(survey)
+            self.request.user.save()
+
+
+class AddSurveyView(UpdateAPIView):
+    """
+    Internal API endpoint to Add a account to a users' list of accounts
+    """
+    authentication_classes = (SessionAuthentication,)
+    serializer_class = SurveySidSerializer
+    lookup_field = 'sid'
+    lookup_url_kwarg = 'sid'
+    queryset = Survey.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        if request.user.is_anonymous:
+            return self.update(request, *args, **kwargs)
+        else:
+            survey = Survey.objects.get(sid=kwargs['sid'])
+            request.user.accounts.add(survey)
+            return self.update(request, *args, **kwargs)
 
 
 class UpdateAccountIdView(UpdateAPIView):
@@ -57,6 +90,7 @@ class SurveyCompanyNameFromUIDView(RetrieveAPIView):
     # Only using session authentication by default everywhere else
     # locks out anyone with a token from using any of the other endpoints
     authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = SurveyCompanyNameSerializer
     queryset = Survey.objects.all()
     lookup_field = 'sid'
@@ -158,7 +192,31 @@ class AdminSurveyListView(ListAPIView):
         """
         tenant = self.kwargs['tenant']
         user = self.request.user
-        queryset = Survey.objects.order_by('-created_at').prefetch_related('last_survey_result', 'last_internal_result').filter(tenant=tenant)  # noqa
-        if not user.is_super_admin:
-            queryset = queryset.filter(engagement_lead=user.engagement_lead)
+        queryset = user.accounts.filter(tenant=tenant).prefetch_related('last_survey_result', 'last_internal_result')
+        # Convert the queryset to a list since the RelatedListField maintains order.
+        queryset = list(queryset)
+        queryset.sort(key=lambda x: x.company_name)
+        return queryset
+
+
+class AccountViewSet(ListAPIView):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    authentication_classes = (SessionAuthentication,)
+    queryset = Survey.objects.all()
+    serializer_class = SearchSurveySerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the accounts shared with the
+        authenticated user.
+        """
+        query = self.request.query_params.get('q')
+        tenant = self.kwargs['tenant']
+        queryset = Survey.objects.filter(tenant=tenant)
+        if query is not None:
+            queryset = queryset.search(query)
+
         return queryset

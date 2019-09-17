@@ -13,6 +13,7 @@ class SurveySerializer(ModelSerializer):
             'link',
             'link_sponsor',
             'engagement_lead',
+            'creator',
             'industry',
             'country',
             'tenant',
@@ -30,6 +31,15 @@ class SurveySerializer(ModelSerializer):
             if data['industry'] not in industries:
                 raise ValidationError("Industry does not belong to a set of valid industrues for this tenant")
         return data
+
+
+class SurveySidSerializer(ModelSerializer):
+
+    class Meta:
+        model = Survey
+        fields = (
+            'sid',
+        )
 
 
 class SurveyAccountIdSerializer(ModelSerializer):
@@ -90,4 +100,15 @@ class AdminSurveyResultsSerializer(ModelSerializer):
             'last_survey_result',
             'last_internal_result',
             'created_at',
+        )
+
+
+class SearchSurveySerializer(ModelSerializer):
+
+    class Meta:
+        model = Survey
+        fields = (
+            'sid',
+            'account_id',
+            'company_name',
         )

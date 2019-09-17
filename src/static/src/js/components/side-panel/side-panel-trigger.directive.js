@@ -1,6 +1,3 @@
-goog.module.declareNamespace('dmb.components.sidePanel.triggerDirective');
-
-
 /**
  * Side panel trigger directive.
  * @param {Object} sidePanelService

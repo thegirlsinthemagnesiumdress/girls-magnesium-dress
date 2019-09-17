@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.registration');
-
 import * as controller from './registration.controller';
 
 

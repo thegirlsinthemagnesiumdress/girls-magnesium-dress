@@ -4,6 +4,7 @@ be-test:
   - apt-get update -qy
   - apt-get install -y python-pip
   - ./bin/install_deps --python-only
+  - touch src/core/templates/core/inc/_dmb-svgs.inc.html
   - python manage.py test
 
 be-lint:
@@ -44,7 +45,7 @@ fe-lint:
     - apt-get -y install google-cloud-sdk nasm python-pip default-jdk gettext
     - sed -i "s#$SSH_VAR#$GLUE_URL#g" package.json
     - ./bin/install_deps
-    - ./manage.py build --settings=core.settings.live
+    - ./manage.py build --settings=core.settings.staging
     - cd src
   after_script:
     - rm /tmp/$CI_PIPELINE_ID.json

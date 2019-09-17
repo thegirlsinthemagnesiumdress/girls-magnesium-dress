@@ -1,24 +1,36 @@
-<div class="dmb-list-card">
+<div class="dmb-list-card dmb-list-card--title">
   <div class="dmb-list-card__header">
-    <h2 class="dmb-u-no-margin h-c-headline h-c-headline--subhead">{{ list_name|title }}</h2>
+    <div class="dmb-list-card__header-left">
+      <h2 class="dmb-list-card__title-heading dmb-u-text-semi-muted dmb-u-alt-font h-u-font-weight-medium">
+        {{ list_name|title }}
+      </h2>
     {% if list_name == 'internal' %}
-      <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
-        {{ internal_results|length }} completion{{ internal_results|length|pluralize }}
-      </span>
-      <a class="dmb-list-card__header-right dmb-button" href="{{ account.internal_link }}">
-        {% include 'core/inc/svg.html' with id='clipboard' size='24px' %}
-        <span>
-          Assess client
+        <span class="dmb-list-card__title-subheading dmb-u-text-muted h-u-font-weight-medium">
+          {{ internal_results|length }} completion{{ internal_results|length|pluralize }}
         </span>
-      </a>
+      </div>
+      <div class="dmb-list-card__header-right">
+        <a
+            class="dmb-button dmb-button--secondary"
+            href="{{ account.internal_link }}">
+          {% include 'core/inc/svg.html' with id='clipboard' size='24px' %}
+          Assess client
+        </a>
+      </div>
     {% elif list_name == 'external' %}
-      <span class="dmb-list-card__header-left dmb-list-card__subtext dmb-u-text-muted">
-        {{ external_results|length }} completion{{ external_results|length|pluralize }}
-      </span>
-      <button id="copy-external-link" class="dmb-list-card__header-right dmb-button" dmb-clippy="{{ account.external_link }}">
-        {% include 'core/inc/svg.html' with id='screen-with-arrow' size='24px' %}
-        <span>Send assessment to client</span>
-      </button>
+        <span class="dmb-list-card__title-subheading dmb-u-text-muted h-u-font-weight-medium">
+          {{ external_results|length }} completion{{ external_results|length|pluralize }}
+        </span>
+      </div>
+      <div class="dmb-list-card__header-right">
+        <button
+            class="dmb-button"
+            dmb-clippy="{{ account.external_link }}"
+            id="copy-external-link">
+          {% include 'core/inc/svg.html' with id='screen-with-arrow' size='24px' %}
+          Send assessment to client
+        </button>
+      </div>
     {% endif %}
   </div>
 </div>

@@ -19,6 +19,10 @@ def make_survey(**kwargs):
     }
     survey_kwargs.update(kwargs)
     survey = mommy.make('core.Survey', **survey_kwargs)
+    creator = survey_kwargs.get('creator')
+    if creator:
+        creator.accounts.add(survey)
+        creator.save()
     return survey
 
 

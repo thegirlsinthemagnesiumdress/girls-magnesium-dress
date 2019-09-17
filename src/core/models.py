@@ -1,7 +1,7 @@
 import hashlib
 
 from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
-from djangae.fields import JSONField
+from djangae.fields import JSONField, RelatedListField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -9,12 +9,18 @@ from django.utils import translation
 from uuid import uuid4
 from core.settings.tenants import TENANTS_CHOICES
 from core.settings.default import QUALTRICS_LANGS_REV
-from core.managers import NotExcludedFromBestPracticeManager
+from core.managers import NotExcludedFromBestPracticeManager, AccountManager
 from core.conf import utils
 from collections import OrderedDict
+from search import (
+    indexers as search_indexers,
+    fields as search_fields
+)
+from search.django.decorators import searchable
 
 
 class User(GaeAbstractDatastoreUser):
+    accounts = RelatedListField('Survey')
 
     @property
     def is_super_admin(self):
@@ -33,6 +39,7 @@ class User(GaeAbstractDatastoreUser):
         return m.hexdigest()
 
 
+@searchable(add_default_queryset_search_method=False)
 class Survey(models.Model):
     """
     Models the surveys (internal and external)
@@ -64,6 +71,25 @@ class Survey(models.Model):
     tenant = models.CharField(max_length=128, choices=TENANTS_CHOICES)
     account_id = models.CharField(max_length=64, blank=True, null=True)
     parent_id = models.CharField(max_length=64, blank=True, null=True)
+    creator = models.ForeignKey('User', null=True, related_name='+')
+
+    class SearchMeta:
+        fields = ['account_id', 'company_name', 'tenant']
+        field_types = {
+            'account_id': search_fields.TextField,
+            'company_name': search_fields.TextField,
+
+        }
+        field_mappers = {
+            'account_id_lower': lambda o: o.account_id,
+            'company_name_lower': lambda o: o.company_name.lower(),
+        }
+        corpus = {
+            'account_id': search_indexers.startswith,
+            'company_name': search_indexers.startswith,
+        }
+
+    objects = AccountManager()
 
     def get_industry_display(self, *args, **kwargs):
         t = settings.TENANTS[self.tenant]
@@ -219,6 +245,9 @@ class SurveyResult(models.Model):
 
     @property
     def report_link(self):
+        if not self.survey:
+            return None
+
         return reverse('report_result', kwargs={'tenant': self.survey.slug, 'response_id': self.response_id})
 
     @property
@@ -229,20 +258,31 @@ class SurveyResult(models.Model):
         if not self.survey_definition_id:
             return None
 
+        if not self.survey and not self.internal_survey:
+            return None
+
+        slug = self.survey.slug if self.survey else self.internal_survey.slug
+
         return reverse(
             'result-detail',
             kwargs={
-                'tenant': self.survey.slug,
+                'tenant': slug,
                 'response_id': self.response_id,
             },
         )
 
     @property
     def absolute_report_link(self):
+        if not self.report_link:
+            return None
+
         return "http://{}{}".format(settings.DOMAIN, self.report_link)
 
     @property
     def absolute_detail_link(self):
+        if not self.detail_link:
+            return None
+
         return "http://{}{}".format(settings.DOMAIN, self.detail_link)
 
     class Meta:

@@ -40,6 +40,13 @@ indexes:
 - kind: core_survey
   properties:
   - name: company_name
+  - name: tenant
+  - name: created_at
+    direction: desc
+
+- kind: core_survey
+  properties:
+  - name: company_name
   - name: uid
 
 - kind: core_survey

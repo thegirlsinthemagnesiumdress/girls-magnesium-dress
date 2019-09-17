@@ -40,7 +40,7 @@ def _dump_tenant_content_data(tenant):
         'level_descriptions': content_data['level_descriptions'],
         'report_level_descriptions': content_data.get('report_level_descriptions'),
         'dimensions': content_data['dimensions'],
-        'dimension_labels': content_data['dimension_labels'],
+        'dimension_titles': content_data['dimension_titles'],
         'dimension_header_descriptions': content_data['dimension_header_descriptions'],
         'dimension_level_description': content_data['dimension_level_description'],
         'dimension_recommendations': content_data['dimension_recommendations'],
@@ -48,9 +48,13 @@ def _dump_tenant_content_data(tenant):
         'industry_best_description': content_data.get('industry_best_description'),
         'dimension_sidepanel_heading': content_data.get('dimension_sidepanel_heading'),
         'dimension_sidepanel_descriptions': content_data.get('dimension_sidepanel_descriptions'),
-        'subdimensions': content_data.get('subdimensions'),
-        'subdimension_description': content_data.get('subdimension_description'),
-        'subdimension_labels': content_data.get('subdimension_labels'),
+        'subdimension_lists': content_data.get('subdimension_lists'),
+        'subdimensions_report_heading': content_data.get('subdimensions_report_heading'),
+        'subdimensions_report_description': content_data.get('subdimensions_report_description'),
+        'subdimensions_report_cta': content_data.get('subdimensions_report_cta'),
+        'subdimensions_report_subheading': content_data.get('subdimensions_report_subheading'),
+        'subdimensions_sidepanel_heading': content_data.get('subdimensions_sidepanel_heading'),
+        'subdimension_names': content_data.get('subdimension_names'),
         'subdimension_descriptions': content_data.get('subdimension_descriptions'),
     }
 
@@ -77,6 +81,13 @@ def report_static(request, tenant, sid):
     if not survey.last_survey_result:
         raise Http404
 
+    all_dimensions = settings.TENANTS[tenant]['CONTENT_DATA']['dimensions']
+    dimension_scores = survey.last_survey_result.dmb_d
+    report_dimensions = []
+    for dimension in all_dimensions:
+        if dimension_scores[dimension] is not None:
+            report_dimensions.append(dimension)
+
     return render(request, 'public/{}/report-static.html'.format(tenant), {
         'staging': STAGING,
         'tenant': tenant,
@@ -85,6 +96,7 @@ def report_static(request, tenant, sid):
         'product_name': utils.get_tenant_product_name(tenant),
         'other_tenants': utils.get_other_tenant_footers(tenant),
         'is_nightly': utils.version_info(request.get_host())[1],
+        'started_at': survey.last_survey_result.started_at,
     })
 
 
@@ -118,12 +130,19 @@ def report_result_static(request, tenant, response_id):
 
 def index_static(request, tenant):
     slug = utils.get_tenant_slug(tenant)
+    levels_info = []
+    for k, v in sorted(settings.TENANTS[tenant]['CONTENT_DATA']['levels'].items()):
+        levels_info.append({
+            'heading': v,
+            'text': settings.TENANTS[tenant]['CONTENT_DATA']['level_descriptions'][k],
+        })
     return render(request, 'public/{}/index.html'.format(tenant), {
         'tenant': tenant,
         'content_data': _dump_tenant_content_data(tenant),
         'slug': slug,
         'product_name': utils.get_tenant_product_name(tenant),
         'other_tenants': utils.get_other_tenant_footers(tenant),
+        'levels_info': levels_info,
     })
 
 
@@ -168,7 +187,7 @@ def accounts(request, tenant):
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
     return render(request, 'public/admin/accounts.html', {
-        'accounts': Survey.objects.filter(tenant=tenant),
+        'accounts': request.user.accounts,
         'bootstrap_data': JSONRenderer().render(api_data),
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
@@ -190,7 +209,7 @@ def add_account(request, tenant):
 
     slug = utils.get_tenant_slug(tenant)
 
-    return render(request, 'public/admin/add_account.html', {
+    return render(request, 'public/admin/add-account.html', {
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'other_tenants': utils.get_other_tenant_footers(tenant),
@@ -231,7 +250,7 @@ def result_detail(request, tenant, response_id):
         survey_result.survey_definition.content,
         survey_result.raw,
         settings.TENANTS[tenant]['DIMENSIONS'],
-        settings.TENANTS[tenant]['CONTENT_DATA']['dimension_labels']
+        settings.TENANTS[tenant]['CONTENT_DATA']['dimension_titles']
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
         'tenant': tenant,

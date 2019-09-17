@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block main %}
+{% with tenant=tenant|ng_mark_safe %}
   <main id="dmb-home">
 
     {% trans "In partnership with" as collab_text %}
@@ -43,17 +44,19 @@
 
     {% include 'public/ads/home/header-text-cta.inc.html' with class='dmb-u-m-b-s' %}
 
-    {% include 'public/ads/home/product-hero.inc.html' %}
+    {% include 'public/inc/home/product-hero.inc.html' %}
 
     {% include 'public/ads/home/icon-text-cta.inc.html' %}
 
-    {% include 'public/ads/home/home-tabs.inc.html' with class="dmb-u-m-t-l dmb-u-m-b-m" %}
+    {% trans "How it works" as home_tabs_section_heading %}
+    {% trans "Benchmark which stage your organisation is at on our digital maturity scale." as home_tabs_section_subheading %}
+    {% include 'public/inc/home/home-tabs-section.inc.html' with class="dmb-u-m-t-l dmb-u-m-b-l" heading=home_tabs_section_heading subheading=home_tabs_section_subheading levels=levels_info only %}
 
     {% include 'public/ads/home/tile-carousel.inc.html' %}
 
-    {% include 'public/ads/home/image-text.inc.html' %}
+    {% include 'public/ads/home/image-text.inc.html' with class='dmb-u-p-b-l' %}
 
-    {% include 'public/ads/home/cta-banner.inc.html' with cta=start_assessment_cta footnote=start_assessment_footnote class='dmb-u-m-t-l' url=create_url %}
+    {% include 'public/ads/home/cta-banner.inc.html' with cta=start_assessment_cta footnote=start_assessment_footnote url=create_url %}
 
     {% trans "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries" as home_footnote %}
     {% trans "read more" as home_footnote_link_text %}
@@ -62,6 +65,6 @@
   </main>
 
   {% include 'public/ads/shared/maturity-side-panel.inc.html' %}
-
+{% endwith %}
 {% endblock main %}
 

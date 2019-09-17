@@ -270,7 +270,7 @@ def get_dimension_level_info(content_data, dimension, score):
     next_level = get_next_level_key(level_ranges, score)
     # Form the level info object.
     return {
-        "name": content_data['dimension_labels'][dimension],
+        "name": content_data['dimension_titles'][dimension],
         "value": score,
         "in_top_level": in_top_level(level_ranges, score),
         "levels": {
@@ -302,6 +302,8 @@ def get_detailed_survey_result_data(content_data, survey_result):
     """
     # Construct the data object.
     survey_result_data = {
+        "report_link": survey_result.report_link,
+        "detail_link": survey_result.detail_link,
         "date": survey_result.loaded_at,
         "overall": get_level_info(content_data, survey_result.dmb),
         "dimensions": {dimension: get_dimension_level_info(content_data, dimension, value)
@@ -333,8 +335,8 @@ def get_account_detail_data(content_data, account):
     }
     # Construct the internal and external survey info arrays.
     external_surveys = [get_detailed_survey_result_data(content_data, survey_result)
-                        for survey_result in account.survey_results.all()]
+                        for survey_result in account.survey_results.all().order_by('-started_at')]
     internal_surveys = [get_detailed_survey_result_data(content_data, survey_result)
-                        for survey_result in account.internal_results.all()]
+                        for survey_result in account.internal_results.all().order_by('-started_at')]
     # Return the tuple of objects.
     return account_info, external_surveys, internal_surveys

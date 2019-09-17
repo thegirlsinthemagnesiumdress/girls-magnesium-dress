@@ -41,6 +41,7 @@ def generate_exports_task(request):
         'tenant',
         'excluded_from_best_practice',
         'dmb',
+        'account_id',
     ]
 
     advertisers_survey_result_fields = [
@@ -62,6 +63,7 @@ def generate_exports_task(request):
         'tenant',
         'excluded_from_best_practice',
         'dmb',
+        'account_id',
     ]
 
     publishers_survey_result_fields = [
@@ -69,6 +71,26 @@ def generate_exports_task(request):
         'reader_engagement',
         'reader_revenue',
         'advertising_revenue',
+    ]
+
+    retail_survey_fields = [
+        'id',
+        'company_name',
+        'industry',
+        'country',
+        'created_at',
+        'engagement_lead',
+        'tenant',
+        'excluded_from_best_practice',
+        'dmb',
+        'account_id',
+    ]
+
+    retail_survey_result_fields = [
+        'strategic_direction',
+        'user_engagement',
+        'core_sales',
+        'emerging_monetization',
     ]
 
     deferred.defer(
@@ -86,6 +108,15 @@ def generate_exports_task(request):
         publishers_survey_fields,
         publishers_survey_result_fields,
         settings.NEWS,
+        _queue='default',
+    )
+
+    deferred.defer(
+        generate_csv_export,
+        settings.RETAIL,
+        retail_survey_fields,
+        retail_survey_result_fields,
+        settings.RETAIL,
         _queue='default',
     )
 
@@ -134,3 +165,42 @@ def receive_bounce(request, *args, **kwargs):
     logging.error('Email bounced back original-to: {} , original-from: {}'.format(original_to, original_from))
     logging.error('Email bounced back original-text: {}'.format(request.POST['original-text']))
     return HttpResponse(status=200)
+
+
+@task_or_admin_only
+def resave_surveys_task(request):
+    msg = "resave surveys"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.resave_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def drop_search_index_task(request):
+    msg = "drop_search_index"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.drop_search_index,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def link_surveys_task(request):
+    msg = "Lnking surveys to creators"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.link_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

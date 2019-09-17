@@ -56,13 +56,16 @@ class ReportsAdminTestCase(TestCase):
 
     @with_appengine_user('test@google.com')
     def test_standard_user_logged_in(self):
-        """Standard user can retrieve reports belonging to its engagement_lead within a specific tenant."""
+        """Standard user can retrieve reports belonging to their account 'list' within a specific tenant."""
 
         self.user = get_user_model().objects.create(email='test@google.com')
 
         # set a survey to belong to logged user
         self.survey_1.engagement_lead = self.user.engagement_lead
+        self.survey_1.creator = self.user
         self.survey_1.save()
+        self.user.accounts.add(self.survey_1)
+        self.user.save()
 
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'accounts.html'):
@@ -77,7 +80,16 @@ class ReportsAdminTestCase(TestCase):
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in(self):
-        """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
+        """Whitelisted user retrieve reports belonging to their account 'list' within that tenant."""
+        self.user = get_user_model().objects.create(email='test@google.com')
+
+        # set a survey to belong to logged user
+        self.survey_1.engagement_lead = self.user.engagement_lead
+        self.survey_1.creator = self.user
+        self.survey_1.save()
+        self.user.accounts.add(self.survey_1)
+        self.user.save()
+
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'accounts.html'):
             response = self.client.get(self.url)
@@ -86,11 +98,20 @@ class ReportsAdminTestCase(TestCase):
             surveys = bootstrap_data.get('results')
 
             self.assertTrue(surveys)
-            self.assertEqual(len(surveys), 2)
+            self.assertEqual(len(surveys), 1)
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in_tenant_2(self):
         """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
+        self.user = get_user_model().objects.create(email='test@google.com')
+
+        # set a survey to belong to logged user
+        self.survey_3.engagement_lead = self.user.engagement_lead
+        self.survey_3.creator = self.user
+        self.survey_3.save()
+        self.user.accounts.add(self.survey_3)
+        self.user.save()
+
         url = reverse('accounts', kwargs={'tenant': 'tenant2-slug'})
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'accounts.html'):
@@ -128,7 +149,7 @@ class ReportDetailTestCase(TestCase):
 
     def setUp(self):
         reload_urlconf()
-        self.tenant_slug = 'tenant1-slug'
+        self.tenant_slug = 'tenant2-slug'
         self.survey_1 = make_survey()
         self.survey_2 = make_survey()
 
@@ -151,7 +172,7 @@ class ReportDetailTestCase(TestCase):
 
     def test_survey_has_survey_result(self):
         """If a a`Survey` exists and it has a result, it should return 200."""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'report-static.html'):
             url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)
@@ -159,7 +180,7 @@ class ReportDetailTestCase(TestCase):
 
     def test_survey_has_internal_result(self):
         """If a survey exists and it has an internal result it should return 200."""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'report-internal.html'):
             url = reverse('report-internal', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)
@@ -184,7 +205,7 @@ class ReportDetailTestCase(TestCase):
 
     def test_staging_context_variable(self):
         """Tests if the staging boolean is passed into the context to trigger the debug menu"""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'report-static.html'):
             url = reverse('report', kwargs={'tenant': self.tenant_slug, 'sid': self.survey_1.sid})
             response = self.client.get(url)

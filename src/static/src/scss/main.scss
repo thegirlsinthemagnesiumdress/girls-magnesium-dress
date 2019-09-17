@@ -15,9 +15,11 @@
 @import 'hercules/lib/global/scss/elements/all';
 
 // Glue component base styles
-@import 'scss/zippy';
-@import 'scss/tabby';
+@import 'scss/expansion-panels';
+@import 'scss/pagination';
 @import 'scss/tabset';
+@import 'scss/zippy';
+
 
 // Hercules component base styles
 @import 'hercules/lib/components/buttons/buttons';
@@ -27,7 +29,6 @@
 @import 'hercules/lib/components/header/vars';
 @import 'hercules/lib/components/links/links';
 @import 'hercules/lib/components/page/page';
-@import 'hercules/lib/components/tabby/tabby';
 @import 'hercules/lib/components/table/settings';
 @import 'hercules/lib/components/table/tools';
 @import 'hercules/lib/components/table/table';
@@ -58,8 +59,8 @@
 @import 'components/exp-panels';
 @import 'components/footer';
 @import 'components/form';
+@import 'components/fuzzy-search';
 @import 'components/home-hero';
-@import 'components/home-tabs';
 @import 'components/icon-text-cta';
 @import 'components/img-text';
 @import 'components/img-text-collage';
@@ -76,6 +77,7 @@
 @import 'components/read-more';
 @import 'components/report-footer';
 @import 'components/report-hero';
+@import 'components/report-intro';
 @import 'components/report-overall';
 @import 'components/report-debug-toolbar';
 @import 'components/reports-admin';
@@ -85,6 +87,7 @@
 @import 'components/step-heading';
 @import 'components/svg';
 @import 'components/table';
+@import 'components/tabs';
 @import 'components/toast';
 @import 'components/toolbar';
 @import 'components/tooltip';
@@ -92,6 +95,7 @@
 
 
 // Pages
+@import 'pages/account-details';
 @import 'pages/home';
 @import 'pages/registration';
 @import 'pages/report';

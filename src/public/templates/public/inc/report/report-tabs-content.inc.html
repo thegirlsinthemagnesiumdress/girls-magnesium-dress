@@ -1,0 +1,174 @@
+{% load angular %}
+{% load i18n %}
+{% trans "logo" as logo_alt_text %}
+
+<div
+    class="dmb-dimension-tabs__content dmb-dimension-tabs__content--level-{[ reportCtrl.dimensions[dimension]['levels']['current']['value'] ]} h-c-page">
+
+  <div class="dmb-dimension-tabs__intro">
+    <div class="h-c-grid">
+      <div class="dmb-dimension-tabs__logo-col h-c-grid__col h-c-grid__col--2 h-c-grid__col--offset-1">
+        <img
+            alt="{[dimension]} {{logo_alt_text}}"
+            class="dmb-dimension-tabs__logo"
+            ng-src="{[ reportCtrl.dmbStaticUrl ]}img/{[ reportCtrl.tenantConf['tenant'] ]}/dimensions/{[ dimension|underscoreToHyphen ]}.svg">
+      </div>
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
+        <h3 class="h-c-headline h-c-headline--three">
+          {[ reportCtrl.dimensions[dimension]['name'] ]}
+        </h3>
+        <div
+            class="h-c-headline h-c-headline--subhead"
+            ng-bind-html="reportCtrl.dimensions[dimension]['description'] ">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="dmb-dimension-tabs__results">
+    <div class="h-c-grid">
+      <div class="dmb-dimension-tabs__results-highlight h-c-grid__col h-c-grid__col--4 h-u-text-center">
+        <div class="dmb-dimension-tabs__results-heading h-c-headline h-c-headline--two">
+          {[ reportCtrl.dimensions[dimension]['levels']['current']['name'] ]}
+        </div>
+        <div class="dmb-dimension-tabs__results-subheading h-u-font-weight-regular">
+          {% if tenant == 'cloud' %}
+            in this theme
+          {% else %}
+            {% trans "in this dimension" %}
+          {% endif %}
+        </div>
+        <div class="dmb-dimension-tabs__results-value h-c-headline h-c-headline--three">
+          {[ reportCtrl.dimensions[dimension].result|number:1 ]}/{[ reportCtrl.levelsMax ]}
+        </div>
+      </div>
+      <div class="h-c-grid__col h-c-grid__col--7">
+        <p ng-bind-html="reportCtrl.dimensions[dimension]['levels']['current']['description'] "></p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="dmb-dimension-tabs__progress-grid">
+    <dmb-progress-grid
+        data-company-name="{[ reportCtrl.survey.company_name ]}"
+        data-industry-avg="reportCtrl.dimensions[dimension]['indResults']['average']"
+        data-industry-best="reportCtrl.dimensions[dimension]['indResults']['best']"
+        data-industry-ready="!!reportCtrl.industryResult"
+        data-rating-main="reportCtrl.dimensions[dimension].result">
+    </dmb-progress-grid>
+  </div>
+
+
+  <!-- Subdimensions -->
+  <div ng-if="reportCtrl.subdimensionLists">
+    <div class="h-c-grid">
+      <div class="h-c-grid__col h-c-grid__col--8 h-c-grid__col--offset-1">
+        <h2 class="h-c-headline h-c-headline--three">
+          {[ reportCtrl.subdimensionsReportHeading ]}
+        </h2>
+        <p
+            class="dmb-u-m-b-s"
+            ng-bind-html="reportCtrl.subdimensionsReportDescription"></p>
+        <button
+            class="dmb-report-overall__link h-c-link dmb-u-m-b-s"
+            dmb-side-panel-trigger="#dmb-subdimension-side-panel">
+          {[ reportCtrl.subdimensionsReportCta ]}
+        </button>
+
+        <h3 class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-m-b-m">
+          {[ reportCtrl.subdimensionsReportSubheading ]}:
+        </h3>
+      </div>
+    </div>
+
+    <div class="dmb-u-m-b-m h-c-grid">
+      <div
+          class="h-c-grid__col h-c-grid__col--5 h-c-grid__col--offset-1"
+          ng-repeat="subdimension in reportCtrl.subdimensionLists[dimension]">
+        <div
+            class="
+                dmb-progress-circle
+                dmb-progress-circle--small
+                dmb-progress-circle--level-{[ reportCtrl.subdimensions[subdimension]['levels']['current']['value'] ]}
+                dmb-u-m-b-s"
+            data-progress="reportCtrl.subdimensions[subdimension]['result']">
+          <svg
+              class="dmb-progress-circle__prog-svg"
+              dmb-progress-circle="reportCtrl.subdimensions[subdimension]['result']"
+              viewbox="0 0 120 120">
+            <circle class="dmb-progress-circle__bg-bar" cx="60" cy="60" r="54" fill="none" />
+            <circle class="dmb-progress-circle__prog-bar" cx="60" cy="60" r="54" fill="none" />
+          </svg>
+          <div class="dmb-progress-circle__text">
+            <span class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-progress-circle__result">
+              {[ reportCtrl.subdimensions[subdimension]['result']|number:1 ]}
+            </span>
+          </div>
+        </div>
+
+        <h4 class="h-c-headline h-c-headline--four">
+          {[ reportCtrl.subdimensions[subdimension]['name'] ]}
+        </h4>
+        <p class="dmb-u-m-b-m">
+          {[ reportCtrl.subdimensions[subdimension]['description'] ]}
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="h-c-grid">
+    <div class="h-c-grid__col h-c-grid__col--10 h-c-grid__col--offset-1">
+      <h4 class="dmb-dimension-tabs__recommendations-header h-c-headline h-c-headline--four dmb-h-hidden--print">
+        <img
+            alt="{[dimension]} {{logo_alt_text}}"
+            ng-src="{[ reportCtrl.dmbStaticUrl ]}img/{[ reportCtrl.tenantConf['tenant'] ]}/dimensions/{[ dimension|underscoreToHyphen ]}.svg">
+      </h4>
+
+
+      <h4 class="h-c-headline h-c-headline--two">
+        <span ng-if="!reportCtrl.dimensions[dimension].inTopLevel">
+          {% trans "You could be" %} {[ reportCtrl.dimensions[dimension]['levels']['next']['name'] ]}
+        </span>
+        <span ng-if="reportCtrl.dimensions[dimension].inTopLevel">
+          {% trans "Congratulations, you're in the top group for data maturity" %}
+        </span>
+      </h4>
+
+
+      <div class="dmb-dimension-tabs__recommendations">
+        <h4 class="h-c-headline h-c-headline--four">
+          <span ng-if="!reportCtrl.dimensions[dimension].inTopLevel">
+            {% trans "Here's how you get there:" %}
+          </span>
+          <span ng-if="reportCtrl.dimensions[dimension].inTopLevel">
+            {% trans "Here's how to get even better:" %}
+          </span>
+        </h4>
+
+        <ul class="dmb-dimension-tabs__recommendation-list">
+          <li
+              class="dmb-dimension-tabs__recommendation"
+              ng-repeat="recommendation in reportCtrl.dimensions[dimension]['recommendations']">
+            <h5 class="dmb-dimension-tabs__recommendation-heading h-c-headline h-c-headline--subhead h-u-font-weight-medium">
+              {[ recommendation.header ]}
+            </h5>
+            <p>
+              {[ recommendation.text ]}
+            </p>
+            <a
+                class="dmb-dimension-tabs__recommendation-cta dmb-h-hidden--print h-c-button h-c-button--secondary"
+                href="{[ recommendation.cta.link ]}"
+                ng-if="recommendation.cta"
+                target="_blank">
+              {[ recommendation.cta.text ]}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

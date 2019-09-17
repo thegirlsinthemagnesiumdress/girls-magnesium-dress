@@ -1,5 +1,3 @@
-goog.module.declareNamespace('dmb.components.sidePanel.class');
-
 import {forceReflow} from '../force-reflow/force-reflow.util';
 
 import {FocusTrap} from './focus-trap.class';

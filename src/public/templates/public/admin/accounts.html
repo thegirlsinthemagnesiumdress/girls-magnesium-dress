@@ -9,7 +9,7 @@
 
 {% block main %}
 
-<main id="dmb-account-list" dmb-reports-admin class="h-c-page">
+<main id="dmb-account-list" class="h-c-page">
   <div class="dmb-toolbar dmb-u-m-t-s dmb-u-m-b-s h-c-grid ">
     <div class="h-c-grid__col h-c-grid__col--7">
       <h1 class="dmb-toolbar__heading h-c-headline h-c-headline--subhead dmb-u-no-margin">
@@ -25,19 +25,18 @@
 
         <div
             class="dmb-toolbar__export"
-            ng-controller="ExportReportsCtrl as exportsCtrl">
+            dmb-export-reports
+            data-export-engagement-lead="{{ engagement_lead|ng_mark_safe }}">
           <form
               action="{% url 'reports_export' slug|ng_mark_safe %}"
               method="post"
               name="export"
-              ng-submit="exportsCtrl.export($event, '{{ engagement_lead|ng_mark_safe }}')"
               novalidate>
             <button
                 aria-label="Export survey data"
                 aria-describedby="export-tooltip"
                 class="dmb-toolbar__export-btn dmb-tooltip"
                 id="dmb-export-btn"
-                ng-disabled="exportsCtrl.submitting"
                 type="submit">
               {% include 'core/inc/svg.html' with id='export' size="24px" %}
               <div
@@ -50,21 +49,19 @@
           <div
               aria-live="assertive"
               class="dmb-toast"
-              ng-class="{'dmb-toast--active': exportsCtrl.showToast}"
               id="toast"
-              ng-if="exportsCtrl.showToast"
-              ng-cloak>
-            <span ng-if="!exportError">
+              data-export-toast>
+            <span data-toast-state="success">
               Data export requested. This may take up to 5 minutes. Please check your email inbox.
             </span>
-            <span ng-if="exportError">
+            <span data-toast-state="error">
               Sorry there was an error, please try again.
             </span>
           </div>
         </div>
 
         <a
-            class="dmb-button"
+            class="dmb-button dmb-button--secondary"
             href="{% url 'add_account' slug|ng_mark_safe %}">
           {% include 'core/inc/svg.html' with id='add' inline=True %}
             Add Account
@@ -74,99 +71,53 @@
   </div>
 
 
-  <div
-      class="dmb-table dmb-u-m-b-l"
-      ng-class="{'dmb-table--empty': reportAdminCtrl.surveys.length < 1}">
-    <div
-        class="dmb-table__empty-table-block h-u-text-center"
-        ng-if="reportAdminCtrl.surveys.length < 1"
-        ng-cloak>
-      {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
-      <h2 class="h-c-headline h-c-headline--five">
-        Add an account to get started
-      </h2>
-    </div>
+  <div class="dmb-table dmb-u-m-b-l{% if accounts|length == 0 %} dmb-table--empty{% endif %}">
 
-    <div
-        class="h-c-table__overflowcontainer"
-        ng-if="reportAdminCtrl.surveys.length > 0">
-      <table
-          class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
-          role="table"
-          summary="List of accounts you are subscribed to">
-        <thead>
-          <tr>
-            <th scope="col">
-              Organization
-            </th>
-            <th scope="col">
-              Country
-            </th>
-            <th scope="col">
-              Industry
-            </th>
-            <th
-                scope="col">
-              Int. Score
-            </th>
-            <th scope="col">
-              Int. Maturity
-            </th>
-            <th
-                scope="col">
-              Ext. Score
-            </th>
-            <th scope="col">
-              Ext. Maturity
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <!-- Repeat -->
-          <tr ng-repeat="survey in reportAdminCtrl.surveys track by $index" ng-cloak>
-            <td data-colheader="Organization">
-              <!-- TODO: Replace the ng-href value with django url inlude once this ticket is done https://gitlab.com/potato/google/digital-maturity-benchmark/dmb-publishers/issues/563 -->
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ survey.company_name || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Country">
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ survey.country_name || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Industry">
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ survey.industry_name || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Int. Maturity Score" class="h-c-table__cell--numerical">
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ (survey.last_internal_result.dmb|number:1) || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Int. Maturity Level">
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ survey.internalCurrentLevelData['mapValue'] || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Ext. Maturity Score" class="h-c-table__cell--numerical">
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ (survey.last_survey_result.dmb|number:1) || '&#x200b;' ]}
-              </a>
-            </td>
-            <td data-colheader="Ext. Maturity Level">
-              <a ng-href="/accounts/{[ survey.sid ]}">
-                {[ survey.externalCurrentLevelData['mapValue'] || '&#x200b;' ]}
-              </a>
-            </td>
-          </tr>
-          <!-- EndRepeat -->
-
-        </tbody>
-      </table>
-    </div>
+    {% if accounts|length == 0 %}
+      <div class="dmb-table__empty-table-block h-u-text-center">
+        {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
+        <h2 class="h-c-headline h-c-headline--five">
+          Add an account to get started
+        </h2>
+      </div>
+    {% else %}
+      <div class="h-c-table__overflowcontainer">
+        <table
+            dmb-accounts-list
+            class="h-c-table h-c-table--datatable h-c-table--datatable-altrows h-c-table--stacked"
+            role="table"
+            summary="List of accounts you are subscribed to">
+          <thead>
+            <tr>
+              <th scope="col">
+                Organization
+              </th>
+              <th scope="col">
+                Country
+              </th>
+              <th scope="col">
+                Industry
+              </th>
+              <th
+                  scope="col">
+                Int. Score
+              </th>
+              <th scope="col">
+                Int. Maturity
+              </th>
+              <th
+                  scope="col">
+                Ext. Score
+              </th>
+              <th scope="col">
+                Ext. Maturity
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    {% endif %}
 
   </div>
 </main>
