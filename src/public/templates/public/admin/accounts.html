@@ -35,12 +35,12 @@
             <button
                 aria-label="Export survey data"
                 aria-describedby="export-tooltip"
-                class="dmb-toolbar__export-btn dmb-tooltip"
+                class="dmb-toolbar__export-btn dmb-tooltip dmb-tooltip--wide"
                 id="dmb-export-btn"
                 type="submit">
               {% include 'core/inc/svg.html' with id='export' size="24px" %}
               <div
-                  class="dmb-toolbar__export-tooltip-text dmb-tooltip__text"
+                  class="dmb-tooltip__text"
                   id="export-tooltip">
                 Export the data from all your surveys. Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
               </div>

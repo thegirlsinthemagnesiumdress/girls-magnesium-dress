@@ -72,10 +72,16 @@
     <div class="dmb-list-card__actions">
       {% if result.detail_link %}
         <a
-            class="dmb-list-card__action dmb-button"
+            class="dmb-list-card__action dmb-button dmb-tooltip dmb-tooltip--center"
             href="{{result.detail_link}}"
-            target="_blank">
+            target="_blank"
+            {% if user.id != result.completed_by.id %}disabled{%endif%}>
           Responses
+          {% if user.id != result.completed_by.id %}
+            <div class="dmb-tooltip__text">
+              Sorry, we can't show you the responses for other Googler's assessments. Maybe try contacting them directly?
+            </div>
+          {% endif %}
         </a>
       {% endif %}
       {% if result.report_link %}

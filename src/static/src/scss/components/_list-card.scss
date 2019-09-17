@@ -60,6 +60,11 @@
     }
   }
 
+  &__content {
+    .glue-is-expanded & {
+      overflow: visible;
+    }
+  }
 
   &__results {
     justify-content: space-between;
