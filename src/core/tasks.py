@@ -2,7 +2,7 @@ import logging
 import os
 import pytz
 
-from core.models import Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
+from core.models import User, Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
 from core.qualtrics import benchmark, download, exceptions, question
 from django.conf import settings
 
@@ -512,10 +512,11 @@ def get_survey_data(survey, survey_columns, dateformat):
     return survey_data
 
 
-def _get_exportable_surveys(tenant, is_super_admin, engagement_lead):
+def _get_exportable_surveys(tenant, is_super_admin, share_with):
     data = Survey.objects.filter(tenant=tenant)
     if not is_super_admin:
-        data = data.filter(engagement_lead=engagement_lead)
+        user = User.objects.filter(email=share_with).first()
+        data = user.accounts.filter(tenant=tenant)
     return data
 
 
@@ -530,9 +531,8 @@ def export_tenant_data(
         dateformat="%Y/%m/%d %H:%M:%S"
 ):
     """Export tenant data to Google Spreadsheet."""
-
     try:
-        data = _get_exportable_surveys(tenant, is_super_admin, engagement_lead)
+        data = _get_exportable_surveys(tenant, is_super_admin, share_with)
 
         export_data = []
         survey_columns = sorted(survey_fields.keys())
