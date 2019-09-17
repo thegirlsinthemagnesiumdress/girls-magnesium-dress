@@ -120,6 +120,7 @@ class GetResultsTestCase(TestCase):
 
     def setUp(self):
         self.tenant = MOCKED_TENANTS['tenant1']
+        self.user = make_user(email="test@google.com")
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
@@ -534,6 +535,7 @@ class CreateInternalSurveyResultTestCase(TestCase):
                              if response['value'].get('Finished') == '1']
         self.tenant = settings.INTERNAL_TENANTS['tenant1']
         self.survey_definition = make_survey_definition(tenant=self.tenant['key'])
+        self.user = make_user(email="test@google.com")
 
     def test_internal_survey_result_created(self):
         """`SurveyResult` is always created and correctly links to survey if it exists."""
@@ -560,6 +562,16 @@ class CreateInternalSurveyResultTestCase(TestCase):
         # mocked survey has a internal response and no external responses
         self.assertEqual(survey.internal_results.count(), 1)
         self.assertEqual(survey.survey_results.count(), 0)
+
+    def test_internal_survey_set_completed_by(self):
+        make_survey(sid=1)
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)  # noqa
+
+        self.assertEqual(got_survey_results[1].completed_by.pk, self.user.pk)
+        self.assertIsNone(got_survey_results[0].completed_by)
 
     def test_internal_survey_result_created_no_survey_found(self):
         """When a Survey is not found, `SurveyResult` is created anyway."""

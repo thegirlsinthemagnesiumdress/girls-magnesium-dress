@@ -229,7 +229,15 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
         logging.warning('Found unfinshed survey {}: SKIP'.format(response_data.get('sid')))
         return
 
+    email = response_data[tenant.get('EMAIL_TO')]
+    user = None
     response_id = response_data['ResponseID']
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        logging.warning('Result with id {} for company with sid:{} has been completed by not-existing User with email {}'.format(response_id, response_data.get('sid'), email)) # noqa
+
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
@@ -245,6 +253,7 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
                 response_id=response_id,
                 started_at=make_aware(parse_datetime(response_data.get('StartDate')), pytz.timezone('US/Mountain')),
                 excluded_from_best_practice=excluded_from_best_practice,
+                completed_by=user,
                 dmb=dmb,
                 dmb_d=dmb_d,
                 raw=raw_data,
