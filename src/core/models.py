@@ -72,6 +72,7 @@ class Survey(models.Model):
     account_id = models.CharField(max_length=64, blank=True, null=True)
     parent_id = models.CharField(max_length=64, blank=True, null=True)
     creator = models.ForeignKey('User', null=True, related_name='+')
+    imported_from_dmb_lite = models.BooleanField(default=False)
 
     class SearchMeta:
         fields = ['account_id', 'company_name', 'tenant']
