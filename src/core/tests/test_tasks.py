@@ -549,6 +549,7 @@ class CreateInternalSurveyResultTestCase(TestCase):
         # Test result have internal_survey_id set but not survey_id
         for survey_result in got_survey_results:
             self.assertIsNotNone(survey_result.internal_survey_id)
+            self.assertEqual(survey_result.completed_by.pk, self.user.pk)
             self.assertIsNone(survey_result.survey_id)
 
         self.assertEqual(Survey.objects.count(), 1)
