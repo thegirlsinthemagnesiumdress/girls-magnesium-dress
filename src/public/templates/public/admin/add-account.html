@@ -34,19 +34,21 @@
       <div class="dmb-form dmb-form--admin">
         <div
             class="dmb-add-account__view dmb-add-account__view--lookup"
-            data-api-endpoint="{{ slug|ng_mark_safe }}/admin/surveys/search"
-            dmb-fuzzy-search
             id="dmb-account-lookup">
+
           <div class="dmb-form__inputs-wrapper dmb-u-m-b-xs">
             <h2 class="dmb-u-m-b-xs dmb-u-alt-font h-u-font-weight-medium">
               Account lookup
             </h2>
-
             <p class="dmb-u-m-b-s">
               Enter the client name or Greentea ID to lookup existing accounts
             </p>
 
-            <div class="dmb-fuzzy-search dmb-form__input-wrapper">
+            <div
+                class="dmb-fuzzy-search dmb-form__input-wrapper"
+                data-api-endpoint="{{ slug|ng_mark_safe }}/admin/surveys/search"
+                dmb-fuzzy-search
+                >
               <label for="dmb-account-lookup-input">
                 Organisation
               </label>
@@ -87,6 +89,7 @@
               </p>
 
             </div>
+
           </div>
 
           <div class="dmb-form__btns-wrapper">
