@@ -96,6 +96,7 @@ def report_static(request, tenant, sid):
         'product_name': utils.get_tenant_product_name(tenant),
         'other_tenants': utils.get_other_tenant_footers(tenant),
         'is_nightly': utils.version_info(request.get_host())[1],
+        'started_at': survey.last_survey_result.started_at,
     })
 
 
@@ -186,7 +187,7 @@ def accounts(request, tenant):
     api_data = AdminSurveyListView.as_view()(request, tenant=tenant).render().data
 
     return render(request, 'public/admin/accounts.html', {
-        'accounts': Survey.objects.filter(tenant=tenant),
+        'accounts': request.user.accounts,
         'bootstrap_data': JSONRenderer().render(api_data),
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
@@ -208,7 +209,7 @@ def add_account(request, tenant):
 
     slug = utils.get_tenant_slug(tenant)
 
-    return render(request, 'public/admin/add_account.html', {
+    return render(request, 'public/admin/add-account.html', {
         'content_data': _dump_tenant_content_data(tenant),
         'engagement_lead': request.user.engagement_lead,
         'other_tenants': utils.get_other_tenant_footers(tenant),

@@ -235,15 +235,6 @@ SVG_DIRS = [
     os.path.join(STATIC_ROOT, 'img')
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
-}
 
 DJANGAE_RUNSERVER_IGNORED_DIR_REGEXES += [
     r"^third_party$",
@@ -297,8 +288,6 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 CSRF_USE_SESSIONS = True
 
 ANGULAR_TEMPLATES = [
-    'dimension-tab-legacy',
-    'dimension-tab',
     'progress-grid',
     'progress-grid-fallback',
     'progress-table',
@@ -325,6 +314,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'api.permissions.IsSurveyAdminRequired',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100

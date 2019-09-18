@@ -165,3 +165,42 @@ def receive_bounce(request, *args, **kwargs):
     logging.error('Email bounced back original-to: {} , original-from: {}'.format(original_to, original_from))
     logging.error('Email bounced back original-text: {}'.format(request.POST['original-text']))
     return HttpResponse(status=200)
+
+
+@task_or_admin_only
+def resave_surveys_task(request):
+    msg = "resave surveys"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.resave_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def drop_search_index_task(request):
+    msg = "drop_search_index"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.drop_search_index,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def link_surveys_task(request):
+    msg = "Lnking surveys to creators"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.link_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

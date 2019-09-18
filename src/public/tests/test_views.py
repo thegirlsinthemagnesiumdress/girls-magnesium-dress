@@ -56,13 +56,16 @@ class ReportsAdminTestCase(TestCase):
 
     @with_appengine_user('test@google.com')
     def test_standard_user_logged_in(self):
-        """Standard user can retrieve reports belonging to its engagement_lead within a specific tenant."""
+        """Standard user can retrieve reports belonging to their account 'list' within a specific tenant."""
 
         self.user = get_user_model().objects.create(email='test@google.com')
 
         # set a survey to belong to logged user
         self.survey_1.engagement_lead = self.user.engagement_lead
+        self.survey_1.creator = self.user
         self.survey_1.save()
+        self.user.accounts.add(self.survey_1)
+        self.user.save()
 
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'accounts.html'):
@@ -77,7 +80,16 @@ class ReportsAdminTestCase(TestCase):
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in(self):
-        """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
+        """Whitelisted user retrieve reports belonging to their account 'list' within that tenant."""
+        self.user = get_user_model().objects.create(email='test@google.com')
+
+        # set a survey to belong to logged user
+        self.survey_1.engagement_lead = self.user.engagement_lead
+        self.survey_1.creator = self.user
+        self.survey_1.save()
+        self.user.accounts.add(self.survey_1)
+        self.user.save()
+
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'accounts.html'):
             response = self.client.get(self.url)
@@ -86,11 +98,20 @@ class ReportsAdminTestCase(TestCase):
             surveys = bootstrap_data.get('results')
 
             self.assertTrue(surveys)
-            self.assertEqual(len(surveys), 2)
+            self.assertEqual(len(surveys), 1)
 
     @with_appengine_admin('test@google.com')
     def test_whitelisted_user_logged_in_tenant_2(self):
         """Whitelisted user can retrieve reports belonging to all companies within that tenant."""
+        self.user = get_user_model().objects.create(email='test@google.com')
+
+        # set a survey to belong to logged user
+        self.survey_3.engagement_lead = self.user.engagement_lead
+        self.survey_3.creator = self.user
+        self.survey_3.save()
+        self.user.accounts.add(self.survey_3)
+        self.user.save()
+
         url = reverse('accounts', kwargs={'tenant': 'tenant2-slug'})
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'accounts.html'):

@@ -16,6 +16,7 @@ from core.tasks import (
     calculate_industry_benchmark,
     render_email_template,
     export_tenant_data,
+    _get_export_column_data,
 )
 from djangae.test import TestCase
 from mocks import (
@@ -26,7 +27,7 @@ from mocks import (
     MOCKED_TENANTS,
     MOCKED_INTERNAL_TENANTS,
 )
-from mommy_recepies import make_survey, make_survey_result, make_survey_definition, make_survey_with_result
+from mommy_recepies import make_user, make_survey, make_survey_result, make_survey_definition, make_survey_with_result
 from core.qualtrics.exceptions import FetchResultException
 from django.test import override_settings
 from django.utils import dateparse
@@ -35,6 +36,7 @@ import pytz
 from collections import OrderedDict
 from django.conf import settings
 from django.template.loader import get_template
+from djangae.deferred import PermanentTaskFailure
 import unittest
 
 
@@ -120,6 +122,7 @@ class GetResultsTestCase(TestCase):
 
     def setUp(self):
         self.tenant = MOCKED_TENANTS['tenant1']
+        self.user = make_user(email="test@google.com")
 
     @mock.patch('core.tasks.send_emails_for_new_reports')
     @mock.patch(
@@ -534,6 +537,7 @@ class CreateInternalSurveyResultTestCase(TestCase):
                              if response['value'].get('Finished') == '1']
         self.tenant = settings.INTERNAL_TENANTS['tenant1']
         self.survey_definition = make_survey_definition(tenant=self.tenant['key'])
+        self.user = make_user(email="test@google.com")
 
     def test_internal_survey_result_created(self):
         """`SurveyResult` is always created and correctly links to survey if it exists."""
@@ -560,6 +564,16 @@ class CreateInternalSurveyResultTestCase(TestCase):
         # mocked survey has a internal response and no external responses
         self.assertEqual(survey.internal_results.count(), 1)
         self.assertEqual(survey.survey_results.count(), 0)
+
+    def test_internal_survey_set_completed_by(self):
+        make_survey(sid=1)
+        self.assertEqual(Survey.objects.count(), 1)
+        self.assertEqual(SurveyResult.objects.count(), 0)
+
+        got_survey_results = _create_survey_results(self.responses, self.survey_definition, self.tenant, _create_internal_result)  # noqa
+
+        self.assertEqual(got_survey_results[1].completed_by.pk, self.user.pk)
+        self.assertIsNone(got_survey_results[0].completed_by)
 
     def test_internal_survey_result_created_no_survey_found(self):
         """When a Survey is not found, `SurveyResult` is created anyway."""
@@ -1634,6 +1648,7 @@ class ExportTenantDataSuperAdmin(TestCase):
         self.is_super_admin = True
         # engagement lead doesn't really matter when superadmin, since all the data will be exported
         self.engagement_lead = "1233454567"
+        make_user(email=self.share_with, is_superuser=self.is_super_admin)
 
     @override_settings(
         TENANTS=MOCKED_TENANTS,
@@ -1850,6 +1865,7 @@ class ExportTenantDataNotSuperAdmin(TestCase):
     def setUp(self):
         self.share_with = "share_with@email.com"
         self.is_super_admin = False
+        self.user = make_user(email=self.share_with, is_superuser=self.is_super_admin)
 
     @override_settings(
         TENANTS=MOCKED_TENANTS,
@@ -1858,8 +1874,8 @@ class ExportTenantDataNotSuperAdmin(TestCase):
     def test_all_surveys_no_results(self, mocked_export):
         """When there are no SurveyResults, the underlying function is still called with the correct data"""
         engagement_lead = '12345'
-        make_survey(tenant='tenant1', engagement_lead=engagement_lead)
-        make_survey(tenant='tenant1', engagement_lead=engagement_lead)
+        make_survey(tenant='tenant1', engagement_lead=engagement_lead, creator=self.user)
+        make_survey(tenant='tenant1', engagement_lead=engagement_lead, creator=self.user)
         make_survey(tenant='tenant1', engagement_lead='67891')
 
         survey_fields_mappings = {
@@ -1881,7 +1897,6 @@ class ExportTenantDataNotSuperAdmin(TestCase):
             'automation': 'Automation',
         }
         title = "A meaningful title"
-
         export_tenant_data(
             title,
             'tenant1',
@@ -1907,9 +1922,24 @@ class ExportTenantDataNotSuperAdmin(TestCase):
     def test_survey_results(self, mocked_export):
         """When there are no SurveyResults, the underlying function is still called with the correct data"""
         engagement_lead = '12345'
-        make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead=engagement_lead)
-        make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead=engagement_lead)
-        make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead=engagement_lead)
+        make_survey_with_result(
+            industry='ic-bnpj',
+            tenant='tenant2',
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
+        make_survey_with_result(
+            industry='ic-bnpj',
+            tenant='tenant2',
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
+        make_survey_with_result(
+            industry='ic-bnpj',
+            tenant='tenant2',
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
         make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead='6789')
         make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead='6789')
 
@@ -1956,8 +1986,18 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         """When tenant is advertisers, it's exported with the correct configured keys."""
         tenant = 'ads'
         engagement_lead = '12345'
-        s1 = make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead=engagement_lead)
-        s2 = make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead=engagement_lead)
+        s1 = make_survey_with_result(
+            industry='ic-bnpj',
+            tenant=tenant,
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
+        s2 = make_survey_with_result(
+            industry='ic-bnpj',
+            tenant=tenant,
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
         s3 = make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead="6789")
 
         s1.last_survey_result.dmb_d = {
@@ -2020,8 +2060,18 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         """When tenant is publishers, it's exported with the correct configured keys."""
         tenant = 'news'
         engagement_lead = '11111'
-        make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead=engagement_lead)
-        make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead=engagement_lead)
+        make_survey_with_result(
+            industry='ic-bnpj',
+            tenant=tenant,
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
+        make_survey_with_result(
+            industry='ic-bnpj',
+            tenant=tenant,
+            engagement_lead=engagement_lead,
+            creator=self.user
+        )
         make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead='222222')
 
         tenant_conf = settings.TENANTS[tenant]
@@ -2054,8 +2104,8 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         """When tenant is retail, it's exported with the correct configured keys."""
         tenant = 'retail'
         engagement_lead = '111111'
-        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead)
-        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead)
+        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead, creator=self.user)
+        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead, creator=self.user)
         make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead='3333333')
 
         tenant_conf = settings.TENANTS[tenant]
@@ -2082,3 +2132,116 @@ class ExportTenantDataNotSuperAdmin(TestCase):
 
         for dim in tenant_conf['CONTENT_DATA']['dimension_titles'].values():
             self.assertTrue(dim in got_headers, "{} error".format(dim))
+
+    @mock.patch('core.googleapi.sheets.export_data')
+    def test_export_fail(self, mocked_export):
+        """When export column data fails check that the KeyError raised causes a PermanentTaskFailure"""
+        tenant = 'retail'
+        engagement_lead = '111111'
+        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead)
+
+        tenant_conf = settings.TENANTS[tenant]
+        retail_title = "Retail Export"
+        invalid_cols = ['not-a-column']
+
+        # Check that export tenant data raises the expected exception.
+        with self.assertRaises(PermanentTaskFailure):
+            export_tenant_data(
+                retail_title,
+                tenant,
+                self.is_super_admin,
+                engagement_lead,
+                tenant_conf['GOOGLE_SHEET_EXPORT_SURVEY_FIELDS'],
+                invalid_cols,
+                self.share_with,
+            )
+
+
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+)
+class ExportColumnData(TestCase):
+    """Tests for _get_export_column_data function"""
+
+    def setUp(self):
+        self.share_with = "share_with@email.com"
+        self.is_super_admin = False
+
+    def test_column_data_in_dmb_d(self):
+        """Tests that given a column contained in dmb_d it is retrieved correctly."""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'ads')
+        self.assertEqual(column_data, 0.5)
+
+    def test_none_column_data_in_dmb_d(self):
+        """tests that given a column in dmb_d with a value of None an empty string is returned."""
+        dmb_d = {
+            'ads': 0.5,
+            'access': None,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'access')
+        self.assertEqual(column_data, '')
+
+    def test_column_data_in_result(self):
+        """Tests that given a column not in dmb_d but in the SurveyResult it is retrieved correctly."""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb=2.5, dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'dmb')
+        self.assertEqual(column_data, u'2.5')
+
+    def test_none_column_data_in_result(self):
+        """Tests that given a column with value None not in dmb_d but in the SurveyResult, empty string is returned"""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(survey=None, dmb_d=dmb_d)
+        # Check known dimension data is retrieved correctly
+        column_data = _get_export_column_data(survey_result, dmb_d, 'survey')
+        self.assertEqual(column_data, '')
+
+    def test_non_existant_column(self):
+        """Tests that given a column which doesn't exist in dmb_d or SurveyResult an exception is thrown."""
+        # Create survey and result to test column data on
+        dmb_d = {
+            'ads': 0.5,
+            'access': 1,
+            'audience': 1.5,
+            'attribution': 2,
+            'automation': 2.5,
+            'organization': 3,
+        }
+        survey_result = make_survey_result(dmb_d=dmb_d)
+        # Check exception is thrown
+        with self.assertRaises(Exception):
+            _get_export_column_data(survey_result, dmb_d, 'non-existant')

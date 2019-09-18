@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-30 13:58+0000\n"
+"POT-Creation-Date: 2019-09-09 10:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1529,24 +1529,6 @@ msgstr "Sfrutta ogni momento per raggiungere i clienti"
 msgid "See how your data-driven marketing measures up, and discover your roadmap to digital maturity."
 msgstr "Guarda i risultati del tuo marketing basato sui dati e scopri la roadmap per raggiungere la maturità digitale."
 
-msgid "How it works"
-msgstr "Come funziona"
-
-msgid "Benchmark which stage your organisation is at on our digital maturity scale."
-msgstr "Scopri in quale fase si trova la tua organizzazione sulla nostra scala della maturità digitale."
-
-msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
-msgstr "Le aziende in questa fase gestiscono il marketing campagna per campagna, utilizzando dati esterni e acquisti diretti con collegamenti limitati alle vendite."
-
-msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
-msgstr "Queste aziende prevedono un certo utilizzo di dati proprietari negli acquisti automatici, con ottimizzazione e test basati sui singoli canali."
-
-msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
-msgstr "Ormai, i dati vengono integrati e attivati su più canali, con collegamento dimostrato al ROI o ai canali di vendita."
-
-msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
-msgstr "In questa fase, le aziende hanno raggiunto l’esecuzione dinamica ottimizzata per avere una visione unificata dei clienti su tutti i canali."
-
 msgid "The tool analyses where your business sits on the path to full data-driven marketing and attribution. Then, it generates a personalised, consultative, interactive report. This benchmarks your organisation against others in your industry and makes both strategic and tactical recommendations to help you level up."
 msgstr "Lo strumento analizza innanzitutto la posizione della tua attività lungo il percorso verso il marketing e l’attribuzione completamente basati sui dati, poi genera un rapporto personalizzato e interattivo che puoi consultare. Il rapporto mostra il benchmarking della tua organizzazione rispetto ad altre nel tuo settore e fornisce consigli strategici e tattici per aiutarti a raggiungere il loro livello."
 
@@ -1562,9 +1544,6 @@ msgstr "Utilizza le informazioni del tuo rapporto per capire come far passare la
 
 msgid "devices running the tool"
 msgstr "dispositivi che eseguono lo strumento"
-
-msgid "laptop screen demo"
-msgstr "demo sullo schermo di un laptop"
 
 msgid "These businesses have a sustainable competitive advantage"
 msgstr "Queste aziende hanno un vantaggio competitivo sostenibile"
@@ -1629,6 +1608,12 @@ msgstr "Inizia il test ora"
 
 msgid "This in-depth assessment takes around 30 minutes to complete."
 msgstr "Per completare questo test approfondito sono necessari 30 minuti."
+
+msgid "How it works"
+msgstr "Come funziona"
+
+msgid "Benchmark which stage your organisation is at on our digital maturity scale."
+msgstr "Scopri in quale fase si trova la tua organizzazione sulla nostra scala della maturità digitale."
 
 msgid "BCG identified these figures by examining success factors and capabilities in over 40 companies across eight industries"
 msgstr "BCG è arrivata a queste cifre dopo aver esaminato le competenze e i fattori che hanno determinato il successo di oltre 40 aziende in otto settori:"
@@ -1790,34 +1775,6 @@ msgstr "Fonte: dati di Google, area EMEA, gennaio-dicembre 2015 rispetto a genna
 msgid "Source: Econsultancy/Google, “An Audience of Individuals,” 2017, n=514, marketing and measurement executives at North American companies with over $250M in revenues; n=133 leading marketers who reported marketing significantly exceeded top business goals in 2016, n=381 mainstream marketers (remainder of the sample)."
 msgstr "Fonte: Econsultancy/Google, “An Audience of Individuals”, 2017, n = 514 responsabili di marketing e misurazione di aziende nordamericane con oltre 250 milioni di dollari di fatturato; n = 133 importanti professionisti del marketing che hanno affermato di aver superato abbondantemente i principali obiettivi aziendali nel 2016; n = 381 professionisti del marketing tradizionali (il resto del campione)."
 
-msgid "You are "
-msgstr "Sei "
-
-msgid "You could be"
-msgstr "Potresti essere"
-
-msgid "Congratulations"
-msgstr "Complimenti"
-
-#, python-format
-msgid "you're in the top 2%% for marketing maturity"
-msgstr "sei nel gruppo migliore (pari al 2%%) per la maturità del marketing"
-
-msgid "Here's how you get there:"
-msgstr "Ecco come puoi arrivarci:"
-
-msgid "Here's how to get even better:"
-msgstr "Ecco come puoi ottenere risultati ancora migliori:"
-
-msgid "logo"
-msgstr "logo"
-
-msgid "in this dimension"
-msgstr "in questa dimensione"
-
-msgid "Congratulations, you're in the top group for data maturity"
-msgstr "Complimenti, sei nel gruppo migliore per la maturità dei dati"
-
 msgid "Get more information about the industry average"
 msgstr "Scopri di più sulla media del settore"
 
@@ -1935,6 +1892,9 @@ msgstr "Inizia subito"
 msgid "In partnership with The Boston Consulting Group"
 msgstr "In collaborazione con The Boston Consulting Group"
 
+msgid "laptop screen demo"
+msgstr "demo sullo schermo di un laptop"
+
 msgid "Next steps"
 msgstr "Passaggi successivi"
 
@@ -1958,6 +1918,24 @@ msgstr "Condividi questo rapporto con i tuoi colleghi"
 
 msgid "To share this report, copy the link and send it to your colleagues."
 msgstr "Basta copiare il link e inviarlo ai colleghi."
+
+msgid "logo"
+msgstr "logo"
+
+msgid "in this dimension"
+msgstr "in questa dimensione"
+
+msgid "You could be"
+msgstr "Potresti essere"
+
+msgid "Congratulations, you're in the top group for data maturity"
+msgstr "Complimenti, sei nel gruppo migliore per la maturità dei dati"
+
+msgid "Here's how you get there:"
+msgstr "Ecco come puoi arrivarci:"
+
+msgid "Here's how to get even better:"
+msgstr "Ecco come puoi ottenere risultati ancora migliori:"
 
 msgid "Dimensions of marketing maturity"
 msgstr "Dimensioni della maturità del marketing"
@@ -2023,6 +2001,28 @@ msgstr "Torna alla home page"
 
 msgid "Woops.. there was an internal server error."
 msgstr "Spiacenti. Si è verificato un errore interno del server."
+
+#~ msgid "Businesses at this stage work on a campaign-by-campaign basis, using external data and direct buys with limited link to sales."
+#~ msgstr "Le aziende in questa fase gestiscono il marketing campagna per campagna, utilizzando dati esterni e acquisti diretti con collegamenti limitati alle vendite."
+
+#~ msgid "In these businesses, there is some use of owned data in automated buying, with single-channel optimisation and testing."
+#~ msgstr "Queste aziende prevedono un certo utilizzo di dati proprietari negli acquisti automatici, con ottimizzazione e test basati sui singoli canali."
+
+#~ msgid "By now, data is integrated and activated across channels with a demonstrated link to ROI or sales proxies."
+#~ msgstr "Ormai, i dati vengono integrati e attivati su più canali, con collegamento dimostrato al ROI o ai canali di vendita."
+
+#~ msgid "At this stage, businesses have dynamic execution optimised towards a single-customer view across channels."
+#~ msgstr "In questa fase, le aziende hanno raggiunto l’esecuzione dinamica ottimizzata per avere una visione unificata dei clienti su tutti i canali."
+
+#~ msgid "You are "
+#~ msgstr "Sei "
+
+#~ msgid "Congratulations"
+#~ msgstr "Complimenti"
+
+#, python-format
+#~ msgid "you're in the top 2%% for marketing maturity"
+#~ msgstr "sei nel gruppo migliore (pari al 2%%) per la maturità del marketing"
 
 #~ msgid "Digital Maturity Benchmark"
 #~ msgstr "Digital Maturity Benchmark"

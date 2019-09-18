@@ -2,12 +2,17 @@
 import re
 
 from core.models import Survey, User
-from core.tests.mommy_recepies import make_survey
-from core.tests.mocks import MOCKED_TENANTS, MOCKED_INTERNAL_TENANTS
+from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_definition
+from core.tests.mocks import (
+    MOCKED_TENANTS,
+    MOCKED_INTERNAL_TENANTS,
+    MOCKED_I18N_TENANTS,
+    MOCKED_TENANTS_SLUG_TO_KEY
+)
 from djangae.test import TestCase
 from django.test import override_settings
 from core.tests.mommy_recepies import make_user
-from core.test import with_appengine_admin, with_appengine_user
+from core.test import with_appengine_admin, with_appengine_user, reload_urlconf
 
 
 @override_settings(
@@ -101,6 +106,71 @@ class SurveyTest(TestCase):
         self.assertRaises(Survey.objects.create, company_name="test", country="IT", industry="re", tenant='tenant3')
 
 
+@override_settings(
+    TENANTS=MOCKED_TENANTS,
+    I18N_TENANTS=MOCKED_I18N_TENANTS,
+    INTERNAL_TENANTS=MOCKED_INTERNAL_TENANTS,
+    TENANTS_SLUG_TO_KEY=MOCKED_TENANTS_SLUG_TO_KEY,
+    DEFAULT_TENANT='tenant1',
+)
+class SurveyResponseTest(TestCase):
+
+    @classmethod
+    def tearDownClass(cls):
+        super(SurveyResponseTest, cls).tearDownClass()
+        reload_urlconf()
+
+    @classmethod
+    def setUpClass(cls):
+        super(SurveyResponseTest, cls).setUpClass()
+        reload_urlconf()
+
+    def test_report_link_external_result(self):
+        survey = make_survey(tenant="tenant1")
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+        )
+        self.assertIsNotNone(survey_result.report_link)
+
+    def test_report_link_internal_result(self):
+        survey = make_survey(tenant="tenant1")
+        survey_result = make_survey_result(
+            internal_survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+        )
+        self.assertIsNone(survey_result.report_link)
+
+    def test_detail_link_with_raw(self):
+        survey = make_survey(tenant="tenant1")
+        definition = make_survey_definition()
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            raw='{}',
+            survey_definition=definition,
+        )
+        self.assertIsNotNone(survey_result.detail_link)
+
+    def test_detail_link_no_raw(self):
+        survey = make_survey(tenant="tenant1")
+        definition = make_survey_definition()
+        survey_result = make_survey_result(
+            survey=survey,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            survey_definition=definition,
+        )
+        self.assertIsNone(survey_result.detail_link)
+
+
 class UserTest(TestCase):
 
     def test_user_unicode(self):
@@ -150,3 +220,19 @@ class UserTest(TestCase):
         response = self.client.get('/')
         user = response.wsgi_request.user
         self.assertTrue(user.is_super_admin)
+
+    @with_appengine_admin('standard@google.com')
+    def test_user_surveys_ordering_correct(self):
+        email = "user@gmail.com"
+        user = make_user(email=email)
+
+        make_survey(company_name="I'm number 1", creator=user)
+        make_survey(company_name="I'm number 2", creator=user)
+        make_survey(company_name="I'm number 3", creator=user)
+
+        self.assertEqual(user.accounts.count(), 3)
+
+        accounts = [account.company_name for account in user.accounts.all()]
+        self.assertEqual(accounts[0], "I'm number 1")
+        self.assertEqual(accounts[1], "I'm number 2")
+        self.assertEqual(accounts[2], "I'm number 3")
