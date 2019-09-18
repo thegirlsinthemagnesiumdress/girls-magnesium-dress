@@ -1848,13 +1848,9 @@ class ExportTenantDataNotSuperAdmin(TestCase):
     def test_all_surveys_no_results(self, mocked_export):
         """When there are no SurveyResults, the underlying function is still called with the correct data"""
         engagement_lead = '12345'
-        s1 = make_survey(tenant='tenant1', engagement_lead=engagement_lead, creator=self.user)
-        s2 = make_survey(tenant='tenant1', engagement_lead=engagement_lead, creator=self.user)
+        make_survey(tenant='tenant1', engagement_lead=engagement_lead, creator=self.user)
+        make_survey(tenant='tenant1', engagement_lead=engagement_lead, creator=self.user)
         make_survey(tenant='tenant1', engagement_lead='67891')
-
-        self.user.accounts.add(s1)
-        self.user.accounts.add(s2)
-        self.user.save()
 
         survey_fields_mappings = {
             'company_name': 'Company Name',
@@ -1900,19 +1896,19 @@ class ExportTenantDataNotSuperAdmin(TestCase):
     def test_survey_results(self, mocked_export):
         """When there are no SurveyResults, the underlying function is still called with the correct data"""
         engagement_lead = '12345'
-        s1 = make_survey_with_result(
+        make_survey_with_result(
             industry='ic-bnpj',
             tenant='tenant2',
             engagement_lead=engagement_lead,
             creator=self.user
         )
-        s2 = make_survey_with_result(
+        make_survey_with_result(
             industry='ic-bnpj',
             tenant='tenant2',
             engagement_lead=engagement_lead,
             creator=self.user
         )
-        s3 = make_survey_with_result(
+        make_survey_with_result(
             industry='ic-bnpj',
             tenant='tenant2',
             engagement_lead=engagement_lead,
@@ -1920,11 +1916,6 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         )
         make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead='6789')
         make_survey_with_result(industry='ic-bnpj', tenant='tenant2', engagement_lead='6789')
-
-        self.user.accounts.add(s1)
-        self.user.accounts.add(s2)
-        self.user.accounts.add(s3)
-        self.user.save()
 
         survey_fields_mappings = {
             'company_name': 'Company Name',
@@ -1982,10 +1973,6 @@ class ExportTenantDataNotSuperAdmin(TestCase):
             creator=self.user
         )
         s3 = make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead="6789")
-
-        self.user.accounts.add(s1)
-        self.user.accounts.add(s2)
-        self.user.save()
 
         s1.last_survey_result.dmb_d = {
             'access': 1.5,
@@ -2047,23 +2034,19 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         """When tenant is publishers, it's exported with the correct configured keys."""
         tenant = 'news'
         engagement_lead = '11111'
-        s1 = make_survey_with_result(
+        make_survey_with_result(
             industry='ic-bnpj',
             tenant=tenant,
             engagement_lead=engagement_lead,
             creator=self.user
         )
-        s2 = make_survey_with_result(
+        make_survey_with_result(
             industry='ic-bnpj',
             tenant=tenant,
             engagement_lead=engagement_lead,
             creator=self.user
         )
         make_survey_with_result(industry='ic-bnpj', tenant=tenant, engagement_lead='222222')
-
-        self.user.accounts.add(s1)
-        self.user.accounts.add(s2)
-        self.user.save()
 
         tenant_conf = settings.TENANTS[tenant]
         news_title = "News Export"
@@ -2095,13 +2078,9 @@ class ExportTenantDataNotSuperAdmin(TestCase):
         """When tenant is retail, it's exported with the correct configured keys."""
         tenant = 'retail'
         engagement_lead = '111111'
-        s1 = make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead, creator=self.user)
-        s2 = make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead, creator=self.user)
+        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead, creator=self.user)
+        make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead=engagement_lead, creator=self.user)
         make_survey_with_result(industry='rt-o', tenant=tenant, engagement_lead='3333333')
-
-        self.user.accounts.add(s1)
-        self.user.accounts.add(s2)
-        self.user.save()
 
         tenant_conf = settings.TENANTS[tenant]
         retail_title = "Retail Export"
