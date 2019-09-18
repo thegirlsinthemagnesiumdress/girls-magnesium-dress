@@ -13,5 +13,6 @@ INTERNAL_TENANTS = {
         'MULTI_ANSWER_QUESTIONS': ads_internal_conf.MULTI_ANSWER_QUESTIONS,
         'EXCLUDED_TIME_THRESHOLD': 5,
         'EMAIL_TO': 'Q3_4_TEXT',
+        'EMAIL_TEMPLATE_FOLDER': 'public/admin/email'
     }
 }
