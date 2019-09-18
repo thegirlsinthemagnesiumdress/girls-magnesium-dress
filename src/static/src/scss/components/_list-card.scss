@@ -31,6 +31,10 @@
 
   &__header-left {
     flex-grow: 1;
+
+    .dmb-chip {
+      margin-left: $dmb-spacing-xs;
+    }
   }
 
   &__title-heading {
@@ -60,6 +64,11 @@
     }
   }
 
+  &__content {
+    .glue-is-expanded & {
+      overflow: visible;
+    }
+  }
 
   &__results {
     justify-content: space-between;
@@ -90,7 +99,7 @@
   }
 
   &__overall-score {
-    font-size: 22px;
+    font-size: 16px;
   }
 
 
