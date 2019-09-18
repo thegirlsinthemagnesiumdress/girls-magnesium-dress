@@ -102,10 +102,12 @@ class AdminSurveyResultsSerializer(ModelSerializer):
             'created_at',
         )
 
+
 class SurveyCreatorSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('ldap',)
+
 
 class SearchSurveySerializer(ModelSerializer):
     country_name = CharField(source='get_country_display')
