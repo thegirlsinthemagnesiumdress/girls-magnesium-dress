@@ -149,7 +149,7 @@ export default class AddAccountPage {
     this.elem.setAttribute(DATA_ATTRS.VIEW, newView);
 
     if (newView === VIEWS.LOOKUP) {
-      // this.searchInputEl.focus();
+      this.searchInputEl.focus();
       return;
     }
 
