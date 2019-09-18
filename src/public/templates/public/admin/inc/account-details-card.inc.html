@@ -73,9 +73,12 @@
       {% if result.detail_link %}
         <a
             class="dmb-list-card__action dmb-button dmb-tooltip dmb-tooltip--center"
-            href="{{result.detail_link}}"
-            target="_blank"
-            {% if user.id != result.completed_by.id %}disabled{%endif%}>
+            {% if user.id == result.completed_by.id %}
+              href="{{result.detail_link}}"
+              target="_blank"
+            {% else %}
+              disabled
+            {%endif%}>
           Responses
           {% if user.id != result.completed_by.id %}
             <div class="dmb-tooltip__text">
