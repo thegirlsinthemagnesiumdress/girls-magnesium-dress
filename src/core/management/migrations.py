@@ -116,7 +116,9 @@ def import_dmb_lite(filename):
 
                 # if it doesn't yet exists
                 if existing_accounts.count() == 0:
-                    logging.info("Creating company name: {} greentea id: {}  creator: {}".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
+                    logging.info(
+                        "Creating company name: {} greentea id: {} country: {} industry: {} creator: {}".format(
+                            company_name.encode('utf-8'), row['greentea'], country, industry, row['ldap']))
                     s = Survey(
                         company_name=company_name,
                         industry=industry,
