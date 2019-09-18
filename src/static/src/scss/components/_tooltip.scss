@@ -35,4 +35,11 @@
       width: 500px;
     }
   }
+
+  &--top {
+    #{$block}__text {
+      top: -10px;
+      transform: translateY(-100%);
+    }
+  }
 }
