@@ -51,7 +51,7 @@ const VIEWS = {
   DETAILS: 'account-details',
 };
 
-/*
+/**
  * Account page component to control the add account user flow
  *
  */
