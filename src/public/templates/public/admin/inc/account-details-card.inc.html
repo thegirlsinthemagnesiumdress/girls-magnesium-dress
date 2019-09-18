@@ -9,6 +9,15 @@
     <span class="dmb-list-card__date dmb-u-text-muted">
       {{ result.date|date:"F j" }}
     </span>
+    {% if result.completed_by.ldap %}
+    <a
+        class="dmb-chip"
+        href="//moma.corp.google.com/person/{{ result.completed_by.ldap }}">
+      <span class="dmb-chip__text h-u-font-weight-medium dmb-u-text-muted">
+        {{ result.completed_by.ldap }}
+      </span>
+    </a>
+    {% endif %}
   </div>
 
   <div class="dmb-list-card__header-right">
@@ -39,8 +48,13 @@
       <div class="dmb-list-card__overall-level dmb-u-alt-font">
         {{ result.overall.levels.current.name }}
       </div>
-      <div class="dmb-list-card__overall-score dmb-u-text-semi-muted h-u-font-weight-medium dmb-u-alt-font">
-        {{ result.overall.value|floatformat:1 }}
+      <div class="dmb-list-card__overall-score">
+        <span class="dmb-u-text-semi-muted h-c-headline h-c-headline--four h-u-font-weight-medium dmb-u-alt-font">
+          {{ result.overall.value|floatformat:1 }}
+        </span>
+        <span class="dmb-u-text-muted h-u-font-weight-light dmb-u-alt-font">
+          /{{ result.overall.top_level|floatformat:0 }}
+        </span>
       </div>
     </div>
 
@@ -67,10 +81,19 @@
     <div class="dmb-list-card__actions">
       {% if result.detail_link %}
         <a
-            class="dmb-list-card__action dmb-button"
-            href="{{result.detail_link}}"
-            target="_blank">
+            class="dmb-list-card__action dmb-button dmb-tooltip dmb-tooltip--center"
+            {% if user.id == result.completed_by.id %}
+              href="{{result.detail_link}}"
+              target="_blank"
+            {% else %}
+              disabled
+            {%endif%}>
           Responses
+          {% if user.id != result.completed_by.id %}
+            <div class="dmb-tooltip__text">
+              Sorry, we can't show you the responses for other Googler's assessments.
+            </div>
+          {% endif %}
         </a>
       {% endif %}
       {% if result.report_link %}
