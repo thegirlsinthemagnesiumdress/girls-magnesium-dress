@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^migrations/migrate_to_dmblite_survey/$', views.update_survey_model_task, name="migrate_to_dmblite_survey"),
     url(r'^migrations/resave_surveys/$', views.resave_surveys_task, name="resave_surveys"),
     url(r'^migrations/drop_search_index/$', views.drop_search_index_task, name="drop_search_index"),
-    url(r'^migrations/import_lite_users_and_accounts/$', views.import_lite_users_and_accounts, name="import_lite_users_and_accounts"),
+    url(r'^migrations/import_lite_users_and_accounts/$', views.import_lite_users_and_accounts, name="import_lite_users_and_accounts"), # noqa
+    url(r'^migrations/link_surveys/$', views.link_surveys_task, name="link_surveys"),
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]

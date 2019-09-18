@@ -130,12 +130,16 @@ $positions: (top, bottom);
   border-radius: 8px;
 }
 
+.dmb-u-text-semi-muted {
+  color: $dmb-color-blue-charade !important;
+}
+
 .dmb-u-text-muted {
   color: $dmb-color-grey-shuttle !important;
 }
 
-.dmb-u-text-semi-muted {
-  color: $dmb-color-blue-charade !important;
+.dmb-u-small-text {
+  font-size: 12px !important;
 }
 
 .dmb-overlay {
@@ -143,4 +147,8 @@ $positions: (top, bottom);
   border-radius: $dmb-border-radius-medium;
   color: #fff;
   z-index: 1;
+}
+
+.dmb-error {
+  color: $dmb-color-red-fire-engine !important;
 }

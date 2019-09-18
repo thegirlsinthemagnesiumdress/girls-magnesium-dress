@@ -9,7 +9,7 @@ from rest_framework.test import APITestCase
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_industry_benchmark
 from core.tests.mocks import MOCKED_TENANTS_SLUG_TO_KEY, MOCKED_TENANTS
 from core.conf.utils import get_tenant_slug
-from core.test import reload_urlconf, with_appengine_user, with_appengine_anon
+from core.test import reload_urlconf, with_appengine_user, with_appengine_anon, with_appengine_admin
 
 
 User = get_user_model()
@@ -549,21 +549,27 @@ class AdminSurveyListViewTest(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    @with_appengine_user("test@google.com")
-    def test_survey_exists(self):
-        """Should return the `company_name` related to `sid` provided."""
+    @with_appengine_user("test@gmail.com")
+    def test_authenicated_user(self):
+        """Ensure authenitcated user, not admin cannot hit the api"""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @with_appengine_admin("test@google.com")
+    def test_admin_user(self):
+        """Ensure and authenitcated user can hit the api"""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @with_appengine_user("test@gmail.com")
     def test_survey__user_does_not_have_permission(self):
-        """Should return the `company_name` related to `sid` provided."""
+        """Ensure we can't hit the api if not authenticated."""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @with_appengine_anon
     def test_survey__anonn_does_not_have_permission(self):
-        """Should return the `company_name` related to `sid` provided."""
+        """Ensure we can't hit the api if not authenticated."""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 

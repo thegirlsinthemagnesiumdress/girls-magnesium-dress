@@ -204,3 +204,16 @@ def import_lite_users_and_accounts(request):
     )
 
     return HttpResponse(msg)
+
+
+@task_or_admin_only
+def link_surveys_task(request):
+    msg = "Lnking surveys to creators"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.link_surveys,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

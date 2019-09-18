@@ -1,12 +1,9 @@
 from django.conf import settings
 
-from core.models import Survey, SurveyResult
+from core.models import Survey, SurveyResult, User
 import logging
-from core.googleapi import sheets
 
 import unicodecsv as csv
-from core.management.dmb_lite import csv_string
-from core.models import User, Survey
 from os.path import join
 from datetime import datetime
 from django.utils.timezone import make_aware
@@ -35,6 +32,7 @@ INDUSTRY_MAP = {
     'Services & Distribution Solutions': 'other',
     '': 'other',
 }
+
 
 def migrate_to_dmblite_survey():
     # Enable all tenants since the Survey.save method will
@@ -85,7 +83,6 @@ def import_dmb_lite():
     csvfile = open(CSV_PATH, 'r')
     reader = csv.reader(csvfile, delimiter=",")
 
-
     for i, row in enumerate(reader):
         if i > 3:
 
@@ -99,7 +96,12 @@ def import_dmb_lite():
             user = create_user_(ldap)
             date = make_aware(datetime.strptime(row[1], '%d/%m/%Y %H:%M:%S'), pytz.timezone('US/Mountain'))
 
-            existing_accounts = Survey.objects.filter(company_name=company_name, account_id=account_id, country=country, industry=industry)
+            existing_accounts = Survey.objects.filter(
+                company_name=company_name,
+                account_id=account_id,
+                country=country,
+                industry=industry
+            )
 
             # if it doesn't yet exists
             if existing_accounts.count() == 0:
@@ -128,9 +130,19 @@ def import_dmb_lite():
                 user.save()
 
 
-
 def create_user_(ldap):
     email = '{}@google.com'.format(ldap.lower())
     user, _ = User.objects.get_or_create(email_lower=email, defaults={"email": email})
 
     return user
+
+
+def link_surveys():
+    for user in User.objects.all():
+        surveys = Survey.objects.filter(engagement_lead=user.engagement_lead)
+        for survey in surveys:
+            survey.creator = user
+            survey.save()
+            if survey.sid not in user.accounts_ids:
+                user.accounts.add(survey)
+                user.save()

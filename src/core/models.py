@@ -235,6 +235,7 @@ class SurveyResult(models.Model):
     loaded_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField()
     excluded_from_best_practice = models.BooleanField(default=False)
+    completed_by = models.ForeignKey('User', null=True, related_name="+")
 
     dmb = models.DecimalField(max_digits=4, decimal_places=2)
     dmb_d = JSONField()
