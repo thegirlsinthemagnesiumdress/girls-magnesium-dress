@@ -1,8 +1,6 @@
 .dmb-note {
-  background: $dmb-color-blue-alice;
-  border: 1px solid $dmb-color-blue-denim;
+  background: $dmb-color-yellow-forget-me-not;
   border-radius: $dmb-border-radius-large;
-  color: $dmb-color-blue-denim;
   display: flex;
   font-size: 14px;
   padding: 24px;
@@ -12,7 +10,13 @@
     padding-top: .2em;
 
     svg {
-      fill: $dmb-color-blue-denim;
+      fill: currentColor;
     }
+  }
+
+  &--instructions {
+    background: $dmb-color-blue-alice;
+    border: 1px solid $dmb-color-blue-denim;
+    color: $dmb-color-blue-denim;
   }
 }
