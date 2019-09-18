@@ -22,4 +22,10 @@
       visibility: visible;
     }
   }
+
+  &--inline {
+    #{$block}__text {
+      white-space: nowrap;
+    }
+  }
 }

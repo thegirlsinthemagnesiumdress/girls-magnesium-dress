@@ -1,0 +1,16 @@
+.dmb-chip {
+  align-items: center;
+  border: 1px solid $dmb-color-grey-zircon;
+  border-radius: $dmb-spacing-s;
+  display: inline-flex;
+  padding: 6px 12px;
+
+  &:hover {
+    background: $dmb-color-grey-zircon;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1em;
+  }
+}
