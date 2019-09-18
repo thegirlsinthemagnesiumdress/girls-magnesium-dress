@@ -112,7 +112,7 @@ def import_dmb_lite():
                 else:
                     logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
 
-                date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('US/Mountain'))
+                date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('US/Mountain'))  # noqa
 
                 existing_accounts = Survey.objects.filter(
                     company_name=company_name,
@@ -123,7 +123,7 @@ def import_dmb_lite():
 
                 # if it doesn't yet exists
                 if existing_accounts.count() == 0:
-                    logging.info("Creating company name: {} greentea id: {}  creator: {}".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))
+                    logging.info("Creating company name: {} greentea id: {}  creator: {}".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
                     s = Survey(
                         company_name=company_name,
                         industry=industry,
@@ -150,7 +150,8 @@ def import_dmb_lite():
                     user.accounts.add(s)
                     user.save()
             except Exception:
-                logging.info("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))
+                logging.info("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
+
 
 def create_user_(ldap):
     email = '{}@google.com'.format(ldap.lower())
