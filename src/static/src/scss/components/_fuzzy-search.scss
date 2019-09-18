@@ -34,7 +34,7 @@
     list-style: none;
     margin: 0;
     max-height: 316px;
-    overflow-y: auto;
+    overflow-y: visible;
   }
 
   &__result-item,
@@ -50,7 +50,6 @@
       background: $dmb-color-blue-solitude;
     }
   }
-
 
   &__no-results {
     display: block;
