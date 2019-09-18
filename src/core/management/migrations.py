@@ -28,11 +28,6 @@ INDUSTRY_MAP = {
     'Multichannel Solutions': 'other',
     'Services & Distribution Solutions': 'other',
     '': 'other',
-    'Consumer, Government & Entertainment': 'other',
-    'GCAS - Global': 'other',
-    'Integrated Solutions': 'other',
-    'Multichannel Solutions': 'other',
-    'Services & Distribution Solutions': 'other',
 }
 
 
