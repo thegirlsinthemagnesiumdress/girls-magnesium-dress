@@ -65,8 +65,10 @@ class AddSurveyView(UpdateAPIView):
         if request.user.is_anonymous:
             return self.update(request, *args, **kwargs)
         else:
-            survey = Survey.objects.get(sid=kwargs['sid'])
-            request.user.accounts.add(survey)
+            if kwargs['sid'] not in request.user.accounts_ids:
+                survey = Survey.objects.get(sid=kwargs['sid'])
+                request.user.accounts.add(survey)
+                request.user.save()
             return self.update(request, *args, **kwargs)
 
 

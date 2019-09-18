@@ -277,7 +277,7 @@ class AddSurveyTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create(
             username='test1',
-            email='test@google.com',
+            email='test1@google.com',
             password='pass',
         )
 
@@ -329,9 +329,9 @@ class AddSurveyTest(APITestCase):
         survey = make_survey(tenant='ads')
 
         url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
-        response = self.client.put(url)
+        response_1 = self.client.put(url)
         self.client.put(url)
-        user = response.wsgi_request.user
+        user = response_1.wsgi_request.user
 
         self.assertEqual(user.accounts.count(), 1)
 
