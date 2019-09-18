@@ -406,7 +406,7 @@ class ResultDetail(TestCase):
     @with_appengine_user("test@gmail.com")
     @mock.patch('public.views.get_response_detail', return_value={})
     def test_result_detail_external_page_forbidden(self, mock_get_response):
-        """External result detail page should not be accessible if you aren't a survey admin""""
+        """External result detail page should not be accessible if you aren't a survey admin"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
             url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_external.response_id}) # noqa
