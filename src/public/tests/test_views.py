@@ -313,6 +313,7 @@ class ThankyouPage(TestCase):
 
 @override_settings(
     TENANTS=mocks.MOCKED_TENANTS,
+    INTERNAL_TENANTS=mocks.MOCKED_INTERNAL_TENANTS,
     I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
     NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
     TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
@@ -357,9 +358,9 @@ class ResultDetail(TestCase):
     @mock.patch('public.views.get_response_detail', return_value={})
     def test_result_detail_internal_page(self, mock_get_response):
         """Internal result detail page should always exist, and return 200 if result exists."""
-        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant1')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_internal.response_id}) # noqa
+            url = reverse('result-detail', kwargs={'tenant': 'tenant1-slug', 'response_id': self.survey_result_internal.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
