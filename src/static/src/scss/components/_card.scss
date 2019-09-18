@@ -3,3 +3,30 @@
   border-radius: $dmb-border-radius;
   padding: 24px;
 }
+
+.dmb-list-card {
+  background: #fff;
+  border: 1px solid $dmb-color-grey-zircon;
+  border-radius: $dmb-border-radius-medium;
+  list-style: none;
+  margin: 0;
+  padding: 0 $dmb-spacing-s;
+
+  svg {
+    fill: $dmb-color-grey-shuttle;
+    margin-right: $dmb-spacing-s;
+    position: relative;
+    top: 1px;
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    padding: $dmb-spacing-s 0;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $dmb-color-grey-zircon;
+    }
+
+  }
+}

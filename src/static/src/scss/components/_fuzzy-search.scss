@@ -33,8 +33,8 @@
     border-top: $results-list-border;
     list-style: none;
     margin: 0;
-    max-height: 316px;
-    overflow-y: auto;
+    max-height: 286px;
+    overflow-y: scroll;
   }
 
   &__result-item,
@@ -50,7 +50,6 @@
       background: $dmb-color-blue-solitude;
     }
   }
-
 
   &__no-results {
     display: block;

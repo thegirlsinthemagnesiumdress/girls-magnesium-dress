@@ -1,7 +1,7 @@
 .dmb-button {
   align-items: center;
+  border: 1px solid $dmb-color-grey-zircon;
   border-radius: $dmb-border-radius-medium;
-  color: $dmb-color-blue-royal;
   display: inline-flex;
   font-family: $dmb-alt-font-family;
   font-size: 14px;
@@ -9,28 +9,53 @@
   margin: 0;
   padding: 10px 16px;
 
+  &:hover {
+    background: rgba($dmb-color-blue-cornflower, $dmb-hover-opacity);
+  }
+
   &,
   &:visited {
     color: $dmb-color-blue-royal;
   }
 
-  &:hover {
-    background: rgba($dmb-color-blue-cornflower, $dmb-hover-opacity);
+  & + & {
+    margin-left: $dmb-spacing-xs;
   }
 
   svg {
     display: block;
-    fill: currentColor;
+    fill: currentColor !important;
     height: 18px;
     margin: -.2em $dmb-spacing-xs 0 0;
   }
 
+  &--primary {
+    background: $dmb-interactive-color;
+    color: #fff;
+
+    &:hover {
+      background: $dmb-color-blue-egyptian;
+    }
+  }
+
   &--secondary {
     background: $dmb-color-blue-alice;
-    color: $dmb-color-blue-denim !important;
+    border: 1px solid $dmb-color-blue-alice;
+    color: $dmb-color-blue-denim;
 
     &:hover {
       background: $dmb-color-blue-lavender;
     }
+  }
+
+  &--flat {
+    border: 1px solid transparent;
+  }
+
+  &[disabled] {
+    background: $dmb-color-blue-solitude;
+    border: 1px solid $dmb-color-blue-solitude;
+    color: $dmb-color-grey-chateau;
+    cursor: default;
   }
 }

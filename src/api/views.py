@@ -67,6 +67,7 @@ class AddSurveyView(UpdateAPIView):
         else:
             survey = Survey.objects.get(sid=kwargs['sid'])
             request.user.accounts.add(survey)
+            request.user.save()
             return self.update(request, *args, **kwargs)
 
 
