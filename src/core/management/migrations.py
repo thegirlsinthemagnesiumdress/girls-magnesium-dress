@@ -31,6 +31,11 @@ INDUSTRY_MAP = {
     'Multichannel Solutions': 'other',
     'Services & Distribution Solutions': 'other',
     '': 'other',
+    'Consumer, Government & Entertainment': 'other',
+    'GCAS - Global': 'other',
+    'Integrated Solutions': 'other',
+    'Multichannel Solutions': 'other',
+    'Services & Distribution Solutions': 'other',
 }
 
 
@@ -80,55 +85,72 @@ def drop_search_index():
 
 
 def import_dmb_lite():
-    csvfile = open(CSV_PATH, 'r')
-    reader = csv.reader(csvfile, delimiter=",")
+    csv_file = join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
+    with open(csv_file, 'rb') as csvfile:
+        reader = csv.DictReader(csvfile)
 
-    for i, row in enumerate(reader):
-        if i > 3:
+        # exclude the next 3 lines as part of "headers"
+        reader.next()
+        reader.next()
+        reader.next()
 
-            ldap = row[8]
-            company_name = row[2]
-            country = row[9]
-            industry = INDUSTRY_MAP[row[10]]
-            user = create_user_(ldap)
-            tenant = "ads"
-            account_id = row[3] if row[3] != 'undefined' else row[4]
-            user = create_user_(ldap)
-            date = make_aware(datetime.strptime(row[1], '%d/%m/%Y %H:%M:%S'), pytz.timezone('US/Mountain'))
+        tenant = "ads"
 
-            existing_accounts = Survey.objects.filter(
-                company_name=company_name,
-                account_id=account_id,
-                country=country,
-                industry=industry
-            )
+        for row in reader:
 
-            # if it doesn't yet exists
-            if existing_accounts.count() == 0:
-                s = Survey(
+            try:
+                company_name = row['parent']
+                country = row['country']
+                industry = INDUSTRY_MAP[row['sector']]
+                user = create_user_(row['ldap'])
+                account_id = None
+
+                if row['greentea_fix'] and row['greentea_fix'] != 'undefined':
+                    account_id = row['greentea_fix']
+                elif row['greentea']:
+                    account_id = row['greentea']
+                else:
+                    logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
+
+                date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('US/Mountain'))
+
+                existing_accounts = Survey.objects.filter(
                     company_name=company_name,
-                    industry=industry,
-                    country=country,
-                    tenant=tenant,
                     account_id=account_id,
-                    creator=user,
-                    imported_from_dmb_lite=True,
+                    country=country,
+                    industry=industry
                 )
-                s.save()
-            # if it exists
-            else:
-                s = existing_accounts[0]
 
-            # if row to be imported is older than the survey creation time
-            if date < s.created_at:
-                s.created_at = date
-                s.creator = user
-                s.save()
+                # if it doesn't yet exists
+                if existing_accounts.count() == 0:
+                    logging.info("Creating company name: {} greentea id: {}  creator: {}".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))
+                    s = Survey(
+                        company_name=company_name,
+                        industry=industry,
+                        country=country,
+                        tenant=tenant,
+                        account_id=account_id,
+                        creator=user,
+                        created_at=date,
+                        imported_from_dmb_lite=True,
+                    )
+                    s.save()
+                # if it exists
+                else:
+                    logging.info("An Account already exists, updating the creator")
+                    s = existing_accounts[0]
 
-            if not user.accounts.filter(pk=s.pk).exists():
-                user.accounts.add(s)
-                user.save()
+                # if row to be imported is older than the survey creation time
+                if date < s.created_at:
+                    s.created_at = date
+                    s.creator = user
+                    s.save()
 
+                if s.pk not in user.accounts_ids:
+                    user.accounts.add(s)
+                    user.save()
+            except Exception:
+                logging.info("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))
 
 def create_user_(ldap):
     email = '{}@google.com'.format(ldap.lower())

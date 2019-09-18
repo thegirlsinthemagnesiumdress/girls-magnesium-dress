@@ -600,4 +600,3 @@ def export_tenant_data(
     except Exception as e:
         logging.error(e, exc_info=True)
         raise PermanentTaskFailure
-
