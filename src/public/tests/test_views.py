@@ -310,6 +310,7 @@ class ThankyouPage(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
+
 @override_settings(
     TENANTS=mocks.MOCKED_TENANTS,
     I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
@@ -358,7 +359,7 @@ class ResultDetail(TestCase):
         """Internal result detail page should always exist, and return 200 if result exists."""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_internal.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
@@ -368,7 +369,7 @@ class ResultDetail(TestCase):
         """Internal result detail page should not be accessible if you aren't a survey admin"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_internal.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 403)
 
@@ -378,7 +379,7 @@ class ResultDetail(TestCase):
         """Internal result detail page should redirect if you're not logged in"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_internal.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 302)
 
@@ -388,7 +389,7 @@ class ResultDetail(TestCase):
         """Internal result detail page should not be accessible by a user that didn't completed it """
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_internal.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 403)
 
@@ -398,7 +399,7 @@ class ResultDetail(TestCase):
         """External result detail page should always exist, and return 200 if result exists."""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_external.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
@@ -408,7 +409,7 @@ class ResultDetail(TestCase):
         """External result detail page should not be accessible if you aren't a survey admin""""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_external.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 403)
 
@@ -418,7 +419,7 @@ class ResultDetail(TestCase):
         """External result detail page should redirect if you're not logged in"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id': self.survey_result_external.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 302)
 
@@ -428,7 +429,7 @@ class ResultDetail(TestCase):
         """External result detail page should always exist, and return 200 if result exists"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id}) # noqa
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
