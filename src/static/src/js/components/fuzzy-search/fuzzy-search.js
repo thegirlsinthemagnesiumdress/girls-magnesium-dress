@@ -8,7 +8,7 @@ export const DATA_ATTRS = {
   SID: 'data-sid',
 };
 
-export const ELEM_CONSTS = {
+export const FUZZY_CONSTS = {
   INPUT: {
     CLASS: 'dmb-fuzzy-search__input',
     ATTR: 'dmb-fuzzy-search-input',
@@ -59,11 +59,11 @@ export default class FuzzySearch {
     this.selectedResultIndex = null;
 
     // Get DOM elements
-    this.searchInputEl = elem.querySelector(`[${ELEM_CONSTS.INPUT.ATTR}]`);
-    this.resultsEl = elem.querySelector(`[${ELEM_CONSTS.RESULTS.ATTR}]`);
-    this.resultsCountEl = this.resultsEl.querySelector(`[${ELEM_CONSTS.RESULTS_COUNT.ATTR}]`);
-    this.resultsListEl = this.resultsEl.querySelector(`[${ELEM_CONSTS.RESULTS_LIST.ATTR}]`);
-    this.serverErrorEl = elem.querySelector(`[${ELEM_CONSTS.ERROR.ATTR}]`);
+    this.searchInputEl = elem.querySelector(`[${FUZZY_CONSTS.INPUT.ATTR}]`);
+    this.resultsEl = elem.querySelector(`[${FUZZY_CONSTS.RESULTS.ATTR}]`);
+    this.resultsCountEl = this.resultsEl.querySelector(`[${FUZZY_CONSTS.RESULTS_COUNT.ATTR}]`);
+    this.resultsListEl = this.resultsEl.querySelector(`[${FUZZY_CONSTS.RESULTS_LIST.ATTR}]`);
+    this.serverErrorEl = elem.querySelector(`[${FUZZY_CONSTS.ERROR.ATTR}]`);
 
     // Get search API endpoint
     this.apiEndpoint = elem.getAttribute(DATA_ATTRS.API_ENDPOINT);
@@ -111,7 +111,7 @@ export default class FuzzySearch {
       return;
     }
 
-    const selectedResultItemEl = e.target.closest(`[${ELEM_CONSTS.RESULT_ITEM.ATTR}]`);
+    const selectedResultItemEl = e.target.closest(`[${FUZZY_CONSTS.RESULT_ITEM.ATTR}]`);
 
     if (selectedResultItemEl) {
       const index = [...selectedResultItemEl.parentElement.children].indexOf(selectedResultItemEl);
@@ -257,33 +257,35 @@ export default class FuzzySearch {
       // Create temporary element to store results list item elements
       const tempEl = this._createEl(
         'ul',
-        ELEM_CONSTS.RESULTS_LIST.CLASS
+        FUZZY_CONSTS.RESULTS_LIST.CLASS
       );
 
-      tempEl.setAttribute(ELEM_CONSTS.RESULTS_LIST.ATTR, '');
+      tempEl.setAttribute(FUZZY_CONSTS.RESULTS_LIST.ATTR, '');
 
       this.results.forEach((result, index) => {
         const resultItemEl = this._createEl(
           'li',
-          ELEM_CONSTS.RESULT_ITEM.CLASS
+          FUZZY_CONSTS.RESULT_ITEM.CLASS
         );
 
         const companyNameEl = this._createEl(
           'div',
-          ELEM_CONSTS.RESULT_ITEM_HEADING.CLASS,
+          FUZZY_CONSTS.RESULT_ITEM_HEADING.CLASS,
           `${result['company_name']}`
         );
 
         const accountIdEl = this._createEl(
           'div',
-          `${ELEM_CONSTS.RESULT_ITEM_SUBHEADING.CLASS} dmb-u-small-text dmb-u-text-muted`,
+          `${FUZZY_CONSTS.RESULT_ITEM_SUBHEADING.CLASS} dmb-u-small-text dmb-u-text-muted`,
           `
             ${result['account_id'] ? result['account_id'] : '\u200B'}
+            ${result['account_id'] ? '\u2022' : '\u200B'}
+            ${result['country_name']}
           `
         );
 
-        resultItemEl.setAttribute(ELEM_CONSTS.RESULT_ITEM.ATTR, '');
-        resultItemEl.setAttribute(ELEM_CONSTS.RESULT_ITEM.ATTR, '');
+        resultItemEl.setAttribute(FUZZY_CONSTS.RESULT_ITEM.ATTR, '');
+        resultItemEl.setAttribute(FUZZY_CONSTS.RESULT_ITEM.ATTR, '');
         resultItemEl.setAttribute('role', 'option');
 
         resultItemEl.setAttribute(DATA_ATTRS.RESULT, JSON.stringify(result));
@@ -321,7 +323,7 @@ export default class FuzzySearch {
    * @param {number} selectedResultIndex
    */
   selectHandler(selectedResultIndex) {
-    const event = new Event('selectResult', this.results[selectedResultIndex]);
+    const event = new CustomEvent('selectResult', {detail: this.results[selectedResultIndex]});
     window.dispatchEvent(event);
   }
 
