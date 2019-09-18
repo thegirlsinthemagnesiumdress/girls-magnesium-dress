@@ -152,6 +152,7 @@ def import_dmb_lite(filename):
         logging.info("Imported {} surveys".format(added))
         logging.info("Updated {} surveys".format(updated))
 
+
 def create_user_(ldap):
     email = '{}@google.com'.format(ldap.lower())
     user, _ = User.objects.get_or_create(email_lower=email, defaults={"email": email})
