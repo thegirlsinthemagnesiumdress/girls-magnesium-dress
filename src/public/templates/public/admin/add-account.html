@@ -28,7 +28,40 @@
   </div>
 
   <div class="h-c-grid">
-    <div class="h-c-grid__col h-c-grid__col--6">
+    <div class="h-c-grid__col h-c-grid__col--5 h-c-grid__col-m--order-1">
+      <div class="dmb-add-account__view dmb-add-account__view--account-lookup">
+        <div class="dmb-note dmb-note--instructions dmb-u-m-b-s">
+          <div class="dmb-note__icon-wrapper">
+            {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
+          </div>
+          <div class="dmb-note__text-wrapper">
+            <p>
+              If you’ve assessed a client in the past with DMB or DMB Lite, you can look up the account here and add it to your list.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="dmb-add-account__view dmb-add-account__view--account-creation">
+        <div class="dmb-note dmb-note--instructions dmb-u-m-b-s">
+          <div class="dmb-note__icon-wrapper">
+            {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
+          </div>
+          <div class="dmb-note__text-wrapper">
+            <p>
+              Accounts are shared across Google.
+            </p>
+            <p>
+              Once created, other Googlers will be able to add this account to their dashboard and view the maturity results.
+            </p>
+            <p>
+              The detailed responses given for internal assessments are not shared.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-c-grid__col h-c-grid__col--6 h-c-grid__col-m--order-1">
       <div class="dmb-form dmb-form--admin dmb-u-text-semi-muted">
 
         <div class="dmb-form__inputs-wrapper dmb-u-m-b-xs">
@@ -353,39 +386,6 @@
           </a>
         </div>
 
-      </div>
-    </div>
-
-    <div class="h-c-grid__col h-c-grid__col--5">
-      <div class="dmb-add-account__view dmb-add-account__view--account-lookup">
-        <div class="dmb-note dmb-note--instructions">
-          <div class="dmb-note__icon-wrapper">
-            {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
-          </div>
-          <div class="dmb-note__text-wrapper">
-            <p>
-              If you’ve assessed a client in the past with DMB or DMB Lite, you can look up the account here and add it to your list.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="dmb-add-account__view dmb-add-account__view--account-creation">
-        <div class="dmb-note dmb-note--instructions">
-          <div class="dmb-note__icon-wrapper">
-            {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
-          </div>
-          <div class="dmb-note__text-wrapper">
-            <p>
-              Accounts are shared across Google.
-            </p>
-            <p>
-              Once created, other Googlers will be able to add this account to their dashboard and view the maturity results.
-            </p>
-            <p>
-              The detailed responses given for internal assessments are not shared.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
 
