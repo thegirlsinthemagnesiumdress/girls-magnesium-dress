@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from django.test import override_settings
 
-from core.test import with_appengine_admin, with_appengine_user, get_bootstrap_data
+from core.test import with_appengine_admin, with_appengine_user, get_bootstrap_data, with_appengine_anon
 from core.tests.mommy_recepies import make_survey, make_survey_result, make_survey_with_result
 from core.tests import mocks
 from django.conf import settings
@@ -12,6 +12,7 @@ from core.test import reload_urlconf, TempTemplateFolder, angular_context_to_obj
 import json
 import mock
 from core import tasks
+from core.tests.mommy_recepies import make_user, make_survey_definition
 
 
 @override_settings(
@@ -308,6 +309,75 @@ class ThankyouPage(TestCase):
         url = reverse('thank-you', kwargs={'tenant': 'tenant2-slug'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
+@override_settings(
+    TENANTS=mocks.MOCKED_TENANTS,
+    I18N_TENANTS=mocks.MOCKED_I18N_TENANTS,
+    NOT_I18N_TENANTS=mocks.MOCKED_NOT_I18N_TENANTS,
+    TENANTS_SLUG_TO_KEY=mocks.MOCKED_TENANTS_SLUG_TO_KEY,
+)
+class ResultDetail(TestCase):
+    """Tests for `thankyou` view."""
+
+    def setUp(self):
+        reload_urlconf()
+        self.user = make_user(email='test@google.com')
+        self.tenant_slug = 'tenant1-slug'
+        self.survey_1 = make_survey()
+        self.survey_2 = make_survey()
+        definition = make_survey_definition()
+
+        self.survey_result = make_survey_result(
+            survey=self.survey_1,
+            response_id='AAA',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            raw='{}',
+            survey_definition=definition,
+            completed_by=self.user,
+        )
+        self.survey_1.last_survey_result = self.survey_result
+        self.survey_1.save()
+
+    @with_appengine_user("test@google.com")
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_page(self, mock_get_response):
+        """Result detail page should always exist, and return 200 if result exists."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+
+    @with_appengine_user("test@gmail.com")
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_page_forbidden(self, mock_get_response):
+        """Result detail page should always exist, and return 200 if result exists."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 403)
+
+    @with_appengine_anon
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_page_forbidden_anon(self, mock_get_response):
+        """Result detail page should always exist, and return 200 if result exists."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 302)
+
+    @with_appengine_user("test1@google.com")
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_page_forbidden_not_completed_by(self, mock_get_response):
+        """Result detail page should always exist, and return 200 if result exists."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 403)
 
 
 @override_settings(
