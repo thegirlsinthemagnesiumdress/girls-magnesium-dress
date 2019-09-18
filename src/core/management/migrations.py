@@ -4,13 +4,10 @@ from core.models import Survey, SurveyResult, User
 import logging
 
 import unicodecsv as csv
-from os.path import join
 from datetime import datetime
 from django.utils.timezone import make_aware
 import pytz
 
-
-CSV_PATH = join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
 
 INDUSTRY_MAP = {
     'Automotive': 'ma-v',
@@ -84,9 +81,8 @@ def drop_search_index():
         index.delete_schema()
 
 
-def import_dmb_lite():
-    csv_file = join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
-    with open(csv_file, 'rb') as csvfile:
+def import_dmb_lite(filename):
+    with open(filename, 'rb') as csvfile:
         reader = csv.DictReader(csvfile)
 
         # exclude the next 3 lines as part of "headers"

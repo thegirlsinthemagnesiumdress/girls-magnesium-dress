@@ -19,7 +19,8 @@ class TestDMBLiteImport(TestCase):
 
     def setUp(self):
         make_user(email='bbelcastro@google.com')
-        import_dmb_lite()
+        self.filename = join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
+        import_dmb_lite(self.filename)
 
     def test_it_creates_users(self):
         users = set([
@@ -71,13 +72,13 @@ class TestDMBLiteImport(TestCase):
             u'agatap@google.com',
             u'bbelcastro@google.com',
         ])
-        import_dmb_lite()
+        import_dmb_lite(self.filename)
         self.assertEqual(User.objects.all().count(), 4)
         saved_users = set([u.email for u in User.objects.all()])
         self.assertEqual(saved_users, users)
 
     def test_it_creates_accounts_not_again(self):
-        import_dmb_lite()
+        import_dmb_lite(self.filename)
         accounts = set([
             u'Bell',
             u'Bell',
@@ -91,7 +92,7 @@ class TestDMBLiteImport(TestCase):
         self.assertEqual(saved_accounts, accounts)
 
     def test_it_adds_survey_to_user_not_again(self):
-        import_dmb_lite()
+        import_dmb_lite(self.filename)
         user = User.objects.filter(email="pchillari@google.com")[0]
         self.assertEqual(user.accounts.count(), 2)
 
