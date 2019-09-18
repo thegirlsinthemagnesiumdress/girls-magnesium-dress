@@ -2,7 +2,7 @@ import logging
 import os
 import pytz
 
-from core.models import Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
+from core.models import User, Survey, SurveyResult, SurveyDefinition, IndustryBenchmark
 from core.qualtrics import benchmark, download, exceptions, question
 from django.conf import settings
 
@@ -229,7 +229,15 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
         logging.warning('Found unfinshed survey {}: SKIP'.format(response_data.get('sid')))
         return
 
+    email = response_data[tenant.get('EMAIL_TO')]
+    user = None
     response_id = response_data['ResponseID']
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        logging.warning('Result with id {} for company with sid:{} has been completed by not-existing User with email {}'.format(response_id, response_data.get('sid'), email)) # noqa
+
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
@@ -245,6 +253,7 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
                 response_id=response_id,
                 started_at=make_aware(parse_datetime(response_data.get('StartDate')), pytz.timezone('US/Mountain')),
                 excluded_from_best_practice=excluded_from_best_practice,
+                completed_by=user,
                 dmb=dmb,
                 dmb_d=dmb_d,
                 raw=raw_data,
@@ -512,10 +521,11 @@ def get_survey_data(survey, survey_columns, dateformat):
     return survey_data
 
 
-def _get_exportable_surveys(tenant, is_super_admin, engagement_lead):
+def _get_exportable_surveys(tenant, is_super_admin, user_email):
     data = Survey.objects.filter(tenant=tenant)
     if not is_super_admin:
-        data = data.filter(engagement_lead=engagement_lead)
+        user = User.objects.filter(email=user_email).first()
+        data = user.accounts.filter(tenant=tenant)
     return data
 
 
@@ -530,9 +540,8 @@ def export_tenant_data(
         dateformat="%Y/%m/%d %H:%M:%S"
 ):
     """Export tenant data to Google Spreadsheet."""
-
     try:
-        data = _get_exportable_surveys(tenant, is_super_admin, engagement_lead)
+        data = _get_exportable_surveys(tenant, is_super_admin, share_with)
 
         export_data = []
         survey_columns = sorted(survey_fields.keys())
