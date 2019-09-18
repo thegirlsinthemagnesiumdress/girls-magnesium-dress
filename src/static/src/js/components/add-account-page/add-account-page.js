@@ -126,15 +126,19 @@ export default class AddAccountPage {
     }
 
     const account = e.detail;
-    const ldap = account['creator']['ldap'];
 
-    this.accountDetailsEl.setAttribute(DATA_ATTRS.SID, account.sid);
+    const ldap = account['creator'] ? account['creator']['ldap'] : 'Not referred by a googler';
+
+    this.accountDetailsEl.setAttribute(DATA_ATTRS.SID, account['sid']);
     this.accountNameEl.textContent = account['company_name'];
     this.accountIdEl.textContent = account['account_id'];
     this.accountIndustryEl.textContent = account['industry_name'];
     this.accountCountryEl.textContent = account['country_name'];
 
-    domSafe.setAnchorHref(this.accountCreatorLinkEl, `${creatorBaseUrl}/${ldap}`);
+    if (account['creator']) {  
+      domSafe.setAnchorHref(this.accountCreatorLinkEl, `${creatorBaseUrl}/${ldap}`);
+    }
+
     this.accountCreatorTextEl.textContent = ldap;
 
     this.changeView(VIEWS.DETAILS);
