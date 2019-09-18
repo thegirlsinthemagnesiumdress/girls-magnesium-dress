@@ -9,6 +9,11 @@
     <span class="dmb-list-card__date dmb-u-text-muted">
       {{ result.date|date:"F j" }}
     </span>
+    <a class="dmb-chip" dmb-account-user="" href="//moma.corp.google.com/person/{{ user.ldap }}">
+      <span class="dmb-chip__text h-u-font-weight-medium dmb-u-text-muted">
+        {{ user.ldap }}
+      </span>
+    </a>
   </div>
 
   <div class="dmb-list-card__header-right">
