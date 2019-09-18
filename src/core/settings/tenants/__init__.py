@@ -56,6 +56,7 @@ ALL_TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': advertisers_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Digital Maturity Benchmark",
+        'EMAIL_TEMPLATE_FOLDER': 'public/{}/email'.format(ADS),
         'enabled': True,
     },
     NEWS: {
@@ -82,6 +83,7 @@ ALL_TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': news_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Data Maturity Benchmark",
+        'EMAIL_TEMPLATE_FOLDER': 'public/{}/email'.format(NEWS),
         'enabled': True,
     },
     RETAIL: {
@@ -108,6 +110,7 @@ ALL_TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': retail_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Data Maturity Benchmark",
+        'EMAIL_TEMPLATE_FOLDER': 'public/{}/email'.format(RETAIL),
         'enabled': True,
     },
     CLOUD: {
@@ -131,6 +134,7 @@ ALL_TENANTS = {
         'GOOGLE_SHEET_EXPORT_SURVEY_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_SURVEY_FIELDS,
         'GOOGLE_SHEET_EXPORT_RESULT_FIELDS': cloud_conf.GOOGLE_SHEET_EXPORT_RESULT_FIELDS,
         'PRODUCT_NAME': "Cloud Maturity Assessment",
+        'EMAIL_TEMPLATE_FOLDER': 'public/{}/email'.format(CLOUD),
         'enabled': True,
     },
 }
