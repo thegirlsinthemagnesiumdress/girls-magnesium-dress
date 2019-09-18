@@ -233,7 +233,6 @@ def account_detail(request, tenant, sid):
     return render(request, 'public/admin/account-details.html', {
         'tenant': tenant,
         'slug': utils.get_tenant_slug(tenant),
-        'user': request.user,
         'account': account_info,
         'external_results': external_surveys,
         'internal_results': internal_surveys,

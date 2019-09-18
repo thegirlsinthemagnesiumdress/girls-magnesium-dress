@@ -31,6 +31,10 @@
 
   &__header-left {
     flex-grow: 1;
+
+    .dmb-chip {
+      margin-left: $dmb-spacing-xs;
+    }
   }
 
   &__title-heading {
