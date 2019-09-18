@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from angular.shortcuts import render
 
@@ -246,6 +247,9 @@ def account_detail(request, tenant, sid):
 @survey_admin_required
 def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
+
+    if survey_result.internal_survey and survey_result.completed_by != request.user:
+        raise PermissionDenied
 
     result_detail = get_response_detail(
         survey_result.survey_definition.content,
