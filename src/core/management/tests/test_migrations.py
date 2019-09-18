@@ -2,7 +2,6 @@
 
 from core.management.migrations import import_dmb_lite, INDUSTRY_MAP
 from djangae.test import TestCase
-import mock
 from django.conf import settings
 from os.path import join
 from core.tests.mommy_recepies import make_user
@@ -11,10 +10,6 @@ from core.tests.mommy_recepies import make_user
 from core.models import User, Survey
 
 
-@mock.patch(
-    'core.management.migrations.CSV_PATH',
-    join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
-)
 class TestDMBLiteImport(TestCase):
 
     def setUp(self):
