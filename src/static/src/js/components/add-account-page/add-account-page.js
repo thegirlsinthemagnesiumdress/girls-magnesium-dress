@@ -134,7 +134,7 @@ export default class AddAccountPage {
     this.accountIndustryEl.textContent = account['industry_name'];
     this.accountCountryEl.textContent = account['country_name'];
 
-    this.accountCreatorLinkEl.href = `${creatorBaseUrl}/${ldap}`;
+    domSafe.setAnchorHref(this.accountCreatorLinkEl, `${creatorBaseUrl}/${ldap}`);
     this.accountCreatorTextEl.textContent = ldap;
 
     this.changeView(VIEWS.DETAILS);
