@@ -2,8 +2,11 @@
   background: $dmb-color-yellow-forget-me-not;
   border-radius: $dmb-border-radius-large;
   display: flex;
-  font-size: 14px;
   padding: 24px;
+
+  &, p {
+    font-size: 14px;
+  }
 
   &__icon-wrapper {
     margin-right: 16px;

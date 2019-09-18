@@ -35,6 +35,9 @@
   </div>
 </div>
 
+
+{% include 'public/admin/inc/account-details-card-list.inc.html' with results=results %}
+
 {% if list_name == 'internal' %}
   <div class="dmb-note dmb-u-m-t-xs dmb-u-text-semi-muted">
     <div class="dmb-note__icon-wrapper">
@@ -52,5 +55,3 @@
     </div>
   </div>
 {% endif %}
-
-{% include 'public/admin/inc/account-details-card-list.inc.html' with results=results %}
