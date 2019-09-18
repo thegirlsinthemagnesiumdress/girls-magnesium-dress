@@ -30,6 +30,7 @@ import tabState from './components/tab-state/tab-state';
 // Vanilla JS DMB Components
 import {csrfToken} from './components/csrf/csrf';
 import {bootstrapData} from './components/bootstrap/bootstrap-data';
+import AddAccountPage from './components/add-account-page/add-account-page';
 import AccountsList from './components/accounts-list/accounts-list';
 import Clippy from './components/clippy/clippy';
 import ExportReports from './components/export/export-reports';
@@ -81,6 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('[data-glue-pagination]').forEach(tabState);
 
 document.querySelectorAll('[dmb-accounts-list]').forEach(AccountsList.attachTo);
+document.querySelectorAll('[dmb-add-account]').forEach(AddAccountPage.attachTo);
 document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
 document.querySelectorAll('[dmb-export-reports]').forEach(ExportReports.attachTo);
 document.querySelectorAll('[dmb-fuzzy-search]').forEach(FuzzySearch.attachTo);
