@@ -38,7 +38,7 @@
               Account lookup
             </h2>
             <p class="dmb-u-m-b-s">
-              Enter the client name or Greentea ID to lookup existing accounts
+              Enter the client name or Connect Sales ID (division) to lookup existing accounts
             </p>
 
             <div
@@ -53,7 +53,7 @@
                   class="dmb-fuzzy-search__input dmb-form__input"
                   dmb-fuzzy-search-input
                   id="dmb-account-lookup-input"
-                  placeholder="Enter the client name or Greentea ID"
+                  placeholder="Enter the client name or Connect Sales ID (division)"
                   type="text">
               <div
                   class="dmb-fuzzy-search__results dmb-u-text-semi-muted"
@@ -110,13 +110,13 @@
                 </h2>
               </li>
               <li
-                  aria-label="Greentea ID"
+                  aria-label="Connect Sales ID (division)"
                   class="dmb-list-card__item dmb-list-card__item--account-id">
                 <div class="dmb-tooltip dmb-tooltip--inline">
                   {% include 'core/inc/svg.html' with id='greentea' size='24px' only %}
 
                   <div class="dmb-tooltip__text">
-                    Greentea ID
+                    Connect Sales ID (division)
                   </div>
                 </div>
                 <span dmb-account-id></span>
@@ -241,7 +241,7 @@
 
               <div class="dmb-form__input-wrapper">
                 <label for="accountId">
-                  Greentea Division ID &#8226;
+                  Connect Sales ID (division) &#8226;
                   <a
                       class="h-c-inline-link h-u-font-weight-medium"
                       href="http://go/dmb-divisionid"
@@ -254,7 +254,7 @@
                     id="accountId"
                     name="accountId"
                     ng-model="registrationCtrl.accountId"
-                    placeholder="Enter Greentea ID (division)"
+                    placeholder="Connect Sales ID (division)"
                     required
                     type="text">
               </div>
