@@ -1,5 +1,4 @@
-import {KEY_CODES} from '../../constants/key-codes';
-import {FUZZY_CONSTS} from '../fuzzy-search/fuzzy-search';
+import {FUZZY_CONSTS, SELECTED_EVENT} from '../fuzzy-search/fuzzy-search';
 import {csrfToken} from '../csrf/csrf';
 
 const domSafe = goog.require('goog.dom.safe');
@@ -51,6 +50,7 @@ const VIEWS = {
   DETAILS: 'account-details',
 };
 
+
 /**
  * Account page component to control the add account user flow
  *
@@ -68,7 +68,6 @@ export default class AddAccountPage {
 
     // Cache elements
     this.searchInputEl = elem.querySelector(`[${FUZZY_CONSTS.INPUT.ATTR}]`);
-    this.searchInputEl.focus();
 
     this.addExistingAccountBtn = document.getElementById(ELEM_CONSTS.ADD_ACCOUNT_BTN.ID);
 
@@ -85,23 +84,18 @@ export default class AddAccountPage {
     this.serverErrorEl = elem.querySelector(`[${ELEM_CONSTS.ADD_ACCOUNT_ERROR.ATTR}]`);
 
     // `this` bindings
-    // mstrutt: NOT SURE IF THESE ARE NEEDED
     this.changeView = this.changeView.bind(this);
-    this.changeViewOnEnter = this.changeViewOnEnter.bind(this);
     this.populateAccountDetails = this.populateAccountDetails.bind(this);
     this.addExistingAccount = this.addExistingAccount.bind(this);
-    this.addExistingAccountOnEnter = this.addExistingAccountOnEnter.bind(this);
 
     // Attach event handlers
     this.viewLinks.forEach((elem) => {
       const view = elem.getAttribute(DATA_ATTRS.VIEW_LINK);
       elem.addEventListener('click', () => this.changeView(view));
-      elem.addEventListener('keyup', (e) => this.changeViewOnEnter(e, view));
     });
 
-    window.addEventListener('selectResult', this.populateAccountDetails);
+    window.addEventListener(SELECTED_EVENT, this.populateAccountDetails);
     this.addExistingAccountBtn.addEventListener('click', this.addExistingAccount);
-    this.addExistingAccountBtn.addEventListener('keyup', this.addExistingAccountOnEnter);
   }
 
   /**
@@ -135,7 +129,7 @@ export default class AddAccountPage {
     this.accountIndustryEl.textContent = account['industry_name'];
     this.accountCountryEl.textContent = account['country_name'];
 
-    if (account['creator']) {  
+    if (account['creator']) {
       domSafe.setAnchorHref(this.accountCreatorLinkEl, `${creatorBaseUrl}/${ldap}`);
     }
 
@@ -144,36 +138,6 @@ export default class AddAccountPage {
     this.changeView(VIEWS.DETAILS);
   }
 
-  // ////////////////////////////////////
-  // MSTRUTT: can we combine these together?
-  /**
-   * Adds exisitng account on Enter key press
-   *
-   * @param {Event} e : Event
-   */
-  addExistingAccountOnEnter(e) {
-    const keyCode = e.keyCode ? e.keyCode : e.which;
-
-    if (keyCode === KEY_CODES.ENTER) {
-      this.addExistingAccount();
-    }
-  }
-
-  /**
-   * Change view when Enter key pressed on view change buttons
-   *
-   * @param {Event} e : Event
-   * @param {string} newView : the new view to change to
-   *
-   */
-  changeViewOnEnter(e, newView) {
-    const keyCode = e.keyCode ? e.keyCode : e.which;
-
-    if (keyCode === KEY_CODES.ENTER) {
-      this.changeView(newView);
-    }
-  }
-  // ////////////////////////////////////
 
   /**
    * Change the view
@@ -185,7 +149,7 @@ export default class AddAccountPage {
     this.elem.setAttribute(DATA_ATTRS.VIEW, newView);
 
     if (newView === VIEWS.LOOKUP) {
-      this.searchInputEl.focus();
+      // this.searchInputEl.focus();
       return;
     }
 
