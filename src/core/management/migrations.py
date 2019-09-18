@@ -86,6 +86,8 @@ def import_dmb_lite(filename):
         reader.next()
 
         tenant = "ads"
+        added = 0
+        updated = 0
 
         for row in reader:
 
@@ -130,6 +132,7 @@ def import_dmb_lite(filename):
                     logging.info("An existing Account has been found")
                     s = existing_accounts[0]
                     s.existed_before_dmb_lite = True
+                    updated += 1
 
                 # if row to be imported is older than the survey creation time
                 if date < s.created_at:
@@ -142,9 +145,12 @@ def import_dmb_lite(filename):
                 if s.pk not in user.accounts_ids:
                     user.accounts.add(s)
                     user.save()
+                added += 1
             except Exception:
                 logging.info("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
 
+        logging.info("Imported {} surveys".format(added))
+        logging.info("Updated {} surveys".format(updated))
 
 def create_user_(ldap):
     email = '{}@google.com'.format(ldap.lower())
