@@ -323,61 +323,114 @@ class ResultDetail(TestCase):
         reload_urlconf()
         self.user = make_user(email='test@google.com')
         self.tenant_slug = 'tenant1-slug'
-        self.survey_1 = make_survey()
-        self.survey_2 = make_survey()
+        self.survey_internal = make_survey()
+        self.survey_external = make_survey()
         definition = make_survey_definition()
 
-        self.survey_result = make_survey_result(
-            survey=self.survey_1,
+        self.survey_result_internal = make_survey_result(
             response_id='AAA',
             dmb=1,
             dmb_d={u"dim1": 0.4, u"dim2": 1.6},
             raw='{}',
             survey_definition=definition,
             completed_by=self.user,
+            internal_survey=self.survey_internal,
         )
-        self.survey_1.last_survey_result = self.survey_result
-        self.survey_1.save()
+
+        self.survey_result_external = make_survey_result(
+            response_id='BBB',
+            dmb=1,
+            dmb_d={u"dim1": 0.4, u"dim2": 1.6},
+            raw='{}',
+            survey_definition=definition,
+            completed_by=self.user,
+            survey=self.survey_internal,
+        )
+
+        self.survey_internal.last_survey_result = self.survey_result_internal
+        self.survey_internal.save()
+        self.survey_external.last_survey_result = self.survey_result_external
+        self.survey_external.save()
 
     @with_appengine_user("test@google.com")
     @mock.patch('public.views.get_response_detail', return_value={})
-    def test_result_detail_page(self, mock_get_response):
-        """Result detail page should always exist, and return 200 if result exists."""
+    def test_result_detail_internal_page(self, mock_get_response):
+        """Internal result detail page should always exist, and return 200 if result exists."""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
     @with_appengine_user("test@gmail.com")
     @mock.patch('public.views.get_response_detail', return_value={})
-    def test_result_detail_page_forbidden(self, mock_get_response):
-        """Result detail page should always exist, and return 200 if result exists."""
+    def test_result_detail_internal_page_forbidden(self, mock_get_response):
+        """Internal result detail page should not be accessible if you aren't a survey admin"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
             response = self.client.get(url)
             self.assertEqual(response.status_code, 403)
 
     @with_appengine_anon
     @mock.patch('public.views.get_response_detail', return_value={})
-    def test_result_detail_page_forbidden_anon(self, mock_get_response):
-        """Result detail page should always exist, and return 200 if result exists."""
+    def test_result_detail_internal_page_forbidden_anon(self, mock_get_response):
+        """Internal result detail page should redirect if you're not logged in"""
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
             response = self.client.get(url)
             self.assertEqual(response.status_code, 302)
 
     @with_appengine_user("test1@google.com")
     @mock.patch('public.views.get_response_detail', return_value={})
-    def test_result_detail_page_forbidden_not_completed_by(self, mock_get_response):
-        """Result detail page should always exist, and return 200 if result exists."""
+    def test_result_detail_internal_page_forbidden_not_completed_by(self, mock_get_response):
+        """Internal result detail page should not be accessible by a user that didn't completed it """
         templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
         with TempTemplateFolder(templates_path, 'result-detail.html'):
-            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result.response_id})
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_internal.response_id})
             response = self.client.get(url)
             self.assertEqual(response.status_code, 403)
+
+    @with_appengine_user("test@google.com")
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_external_page(self, mock_get_response):
+        """External result detail page should always exist, and return 200 if result exists."""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
+
+    @with_appengine_user("test@gmail.com")
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_external_page_forbidden(self, mock_get_response):
+        """External result detail page should not be accessible if you aren't a survey admin""""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 403)
+
+    @with_appengine_anon
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_external_page_forbidden_anon(self, mock_get_response):
+        """External result detail page should redirect if you're not logged in"""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 302)
+
+    @with_appengine_user("test1@google.com")
+    @mock.patch('public.views.get_response_detail', return_value={})
+    def test_result_detail_external_page_forbidden_not_completed_by(self, mock_get_response):
+        """External result detail page should always exist, and return 200 if result exists"""
+        templates_path = os.path.join(settings.BASE_DIR, 'public', 'templates', 'public', 'tenant2')
+        with TempTemplateFolder(templates_path, 'result-detail.html'):
+            url = reverse('result-detail', kwargs={'tenant': 'tenant2-slug', 'response_id':self.survey_result_external.response_id})
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
 
 
 @override_settings(

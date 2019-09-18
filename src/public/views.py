@@ -247,7 +247,7 @@ def account_detail(request, tenant, sid):
 def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
-    if survey_result.completed_by != request.user:
+    if survey_result.internal_survey and survey_result.completed_by != request.user:
         raise PermissionDenied
 
     result_detail = get_response_detail(
