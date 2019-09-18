@@ -45,7 +45,7 @@ def sync_qualtrics():
             internal_survey_definition = _get_definition(internal_tenant['key'], internal_tenant['QUALTRICS_SURVEY_ID'])
 
             if internal_survey_definition:
-                _get_results(internal_tenant, internal_survey_definition, _create_internal_result)
+                _get_results(internal_tenant, internal_survey_definition, _create_internal_result, True)
             else:
                 logging.error('Fetching internal survey definition failed, not fetching results')
 
@@ -83,7 +83,7 @@ def _get_definition(tenant, survey_id):
     return last_survey_definition
 
 
-def _get_results(tenant, survey_definition, get_individual_result_func):
+def _get_results(tenant, survey_definition, get_individual_result_func, internal=False):
     """Download survey results from Qualtrics.
 
     :param tenant: dictionary containing 'QUALTRICS_SURVEY_ID', 'EMAIL_TO', 'EMAIL_BCC' keys
@@ -125,7 +125,8 @@ def _get_results(tenant, survey_definition, get_individual_result_func):
                           if _survey_completed(item.get('Finished')) and item.get('ResponseID') in new_response_ids]
 
             if email_list:
-                send_emails_for_new_reports(email_list)
+                template_folder = tenant.get('EMAIL_TEMPLATE_FOLDER')
+                send_emails_for_new_reports(email_list, template_folder, internal)
     except exceptions.FetchResultException as fe:
         logging.error('Fetching results failed with: {}'.format(fe))
 
@@ -282,7 +283,7 @@ def _response_benchmark(questions, response_data, tenant):
     return benchmark.calculate_response_benchmark(questions, dimensions_weights=dimensions_weights)
 
 
-def send_emails_for_new_reports(email_list):
+def send_emails_for_new_reports(email_list, template_folder, internal=False):
     """Send an email for every element of `email_list`.
 
     :param email_list: tuple of element (to, bcc, sid, Q_Language)
@@ -302,7 +303,11 @@ def send_emails_for_new_reports(email_list):
             if is_valid_email(to):
                 bcc = [bcc] if is_valid_email(bcc) else None
                 slug = get_tenant_slug(tenant)
-                link = _localised_link(q_lang, slug, sid)
+                link = None
+                if internal:
+                    link = reverse('account-detail', kwargs={'tenant': slug, 'sid': sid})
+                else:
+                    link = _localised_link(q_lang, slug, sid)
                 context = {
                     'url': "http://{}{}".format(settings.DOMAIN, link),
                     'company_name': company_name,
@@ -311,7 +316,7 @@ def send_emails_for_new_reports(email_list):
                     'product_name': get_tenant_product_name(tenant)
                 }
 
-                subject, text_message, html_message = render_email_template(tenant, context, q_lang)
+                subject, text_message, html_message = render_email_template(template_folder, context, q_lang)
                 sender = settings.TENANTS[tenant]['CONTACT_EMAIL']
 
                 email_kwargs = {
@@ -351,14 +356,14 @@ def _localised_link(language, slug, sid):
     return link
 
 
-def render_email_template(tenant, context, language):
+def render_email_template(template_folder, context, language):
     cur_language = translation.get_language()
     try:
         translation.activate(language)
 
-        subject_template = get_template("public/{}/email/response_ready_email_subject.txt".format(tenant))
-        html_message_template = get_template("public/{}/email/response_ready_email_body.html".format(tenant))
-        text_message_template = get_template("public/{}/email/response_ready_email_body.txt".format(tenant))
+        subject_template = get_template(os.path.join(template_folder, "response_ready_email_subject.txt"))
+        html_message_template = get_template(os.path.join(template_folder, "response_ready_email_body.html"))
+        text_message_template = get_template(os.path.join(template_folder, "response_ready_email_body.txt"))
 
         subject_lines = [line for line in subject_template.render(context).split("\n") if line]
         try:
