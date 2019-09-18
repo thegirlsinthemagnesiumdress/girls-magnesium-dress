@@ -130,17 +130,19 @@ def import_dmb_lite(filename):
                         created_at=date,
                         imported_from_dmb_lite=True,
                     )
-                    s.save()
                 # if it exists
                 else:
-                    logging.info("An Account already exists, updating the creator")
+                    logging.info("An existing Account has been found")
                     s = existing_accounts[0]
+                    s.existed_before_dmb_lite = True
 
                 # if row to be imported is older than the survey creation time
                 if date < s.created_at:
+                    logging.info("Updating survey with sid: {}".format(s.sid))
                     s.created_at = date
                     s.creator = user
-                    s.save()
+
+                s.save()
 
                 if s.pk not in user.accounts_ids:
                     user.accounts.add(s)
