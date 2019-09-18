@@ -35,7 +35,7 @@ _SERVICE_ACCOUNT_INFO_MESSAGE = (
 
 
 def _configure_service_account():
-    PEM_FILE = os.path.join(PROJECT_DIR, "src", "keys", "secret.pem")
+    PEM_FILE = os.path.join(PROJECT_DIR, "keys", "secret.pem")
     if not os.path.exists(PEM_FILE):
         print(_SERVICE_ACCOUNT_MISSING_CONF_MESSAGE)
         return {}

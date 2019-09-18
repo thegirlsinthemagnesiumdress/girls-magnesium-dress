@@ -229,7 +229,15 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
         logging.warning('Found unfinshed survey {}: SKIP'.format(response_data.get('sid')))
         return
 
+    email = response_data[tenant.get('EMAIL_TO')]
+    user = None
     response_id = response_data['ResponseID']
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        logging.warning('Result with id {} for company with sid:{} has been completed by not-existing User with email {}'.format(response_id, response_data.get('sid'), email)) # noqa
+
     new_survey_result = None
     try:
         with transaction.atomic(xg=True):
@@ -245,6 +253,7 @@ def _create_internal_result(survey_data, last_survey_definition, tenant):
                 response_id=response_id,
                 started_at=make_aware(parse_datetime(response_data.get('StartDate')), pytz.timezone('US/Mountain')),
                 excluded_from_best_practice=excluded_from_best_practice,
+                completed_by=user,
                 dmb=dmb,
                 dmb_d=dmb_d,
                 raw=raw_data,
@@ -520,6 +529,33 @@ def _get_exportable_surveys(tenant, is_super_admin, user_email):
     return data
 
 
+def _get_export_column_data(survey_result, dmb_d, col, dateformat="%Y/%m/%d %H:%M:%S"):
+    # Check if the col is a dimension in dmb_d
+    if col in dmb_d:
+        dim = dmb_d.get(col)
+        # If dimension exists but is None then append empty string
+        if dim is None:
+            return ''
+        else:
+            return dmb_d.get(col)
+    elif hasattr(survey_result, col):
+        # Else, check if col is a attribute of SurveyResult
+        attr = getattr(survey_result, col)
+        # If attribute exists but is None then append empty string
+        if attr is None:
+            return ''
+        else:
+            return _format_type(getattr(survey_result, col), dateformat=dateformat)
+    else:
+        # Otherwise, raise an exception to indicate a malformed object
+        raise Exception(
+            'No attribute or dimension {} in SurveyResult {}'.format(
+                col,
+                survey_result.response_id
+            )
+        )
+
+
 def export_tenant_data(
         title,
         tenant,
@@ -552,13 +588,8 @@ def export_tenant_data(
                     if dim_dict:
                         survey_result_data = []
                         for col in survey_result_columns:
-                            dim = dim_dict.get(col, None)
-                            if dim is not None:
-                                survey_result_data.append(dim)
-                            else:
-                                survey_result_data.append(
-                                    _format_type(getattr(survey_result, col), dateformat=dateformat)
-                                )
+                            col_data = _get_export_column_data(survey_result, dim_dict, col, dateformat)
+                            survey_result_data.append(col_data)
             except SurveyResult.DoesNotExist:
                 # In case we have a survey, but has not been completed yet
                 pass
