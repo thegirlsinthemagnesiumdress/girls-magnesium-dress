@@ -35,6 +35,7 @@ import AccountsList from './components/accounts-list/accounts-list';
 import Clippy from './components/clippy/clippy';
 import ExportReports from './components/export/export-reports';
 import FuzzySearch from './components/fuzzy-search/fuzzy-search';
+import LdapLink from './components/ldap-link/ldap-link';
 
 /** @type {!angular.Module} */
 export const module = angular.module('dmb', [
@@ -86,3 +87,4 @@ document.querySelectorAll('[dmb-add-account]').forEach(AddAccountPage.attachTo);
 document.querySelectorAll('[dmb-clippy]').forEach(Clippy.attachTo);
 document.querySelectorAll('[dmb-export-reports]').forEach(ExportReports.attachTo);
 document.querySelectorAll('[dmb-fuzzy-search]').forEach(FuzzySearch.attachTo);
+document.querySelectorAll('[dmb-ldap-link]').forEach(LdapLink.attachTo);

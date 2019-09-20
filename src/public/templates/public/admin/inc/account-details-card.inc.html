@@ -12,7 +12,8 @@
     {% if result.completed_by.ldap %}
     <a
         class="dmb-chip"
-        href="//moma.corp.google.com/person/{{ result.completed_by.ldap }}">
+        href="//moma.corp.google.com/person/{{ result.completed_by.ldap }}"
+        dmb-ldap-link>
       <span class="dmb-chip__text h-u-font-weight-medium dmb-u-text-muted">
         {{ result.completed_by.ldap }}
       </span>
