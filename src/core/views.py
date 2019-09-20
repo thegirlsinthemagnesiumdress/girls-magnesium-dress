@@ -199,7 +199,7 @@ def import_lite_users_and_accounts(request):
     msg = "Migrating users and accounts from csv"
     logging.info(msg)
 
-    filename_emea = os.path.join(settings.BASE_DIR, "core/management/dmb_lite_csv.csv")
+    filename_emea = os.path.join(settings.BASE_DIR, "core/management/dmb_lite_import.csv")
 
     deferred.defer(
         migrations.import_dmb_lite,
