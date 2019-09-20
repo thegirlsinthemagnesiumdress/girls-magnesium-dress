@@ -1,5 +1,5 @@
 from django.conf import settings
-
+from djangae import deferred
 from core.models import Survey, SurveyResult, User
 import logging
 
@@ -85,74 +85,78 @@ def import_dmb_lite(filename):
         reader.next()
         reader.next()
 
-        tenant = "ads"
-        added = 0
-        updated = 0
+        deferred_rows = 0
 
         for row in reader:
+            deferred.defer(
+                _import_row,
+                row,
+                _queue='migrations',
+            )
+            deferred_rows += 1
 
-            try:
-                company_name = row['parent']
-                country = row['country']
-                industry = INDUSTRY_MAP[row['sector']]
-                user = create_user_(row['ldap'])
-                account_id = None
+        logging.info("Deferred {} surveys creation".format(deferred_rows))
 
-                if row['greentea_fix'] and row['greentea_fix'] != 'undefined':
-                    account_id = row['greentea_fix']
-                elif row['greentea']:
-                    account_id = row['greentea']
-                else:
-                    logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
 
-                date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('GMT'))  # noqa
+def _import_row(row):
+    tenant = "ads"
+    try:
+        company_name = row['parent']
+        country = row['country']
+        industry = INDUSTRY_MAP[row['sector']]
+        user = create_user_(row['ldap'])
+        account_id = None
 
-                existing_accounts = Survey.objects.filter(
-                    company_name=company_name,
-                    account_id=account_id,
-                    country=country,
-                    industry=industry
-                )
+        if row['greentea_fix'] and row['greentea_fix'] != 'undefined':
+            account_id = row['greentea_fix']
+        elif row['greentea']:
+            account_id = row['greentea']
+        else:
+            logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
 
-                # if it doesn't yet exists
-                if existing_accounts.count() == 0:
-                    logging.info(
-                        "Creating company name: {} greentea id: {} country: {} industry: {} creator: {}".format(
-                            company_name.encode('utf-8'), row['greentea'], country, industry, row['ldap']))
-                    s = Survey(
-                        company_name=company_name,
-                        industry=industry,
-                        country=country,
-                        tenant=tenant,
-                        account_id=account_id,
-                        creator=user,
-                        created_at=date,
-                        imported_from_dmb_lite=True,
-                    )
-                # if it exists
-                else:
-                    logging.info("An existing Account has been found")
-                    s = existing_accounts[0]
-                    s.existed_before_dmb_lite = True
-                    updated += 1
+        date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('GMT'))  # noqa
 
-                # if row to be imported is older than the survey creation time
-                if date < s.created_at:
-                    logging.info("Updating survey with sid: {}".format(s.sid))
-                    s.created_at = date
-                    s.creator = user
+        existing_accounts = Survey.objects.filter(
+            company_name=company_name,
+            account_id=account_id,
+            country=country,
+            industry=industry
+        )
 
-                s.save()
+        # if it doesn't yet exists
+        if existing_accounts.count() == 0:
+            logging.info(
+                "Creating company name: {} greentea id: {} country: {} industry: {} creator: {}".format(
+                    company_name.encode('utf-8'), row['greentea'], country, industry, row['ldap']))
+            s = Survey(
+                company_name=company_name,
+                industry=industry,
+                country=country,
+                tenant=tenant,
+                account_id=account_id,
+                creator=user,
+                created_at=date,
+                imported_from_dmb_lite=True,
+            )
+        # if it exists
+        else:
+            logging.info("An existing Account has been found")
+            s = existing_accounts[0]
+            s.existed_before_dmb_lite = True
 
-                if s.pk not in user.accounts_ids:
-                    user.accounts.add(s)
-                    user.save()
-                added += 1
-            except Exception:
-                logging.info("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
+        # if row to be imported is older than the survey creation time
+        if date < s.created_at:
+            logging.info("Updating survey with sid: {}".format(s.sid))
+            s.created_at = date
+            s.creator = user
 
-        logging.info("Imported {} surveys".format(added))
-        logging.info("Updated {} surveys".format(updated))
+        s.save()
+
+        if s.pk not in user.accounts_ids:
+            user.accounts.add(s)
+            user.save()
+    except Exception:
+        logging.error("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
 
 
 def create_user_(ldap):

@@ -16,6 +16,7 @@ class TestDMBLiteImport(TestCase):
         make_user(email='bbelcastro@google.com')
         self.filename = join(settings.BASE_DIR, "core/management/tests/csv_mock_dmblite.csv")
         import_dmb_lite(self.filename)
+        self.process_task_queues()
 
     def test_it_creates_users(self):
         users = set([
