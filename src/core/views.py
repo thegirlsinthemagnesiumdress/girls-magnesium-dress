@@ -9,6 +9,7 @@ from core.management import migrations
 from core.tasks import sync_qualtrics, generate_csv_export, calculate_industry_benchmark
 from django.conf import settings
 from django.shortcuts import render
+import os
 
 
 @task_or_admin_only
@@ -188,6 +189,22 @@ def drop_search_index_task(request):
     deferred.defer(
         migrations.drop_search_index,
         _queue='default',
+    )
+
+    return HttpResponse(msg)
+
+
+@task_or_admin_only
+def import_lite_users_and_accounts(request):
+    msg = "Migrating users and accounts from csv"
+    logging.info(msg)
+
+    filename_emea = os.path.join(settings.BASE_DIR, "core/management/dmb_lite_import.csv")
+
+    deferred.defer(
+        migrations.import_dmb_lite,
+        filename_emea,
+        _queue='migrations',
     )
 
     return HttpResponse(msg)

@@ -63,6 +63,9 @@ class Survey(models.Model):
         account_id (char[64], Optional): The internal Google ID for the company associated with this survey.
         parent_id (char[64], Optional): The internal Google ID for the parent company of the company associated with
                                         this survey.
+        creator: The user that created the Survey object
+        imported_from_dmb_lite: If the survey has been created as a result of old DMB lite surveys import
+        existed_before_dmb_lite: If the survey existed before the DMB lite import
     """
 
     sid = models.CharField(primary_key=True, editable=False, max_length=32)
@@ -77,6 +80,8 @@ class Survey(models.Model):
     account_id = models.CharField(max_length=64, blank=True, null=True)
     parent_id = models.CharField(max_length=64, blank=True, null=True)
     creator = models.ForeignKey('User', null=True, related_name='+')
+    imported_from_dmb_lite = models.BooleanField(default=False)
+    existed_before_dmb_lite = models.BooleanField(default=False)
 
     class SearchMeta:
         fields = ['account_id', 'company_name', 'tenant']
