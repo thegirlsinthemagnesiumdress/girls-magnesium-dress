@@ -326,7 +326,7 @@ class AddSurveyTest(APITestCase):
 
         url = reverse('add_survey', kwargs={'sid': survey.sid, 'tenant': 'advertisers'})
         response = self.client.put(url)
-        self.client.put(url)
+        response = self.client.put(url)
         user = response.wsgi_request.user
 
         self.assertEqual(user.accounts.count(), 1)
