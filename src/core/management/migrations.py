@@ -105,7 +105,7 @@ def import_dmb_lite(filename):
                 else:
                     logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
 
-                date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('US/Mountain'))  # noqa
+                date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('GMT'))  # noqa
 
                 existing_accounts = Survey.objects.filter(
                     company_name=company_name,
@@ -142,6 +142,7 @@ def import_dmb_lite(filename):
                     s.created_at = date
                     s.creator = user
 
+
                 s.save()
 
                 if s.pk not in user.accounts_ids:
@@ -166,8 +167,9 @@ def link_surveys():
     for user in User.objects.all():
         surveys = Survey.objects.filter(engagement_lead=user.engagement_lead)
         for survey in surveys:
-            survey.creator = user
-            survey.save()
+            if not survey.creator
+                survey.creator = user
+                survey.save()
             if survey.sid not in user.accounts_ids:
                 user.accounts.add(survey)
                 user.save()
