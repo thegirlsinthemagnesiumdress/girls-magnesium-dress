@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from angular.shortcuts import render
 
@@ -246,10 +247,17 @@ def account_detail(request, tenant, sid):
 def result_detail(request, tenant, response_id):
     survey_result = get_object_or_404(SurveyResult, response_id=response_id)
 
+    if survey_result.internal_survey and survey_result.completed_by != request.user:
+        raise PermissionDenied
+
+    survey = survey_result.survey if survey_result.survey else survey_result.internal_survey
+    dimensions = settings.TENANTS[tenant]['DIMENSIONS'] if survey_result.survey\
+        else settings.INTERNAL_TENANTS[tenant]['DIMENSIONS']
+
     result_detail = get_response_detail(
         survey_result.survey_definition.content,
         survey_result.raw,
-        settings.TENANTS[tenant]['DIMENSIONS'],
+        dimensions,
         settings.TENANTS[tenant]['CONTENT_DATA']['dimension_titles']
     )
     return render(request, 'public/{}/result-detail.html'.format(tenant), {
@@ -258,7 +266,7 @@ def result_detail(request, tenant, response_id):
         'content_data': _dump_tenant_content_data(tenant),
         'result_detail': result_detail,
         'survey_result': survey_result,
-        'survey': survey_result.survey,
+        'survey': survey,
         'product_name': utils.get_tenant_product_name(tenant),
         'other_tenants': utils.get_other_tenant_footers(tenant),
     })

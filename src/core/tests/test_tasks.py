@@ -688,8 +688,9 @@ class CreateSurveyResultUnfinishedTestCase(TestCase):
 class SendEmailTestCase(TestCase):
     """Tests for send_emails_for_new_reports function."""
     def setUp(self):
-        make_survey(sid='1')
+        s = make_survey(sid='1')
         make_survey(sid='2')
+        self.template_path = settings.TENANTS[s.tenant].get('EMAIL_TEMPLATE_FOLDER')
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
     def test_email_not_send_to_invalid(self, email_mock):
@@ -698,7 +699,7 @@ class SendEmailTestCase(TestCase):
             ('invalidemail', 'test@example.com', '1', 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         email_mock.assert_not_called()
 
         # if 'to' is not set, then don't send email
@@ -706,7 +707,7 @@ class SendEmailTestCase(TestCase):
             (None, 'test@example.com', '1', 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         email_mock.assert_not_called()
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
@@ -716,7 +717,7 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'invalidemail', '1', 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         self.assertEqual(email_mock.call_args_list, [mock.call()])
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
@@ -726,7 +727,7 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', '1', 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         self.assertEqual(email_mock.call_args_list, [mock.call()])
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
@@ -736,7 +737,7 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', None, '1', 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         self.assertEqual(email_mock.call_args_list, [mock.call()])
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
@@ -747,7 +748,7 @@ class SendEmailTestCase(TestCase):
             ('test2@example.com', 'test3@example.com', '2', 'es')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         self.assertEqual(email_mock.call_count, 2)
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
@@ -757,7 +758,7 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', '3', 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        send_emails_for_new_reports(email_list, self.template_path)
         self.assertEqual(email_mock.call_count, 0)
 
     @mock.patch('google.appengine.api.mail.EmailMessage.send')
@@ -768,7 +769,8 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        send_emails_for_new_reports(email_list, template_path)
 
         for call in get_template_mock.call_args_list:
             template_name = call[0][0]
@@ -779,7 +781,8 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        send_emails_for_new_reports(email_list, template_path)
         for call in get_template_mock.call_args_list[3:]:
             template_name = call[0][0]
             self.assertIn('news', template_name)
@@ -793,11 +796,12 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        send_emails_for_new_reports(email_list, template_path)
 
         args, kwargs = render_email_template_mock.call_args
-        tenant, context, lang = args
-        self.assertEqual(tenant, 'news')
+        template_path, context, lang = args
+        self.assertEqual(template_path, 'public/news/email')
         self.assertEqual(lang, 'en')
         # news is not a translated tenant, we should not have localised link
         self.assertFalse('/en/' in context['url'])
@@ -807,11 +811,12 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', survey.sid, 'es')
         ]
 
-        send_emails_for_new_reports(email_list)
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        send_emails_for_new_reports(email_list, template_path)
 
         args, kwargs = render_email_template_mock.call_args
-        tenant, context, lang = args
-        self.assertEqual(tenant, 'ads')
+        template_path, context, lang = args
+        self.assertEqual(template_path, 'public/ads/email')
         self.assertEqual(lang, 'es')
         # ads is a translated tenant, we're expecting to have url localised
         self.assertTrue('/es/' in context['url'])
@@ -821,11 +826,12 @@ class SendEmailTestCase(TestCase):
             ('test@example.com', 'test@example.com', survey.sid, 'en')
         ]
 
-        send_emails_for_new_reports(email_list)
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        send_emails_for_new_reports(email_list, template_path)
 
         args, kwargs = render_email_template_mock.call_args
-        tenant, context, lang = args
-        self.assertEqual(tenant, 'ads')
+        template_path, context, lang = args
+        self.assertEqual(template_path, 'public/ads/email')
         self.assertEqual(lang, 'en')
         # ads is a translated tenant, we're expecting to have url localised
         self.assertTrue('/en/' in context['url'])
@@ -1436,7 +1442,8 @@ class RenderEmailTemplateTestCase(TestCase):
             'country': survey.country,
         }
 
-        render_email_template(survey.tenant, context, 'en')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'en')
 
         for call in get_template_mock.call_args_list:
             template_name = call[0][0]
@@ -1466,7 +1473,8 @@ class RenderEmailTemplateTestCase(TestCase):
             'country': survey.country,
         }
 
-        render_email_template(survey.tenant, context, 'es')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'es')
 
         for call in get_template_mock.call_args_list:
             template_name = call[0][0]
@@ -1493,7 +1501,8 @@ class RenderEmailTemplateTestCase(TestCase):
             'industry': survey.industry,
             'country': survey.country,
         }
-        subject, text, html = render_email_template(survey.tenant, context, 'es')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'es')
 
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
@@ -1511,7 +1520,8 @@ class RenderEmailTemplateTestCase(TestCase):
             'country': survey.country,
         }
 
-        subject, text, html = render_email_template(survey.tenant, context, 'wrong')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'wrong')
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
@@ -1537,7 +1547,8 @@ class RenderEmailTemplateIntegration(TestCase):
         text_message_rendered = ads_text_message_template.render(context)
         html_message_rendered = ads_html_message_template.render(context)
 
-        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'en')
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
@@ -1565,7 +1576,8 @@ class RenderEmailTemplateIntegration(TestCase):
         text_message_rendered = ads_text_message_template.render(context)
         html_message_rendered = ads_html_message_template.render(context)
 
-        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'en')
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
@@ -1591,7 +1603,8 @@ class RenderEmailTemplateIntegration(TestCase):
         text_message_rendered = ads_text_message_template.render(context)
         html_message_rendered = ads_html_message_template.render(context)
 
-        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'en')
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)
@@ -1617,7 +1630,8 @@ class RenderEmailTemplateIntegration(TestCase):
         text_message_rendered = ads_text_message_template.render(context)
         html_message_rendered = ads_html_message_template.render(context)
 
-        subject, text, html = render_email_template(survey.tenant, context, 'en')
+        template_path = settings.TENANTS[survey.tenant].get('EMAIL_TEMPLATE_FOLDER')
+        subject, text, html = render_email_template(template_path, context, 'en')
         self.assertIsNotNone(subject)
         self.assertIsNotNone(text)
         self.assertIsNotNone(html)

@@ -1,4 +1,4 @@
-from core.models import Survey, SurveyResult
+from core.models import Survey, SurveyResult, User
 from rest_framework.serializers import ModelSerializer, CharField, JSONField, ValidationError
 from django.conf import settings
 
@@ -103,7 +103,16 @@ class AdminSurveyResultsSerializer(ModelSerializer):
         )
 
 
+class SurveyCreatorSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('ldap',)
+
+
 class SearchSurveySerializer(ModelSerializer):
+    country_name = CharField(source='get_country_display')
+    industry_name = CharField(source='get_industry_display')
+    creator = SurveyCreatorSerializer(read_only=True)
 
     class Meta:
         model = Survey
@@ -111,4 +120,7 @@ class SearchSurveySerializer(ModelSerializer):
             'sid',
             'account_id',
             'company_name',
+            'industry_name',
+            'country_name',
+            'creator',
         )

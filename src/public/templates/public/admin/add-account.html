@@ -2,46 +2,77 @@
 {% load staticfiles %}
 {% load angular %}
 
-{% block body_class %}dmb-add-account{% endblock %}
+{% block body_class %}dmb-admin dmb-add-account{% endblock %}
 
 {% block main %}
 
 <main
     class="h-c-page"
     id="dmb-add-account"
-    ng-cloak
-    ng-controller="RegistrationCtrl as registrationCtrl">
-
+    data-view="account-lookup"
+    dmb-add-account
+    data-slug="{{ slug|ng_mark_safe }}">
   <div class="dmb-toolbar dmb-u-m-t-s dmb-u-m-b-s h-c-grid">
-    <div class="h-c-grid__col h-c-grid__col--7">
+    <div class="dmb-toolbar__heading h-c-headline h-c-headline--subhead dmb-u-no-margin">
+      <a
+          aria-label="back button"
+          class="dmb-toolbar__heading-icon dmb-toolbar__back-btn"
+          href="{% url 'accounts' slug|ng_mark_safe %}">
+        {% include 'core/inc/svg.html' with id='back' size='20px' %}
+      </a>
 
-      <div class="dmb-toolbar__heading h-c-headline h-c-headline--subhead dmb-u-no-margin">
-        <a
-            class="dmb-toolbar__heading-icon"
-            href="{% url 'accounts' slug|ng_mark_safe %}">
-          {% include 'core/inc/svg.html' with id='back' size='20px' %}
-        </a>
-        <h1 class="dmb-toolbar__heading-text">
-          Add an account
-        </h1>
-      </div>
-
+      <h1 class="dmb-toolbar__heading-text">
+        Add an account
+      </h1>
     </div>
   </div>
 
   <div class="h-c-grid">
-    <div class="h-c-grid__col h-c-grid__col--6">
-      <div class="dmb-form dmb-form--admin">
-        <div
-            class="dmb-add-account__view dmb-add-account__view--lookup"
-            id="dmb-account-lookup">
 
-          <div class="dmb-form__inputs-wrapper dmb-u-m-b-xs">
+    <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--5 h-c-grid__col-l--order-2">
+      <div class="dmb-add-account__view dmb-add-account__view--account-lookup">
+        <div class="dmb-note dmb-note--instructions dmb-u-m-b-s">
+          <div class="dmb-note__icon-wrapper">
+            {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
+          </div>
+          <div class="dmb-note__text-wrapper">
+            <p>
+              If you’ve assessed a client in the past with DMB or DMB Lite, you can look up the account here and add it to your list.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="dmb-add-account__view dmb-add-account__view--account-creation">
+        <div class="dmb-note dmb-note--instructions dmb-u-m-b-s">
+          <div class="dmb-note__icon-wrapper">
+            {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
+          </div>
+          <div class="dmb-note__text-wrapper">
+            <p>
+              Accounts are shared across Google.
+            </p>
+            <p>
+              Once created, other Googlers will be able to add this account to their dashboard and view the maturity results.
+            </p>
+            <p>
+              The detailed responses given for internal assessments are not shared.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-c-grid__col h-c-grid__col--12 h-c-grid__col-l--6 h-c-grid__col-l--order-1">
+      <div class="dmb-form dmb-form--admin dmb-u-text-semi-muted">
+
+        <div class="dmb-form__inputs-wrapper dmb-u-m-b-xs">
+
+          <div class="dmb-add-account__view dmb-add-account__view--account-lookup">
             <h2 class="dmb-u-m-b-xs dmb-u-alt-font h-u-font-weight-medium">
               Account lookup
             </h2>
             <p class="dmb-u-m-b-s">
-              Enter the client name or Greentea ID to lookup existing accounts
+              Enter the client name or Connect Sales ID (division) to lookup existing accounts
             </p>
 
             <div
@@ -53,10 +84,11 @@
                 Organisation
               </label>
               <input
+                  autofocus
                   class="dmb-fuzzy-search__input dmb-form__input"
                   dmb-fuzzy-search-input
                   id="dmb-account-lookup-input"
-                  placeholder="Enter the client name or Greentea ID"
+                  placeholder="Enter the client name or Connect Sales ID (division)"
                   type="text">
               <div
                   class="dmb-fuzzy-search__results dmb-u-text-semi-muted"
@@ -73,7 +105,8 @@
                 </ul>
 
                 <button
-                    class="dmb-fuzzy-search__no-results dmb-u-text-semi-muted">
+                    class="dmb-fuzzy-search__no-results dmb-u-text-semi-muted"
+                    data-view-link="account-creation">
                   <div class="dmb-u-alt-font h-u-font-weight-medium">
                     Not found?
                   </div>
@@ -89,29 +122,117 @@
               </p>
 
             </div>
-
           </div>
 
-          <div class="dmb-form__btns-wrapper">
-            <a
-                class="h-c-button dmb-outline-button"
-                href="{% url 'accounts' slug|ng_mark_safe %}">
-              Cancel
-            </a>
+          <div class="dmb-add-account__view dmb-add-account__view--account-details">
+            <ul
+                class="dmb-list-card"
+                dmb-account-details>
+              <li
+                  aria-label="Organisation name"
+                  class="dmb-list-card__item dmb-list-card__item--company">
+                <div class="dmb-tooltip dmb-tooltip--inline">
+                  {% include 'core/inc/svg.html' with id='building' size='24px' only %}
+
+                  <div class="dmb-tooltip__text">
+                    Organisation name
+                  </div>
+                </div>
+                <h2
+                    class="h-c-headline h-c-headline--subhead h-u-font-weight-medium dmb-u-no-margin"
+                    dmb-account-name>
+                </h2>
+              </li>
+              <li
+                  aria-label="Connect Sales ID (division)"
+                  class="dmb-list-card__item dmb-list-card__item--account-id">
+                <div class="dmb-tooltip dmb-tooltip--inline">
+                  {% include 'core/inc/svg.html' with id='greentea' size='24px' only %}
+
+                  <div class="dmb-tooltip__text">
+                    Connect Sales ID (division)
+                  </div>
+                </div>
+                <span dmb-account-id></span>
+              </li>
+              <li
+                  aria-label="Industry"
+                  class="dmb-list-card__item dmb-list-card__item--industry">
+                <div class="dmb-tooltip dmb-tooltip--inline">
+                  {% include 'core/inc/svg.html' with id='briefcase' size='24px' only %}
+
+                  <div class="dmb-tooltip__text">
+                    Industry
+                  </div>
+                </div>
+                <span dmb-account-industry></span>
+              </li>
+              <li
+                  aria-label="Country"
+                  class="dmb-list-card__item dmb-list-card__item--industry">
+                <div class="dmb-tooltip dmb-tooltip--inline">
+                  {% include 'core/inc/svg.html' with id='globe' size='24px' only %}
+
+                  <div class="dmb-tooltip__text">
+                    Country
+                  </div>
+                </div>
+                <span dmb-account-country></span>
+              </li>
+              <li
+                  aria-label="Created by"
+                  class="dmb-list-card__item">
+                <div
+                    class="dmb-tooltip dmb-tooltip--inline">
+                  {% include 'core/inc/svg.html' with id='person' size='24px' only %}
+
+                  <div class="dmb-tooltip__text">
+                    Created by
+                  </div>
+                </div>
+                <a
+                    class="dmb-chip"
+                    dmb-account-creator-link
+                    href"#">
+                  <span
+                      class="dmb-chip__text h-u-font-weight-medium dmb-u-text-muted"
+                      dmb-account-creator-text>
+                  </span>
+                </a>
+              </li>
+            </ul>
+
+            <button
+                class="dmb-button dmb-button--primary dmb-u-m-t-s dmb-u-m-b-s"
+                id="dmb-add-existing-account">
+              Add Account
+            </button>
+
+            <div
+                class="dmb-error dmb-u-m-b-s"
+                dmb-add-account-error>
+              Sorry there was a server error.
+            </div>
+
+            <div>
+              <div class="dmb-u-m-b-xs h-u-font-weight-medium dmb-u-alt-font">
+                Not the right account?
+              </div>
+              <button
+                  class="dmb-button"
+                  data-view-link="account-lookup">
+                Search again
+              </button>
+              <button
+                  class="dmb-button"
+                  data-view-link="account-creation">
+                Create a new account
+              </button>
+            </div>
           </div>
-        </div>
 
-        {% comment %}
-        <form
-            autocomplete="off"
-            class="dmb-form dmb-form--admin"
-            name="registration"
-            ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'"
-            ng-submit="registrationCtrl.submit()"
-            novalidate>
-
-          <div class="dmb-form__inputs-wrapper dmb-u-m-b-xs">
-            <h2 class="h-u-font-weight-regular dmb-u-m-b-s dmb-u-alt-font">
+          <div class="dmb-add-account__view dmb-add-account__view--account-creation">
+            <h2 class="dmb-u-m-b-xs dmb-u-alt-font h-u-font-weight-medium">
               Create a new account
             </h2>
 
@@ -119,160 +240,155 @@
               Fill in these details to create a new account
             </p>
 
-            <input
-                class="dmb-form__input"
-                id="tenant"
-                name="tenant"
-                ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
-                ng-model="registrationCtrl.tenant"
-                required
-                type="hidden"
-                value="{{tenant|ng_mark_safe}}">
+            <form
+                autocomplete="off"
+                id="dmb-account-create-form"
+                name="registration"
+                ng-init="registrationCtrl.engagementLead='{{engagement_lead|ng_mark_safe}}'"
+                ng-submit="registrationCtrl.submit()"
+                novalidate
+                ng-cloak
+                ng-controller="RegistrationCtrl as registrationCtrl">
 
-            <div class="dmb-form__input-wrapper">
-              <label for="companyName">
-                Organisation name
-              </label>
               <input
                   class="dmb-form__input"
-                  name="companyName"
-                  ng-model="registrationCtrl.companyName"
-                  placeholder="Enter the organisation name"
+                  id="tenant"
+                  name="tenant"
+                  ng-init="registrationCtrl.tenant='{{tenant|ng_mark_safe}}'"
+                  ng-model="registrationCtrl.tenant"
                   required
-                  type="text">
-            </div>
+                  type="hidden"
+                  value="{{tenant|ng_mark_safe}}">
 
-            <div class="dmb-form__input-wrapper">
-              <label for="accountId">
-                Greentea Division ID &#8226;
-                <a
-                    class="h-c-inline-link h-u-font-weight-regular"
-                    href="http://go/dmb-divisionid"
-                    target="_blank">
-                  Where can I find this?
-                </a>
-              </label>
-              <input
-                  class="dmb-form__input dmb-u-m-b-xs"
-                  id="accountId"
-                  name="accountId"
-                  ng-model="registrationCtrl.accountId"
-                  placeholder="Enter Greentea ID (division)"
-                  required
-                  type="text">
-            </div>
-
-            {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
               <div class="dmb-form__input-wrapper">
-                <label for="industry">
-                  Industry
+                <label for="companyName">
+                  Organisation name
+                </label>
+                <input
+                    class="dmb-form__input"
+                    name="companyName"
+                    ng-model="registrationCtrl.companyName"
+                    placeholder="Enter the organisation name"
+                    required
+                    type="text">
+              </div>
+
+              <div class="dmb-form__input-wrapper">
+                <label for="accountId">
+                  Connect Sales ID (division) &#8226;
+                  <a
+                      class="h-c-inline-link h-u-font-weight-medium"
+                      href="http://go/dmb-divisionid"
+                      target="_blank">
+                    Look up ID here
+                  </a>
+                </label>
+                <input
+                    class="dmb-form__input dmb-u-m-b-xs"
+                    id="accountId"
+                    name="accountId"
+                    ng-model="registrationCtrl.accountId"
+                    placeholder="Connect Sales ID (division)"
+                    required
+                    type="text">
+              </div>
+
+              {% if tenant|ng_mark_safe == 'ads' or tenant|ng_mark_safe == 'cloud' %}
+                <div class="dmb-form__input-wrapper">
+                  <label for="industry">
+                    Industry
+                  </label>
+                  <select
+                      class="dmb-form__select dmb-dropdown-arrow"
+                      id="industry"
+                      name="industry"
+                      ng-model="registrationCtrl.industry"
+                      required>
+                    <option
+                        disabled
+                        selected
+                        value="">
+                      Select an industry
+                    </option>
+                      {% for i_key, i_text in industries %}
+                        <option value="{{i_key|ng_mark_safe}}">
+                          {{i_text|ng_mark_safe}}
+                        </option>
+                      {% endfor %}
+                  </select>
+                </div>
+              {% elif tenant|ng_mark_safe == 'news' %}
+                <input
+                    id="prodId"
+                    name="industry"
+                    ng-init="registrationCtrl.industry='ic-bnpj'"
+                    type="hidden"
+                    value="ic-bnpj">
+              {% elif tenant|ng_mark_safe == 'retail' %}
+                <input
+                    id="prodId"
+                    name="industry"
+                    ng-init="registrationCtrl.industry='rt-o'"
+                    type="hidden"
+                    value="rt-o">
+              {% endif %}
+
+              <div class="dmb-form__input-wrapper">
+                <label for="country">
+                  Country
                 </label>
                 <select
                     class="dmb-form__select dmb-dropdown-arrow"
-                    id="industry"
-                    name="industry"
-                    ng-model="registrationCtrl.industry"
+                    id="country"
+                    name="country"
+                    ng-model="registrationCtrl.country"
                     required>
                   <option
                       disabled
                       selected
                       value="">
-                    Select an industry
+                    Select a country
                   </option>
-                    {% for i_key, i_text in industries %}
-                      <option value="{{i_key|ng_mark_safe}}">
-                        {{i_text|ng_mark_safe}}
+                    {% for c_key, c_text in countries %}
+                      <option value="{{c_key|ng_mark_safe}}">
+                        {{c_text|ng_mark_safe}}
                       </option>
                     {% endfor %}
                 </select>
               </div>
-            {% elif tenant|ng_mark_safe == 'news' %}
-              <input
-                  aria-hidden="true"
-                  id="prodId"
-                  name="industry"
-                  ng-init="registrationCtrl.industry='ic-bnpj'"
-                  type="hidden"
-                  value="ic-bnpj">
-            {% elif tenant|ng_mark_safe == 'retail' %}
-              <input
-                  aria-hidden="true"
-                  id="prodId"
-                  name="industry"
-                  ng-init="registrationCtrl.industry='rt-o'"
-                  type="hidden"
-                  value="rt-o">
-            {% endif %}
 
-            <div class="dmb-form__input-wrapper">
-              <label for="country">
-                Country
-              </label>
-              <select
-                  class="dmb-form__select dmb-dropdown-arrow"
-                  id="country"
-                  name="country"
-                  ng-model="registrationCtrl.country"
-                  required>
-                <option
-                    disabled
-                    selected
-                    value="">
-                  Select a country
-                </option>
-                  {% for c_key, c_text in countries %}
-                    <option value="{{c_key|ng_mark_safe}}">
-                      {{c_text|ng_mark_safe}}
-                    </option>
-                  {% endfor %}
-              </select>
-            </div>
+              <button
+                  class="dmb-button dmb-button--primary dmb-u-m-t-s dmb-u-m-b-s"
+                  type="submit">
+                Create Account
+              </button>
+
+              <button
+                  class="dmb-button"
+                  data-view-link="account-lookup">
+                Search again
+              </button>
+
+              <div
+                  class="dmb-form__error dmb-u-m-b-s"
+                  ng-hide="!registrationCtrl.serverError">
+                Oops, something went wrong!
+              </div>
+            </form>
           </div>
 
-          <div
-              class="dmb-form__error"
-              ng-hide="!registrationCtrl.serverError">
-            Oops, something went wrong!
-          </div>
+        </div>
 
-          <div class="dmb-form__btns-wrapper">
-            <button
-                class="h-c-button h-c-button--primary"
-                type="submit">
-              Add Account
-            </button>
+        <div class="dmb-form__btns-wrapper">
+          <a
+              class="dmb-button"
+              href="{% url 'accounts' slug|ng_mark_safe %}">
+            Cancel
+          </a>
+        </div>
 
-            <a
-                class="h-c-button dmb-outline-button"
-                href="{% url 'accounts' slug|ng_mark_safe %}">
-              Cancel
-            </a>
-          </div>
-
-        </form>
-        {% endcomment %}
       </div>
     </div>
-
-    <!-- <div class="h-c-grid__col h-c-grid__col--4 h-c-grid__col--offset-1">
-      <div class="dmb-note">
-        <div class="dmb-note__icon-wrapper">
-          {% include 'core/inc/svg.html' with id='info-2' size='20px' %}
-        </div>
-        <div class="dmb-note__text-wrapper">
-          <p>
-            Accounts are shared across Google.
-          </p>
-          <p>
-            Once created, other Googlers will be able to add this account to their dashboard and view the maturity results.
-          </p>
-          <p>
-            The detailed responses given for internal assessments are not shared.
-          </p>
-        </div>
-      </div>
-    </div> -->
-
 
   </div>
 </main>

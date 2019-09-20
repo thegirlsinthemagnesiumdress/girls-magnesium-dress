@@ -275,11 +275,7 @@ class AddSurveyTest(APITestCase):
     """Tests for `api.views.AddSurveyView` view."""
 
     def setUp(self):
-        self.user = User.objects.create(
-            username='test1',
-            email='test@google.com',
-            password='pass',
-        )
+        self.user = User.objects.create(email='test2@google.com')
 
     @with_appengine_anon
     def test_anon_adding_survey(self):

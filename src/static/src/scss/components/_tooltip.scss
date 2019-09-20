@@ -15,11 +15,31 @@
     top: calc(100% + 10px);
     transition: .3s linear .2s;
     visibility: hidden;
+    width: 350px;
 
     #{$block}:hover &,
     #{$block}:focus & {
       opacity: 1;
       visibility: visible;
+    }
+  }
+
+  &--inline {
+    #{$block}__text {
+      white-space: nowrap;
+    }
+  }
+
+  &--wide {
+    #{$block}__text {
+      width: 500px;
+    }
+  }
+
+  &--top {
+    #{$block}__text {
+      top: -10px;
+      transform: translateY(-100%);
     }
   }
 }

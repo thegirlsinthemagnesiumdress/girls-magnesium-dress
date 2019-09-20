@@ -38,6 +38,11 @@ class User(GaeAbstractDatastoreUser):
         m.update(self.email.encode('utf-8'))
         return m.hexdigest()
 
+    @property
+    def ldap(self):
+        """Returns the LDAP of a user from the email"""
+        return self.email.split("@")[0]
+
 
 @searchable(add_default_queryset_search_method=False)
 class Survey(models.Model):

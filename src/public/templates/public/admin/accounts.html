@@ -5,7 +5,7 @@
 {# Marking this safe because is not rendered by django but added as a data attribute and rendered by Angular as unsafe #}
 {% block bootstrap_data %}{{bootstrap_data|ng_mark_safe}}{% endblock %}
 
-{% block body_class %}dmb-account-list{% endblock %}
+{% block body_class %}dmb-admin dmb-account-list{% endblock %}
 
 {% block main %}
 
@@ -13,7 +13,7 @@
   <div class="dmb-toolbar dmb-u-m-t-s dmb-u-m-b-s h-c-grid ">
     <div class="h-c-grid__col h-c-grid__col--7">
       <h1 class="dmb-toolbar__heading h-c-headline h-c-headline--subhead dmb-u-no-margin">
-        {% include 'core/inc/svg.html' with id='account' size='24px' class='dmb-toolbar__heading-icon' %}
+        {% include 'core/inc/svg.html' with id='building' size='24px' class='dmb-toolbar__heading-icon' %}
         <span class="dmb-toolbar__heading-text">Accounts</span>
       </h1>
     </div>
@@ -35,12 +35,12 @@
             <button
                 aria-label="Export survey data"
                 aria-describedby="export-tooltip"
-                class="dmb-toolbar__export-btn dmb-tooltip"
+                class="dmb-toolbar__export-btn dmb-tooltip dmb-tooltip--wide"
                 id="dmb-export-btn"
                 type="submit">
               {% include 'core/inc/svg.html' with id='export' size="24px" %}
               <div
-                  class="dmb-toolbar__export-tooltip-text dmb-tooltip__text"
+                  class="dmb-tooltip__text"
                   id="export-tooltip">
                 Export the data from all your surveys. Your data will be saved as a Google Sheet so you can perform custom analyses. The link to the spreadsheet will be sent to your email address. This may take up to 5 minutes.
               </div>
@@ -75,7 +75,7 @@
 
     {% if accounts|length == 0 %}
       <div class="dmb-table__empty-table-block h-u-text-center">
-        {% include 'core/inc/svg.html' with id='account' size="80px" class="dmb-table__empty-table-icon" %}
+        {% include 'core/inc/svg.html' with id='building' size="80px" class="dmb-table__empty-table-icon" %}
         <h2 class="h-c-headline h-c-headline--five">
           Add an account to get started
         </h2>

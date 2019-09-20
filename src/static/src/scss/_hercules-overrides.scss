@@ -59,3 +59,10 @@ button {
   font-size: 1em;
   vertical-align: bottom;
 }
+
+p > a {
+  &,
+  &:visited {
+    border-bottom: 0;
+  }
+}
