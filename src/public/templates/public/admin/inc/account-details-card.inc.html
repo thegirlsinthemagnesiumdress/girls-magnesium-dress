@@ -87,7 +87,7 @@
               target="_blank"
             {% else %}
               disabled
-            {%endif%}>
+            {% endif %}>
           Responses
           {% if user.id != result.completed_by.id %}
             <div class="dmb-tooltip__text">
@@ -98,7 +98,7 @@
       {% endif %}
       {% if result.report_link %}
         <a
-            class="dmb-list-card__action dmb-button"
+            class="dmb-list-card__action dmb-button dmb-button--flat"
             href="{{result.report_link}}"
             target="_blank">
           Report

@@ -1,0 +1,20 @@
+// sass-lint:disable no-ids
+#dmb-add-account {
+  $views: 'lookup', 'details', 'creation';
+
+  .dmb-add-account__view {
+    display: none;
+  }
+
+  @each $view in $views {
+    &[data-view='account-#{$view}'] {
+      .dmb-add-account__view--account-#{$view} {
+        display: block;
+      }
+    }
+  }
+
+  [dmb-add-account-error] {
+    display: none;
+  }
+}

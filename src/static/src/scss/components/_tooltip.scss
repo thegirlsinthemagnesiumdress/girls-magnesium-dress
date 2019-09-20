@@ -24,6 +24,12 @@
     }
   }
 
+  &--inline {
+    #{$block}__text {
+      white-space: nowrap;
+    }
+  }
+
   &--wide {
     #{$block}__text {
       width: 500px;
