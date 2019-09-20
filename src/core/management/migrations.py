@@ -142,7 +142,6 @@ def import_dmb_lite(filename):
                     s.created_at = date
                     s.creator = user
 
-
                 s.save()
 
                 if s.pk not in user.accounts_ids:
@@ -167,7 +166,7 @@ def link_surveys():
     for user in User.objects.all():
         surveys = Survey.objects.filter(engagement_lead=user.engagement_lead)
         for survey in surveys:
-            if not survey.creator
+            if not survey.creator:
                 survey.creator = user
                 survey.save()
             if survey.sid not in user.accounts_ids:
