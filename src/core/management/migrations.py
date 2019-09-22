@@ -186,7 +186,6 @@ def _import_row(data):
                 added += 1
 
             except IntegrityError as ie:
-                logging.erorr(ie)
                 logging.error("Raised: {} for survey: company name:{}  account_id: {} country: {}  industry: {}".format(ie, company_name, account_id, country, industry))  # noqa
             except MultipleObjectsReturned:
                 logging.error("Multiple occurencies returned for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
