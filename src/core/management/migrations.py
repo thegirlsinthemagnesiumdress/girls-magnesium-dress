@@ -173,7 +173,7 @@ def _import_row(data):
                     already_exist += 1
 
                 if date < s.created_at:
-                    logging.info("Updating survey with sid: {}".format(s.sid))
+                    logging.error("Raised Integrity Error for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
                     s.created_at = date
                     s.creator = user
                     updated += 1
@@ -186,13 +186,11 @@ def _import_row(data):
                 added += 1
 
             except IntegrityError:
-                print(">>>>>>>>>>>>> ")
                 logging.error("Raised Integrity Error for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
             except MultipleObjectsReturned:
-                print(">>>>>>>>>>>>> ")
                 logging.error("Multiple occurencies returned for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
         except Exception as e:
-            print(">>>>>>>>>>>>> ", e)
+            logging.error("".format(e))
     logging.info("Added: {}".format(added))
     logging.info("Already exist: {}".format(already_exist))
     logging.info("Updated: {}".format(updated))
