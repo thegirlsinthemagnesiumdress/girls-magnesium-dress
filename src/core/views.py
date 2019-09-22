@@ -221,3 +221,16 @@ def link_surveys_task(request):
     )
 
     return HttpResponse(msg)
+
+
+@task_or_admin_only
+def delete_imported_surveys_task(request):
+    msg = "Delete imported surveys"
+    logging.info(msg)
+
+    deferred.defer(
+        migrations.delete_imported_data,
+        _queue='default',
+    )
+
+    return HttpResponse(msg)

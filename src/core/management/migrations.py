@@ -215,3 +215,7 @@ def link_surveys():
             if survey.sid not in user.accounts_ids:
                 user.accounts.add(survey)
                 user.save()
+
+
+def delete_imported_data():
+    Survey.objects.filter(imported_from_dmb_lite=True).delete()

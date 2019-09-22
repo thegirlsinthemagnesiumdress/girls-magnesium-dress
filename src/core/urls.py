@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^migrations/drop_search_index/$', views.drop_search_index_task, name="drop_search_index"),
     url(r'^migrations/import_lite_users_and_accounts/$', views.import_lite_users_and_accounts, name="import_lite_users_and_accounts"), # noqa
     url(r'^migrations/link_surveys/$', views.link_surveys_task, name="link_surveys"),
+    url(r'^migrations/delete_imported_surveys/$', views.delete_imported_surveys_task, name="delete_imported_surveys"),
     url(r'^(?P<tenant>{})/'.format(settings.NOT_I18N_TENANTS), include('public.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
