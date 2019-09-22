@@ -1,0 +1,268 @@
+.header .site-logo-wrap .logo img {
+  width: 60px;
+}
+
+.header.header-fixed .site-logo-wrap .logo img {
+  width: 40px;
+}
+
+.header {
+  .nav-link a {
+    color: white;
+  }
+}
+
+#HeroBanner {
+  background-image: url(../images/hero.jpg);
+  background-position: center;
+
+  .hero-content {
+    vertical-align: bottom;
+    padding: 0 15px 301px 15px;
+  }
+}
+
+
+.about--valentina {
+
+  &::before {
+    display: none;
+  }
+
+  &::after {
+    background-image: url(../images/valentina.jpg);
+    background-position: top center;
+  }
+}
+
+.about--anna {
+  &::before {
+    display: none;
+
+    @include mq($from: desktop) {
+      background-image: url(../images/anna.jpg);
+      background-position: top center;
+      display: block;
+      left: 0;
+    }
+  }
+
+  &::after {
+    display: none;
+  }
+
+  .about-wrapper {
+    @include mq($from: desktop) {
+      margin-left: 50%;
+      padding-left: 50px;
+      padding-right: 0;
+    }
+  }
+}
+
+.aa_medias {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 10px;
+
+  @include mq($from: tablet) {
+    flex-direction: row;
+  }
+}
+
+.aa-media__media {
+  margin-bottom: 20px;
+  opacity: .75;
+  width: 100%;
+
+  @include mq($from: tablet) {
+    margin-right: 3%;
+    width: 47%;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  .video-container {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+  }
+
+  .video-container iframe, .video-container object, .video-container embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+
+.aa-event {
+  $block: &;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  margin: base-unit(3) 0;
+  overflow: hidden;
+  padding: 0 30px;
+  position: relative;
+  text-align: center;
+
+  @include mq($from: tablet) {
+    margin: base-unit(3);
+    flex-direction: row;
+    text-align: left;
+  }
+
+  &__date {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 22px;
+    margin: base-unit(2) 0;
+
+    @include mq($from: tablet) {
+      margin: 0;
+    }
+
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &__hour {
+    font-weight: bold;
+  }
+
+  &__content-header {
+    @include mq($until: tablet) {
+      margin-bottom: base-unit(2);
+    }
+  }
+
+  &__content-sub-header {
+    color: $red;
+  }
+
+  &__maps-link {
+    margin-left: 8px;
+    opacity: .65;
+    position: absolute;
+    right: 1px;
+    top: 8px;
+  }
+
+  &__orchestra  {
+    @include mq($until: tablet) {
+      display: block;
+    }
+
+    &::before {
+      @include mq($from: tablet) {
+        content: ' | ';
+      }
+    }
+  }
+
+  &__content-wrp {
+    font-size: 16px;
+    flex: 1;
+    padding: 20px 0 30px;
+    transition: transform .3s;
+    will-change: transform;
+          @include mq($from: tablet) {
+            margin-left: 40px;
+          }
+  }
+
+  &__content {
+  }
+
+
+  &__where {
+    padding-bottom: base-unit(1);
+  }
+
+  &__description {
+    font-size: 12px;
+    line-height: base-unit(2);
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &__content-more {
+    margin-top: base-unit(3);
+    position: absolute;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__toggle-more {
+    position: absolute;
+    right: 0;
+    border: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    color: $red;
+    bottom: base-unit(1);
+    padding: 0;
+    margin-right: -3px;
+
+    display: none;
+
+    @include mq($from: tablet) {
+      display: block;
+    }
+
+    img {
+      transition: transform .3s;
+    }
+  }
+
+  &--more {
+    #{$block}__content-wrp {
+      transform: translateY(-100%);
+    }
+
+    #{$block}__toggle-more img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.events {
+  background: url(../images/hero.jpg) no-repeat 0 30% / cover;
+}
+
+
+.aa-u-visually-hidden {
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
+@media (max-width: 767px) {
+  .events {
+      padding:  0;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+  },
+  "globals": {
+    "GyroNorm": false,
+    "Modernizr": false,
+    "YT": false
+  },
+  "rules": {
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-else-return": 0,
+    "no-console": ["error", { allow: ["warn", "error"] }]
+  }
+}

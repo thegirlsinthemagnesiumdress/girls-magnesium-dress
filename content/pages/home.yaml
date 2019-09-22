@@ -1,0 +1,38 @@
+$title@: The girls in the magnisium dress
+$path: /
+$view: /views/pages/home.html
+
+$localization:
+  default_locale: en
+  path: /{locale}/
+  $locales:
+    - it
+    - fr
+    - de
+
+description@: Harp and double-base duo.
+
+menu_home@: Home
+menu_project@: Project
+menu_events@: Events
+menu_media@: Media
+menu_contact@: Contact
+
+section_project_title@: The project
+section_project_desc@: The Girls in the Magnesium Dress is an innovative chamber music collaboration between double bass and harp. Named after one of the most renowned orchestral pieces by Frank Zappa, the ensemble involves the audience in a new musical experience led by Valentina Scheldhofen Ciardelli and Anna Astesano. Their versatile repertoire appeals to a wide public with sparkling transcriptions from the opera world, virtuoso repertoire and 21st century music, reversing the stereotypes surrounding both instruments. The duo collaborates with established composers such as John Alexander, Paul Patterson and Kurt Morgan. The Girls have performed in several important London venues such as St- Martin-in-the-Fields, Wigmore Hall, Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the GSM Auditorium, Sala dell’Affresco and Chiesa di S. Micheletto in Lucca.
+
+
+about_valentina_title: Valentina Ciardelli
+about_valentina_desc@: <p> Valentina was born in Pietrasanta (Italy) to a German mother and Italian father. Initially a pianist, she started to play double bass in late 2009, graduating with Honours from the “Istituto Musicale L. Boccherini” in Lucca in October 2014, later at the Royal College of Music in July 2016 and with Leon Bosch in 2017 at Trinity Laban Conservatoire of Music and Dance </p <p> Valentina also graduated in composition in March 2014 with Honours in conservatoire Giacomo Puccini in La Spezia. Valentina has won several awards, prizes and orchestral auditions such as the Gustav Mahler Academy 2016, BBC SO training scheme. She recently won the Artist in Residence at BANFF, Alberta (Canada), who will host her in September 2019 </p <p> She gave solo performances with “I Solisti Veneti” with Maestro Claudio Scimone, winning the prestigious scholarship granted by the Academy (Proliber). In London, she has performed as a soloist in the prestigious Wigmore Hall and St. Martin-in-the-Fields. She was invited to the pre-opening of the Zappanale 2018 in St.Katharinen Kirche (Hamburg) with her Trio featuring the Worldwide saxophone virtuoso Napoleon Murphy Brock </p <p> She been awarded as Junior Fellow Carne Trust at the Trinity Laban Conservatoire. She also won a scholarship from “Associazione Animando” in Lucca for a research project investigating the music of Giacomo Puccini’s ancestors and her work had been published by Da Vinci Editions. Valentina is focused to expand the double bass solo repertoire composing new virtuoso pieces. She also has a wide Jazz experience. She plays a Scipioni double bass 2014 </p>
+
+about_anna_title: Anna Astesano
+about_anna_desc@: <p> After her Bachelor and Master studies at the CNSMD in Lyon, Anna joined the harp class at Trinity and Laban Conservatoire of Music and Dance in the Postgraduate Advanced Diploma course. </p> <p>Between 2014 and 2015 she has been harpist at “Teatro alla Scala” Academy in Milan, being conducted by Maestro Fabio Luisi, David Coleman, Marco Armiliato, and many others.</p> <p> In June 2015 she won the audition as first harp at the “Luigi Cherubini” Orchestra, conducted by Maestro Riccardo Muti, having the chance to collaborate with artists such as Vadim Repin, Svetlana Zakharova and the Bolshoi Ballet and Renata Scotto </p> <p> Since 2017 she has been awarded scholarships offered by the Turin CRT Foundation, “De Sono” Association and Turin "Lions Club". In 2018 She was awarded the “Featured Young Performer” Award by the London Ear Festival, and the  "John Marson Prize 2018 for best performer". In 2019 sha has been the Future Foyle First harpist in the programme promoted by the London Philharmonic Orchestra. She has recently won the audition as second harpist of the Maggio Musicale Fiorentino Opera in Florence. </p> <p> She has been working with the Royal Opera House in Covent Garden, the London Philharmonic Orchestra, the Orchestra Sinfonica Nazionale (RAI) in Turin, the Kolobov Novaya Opera Theatre of Moscow, Teatro del Maggio Fiorentino Orchestra in Florence, the London Southbank Sinfonia, performing in Wigmore Hall, the Royal Festival Hall, the Royal Albert Hall, St-Martins-in-the-Fields between the others. </p> <p> She is a Concordia Foundation and a Park Lane Group Artist. </p>
+
+section_contact_title@: Get In Touch
+section_contact_details@: Contact Details
+section_contact_send_message@: Send Us Message
+
+your_name@: Your name
+your_mail@: Your email address
+your_message@: Message
+send@: Send

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="{{doc.locale.language}}" itemscope itemtype="http://schema.org/WebSite">
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+
+    <title>{{_(doc.title)}} - {{_(podspec.title)}}</title>
+
+    <link href="{{g.static('/dist/css/site.min.css').url.path}}" rel="stylesheet">
+    {% if podspec.meta.favicon_path %}
+      <link rel="shortcut icon" href="{{g.static(podspec.meta.favicon_path).url.path}}">
+    {% endif %}
+
+    {% if podspec.meta.image_path %}
+      <meta property="og:image" content="{{g.static(podspec.meta.image_path).url}}">
+    {% endif %}
+    <meta property="og:title" content="{% if doc.title %}{{doc.title}} – {% endif %}">
+    <meta property="og:site_name" content="{{podspec.title}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{doc.url}}">
+    {% if doc.description %}
+      <meta name="description" content="{{doc.description}}" itemprop="description">
+      <meta property="og:description" content="{{doc.description}}">
+    {% endif %}
+
+    {% if podspec.meta.google_analytics_id %}
+      {# CSP SHA: sha256-987082961e0e8a9e68271eda68438039fb525b005aea0e19a3e4db5d7e197f45= #}
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', '{{podspec.meta.google_analytics_id}}', 'auto');
+        ga('send', 'pageview');
+      </script>
+    {% endif %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-62555583-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-62555583-2');
+    </script>
+
+    <script>
+        var locales = ['it', 'fr']
+        var lang = navigator.language || navigator.userLanguage;
+        var path = window.location.pathname
+        var isLocalised = false;
+
+        if (path.indexOf(`/it`) == 0 || path.indexOf(`/fr`) == 0) {
+          isLocalised = true;
+        }
+
+        for (i = 0; i < locales.length; i++) {
+          var locale = `/${locales[i]}`
+
+          if (path.indexOf(locale) == 0) {
+            path = path.replace(locale, '');
+            break;
+          }
+        }
+
+        if (!isLocalised) {
+          locales.forEach((locale) => {
+
+          if (lang.indexOf(locale) == 0)
+              window.location = `/${locale}` + path;
+
+          });
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body {% block body_attributes %} {% endblock %}>
+    {% block header %}
+    {% endblock%}
+    <main>
+      {% block body %}
+        {% if doc.html %}
+          {{doc.html|render}}
+        {% endif %}
+      {% endblock %}
+    </main>
+
+    {% if env.name == 'dev' %}
+    {% else %}
+    {% endif %}
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.1/jquery.fancybox.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.5/scrollreveal.min.js" crossorigin="anonymous"></script> -->
+
+  <script src="{{g.static('/dist/js/site.min.js').url.path}}"></script>
+  </body>
+</html>

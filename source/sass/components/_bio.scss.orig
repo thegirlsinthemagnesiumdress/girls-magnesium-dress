@@ -1,0 +1,197 @@
+.aa-bio {
+  background-color: #2d2b29;
+  position: relative;
+
+  .wrapper {
+    position: relative;
+  }
+
+  &::before {
+    background-image:
+      radial-gradient( rgba(45, 43, 41, .1), rgba(#2d2b29, .7) 80%),
+      url(../images/standing.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__title {
+<<<<<<< Updated upstream
+    border-bottom: 2px solid #a7342d;
+    margin-bottom: base-unit(3);
+=======
+    border-bottom: 2px solid $red;
+>>>>>>> Stashed changes
+    font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    line-height: base-unit(5);
+    text-transform: uppercase;
+  }
+}
+
+.aa-events {
+  background-color: $ice;
+
+  &__title {
+<<<<<<< Updated upstream
+    border-bottom: 2px solid #a7342d;
+    margin-bottom: base-unit(3);
+=======
+    border-bottom: 2px solid $red;
+    font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    line-height: base-unit(5);
+    text-transform: uppercase;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: base-unit(4);
+
+    .aa-event {
+      max-width: 50%;
+      flex-basis: 50%;
+    }
+  }
+}
+
+.aa-event {
+  @extend .aa-p-smaller;
+  padding-bottom: base-unit(3);
+  padding-right: 60px;
+
+  &__date {
+    @extend .aa-p;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 22px;
+  }
+
+
+  &__where {
+    padding-bottom: base-unit(1);
+  }
+
+  &__description {
+    font-size: 12px;
+    line-height: base-unit(2);
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.aa-media {
+  background-color: $charleston-green;
+
+  &__title {
+    border-bottom: 2px solid $red;
+>>>>>>> Stashed changes
+    font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    line-height: base-unit(5);
+    text-transform: uppercase;
+  }
+
+  &__medias, {
+    display: flex;
+    flex-direction: column;
+    margin-top: base-unit(7);
+
+    @include mq($from: tablet) {
+      flex-direction: row;
+    }
+
+  }
+
+  &__media {
+    margin-bottom: base-unit(2);
+    opacity: .75;
+    width: 100%;
+
+    @include mq($from: tablet) {
+      margin-right: 3%;
+      width: 48%;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  .video-container {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+  }
+
+  .video-container iframe, .video-container object, .video-container embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+
+.aa-contact {
+  background-color: $ice;
+
+  &__title {
+<<<<<<< Updated upstream
+    border-bottom: 2px solid #a7342d;
+    margin-bottom: base-unit(3);
+=======
+    border-bottom: 2px solid $red;
+>>>>>>> Stashed changes
+    font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    line-height: base-unit(5);
+    text-transform: uppercase;
+  }
+
+  label,
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+  }
+
+  label:not(:first-child) {
+    margin-top: base-unit(4);
+  }
+
+  input,
+  textarea {
+    // background-color: $ice;
+    border: 0;
+    margin-top: base-unit(2);
+    color: $charleston-green;
+    padding: base-unit(1) 15px;
+  }
+
+  button {
+    background-color: $aa-white;
+    border: 0;
+    color: $charleston-green;
+    float: right;
+    margin-top: base-unit(5);
+    padding: base-unit(1) 35px;
+    text-transform: uppercase;
+  }
+}

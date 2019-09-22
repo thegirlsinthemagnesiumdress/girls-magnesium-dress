@@ -1,0 +1,40 @@
+// sass-lint:disable clean-import-paths
+
+// Fileoverview:
+// Main website scss file.
+
+@import 'settings/variables';
+
+// // Functions
+@import 'functions/base-unit';
+
+// // Settings
+@import 'settings/all';
+
+// // Mixins
+@import 'sass-mq/mq';
+
+// @import 'mixins/all';
+// // Generic
+// @import 'generic/all';
+// @import 'flexboxgrid-sass/flexboxgrid';
+
+
+
+// // Global elements
+// @import 'elements/all';
+
+// // Utilities
+// @import 'utilities/all';
+
+// // Components
+// @import 'components/hero';
+// @import 'components/header';
+// @import 'components/bio';
+
+
+// // Pages
+// @import 'pages/duo';
+@import 'style';
+@import 'custom-responsive-style';
+@import 'overrides';

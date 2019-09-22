@@ -1,0 +1,79 @@
+// fileoverview:
+// Spacing 8px grid mixin.
+
+// For example:
+
+// .aa-u-p-1 { padding:  8px }  /* 1 × 8px */
+// .aa-u-p-2 { padding: 16px } /* 2 × 8px */
+// .aa-u-p-3 { padding: 24px } /* 3 × 8px */
+//
+// Properties
+// m  = margin
+// mt = margin-top
+// mr = margin-right
+// mb = margin-bottom
+// ml = margin-left
+// my = margin-top; margin-bottom
+// mx = margin-right; margin-left
+
+// p  = padding
+// pt = padding-top
+// pr = padding-right
+// pb = padding-bottom
+// pl = padding-left
+// py = padding-top; padding-bottom
+// px = padding-right; margin-left
+
+// t = top
+// r = right
+// b = bottom
+// l = left
+
+// lh = line-height
+
+// w = width
+// h = height
+
+// s = width; height
+
+$properties-map: (
+  m: margin,
+  mt: margin-top,
+  mr: margin-right,
+  mb: margin-bottom,
+  ml: margin-left,
+  my: (margin-top, margin-bottom),
+  mx: (margin-right, margin-left),
+
+  p: padding,
+  pt: padding-top,
+  pr: padding-right,
+  pb: padding-bottom,
+  pl: padding-left,
+  py: (padding-top, padding-bottom),
+  px: (padding-right, margin-left),
+
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+
+  lh: line-height,
+
+  w: width,
+  h: height,
+
+  s: (width, height),
+);
+
+@mixin spacing($property-shortname, $unit: 1, $important: false) {
+  $property: map-get($properties-map, $property-shortname);
+
+  @if type-of($property) == 'list' {
+    @each $nest-prop in $property {
+      #{$nest-prop}: base-unit($unit);
+    }
+  } @else {
+    #{$property}: base-unit($unit);
+  }
+}

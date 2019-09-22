@@ -1,0 +1,99 @@
+// fileoverview:
+// Talent Revolution type variables and configuration.
+
+// Default font family.
+$aa-font-family: 'News Cycle', sans-serif;;
+
+// We use these to define default font styles
+$aa-font-style-normal: normal;
+
+// We use these to define default font weights
+$aa-font-weight-light: 300;
+$aa-font-weight-regular: 400;
+$aa-font-weight-bold: 700;
+$aa-font-weight-medium: 500;
+$aa-font-weight-thin: 100;
+
+// Color palette for typography
+$aa-font-color-light: $aa-white;
+$aa-font-color-dark: $aa-bastille;
+
+$aa-font-size-default: 18px;
+$aa-font-line-height-default: base-unit(4);
+
+$aa-mobile-font-size-default: 16px;
+$aa-font-mobile-line-height-default: base-unit(3);
+
+// DISPLAY
+$aa-display-font-size: 80px;
+$aa-display-line-height: base-unit(10);
+$aa-display-font-weight: $aa-font-weight-bold;
+
+//Mobile
+$aa-display-mobile-font-size: base-unit(4);
+$aa-display-mobile-line-height: base-unit(4);
+$aa-display-mobile-font-weight: $aa-font-weight-bold;
+
+
+// H1
+$aa-h1-font-size: 56px;
+$aa-h1-line-height: base-unit(8);
+$aa-h1-font-weight: $aa-font-weight-bold;
+
+//Mobile
+$aa-h1-mobile-font-size: $aa-display-mobile-font-size;
+$aa-h1-mobile-line-height: $aa-display-mobile-line-height;
+$aa-h1-mobile-font-weight: $aa-display-mobile-font-weight;
+
+
+// H2
+$aa-h2-font-size: 40px;
+$aa-h2-line-height: base-unit(6);
+$aa-h2-font-weight: $aa-font-weight-bold;
+
+//Mobile
+$aa-h2-mobile-font-size: 20px;
+$aa-h2-mobile-line-height: base-unit(3);
+$aa-h2-mobile-font-weight: $aa-font-weight-medium;
+
+
+// H3
+$aa-h3-font-size: 24px;
+$aa-h3-line-height: base-unit(4);
+$aa-h3-font-weight: $aa-font-weight-medium;
+
+// Mobile
+$aa-h3-mobile-font-size: 12px;
+$aa-h3-mobile-line-height: base-unit(2);
+$aa-h3-mobile-font-weight: $aa-font-weight-medium;
+
+
+// H4
+$aa-h4-font-size: 16px;
+$aa-h4-line-height: base-unit(3);
+$aa-h4-font-weight: $aa-font-weight-medium;
+
+//Mobile
+$aa-h4-mobile-font-size: $aa-h3-mobile-font-size;
+$aa-h4-mobile-line-height: $aa-h3-mobile-line-height;
+$aa-h4-mobile-font-weight: $aa-h3-mobile-font-weight;
+
+
+// Paragraph
+$aa-paragraph-font-size: $aa-mobile-font-size-default;
+$aa-paragraph-line-height: base-unit(3);
+
+// Mobile
+$aa-paragraph-mobile-font-size: $aa-mobile-font-size-default;
+$aa-paragraph-mobile-line-height: $aa-font-mobile-line-height-default;
+
+
+//Small Paragraph
+$aa-p-smaller-font-size:  $aa-font-size-default - 2;
+$aa-p-smaller-line-height: $aa-font-line-height-default;
+$aa-p-smaller-font-weight: $aa-font-weight-regular;
+
+// Mobile
+$aa-p-smaller-mobile-font-size:  $aa-mobile-font-size-default;
+$aa-p-smaller-mobile-line-height: $aa-font-mobile-line-height-default;
+$aa-p-smaller-mobile-font-weight: $aa-font-weight-regular;

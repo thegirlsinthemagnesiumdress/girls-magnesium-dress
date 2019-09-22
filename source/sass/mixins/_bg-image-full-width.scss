@@ -1,0 +1,53 @@
+@mixin bg-image-full-width($img, $extension: 'jpg', $gradient: '') {
+  background-image: #{$gradient}, url(#{$img}-480.#{$extension});
+  background-size: cover;
+
+
+  @media #{$aa-hidpi} {
+    background-image: #{$gradient}, url(#{$img}-480-2x.#{$extension});
+  }
+
+  @include mq($from: mobile) {
+    background-image: #{$gradient}, url(#{$img}-768.#{$extension});
+  }
+
+  @include mq($from: mobile) {
+    @media #{$aa-hidpi} {
+      background-image: #{$gradient}, url(#{$img}-768-2x.#{$extension});
+    }
+  }
+
+  @include mq($from: tablet) {
+    background-image: #{$gradient}, url(#{$img}-1000.#{$extension});
+  }
+
+  @include mq($from: tablet) {
+    @media #{$aa-hidpi} {
+      background-image: #{$gradient}, url(#{$img}-1000-2x.#{$extension});
+    }
+  }
+
+  @include mq($from: desktop) {
+    background-image: #{$gradient}, url(#{$img}-1300.#{$extension});
+  }
+
+  @include mq($from: desktop) {
+    @media #{$aa-hidpi} {
+      background-image: #{$gradient}, url(#{$img}-1300-2x.#{$extension});
+    }
+  }
+
+  @include mq($from: wide) {
+    background-image: #{$gradient}, url(#{$img}-1800.#{$extension});
+  }
+
+  @include mq($from: wide) {
+    @media #{$aa-hidpi} {
+      background-image: #{$gradient}, url(#{$img}-1800-2x.#{$extension});
+    }
+  }
+
+  @include mq($from: 1800px) {
+    background-image: #{$gradient}, url(#{$img}-1800-2x.#{$extension});
+  }
+}

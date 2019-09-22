@@ -1,0 +1,11 @@
+// fileoverview:
+// Site variables and configuration
+
+
+$aa-container-max-width: 1200px;
+$aa-container-outer-margin: base-unit(3);
+
+
+//Set up flexbox container
+$flexboxgrid-max-width: $aa-container-max-width;
+$flexboxgrid-outer-margin: $aa-container-outer-margin;

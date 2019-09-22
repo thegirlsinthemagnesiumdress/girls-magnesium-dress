@@ -1,0 +1,134 @@
+//Fileoverview:
+// Type definitions.
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: $aa-font-color-dark;
+  font-family: $aa-font-family;
+  font-size: $aa-mobile-font-size-default;
+  line-height: $aa-font-mobile-line-height-default;
+
+  @include mq($from: tablet) {
+    font-size: $aa-font-size-default;
+    line-height: $aa-font-line-height-default;
+  }
+
+  //For debug purposes only
+  &.vertical-rythm-debug {
+    position: relative;
+
+    &::after {
+      background: repeating-linear-gradient(transparent, transparent $aa-baseline - 1, $aa-font-error $aa-baseline - 1, $aa-font-error $aa-baseline);
+      bottom: 0;
+      content: '';
+      opacity: .7;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+}
+
+.aa-display,
+h1,
+.aa-alpha,
+h2,
+.aa-beta,
+h3,
+.aa-gamma {
+  @include spacing(mt, 1);
+  @include spacing(mb, 2);
+}
+
+
+
+.aa-display {
+  font-size: $aa-display-mobile-font-size;
+  font-weight: $aa-display-mobile-font-weight;
+  line-height: $aa-display-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $aa-display-font-size;
+    font-weight: $aa-display-font-weight;
+    line-height: $aa-display-line-height;
+  }
+}
+
+h1,
+.aa-alpha {
+  font-size: $aa-h1-mobile-font-size;
+  font-weight: $aa-h1-mobile-font-weight;
+  line-height: $aa-h1-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $aa-h1-font-size;
+    font-weight: $aa-h1-font-weight;
+    line-height: $aa-h1-line-height;
+  }
+}
+
+h2,
+.aa-beta {
+  font-size: $aa-h2-mobile-font-size;
+  font-weight: $aa-h2-mobile-font-weight;
+  line-height: $aa-h2-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $aa-h2-font-size;
+    font-weight: $aa-h2-font-weight;
+    line-height: $aa-h2-line-height;
+  }
+}
+
+h3,
+.aa-gamma {
+  font-size: $aa-h3-mobile-font-size;
+  font-weight: $aa-h3-mobile-font-weight;
+  line-height: $aa-h3-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $aa-h3-font-size;
+    font-weight: $aa-h3-font-weight;
+    line-height: $aa-h3-line-height;
+  }
+}
+
+h4,
+.aa-theta {
+  font-size: $aa-h4-mobile-font-size;
+  font-weight: $aa-h4-mobile-font-weight;
+  line-height: $aa-h4-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $aa-h4-font-size;
+    font-weight: $aa-h4-font-weight;
+    line-height: $aa-h4-line-height;
+  }
+}
+
+p,
+.aa-p {
+  @include spacing(mb, 1);
+  margin-top: 0;
+}
+
+
+.aa-p-smaller {
+  font-size: $aa-p-smaller-mobile-font-size;
+  font-weight: $aa-p-smaller-mobile-font-weight;
+  line-height: $aa-p-smaller-mobile-line-height;
+
+  @include mq($from: tablet) {
+    font-size: $aa-p-smaller-font-size;
+    font-weight: $aa-p-smaller-font-weight;
+    line-height: $aa-p-smaller-line-height;
+  }
+}
+
+
+.aa-color-light {
+  color: $aa-font-color-light;
+}

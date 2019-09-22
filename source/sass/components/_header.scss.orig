@@ -1,0 +1,95 @@
+.aa-header {
+  color: $aa-white;
+  font-family: 'Questrial', sans-serif;
+  left: 0;
+  padding: 30px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  padding: base-unit(3) 0 base-unit(2);
+
+  @include mq($from: tablet) {
+    height: base-unit(12);
+    padding: base-unit(4) 0;
+  }
+
+
+  &::before {
+    background-color: $charleston-green;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .3s;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
+  }
+
+  &--scrolled {
+    &:before {
+      transform: translateY(0);
+    }
+  }
+
+  .container-fluid {
+    display: flex;
+    justify-content: space-between;
+
+    @include mq($until: tablet) {
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    letter-spacing: .6em;
+    text-transform: uppercase;
+  }
+
+  &__menu {
+    display: flex;
+    font-size: 12px;
+    letter-spacing: .3em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+
+<<<<<<< Updated upstream
+    @include mq($until: tablet) {
+      padding-top: base-unit(2);
+    }
+=======
+    flex-direction: column;
+    height: 100vh;
+    background-color: $charleston-green;
+>>>>>>> Stashed changes
+
+    li {
+      margin-right: 18px;
+
+      @include mq($from: mobile) {
+        margin-right: 50px;
+      }
+
+      @include mq($from: tablet) {
+        margin-right: 40px;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__burger-button {
+    color: white;
+    @include bp($from: tablet) {
+      display: none;
+    }
+
+  }
+}

@@ -1,0 +1,294 @@
+[
+  {
+    "bk_date": "06/06/2018",
+    "hour": "13:00",
+    "maps_link": "https://goo.gl/maps/wMuoBHVmYw22",
+    "title": "Final exam Postgraduate Advanced Diploma",
+    "where": "Trinity Laban Conservatoire of Music and Dance",
+    "orchestra": null,
+    "programme": "Haydn, Flagello, Boildieu, Debussy",
+    "date": "2018-06-06T13:00"
+  },
+  {
+    "bk_date": "09/06/2018",
+    "hour": "1:00",
+    "maps_link": "https://goo.gl/maps/MLyhbAdGxF22",
+    "title": "Lunchtime Concert",
+    "where": "St Alfege Church",
+    "programme": "Smetana, Pigovat, Salzedo",
+    "date": "2018-06-09T13:00"
+  },
+  {
+    "bk_date": "16/06/2018",
+    "hour": "9:00",
+    "maps_link": "https://goo.gl/maps/h2s5phndiiP2",
+    "title": "Russell Davies - Bernstein & Glass",
+    "where": "Ravenna, Palazzo Mauro de Andrè",
+    "conductor": "Dennis Russell Davies",
+    "orchestra": "Luigi Cherubini Orchestra",
+    "programme": "Bernstein Symphony n.2, Glass Symphony n.11",
+    "more_info": "Info and tickets <a href=\"http://www.ravennafestival.org/events/\" target=\"_blank\">http://www.ravennafestival.org/events/ </a>",
+    "date": "2018-06-16T21:00"
+  },
+  {
+    "bk_date": "11/07/2018",
+    "hour": "6:00",
+    "maps_link": "https://goo.gl/maps/qtLFSkTHq182",
+    "title": "Grange Park Opera Festival",
+    "where": "The Theatre in the Woods",
+    "conductor": "Jan Latham-Koenig",
+    "composer": "Konstantin Boyarsky",
+    "orchestra": "Orchestra and Chorus of Novaya Opera",
+    "date": "2018-07-11T18:00"
+  },
+  {
+    "bk_date": "12/07/2018",
+    "hour": "6:00",
+    "maps_link": "https://goo.gl/maps/qtLFSkTHq182",
+    "title": "Grange Park Opera Festival",
+    "where": "The Theatre in the Woods",
+    "conductor": "Jan Latham-Koenig",
+    "composer": "Konstantin Boyarsky",
+    "orchestra": "Orchestra and Chorus of Novaya Opera",
+    "date": "2018-07-12T18:00"
+  },
+  {
+    "bk_date": "3/08/2018",
+    "hour": "8:00",
+    "maps_link": "https://goo.gl/maps/SkvPGfe9wVE2",
+    "title": "Riccardo Muti - Macbeth",
+    "where": "Ravenna, Alighieri Theatre",
+    "conductor": "Riccardo Muti",
+    "orchestra": "Luigi Cherubini Orchestra",
+    "programme": "Macbeth, Giuseppe Verdi",
+    "more_info": "Info and tickets <a href=\"http://www.ravennafestival.org/events/\" target=\"_blank\">http://www.ravennafestival.org/events/ </a>",
+    "date": "2018-08-03T20:00"
+  },
+  {
+    "bk_date": "4/08/2018",
+    "hour": "8:00",
+    "maps_link": "https://goo.gl/maps/SkvPGfe9wVE2",
+    "title": "Macbeth, Giuseppe Verdi",
+    "orchestra": "Luigi Cherubini Orchestra",
+    "where": "Ravenna, Alighieri Theatre",
+    "conductor": "Italian Opera Academy students",
+    "programme": "Macbeth, Giuseppe Verdi",
+    "more_info": "<a href=\"http://www.ravennafestival.org/events\" target=\"_blank\">http://www.ravennafestival.org/events </a>",
+    "date": "2018-08-04T20:00"
+  },
+  {
+    "bk_date": "14-26/10/2018",
+    "hide_hour": true,
+    "maps_link": "https://goo.gl/maps/dqjr7aZNDBA2",
+    "title": "XX International Harp Contest",
+    "where": "Old City of Acre, Israel",
+    "more_info": "<a href=\"http://www.harpcontest-israel.org.il/\" target=\"_blank\">http://www.harpcontest-israel.org.il </a>",
+    "date": "2018-10-26"
+  },
+  {
+    "bk_date": "02/11/2018",
+    "hour": "1.05 :00",
+    "maps_link": "https://goo.gl/maps/sJg53sjnH922",
+    "title": "Chamber Music Recital",
+    "orchestra": "Harp: Anna Astesano, Flute: Emma Harding, Cello: Thibault Blanchard",
+    "where": "Old Royal Naval Chapel, Greenwich",
+    "programme": "Piazzolla, Haydn, Boulanger, Damase",
+    "more_info": "<a href=\"https://www.trinitylaban.ac.uk/whats-on/emma-harding-flute-thibault-blanchard-cello-anna-asesano-harp\" target=\"_blank\">http://https://www.trinitylaban.ac.uk/whats-on/emma-harding-flute-thibault-blanchard-cello-anna-asesano-harp </a>",
+    "date": "2018-11-02T13:05"
+  },
+  {
+    "bk_date": "08/11/2018",
+    "hide_hour": true,
+    "maps_link": "https://goo.gl/maps/PyqpEKyMb882",
+    "title": "Lyons Club Torino Award",
+    "where": "Turin (IT)",
+    "more_info": "Private event",
+    "date": "2018-11-08T20:00"
+  },
+  {
+    "bk_date": "24/11/2018",
+    "hour": "1:00",
+    "maps_link": "https://www.google.com/maps/place/Brighton/@50.8374669,-0.1412091,13z/data=!3m1!4b1!4m5!3m4!1s0x48758509f6294167:0x9cc6af7a727d0ef9!8m2!3d50.82253!4d-0.137163",
+    "title": "LPO Junior Artists Overture Day",
+    "orchestra": "LPO Future Foyle First Programme",
+    "where": "Brighton",
+    "date": "2018-11-24T13:00"
+  },
+  {
+    "bk_date": "05/12/2018",
+    "hour": "5.30 :00",
+    "maps_link": "https://goo.gl/maps/XJ5uXb3W89H2",
+    "title": "Pre-concert Christmas Party",
+    "orchestra": "LPO Future Foyle First Programme",
+    "where": "Royal Festival Hall, London",
+    "programme": "Flute and harp duo with Anna Kondrashina",
+    "more_info": "<a href=\"https://www.lpo.org.uk/whats-on-and-tickets/5289-supporters-christmas-dinner.html\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2018-12-05T17:30"
+  },
+  {
+    "bk_date": "06/12/2018",
+    "hour": "8 :00",
+    "maps_link": "https://goo.gl/maps/Txd1qB1RM5r",
+    "title": "Britten's Ceremony of Carols",
+    "orchestra": "City Academy Chamber Choir, Rachel Maby",
+    "where": "Swiss Church, Covent Garden",
+    "programme": "Britten's Ceremont of Carols, Carols by Jonathan Dove, Cecilia McDowell, Alan Bullard and Tavener",
+    "more_info": "<a href=\"https://www.city-academy.com/chamber-winter-showcase.html\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2018-12-06T20:00"
+  },
+  {
+    "date": "2018-12-08T19:00",
+    "hour": "7 pm",
+    "maps_link": "https://goo.gl/maps/tittaxXZ7nN2",
+    "title": "The Nutcraker",
+    "orchestra": "An evening of Ballet with Ballet Central",
+    "where": "The British Museum, the Great Court and Galleries",
+    "more_info": "<a href=\"https://www.britishmuseum.org/whats_on/events_calendar/event_detail.aspx?eventId=4802&title=The%20Nutcracker%20-%20SOLD%20OUT&eventType=Members%27%20special%20event\" target=\"_blank\">What's on and tickets</a>"
+  },
+  {
+    "date": "2018-12-11T19:00",
+    "hour": "7 pm",
+    "maps_link": "https://goo.gl/maps/yTsAwxUJtjz",
+    "title": "UCLH Charity-Christmas Carol Concert",
+    "where": "Saint Giles in the Fields Church, WC2H 8LG",
+    "programme": "Music Carols to celebrate the Christmas season",
+    "more_info": "<a href=\" https://www.stgilesmusic.org\" target=\"_blank\">What's on and tickets</a>"
+  },
+  {
+    "bk_date": "26/01/2019",
+    "hour": "11 :30",
+    "title": "Private event",
+    "date": "2019-01-26T11:30"
+  },
+  {
+    "bk_date": "19/03/2019",
+    "hour": "8.30 pm",
+    "maps_link": "https://goo.gl/maps/tittaxXZ7nN2",
+    "title": "Private Gala Event",
+    "where": "The British Museum, the Hotung Gallery",
+    "date": "2019-03-19T20:30"
+  },
+  {
+    "bk_date": "30/03/2019",
+    "hour": "10 :00",
+    "maps_link": "https://goo.gl/maps/XJ5uXb3W89H2",
+    "title": "FunHarmonics",
+    "orchestra": "LPO Future Foyle Firsts",
+    "where": "Royal Festival Hall, London",
+    "programme": "Activities for children from six and over",
+    "more_info": "<a href=\"https://www.lpo.org.uk/whats-on-and-tickets/5129-conducting-science-voice-box.html\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2019-03-30T10:00"
+  },
+  {
+    "bk_date": "30/03/2019",
+    "hour": "7 :30 pm",
+    "maps_link": "https://goo.gl/maps/UF6k9u5QRmE2",
+    "title": "Shostakovich and Ustvolskaya",
+    "orchestra": "Fulham Symphony Orchestra : Marc Dooley, conductor",
+    "where": "Hammersmith Town Hall, London",
+    "programme": "Galina Ustvolskaya : Symphonic Poem No. 2 (UK premiere) ; Dmitri Shostakovich : Symphony No. 4",
+    "more_info": "<a href=\"https://fso.org.uk/2018/05/25/spring-2019\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2019-03-30T19:30"
+  },
+  {
+    "bk_date": "05/04/2019",
+    "hour": "6 :00",
+    "maps_link": "https://goo.gl/maps/XJ5uXb3W89H2",
+    "title": "Pre-concert performance",
+    "orchestra": "LPO Future Foyle First Programme",
+    "where": "Royal Festival Hall, London",
+    "programme": "The Foyle Future Firsts bring their youthful energy to a celebration of British chamber music, as part of Isle of Noises",
+    "more_info": "<a href=\"https://www.lpo.org.uk/whats-on-and-tickets/5261-free-preconcert-performance-foyle-future-firsts.html\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2019-04-05T18:00"
+  },
+  {
+    "bk_date": "14/05/2019",
+    "hour": "1 :00",
+    "maps_link": "https://goo.gl/maps/mV63vr69fGy",
+    "title": "John Marson's Price for Best Harp Performer",
+    "orchestra": "Anna Astesano and Michela Zanoni",
+    "where": "Saint-Martin-in-the-Fields Church",
+    "date": "2019-05-14T13:00"
+  },
+  {
+    "bk_date": "05/05/2019",
+    "hour": "5 :45",
+    "maps_link": "https://goo.gl/maps/UN7au6RASk22KoEDA",
+    "title": "Songs from New Musicals",
+    "orchestra": "London Musical Theatre Orchestra",
+    "where": "Bishopsgate Institute",
+    "programme": "A 70-piece orchestra and full chorus will be belting out 13 incredible new songs",
+    "more_info": "<a href=\"https://www.facebook.com/theLMTO/?epa=SEARCH_BOX\" target=\"_blank\">Live Facebook Streaming</a>",
+    "date": "2019-05-05T17:45"
+  },
+  {
+    "bk_date": "06/05/2019",
+    "hour": "4 :30",
+    "title": "London Camac Harp Competition",
+    "orchestra": "Chamber music",
+    "programme": "Harp and flute duo with Emma Harding",
+    "more_info": "<a href=\"http://www.northlondonfestival.org.uk/special-competitions/camac-harp-competition/\" target=\"_blank\">Website information</a>",
+    "date": "2019-05-06T16:30"
+  },
+  {
+    "bk_date": "17/05/2019",
+    "hour": "1 :00",
+    "maps_link": "https://goo.gl/maps/XJ5uXb3W89H2",
+    "title": "Lunch Concert",
+    "orchestra": "LPO Future Foyle Firsts and LPO players",
+    "where": "Southbank Centre, London",
+    "programme": "Chamber Music Pioneers",
+    "more_info": "<a href=\"https://www.lpo.org.uk/whats-on/whats-on-tickets.html\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2019-05-17T13:00"
+  },
+   {
+    "bk_date": "21/05/2019",
+    "hour": "11 :30",
+    "maps_link": "https://goo.gl/maps/ogGFeaUgr4CFuNPb6",
+    "title": "Lunchtime Concert",
+    "orchestra": "Concordia Foundation Event",
+    "where": "UCH Macmillan Cancer Centre",
+    "more_info": "<a href=\"http://www.concordiafoundation.com/uk-events\" target=\"_blank\">News and events</a>",
+    "date": "2019-05-21T11:30"
+  },
+  {
+    "bk_date": "25/05/2019",
+    "hour": "7 :30",
+    "maps_link": "https://goo.gl/maps/pQHkUgcuNz8Z7btd8",
+    "title": "Gala Opera Concert",
+    "orchestra": "Dulwich Opera Company Chamber Orchestra",
+    "where": "New Vaughan Williams Auditorium",
+    "more_info": "<a href=\"http://mailchi.mp\" target=\"_blank\">Buy tickets</a>",
+    "date": "2019-05-25T19:30"
+  },
+  {
+    "bk_date": "02/06/2019",
+    "hour": "5 :45",
+    "maps_link": "https://goo.gl/maps/UN7au6RASk22KoEDA",
+    "title": "Secret Playthrough",
+    "orchestra": "London Musical Theatre Orchestra",
+    "where": "Bishopsgate Institute",
+    "date": "2019-06-02T17:45"
+  },
+  {
+    "bk_date": "04/06/2019",
+    "hour": "1 :05",
+    "maps_link": "https://goo.gl/maps/zBnsZMTDT8NAekGg6",
+    "title": "Lunchtime Concert",
+    "orchestra": "Harp and doublebass duo with Valentina Ciardelli",
+    "where": "The Old Royal Naval College Chapel",
+    "more_info": "<a href=\"https://www.ornc.org/Pages/Events/Category/all-events#XEdsiPrgpFLRFg8d.97\" target=\"_blank\">Events at the ORNC Chapel</a>",
+    "date": "2019-06-04T13:05"
+  },
+   {
+    "bk_date": "25/06/2019",
+    "hour": "7 :30",
+    "maps_link": "https://goo.gl/maps/EK1WmY7GgPr2z6GV6",
+    "title": "Love and Fantasy",
+    "orchestra": "Fidelio Orchestra",
+    "where": "Church of Saint Andrew",
+    "programme": "Wagner, Berlioz, Strauss",
+    "more_info": "<a href=\"https://www.fideliorchestra.art/events\" target=\"_blank\">Events and tickets</a>",
+    "date": "2019-06-25T19:30"
+  }
+]

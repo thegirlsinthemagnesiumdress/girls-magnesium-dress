@@ -1,0 +1,30 @@
+grow_version: "==0.6.5"
+home: /content/pages/home.yaml
+
+title: "The girls in the magnisium dress"
+meta:
+  favicon_path: /source/images/favicon/favicon.ico
+  image_path: /source/images/hero.jpg
+  google_analytics_id: ""
+
+localization:
+  root_path: /{locale}/
+  default_locale: en
+  locales:
+    - fr
+    - it
+
+static_dirs:
+  - static_dir: /dist/
+    serve_at: /{root}/static/
+  - static_dir: /source/images/
+    serve_at: /{root}/static/images/
+
+deployments:
+  default:
+    destination: local
+    out_dir: docs/
+    env:
+      name: prod
+      host: anna.astesano.com
+      scheme: https

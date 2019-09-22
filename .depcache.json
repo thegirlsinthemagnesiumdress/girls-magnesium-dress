@@ -1,0 +1,14 @@
+{
+  "/content/pages/home.yaml": [
+    "/dist/css/site.min.css",
+    "/dist/js/site.min.js",
+    "/source/images/favicon/favicon.ico",
+    "/source/images/hero-1000.jpg"
+  ],
+  "/content/pages/home@it.yaml": [
+    "/dist/css/site.min.css",
+    "/dist/js/site.min.js",
+    "/source/images/favicon/favicon.ico",
+    "/source/images/hero-1000.jpg"
+  ]
+}

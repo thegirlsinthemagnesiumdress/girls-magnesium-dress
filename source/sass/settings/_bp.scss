@@ -1,0 +1,40 @@
+// Fileoverview:
+// Breakpoints definitions and library using them configuration.
+
+// Breakpoints.
+// This breakpoints match the ones used by qualtrics on the survey.
+$aa-breakpoints: (
+  mobile:  480px,
+  tablet:  768px,
+  desktop: 1000px,
+  wide:    1300px
+);
+
+$aa-hidpi: (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+
+
+$aa-bp-short-screen-height: 768px;
+
+
+$aa-height-breakpoints: (
+  short-desktop: 800px,
+);
+// Set mq breakpoints to be the tr ones.
+$mq-breakpoints: $aa-breakpoints;
+
+// Flexboxgrid breakpoint settings.
+// The breakpoints definition has as 3rd value
+// the size of the grid container. We're likely
+// have the container size defined in our scss.
+//
+// Let's set a random value for now.
+// This value is actually NOT used.
+$container-width: 1300px;
+
+
+// Flexboxgrid - Grid Bp - Defining the bp in EM for consistency with mq.
+$flexboxgrid-breakpoints:
+mobile map-get($aa-breakpoints, mobile) $container-width,
+tablet map-get($aa-breakpoints, tablet) $container-width,
+desktop map-get($aa-breakpoints, desktop) $container-width,
+wide map-get($aa-breakpoints, wide) $container-width;

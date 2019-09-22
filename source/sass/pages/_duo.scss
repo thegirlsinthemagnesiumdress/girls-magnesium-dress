@@ -1,0 +1,145 @@
+.duo {
+  background-color: $bg-color;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  &::before,
+  &::after {
+    background-size: cover;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    width: 50%;
+    z-index: -1;
+  }
+
+  &:before {
+    background-image: url('../images/duo/teo.jpg');
+    background-position: top center;
+
+    @include mq($from: tablet) {
+      background-position: top left;
+    }
+  }
+
+  &:after {
+    background-position: center right 32%;
+    background-image: url('../images/duo/anna.jpg');
+    left: 50%;
+
+    @include mq($from: tablet) {
+      background-position: center right;
+    }
+  }
+
+
+  .header {
+    color: #daddd8;
+    font-family: 'Questrial', sans-serif;
+    font-size: 65px;
+    line-height: 0.6;
+    letter-spacing: 32px;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .menu {
+    list-style: none;
+    margin-top: 100px;
+    padding: 0;
+    text-align: center;
+
+    li {
+      margin-bottom: 40px;
+      display: block
+    }
+
+    a {
+      color: $aa-white;
+      font-size:  30px;
+      text-decoration: underline;
+    }
+  }
+
+  .duo-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+
+  .duo-hero__intro {
+    padding: 50px 0 100px;
+  }
+}
+
+.aa-duo-repertoire {
+  text-align: center;
+
+
+  ul {
+    list-style: none;
+    padding: 30px 0;
+
+    li {
+      padding-bottom: 8px;
+    }
+  }
+}
+
+.aa-duo-medias {
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    li {
+      margin-top: 20px;
+      max-width: 420px;
+      width: 100%;
+
+      .aa-media__media {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+  }
+}
+
+.aa-duo-contact {
+  position: relative;
+  text-align: center;
+
+  a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: underline;
+  }
+
+  &__personal-sites {
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    left: 0;
+    padding: 0 30px;
+    position: absolute;
+    width: 100%;
+
+    @include mq($from: tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
+  }
+}
+

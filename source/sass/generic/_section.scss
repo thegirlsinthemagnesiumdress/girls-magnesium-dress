@@ -1,0 +1,11 @@
+.aa-section {
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  padding: 60px 0;
+
+  .container-fluid {
+    position: relative;
+    width: 100%;
+  }
+}

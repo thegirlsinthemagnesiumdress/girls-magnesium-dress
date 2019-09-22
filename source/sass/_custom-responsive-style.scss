@@ -1,0 +1,349 @@
+/*Extra small devices (portrait phones, less than 576px)*/
+@include mq($until: tablet) {
+  .alongi {
+    background-color: #fff;
+  }
+  /* header style */
+  .header .mobile-menu ul li {
+    list-style: none;
+    padding: 0 0 20px 20px;
+  }
+  /* Hero banner style */
+  #HeroBanner .hero-content h1 {
+    font-size: 28px;
+  }
+  #HeroBanner .hero-content p {
+    font-size: 20px;
+  }
+  #HeroBanner .hero-content a {
+    font-size: 18px;
+  }
+  .header .site-logo-wrap {
+    padding: 23px 0;
+  }
+  .header .site-logo-wrap .logo img {
+    width: 55px;
+  }
+  .header.header-fixed .site-logo-wrap .logo img {
+    width: 50px;
+    transition: all 0.3s ease-in-out;
+  }
+  /* services style */
+  .services .services-wrapper {
+    display: block;
+  }
+  .services .each-service {
+    max-width: 100%;
+    margin: 0 0 50px;
+  }
+  .services {
+    padding: 50px 0;
+  }
+  .services .each-service:last-child {
+    margin: 0;
+  }
+  /* porfolio style */
+  .events {
+    padding: 50px 0;
+  }
+  .events .portfolio-wrapper .each-portfolio {
+    position: relative;
+    width: 100%;
+    float: left;
+    margin: 0 0 10px;
+  }
+  .events .each-portfolio .hover-cont-wrap {
+    opacity: 1;
+    height: auto;
+    top: auto;
+    bottom: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .p-title {
+    top: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .p-desc {
+    top: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .hover-cont-block {
+    top: 0;
+    transform: translateY(0%);
+  }
+  /* about us style */
+  .about .about-wrapper {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+  }
+  .about:after {
+    display: none;
+  }
+  /* testimonial slider style */
+  .media .testimonial-slider li br {
+    display: none;
+  }
+  /* contact us style */
+  .contact-us {
+    padding: 50px 0;
+  }
+  .contact-us .contact-outer-wrapper {
+    display: block;
+  }
+  .contact-us .address-block {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 30px;
+  }
+  .contact-us .address-block::after {
+    display: none;
+  }
+  .contact-us .form-wrap {
+    display: block;
+    width: 100%;
+    padding: 30px 0 0;
+  }
+  .contact-us .form-wrap .floating-label {
+    width: 100%;
+  }
+  .contact-us .form-wrap .fname,
+  .contact-us .form-wrap .contact {
+    margin-right: 0;
+  }
+  .contact-us .contact-title {
+    margin: 0 0 50px;
+  }
+  .services .block-heading {
+    margin-bottom: 70px;
+  }
+  .block-heading {
+    margin-bottom: 30px;
+  }
+  .contact-us .contact-title {
+    margin: 0 0 20px;
+  }
+  .contact-us .add-title {
+    text-align: center;
+    margin: 0 0 30px;
+  }
+  .hidden-lg-up {
+    display: block;
+  }
+  .hidden-md-down {
+    display: none;
+  }
+}
+/*Small devices (landscape phones, 576px and up)*/
+@include mq($from: tablet, $until: desktop) {
+  /* Header style */
+  .navbar-nav {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  /* Hero banner style goes here */
+  #HeroBanner .hero-content h1 {
+    font-size: 28px;
+  }
+  #HeroBanner .hero-content p {
+    font-size: 20px;
+  }
+  #HeroBanner .hero-content a {
+    font-size: 18px;
+  }
+  /* services section. style */
+  .services .each-service {
+    max-width: 100%;
+    margin: 0 0 50px;
+  }
+  .services .each-service:last-child {
+    margin: 0;
+  }
+  /* portfolio section style */
+  .events .portfolio-wrapper .each-portfolio {
+    position: relative;
+    width: calc(50% - 10px);
+    float: left;
+    margin: 0 5px 10px;
+  }
+  .events .each-portfolio .hover-cont-wrap {
+    position: relative;
+    opacity: 1;
+  }
+  .events .each-portfolio .hover-cont-wrap .p-title {
+    top: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .p-desc {
+    top: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .hover-cont-block {
+    top: 0;
+    transform: translateY(0%);
+  }
+  /* about us section style */
+  .about .about-wrapper {
+    width: 100%;
+    text-align: center;
+    padding: 80px 0;
+  }
+  .about:after {
+    display: none;
+  }
+  /* testmonial slider style*/
+  .media .testimonial-slider li br {
+    display: none;
+  }
+  /* contact section style */
+  .contact-us {
+    padding: 50px 0;
+  }
+  .contact-us .contact-outer-wrapper {
+    display: block;
+  }
+  .contact-us .address-block {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 30px;
+  }
+  .contact-us .address-block::after {
+    display: none;
+  }
+  .contact-us .form-wrap {
+    display: block;
+    width: 100%;
+    padding: 30px 0 0;
+  }
+  .contact-us .form-wrap .floating-label {
+    width: 100%;
+  }
+  .contact-us .form-wrap .fname,
+  .contact-us .form-wrap .contact {
+    margin-right: 0;
+  }
+  .contact-us .contact-title {
+    margin: 0 0 50px;
+  }
+  .services .block-heading {
+    margin-bottom: 70px;
+  }
+  .block-heading {
+    margin-bottom: 30px;
+  }
+  .contact-us .contact-title {
+    margin: 0 0 20px;
+  }
+  .contact-us .add-title {
+    text-align: center;
+    margin: 0 0 30px;
+  }
+  .hidden-lg-up {
+    display: block;
+  }
+  .hidden-md-down {
+    display: none;
+  }
+}
+/*Medium devices (tablets, 768px and up)*/
+@include mq($from: tablet, $until: desktop) {
+  /* Header style */
+  .navbar-nav {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .header .site-logo-wrap .logo img {
+    width: 60px;
+  }
+  /* Hero banner style */
+  #HeroBanner .hero-content h1 {
+    font-size: 28px;
+  }
+  #HeroBanner .hero-content p {
+    font-size: 20px;
+  }
+  #HeroBanner .hero-content a {
+    font-size: 18px;
+  }
+  /* mobile menu style */
+  .header .mobile-menu {
+    width: 300px;
+    left: -300px;
+  }
+  .header .mobile-menu ul {
+    margin-top: 100px;
+  }
+  /* service section style*/
+  .services .each-service {
+    max-width: calc(50% - 30px);
+  }
+  /* porfolio section style */
+  .events .portfolio-wrapper .each-portfolio {
+    width: calc(50% - 10px);
+  }
+  .events .each-portfolio .hover-cont-wrap {
+    position: relative;
+    opacity: 1;
+  }
+  .events .each-portfolio .hover-cont-wrap .p-title, .events .each-portfolio .hover-cont-wrap .p-desc {
+    top: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .hover-cont-block {
+    top: 0;
+    transform: translateY(0%);
+  }
+  /* testimonial slider style */
+  .media .testimonial-slider li br {
+    display: none;
+  }
+  /* contact us section style */
+  .contact-us .contact-outer-wrapper {
+    display: block;
+  }
+  .contact-us .address-block {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 30px;
+  }
+  .contact-us .address-block::after {
+    display: none;
+  }
+  .contact-us .form-wrap {
+    display: block;
+    width: 100%;
+    padding: 30px 0 0;
+  }
+  .contact-us .c-detail .c-icon {
+    width: 6%;
+  }
+  .contact-us .c-detail .c-info {
+    width: 92%;
+  }
+  .hidden-lg-up {
+    display: block;
+  }
+  .hidden-md-down {
+    display: none;
+  }
+}
+/*Large devices (desktops, 992px and up)*/
+@include mq($from: desktop, $until: wide) {
+  /* portfolio section style */
+  .events .each-portfolio .hover-cont-wrap {
+    position: relative;
+    opacity: 1;
+  }
+  .events .each-portfolio .hover-cont-wrap .p-title, .events .each-portfolio .hover-cont-wrap .p-desc {
+    top: 0;
+  }
+  .events .each-portfolio .hover-cont-wrap .hover-cont-block {
+    top: 0;
+    transform: translateY(0%);
+  }
+  /* contact us section style */
+  .contact-us .c-detail .c-icon {
+    width: 10%;
+  }
+  .contact-us .c-detail .c-info {
+    width: 87%;
+  }
+}
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+}

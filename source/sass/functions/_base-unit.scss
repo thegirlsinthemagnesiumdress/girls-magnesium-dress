@@ -1,0 +1,7 @@
+// Fileoverview
+// Funtion to defines units as multiples of the site baseline.
+// The aim is to have keep Vertical Rhythm as much as possible. https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
+
+@function base-unit($unit: 1) {
+  @return $unit * $aa-baseline;
+}

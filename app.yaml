@@ -1,0 +1,38 @@
+application: annaastesano
+version: 1-0-0
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+  - url: /(.*\..*)
+    login: admin
+    secure: always
+    static_files: build/\1
+    upload: build/(.*\..*)
+    http_headers:
+      Content-Security-Policy: "default-src 'self'; script-src 'self' www.google-analytics.com 'sha256-987082961e0e8a9e68271eda68438039fb525b005aea0e19a3e4db5d7e197f45='; frame-src www.youtube.com *.soundcloud.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com data:"
+  - url: /(.+)/
+    login: admin
+    secure: always
+    static_files: build/\1/index.html
+    upload: build/(.+)/index.html
+    http_headers:
+      Content-Security-Policy: "default-src 'self'; script-src 'self' www.google-analytics.com 'sha256-987082961e0e8a9e68271eda68438039fb525b005aea0e19a3e4db5d7e197f45='; frame-src www.youtube.com *.soundcloud.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com data:"
+  - url: /(.+)
+    login: admin
+    secure: always
+    static_files: build/\1/index.html
+    upload: build/(.+)/index.html
+    http_headers:
+      Content-Security-Policy: "default-src 'self'; script-src 'self' www.google-analytics.com 'sha256-987082961e0e8a9e68271eda68438039fb525b005aea0e19a3e4db5d7e197f45='; frame-src www.youtube.com *.soundcloud.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com data:"
+  - url: /
+    login: admin
+    secure: always
+    static_files: build/index.html
+    upload: build/index.html
+    http_headers:
+      Content-Security-Policy: "default-src 'self'; script-src 'self' www.google-analytics.com 'sha256-987082961e0e8a9e68271eda68438039fb525b005aea0e19a3e4db5d7e197f45='; frame-src www.youtube.com *.soundcloud.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com data:"
+
+skip_files:
+  - (?!build).*

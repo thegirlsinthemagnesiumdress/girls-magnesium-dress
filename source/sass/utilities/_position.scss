@@ -1,0 +1,20 @@
+.aa-u-position-relative {
+  position: relative;
+}
+
+.aa-bottom-left,
+.aa-bottom-right {
+  @include mq($from: tablet) {
+    bottom: -20px;
+  }
+
+}
+.aa-bottom-left {
+  left: 30px;
+  position: absolute;
+}
+
+.aa-bottom-right {
+  position: absolute;
+  right: 0;
+}
