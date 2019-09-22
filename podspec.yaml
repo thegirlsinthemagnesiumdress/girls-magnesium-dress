@@ -26,5 +26,5 @@ deployments:
     out_dir: docs/
     env:
       name: prod
-      host: http://www.thegirlsinthemagnesiumdress.com/
+      host: www.thegirlsinthemagnesiumdress.com
       scheme: https
