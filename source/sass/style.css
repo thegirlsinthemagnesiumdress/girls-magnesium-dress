@@ -465,7 +465,7 @@ ul, li {
 	position: absolute;
 	top: 0;
 	right: 0;
-	background: url("../images/about-us.jpg") no-repeat center / cover;
+	/* background: url("../images/about-us.jpg") no-repeat center / cover; */
 	width: 50%;
 	height: 100%;
 }

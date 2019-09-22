@@ -3,12 +3,18 @@
     "/dist/css/site.min.css",
     "/dist/js/site.min.js",
     "/source/images/favicon/favicon.ico",
-    "/source/images/hero-1000.jpg"
+    "/source/images/hero.jpg"
+  ],
+  "/content/pages/home@fr.yaml": [
+    "/dist/css/site.min.css",
+    "/dist/js/site.min.js",
+    "/source/images/favicon/favicon.ico",
+    "/source/images/hero.jpg"
   ],
   "/content/pages/home@it.yaml": [
     "/dist/css/site.min.css",
     "/dist/js/site.min.js",
     "/source/images/favicon/favicon.ico",
-    "/source/images/hero-1000.jpg"
+    "/source/images/hero.jpg"
   ]
 }
