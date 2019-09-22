@@ -107,23 +107,28 @@ def import_dmb_lite(filename):
 
             date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('GMT'))  # noqa
 
-            row_data = {
-                "company_name": company_name,
-                "country": country,
-                "industry": industry,
-                "ldap": ldap,
-                "account_id": account_id,
-                "date": date,
-            }
+
 
             key = (company_name, account_id, country, industry)
 
             # if there is already an item and the new one has an older date override it
             dup_item = file_data.get(key)
             if dup_item:
+                file_data[key]["user_ldaps"].add(ldap)
                 if date < dup_item["date"]:
-                    file_data[key] = row_data
+                    file_data[key]["date"] = date
+                    file_data[key]["creator_ldap"] = ldap
+
             else:
+                row_data = {
+                    "company_name": company_name,
+                    "country": country,
+                    "industry": industry,
+                    "creator_ldap": ldap,
+                    "user_ldaps": {ldap},
+                    "account_id": account_id,
+                    "date": date,
+                }
                 file_data[key] = row_data
 
         # defer csv file in batches
@@ -149,11 +154,20 @@ def _import_row(data):
             company_name = row["company_name"]
             country = row["country"]
             industry = row["industry"]
-            ldap = row["ldap"]
+            creator_ldap = row["creator_ldap"]
+            user_ldaps = row["user_ldaps"]
             account_id = row["account_id"]
             date = row["date"]
 
-            user = create_user_(ldap)
+            users = []
+
+            for ldap in user_ldaps:
+                user = create_user_(ldap)
+                if ldap == creator_ldap:
+                    creator = user
+
+                users.append(create_user_(ldap))
+
             try:
                 s, created = Survey.objects.get_or_create(
                     company_name=company_name,
@@ -162,7 +176,7 @@ def _import_row(data):
                     industry=industry,
                     defaults={
                         "tenant": tenant,
-                        "creator": user,
+                        "creator": creator,
                         "created_at": date,
                         "imported_from_dmb_lite": True,
                     }
@@ -180,9 +194,10 @@ def _import_row(data):
 
                 s.save()
 
-                if s.pk not in user.accounts_ids:
-                    user.accounts.add(s)
-                    user.save()
+                for user in users:
+                    if s.pk not in user.accounts_ids:
+                        user.accounts.add(s)
+                        user.save()
                 added += 1
 
             except IntegrityError as ie:
