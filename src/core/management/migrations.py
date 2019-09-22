@@ -172,11 +172,11 @@ def _import_row(data):
                     s.existed_before_dmb_lite = True
                     already_exist += 1
 
-                if date < s.created_at:
-                    logging.error("Raised Integrity Error for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
-                    s.created_at = date
-                    s.creator = user
-                    updated += 1
+                    if date < s.created_at:
+                        logging.error("Updating: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
+                        s.created_at = date
+                        s.creator = user
+                        updated += 1
 
                 s.save()
 
@@ -185,8 +185,9 @@ def _import_row(data):
                     user.save()
                 added += 1
 
-            except IntegrityError:
-                logging.error("Raised Integrity Error for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
+            except IntegrityError as ie:
+                logging.erorr(ie)
+                logging.error("Raised: {} for survey: company name:{}  account_id: {} country: {}  industry: {}".format(ie, company_name, account_id, country, industry))  # noqa
             except MultipleObjectsReturned:
                 logging.error("Multiple occurencies returned for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
         except Exception as e:
