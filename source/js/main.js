@@ -18,6 +18,12 @@ $(document).ready(function() {
       $(this).toggleClass('active');
       $(".mobile-menu").toggleClass('visible');
   });
+
+
+  $('.mobile-menu .nav-link').click(function () {
+    $(".mobile-menu").toggleClass('visible');
+  });
+
   // Smoothscroll script
   $('.nav-link').click(function() {
       var dis = $(this),
