@@ -7,6 +7,9 @@ import unicodecsv as csv
 from datetime import datetime
 from django.utils.timezone import make_aware
 import pytz
+from core.conf import utils
+from django.db import IntegrityError
+from django.core.exceptions import MultipleObjectsReturned
 
 
 INDUSTRY_MAP = {
@@ -85,78 +88,114 @@ def import_dmb_lite(filename):
         reader.next()
         reader.next()
 
-        deferred_rows = 0
+        file_data = {}
 
         for row in reader:
+
+            company_name = row['parent']
+            country = row['country']
+            industry = INDUSTRY_MAP[row['sector']]
+            ldap = row['ldap']
+            account_id = None
+
+            if row['greentea_fix'] and row['greentea_fix'] != 'undefined':
+                account_id = row['greentea_fix']
+            elif row['greentea']:
+                account_id = row['greentea']
+            else:
+                logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
+
+            date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('GMT'))  # noqa
+
+            row_data = {
+                "company_name": company_name,
+                "country": country,
+                "industry": industry,
+                "ldap": ldap,
+                "account_id": account_id,
+                "date": date,
+            }
+
+            key = (company_name, account_id, country, industry)
+
+            # if there is already an item and the new one has an older date override it
+            dup_item = file_data.get(key)
+            if dup_item:
+                if date < dup_item["date"]:
+                    file_data[key] = row_data
+            else:
+                file_data[key] = row_data
+
+        # defer csv file in batches
+        num_items = len(file_data)
+        deferred_items = 0
+        for c in utils.chunks(file_data.values(), 100):
+            deferred_items += len(c)
+            logging.info("Deferring {}/{}".format(deferred_items, num_items))
             deferred.defer(
                 _import_row,
-                row,
+                c,
                 _queue='migrations',
             )
-            deferred_rows += 1
-
-        logging.info("Deferred {} surveys creation".format(deferred_rows))
 
 
-def _import_row(row):
+def _import_row(data):
     tenant = "ads"
-    try:
-        company_name = row['parent']
-        country = row['country']
-        industry = INDUSTRY_MAP[row['sector']]
-        user = create_user_(row['ldap'])
-        account_id = None
+    added = 0
+    updated = 0
+    already_exist = 0
+    for row in data:
+        try:
+            company_name = row["company_name"]
+            country = row["country"]
+            industry = row["industry"]
+            ldap = row["ldap"]
+            account_id = row["account_id"]
+            date = row["date"]
 
-        if row['greentea_fix'] and row['greentea_fix'] != 'undefined':
-            account_id = row['greentea_fix']
-        elif row['greentea']:
-            account_id = row['greentea']
-        else:
-            logging.warning("Could not set greentea id for {}, `None` will be used.".format(company_name))
+            user = create_user_(ldap)
+            try:
+                s, created = Survey.objects.get_or_create(
+                    company_name=company_name,
+                    account_id=account_id,
+                    country=country,
+                    industry=industry,
+                    defaults={
+                        "tenant": tenant,
+                        "creator": user,
+                        "created_at": date,
+                        "imported_from_dmb_lite": True,
+                    }
+                )
+                if not created:
+                    logging.info("An existing Account has been found")
+                    s.existed_before_dmb_lite = True
+                    already_exist += 1
 
-        date = make_aware(datetime.strptime(row['timestamp'], '%d/%m/%Y %H:%M:%S'), pytz.timezone('GMT'))  # noqa
+                if date < s.created_at:
+                    logging.info("Updating survey with sid: {}".format(s.sid))
+                    s.created_at = date
+                    s.creator = user
+                    updated += 1
 
-        existing_accounts = Survey.objects.filter(
-            company_name=company_name,
-            account_id=account_id,
-            country=country,
-            industry=industry
-        )
+                s.save()
 
-        # if it doesn't yet exists
-        if existing_accounts.count() == 0:
-            logging.info(
-                "Creating company name: {} greentea id: {} country: {} industry: {} creator: {}".format(
-                    company_name.encode('utf-8'), row['greentea'], country, industry, row['ldap']))
-            s = Survey(
-                company_name=company_name,
-                industry=industry,
-                country=country,
-                tenant=tenant,
-                account_id=account_id,
-                creator=user,
-                created_at=date,
-                imported_from_dmb_lite=True,
-            )
-        # if it exists
-        else:
-            logging.info("An existing Account has been found")
-            s = existing_accounts[0]
-            s.existed_before_dmb_lite = True
+                if s.pk not in user.accounts_ids:
+                    user.accounts.add(s)
+                    user.save()
+                added += 1
 
-        # if row to be imported is older than the survey creation time
-        if date < s.created_at:
-            logging.info("Updating survey with sid: {}".format(s.sid))
-            s.created_at = date
-            s.creator = user
-
-        s.save()
-
-        if s.pk not in user.accounts_ids:
-            user.accounts.add(s)
-            user.save()
-    except Exception:
-        logging.error("Creating company name: {} greentea id: {}  creator: {}  failed".format(company_name.encode('utf-8'), row['greentea'], row['ldap']))  # noqa
+            except IntegrityError:
+                print(">>>>>>>>>>>>> ")
+                logging.error("Raised Integrity Error for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
+            except MultipleObjectsReturned:
+                print(">>>>>>>>>>>>> ")
+                logging.error("Multiple occurencies returned for survey: company name:{}  account_id: {} country: {}  industry: {}".format(company_name, account_id, country, industry))  # noqa
+        except Exception as e:
+            print(">>>>>>>>>>>>> ", e)
+    logging.info("Added: {}".format(added))
+    logging.info("Already exist: {}".format(already_exist))
+    logging.info("Updated: {}".format(updated))
 
 
 def create_user_(ldap):

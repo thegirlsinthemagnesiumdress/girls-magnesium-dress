@@ -352,3 +352,9 @@ def get_account_detail_data(content_data, account):
                         for survey_result in account.internal_results.all().order_by('-started_at')]
     # Return the tuple of objects.
     return account_info, external_surveys, internal_surveys
+
+
+def chunks(l, n):
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i:i + n]

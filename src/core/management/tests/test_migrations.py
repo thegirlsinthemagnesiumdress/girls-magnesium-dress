@@ -38,9 +38,9 @@ class TestDMBLiteImport(TestCase):
             u'Bell',
             u'šai',
             u'IPF Provident',
-
+            u'Bell123',
         ])
-        self.assertEqual(Survey.objects.all().count(), 4)
+        self.assertEqual(Survey.objects.all().count(), 5)
 
         saved_accounts = set([a.company_name for a in Survey.objects.all()])
         self.assertEqual(saved_accounts, accounts)
@@ -80,9 +80,9 @@ class TestDMBLiteImport(TestCase):
             u'Bell',
             u'šai',
             u'IPF Provident',
-
+            u'Bell123',
         ])
-        self.assertEqual(Survey.objects.all().count(), 4)
+        self.assertEqual(Survey.objects.all().count(), 5)
 
         saved_accounts = set([a.company_name for a in Survey.objects.all()])
         self.assertEqual(saved_accounts, accounts)
