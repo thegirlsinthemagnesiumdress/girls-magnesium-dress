@@ -26,5 +26,5 @@ deployments:
     out_dir: docs/
     env:
       name: prod
-      host: anna.astesano.com
+      host: flea89.github.io/girls-magnesium-dress/
       scheme: https
