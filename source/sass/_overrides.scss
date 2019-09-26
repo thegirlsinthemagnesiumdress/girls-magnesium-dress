@@ -41,7 +41,7 @@
 
     @include mq($from: desktop) {
       background-image: url(../images/anna.jpg);
-      background-position: top center;
+      background-position: top left -100px;
       display: block;
       left: 0;
     }
@@ -106,6 +106,7 @@
 .aa-event {
   $block: &;
   align-items: center;
+  background: rgba(0, 0, 0, .35);
   border: 2px solid white;
   border-radius: 3px;
   display: flex;
@@ -116,11 +117,11 @@
   position: relative;
   text-align: center;
 
-  @include mq($from: tablet) {
-    margin: base-unit(3);
-    flex-direction: row;
-    text-align: left;
-  }
+  // @include mq($from: tablet) {
+  //   margin: base-unit(3);
+  //   flex-direction: row;
+  //   text-align: left;
+  // }
 
   &__date {
     padding-bottom: 0;
@@ -128,9 +129,9 @@
     font-size: 22px;
     margin: base-unit(2) 0;
 
-    @include mq($from: tablet) {
-      margin: 0;
-    }
+    // @include mq($from: tablet) {
+    //   margin: 0;
+    // }
 
   }
 
@@ -225,7 +226,7 @@
     display: none;
 
     @include mq($from: tablet) {
-      display: block;
+      // display: block;
     }
 
     img {
@@ -245,7 +246,19 @@
 }
 
 .events {
-  background: url(../images/hero.jpg) no-repeat 0 30% / cover;
+  background: url(../images/stairs.jpg) no-repeat 0 30% / cover;
+
+  @include mq($from: desktop) {
+    background-position: top -50px left 200px;
+    background-size: auto 1000px;
+    min-height: 600px;
+  }
+}
+
+.aa-events__container {
+  @include mq($from: desktop) {
+    width: 50%;
+  }
 }
 
 

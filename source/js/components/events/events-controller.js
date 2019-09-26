@@ -34,6 +34,12 @@ axios.get(eventsEndpoint)
             .filter((e) => new Date(e.date) < now)
             .slice(-7, -1);
 
+        if (pastEvents.length === 0) {
+          window.setTimeout(() => {
+            document.querySelector('.aa-events__past-title').style.display = 'none';
+          }, 0);
+        }
+
          eventsContainer.innerHTML = html({
             futureEvents,
             pastEvents: pastEvents.sort((a, b) => new Date(b.date) - new Date(a.date))
