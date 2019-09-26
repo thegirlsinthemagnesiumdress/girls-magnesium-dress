@@ -1,7 +1,7 @@
 grow_version: "==0.6.5"
 home: /content/pages/home.yaml
 
-title: "The girls in the magnisium dress"
+title: "The girls in the magnesium dress"
 meta:
   favicon_path: /source/images/favicon/favicon.ico
   image_path: /source/images/hero.jpg
