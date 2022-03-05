@@ -1,248 +1,305 @@
 <!DOCTYPE html>
 
 <html lang="it" itemscope itemtype="http://schema.org/WebSite">
-  <head>
-    <meta charset="utf-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
 
-    <title>The girls in the magnesium dress</title>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
 
-    <link href="/static/css/site.min.css" rel="stylesheet">
-      <link rel="shortcut icon" href="/static/images/favicon/favicon.ico">
+  <title>The girls in the magnesium dress</title>
 
-      <meta property="og:image" content="/static/images/hero.jpg">
-    <meta property="og:title" content="The girls in the magnesium dress – ">
-    <meta property="og:site_name" content="The girls in the magnesium dress">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.thegirlsinthemagnesiumdress.com/it/">
-      <meta name="description" content="Duo arpa e contrabbasso" itemprop="description">
-      <meta property="og:description" content="Duo arpa e contrabbasso">
+  <link href="/static/css/site.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/static/images/favicon/favicon.ico">
+
+  <meta property="og:image" content="/static/images/hero.jpg">
+  <meta property="og:title" content="The girls in the magnesium dress – ">
+  <meta property="og:site_name" content="The girls in the magnesium dress">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.thegirlsinthemagnesiumdress.com/it/">
+  <meta name="description" content="Duo arpa e contrabbasso" itemprop="description">
+  <meta property="og:description" content="Duo arpa e contrabbasso">
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-62555583-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-62555583-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-62555583-2');
-    </script>
+    gtag('config', 'UA-62555583-2');
+  </script>
 
-    <script>
-        var locales = ['it', 'fr']
-        var lang = navigator.language || navigator.userLanguage;
-        var path = window.location.pathname
-        var isLocalised = false;
+  <script>
+    var locales = ['it', 'fr']
+    var lang = navigator.language || navigator.userLanguage;
+    var path = window.location.pathname
+    var isLocalised = false;
 
-        if (path.indexOf(`/it`) == 0 || path.indexOf(`/fr`) == 0) {
-          isLocalised = true;
-        }
+    if (path.indexOf(`/it`) == 0 || path.indexOf(`/fr`) == 0) {
+      isLocalised = true;
+    }
 
-        for (i = 0; i < locales.length; i++) {
-          var locale = `/${locales[i]}`
+    for (i = 0; i < locales.length; i++) {
+      var locale = `/${locales[i]}`
 
-          if (path.indexOf(locale) == 0) {
-            path = path.replace(locale, '');
-            break;
-          }
-        }
+      if (path.indexOf(locale) == 0) {
+        path = path.replace(locale, '');
+        break;
+      }
+    }
 
-        if (!isLocalised) {
-          locales.forEach((locale) => {
+    if (!isLocalised) {
+      locales.forEach((locale) => {
 
-          if (lang.indexOf(locale) == 0)
-              window.location = `/${locale}` + path;
+        if (lang.indexOf(locale) == 0)
+          window.location = `/${locale}` + path;
 
-          });
-        }
-    </script>
+      });
+    }
+  </script>
 
-    <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body  >
-    <main>
- <section id="MainContainer">
-  <!-- Header starts here -->
-  <header class="header" id="Header">
-      <nav class="main-navigation">
+<body>
+  <main>
+    <section id="MainContainer">
+      <!-- Header starts here -->
+      <header class="header" id="Header">
+        <nav class="main-navigation">
           <div class="container clearfix">
-              <div class="site-logo-wrap">
-                  <a class="logo" href="#"><img src="/static/images/logo.svg" alt="logo"></a>
-              </div>
-              <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
-              <div class="main-menu hidden-md-down">
-                  <ul class="menu-list">
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Progetto</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Eventi</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contatti</a></li>
-                  </ul>
-              </div>
+            <div class="site-logo-wrap">
+              <a class="logo" href="#"><img src="/static/images/logo.svg" alt="logo"></a>
+            </div>
+            <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
+            <div class="main-menu hidden-md-down">
+              <ul class="menu-list">
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Progetto</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Eventi</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contatti</a></li>
+              </ul>
+            </div>
           </div>
           <div class="mobile-menu hidden-lg-up">
-              <ul class="mobile-menu-list">
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Progetto</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Eventi</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contatti</a></li>
-              </ul>
+            <ul class="mobile-menu-list">
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Progetto</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Eventi</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contatti</a></li>
+            </ul>
           </div>
-      </nav>
-  </header>
-  <!-- Header ends here -->
-  <!-- Banner starts here -->
-  <section id="HeroBanner">
-      <div class="hero-content">
+        </nav>
+      </header>
+      <!-- Header ends here -->
+      <!-- Banner starts here -->
+      <section id="HeroBanner">
+        <div class="hero-content">
           <h1>The girls in the magnesium dress</h1>
-      </div>
-  </section>
-  <section id="project" class="services">
-      <div class="container">
+        </div>
+      </section>
+      <section id="project" class="services">
+        <div class="container">
           <div class="block-heading">
-              <h2>The project</h2>
-              <p>
-                  The Girls in the Magnesium Dress is an innovative chamber music collaboration between double bass and harp.
-                  Named after one of the most renowned orchestral pieces by Frank Zappa, the ensemble involves the audience in a new musical experience led by Valentina Scheldhofen Ciardelli and Anna Astesano.
-                  Their versatile repertoire appeals to a wide public with sparkling transcriptions from the opera world, virtuoso repertoire and 21st century music, reversing the stereotypes surrounding both instruments.
-                  The duo collaborates with established composers such as John Alexander, Paul Patterson and Kurt Morgan.
-                  The Girls have performed in several important London venues such as St- Martin-in-the-Fields, Wigmore Hall, Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the GSM Auditorium, Sala dell’Affresco and Chiesa di S. Micheletto in Lucca.
-              </p>
+            <h2>Progetto</h2>
+            <p>
+              The Girls in the Magnesium Dress e’ una collaborazione cameristica innovativa che ha come protagonisti il
+              contrabbasso e l’arpa.
+              Prendendo il nome da uno dei brani orchestrali più conosciuti del compositore Frank Zappa, l’ensemble
+              coinvolge il pubblico in una nuova esperienza musicale guidata da Valentina Scheldhofen Ciardelli ed Anna
+              Astesano.
+              Il loro repertorio versatile è adatto ad ogni tipo di audience, proponendo brillanti trascrizioni dal
+              mondo operistico, repertorio virtuoso e musica del XXI secolo, ribaltando gli stereotipi che circondano
+              entrambi gli strumenti.
+              Il duo collabora con compositori riconosciuti quali John Alexander, Paul Patterson e Kurt Morgan. Sono
+              state selezionate come artiste invitate per il 20esimo World Harp Congress a Cardiff a luglio 2022.
+              The Girls in the Magnesium Dress si sono riprodotte in sale londinesi ed italiane importanti quali
+              St-Martin-in-the-Fields, Wigmore Hall, Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the
+              GSM Auditorium, la Sala dell’Affresco e la Chiesa di S. Micheletto in Lucca.
+            </p>
           </div>
-      </div>
-  </section>
+        </div>
+      </section>
 
-  <!-- About Us section starts here -->
-  <section id="About" class="about about--valentina">
-      <div class="container">
+      <!-- About Us section starts here -->
+      <section id="About" class="about about--valentina">
+        <div class="container">
           <div class="about-wrapper">
-              <h2>Valentina Ciardelli</h2>
-              <p>Valentina Ciardelli nasce a Pietrasanta (Lu) da madre tedesca e padre italiano. </br> Prima pianista, nel novembre del 2009 inizia a suonare il contrabbasso e si diploma nell’ottobre 2014 con il massimo dei voti e la lode presso l’Istituto Musicale Luigi Boccherini di Lucca, al Royal College of Music nel 2016 ed al Trinity Laban Conservatoire of Music and Dance nel 2017/18, sotto la guida di Leon Bosch. </p><p> E’ inoltre diplomata in Composizione Jazz al conservatorio G.Puccini di La Spezia con il massimo dei voti. Nella sua carriera, ha partecipato, vincendo, a diverse audizioni per orchestre giovanili in Italia ed all’estero come Gustav Mahler Academy 2016 il praticantato della BBC Symphony Orchestra a Londra. Ha vinto anche numerose borse di studio e concorsi solistici in Europa.</p> <p>Durante l’estate 2018 è stata invitata a suonare all’apertura dello Zappanale 2018 assieme al sassofonista e cantante, Napoleon Murphy Brock. Ha vinto un posto come artist in residence al BANFF centre in Canada per settembre 2019. </p><p>Si è esibita in recital solistici in prestigiose sale da concerto tra cui St-Martin-in- the-fields, Wigmore Hall, Royal Albert Hall e St Katharinen Kirche (Amburgo). Ha vinto il posto di Soloist Junior Fellow al Trinity Laban Conservatoire di Londra ricevendo il prestigiosissimo award Richard Carne. </p> <p>Ha inoltre vinto una borsa di studio bandita dall’associazione Animando di Lucca sulla ricerca e la riscoperta della musica della famiglia Puccini, e un volume sulle musiche inedite è stato pubblicato in Giappone dalla casa editrice Da Vinci. Valentina è in continua ricerca di nuovo repertorio per contrabbasso solista. Ha una vasta esperienza anche nel campo jazz. Suona un contrabbasso Scipioni del 2014.</p>
+            <h2>Valentina Ciardelli</h2>
+            <p>Valentina Ciardelli nasce a Pietrasanta (Lu) da madre tedesca e padre italiano. </br> Prima pianista, nel
+              novembre del 2009 inizia a suonare il contrabbasso e si diploma nell’ottobre 2014 con il massimo dei voti
+              e la lode presso l’Istituto Musicale Luigi Boccherini di Lucca, al Royal College of Music nel 2016 ed al
+              Trinity Laban Conservatoire of Music and Dance nel 2017/18, sotto la guida di Leon Bosch. </p>
+            <p> E’ inoltre diplomata in Composizione Jazz al conservatorio G.Puccini di La Spezia con il massimo dei
+              voti. Nella sua carriera, ha partecipato, vincendo, a diverse audizioni per orchestre giovanili in Italia
+              ed all’estero come Gustav Mahler Academy 2016 il praticantato della BBC Symphony Orchestra a Londra. Ha
+              vinto anche numerose borse di studio e concorsi solistici in Europa.</p>
+            <p>Durante l’estate 2018 è stata invitata a suonare all’apertura dello Zappanale 2018 assieme al
+              sassofonista e cantante, Napoleon Murphy Brock. Ha vinto un posto come artist in residence al BANFF centre
+              in Canada per settembre 2019. </p>
+            <p>Si è esibita in recital solistici in prestigiose sale da concerto tra cui St-Martin-in- the-fields,
+              Wigmore Hall, Royal Albert Hall e St Katharinen Kirche (Amburgo). Ha vinto il posto di Soloist Junior
+              Fellow al Trinity Laban Conservatoire di Londra ricevendo il prestigiosissimo award Richard Carne. </p>
+            <p>Ha inoltre vinto una borsa di studio bandita dall’associazione Animando di Lucca sulla ricerca e la
+              riscoperta della musica della famiglia Puccini, e un volume sulle musiche inedite è stato pubblicato in
+              Giappone dalla casa editrice Da Vinci. Valentina è in continua ricerca di nuovo repertorio per
+              contrabbasso solista. Ha una vasta esperienza anche nel campo jazz. Suona un contrabbasso Scipioni del
+              2014.</p>
           </div>
-      </div>
-  </section>
-  <section class="about about--anna">
-      <div class="container">
+        </div>
+      </section>
+      <section class="about about--anna">
+        <div class="container">
           <div class="about-wrapper">
-              <h2>Anna Astesano</h2>
-              <p>Conclusi gli studi di Bachelor e Master press il CNSMD di Lione nella classe di Fabrice Pierre, Anna Astesano integra la classe del Trinity Laban Conservatoire of Music and Dance di Londra nel corso di Postgraduate Advanced Diploma, sotto la guida di Gabriella Dall’Olio. </p><p>Ha vinto numerosi premi nazionali ed internazionali. Negli anni 2014-2015 è l’arpista dell’Accademia del “Teatro alla Scala” di Milano.</br> A partire da giugno 2015 è la prima arpa dell’orchestra “Luigi Cherubini”, diretta dal Maestro Riccardo Muti . </p> <p>Negli anni 2017 e 2018, ha ricevuto borse di studio offerte dalla Fondazione CRT, l’Associazione “De Sono” e del “Lions Club” di Torino. Nel 2018 ha vinto il premio “Featured Young Performer” offerto dal London Ear Festival, esibendosi da solista e con l’ensemble di musica da camera contemporanea Uroboros, ed  il “John Marson Prize for best performer”, ottenendo il suo debutto a St-Martin-in-the-Fields nel maggio 2019. </p> <p>Nella stagione 2018/2019 è l’arpista del Future Foyle First Programme promosso dal London Philharmonic Orchestra. A luglio 2019 si aggiudica l’audizione come seconda arpa presso il Teatro del Maggio Musicale Fiorentino di Firenze.</p> <p>Ha collaborato con orchestre quali: la Royal Opera House di Covent Garden,la London Philharmonic Orchestra, il Maggio Musicale Fiorentino, l’Orchestra Sinfonica Nazionale della RAI di Torino, il Teatro Kobolov Novaya dell’Opera di Mosca, l’Orchestra del London Southbank Sinfonia.</p><p>Ha inoltre suonato in importanti istituzioni e sale da concerto londinesi, tra cui la Royal Festival Hall, la Royal Albert Hall,la Queen Elisabeth Hall, gli Abbey Road Studios, il British Museum e Wigmore Hall. È una artista della Concordia Foundation e Park Lane Group di Londra.</p>
+            <h2>Anna Astesano</h2>
+            <p>Conclusi gli studi di Bachelor e Master press il CNSMD di Lione nella classe di Fabrice Pierre, Anna
+              Astesano integra la classe del Trinity Laban Conservatoire of Music and Dance di Londra nel corso di
+              Postgraduate Advanced Diploma, sotto la guida di Gabriella Dall’Olio. </p>
+            <p>Ha vinto numerosi premi nazionali ed internazionali. Negli anni 2014-2015 è l’arpista dell’Accademia del
+              “Teatro alla Scala” di Milano.</br> A partire da giugno 2015 è la prima arpa dell’orchestra “Luigi
+              Cherubini”, diretta dal Maestro Riccardo Muti . </p>
+            <p>Negli anni 2017 e 2018, ha ricevuto borse di studio offerte dalla Fondazione CRT, l’Associazione “De
+              Sono” e del “Lions Club” di Torino. Nel 2018 ha vinto il premio “Featured Young Performer” offerto dal
+              London Ear Festival, esibendosi da solista e con l’ensemble di musica da camera contemporanea Uroboros, ed
+              il “John Marson Prize for best performer”, ottenendo il suo debutto a St-Martin-in-the-Fields nel maggio
+              2019. </p>
+            <p>Nella stagione 2018/2019 è l’arpista del Future Foyle First Programme promosso dal London Philharmonic
+              Orchestra. A luglio 2019 si aggiudica l’audizione come seconda arpa presso il Teatro del Maggio Musicale
+              Fiorentino di Firenze.</p>
+            <p>Ha collaborato con orchestre quali: la Royal Opera House di Covent Garden,la London Philharmonic
+              Orchestra, il Maggio Musicale Fiorentino, l’Orchestra Sinfonica Nazionale della RAI di Torino, il Teatro
+              Kobolov Novaya dell’Opera di Mosca, l’Orchestra del London Southbank Sinfonia.</p>
+            <p>Ha inoltre suonato in importanti istituzioni e sale da concerto londinesi, tra cui la Royal Festival
+              Hall, la Royal Albert Hall,la Queen Elisabeth Hall, gli Abbey Road Studios, il British Museum e Wigmore
+              Hall. È una artista della Concordia Foundation e Park Lane Group di Londra.</p>
 
           </div>
-      </div>
-  </section>
-  <section class="events" id="events">
-    <div class="testimonial-wrap">
-    <div class="container">
-      <div class="block-heading">
-        <h2>Eventi</h2>
-      </div>
-      <div class="aa-events__container">
-      </div>
-    </div>
-  </div>
-  </section>
-  <!-- About Us section ends here -->
-  <!-- Portfolio section starts here -->
-  <section class="media-section" id="media">
-      <div class="container">
+        </div>
+      </section>
+      <section class="events" id="events">
+        <div class="testimonial-wrap">
+          <div class="container">
+            <div class="block-heading">
+              <h2>Eventi</h2>
+            </div>
+            <div class="aa-events__container">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- About Us section ends here -->
+      <!-- Portfolio section starts here -->
+      <section class="media-section" id="media">
+        <div class="container">
           <div class="block-heading">
-              <h2>Media</h2>
+            <h2>Media</h2>
           </div>
           <div class="aa_medias">
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/nrQyn-tQ2yM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/nrQyn-tQ2yM" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/I0zt5NWbjPA?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/I0zt5NWbjPA?rel=0" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Zek3j68gzPc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Zek3j68gzPc?rel=0" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/MC8XU6jgYIg?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/MC8XU6jgYIg?rel=0" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
           </div>
-      </div>
-  </section>
-  <!-- Portfolio section ends here -->
-  <!-- Contact us section starts here -->
-  <section id="contact-us" class="contact-us">
-      <div class="container contact-container">
+        </div>
+      </section>
+      <!-- Portfolio section ends here -->
+      <!-- Contact us section starts here -->
+      <section id="contact-us" class="contact-us">
+        <div class="container contact-container">
           <h3 class="contact-title">Contatti</h3>
           <div class="contact-outer-wrapper">
-              <div class="address-block">
-                  <p class="add-title">Dettagli</p>
-                  <div class="c-detail">
-                      <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
-                        Facebook </br>
-                        <a href="https://www.facebook.com/GirlsInTheMagnesiumDress/">
-                          The Girls in The Magnesium Dress
-                        </a>
-                      </span>
-                  </div>
-                  <div class="c-detail">
-                      <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="c-info">
-                        Youtube </br>
-                        <a href="https://www.youtube.com/channel/UCWX5_W6XymuKWdE8zG0VlwQ?view_as=subscriber">
-                          The Girls in The Magnesium Dress
-                        </a>
-                      </span>
-                  </div>
+            <div class="address-block">
+              <p class="add-title">Dettagli</p>
+              <div class="c-detail">
+                <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
+                  PR - Ufficio Stampa </br>
+                  <a class="pr-contact" href="mailto:marco.marcarini2@gmail.com">
+                    Mario Marcarini
+                  </a>
+                </span>
               </div>
-              <div class="form-wrap">
-                  <p class="add-title">Mandaci un messaggio</p>
-                  <form action="https://formspree.io/annarpa93@gmail.com" method="POST">
-
-                      <div class="fname floating-label">
-                          <input type="text" class="floating-input" name="name" id="full-name-field" />
-                          <label for="full-name-field">Nome</label>
-                      </div>
-                      <div class="email floating-label">
-                          <input type="email" class="floating-input" name="_replyto" id="mail-field" />
-                          <label for="mail-field">Email</label>
-                      </div>
-
-                      <div class="user-msg floating-label">
-                          <textarea class="floating-input" name="message" id="user-msg-field"></textarea>
-                          <label for="user-msg-field" class="msg-label">Messaggio</label>
-                      </div>
-                      <div class="submit-btn">
-                          <button type="submit">Invia</button>
-                      </div>
-                  </form>
+              <div class="c-detail">
+                <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
+                  Facebook </br>
+                  <a href="https://www.facebook.com/GirlsInTheMagnesiumDress/">
+                    The Girls in The Magnesium Dress
+                  </a>
+                </span>
               </div>
+              <div class="c-detail">
+                <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="c-info">
+                  Youtube </br>
+                  <a href="https://www.youtube.com/channel/UCWX5_W6XymuKWdE8zG0VlwQ?view_as=subscriber">
+                    The Girls in The Magnesium Dress
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="form-wrap">
+              <p class="add-title">Mandaci un messaggio</p>
+              <form action="https://formspree.io/annarpa93@gmail.com" method="POST">
+
+                <div class="fname floating-label">
+                  <input type="text" class="floating-input" name="name" id="full-name-field" />
+                  <label for="full-name-field">Nome</label>
+                </div>
+                <div class="email floating-label">
+                  <input type="email" class="floating-input" name="_replyto" id="mail-field" />
+                  <label for="mail-field">Email</label>
+                </div>
+
+                <div class="user-msg floating-label">
+                  <textarea class="floating-input" name="message" id="user-msg-field"></textarea>
+                  <label for="user-msg-field" class="msg-label">Messaggio</label>
+                </div>
+                <div class="submit-btn">
+                  <button type="submit">Invia</button>
+                </div>
+              </form>
+            </div>
           </div>
-      </div>
-  </section>
-  <!-- Contact us section ends here -->
-  <!-- Footer section starts here -->
-  <!-- Footer section ends here -->
-</section>
-    </main>
+        </div>
+      </section>
+      <!-- Contact us section ends here -->
+      <!-- Footer section starts here -->
+      <!-- Footer section ends here -->
+    </section>
+  </main>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.1/jquery.fancybox.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.5/scrollreveal.min.js" crossorigin="anonymous"></script> -->
 
   <script src="/static/js/site.min.js"></script>
-  </body>
+</body>
+
 </html>

@@ -1,248 +1,288 @@
 <!DOCTYPE html>
 
 <html lang="fr" itemscope itemtype="http://schema.org/WebSite">
-  <head>
-    <meta charset="utf-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
 
-    <title>Anna Astesano – Harpiste</title>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
 
-    <link href="/static/css/site.min.css" rel="stylesheet">
-      <link rel="shortcut icon" href="/static/images/favicon/favicon.ico">
+  <title>The girls in the magnesium dress</title>
 
-      <meta property="og:image" content="/static/images/hero.jpg">
-    <meta property="og:title" content="Anna Astesano – Harpiste – ">
-    <meta property="og:site_name" content="The girls in the magnesium dress">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.thegirlsinthemagnesiumdress.com/fr/">
-      <meta name="description" content="Harp and double-bass duo." itemprop="description">
-      <meta property="og:description" content="Harp and double-bass duo.">
+  <link href="/static/css/site.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/static/images/favicon/favicon.ico">
+
+  <meta property="og:image" content="/static/images/hero.jpg">
+  <meta property="og:title" content="Anna Astesano – Harpiste – ">
+  <meta property="og:site_name" content="The girls in the magnesium dress">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.thegirlsinthemagnesiumdress.com/fr/">
+  <meta name="description" content="Harp and double-bass duo." itemprop="description">
+  <meta property="og:description" content="Harp and double-bass duo.">
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-62555583-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-62555583-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-62555583-2');
-    </script>
+    gtag('config', 'UA-62555583-2');
+  </script>
 
-    <script>
-        var locales = ['it', 'fr']
-        var lang = navigator.language || navigator.userLanguage;
-        var path = window.location.pathname
-        var isLocalised = false;
+  <script>
+    var locales = ['it', 'fr']
+    var lang = navigator.language || navigator.userLanguage;
+    var path = window.location.pathname
+    var isLocalised = false;
 
-        if (path.indexOf(`/it`) == 0 || path.indexOf(`/fr`) == 0) {
-          isLocalised = true;
-        }
+    if (path.indexOf(`/it`) == 0 || path.indexOf(`/fr`) == 0) {
+      isLocalised = true;
+    }
 
-        for (i = 0; i < locales.length; i++) {
-          var locale = `/${locales[i]}`
+    for (i = 0; i < locales.length; i++) {
+      var locale = `/${locales[i]}`
 
-          if (path.indexOf(locale) == 0) {
-            path = path.replace(locale, '');
-            break;
-          }
-        }
+      if (path.indexOf(locale) == 0) {
+        path = path.replace(locale, '');
+        break;
+      }
+    }
 
-        if (!isLocalised) {
-          locales.forEach((locale) => {
+    if (!isLocalised) {
+      locales.forEach((locale) => {
 
-          if (lang.indexOf(locale) == 0)
-              window.location = `/${locale}` + path;
+        if (lang.indexOf(locale) == 0)
+          window.location = `/${locale}` + path;
 
-          });
-        }
-    </script>
+      });
+    }
+  </script>
 
-    <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body  >
-    <main>
- <section id="MainContainer">
-  <!-- Header starts here -->
-  <header class="header" id="Header">
-      <nav class="main-navigation">
+<body>
+  <main>
+    <section id="MainContainer">
+      <!-- Header starts here -->
+      <header class="header" id="Header">
+        <nav class="main-navigation">
           <div class="container clearfix">
-              <div class="site-logo-wrap">
-                  <a class="logo" href="#"><img src="/static/images/logo.svg" alt="logo"></a>
-              </div>
-              <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
-              <div class="main-menu hidden-md-down">
-                  <ul class="menu-list">
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Project</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Events</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contact</a></li>
-                  </ul>
-              </div>
+            <div class="site-logo-wrap">
+              <a class="logo" href="#"><img src="/static/images/logo.svg" alt="logo"></a>
+            </div>
+            <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
+            <div class="main-menu hidden-md-down">
+              <ul class="menu-list">
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Project</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Events</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
+                <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contact</a></li>
+              </ul>
+            </div>
           </div>
           <div class="mobile-menu hidden-lg-up">
-              <ul class="mobile-menu-list">
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Project</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Events</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contact</a></li>
-              </ul>
+            <ul class="mobile-menu-list">
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">Home</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#project">Project</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#events">Events</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#media">Media</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">Contact</a></li>
+            </ul>
           </div>
-      </nav>
-  </header>
-  <!-- Header ends here -->
-  <!-- Banner starts here -->
-  <section id="HeroBanner">
-      <div class="hero-content">
+        </nav>
+      </header>
+      <!-- Header ends here -->
+      <!-- Banner starts here -->
+      <section id="HeroBanner">
+        <div class="hero-content">
           <h1>Anna Astesano – Harpiste</h1>
-      </div>
-  </section>
-  <section id="project" class="services">
-      <div class="container">
+        </div>
+      </section>
+      <section id="project" class="services">
+        <div class="container">
           <div class="block-heading">
-              <h2>The project</h2>
-              <p>
-                  The Girls in the Magnesium Dress is an innovative chamber music collaboration between double bass and harp.
-                  Named after one of the most renowned orchestral pieces by Frank Zappa, the ensemble involves the audience in a new musical experience led by Valentina Scheldhofen Ciardelli and Anna Astesano.
-                  Their versatile repertoire appeals to a wide public with sparkling transcriptions from the opera world, virtuoso repertoire and 21st century music, reversing the stereotypes surrounding both instruments.
-                  The duo collaborates with established composers such as John Alexander, Paul Patterson and Kurt Morgan.
-                  The Girls have performed in several important London venues such as St- Martin-in-the-Fields, Wigmore Hall, Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the GSM Auditorium, Sala dell’Affresco and Chiesa di S. Micheletto in Lucca.
-              </p>
+            <h2>The project</h2>
+            <p>
+              The Girls in the Magnesium Dress is an innovative chamber music collaboration between double bass and
+              harp.
+              Named after one of the most renowned orchestral pieces by Frank Zappa, the ensemble involves the audience
+              in a new musical experience led by Valentina Scheldhofen Ciardelli and Anna Astesano.
+              Their versatile repertoire appeals to a wide public with sparkling transcriptions from the opera world,
+              virtuoso repertoire and 21st century music, reversing the stereotypes surrounding both instruments.
+              The duo collaborates with established composers such as John Alexander, Paul Patterson and Kurt Morgan.
+              The Girls have performed in several important London venues such as St- Martin-in-the-Fields, Wigmore
+              Hall, Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the GSM Auditorium, Sala
+              dell’Affresco and Chiesa di S. Micheletto in Lucca.
+            </p>
           </div>
-      </div>
-  </section>
+        </div>
+      </section>
 
-  <!-- About Us section starts here -->
-  <section id="About" class="about about--valentina">
-      <div class="container">
+      <!-- About Us section starts here -->
+      <section id="About" class="about about--valentina">
+        <div class="container">
           <div class="about-wrapper">
-              <h2>Valentina Ciardelli</h2>
-              <p> Valentina was born in Pietrasanta (Italy) to a German mother and Italian father. Initially a pianist, she started to play double bass in late 2009, graduating with Honours from the “Istituto Musicale L. Boccherini” in Lucca in October 2014, later at the Royal College of Music in July 2016 and with Leon Bosch in 2017 at Trinity Laban Conservatoire of Music and Dance </p <p> Valentina also graduated in composition in March 2014 with Honours in conservatoire Giacomo Puccini in La Spezia. Valentina has won several awards, prizes and orchestral auditions such as the Gustav Mahler Academy 2016, BBC SO training scheme. She recently won the Artist in Residence at BANFF, Alberta (Canada), who will host her in September 2019 </p <p> She gave solo performances with “I Solisti Veneti” with Maestro Claudio Scimone, winning the prestigious scholarship granted by the Academy (Proliber). In London, she has performed as a soloist in the prestigious Wigmore Hall and St. Martin-in-the-Fields. She was invited to the pre-opening of the Zappanale 2018 in St.Katharinen Kirche (Hamburg) with her Trio featuring the Worldwide saxophone virtuoso Napoleon Murphy Brock </p <p> She been awarded as Junior Fellow Carne Trust at the Trinity Laban Conservatoire. She also won a scholarship from “Associazione Animando” in Lucca for a research project investigating the music of Giacomo Puccini’s ancestors and her work had been published by Da Vinci Editions. Valentina is focused to expand the double bass solo repertoire composing new virtuoso pieces. She also has a wide Jazz experience. She plays a Scipioni double bass 2014 </p>
+            <h2>Valentina Ciardelli</h2>
+            <p> Valentina was born in Pietrasanta (Italy) to a German mother and Italian father. Initially a pianist,
+              she started to play double bass in late 2009, graduating with Honours from the “Istituto Musicale L.
+              Boccherini” in Lucca in October 2014, later at the Royal College of Music in July 2016 and with Leon Bosch
+              in 2017 at Trinity Laban Conservatoire of Music and Dance </p <p> Valentina also graduated in composition
+            in March 2014 with Honours in conservatoire Giacomo Puccini in La Spezia. Valentina has won several awards,
+            prizes and orchestral auditions such as the Gustav Mahler Academy 2016, BBC SO training scheme. She recently
+            won the Artist in Residence at BANFF, Alberta (Canada), who will host her in September 2019 </p <p> She gave
+            solo performances with “I Solisti Veneti” with Maestro Claudio Scimone, winning the prestigious scholarship
+            granted by the Academy (Proliber). In London, she has performed as a soloist in the prestigious Wigmore Hall
+            and St. Martin-in-the-Fields. She was invited to the pre-opening of the Zappanale 2018 in St.Katharinen
+            Kirche (Hamburg) with her Trio featuring the Worldwide saxophone virtuoso Napoleon Murphy Brock </p <p> She
+            been awarded as Junior Fellow Carne Trust at the Trinity Laban Conservatoire. She also won a scholarship
+            from “Associazione Animando” in Lucca for a research project investigating the music of Giacomo Puccini’s
+            ancestors and her work had been published by Da Vinci Editions. Valentina is focused to expand the double
+            bass solo repertoire composing new virtuoso pieces. She also has a wide Jazz experience. She plays a
+            Scipioni double bass 2014 </p>
           </div>
-      </div>
-  </section>
-  <section class="about about--anna">
-      <div class="container">
+        </div>
+      </section>
+      <section class="about about--anna">
+        <div class="container">
           <div class="about-wrapper">
-              <h2>Anna Astesano</h2>
-              <p> After her Bachelor and Master studies at the CNSMD in Lyon, Anna joined the harp class at Trinity and Laban Conservatoire of Music and Dance in the Postgraduate Advanced Diploma course. </p> <p>Between 2014 and 2015 she has been harpist at “Teatro alla Scala” Academy in Milan, being conducted by Maestro Fabio Luisi, David Coleman, Marco Armiliato, and many others.</p> <p> In June 2015 she won the audition as first harp at the “Luigi Cherubini” Orchestra, conducted by Maestro Riccardo Muti, having the chance to collaborate with artists such as Vadim Repin, Svetlana Zakharova and the Bolshoi Ballet and Renata Scotto </p> <p> Since 2017 she has been awarded scholarships offered by the Turin CRT Foundation, “De Sono” Association and Turin "Lions Club". In 2018 She was awarded the “Featured Young Performer” Award by the London Ear Festival, and the  "John Marson Prize 2018 for best performer". In 2019 sha has been the Future Foyle First harpist in the programme promoted by the London Philharmonic Orchestra. She has recently won the audition as second harpist of the Maggio Musicale Fiorentino Opera in Florence. </p> <p> She has been working with the Royal Opera House in Covent Garden, the London Philharmonic Orchestra, the Orchestra Sinfonica Nazionale (RAI) in Turin, the Kolobov Novaya Opera Theatre of Moscow, Teatro del Maggio Fiorentino Orchestra in Florence, the London Southbank Sinfonia, performing in Wigmore Hall, the Royal Festival Hall, the Royal Albert Hall, St-Martins-in-the-Fields between the others. </p> <p> She is a Concordia Foundation and a Park Lane Group Artist. </p>
+            <h2>Anna Astesano</h2>
+            <p> After her Bachelor and Master studies at the CNSMD in Lyon, Anna joined the harp class at Trinity and
+              Laban Conservatoire of Music and Dance in the Postgraduate Advanced Diploma course. </p>
+            <p>Between 2014 and 2015 she has been harpist at “Teatro alla Scala” Academy in Milan, being conducted by
+              Maestro Fabio Luisi, David Coleman, Marco Armiliato, and many others.</p>
+            <p> In June 2015 she won the audition as first harp at the “Luigi Cherubini” Orchestra, conducted by Maestro
+              Riccardo Muti, having the chance to collaborate with artists such as Vadim Repin, Svetlana Zakharova and
+              the Bolshoi Ballet and Renata Scotto </p>
+            <p> Since 2017 she has been awarded scholarships offered by the Turin CRT Foundation, “De Sono” Association
+              and Turin "Lions Club". In 2018 She was awarded the “Featured Young Performer” Award by the London Ear
+              Festival, and the "John Marson Prize 2018 for best performer". In 2019 sha has been the Future Foyle First
+              harpist in the programme promoted by the London Philharmonic Orchestra. She has recently won the audition
+              as second harpist of the Maggio Musicale Fiorentino Opera in Florence. </p>
+            <p> She has been working with the Royal Opera House in Covent Garden, the London Philharmonic Orchestra, the
+              Orchestra Sinfonica Nazionale (RAI) in Turin, the Kolobov Novaya Opera Theatre of Moscow, Teatro del
+              Maggio Fiorentino Orchestra in Florence, the London Southbank Sinfonia, performing in Wigmore Hall, the
+              Royal Festival Hall, the Royal Albert Hall, St-Martins-in-the-Fields between the others. </p>
+            <p> She is a Concordia Foundation and a Park Lane Group Artist. </p>
 
           </div>
-      </div>
-  </section>
-  <section class="events" id="events">
-    <div class="testimonial-wrap">
-    <div class="container">
-      <div class="block-heading">
-        <h2>Events</h2>
-      </div>
-      <div class="aa-events__container">
-      </div>
-    </div>
-  </div>
-  </section>
-  <!-- About Us section ends here -->
-  <!-- Portfolio section starts here -->
-  <section class="media-section" id="media">
-      <div class="container">
+        </div>
+      </section>
+      <section class="events" id="events">
+        <div class="testimonial-wrap">
+          <div class="container">
+            <div class="block-heading">
+              <h2>Events</h2>
+            </div>
+            <div class="aa-events__container">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- About Us section ends here -->
+      <!-- Portfolio section starts here -->
+      <section class="media-section" id="media">
+        <div class="container">
           <div class="block-heading">
-              <h2>Media</h2>
+            <h2>Media</h2>
           </div>
           <div class="aa_medias">
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/nrQyn-tQ2yM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/nrQyn-tQ2yM" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/I0zt5NWbjPA?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/I0zt5NWbjPA?rel=0" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Zek3j68gzPc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Zek3j68gzPc?rel=0" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
             <div class="aa-media__media">
               <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/MC8XU6jgYIg?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/MC8XU6jgYIg?rel=0" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
           </div>
-      </div>
-  </section>
-  <!-- Portfolio section ends here -->
-  <!-- Contact us section starts here -->
-  <section id="contact-us" class="contact-us">
-      <div class="container contact-container">
+        </div>
+      </section>
+      <!-- Portfolio section ends here -->
+      <!-- Contact us section starts here -->
+      <section id="contact-us" class="contact-us">
+        <div class="container contact-container">
           <h3 class="contact-title">Get In Touch</h3>
           <div class="contact-outer-wrapper">
-              <div class="address-block">
-                  <p class="add-title">Contact Details</p>
-                  <div class="c-detail">
-                      <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
-                        Facebook </br>
-                        <a href="https://www.facebook.com/GirlsInTheMagnesiumDress/">
-                          The Girls in The Magnesium Dress
-                        </a>
-                      </span>
-                  </div>
-                  <div class="c-detail">
-                      <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="c-info">
-                        Youtube </br>
-                        <a href="https://www.youtube.com/channel/UCWX5_W6XymuKWdE8zG0VlwQ?view_as=subscriber">
-                          The Girls in The Magnesium Dress
-                        </a>
-                      </span>
-                  </div>
+            <div class="address-block">
+              <p class="add-title">Contact Details</p>
+              <div class="c-detail">
+                <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
+                  Facebook </br>
+                  <a href="https://www.facebook.com/GirlsInTheMagnesiumDress/">
+                    The Girls in The Magnesium Dress
+                  </a>
+                </span>
               </div>
-              <div class="form-wrap">
-                  <p class="add-title">Send Us Message</p>
-                  <form action="https://formspree.io/annarpa93@gmail.com" method="POST">
-
-                      <div class="fname floating-label">
-                          <input type="text" class="floating-input" name="name" id="full-name-field" />
-                          <label for="full-name-field">Your name</label>
-                      </div>
-                      <div class="email floating-label">
-                          <input type="email" class="floating-input" name="_replyto" id="mail-field" />
-                          <label for="mail-field">Your email address</label>
-                      </div>
-
-                      <div class="user-msg floating-label">
-                          <textarea class="floating-input" name="message" id="user-msg-field"></textarea>
-                          <label for="user-msg-field" class="msg-label">Message</label>
-                      </div>
-                      <div class="submit-btn">
-                          <button type="submit">Send</button>
-                      </div>
-                  </form>
+              <div class="c-detail">
+                <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="c-info">
+                  Youtube </br>
+                  <a href="https://www.youtube.com/channel/UCWX5_W6XymuKWdE8zG0VlwQ?view_as=subscriber">
+                    The Girls in The Magnesium Dress
+                  </a>
+                </span>
               </div>
+            </div>
+            <div class="form-wrap">
+              <p class="add-title">Send Us Message</p>
+              <form action="https://formspree.io/annarpa93@gmail.com" method="POST">
+
+                <div class="fname floating-label">
+                  <input type="text" class="floating-input" name="name" id="full-name-field" />
+                  <label for="full-name-field">Your name</label>
+                </div>
+                <div class="email floating-label">
+                  <input type="email" class="floating-input" name="_replyto" id="mail-field" />
+                  <label for="mail-field">Your email address</label>
+                </div>
+
+                <div class="user-msg floating-label">
+                  <textarea class="floating-input" name="message" id="user-msg-field"></textarea>
+                  <label for="user-msg-field" class="msg-label">Message</label>
+                </div>
+                <div class="submit-btn">
+                  <button type="submit">Send</button>
+                </div>
+              </form>
+            </div>
           </div>
-      </div>
-  </section>
-  <!-- Contact us section ends here -->
-  <!-- Footer section starts here -->
-  <!-- Footer section ends here -->
-</section>
-    </main>
+        </div>
+      </section>
+      <!-- Contact us section ends here -->
+      <!-- Footer section starts here -->
+      <!-- Footer section ends here -->
+    </section>
+  </main>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.1/jquery.fancybox.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.5/scrollreveal.min.js" crossorigin="anonymous"></script> -->
 
   <script src="/static/js/site.min.js"></script>
-  </body>
+</body>
+
 </html>
