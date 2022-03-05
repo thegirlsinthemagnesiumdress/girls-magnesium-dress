@@ -1,171 +1,189 @@
 {% extends '/views/base.html' %}
-  <body {% block body_attributes %} {% endblock %}>
 
-{% block body %}
- <section id="MainContainer">
-  <!-- Header starts here -->
-  <header class="header" id="Header">
+<body {% block body_attributes %} {% endblock %}>
+
+  {% block body %}
+  <section id="MainContainer">
+    <!-- Header starts here -->
+    <header class="header" id="Header">
       <nav class="main-navigation">
-          <div class="container clearfix">
-              <div class="site-logo-wrap">
-                  <a class="logo" href="#"><img src="/static/images/logo.svg" alt="logo"></a>
-              </div>
-              <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
-              <div class="main-menu hidden-md-down">
-                  <ul class="menu-list">
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">{{_(doc.menu_home)}}</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#project">{{_(doc.menu_project)}}</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#events">{{_(doc.menu_events)}}</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#media">{{_(doc.menu_media)}}</a></li>
-                      <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">{{_(doc.menu_contact)}}</a></li>
-                  </ul>
-              </div>
+        <div class="container clearfix">
+          <div class="site-logo-wrap">
+            <a class="logo" href="#"><img src="/static/images/logo.svg" alt="logo"></a>
           </div>
-          <div class="mobile-menu hidden-lg-up">
-              <ul class="mobile-menu-list">
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">{{_(doc.menu_home)}}</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#project">{{_(doc.menu_project)}}</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#events">{{_(doc.menu_events)}}</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#media">{{_(doc.menu_media)}}</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">{{_(doc.menu_contact)}}</a></li>
-              </ul>
+          <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
+          <div class="main-menu hidden-md-down">
+            <ul class="menu-list">
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">{{_(doc.menu_home)}}</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#project">{{_(doc.menu_project)}}</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#events">{{_(doc.menu_events)}}</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#media">{{_(doc.menu_media)}}</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">{{_(doc.menu_contact)}}</a>
+              </li>
+            </ul>
           </div>
+        </div>
+        <div class="mobile-menu hidden-lg-up">
+          <ul class="mobile-menu-list">
+            <li class="nav-link"><a href="javascript:void(0)" data-target="#HeroBanner">{{_(doc.menu_home)}}</a></li>
+            <li class="nav-link"><a href="javascript:void(0)" data-target="#project">{{_(doc.menu_project)}}</a></li>
+            <li class="nav-link"><a href="javascript:void(0)" data-target="#events">{{_(doc.menu_events)}}</a></li>
+            <li class="nav-link"><a href="javascript:void(0)" data-target="#media">{{_(doc.menu_media)}}</a></li>
+            <li class="nav-link"><a href="javascript:void(0)" data-target="#contact-us">{{_(doc.menu_contact)}}</a></li>
+          </ul>
+        </div>
       </nav>
-  </header>
-  <!-- Header ends here -->
-  <!-- Banner starts here -->
-  <section id="HeroBanner">
+    </header>
+    <!-- Header ends here -->
+    <!-- Banner starts here -->
+    <section id="HeroBanner">
       <div class="hero-content">
-          <h1>{{_(doc.title)}}</h1>
+        <h1>{{_(doc.title)}}</h1>
       </div>
-  </section>
-  <section id="project" class="services">
+    </section>
+    <section id="project" class="services">
       <div class="container">
-          <div class="block-heading">
-              <h2>The project</h2>
-              <p>
-                  The Girls in the Magnesium Dress is an innovative chamber music collaboration between double bass and harp.
-                  Named after one of the most renowned orchestral pieces by Frank Zappa, the ensemble involves the audience in a new musical experience led by Valentina Scheldhofen Ciardelli and Anna Astesano.
-                  Their versatile repertoire appeals to a wide public with sparkling transcriptions from the opera world, virtuoso repertoire and 21st century music, reversing the stereotypes surrounding both instruments.
-                  The duo collaborates with established composers such as John Alexander, Paul Patterson and Kurt Morgan.
-                  The Girls have performed in several important London venues such as St- Martin-in-the-Fields, Wigmore Hall, Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the GSM Auditorium, Sala dell’Affresco and Chiesa di S. Micheletto in Lucca.
-              </p>
-          </div>
+        <div class="block-heading">
+          <h2>The project</h2>
+          <p>
+            The Girls in the Magnesium Dress is an innovative chamber music collaboration between double bass and harp.
+            Named after one of the most renowned orchestral pieces by Frank Zappa, the ensemble involves the audience in
+            a new musical experience led by Valentina Scheldhofen Ciardelli and Anna Astesano.
+            Their versatile repertoire appeals to a wide public with sparkling transcriptions from the opera world,
+            virtuoso repertoire and 21st century music, reversing the stereotypes surrounding both instruments.
+            The duo collaborates with established composers such as John Alexander, Paul Patterson and Kurt Morgan.
+            The Girls have performed in several important London venues such as St- Martin-in-the-Fields, Wigmore Hall,
+            Greenwich Theatre, St. James Piccadilly Church, Trinity Church, the GSM Auditorium, Sala dell’Affresco and
+            Chiesa di S. Micheletto in Lucca.
+          </p>
+        </div>
       </div>
-  </section>
+    </section>
 
-  <!-- About Us section starts here -->
-  <section id="About" class="about about--valentina">
+    <!-- About Us section starts here -->
+    <section id="About" class="about about--valentina">
       <div class="container">
-          <div class="about-wrapper">
-              <h2>{{_(doc.about_valentina_title)}}</h2>
-              {{_(doc.about_valentina_desc|safe)}}
-          </div>
+        <div class="about-wrapper">
+          <h2>{{_(doc.about_valentina_title)}}</h2>
+          {{_(doc.about_valentina_desc|safe)}}
+        </div>
       </div>
-  </section>
-  <section class="about about--anna">
+    </section>
+    <section class="about about--anna">
       <div class="container">
-          <div class="about-wrapper">
-              <h2>{{_(doc.about_anna_title)}}</h2>
-              {{_(doc.about_anna_desc|safe)}}
+        <div class="about-wrapper">
+          <h2>{{_(doc.about_anna_title)}}</h2>
+          {{_(doc.about_anna_desc|safe)}}
 
-          </div>
+        </div>
       </div>
-  </section>
-  <section class="events" id="events">
-    <div class="testimonial-wrap">
-    <div class="container">
-      <div class="block-heading">
-        <h2>{{_(doc.menu_events)}}</h2>
-      </div>
-      <div class="aa-events__container">
-      </div>
-    </div>
-  </div>
-  </section>
-  <!-- About Us section ends here -->
-  <!-- Portfolio section starts here -->
-  <section class="media-section" id="media">
-      <div class="container">
+    </section>
+    <section class="events" id="events">
+      <div class="testimonial-wrap">
+        <div class="container">
           <div class="block-heading">
-              <h2>{{_(doc.menu_media)}}</h2>
+            <h2>{{_(doc.menu_events)}}</h2>
           </div>
-          <div class="aa_medias">
-            <div class="aa-media__media">
-              <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/nrQyn-tQ2yM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="aa-media__media">
-              <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/I0zt5NWbjPA?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="aa-media__media">
-              <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Zek3j68gzPc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="aa-media__media">
-              <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/MC8XU6jgYIg?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
+          <div class="aa-events__container">
           </div>
+        </div>
       </div>
-  </section>
-  <!-- Portfolio section ends here -->
-  <!-- Contact us section starts here -->
-  <section id="contact-us" class="contact-us">
+    </section>
+    <!-- About Us section ends here -->
+    <!-- Portfolio section starts here -->
+    <section class="media-section" id="media">
+      <div class="container">
+        <div class="block-heading">
+          <h2>{{_(doc.menu_media)}}</h2>
+        </div>
+        <div class="aa_medias">
+          <div class="aa-media__media">
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/nrQyn-tQ2yM" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="aa-media__media">
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/I0zt5NWbjPA?rel=0" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="aa-media__media">
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/Zek3j68gzPc?rel=0" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="aa-media__media">
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/MC8XU6jgYIg?rel=0" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Portfolio section ends here -->
+    <!-- Contact us section starts here -->
+    <section id="contact-us" class="contact-us">
       <div class="container contact-container">
-          <h3 class="contact-title">{{_(doc.section_contact_title)}}</h3>
-          <div class="contact-outer-wrapper">
-              <div class="address-block">
-                  <p class="add-title">{{_(doc.section_contact_details)}}</p>
-                  <div class="c-detail">
-                      <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
-                        Facebook </br>
-                        <a href="https://www.facebook.com/GirlsInTheMagnesiumDress/">
-                          The Girls in The Magnesium Dress
-                        </a>
-                      </span>
-                  </div>
-                  <div class="c-detail">
-                      <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="c-info">
-                        Youtube </br>
-                        <a href="https://www.youtube.com/channel/UCWX5_W6XymuKWdE8zG0VlwQ?view_as=subscriber">
-                          The Girls in The Magnesium Dress
-                        </a>
-                      </span>
-                  </div>
-              </div>
-              <div class="form-wrap">
-                  <p class="add-title">{{_(doc.section_contact_send_message)}}</p>
-                  <form action="https://formspree.io/annarpa93@gmail.com" method="POST">
-
-                      <div class="fname floating-label">
-                          <input type="text" class="floating-input" name="name" id="full-name-field" />
-                          <label for="full-name-field">{{_(doc.your_name)}}</label>
-                      </div>
-                      <div class="email floating-label">
-                          <input type="email" class="floating-input" name="_replyto" id="mail-field" />
-                          <label for="mail-field">{{_(doc.your_mail)}}</label>
-                      </div>
-
-                      <div class="user-msg floating-label">
-                          <textarea class="floating-input" name="message" id="user-msg-field"></textarea>
-                          <label for="user-msg-field" class="msg-label">{{_(doc.your_message)}}</label>
-                      </div>
-                      <div class="submit-btn">
-                          <button type="submit">{{_(doc.send)}}</button>
-                      </div>
-                  </form>
-              </div>
+        <h3 class="contact-title">{{_(doc.section_contact_title)}}</h3>
+        <div class="contact-outer-wrapper">
+          <div class="address-block">
+            <p class="add-title">{{_(doc.section_contact_details)}}</p>
+            <div class="c-detail">
+              <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
+                Facebook </br>
+                <a href="https://www.facebook.com/GirlsInTheMagnesiumDress/">
+                  The Girls in The Magnesium Dress
+                </a>
+              </span>
+            </div>
+            <div class="c-detail">
+              <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <span class="c-info">
+                PR - Ufficio Stampa </br>
+                <a class="pr-contact" href="mailto:marco.marcarini2@gmail.com">
+                  Mario Marcarini
+                </a>
+              </span>
+            </div>
+            <div class="c-detail">
+              <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="c-info">
+                Youtube </br>
+                <a href="https://www.youtube.com/channel/UCWX5_W6XymuKWdE8zG0VlwQ?view_as=subscriber">
+                  The Girls in The Magnesium Dress
+                </a>
+              </span>
+            </div>
           </div>
+          <div class="form-wrap">
+            <p class="add-title">{{_(doc.section_contact_send_message)}}</p>
+            <form action="https://formspree.io/annarpa93@gmail.com" method="POST">
+
+              <div class="fname floating-label">
+                <input type="text" class="floating-input" name="name" id="full-name-field" />
+                <label for="full-name-field">{{_(doc.your_name)}}</label>
+              </div>
+              <div class="email floating-label">
+                <input type="email" class="floating-input" name="_replyto" id="mail-field" />
+                <label for="mail-field">{{_(doc.your_mail)}}</label>
+              </div>
+
+              <div class="user-msg floating-label">
+                <textarea class="floating-input" name="message" id="user-msg-field"></textarea>
+                <label for="user-msg-field" class="msg-label">{{_(doc.your_message)}}</label>
+              </div>
+              <div class="submit-btn">
+                <button type="submit">{{_(doc.send)}}</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+    </section>
+    <!-- Contact us section ends here -->
+    <!-- Footer section starts here -->
+    <!-- Footer section ends here -->
   </section>
-  <!-- Contact us section ends here -->
-  <!-- Footer section starts here -->
-  <!-- Footer section ends here -->
-</section>
-{% endblock %}
+  {% endblock %}
