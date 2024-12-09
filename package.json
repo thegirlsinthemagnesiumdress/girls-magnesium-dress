@@ -45,7 +45,7 @@
     "flexboxgrid-sass": "github:hugeinc/flexboxgrid-sass#14d347cfa2dc11f9fac26fe00a8679fcda2736ff"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.2",
     "bootstrap": "^4.3.1",
     "bxslider": "^4.2.14",
     "fancybox": "^3.0.1",
