@@ -1,33 +1,31 @@
 [
 
+
   {
-    "bk_date": "18/10/2022",
-    "hour": "19:00",
-    "maps_link": "https://goo.gl/maps/1CfVum49Xpt61i277",
-    "title": "Ruutsu Album Presentation",
-    "where": "Blackheath Halls",
-    "programme": "Ruutsu album- The Girls in the Magnesium Dress",
-    "more_info": "<a href=\"https://www.blackheathhalls.com/whats-on//\" target=\"_blank\">What's on and tickets</a>",
-    "date": "2022-10-18T19:00"
+    "bk_date": "25/07/2025",
+    "hour": "21:30",
+    "title": "Festival Paesaggi dell’Arte 2025",
+    "where": "Chiostro di San Marco, Tarquinia (VT)",
+    "programme": "Ruutsu Album",
+    "more_info": "<a href=\"https://www.occhioviterbese.it/paesaggi-dellarte-2025/\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2025-07-25T21:30"
+  },
+    {
+    "bk_date": "21/06/2025",
+    "hour": "21:00",
+    "maps_link": "https://maps.app.goo.gl/kWbSMY8vVCA3tgby8",
+    "title": "Festa della Musica 2025",
+    "where": "Chiesa di San Romano, Lucca",
+    "programme": "Musiche di Puccini",
+    "more_info": "<a href=\"https://www.luccagiovane.it/festa-della-musica-2025/#:~:text=Il%2021%20giugno%202025%2C%20si,il%20mondo%20della%20musica%20offre./\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2025-06-21T19:00"
   },
   {
-    "bk_date": "25/09/2022",
-    "hour": "15:30",
-    "maps_link": "https://goo.gl/maps/KWsUkW7BiAohqcvN7",
-    "title": "Di Suono in Gioco - Rassegna Cameristica Lingotto Musica, in collaborazione con l'Associazione De Sono",
-    "where": "Reggia di Venaria",
-    "programme": "musiche di Saint Saens, Puccini, Tchaikovsky",
-    "more_info": "<a href=\"https://www.turismotorino.org/it/esperienze/eventi/di-suono-gioco-girls-magnesium-dress-alla-reggia-di-venaria/\" target=\"_blank\">What's on and tickets</a>",
-    "date": "2022-09-25T15:30"
-  },
-  {
-    "bk_date": "24/09/2022",
-    "hour": "17:30",
-    "maps_link": "https://goo.gl/maps/4NoKtcumQqYayP2H6",
-    "title": "RŪTSU_ROOTS al MAO",
-    "where": "Museo di Arte Orientale di Torino",
-    "programme": "Hirano, Puccini, Ciardelli, Miyagi",
-    "more_info": "<a href=\"https://www.vivatorino.it/rutsu_roots-24-settembre-ore-17-30-the-girls-in-the-magnesium-dress-in-concerto-nella-galleria-giapponese-del-mao-museo-darte-orientale/\" target=\"_blank\">What's on and tickets</a>",
-    "date": "2022-09-24T17:30"
+    "bk_date": "15/06/2025",
+    "hour": "20:30",
+    "title": "The Girls in the Magnesium Dress - 1900 and beyond",
+    "where": "Innsbruck - Austria",
+    "programme": "Zappa, Bowie, Bernstein, Hirano, Ciardelli",
+    "date": "2025-06-15T20:30"
   }
 ]
