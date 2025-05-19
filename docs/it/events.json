@@ -1,11 +1,29 @@
 [
   {
-   "hour": "7 :30",
-   "maps_link": "https://g.page/fideliorchestra?share",
-   "title": "From Schubert to Zappa",
-   "where": "Fidelio Café",
-   "programme": "Schubert, Stravinsky, Puccini, Zappa",
-   "more_info": "<a href=\"https://www.fideliorchestra.art/events\" target=\"_blank\">Events and tickets</a>",
-   "date": "2019-10-28T19:30"
- }
+    "bk_date": "25/07/2025",
+    "hour": "21:30",
+    "title": "Festival Paesaggi dell’Arte 2025",
+    "where": "Chiostro di San Marco, Tarquinia (VT)",
+    "programme": "Ruutsu Album",
+    "more_info": "<a href=\"https://www.occhioviterbese.it/paesaggi-dellarte-2025/\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2025-07-25T21:30"
+  },
+    {
+    "bk_date": "21/06/2025",
+    "hour": "21:00",
+    "maps_link": "https://maps.app.goo.gl/kWbSMY8vVCA3tgby8",
+    "title": "Festa della Musica 2025",
+    "where": "Chiesa di San Romano, Lucca",
+    "programme": "Musiche di Puccini",
+    "more_info": "<a href=\"https://www.luccagiovane.it/festa-della-musica-2025/#:~:text=Il%2021%20giugno%202025%2C%20si,il%20mondo%20della%20musica%20offre./\" target=\"_blank\">What's on and tickets</a>",
+    "date": "2025-06-21T19:00"
+  },
+  {
+    "bk_date": "15/06/2025",
+    "hour": "20:30",
+    "title": "The Girls in the Magnesium Dress - 1900 and beyond",
+    "where": "Innsbruck - Austria",
+    "programme": "Zappa, Bowie, Bernstein, Hirano, Ciardelli",
+    "date": "2025-06-15T20:30"
+  }
 ]
